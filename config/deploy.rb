@@ -25,6 +25,8 @@ set :rvm_ruby_string,   'ruby-2.1.1'
 set :rvm_type,          :user
 set :rvm_install_type,  :stable
 
+set :rails_env,         "production"
+
 set :deploy_to,         "/srv/www/#{application}"
 
 set :bundle_dir,        ''
@@ -56,15 +58,27 @@ namespace :bundler do
     sudo run "cd #{current_release} && bundle update"
   end
 
-  desc "Install Bundler"
-  task :install_bundler, :role => :app do
-    sudo "gem install bundler"
-  end
+  # desc "Install Bundler"
+  # task :install_bundler, :role => :app do
+  #   sudo "gem install bundler"
+  # end
 
   # desc "run bundle install and ensure all gem requirements are met"
   # task :install, :role => :app do
   #   run "cd #{current_path} && bundle install"
   # end
+
+  desc "Migrate Database"
+  task :migrate_database do
+      run "cd #{ current_path } &&
+      #{ sudo } bundle exec rake db:migrate RAILS_ENV=#{ rails_env }"
+  end
+
+  desc "Precompile assets after deploy"
+  task :precompile_assets do
+      run "cd #{ current_path } &&
+      #{ sudo } bundle exec rake assets:precompile RAILS_ENV=#{ rails_env }"
+  end
 end
 
 
