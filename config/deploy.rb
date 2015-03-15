@@ -25,6 +25,8 @@ set :rvm_ruby_string,   'ruby-2.1.1'
 set :rvm_type,          :user
 set :rvm_install_type,  :stable
 
+set :rails_env,         "production"
+
 set :deploy_to,         "/srv/www/#{application}"
 
 set :bundle_dir,        ''
