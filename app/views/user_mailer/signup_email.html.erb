@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Welcome to Arima, <%= @user.name %></h1>
+    <p>
+      You have successfully signed up to Arima,
+      your username is: <%= @user.email %>.<br>
+    </p>
+    <p>
+      Start answering questions by going to our <%= link_to "Categories Page", categories_url %>
+    </p>
+    <p>
+      Share your reports and tell your friends. Follow us on <%= link_to "Twitter", "https://twitter.com/arima_io" %> at @arima_io, and on <%= link_to "Facebook", "https://www.facebook.com/friendsofarima" %> at Arima!
+    </p>
+    <p>Thanks for joining and have a great day!</p>
+  </body>
+</html>

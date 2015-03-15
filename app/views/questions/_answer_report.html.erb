@@ -1,0 +1,56 @@
+<!-- User answer (if signed in) -->
+<% if user_signed_in? %>
+<!-- <div class="user-submitted-answer">
+  <%#= "#{@answer.value_symbol}#{@answer.value} <small>#{@answer.placeholder}</small>".html_safe %>
+</div> -->
+
+<!-- Share section -->
+<% if current_user.is_set_up? then %>
+<!-- share buttons -->
+<div class="share-answer-section">
+  <div class="col-sm-12">
+    <div class="text-center">
+      <div class="answers-share-container">
+        <%= render partial: "answers/share", locals: {
+          id: answer.id,
+          url: "#{request.protocol}#{request.host_with_port}" + answer_path(answer),
+          title: "See what I got compared to the rest of the world!",
+          description: answer.description,
+          image: "#{request.protocol}#{request.host_with_port}" + answer_thumb_path(answer)
+        }
+        %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+
+<!-- Report Container -->
+<div class="report-container">
+    <div class="compare-stats" id="c-answer">
+      <div class="demographic">
+        <div class="title">
+          Demographic:
+        </div>
+        <div class="genders">
+          <strong><%= answer.percent_gender[:males] %>%</strong> Male
+          <strong><%= answer.percent_gender[:females] %>%</strong> Female
+        </div>
+        <div class="age">
+          Average age: <strong><%= answer.average_age %></strong> years old
+        </div>
+      </div>
+
+      <% has_city = user_signed_in? ? answer.user.location.city.present? : false %>
+      <div class="average">
+        <% if has_city %>
+          <p class="city" style="display: none;"><%= answer.formatted_diff_average 'city' %></p>
+          <p class="country"><%= answer.formatted_diff_average 'country' %></p>
+        <% end %>
+        <p class="world" style="display: none;"><%= answer.formatted_diff_average 'world' %></p>
+      </div>
+    </div>
+
+    <%= render partial: 'common/visualization', locals: {answer: answer, has_city: has_city} %>
+  <% end %>
+</div>

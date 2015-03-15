@@ -1,0 +1,14 @@
+/*
+ *= require bootstrap.min.css
+ *= require bootstrap-theme.min.css
+ *= require_self
+ */
+
+.pagination {
+  display:inline-block;
+}
+
+td.action {
+  white-space: nowrap;
+  width: 1px;
+}

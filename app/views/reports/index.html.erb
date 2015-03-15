@@ -1,0 +1,81 @@
+<% if @set_og %>
+  <% content_for :og do %>
+    <meta property="og:type"  content="website" />
+    <meta property="og:title" content="<%= @title %>" />
+    <meta property="og:description" content="<%= @description %>" />
+    <meta property="og:image" content="<%= @image %>" />
+  <% end %>
+<% end %>
+
+<% provide(:title, 'Report') %>
+
+<div class="col-sm-12">
+  <div class="row profile-photo-name">
+    <%= render partial: "common/user_photo_name", locals: {user: @resource} %>
+    <div class="clearfix"></div>
+    <% if current_user && current_user.username == @resource.username %>
+      <br><br>
+      <%= render partial: "common/user_stats", locals: {
+        points_count: @points_count,
+        questions_count: @questions_count,
+        most_active_category: @most_active_category
+      } %>
+    <% end %>
+  </div>
+
+  <div class="row purple-stripes"></div>
+
+  <div class="row center-block answer-graphs">
+    <div id="answers">
+      <!-- answers ajax load containers -->
+      <% @answers.each do |answer| %>
+        <div id="container-for-answer-id-<%= answer.id %>"></div>
+      <% end %>
+
+      <script>
+        $(document).ready(function() {
+          var question_answer_ids = <%= @answers.map { |v| [v.question_id, v.id] }.to_json.html_safe %>;
+
+          var fetchAnswers = function(arr) {
+            var item = arr.shift();
+
+            if (typeof item !== 'undefined') {
+              var questionId = item[0]
+                , answerId = item[1]
+                , $container = $("#container-for-answer-id-"+answerId)
+                , url = "/answers/"+answerId;
+
+              // show loading message
+              $container.html("<h4 class='text-center'>Loading...</h4>");
+
+              $.get(url, function(response) {
+                $container.hide();
+                $container.html(response).fadeIn();
+              })
+              .success(function(){
+                if (arr.length > 0) {
+                  fetchAnswers(_.compact(arr));
+                }
+              });
+            }
+          };
+
+          // start
+          fetchAnswers(question_answer_ids);
+        });
+      </script>
+    </div>
+  </div>
+
+  <div class="clearfix"></div>
+
+  <% unless params[:expand].present? || params[:answer_id] %>
+  <p id="expand-full-report" class="text-center">
+    <a href="?expand=true" title="">
+      EXPAND FULL REPORT
+      <br>
+      <i class="fa fa-arrow-down fa-3x"></i>
+    </a>
+  </p>
+  <% end %>
+</div>

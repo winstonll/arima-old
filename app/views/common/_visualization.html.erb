@@ -1,0 +1,151 @@
+<div class="visualization" id="v-answer">
+  <div class="compare-stats" id="c-answer">
+<!--     <div class="demographic">
+      <div class="title">
+        Demographic:
+      </div>
+      <div class="genders">
+        <strong><%#= question.percent_gender[:males] %>%</strong> Male
+        <strong><%#= question.percent_gender[:females] %>%</strong> Female
+      </div>
+      <div class="age">
+        Average age: <strong><%#= question.average_age %></strong> years old
+      </div>
+    </div> -->
+
+<!--     <div class="average">
+      <p class="world"><%#= question.formatted_diff_average 'world' %></p>
+    </div> -->
+  </div>
+
+  <div class="location-select">
+    <span class="location-label" <%= unless defined?(from_show_view) then
+      'style="display: block;"'.html_safe end %>>
+      Currently visualizing:
+      <span class="location-current">your Country</span>
+    </span>
+
+    <div class="location-list" <%= unless defined?(from_show_view) then
+      'style="float:none; margin: 0.4em 0;"'.html_safe end %>>
+      <ul class="report-location-list" role="tablist">
+        <% has_country = user_signed_in? ?  answer.user.location.country.present? : false %>
+        <% if has_city %>
+          <li class="report-location">
+            <a class="city" data-toggle="pill" href="javascript:void()">
+              <%= answer.user.location.city %>
+            </a>
+          </li>
+        <% end %>
+        <% if has_country %>
+        <li class="report-location active">
+          <a class="country" data-toggle="pill" href="javascript:void()">
+            <%= answer.user.location.country %>
+          </a>
+        </li>
+        <% end %>
+        <li class="report-location">
+          <a class="world" data-toggle="pill" href="javascript:void()">
+            World
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="answer-chart"></div>
+</div>
+
+<script>
+  var data_answer = {};
+  <% if has_city %>
+    data_answer.city = <%= answer.data_array('city').html_safe %>;
+  <% end %>
+  data_answer.country = <%= answer.data_array('country').html_safe %>;
+  data_answer.world = <%= answer.data_array('world').html_safe %>;
+  data_answer.selected = 'country';
+  <% if answer.question.value_type == "collection" %>
+    data_answer.collection = true;
+  <% end %>
+
+  var chart_answer = c3.generate({
+    bindto: '#answer-chart',
+    <% unless defined?(from_show_view) %>
+      size: { width: 580 },
+    <% end %>
+    data: {
+      x: data_answer.collection ? null : 'x',
+      columns: transform_data_answer(data_answer.selected),
+      type: data_answer.collection ? 'pie' : 'bar'
+    },
+    axis: {
+      x: {
+        label: {
+          text: 'Answer Distribution',
+          position: 'outer-center'
+        }
+      },
+      y: {
+        label: {
+          text: 'Number of Votes',
+          position: 'outer-middle'
+        }
+      }
+    },
+    tooltip: {
+      format: {
+        title: function (d) {
+          return null;
+        },
+        value: function (value, ratio, id) {
+          var sum = data_answer[data_answer.selected].reduce(function(p, c) {
+            return p + c[1];
+          }, 0);
+          return (value / sum * 100).toFixed(1) + '%';
+        }
+      },
+      contents: function (d, defaultTitleFormat, defaultValueFormat, color) {
+        d.forEach(function(el){ el.name = el.value })
+        return this.getTooltipContent ?
+          this.getTooltipContent(d, defaultTitleFormat, defaultValueFormat, color) : '';
+      }
+    }
+  })
+
+  function transform_data_answer(loc) {
+    var data = data_answer[loc];
+    if (data_answer.collection) return data;
+    data = [['x'], [loc]];
+    data_answer[loc].forEach(function(el, i, arr) {
+      data[0].push(el[0]);
+      data[1].push(el[1]);
+    });
+    return data;
+  }
+
+  function show_location_answer(loc) {
+    data_answer.selected = loc;
+    var loc_arr = ['city', 'country', 'world'];
+    loc_arr.splice( $.inArray(loc, loc_arr), 1 );
+    chart_answer.load({columns: transform_data_answer(loc)});
+    setTimeout(function(){
+      chart_answer.unload({ids: loc_arr});
+    }, 300);
+    $('.compare-stats#c-answer .average p').hide(500);
+    $('.compare-stats#c-answer .average p.' + loc).show(500);
+  }
+
+  $('#v-answer .location-list .city').click(function (e) {
+    $('#v-answer .location-label .location-current')[0].innerHTML = 'your City';
+    show_location_answer('city');
+  });
+
+  $('#v-answer .location-list .country').click(function (e) {
+    $('#v-answer .location-label .location-current')[0].innerHTML = 'your Country';
+    show_location_answer('country');
+  });
+
+  $('#v-answer .location-list .world').click(function (e) {
+    $('#v-answer .location-label .location-current')[0].innerHTML = 'the World';
+    show_location_answer('world');
+  });
+</script>

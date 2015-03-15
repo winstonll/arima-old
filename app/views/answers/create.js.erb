@@ -1,0 +1,6 @@
+$(document).ready(function() {
+  // fetch the answer
+  $.get("<%= answer_path(@answer.id) %>", function(response) {
+    $("#answer-info").html(response);
+  });
+});

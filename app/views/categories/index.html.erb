@@ -1,0 +1,50 @@
+<%= javascript_include_tag "sidebar-hide", :type => "text/javascript" %>
+
+<div class="main-site-container" id="index-container">
+  <div class="index-title-container">
+    <h1 class="index-container-title">Categories</h1>
+    <%= image_tag("featured-star.png", class: "index-legend-icon" ) %> <span class="index-legend-label">Featured</span> <%= image_tag("popular-fire.png", class: "index-legend-icon" ) %> <span class="index-legend-label">Popular</span>
+  </div>
+
+  <% Group.all.each_slice(3).each do |group| %>
+    <div class="index-category-row row">
+    <% group.each do |category| %>
+    <a href="<%= category_path(category) %>" data-group-id="<%= category.id %>" class="index-category-link">
+      <div class="index-category-column col-md-4">
+        <div class="index-category-container">
+          <!-- Header -->
+          <div class="index-category-header index-category-<%= category.page_class %>">
+            <p class="index-category-title"><%= category.label.sub("<br>", " ").html_safe %></p>
+            <%= image_tag("category-icons/#{category.label.sub("<br>", " ").html_safe} White.png", class: "index-category-icon" ) %>
+            <p class="index-category-hint">Go to category</p>
+          </div>
+
+          <!-- Question Container -->
+          <div class="index-category-questions-container">
+            <% category.questions.sample(1).each do |featured_question| %>
+              <div class="index-category-question-container">
+                <p class="index-category-question-title"><%= featured_question.label %></p>
+                <span class="index-category-question-subtitle">
+                  <%= "#{featured_question.users.count} #{featured_question.users.count == 1 ? 'person answered' : 'people answered'}" %>
+                </span>
+                <%= image_tag("featured-star.png", class: "index-category-question-icon" ) %>
+              </div>
+            <% end %>
+
+            <% category.questions.sample(1).each do |featured_question| %>
+              <div class="index-category-question-container">
+                <p class="index-category-question-title"><%= featured_question.label %></p>
+                <span class="index-category-question-subtitle">
+                  <%= "#{featured_question.users.count} #{featured_question.users.count == 1 ? 'person answered' : 'people answered'}" %>
+                </span>
+                <%= image_tag("popular-fire.png", class: "index-category-question-icon" ) %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </a>
+    <% end %>
+    </div>
+  <% end %>
+</div>

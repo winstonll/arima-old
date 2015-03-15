@@ -1,0 +1,10 @@
+<h2>New <%= @model_name %></h2>
+
+<%= simple_form_for @resource, url: admin_model_create_path(@model_name), method: :post, html: {class: 'form'} do |f| %>
+  <%= @sa.simple_form_field f, @model_name, {country: "country_select"} %>
+  <%= f.submit nil, class: "btn btn-primary" %>
+<% end %>
+
+<hr>
+
+<pre><%= @resource.inspect %></pre>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= full_title(yield(:title)) %></title>
+  <%= stylesheet_link_tag    "application", media: "all"%>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+
+  <script type="text/javascript">var switchTo5x=true;</script>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "96ff7309-aea0-409e-ac5e-3ef84cefce86", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+
+  <meta name="title" content="Arima">
+  <meta name="description" content="Arima is a crowdsourced open-data knowledge base. As a contributor, you will have the opportunity to answer questions ranging from a variety of topics, and compare yourself against other users from your area, country and worldwide.">
+
+  <!-- Open Graphs Metadata -->
+  <meta property="fb:app_id" content="294175180758323" />
+  <meta property="og:title" content="Arima">
+  <meta property="og:url" content="http://arima.io">
+  <meta property="og:description" content="Arima is a crowdsourced open-data knowledge base. As a contributor, you will have the opportunity to answer questions ranging from a variety of topics, and compare yourself against other users from your area, country and worldwide.">
+
+</head>
+<body class="<%= "#{controller_name} #{action_name} #{yield :page_class}" %>">
+
+  <!-- FB -->
+  <div id="fb-root"></div>
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+              appId      : '294175180758323',
+              xfbml      : true,
+            version    : 'v2.0'
+      });
+    };
+    (function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+  <!-- FB END -->
+
+  <!-- SHARETHIS -->
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "96ff7309-aea0-409e-ac5e-3ef84cefce86", doNotHash: true, doNotCopy: true, hashAddressBar: false});</script>
+
+
+  <!-- Twitter Asynchronous Loader -->
+  <script>
+    window.twttr = (function (d,s,id) {
+      var t, js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return; js=d.createElement(s); js.id=id;
+      js.src="//platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs);
+      return window.twttr || (t = { _e: [], ready: function(f){ t._e.push(f) } });
+    }(document, "script", "twitter-wjs"));
+
+    twttr.ready(function (twttr) {
+      twttr.events.bind('tweet', function(event) {
+        $.ajax({
+          url: "/answers/share",
+          type: "POST",
+          dataType: "script",
+          data: {
+            share_type: "twitter",
+            ans_id: event.target.id
+          }
+        });
+      });
+    });
+  </script>
+
+  <!--div class="site-wrapper"-->
+    <%= render partial: 'common/categories_sidebar' %>
+
+    <%= render partial: "common/navbar" %>
+
+    <div class="site-content">
+
+      <div class="site-content-inner">
+        <div id="alert_messages">
+          <%= render partial: "common/alert" %>
+        </div>
+
+        <%= yield %>
+      </div>
+
+      <div class="footer-content">
+        <%= render partial: "common/footer" %>
+      </div>
+    </div>
+  <!--/div-->
+
+  <script>
+    $(document).ajaxComplete(function(){
+      try{
+          FB.XFBML.parse();
+      }catch(ex){}
+    });
+  </script>
+
+  <!-- Google Analytics -->
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-50543337-1', 'arima.io');
+    ga('send', 'pageview');
+
+  </script>
+
+  <script>
+  // Include the UserVoice JavaScript SDK (only needed once on a page)
+  UserVoice=window.UserVoice||[];(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/rQUC3S0ln380T3uiLVk8Q.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})();
+
+  //
+  // UserVoice Javascript SDK developer documentation:
+  // https://www.uservoice.com/o/javascript-sdk
+  //
+
+  // Set colors
+  UserVoice.push(['set', {
+    accent_color: '#e91e63',
+    trigger_color: 'white',
+    trigger_background_color: '#9c27b0'
+  }]);
+
+  // Identify the user and pass traits
+  // To enable, replace sample data with actual user traits and uncomment the line
+  UserVoice.push(['identify', {
+    //email:      'john.doe@example.com', // User’s email address
+    //name:       'John Doe', // User’s real name
+    //created_at: 1364406966, // Unix timestamp for the date the user signed up
+    //id:         123, // Optional: Unique id of the user (if set, this should not change)
+    //type:       'Owner', // Optional: segment your users by type
+    //account: {
+    //  id:           123, // Optional: associate multiple users with a single account
+    //  name:         'Acme, Co.', // Account name
+    //  created_at:   1364406966, // Unix timestamp for the date the account was created
+    //  monthly_rate: 9.99, // Decimal; monthly rate of the account
+    //  ltv:          1495.00, // Decimal; lifetime value of the account
+    //  plan:         'Enhanced' // Plan name for the account
+    //}
+  }]);
+
+  // Add default trigger to the bottom-right corner of the window:
+  UserVoice.push(['addTrigger', { mode: 'contact', trigger_position: 'bottom-right' }]);
+
+  // Or, use your own custom trigger:
+  //UserVoice.push(['addTrigger', '#id', { mode: 'contact' }]);
+
+  // Autoprompt for Satisfaction and SmartVote (only displayed under certain conditions)
+  UserVoice.push(['autoprompt', {}]);
+  </script>
+</body>
+</html>

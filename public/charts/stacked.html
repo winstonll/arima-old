@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Stacked Area Chart</title>
+    <link href="/assets/nv.d3.css" rel="stylesheet" type="text/css">
+    <link href="template.css" rel="stylesheet" type="text/css">
+    <script src="/assets/d3.v3.js"></script>
+    <script src="/assets/nv.d3.js"></script>
+    <script src="/assets/visualization.js"></script>
+  </head>
+  <body>
+    <nav>
+      <a href="./">back</a>
+      <a href="line.html">line</a>
+      <a href="pie.html">pie</a>
+      <a href="scatter.html">scatter</a>
+      <a class="selected" href="stacked.html">stacked</a>
+      <a href="bar.html">bar</a>
+      <a href="lineplusbar.html">line+bar</a>
+    </nav>
+    <h4>Stacked Area Chart</h4>
+    <svg id="stacked-chart-1"></svg>
+    <script>
+      visualization.drawStackedChart(
+        "#stacked-chart-1",
+        data,
+        {
+          guide: true,
+          xFormat: function (d) {
+            return d3.time.format('%x')(new Date(d));
+          },
+          yFormat: ',.2f'
+        }
+      );
+      
+      function data() {
+        return [
+          {
+            key: "one",
+            values: randPoints()
+          },
+          {
+            key: "two",
+            values: randPoints()
+          },
+          {
+            key: "three",
+            values: randPoints()
+          },
+          {
+            key: "four",
+            values: randPoints()
+          }
+        ];
+      };
+      
+      function randPoints() {
+        var points = []
+        for (i = 0; i < new Date("2015").getTime(); i += new Date("1971").getTime()) {
+          points.push([i, Math.random()]);
+        }
+        return points
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+<%  @ranked_registered_users.each do |user| %>
+<tr class="leaderboard-user-row <%= 'curr_user' if current_user == user %>">
+  <td class="leaderboard-user-rank"></td>
+
+  <td class="leaderboard-user-name">
+    <% if user.username %>
+      <%= "#{user.username}" %>
+    <% else %>
+      <%= "Unknown User " %>
+    <% end %>
+  </td>
+
+  <td class="leaderboard-user-location">
+    <%= "#{user.location.country}" %>
+  </td>
+
+  <td class="leaderboard-user-points">
+    <%= user.points %>
+  </td>
+</tr>
+<% end %>

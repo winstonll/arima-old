@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Bar Chart</title>
+    <link href="/assets/nv.d3.css" rel="stylesheet" type="text/css">
+    <link href="template.css" rel="stylesheet" type="text/css">
+    <script src="/assets/d3.v3.js"></script>
+    <script src="/assets/nv.d3.js"></script>
+    <script src="/assets/visualization.js"></script>
+  </head>
+  <body>
+    <nav>
+      <a href="./">back</a>
+      <a href="line.html">line</a>
+      <a href="pie.html">pie</a>
+      <a href="scatter.html">scatter</a>
+      <a href="stacked.html">stacked</a>
+      <a class="selected" href="bar.html">bar</a>
+      <a href="lineplusbar.html">line+bar</a>
+    </nav>
+    <h4>Horizontal Bar Chart</h4>
+    <div style="width:700px">
+      <svg id="horizontal-bar-chart"></svg>
+    </div>
+    <h4>Vertical Bar Chart</h4>
+    <div style="width:700px">
+      <svg id="vertical-bar-chart"></svg>
+    </div>
+    <script>
+      visualization.drawContinousBarChart(
+        "#horizontal-bar-chart",
+        data,
+        {
+          horizontal: true,
+          scalable: true
+        }
+      );
+
+      visualization.drawContinousBarChart(
+        "#vertical-bar-chart",
+        data,
+        {
+          scalable: true
+        }
+      );
+
+      function data() {
+        return [
+          {
+            "key" : "Series 1",
+            "color" : "#d67777",
+            "values" : [{
+                "label" : "Group A",
+                "value" : -1.8746444827653
+              }, {
+                "label" : "Group B",
+                "value" : -8.0961543492239
+              }, {
+                "label" : "Group C",
+                "value" : -0.57072943117674
+              }, {
+                "label" : "Group D",
+                "value" : -2.4174010336624
+              }, {
+                "label" : "Group E",
+                "value" : -0.72009071426284
+              }, {
+                "label" : "Group F",
+                "value" : -0.77154485523777
+              }, {
+                "label" : "Group G",
+                "value" : -0.90152097798131
+              }, {
+                "label" : "Group H",
+                "value" : -0.91445417330854
+              }, {
+                "label" : "Group I",
+                "value" : -0.055746319141851
+              }
+            ]
+          }, {
+            "key" : "Series 2",
+            "color" : "#4f99b4",
+            "values" : [{
+                "label" : "Group A",
+                "value" : 25.307646510375
+              }, {
+                "label" : "Group B",
+                "value" : 16.756779544553
+              }, {
+                "label" : "Group C",
+                "value" : 18.451534877007
+              }, {
+                "label" : "Group D",
+                "value" : 8.6142352811805
+              }, {
+                "label" : "Group E",
+                "value" : 7.8082472075876
+              }, {
+                "label" : "Group F",
+                "value" : 5.259101026956
+              }, {
+                "label" : "Group G",
+                "value" : 0.30947953487127
+              }, {
+                "label" : "Group H",
+                "value" : 0
+              }, {
+                "label" : "Group I",
+                "value" : 0
+              }
+            ]
+          }
+        ]
+      };
+    </script>
+  </body>
+</html>

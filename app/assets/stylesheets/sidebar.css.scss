@@ -1,0 +1,75 @@
+/* Categories sidebar */
+.sidebar {
+  width: 250px;
+  background-color: #eee;
+  text-align: center;
+  overflow-y: hidden;
+  float: left;
+  margin-left: 0%;
+  margin-right: 0;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 3;
+}
+
+.sidebar-title {
+  text-align: center;
+  height: 100px;
+  cursor: pointer;
+  padding: 25px 0px 25px 0px;
+
+  img {
+    height: 35px;
+    width: auto;
+  }
+}
+
+#sidebar-mobile-close-toggle {
+  display: none;
+  font-size: 14px;
+  background-color: #E5E5E5;
+  border-radius: 5px;
+  padding: 5px;
+  width: 80%;
+  margin: 10px auto;
+  padding: 10px 0px 10px 0px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #F5F5F5;
+  }
+}
+
+.category-container {
+  white-space: nowrap;
+  text-align: left;
+  padding: 10px;
+
+  .category-inner-container {
+    width: 205px;
+    margin: auto;
+    padding: 10px;
+    border-radius: 5px;
+
+    .category-icon {
+      width: 30px;
+      height: auto;
+      margin-right: 5px;
+      text-align: center;
+    }
+
+    .category-title {
+      color: #4a4a4a;
+      font-weight: 500;
+      font-size: 14px;
+      text-align: left;
+    }
+
+    &:hover,
+    &:active {
+      background-color: #E3E2E2;
+    }
+  }
+}

@@ -1,0 +1,51 @@
+<script type="text/javascript">
+
+$(document).ready(function(){
+  <% images = ['hongkong_bg.jpg', 'miami_bg.jpg', 'nyc_bg.jpg', 'paris_bg.jpg', 'shanghai_bg.jpg', 'taipei_bg.jpg', 'tokyo_bg.jpg', 'toronto_bg.jpg'] %>
+  $('#landing').css("background", "url( <%=images[Random.rand(images.length)] %>) center center");
+	$('#landing').css("background-size", "cover");
+});
+
+</script>
+<%= javascript_include_tag "home", :type => "text/javascript" %>
+
+<!-- Welcome section -->
+<div id="landing">
+	<div id="landing-container">
+		<div class="logo-name-container">
+			<a href="/"><%= image_tag "logo-lg-white.png", id: "logo" %></a>
+			<h1 id="welcome">Welcome to Arima</h1>
+		</div>
+
+		<div id="summary-container">
+			<p class="summary">Arima is a Q&A website for mass opinion. Ask questions, get answers from users all around the world, and see them visualized and compared with the rest of the planet.</p>
+
+			<%= link_to 'Browse Arima', categories_path, class: "enter-button" %>
+		</div>
+	</div>
+
+	<div id="key-points-container">
+		<h3 class="key-points-header">With Arima, you can...</h3>
+		<div class="key-points-section">
+			<h4 class="key-points-header">Inquire</h4>
+			<%= image_tag "inquire.png", class: "key-points-logo" %>
+			<p class="key-points-summary">
+				Ask questions, gather feedback from users and collect information you won't find on other websites.
+			</p>
+		</div>
+		<div class="key-points-section">
+			<h4 class="key-points-header">Discover</h4>
+			<%= image_tag "discover.png", class: "key-points-logo" %>
+			<p class="key-points-summary">
+        Access real time stats on more than 15 topics answered by people from all over the world.
+			</p>
+		</div>
+		<div class="key-points-section">
+			<h4 class="key-points-header">Visualize</h4>
+			<%= image_tag "create.png", class: "key-points-logo" %>
+			<p class="key-points-summary">
+        Create infographics and view customized reports tailored towards you and your questions.
+			</p>
+		</div>
+	</div>
+</div>

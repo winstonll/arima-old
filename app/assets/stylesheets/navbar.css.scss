@@ -1,0 +1,215 @@
+#home-navbar {
+  height: 70px;
+  width: 100%;
+  line-height: 70px;
+  background-color: #fff;
+  font-weight: 600;
+  padding-left: 35px;
+  padding-right: 35px;
+  box-shadow: 0px 2px 4px rgba(191, 191, 191, 0.5);
+  position: fixed;
+  top: 0px;
+  z-index: 2;
+
+  .menu-icon {
+    display: none;
+    cursor: pointer;
+
+    div {
+      width: 30px;
+      height: 4px;
+      border-radius: 2px;
+      background-color: #4a4a4a;
+
+      &:nth-child(2) {
+        margin-top: 4px;
+        margin-bottom: 4px;
+      }
+    }
+  }
+
+  .middle {
+    position: absolute;
+    left: 50%;
+    text-align: center;
+  }
+
+  .left {
+    float: left;
+  }
+
+  .right {
+    float: right;
+  }
+
+  #submit-question-link {
+    height: 25px;
+    line-height: 25px;
+    padding: 0.5em 1em 0.5em 1em;
+    background-color: #82B7F6;
+    border-radius: 5px;
+    -webkit-transition: all 150ms linear;
+
+    &:hover {
+      box-shadow: 0px 2px 2px rgba(100,100,100,0.5);
+      transform: scale(1.01);
+      -webkit-transform: scale(1.01);
+      -ms-transform: scale(1.01);
+      -moz-transform: scale(1.01);
+    }
+  }
+
+  .nav-user-circle {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #00c39c;
+    display: inline-block;
+    color: #fff;
+    line-height: 35px;
+    text-align: center;
+  }
+
+  .logo-container {
+    display: none;
+
+    .nav-logo {
+      max-height: 30px;
+    }
+  }
+
+  .dropdown {
+    list-style-type: none;
+
+    .nav-link {
+      display: block;
+    }
+
+    .menu {
+      position: absolute;
+      top: 15px;
+      display: none;
+      background-color: #fff;
+      padding-left: 20px;
+      padding-right: 20px;
+      border-bottom-left-radius: 2px;
+      border-bottom-right-radius: 2px;
+      -moz-box-shadow: 0px 3px 4px 0px rgba(132,132,132,0.35);
+      box-shadow: 0px 3px 4px 0px rgba(132,132,132,0.35);
+
+      .dropdown-nav-link {
+        position: relative;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 200px;
+        overflow: hidden;
+      }
+
+      li {
+        display: block;
+        line-height: 50px;
+        color: #4a4a4a;
+        font-size: 19px;
+      }
+    }
+  }
+
+  .nav-links {
+    float: right;
+    margin-bottom: 0px;
+
+    li {
+      list-style-type: none;
+      display: inline-block;
+      margin-right: 10px;
+      z-index: 1000;
+
+      .nav-link {
+        color: #4a4a4a;
+        font-weight: 600;
+        font-size: 15px;
+      }
+
+      .nav-link:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+
+  /* Signup, Login and Browse as Guest buttons for the home page*/
+  .nav-btn {
+    font-size: 15px;
+    color: #fff;
+    padding: 7px 15px 7px 15px;
+    border-radius: 4px;
+    transition: all 150ms linear;
+    -webkit-transition: all 150ms linear;
+    -ms-transition: all 150ms linear;
+    -moz-transition: all 150ms linear;
+  }
+
+  .nav-btn:hover {
+    opacity: 0.8;
+    box-shadow: 0px 2px 2px rgba(100,100,100,0.5);
+  }
+
+  #nav-signup-btn {
+    background-color: #00c39c;
+  }
+
+  #nav-login-btn {
+    background-color: #5986dd;
+  }
+
+  /* Chevron Up */
+  .chevron-up {
+    position: relative;
+    display: inline-block;
+    height: 10px; /*double of border*/
+  }
+
+  .chevron-up:before,
+  .chevron-up:after{
+    position: absolute;
+    display: block;
+    content: "";
+    margin-top: 10px;
+    border: 5px solid transparent; /*size*/
+  }
+
+  .chevron-up:before{
+    bottom: 0;
+    border-bottom-color: #00c39c; /*colour*/
+  }
+
+  .chevron-up:after{
+    bottom: -3px; /* thickness*/
+    border-bottom-color: #fff; /*Match background colour*/
+  }
+
+  /* Chevron Down */
+  .chevron-down {
+    position: relative;
+    display: inline-block;
+    height: 10px; /*double of border*/
+  }
+
+  .chevron-down:before,
+  .chevron-down:after{
+    position: absolute;
+    display: block;
+    content: "";
+    border: 10px solid transparent; /*size*/
+    border-radius: 5px;
+  }
+
+  .chevron-down:before{
+    top: 0;
+    border-top-color: #00c39c; /*colour*/
+  }
+
+  .chevron-down:after{
+    top: -3px; /* thickness*/
+    border-top-color: #fff; /*Match background colour*/
+  }
+}

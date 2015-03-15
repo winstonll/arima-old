@@ -1,0 +1,32 @@
+<%= javascript_include_tag "home", :type => "text/javascript" %>
+
+<section class="static-page-header">
+  <div class="static-page-header-text-container">
+    <h1 class="static-header">Contact Us</h1>
+  </div>
+</section>
+
+<section id="content-block" class="static-page">
+  <article class="static-page-section">
+    <h3>Socialize with us</h3>
+    <p>Feel free to follow us, tag us, and reach out to us on our social networks!</p>
+    <div class="static-page-social">
+      <a href="https://www.facebook.com/friendsofarima" alt="Facebook page">
+        <%= image_tag "fb-logo.png", class: "static-page-social-accounts" %>
+      </a>
+      <a href="https://twitter.com/arima_io" alt="Facebook page">
+        <%= image_tag "twitter-logo.png", class: "static-page-social-accounts" %>
+      </a>
+    </div>
+  </article>
+  <article class="static-page-section">
+    <h3>Feedback and Suggestions?</h3>
+    <p>  Have a great idea? Want a new feature on Arima? If you have any feedback, bug reports or suggestions for the Arima team, please submit your ideas using the UserVoice plugin (blue question mark on the botton right hand side) or visit our <a href="http://arimaio.uservoice.com/" alt="UserVoice page">Feedback Forum</a>. Leave your great idea or vote on others. Every idea will be looked at and evaluated.</p>
+    <p> If you would like to give us feedback, but don't know where to start, you may want to try our <a href="http://bit.ly/1nbReqR" alt="User Interview Questionnaire">User Interview Questionnaire</a> instead.</p>
+  </article>
+  <article class="static-page-section">
+    <h3>Got a Question?</h3>
+    <p>Before asking questions, you might want to check out our <%= link_to 'FAQ', "/faq" %>. This page is regularly updated to ensure that we cover most commonly asked questions.</p>
+    <p>If you still have questions, please feel free to <a href="mailto:info@arima.io">email us</a>.</p>
+  </article>
+</section>

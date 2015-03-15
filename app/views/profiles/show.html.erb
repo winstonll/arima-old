@@ -1,0 +1,45 @@
+<% provide(:title, 'Profile') %>
+
+<section class="profile-container">
+
+  <!-- Fetch user info and photo -->
+  <div class="profile-information">
+    <%= render partial: "common/user_photo_name", locals: {user: current_user} %>
+    <div class="clearfix"></div>
+  </div>
+  <div class="user-stats">
+    <section class="stat-container" id="user-points">
+      <h1 class="stat-number"><%= current_user.points %></h1>
+      <div class="stat-title">Points <a id="about-points-indicator" href="/faq#about-points"><div class="about-points-circle">?</div></a></div>
+    </section>
+    <a href="<%= leaderboard_path(curr_user: true) %>">
+      <section class="stat-container" id="user-leaderboard">
+        <h1 class="stat-number"><%= current_user.get_user_rank %></h1>
+        <div class="stat-title">Leaderboard</div>
+      </section>
+    </a>
+    <section class="stat-container" id="user-questions-answered">
+      <h1 class="stat-number"><%= current_user.questions.count %></h1>
+      <div class="stat-title">Questions answered</div>
+    </section>
+  </div>
+  <br />
+
+  <article class="answered-questions-container">
+    <div class="questions-answered-title">Questions you've answered</div>
+    <div class="questions-answered-subtitle">Click on a question to view your answer and report</div>
+    <div class="questions-answered" id="user-answered">
+      <%= render 'answered_questions' %>
+    </div> <!-- end questions-answered -->
+
+    <!-- answered questions on right -->
+    <!--<div id="#paginator">
+      <%#= paginate @answered_questions, :remote => true %>
+    </div>-->
+
+    <%#= form_tag('users', remote: true) do %>
+    <%#= select_tag 'category', options_from_collection_for_select(@categories, "label", "label"), {include_blank: "Select a Category", class: "category_select"} %>
+    <%# end %>
+  </article> <!-- end answered-questions-container -->
+  <div style="clear: left;"></div>
+</section> <!-- end profile-container-->

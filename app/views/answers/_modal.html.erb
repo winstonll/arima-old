@@ -1,0 +1,24 @@
+<% if answer && question = answer.question %>
+  <a href="#" title="<%= question.label %>" class="question-link <%= "question-id-#{question.id}" %>" data-toggle="modal" data-target="#myModal-<%= question.id %>">
+    <div class="question text-left">
+      <h3 class="question-title"><%= question.label %></h3>
+    </div>
+  </a>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal-<%= question.id %>" tabindex="-1" role="dialog" aria-labelledby="editAnswerModal-<%= question.id %>" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="editAnswerModal-<%= question.id %>">Question Report</h4>
+        </div>
+        <div class="answers modal-body">
+          <%= render partial: "answers/answer", locals: { answer: answer } %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <p>No questions.</p>
+<% end %>

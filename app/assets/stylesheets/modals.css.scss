@@ -1,0 +1,168 @@
+/* About Points Modal */
+#about-points-modal-body {
+  padding: 20px 70px 35px 70px;
+
+  .emphasized {
+    font-weight: 600;
+    color: #5986dd;
+  }
+
+  a {
+    color: #25c297;
+  }
+
+  h2 {
+    font-variant: small-caps;
+    font-weight: 600;
+    font-size: 25px;
+  }
+}
+
+/* Edit Profile and Submit Question Modals */
+.modal-finished-button {
+  height: 50px;
+  width: 100px;
+  background-color: #25c297;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.5em;
+  border: none;
+  border-radius: 3px;
+  margin: 25px 0px 15px 0px !important;
+}
+
+.modal-finished-button:hover {
+  opacity: 0.8;
+}
+
+/* Edit Profile Modal */
+#myModal {
+  .devise-links, :not(.edit_user) .form-group label  {
+    color: #4a4a4a;
+  }
+}
+
+/* Submit Question Modal */
+.modal-extra-options {
+  display: inline;
+  margin: auto;
+}
+
+.modal-header-text {
+  text-align: center;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 40px !important;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.bg-blue {
+  background-color: #5986dd !important;
+}
+
+.modal-content {
+  background-color: #fff !important;
+  border-radius: 10px;
+  width: 120%;
+  margin-left: -10%;
+}
+
+.submit-q-text {
+  text-transform: none;
+  color: #fff;
+  margin: 20px;
+  font-weight: bold;
+}
+
+.submit-questions-container {
+  margin: 5px 20px 40px 20px;
+}
+
+.modal-body {
+  background-color: #fff;
+  border-radius: 0px 0px 6px 6px;
+}
+
+.modal-input-title {
+  font-size: 20px;
+  color: #4a4a4a;
+  font-weight: 600;
+  margin: 1em 0em 0.25em 0em;
+}
+
+input[name="submit_question_name"],
+input[name="submit_question_category"],
+input[name="submit_question_type"],
+input[name="answer_box_1"] {
+  height: 65px;
+  width: 100%;
+  padding: 15px;
+  font-style: italic;
+  background-color: #e7e7e7;
+  border: none;
+  font-size: 20px;
+}
+
+select[name="submit_question_category"],
+select[name="submit_question_answer_type"] {
+  text-transform: none;
+  border: none;
+  height: 65px;
+  width: 100%;
+  font-size: 20px !important;
+  padding: 17px;
+  color: #404141;
+  font-weight: 400;
+  background-color: #e7e7e7;
+}
+
+.text-dark {
+  color: #4a4a4a;
+}
+
+.field-hide {
+  display: none;
+}
+
+.modal-footer-pushed {
+  margin-top: -40px !important;
+}
+
+.answer-box {
+  width: 47%;
+  display: inline-block;
+  margin: 10px 25px 10px 0px;
+  height: 65px !important;
+  background-color: #e7e7e7 !important;
+  border: none;
+  font-size: 20px;
+  text-align: center;
+}
+
+.answer-box:nth-child(even) {
+  margin-right: 0;
+}
+
+#add-answer-button {
+  background-color: #25c297;
+  color: #fff;
+  font-size: 1.0em;
+  border: none;
+  border-radius: 3px;
+  margin: 20px 0 0 0;
+  font-style: normal;
+  font-size: 1em;
+  font-weight: 600;
+  font-family: "Open Sans";
+  height: 25px;
+  padding: 0 1em;
+}
+
+.referral-container {
+  text-align: center;
+  background: #f7f7f7;
+  padding: 5px;
+  border-radius: 10px;
+}

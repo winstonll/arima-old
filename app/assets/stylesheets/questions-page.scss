@@ -1,0 +1,310 @@
+body {
+  height: auto;
+
+  #question-page-container {
+    height: 100%;
+    min-height: 100%;
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+
+  }
+
+  #question-card-container {
+
+    margin: auto;
+    border-radius: 5px;
+    box-shadow: 0px 2px 3px 1px rgba(100, 100, 100, 0.5);
+
+      /* Question Header Colours */
+
+      .question-container- {
+        background-color: #a25fbc ;
+        padding: 3em;
+        padding-bottom: 0.25em;
+      }
+
+      .question-container-1 {
+        background-color: #8AD321;
+        padding: 3em;
+        padding-bottom: 0.25em;
+      }
+
+      .question-container-2 {
+        background-color: #70E25B;
+        padding: 3em;
+        padding-bottom: 0.25em;
+      }
+
+      .question-container-3 {
+        background-color: #4AAAE2;
+        padding: 3em;
+        padding-bottom: 0.25em;
+      }
+
+      .question-container-4 {
+        background-color: #5D98DE;
+        padding: 3em;
+        padding-bottom: 0.25em;
+      }
+
+      .question-container-5 {
+        background-color: #E96C4E;
+        padding: 3em;
+        padding-bottom: 0.25em;
+      }
+
+      .question-container-6 {
+        background-color: #F3A82D;
+        padding: 3em;
+        padding-bottom: 0.25em;
+      }
+
+      .question-container-7 {
+        background-color: #966DBA;
+        padding: 3em;
+        padding-bottom: 0.25em;
+      }
+
+      .question-container-8 {
+        background-color: #46CEDE;
+        padding: 3em;
+        padding-bottom: 0.25em;
+      }
+
+      .question-container-9 {
+        background-color: #EAC57B;
+        padding: 3em;
+        padding-bottom: 0.25em;
+      }
+
+      .question-container-10 {
+        background-color: #50E3C2;
+        padding: 3em;
+        padding-bottom: 0.25em;
+      }
+
+      .question-title {
+        font-weight: 600;
+        font-size: 22px;
+        text-align: center;
+        color: #fff;
+
+        .question-title-count {
+          text-align: center;
+          color: #fff;
+          font-size: 13px;
+          font-weight: normal;
+        }
+    }
+
+    .modal-save-wrapper {
+      padding-bottom: 1em;
+    }
+
+    #answer-info {
+      padding-top: 1em;
+
+      .column_chart {
+      height: 500px;
+      width: 450px;
+      margin: 0 auto;
+      text-align: center;
+      }
+
+      .user-submitted-answer {
+        line-height: 50px;
+      }
+
+      .questions-page-input,
+      .user-submitted-answer {
+        height: 45px;
+        width: 40%;
+        margin: auto;
+        margin-bottom: 5px;
+
+        color: #9B9B9B;
+        text-align: center;
+        font-size: 16px;
+        background-color: #f7f7f7;
+
+        border: 0;
+        border-radius: 5px;
+        box-shadow: 0px 1px 1px 1px rgba(100, 100, 100, 0.35);
+      }
+
+      .modal-save-wrapper {
+        .modal-button {
+          box-shadow: 0px 1px 1px rgba(100,100,100,0.5);
+
+          &:hover {
+            box-shadow: 0px 2px 2px rgba(100,100,100,0.5);
+            transform: scale(1.01);
+            -webkit-transform: scale(1.01);
+            -ms-transform: scale(1.01);
+            -moz-transform: scale(1.01);
+          }
+        }
+      }
+    }
+  }
+
+  .answer-prompt {
+    .form-inline {
+      select {
+        display: block;
+        height: 25px;
+        width: 40%;
+        margin: auto;
+        margin-top: 2em;
+        margin-bottom: 1em;
+
+        color: #9B9B9B;
+        text-align: center;
+        font-size: 12px;
+        background-color: #f7f7f7;
+
+        border: 0;
+        border-radius: 5px;
+        box-shadow: 0px 1px 1px 1px rgba(100, 100, 100, 0.35);
+      }
+    }
+
+    .fake-signin-button {
+      display: block;
+      height: 20px;
+      width: 18%;
+      margin: auto;
+      margin-bottom: 1em;
+
+      color: #9B9B9B;
+      text-align: center;
+      font-size: 12px;
+      background-color: #f7f7f7;
+
+      border: 0;
+      border-radius: 5px;
+      box-shadow: 0px 1px 1px 1px rgba(100, 100, 100, 0.35);
+    }
+  }
+
+  .report-container {
+    width: 100%;
+    padding: 2em 5px;
+    background-color: #FAFAFA;
+    text-align: center;
+
+    #answer-chart{
+      svg{
+        display: block;
+        margin: 0 auto;
+      }
+    }
+    .average {
+      p{
+        color: #50e3c2;
+        font-weight: bold;
+      }
+    }
+
+  }
+
+  .form_group {
+    display: block;
+    height: 25px;
+    width: 40%;
+    margin: auto;
+    margin-top: 2em;
+    margin-bottom: 1em;
+
+    color: #9B9B9B;
+    text-align: center;
+    font-size: 12px;
+    background-color: #f7f7f7;
+
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 0px 1px 1px 1px rgba(100, 100, 100, 0.35);
+  }
+
+  .share-answer {
+    text-align: center;
+    // position: fixed;
+
+    #share-signup-btn {
+      color: rgb(0, 195, 156);
+      font-style: underline;
+    }
+
+    .social-media-buttons {
+      ul {
+        li {
+          list-style-type: none;
+          display: inline;
+          a {
+            #footer-social-img {
+              height: 35px;
+              margin: 0.5em;
+              margin-top: 1em;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .share-answer-section {
+    margin-top: 25px;
+  }
+
+  .location-label {
+    font-size: 17px;
+    font-weight: 600;
+    color: #777;
+    text-align: center;
+    margin-bottom: 1em;
+  }
+
+  .location-list {
+    margin-top: 0.75em;
+    text-align: center;
+
+    .report-location-list {
+      display: inline-block;
+      list-style-type: none;
+      padding: 0;
+
+      li.active {
+        background-color: #00c39c;
+      }
+
+      a{
+        display: inline-block;
+        padding: 0.75em 1.5em 0.75em 1.5em;
+      }
+
+      .report-location {
+        display: inline-block;
+        background-color: #aaa;
+        border-radius: 5px;
+
+        &:not(:first-child) {
+          margin-left: 0.5em;
+        }
+
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+
+  .back-to-category {
+    color: #00c39c;
+    text-align: center;
+  }
+
+  #back-to-category {
+    padding: 1em;
+  }
+}

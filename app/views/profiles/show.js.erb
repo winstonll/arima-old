@@ -1,0 +1,10 @@
+// Makes pagination use ajax
+$(function() {
+	$("#paginator a").live("click", function() {
+		$.getScript(this.href);
+		return false;
+	});
+});
+
+// Displays the users answered questions
+$("#user-answered").html("<%= escape_javascript(render("answered_questions")) %>");

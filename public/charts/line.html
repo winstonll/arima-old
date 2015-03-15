@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Line Chart</title>
+    <link href="/assets/nv.d3.css" rel="stylesheet" type="text/css">
+    <link href="template.css" rel="stylesheet" type="text/css">
+    <script src="/assets/d3.v3.js"></script>
+    <script src="/assets/nv.d3.js"></script>
+    <script src="/assets/visualization.js"></script>
+  </head>
+  <body>
+    <nav>
+      <a href="./">back</a>
+      <a class="selected" href="line.html">line</a>
+      <a href="pie.html">pie</a>
+      <a href="scatter.html">scatter</a>
+      <a href="stacked.html">stacked</a>
+      <a href="bar.html">bar</a>
+      <a href="lineplusbar.html">line+bar</a>
+    </nav>
+    <div style="float: left; width: 60%;">
+      <h4>Line Chart #1: Redraw on resize</h4>
+      <p>Maintains specified aspect ratio, optimize resolution based on avaiable space</p>
+      <p>Resize the browser window to test this one</p>
+      <div style="border: 1px dashed black;">
+        <svg id="line-chart-1"></svg>
+      </div><br/>
+      <h4>Line Chart #2: Scale on resize</h4>
+      <p>Maintains original defined resolution and aspect ratio derived from it</p>
+      <div style="resize: both; overflow: hidden; border: 1px solid black;">
+        <svg id="line-chart-2"></svg>
+      </div>
+    </div>
+
+    <div style="float: right; width: 30%;">
+      <h3>Controls</h3>
+      <button id="enableGuideButton" onclick="enableGuide();">Enable Guide Line</button><br>
+      <label>X Axis Label: <input type="text" id="xAxisLabel"/></label><br>
+      <label>Y Axis Label: <input type="text" id="yAxisLabel"/></label><br>
+      <button id="updateLabels" onclick="updateLabels();">Update Labels</button><br>
+      <label>User Defined Data:</label><br>
+      <textarea id="userDefinedDataText" style="height: 150px;"></textarea><br>
+      <button id="updateData" onclick="updateData();">Update Data</button><br>
+      <label>Chart 2 width: <input type="text" id="chart2Width"/></label><br>
+      <label>Chart 2 height: <input type="text" id="chart2Height"/></label><br>
+      <button id="updateResolution" onclick="updateResolution();">Update Chart 2</button><br>
+    </div>
+
+    <div style="height: 240px; clear:both;"></div>
+      
+    <script>
+      // init data
+      var series1 = [],
+          series2 = [],
+          series3 = [];
+
+      for(var i = 1; i < 100; i++) {
+        series1.push({
+          x: i, y: 100 / i
+        })
+        if (i % 2 == 0)
+          series2.push({
+            x: i, y: i / 2
+          })
+        if (i % 5 == 0)
+          series3.push({
+            x: i, y: Math.random() * 99 + 1
+          })
+      }
+
+      var data = [
+        {
+          key: "100 / x",
+          values: series1,
+          color: "blue"
+        },
+        {
+          key: "x / 2",
+          values: series2,
+          color: "#66ccff"
+        },
+        {
+          key: "random",
+          values: series3,
+          color: "green"
+        },
+        {
+          key: "user defined",
+          color: "red",
+          values: [
+            { x:3, y:99 },
+            { x:9, y:66 },
+            { x:50, y:50 },
+            { x:40, y:22 },
+            { x:30, y:50 },
+            { x:70, y:25 },
+            { x:60, y:88 },
+            { x:99, y:33 }
+          ]
+        }
+      ];
+
+      // draw charts
+      visualization.drawLineChart(
+        "#line-chart-1",
+        data,
+        {
+          responsive: true,
+          width: 3,
+          height: 1,
+          xLabel: "Predefined X-AXIS Label",
+          yLabel: "Predefined Y-AXIS Label",
+          debugFunc: function (chart) {
+            window.chart1 = chart;
+          }
+        }
+      );
+
+      visualization.drawLineChart(
+        "#line-chart-2",
+        data,
+        {
+          scalable: true,
+          width: 600,
+          height: 200,
+          duration: 2000,
+          xFormat: function(d,i) {
+              var now = (new Date()).getTime() - 86400 * 1000 * 365;
+              now = new Date(now + d * 86400 * 1000);
+              return d3.time.format('%b %d %Y')(now);
+            },
+          debugFunc: function (chart) {
+            window.chart2 = chart;
+          }
+        }
+      );
+
+      // page specific functions
+      function enableGuide() {
+        chart1.useInteractiveGuideline(true);
+        chart2.useInteractiveGuideline(true);
+        chart1.update();
+        chart2.update();
+        document.getElementById("enableGuideButton").outerHTML = "";
+      }
+
+      function updateLabels() {
+        x = document.getElementById("xAxisLabel").value;
+        y = document.getElementById("yAxisLabel").value;
+        chart1.xAxis.axisLabel(x);
+        chart1.yAxis.axisLabel(y);
+        chart2.xAxis.axisLabel(x);
+        chart2.yAxis.axisLabel(y);
+        chart1.update();
+        chart2.update();
+      }
+
+      function updateData() {
+        data[3].values = eval(document.getElementById("userDefinedDataText").value);
+        chart1.update();
+        chart2.update();
+      }
+
+      document.getElementById("userDefinedDataText").value = JSON.stringify(data[3].values);
+      
+      function updateResolution() {
+        width = document.getElementById("chart2Width").value;
+        height = document.getElementById("chart2Height").value;
+        d3.select("#line-chart-2")
+          .attr('width', width)
+          .attr('height', height)
+          .attr('viewBox', '0 0 ' + width + ' ' + height)
+        chart2.width(width).height(height).update();
+      }
+    </script>
+  </body>
+</html>

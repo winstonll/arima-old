@@ -1,0 +1,55 @@
+<div class="main-site-container" id="question-page-container">
+  <div id="question-card-container">
+    <div class="question-container-<%= @question.group_id %>">
+      <div class="question-title"><%= @question.label %>
+        <div class="question-title-count">
+          <%= "#{@question.users.count} #{@question.users.count == 1 ? 'person' : 'people'}" %> answered this
+        </div>
+      </div>
+        <div class="answer-prompt">
+        <% if !@user_submitted_answer && !user_signed_in? %>
+          <div class="form-inline">
+            <select><option value="select">Select...</option></select>
+          </div>
+          <div class="fake-signin-button">Sign up to answer</div>
+        <% elsif user_signed_in? %>
+          <%= simple_form_for @answer, url: question_answers_path(@question, @answer), class: "form-inline", role: "form", html: {novalidate: false}, remote: true do |f| %>
+          <div class="form-group">
+            <% if @question.input_type == "measurement" %>
+              <section class="question-dual-input">
+                <%= f.input(:value, label: false, pattern: "\d*", placeholder: @user_units["large_unit"]) %>
+                <%= f.input(:value, label: false, pattern: "\d*", placeholder: @user_units["small_unit"]) %>
+              </section>
+            <% elsif @question.input_type == "collection" %>
+              <%= f.input(:value, label: false, prompt: "Select one...", collection: @question.options_array, input_html: { class: "questions-page-input form-control input-lg"}) %>
+            <% else %>
+              <%= f.input(:value, label: false, placeholder: @question.placeholder(@user),
+                           as: @question.input_type.try(:to_sym),
+                           input_html: {
+                             class: "questions-page-input form-control input-lg",
+                             title: @question.validation_message,
+                             min: @question.min_value
+                           }) %>
+            <% end %>
+          </div>
+          <div class="modal-save-wrapper text-center">
+            <%= f.submit "Save", class: "modal-button" %>
+          </div>
+          <% end %>
+        <% end %>
+        </div>
+      </div>
+    </div>
+  <div id="answer-info">
+    <% if !@user_submitted_answer && !user_signed_in? %>
+      <%= render partial: 'questions/unanswered_input', locals: { question: @question } %>
+    <% else @user_submitted_answer %>
+      <%= render partial: 'questions/answer_report', locals: {answer: @answer} %>
+    <% end %>
+  </div>
+
+  <div class="back-to-category", id="back-to-category">
+    Back to <%= link_to 'Category', "/categories/#{@question.group_id}", :class => "back-to-category" %>
+  </div>
+</div>
+

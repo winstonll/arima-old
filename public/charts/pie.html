@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Pie Chart</title>
+    <link href="/assets/nv.d3.css" rel="stylesheet" type="text/css">
+    <link href="template.css" rel="stylesheet" type="text/css">
+    <script src="/assets/d3.v3.js"></script>
+    <script src="/assets/nv.d3.js"></script>
+    <script src="/assets/visualization.js"></script>
+  </head>
+  <body>
+    <nav>
+      <a href="./">back</a>
+      <a href="line.html">line</a>
+      <a class="selected" href="pie.html">pie</a>
+      <a href="scatter.html">scatter</a>
+      <a href="stacked.html">stacked</a>
+      <a href="bar.html">bar</a>
+      <a href="lineplusbar.html">line+bar</a>
+    </nav>
+    <div style="float: left; width: 66%;">
+      <h4>Pie Charts</h4>
+      <div style="border: 1px dashed black; width: 48%; float: left;">
+        <svg id="pie-chart-1"></svg>
+      </div>
+      <div style="border: 1px dashed black; width: 48%; float: right;">
+        <svg id="pie-chart-2"></svg>
+      </div>
+      <div style="clear: both; width: 300px;"><br>
+        <h4 class="chart-label">Half a pie</h4>
+        <svg id="pie-chart-3"></svg>
+      </div>
+    </div>
+    <div style="float: right; width: 30%;">
+      <h3>Controls</h3>
+      <label>User Defined Data:</label><br>
+      <textarea id="userDefinedDataText" style="height: 150px;"></textarea><br>
+      <button id="updateData" onclick="updateData();">Update Data</button><br>
+    </div>
+
+    <script>
+      var better = Math.round(Math.random() * 60) + 10,
+          data = [
+            {
+              key: "Worse",
+              val: 100 - better
+            }, {
+              key: "Same",
+              val: better / 4
+            }, {
+              key: "Better",
+              val: better * 3 / 4
+            },
+          ];
+
+      visualization.drawPieChart(
+        "#pie-chart-1",
+        data,
+        {
+          responsive: true,
+          width: 1,
+          height: 1,
+          labelType: "percent",
+          colors: d3.scale.category10().range(),
+          debugFunc: function(chart){
+            window.chart1 = chart;
+          }
+        }
+      );
+
+      visualization.drawPieChart(
+        "#pie-chart-2",
+        data,
+        {
+          responsive: true,
+          width: 300,
+          height: 300,
+          donut: true,
+          labelType: "percent",
+          debugFunc: function(chart){
+            window.chart2 = chart;
+          }
+        }
+      );
+
+      visualization.drawPieChart(
+        "#pie-chart-3",
+        data,
+        {
+          width: 300,
+          height: 300,
+          duration: 1000,
+          half: true,
+          labelType: "percent",
+          colors: [
+            "#d4fafd",
+            "#89e398"
+          ],
+          debugFunc: function(chart){
+            window.chart3 = chart;
+          }
+        }
+      );
+
+      function updateData() {
+        data = eval(document.getElementById("userDefinedDataText").value);
+        d3.select("#pie-chart-1").datum(data).call(chart1);
+        d3.select("#pie-chart-2").datum(data).call(chart2);
+        d3.select("#pie-chart-3").datum(data).call(chart3);
+      }
+
+      document.getElementById("userDefinedDataText").value = JSON.stringify(data);
+    </script>
+  </body>
+</html>

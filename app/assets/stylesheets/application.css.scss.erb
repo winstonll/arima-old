@@ -1,0 +1,256 @@
+/*
+ *= require bootstrap.min.css
+ *= require font-awesome.min.css
+ *= require h5form
+ *= require scrupulous
+ *= require_self
+ *= require profile
+ *= require home
+ *= require questions
+ *= require questions-page
+ *= require category-index
+ *= require reports
+ *= require navbar
+ *= require footer
+ *= require static-pages
+ *= require modals
+ *= require responsive
+ *= require leaderboard
+ *= require answers
+ *= require c3
+ *= require typeahead
+ *= require signup
+ *= require sidebar
+ *= require introjs
+ *= require trackpad-scroll-emulator
+ */
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700);
+@import url(http://fonts.googleapis.com/css?family=Montserrat:400);
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,600);
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  background-color: #fff;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+
+  #about-points-indicator {
+    cursor: pointer;
+
+    .about-points-circle {
+      display: inline-block;
+      height: 21px;
+      width: 21px;
+      line-height: 21px;
+      text-align: center;
+      color: #4a4a4a;
+      background-color: #e0e0e0;
+      border-radius: 50%;
+      font-size: 14px;
+    }
+  }
+
+  .site-wrapper {
+    height: 100%;
+    min-height: 100%;
+  }
+
+  .main-site-container {
+    margin-top: 3em;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 2em;
+    width: 95%;
+    min-height: 100%;
+  }
+
+  .site-content {
+    height: 100%;
+    min-height: 100%;
+    background-color: #fff;
+    -webkit-overflow-scrolling: touch;
+    margin-left: 250px;
+
+    .site-content-inner {
+      min-height: 100%;
+      padding-top: 70px;
+      background-color: #fff;
+    }
+  }
+
+  .alert {
+    position: absolute;
+    max-width: 600px;
+    left: 250px;
+    right: 0;
+    text-align: center;
+    top:10px;
+    z-index: 9999;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size:12pt;
+  }
+
+  @media(max-width: 850px){
+    .alert {
+      left: 0px;
+    }
+  }
+
+  .user-stats {
+    font-size: 20px;
+    max-width: 740px;
+  }
+
+  a[name] {
+    padding-top: 70px;
+    margin-top: -70px;
+    display: inline-block; /* required for webkit browsers */
+  }
+
+  .btn {
+    font-family: 'Open Sans', sans-serif;
+    border-radius: 0;
+    border: 0;
+    &:hover {
+      background-color: #3C468A;
+      color: white;
+    }
+  }
+
+  .btn-rounded {
+    border-radius: 3px;
+  }
+
+  .modal {
+    color: #fff;
+  }
+
+  .modal-title {
+    text-align: center;
+    font-weight: 600;
+  }
+
+  .modal-content {
+    color: #4a4a4a;
+    background-color: #fff;
+  }
+
+  .modal-header {
+    background-color: #00C39C;
+    color: #fff;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    margin-bottom: -15px;
+
+    hr {
+      margin-left: -15px;
+      margin-top: 10px;
+      width: 104.5%;
+      color: #4a4a4a;
+    }
+
+    button.close {
+      color: #404141;
+      font-weight: normal;
+      text-shadow: none;
+      font-size: 35px;
+    }
+  }
+
+  .profile-photo {
+    width: 120px;
+  }
+
+  .stats-icon {
+    padding: 10px;
+    background-color: #4C4D4F;
+    width: 115px;
+    height: 115px;
+  }
+
+  .table {
+    display: table;
+    table-layout: fixed;
+    width:100%;
+    padding-left:0px;
+    padding-right:0px;
+    margin-bottom:0;
+    margin-top:0;
+  }
+
+  .table-row {
+    display: table-cell;
+    table-layout: fixed;
+  }
+
+  .table-cell {
+    float:none;
+    display: table-cell;
+    height:100%;
+    min-height:100%;
+    // width:inherit;
+    width:33%;
+  }
+
+  // add this to rows
+  .hide-collosus {
+    overflow: hidden;
+  }
+  // add this to columns
+  .collosus {
+    margin-bottom: -99999px;
+    padding-bottom: 99999px;
+  }
+
+  // end equalheight hacks
+
+  .modal-body .answer-prompt {
+    padding: 0 15px 15px;
+
+    h2 {
+      margin-top: 1.5em;
+      margin-bottom: 1em;
+      font-size: 27px;
+    }
+  }
+
+  .toggle-switches {
+    .btn {
+      border: 1px solid #777;
+    }
+    .btn-primary {
+      background-color: #777;
+      color: #ccc;
+      box-shadow: none;
+    }
+    .btn-default {
+      box-shadow: none;
+      color: #ccc;
+      background-color: #555;
+      &:hover {
+        color: white;
+      }
+    }
+  }
+
+  // boostrap override
+  .has-success .help-block,
+  .has-success .control-label,
+  .has-success .radio,
+  .has-success .checkbox,
+  .has-success .radio-inline,
+  .has-success .checkbox-inline {
+    color: #77B899;
+  }
+}
+
+::selection {
+  background: #e7e7e7;
+}

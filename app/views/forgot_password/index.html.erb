@@ -1,0 +1,19 @@
+<section class="signin-page div-center">
+  <section class="signin-container">
+    <article class="signin-infobox">
+      <section class="info-input">
+        <%= form_for(resource, :as => resource_name, :url => forgot_password_index_path, html: {class: "form"}) do |f| %>
+          <h2 class="text-left"> Forgot Password </h2>
+          <div class="email-input" style="margin-top: 20px">
+            <%= f.label "Email Address" %>
+            <br>
+            <%= text_field_tag :email, params[:email], class: "input-box" %>
+          </div>
+          <div class="signup-methods" style="margin-top: 20px">
+            <%= submit_tag "Reset Password", class: "signin-button" %>
+          </div>
+        <% end %>
+      </section>
+    </article>
+  </section>
+</section>

@@ -1,0 +1,31 @@
+# Add configuration values here, as shown below.
+#
+# pusher_app_id: "2954"
+# pusher_key: 7381a978f7dd7f9a1117
+# pusher_secret: abdc3b896a0ffb85d373
+# stripe_api_key: sk_test_2J0l093xOyW72XUYJHE4Dv2r
+# stripe_publishable_key: pk_test_ro9jV5SNwGb1yYlQfzG17LHK
+#
+# production:
+#   stripe_api_key: sk_live_EeHnL644i6zo4Iyq4v1KdV9H
+#   stripe_publishable_key: pk_live_9lcthxpSIHbGwmdO941O1XVU
+
+#general
+SECRET_KEY_BASE: 73d9924dab3885f65c87d171ad3626e8889815a5b2a45f176be48d9324eb9b96c7db62ef8031d9311bb3c447cc194e861a29c91df121bb5e75e2eb81a29646d2
+
+#database
+DATABASE_PRODUCTION_USERNAME: arima
+DATABASE_PRODUCTION_PASSWORD: arima
+
+#admin creds
+ADMIN_NAME: admin
+ADMIN_PSWD: admin
+
+#email
+ACTION_MAILER_ADDRESS: fill_me
+ACTION_MAILER_PORT: fill_me
+ACTION_MAILER_USERNAME: fill_me
+ACTION_MAILER_PASSWORD: fill_me
+
+#devise
+DEVISE_SECRET_KEY: e2ac574d23c2e91701a106734d6f04b7b358f4e54749b1f82f657891f9bd00ae24015540da01d60f8f1ca5c81e44a2b0ba04dfe04c6c3b9e166cd53843b39014

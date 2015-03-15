@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Scatter Plot</title>
+    <link href="/assets/nv.d3.css" rel="stylesheet" type="text/css">
+    <link href="template.css" rel="stylesheet" type="text/css">
+    <script src="/assets/d3.v3.js"></script>
+    <script src="/assets/nv.d3.js"></script>
+    <script src="/assets/visualization.js"></script>
+  </head>
+  <body>
+    <nav>
+      <a href="./">back</a>
+      <a href="line.html">line</a>
+      <a href="pie.html">pie</a>
+      <a class="selected" href="scatter.html">scatter</a>
+      <a href="stacked.html">stacked</a>
+      <a href="bar.html">bar</a>
+      <a href="lineplusbar.html">line+bar</a>
+    </nav>
+    <h4>Scatter Plot</h4>
+    <div style="resize: both; overflow: hidden; border: 1px solid black; width: 700px;">
+        <svg id="scatter-plot-1"></svg>
+    </div>
+    <script>
+      visualization.drawScatterChart(
+        "#scatter-plot-1",
+        data,
+        {
+          scalable: true,
+          forceLine: true
+        }
+      );
+      
+      function data() {
+        return [
+          {
+            key: "Line 1",
+            values: [
+              {x: 1, y: 10},
+              {x: 2, y: 11},
+              {x: 3, y: 12},
+              {x: 4, y: 13},
+              {x: 2, y: 10.5},
+              {x: 3, y: 12.5}
+            ],
+            slope: 1,
+            intercept: 9,
+          },
+          {
+            key: "Line 2",
+            values: [
+              {x: 1, y: 11, shape: "circle", size: 1},
+              {x: 2, y: 10, shape: "cross", size: 1.5},
+              {x: 3, y: 13, shape: "triangle-up", size: 2},
+              {x: 4, y: 15, shape: "triangle-down", size: 2.5},
+              {x: 2, y: 12, shape: "diamond", size: 3},
+              {x: 3, y: 11, shape: "square", size: 3.5}
+            ],
+            slope: 1.5,
+            intercept: 8,
+          }
+        ].concat(randomData(3, 5));
+      };
+      
+      function randomData(groups, points) { //# groups,# points per group
+        var data = [];
+
+        for (i = 0; i < groups; i++) {
+          data.push({
+            key: 'Group ' + i,
+            values: []
+          });
+
+          for (j = 0; j < points; j++) {
+            data[i].values.push({
+              x: Math.random() * 5, 
+              y: Math.random() * 5 + 10, 
+              size: Math.random() * 5
+            });
+          }
+        }
+
+        return data;
+      }
+    </script>
+  </body>
+</html>

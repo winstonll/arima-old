@@ -1,0 +1,102 @@
+<%= javascript_include_tag "home", :type => "text/javascript" %>
+
+<section class="static-page-header">
+  <div class="static-page-header-text-container">
+    <h1 class="static-header">Frequently Asked Questions</h1>
+  </div>
+</section>
+
+<section id="content-block" class="static-page">
+  <article class="static-page-section" id="about-points">
+    <h3>About Points</h3>
+    <p>
+      <b>How it works</b>
+      <ul>
+        <li>Submit a new question (and approved): <span class="emphasized">+5</span></li>
+        <li>Share a report: <span class="emphasized">+5</span></li>
+        <li>Refer another user to sign up for Arima: <span class="emphasized">+5</span></li>
+        <li>Share a fun fact (once a day): <span class="emphasized">+3</span></li>
+        <li>Answer a question: <span class="emphasized">+1</span></li>
+      </ul>
+    </p>
+    <p>
+      <b>Why should you collect points</b>
+      <ul>
+        <li>Showcase your support and passion for Arima.</li>
+        <li>Fight to be in the Top 50 users of Arima on the <a href="<%= leaderboard_path(curr_user: true) %>">global leaderboard</a>.</li>
+        <li>We hope to use points as a way to maintain data quality. The more points you have, the more credible you will be in the eyes of our report                 algorithms</li>
+      </ul>
+    </p>
+  </article>
+
+  <article class="static-page-section">
+  	<h3> What is Arima?</h3>
+  	<p>  Arima is a crowd-contributed open-data knowledge base. As a participant, you will have the opportunity to browse and answer questions ranging from a variety of topics and gain valuable insights by comparing yourself to other from your area, country and worldwide.
+  	</p>
+  	<p> Our mission is to collect, aggregate, organize and present data in a friendly way for people to make decisions and understand the world through numbers.
+  	</p>
+  </article>
+
+
+  <article class="static-page-section">
+    <h3> What do I need to know before submitting a new question??</h3>
+    <p>To add a new question that you would like other users to participate, please clearly state the title of the question, the category it belongs to, and select the appropriate answer type. If you believe that your question does not belong to any existing category, you may also suggest a new category along with you question.</p>
+    <p>If you submit a multiple choice question, please also give us the choices. We try to limit the number choices to 4 so that we avoid submissions with many possible answers. But if you really believe that your question should have more than 4 answers, you may enter more than one answers in one text box, and separate the answers by a comma.</p>
+    <p>To ensure that questions are well-stated and cause no ambiguity, we suggest:</p>
+
+    <ul>
+      <li>Avoid open-ended questions such as "How do you think about XYZ?".</li>
+      <li>Avoid questions that require text based answers such as Use one word to describe your first day at work.</li>
+      <li>If you would like to propose a new multiple choice question, please try to rephrase your question so that there aren’t too many choices. For example, do not propose questions like If you could live anywhere in the world, where would that be because there are too many possible answers; instead, say if you could live anywhere in the world, which continent would you choose or if you could live in cities A, B, C or D, where would you choose.</li>
+      <li>Try to make your question as general as possible so that more people can participant.</li>
+    </ul>
+
+    <p>And finally, once in a while (approximately when we collect 50 new questions), we will write a thank-you blog post with all of the new questions and the names of those who submitted them. If you would like be on that list, please give us your name and where you are from when you submit your question.</p>
+  </article>
+
+  <article class="static-page-section">
+  	<h3> I've just submitted a new question, what do I do now?</h3>
+  	<p>Well, the first thing you should do is answer your own question (you're probably the first respondent).
+  	</p>
+    <p>When your new question gets approved, it is pretty likely that it only has a few answers. In this case, the report card you are getting probably won't give you accurate numbers. Try to tell your friends and family about your new question, and ask them to respond as well as to help spread the words!
+    </p>
+    <p>Every time you go to your profile page and revisit your report cards, the stats are recalculated so that the most recent responses are included. Come often and keep an eye on your questions. The more responses you collect, the better the information is.
+    </p>
+  </article>
+
+  <article class="static-page-section">
+    <h3> Can I edit an existing question, or add more choices to it?</h3>
+    <p> If you wish to edit an existing question, or add more choices, please submit your request using the UserVoice plugin (the question mark symbol on the button right corner).
+    </p>
+  </article>
+
+  <article class="static-page-section">
+  	<h3> What do you do with my data?</h3>
+  	<p>Nothing. We store it in our database, and use it for comparison purposes only. We do not release your data to anyone, or try to make money with it.
+  	</p>
+  </article>
+
+  <article class="static-page-section">
+  	<h3> Is Arima responsible for the data provided?</h3>
+  	<p>  Data displayed are computed based on aggregating inputs from all user on this site. While we try to cross reference with other databases to ensure accuracy, Arima is not responsible for any inaccurate information contained in your report card.
+  	</p>
+  </article>
+
+  <article class="static-page-section">
+  	<h3> My city averages seems wrong, I don’t believe the stats I am getting. </h3>
+  	<p>  If you come from a smaller city, it is quite likely that you are one of the few users from your city on Arima. In this case, what you get could be different from the true stats that you find else because the fewer users we have, the less representative their answers are. Your reports are automatically updated when more people from your area submit their answers, so keep on checking for improved stats or tell your friends to start using Arima!
+  	</p>
+  </article>
+
+  <article class="static-page-section">
+  	<h3> What does the people similar to me tab tell me? </h3>
+  	<p>  People similar to me means those who are approximately your age, your gender and share similar interests (based on your answers). We try our best to cluster our users using our algorithms, and provide you information on what others like you think.</p>
+  </article>
+
+  <article class="static-page-section">
+  	<h3> How is world defined? Does that include every country on the planet? </h3>
+  	<p>  When we say world, we really mean everyone on this site (which come from a lot of countries, but definitely not all parts of the globe). Please be patient! Very soon we will expand beyond just the English-speaking world, and you will get better pictures of what everyone around the globe is doing.
+  	</p>
+  </article>
+
+  </section> <!-- ends content-block -->

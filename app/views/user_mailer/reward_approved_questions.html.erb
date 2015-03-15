@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Congrats, <%= @user.first_name %>, you've gained <%= @points_for_approval %> points!</h1>
+    <p> 
+      Recently, you submitted a question titled, <em><%= @question_title %></em>. 
+    </p>
+    <br />
+    <p>
+      Our super-smart question moderators loved your question,
+      so they've decided to publish it onto Arima for thousands 
+      of users all over the world to answer!
+    </p>
+    < br />
+    <p> 
+      Not only that, we've also given you <strong><%= @points_for_approval %> bonus points</strong> 
+      for helping users around the world enjoy Arima even more.
+    </p>
+    <% if @wants_subscription %>
+    <h4 class="but-wait-title"> But WAIT, there's more!</h4>
+    <p class="thank-you-post"> 
+      Since you checked off that you would like to appear in our monthly thank-you post
+      when you submitted this question, you'll soon see your name on our blog, <a href="http://insights.arima.io/">Insights @ Arima</a>, crediting you
+      with your submitted question!
+    </p>      
+    <% else %>
+    <p class="thank-you-post"> 
+    Next time you submit a question, if you check off that you would like to appear in our monthly thank-you post, 
+    you'll get to see your name on our blog, <a href="http://insights.arima.io/">Insights @ Arima</a>,  where we 
+    credit you with the question you submitted!       
+    </p>
+    <% end %>
+    <p class="login-link">
+      Your question will appear on Arima soon, 
+      click <a href="http://arima.io/users/sign_in">here</a> to login and see it.
+    </p>
+    <p>Thanks for helping make Arima better for everyone, have a great day.</p>
+    <p>- The Arima Team</p>
+  </body>
+</html>

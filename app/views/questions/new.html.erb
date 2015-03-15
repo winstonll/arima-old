@@ -1,0 +1,100 @@
+<script>
+  $(document).ready(function(){
+    var answerBoxCounter = 2
+    var MAX_BOX_COUNT = 6
+     $("#add-answer-button").click(function() {
+       // add another answer text box when clicked under existing text box.
+       var newBoxNumber = answerBoxCounter + 1
+
+       if (newBoxNumber <= MAX_BOX_COUNT) {
+         //var oldHtml = $(".answer-type-input-box").html()
+         var newHtml = '<input type="text" class="answer-box" id="answer_box_' + newBoxNumber +'" placeholder="Answer here">'
+         //$(".answer-type-input-box").html(oldHtml + newHtml)
+         $(".answer-type-input-box").append(newHtml)
+         answerBoxCounter++
+       }
+     })
+     if($('#value_type').val() != "collection"){
+        $("#answer-types").css('display','none');
+
+     }
+     else{
+        $("#answer-types").css('display','block');
+     }
+
+     $('#value_type').change(function(){
+        if($(this).val() != "collection"){
+          $("#answer-types").css('display','none');
+        }
+        else{
+        $("#answer-types").css('display','block');
+        }
+     })
+  });
+
+</script>
+
+<!-- Submit Question Modal -->
+<section class="modal fade" id="submitQuestionModal" tabindex="-1" role="dialog" aria-labelledby="submit-question-label" aria-hidden="true">
+  <section class="modal-dialog">
+    <section class="modal-content" >
+
+      <article class="modal-header bg-blue">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="color: #fff;">×</button>
+        <h2 class="modal-title submit-q-text" id="submit-question-label">
+          Submit a Question
+        </h2>
+        <p class="modal-header-text" >
+          Have a question you want to ask? Submit it below and we'll post it after reviewing and approving it!
+        </p>
+      </article> <!-- ./modal-header -->
+
+      <article class="modal-body">
+        <%= form_for Question.new do |f|%>
+        <section class="submit-questions-container">
+          <article class="submit-q-container">
+            <p class="modal-input-title">
+              Your Question:
+            </p>
+            <p class="submit-q-input-box">
+              <input type="text" name="submit_question_name" id="input-q-title" placeholder="When during the day do you enjoy to eating a snack?">
+            </p>
+          </article>
+          <article class="submit-q-container">
+              <p class="modal-input-title">
+                Question Category:
+              </p>
+              <p class="submit-q-dropdown">
+                <%= select_tag(:group_id, options_for_select([["Money Matters", 1],["Health & Fitness", 2], ["Education & Knowledge", 3], ["Electronics & Gadgets", 4], ["Business & Career", 5], ["Sports", 6], ["Entertainment", 7], ["Travel & Lifestyle", 8], ["Food", 9], ["Current Events & Controversies", 10]]), onchange: "field_reveal()", required: "required", class: "answer-type-select") %>
+              </p>
+          </article>
+
+          <article class="submit-q-container">
+              <p class="modal-input-title">
+                Answer Type:
+              </p>
+              <p class="submit-q-dropdown">
+                <%= select_tag(:value_type, options_for_select([["Multiple Choice", "collection"],["Numerical Value", "quantity"],["Currency", "currency"],["Measurment", "measurment"],["Length", "length"],["Weight", "weight"],["Time(minutes)", "minutes"], ["Time(hours)", "hours"],["Time(years)", "years"]]), onchange: "field_reveal()", required: "required", class: "answer-type-select") %>
+              </p>
+              <section class="selected-multiple-choices" id="answer-types">
+                <p class="modal-input-title">
+                  Answers (separated by commas):
+                </p>
+                <p>* Maximum of 6 answers, empty boxes will not be added.</p>
+                <section class="submit-input-container">
+
+                  <div class="answer-type-input-box">
+                    <input type="text" name="answer_box_1" id="answer-box-1" placeholder="Answer here">
+                    <!-- <input type="text" class="answer-box" id="answer-box-2" placeholder="Answer here"> -->
+                  </div>
+                </section>
+                <input type="button" value="Add another answer" id="add-answer-button"/>
+              </section>
+          </article>
+          <%= f.submit "Submit", class: "modal-finished-button" %>
+        </section>
+        <% end %>
+      </article>
+    </section><!-- /.modal-content -->
+  </section><!-- /.modal-dialog -->
+</section><!-- /.modal -->

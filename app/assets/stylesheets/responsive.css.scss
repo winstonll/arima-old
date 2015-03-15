@@ -1,0 +1,226 @@
+/*
+ * Reserve this stylesheet for all responsive media queries.
+ */
+
+@media screen and ( max-width: 1000px ) {
+  body {
+    #questions-container,
+    .profile-container {
+      width: 85%;
+    }
+  }
+
+  .feature-text-wrapper {
+    .feature-title {
+      font-size: 27px;
+    }
+
+    .feature-detailed {
+      font-size: 19px;
+      font-weight: 600;
+    }
+
+    p {
+      width: 85%;
+      margin: 10px auto;
+    }
+  }
+
+  .create-account-title {
+    font-size: 28px;
+  }
+
+  #home-navbar {
+    .logo-container {
+      display: none;
+    }
+  }
+
+}
+
+@media screen and ( max-width: 850px ) {
+  body {
+    #questions-container,
+    .profile-container {
+      width: 95%;
+    }
+
+    /* Question pages */
+    .site-content {
+      min-width: 0px;
+      margin-left: 0px;
+      position: static;
+    }
+
+    #questions-sidebar {
+      box-shadow: 2px 0px 4px rgba(25, 25, 25, 0.5);
+      z-index: 100;
+    }
+
+    #home-navbar {
+      width: 100%;
+
+      .menu-icon {
+        display: inline-block;
+      }
+    }
+
+    #sidebar-mobile-close-toggle {
+      display: block;
+    }
+
+    .container-main-banner {
+      .featured-question-title {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+    }
+
+    .funfact-wrapper {
+      margin-bottom: 0;
+    }
+
+    #questions-container {
+      width: 100%;
+      margin-top: 0;
+    }
+
+    .legend-answers,
+    .categories-num-answers {
+      display: none;
+    }
+  }
+}
+
+@media screen and ( max-width: 768px ) {
+
+  /* Home Page */
+  #landing {
+    #key-points-container {
+      .key-points-section {
+        width: 90%;
+        display: block;
+        margin: auto;
+      }
+    }
+
+    #landing-container {
+      width: 95%;
+
+      .logo-name-container {
+        #logo {
+          height: 125px;
+          width: auto;
+        }
+        h1 {
+          font-size: 32px;
+        }
+      }
+    }
+
+    #key-points-container {
+      height: 100%;
+      margin-bottom: 0;
+    }
+  }
+
+  /* Signup/Login Pages */
+  .signin-page {
+    margin-top: -250px;
+  }
+
+  #home-navbar {
+    .logo-container {
+      display: inline-block;
+    }
+
+    .nav-btn {
+      font-size: 12px;
+      padding: 5px 8px 5px 8px;
+    }
+
+    .nav-links {
+      li {
+        margin-right: 5px;
+
+        .nav-link {
+          font-size: 15px;
+        }
+      }
+    }
+  }
+
+  /* Profile Page */
+  .profile-information {
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 8px 8px 0px 0px !important;
+    background: #639ee3;
+    padding: 50px;
+
+    .centered-info {
+      text-align: center;
+      .user-info-container {
+        .user-photo-default {
+          font-family: 'Montserrat', 'Open Sans', sans-serif;
+          height: 125px;
+          width: 125px;
+          margin: auto;
+          line-height: 125px;
+          font-size: 50px;
+          background-color: #00c39c;
+          font-weight: 400;
+          text-align: center;
+          border-radius: 50%;
+          color: #fff;
+        }
+
+        .user-name {
+          font-size: 35px;
+          margin-top: 15px;
+        }
+
+        .user-location {
+          font-size: 15px;
+          margin-top: -10px;
+        }
+      }
+    }
+  }
+
+  .stat-number {
+    font-size: 25px;
+  }
+
+  .stat-title {
+    font-size: 11px;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 10px;
+
+    .footer-answers {
+      .answers-submitted-num {
+        font-size: 1.5em;
+      }
+
+      answers-submitted-caption {
+        font-size: 1em;
+      }
+    }
+
+    .footer-links {
+      width: 100%;
+
+      .footer-sections {
+        margin-left: 5px;
+        margin-right: 5px;
+      }
+    }
+
+    h3 {
+      font-size: 17px;
+    }
+  }
+}

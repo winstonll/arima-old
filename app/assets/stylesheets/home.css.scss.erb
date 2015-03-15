@@ -1,0 +1,158 @@
+.static-header,
+.static-subtitle {
+  text-align: center;
+}
+
+/* Landing Page */
+#landing {
+  min-height: 100%;
+  width: 100%;
+
+  background-image: url(<%= image_path "backgrounds/taipei_bg.jpg" %>);
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+  color: #fff;
+  text-align: center;
+
+  #landing-container {
+    padding-top: 9em;
+    height: 100%;
+    width: 700px;
+    margin: 0 auto;
+    text-shadow: 0px 2px 4px rgba(0,0,0,0.8);
+
+    .enter-button {
+      border: 2px solid white;
+      border-radius: 3px;
+      font-size: 20px;
+      box-shadow: none;
+      text-shadow: none;
+      margin-top: 1.5em;
+      padding: 0.5em;
+
+      &:hover {
+        color: #00c39c;
+        border: 2px solid #00c39c;
+      }
+    }
+
+    .logo-name-container {
+      #welcome {
+        font-weight: 600;
+      }
+
+      #logo {
+        height: 150px;
+        width: auto;
+      }
+    }
+
+    .summary {
+      font-weight: 400;
+      font-size: 17px;
+      margin-bottom: 2em;
+    }
+
+    #widget-container {
+      width: 600px;
+    }
+  }
+
+  #key-points-container {
+    width: 100%;
+    height: 300px;
+    margin-top: 7em;
+    padding: 0em 10em 52px 10em;
+    background-color: rgba(0,0,0,0.35);
+
+    .key-points-header {
+      color: #50E3C2;
+      font-weight: 700;
+      font-size: 20px;
+      padding: 1em;
+    }
+
+    .key-points-section {
+      width: 33%;
+      vertical-align: top;
+      display: inline-block;
+
+      .key-points-header {
+        text-transform: uppercase;
+        font-size: 15px;
+      }
+
+      .key-points-logo {
+        height: auto;
+        width: 35px;
+        margin-bottom: 9px;
+      }
+
+      .key-points-summary {
+        width: 85%;
+        margin: auto;
+        font-weight: 600;
+        text-align: left;
+        font-size: 15px;
+      }
+    }
+  }
+}
+
+/* Link styles */
+a:link, a:visited, a:hover {
+  color: #FFF;
+  text-decoration: none;
+}
+
+.signin-link {
+  a:link {
+    text-decoration: underline;
+  }
+}
+
+/* Signin button */
+.signin-button {
+  height: 40px;
+  background-color: #00C39C;
+  border-radius: 4px;
+  border: none;
+  padding: 15px;
+  margin-right: 245px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  font-size: 125%;
+  font-weight: bold;
+  padding-top: 7px;
+}
+
+.signin-button {
+  background-color: #5986dd;
+}
+
+.signin-button:hover {
+  opacity: 0.8;
+}
+
+.modal-save-wrapper {
+  padding-top: 20px;
+}
+
+.modal-title {
+  margin-left: 35px;
+  text-transform: uppercase;
+}
+
+.modal-button {
+  height: 40px;
+  padding: 0px 30px 0px 30px;
+  background-color: #00C39C;
+  color: #fff;
+  border-radius: 5px;
+  border: none;
+}

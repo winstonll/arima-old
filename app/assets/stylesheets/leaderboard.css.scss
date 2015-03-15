@@ -1,0 +1,134 @@
+.leaderboard {
+  width: 85%;
+  margin: 0 auto;
+  color: #4a4a4a;
+  padding-bottom: 10em;
+
+  .leaderboard-hero {
+    width: 100%;
+    margin-top: 10em;
+    text-align: center;
+
+    .leaderboard-title {
+      font-weight: 600;
+      font-size: 45px;
+      line-height: 50px;
+    }
+
+    .leaderboard-subtitle {
+      font-size: 22px;
+      color: #9B9B9B;
+      line-height: 25px;
+    }
+  }
+
+  .leaderboard-user-rank-container {
+    height: 200px;
+    width: 200px;
+    margin: auto;
+    margin-top: 3.5em;
+    margin-bottom: 7em;
+    background-color: #50E3C2;
+    border-radius: 4px;
+    color: #fff;
+    text-align: center;
+
+    .leaderboard-user-rank-title {
+      font-size: 20px;
+      font-weight: 300;
+      padding-top: 2.25em;
+    }
+
+    .leaderboard-user-rank {
+      font-size: 70px;
+      font-weight: 600;
+      margin-top: -20px;
+    }
+  }
+
+  .filter {
+    margin-left: 4.5em;
+    margin-bottom: 3em;
+
+    .filter-span {
+      font-size: 22px;
+      font-weight: 600;
+      color: #9B9B9B;
+      line-height: 30px;
+    }
+
+    .filter-location-select {
+      width: 80px;
+      height: 35px;
+      font-size: 15px;
+      background-color: #00C39C;
+      border-radius: 4px;
+      outline: none;
+      border: 0;
+      color: #fff;
+      text-align: center;
+
+      &:hover {
+        background-color: #00C39C !important;
+      }
+    }
+  }
+
+  .users2 {
+    width: 100%;
+
+    .users-table {
+      width: 100%;
+      counter-reset: rowNumber;
+
+      .users-table-headers {
+        th {
+          text-align: center;
+          color: #9b9b9b;
+          font-weight: 800;
+          font-size: 17px;
+        }
+      }
+
+      .leaderboard-user-row {
+        height: 100px;
+        width: 100%;
+        counter-increment: rowNumber;
+
+        &:nth-child(even) {
+          background-color: #f2f2f2;
+        }
+
+        &.curr_user {
+          background-color: #A4F9E6;
+        }
+
+        td {
+          text-align: center;
+          font-size: 22px;
+          font-weight: 600;
+        }
+
+        .leaderboard-user-rank {
+          color: #9B9B9B;
+
+          &::before {
+            content: counter(rowNumber);
+          }
+        }
+
+        .leaderboard-user-name {
+
+        }
+
+        .leaderboard-user-location {
+
+        }
+
+        .leaderboard-user-points {
+
+        }
+      }
+    }
+  }
+}

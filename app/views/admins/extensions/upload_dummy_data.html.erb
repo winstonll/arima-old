@@ -1,0 +1,64 @@
+<h3><%= @extension.name %></h3>
+
+<p class="text-muted">
+  Add new questions and answers to existing users. The CSV file must have the following format
+</p>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Lastname</th>
+      <th>Firstname</th>
+      <th>What is your new question?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Smith</td>
+      <td>Jane</td>
+      <td>Answer</td>
+    </tr>
+    <tr>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr>
+
+<div class="row">
+  <div class="col-sm-12">
+
+    <%= form_tag admin_extension_post_path(@extension.view_name),  method: :post, multipart: true do %>
+
+      <div class="form-group">
+        <label>
+          Upload CSV file
+          <input type="file" name="data">
+        </label>
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Upload</button>
+        <p class="help-block">
+          Processing may take a few minutes, please be patient.
+          <br>Do not refresh the page or submit multiple times.
+        </p>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<!--
+<hr>
+
+<pre>
+<%= @extension.inspect %>
+</pre>
+
+<pre>
+<%= @extension_instance.inspect %>
+</pre>
+-->

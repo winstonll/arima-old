@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Congrats, <%= @registered_user.first_name %>, you've gained <%= @points_for_referral %> points!</h1>
+    <p> 
+      Recently, your friend <%= @new_user.email %> signed up to Arima with your referral code, 
+      and as a thank you we've given you <%= @points_for_referral %> points.
+    </p>
+    <br />
+    <p>
+      Thanks for helping make Arima better for everyone, have a great day.
+    </p>
+    <p>- The Arima Team</p>
+  </body>
+</html>

@@ -1,0 +1,66 @@
+<script>
+  $(document).ready(function() {
+    $("#most-popular").bind('click', function() {
+      $('#most-popular').addClass('active');
+      $('#most-recent').removeClass('active');
+
+      $.ajax({
+        url: "/categories/<%= @question.id %>/show_popular",
+        data: "id=<%= @question.id %>",
+        type: "POST"
+      });
+    });
+
+    $("#most-recent").bind('click',function() {
+      $('#most-recent').addClass('active');
+      $('#most-popular').removeClass('active');
+
+      //post to the controller/action/params
+      $.ajax({
+        url: "/categories/<%= @question.id %>/show_recent",
+        data: "id=<%= @question.id %>",
+        type: "POST"
+      });
+    });
+  });
+</script>
+
+<%
+  content_for :page_class do
+    @question.page_class
+  end
+%>
+
+<% provide(:title, @question.label.html_safe) %>
+
+<div class="main-site-container">
+  <div class="category-section">
+    <div class="group-headline-style">
+      <p class="category-banner-title">
+      </p>
+
+      <!-- Category Hero -->
+      <div class="container-category-banner">
+        <h4 class="container-category-title"><%= @question.label.html_safe %></h4>
+      </div>
+
+    </div>
+
+    <!-- Filter buttons -->
+    <div class="most-recent-popular-buttons">
+      <div class="most-recent-button"><%=link_to 'Most Recent', {method: "show"}, :remote=>'true', :id=>'most-recent', :class => "active" %></div>
+      <div class="most-popular-button"><%= link_to 'Most Popular', {method: "show_popular" }, :remote => 'true', :id => "most-popular" %></div>
+    </div>
+
+  <div id="questions-container">
+    <% if @user && @unanswered.any? %>
+      <%= render partial: "categories/show_unanswered_questions" %>
+    <% else %>
+      <%= render partial: "categories/show_questions" %>
+    <% end %>
+
+    <% if @user && !@answered.empty? %>
+      <%= render partial: "categories/show_answered_questions" %>
+    <% end %>
+  </div>
+</div>

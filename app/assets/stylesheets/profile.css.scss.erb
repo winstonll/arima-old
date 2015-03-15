@@ -1,0 +1,283 @@
+// Place all the styles related to the profile controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* General */
+.profile-edit,
+.profile-upload::before {
+  width: 100px;
+  height: 25px;
+  background-color: #e0e0e0;
+  border-radius: 3px;
+  color: #4a4a4a;
+  border: none;
+  margin: 10px;
+  display: inline-block;
+  -webkit-user-select: none;
+  text-align: center;
+  transition: all 150ms linear;
+  -webkit-transition: all 150ms linear;
+  -ms-transition: all 150ms linear;
+  -moz-transition: all 150ms linear;
+}
+
+.profile-information {
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 8px 8px 0px 0px !important;
+  background: #639ee3;
+  padding: 25px;
+
+  .centered-info {
+    text-align: center;
+
+    .user-info-container {
+      .user-photo-default {
+        font-family: 'Montserrat', 'Open Sans', sans-serif;
+        height: 125px;
+        width: 125px;
+        margin: auto;
+        line-height: 125px;
+        font-size: 50px;
+        background-color: #00c39c;
+        font-weight: 400;
+        text-align: center;
+        border-radius: 50%;
+        color: #fff;
+        z-index: 1;
+      }
+
+      .user-name {
+        font-family: 'Roboto', 'Open Sans', sans-serif;
+        font-size: 35px;
+        text-align: center;
+        color: #fff;
+        font-weight: 600;
+        margin-top: 15px;
+      }
+
+      .user-location {
+        font-family: 'Roboto', 'Open Sans', sans-serif;
+        font-size: 20px;
+        margin-bottom: 0.5em;
+        color: #4a4a4a;
+        text-align: center;
+        font-weight: 400;
+        margin-top: -10px;
+      }
+    }
+  }
+}
+
+.profile-edit:hover {
+  background-color: #d0d0d0;
+  box-shadow: 0px 2px 2px rgba(100, 100, 100, 0.5);
+}
+
+.profile-upload::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+input[type="file"]{
+  color: transparent;
+  line-height: 25px;
+  font-style: normal !important;
+  display: inline;
+}
+
+.user-stats {
+  width: 85%;
+  margin: 0 auto;
+  border-radius: 0px 0px 8px 8px !important;
+  display: inline !important;
+}
+
+.stat-container {
+  width: 33.33%;
+  float: left;
+  background-color: #1FD5B0;
+  color: #fff;
+  height: 100px;
+  text-align: center;
+}
+
+.profile-container {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 5em;
+}
+
+.stat-number {
+  font-size: 35px;
+}
+
+.stat-title {
+  font-size: 13px;
+  font-weight: 600;
+  color:#4a4a4a;
+  margin-top: -2%;
+  text-transform: uppercase;
+}
+
+#user-points {
+  border-radius: 0px 0px 0px 8px !important;
+}
+
+#user-leaderboard {
+  background: #00c39c;
+}
+
+#user-questions-answered {
+  border-radius: 0px 0px 8px 0px !important;
+}
+
+.answered-questions-container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 100px 0px 50px 0px !important;
+}
+
+.questions-answered-title {
+  font-weight: 600;
+  font-size: 25px;
+  color: #4A4A4A;
+  line-height: 41px;
+  padding: 20px 0px 0px 20px;
+}
+
+.questions-answered-subtitle {
+  font-weight: 700;
+  font-size: 15px;
+  color: #979797;
+  line-height: 24px;
+  padding: 0px 0px 40px 20px;
+}
+
+body {
+  .categories-container{
+    width: 100%;
+  }
+
+  hr {
+    margin: 0px 0px;
+    margin: 0 auto;
+  }
+
+  .answered-question {
+    background: #fff;
+    margin: 0px;
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+
+  .questions-header, {
+    text-align: center;
+    background-color: #fff;
+    padding-bottom: 25px;
+    font-weight: 700;
+    font-size: 18px;
+    color: #979797;
+    line-height: 24px;
+  }
+
+  .questions-container {
+    /* margin-left equals width of sidebar + 1.5em padding*/
+    margin-top: 1.5em;
+  }
+
+  /* Profile */
+
+  body {
+    .profile-photo-name {
+      background-color: #639ee2;
+      background-repeat: no-repeat;
+      background-position: center;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+      padding: 80px;
+
+      #upload-image-wrapper {
+        max-width: 300px;
+        margin-bottom: -70px;
+      }
+      h2 {
+        margin-bottom: 15px;
+      }
+      h3 {
+        color: #404141;
+        margin-top:10px;
+        font-size: 20px;
+      }
+      color: white;
+    }
+    .score {
+      padding: 40px;
+      h3, i {
+        color: #E5436C;
+      }
+      p {
+        font-size: 20px;
+      }
+      h5 {
+        font-size: 30px;
+        color: white;
+      }
+    }
+    .questions-quicknav {
+      background-color: #2A6B87;
+      padding: 40px;
+      h3 {
+        color:#FFF8AA;
+        font-size: 30px;
+      }
+      h4 {
+        font-size: 30px;
+      }
+      p {
+        font-size: small;
+      }
+    }
+
+    .suggested {
+      color:#7CC142;
+    }
+    .trending {
+      color:#BFD730;
+    }
+    .random {
+      color:#AEABD5;
+    }
+
+    &.profiles,
+    &.reports {
+      .suggested-questions {
+        background: #7CC142;
+      }
+      .trending-questions {
+        background: #BFD730;
+      }
+      .random-questions {
+        background: #AEABD5;
+      }
+
+      .suggested-questions,
+      .trending-questions,
+      .random-questions {
+        small {
+          color: inherit;
+          font-size: small;
+        }
+        padding: 40px;
+        color: #044082;
+        .content {
+          max-width: 900px;
+        }
+        .question {
+          color: #12374B;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+<aside id="questions-sidebar" class="sidebar expanded">
+  <div class="tse-scrollable">
+    <div class="tse-content">
+      <div id="sidebar-mobile-close-toggle">Close sidebar</div>
+
+      <div class="sidebar-title">
+        <%= link_to image_tag("logo-grey.png"), categories_path %>
+      </div>
+
+      <!-- Categories -->
+      <div class="sidebar-categories">
+        <% Group.all.each do |group| %>
+        <a href="<%= category_path(group) %>" data-group-id="<%= group.id %>" class="<%= group.page_class %>">
+          <div class="category-container">
+            <div class="category-inner-container">
+              <%= image_tag("category-icons/#{group.label.sub("<br>", " ").html_safe}.png", class: "category-icon" ) %>
+              <span class="category-title"><%= group.label.sub("<br>", " ").html_safe %></span>
+            </div>
+          </div>
+        </a>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</aside>

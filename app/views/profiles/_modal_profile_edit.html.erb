@@ -1,0 +1,80 @@
+<!-- Modal popup -->
+<section class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="editProfileModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <article class="modal-header bg-blue">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="color: #fff;">&times;</button>
+      <h2 class="modal-title submit-q-text" id="submit-question-label">Edit Profile</h2>
+    </article> <!-- ./modal-header -->
+
+      <div class="modal-body">
+      <%= simple_form_for current_user, url: profile_path, html: { multipart: true, novalidate: false } do |f| %>
+        <div class="form-group">
+          <%= f.input :avatar %>
+        </div>
+        <div class="form-group">
+          <article class="referral-container">
+          <p>Your personal invite link is: </p>
+          <p>
+            <strong>
+              <%= "arima.io%{sign_up_path}?referral=%{user_referral_code}" % {sign_up_path: new_registration_path(resource_name), user_referral_code: current_user.referral_code} %>  
+            </strong>
+          </p>              
+          <p>You get bonus points when people use your link to sign up for Arima!</p>
+          </article>
+        </div>
+        <div class="form-group">
+          <%= f.input :first_name, input_html: { class: "form-control" }, required: true %>
+        </div>
+        <div class="form-group">
+          <%= f.input :last_name, input_html: { class: "form-control" } %>
+        </div>
+        <div class="form-group">
+          <%= f.input :email, input_html: { class: "form-control" }, required: true %>
+          <p class="help-block">
+            Use this to log-in and keep in touch.
+          </p>
+        </div>
+        <div class="form-group">
+          <%= f.input :username, input_html: { class: "form-control" }, required: true %>
+          <p class="help-block">
+            You can change your username unlimited times during beta.
+            <br />
+            Note that the url for accessing your reports will be changed!
+          </p>
+        </div>
+        <div class="form-group">
+          <%= f.input :measurement_unit, collection: ["Metric", "Imperial"], input_html: { class: "form-control" }, required: true, :include_blank => false %>
+        </div>
+
+        <h3>Location</h3>
+        <%= f.simple_fields_for :location do |location| %>
+          <div class="form-group">
+            <label>Country <%= location.country_select :country_code, {}, { class: "form-control" } %></label>
+          </div>
+          <div class="form-group">
+            <%= location.input :province, input_html: { class: "form-control" } %>
+          </div>
+          <div class="form-group">
+            <%= location.input :city, input_html: { class: "form-control" } %>
+          </div>
+        <% end %>
+
+        <h3>Physiology</h3>
+        <div class="form-group">
+          <%= f.input :dob, required: true, label_html: { style: "display: block" },
+            start_year: Date.today.year - 90, end_year: Date.today.year - 12, input_html: {
+            class: "form-control", style: "display: inline; width: inherit" } %>
+        </div>
+        <div class="form-group">
+          <%= f.input :gender, required: true, input_html: { class: "form-control" }, collection: User.gender_options, :include_blank => false %>
+        </div>
+        <br />
+        <div class="form-group text-center">
+          <%= f.submit "Save", class: "modal-finished-button" %>
+        </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</section>

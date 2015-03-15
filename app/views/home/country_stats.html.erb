@@ -1,0 +1,26 @@
+<!-- US 317.8 million source: http://en.wikipedia.org/wiki/Demographics_of_the_United_States#cite_note-1 -->
+
+<!-- CA 35.34 million source: http://en.wikipedia.org/wiki/Population_of_Canada -->
+
+<h2 class="text-center"><%= @country %></h2>
+<br>
+<div class="col-sm-6">
+  <%= image_tag "city-icon.png" %>
+  <br>
+  <span class="large-number"><%= @population %></span>
+  <br>
+  There are <%= @population %> million people living in <%= @country %>.
+  <br>
+</div>
+<div class="col-sm-6">
+  <%= image_tag "man-icon.png" %>
+  <br>
+  <span class="large-number"><%= @name_like_user_count %></span>
+  <br>
+  There are <%= @name_like_user_count %> people with the name <%= @user.name %> registered with us.
+</div>
+<div class="clearfix"></div>
+<br>
+<p class="text-center">
+  <a href="#" title="Next" class="next btn btn-primary btn-lg background-green borderless" style="color:#B7D138;"><i class="fa fa-arrow-right fa-2x"></i></a>
+</p>

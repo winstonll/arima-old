@@ -1,0 +1,63 @@
+/* Static Pages */
+.static-page-header {
+  height: 400px;
+  background-color: #eee;
+  display: table;
+  width: 100%;
+
+  .static-page-header-text-container {
+    display: table-cell;
+    vertical-align: middle;
+    color: #4a4a4a;
+    font-size: 1.25em;
+    font-weight: 300;
+  }
+}
+
+.static-page {
+  background-color: #FFF;
+  color: #5a5a5a;
+  padding: 25px 100px;
+  line-height: 25px;
+
+  #about-points {
+    padding: 10px 20px 10px 20px;
+    background-color: #fafafa;
+  }
+
+  .static-page-section {
+    width: 70%;
+    margin: 0 auto;
+
+    h2 {
+      color: #4a4a4a;
+      margin-bottom: 0.5em;
+    }
+
+    p {
+      padding-bottom: 25px;
+    }
+
+    ul {
+      margin-bottom: 1.75em;
+
+      li {
+        margin-left: 0.5em;
+      }
+    }
+
+    a {
+      color: #50E3C2;
+      text-decoration: underline;
+    }
+  }
+}
+
+.static-page-social {
+  padding-bottom: 2em;
+
+  .static-page-social-accounts {
+    max-width: 40px;
+    margin-right: 20px;
+  }
+}

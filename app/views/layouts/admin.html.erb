@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Arima</title>
+  <%= stylesheet_link_tag    "admins", media: "all"%>
+  <%= javascript_include_tag "admins" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="container">
+
+  <h1><%= link_to image_tag("logo-small.png"), admin_path %></h1>
+
+  <h2 class="page-header">Administration</h2>
+
+  <% if flash[:notice] %>
+    <p class="alert alert-info"><%= flash[:notice] %></p>
+  <% end %>
+
+  <% if flash[:alert] %>
+    <p class="alert alert-warning"><%= flash[:alert] %></p>
+  <% end %>
+
+  <div class="row">
+    <div class="col-sm-4">
+
+      <div class="row">
+        <div class="col-sm-12">
+          <% @table_models.each do |t_model| %>
+            <a href="<%= url_for admin_model_index_path(t_model) %>" class="list-group-item <%= 'active' if t_model.name == @model_name %> ">
+              <span class="badge pull-right"><%= t_model.count %></span>
+              <h4 class="list-group-item-heading"><%= t_model.name %></h4>
+            </a>
+          <% end %>
+        </div>
+      </div>
+
+      <% if @sa.extensions.any? %>
+        <hr>
+        <div class="row">
+          <div class="col-sm-12">
+            <% @sa.extensions.each do |ext| %>
+              <a href="<%= url_for admin_extension_path(ext.view_name) %>" class="list-group-item <%= 'active' if ext.name == @extension.try(:name) %> ">
+                <h4 class="list-group-item-heading"><%= ext.name %></h4>
+              </a>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+
+    </div>
+
+    <div class="col-sm-8">
+      <%= yield %>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>

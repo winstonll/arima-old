@@ -1,0 +1,28 @@
+<!-- MARKED FOR DELETION -->
+
+<div class="row user-stats center-block">
+  <div class="col-sm-4 text-center">
+    <%= image_tag "bonus-credit-icon.png", class: "img-circle stats-icon" %>
+    <p class="text-center">
+      You've collected:
+      <br>
+      <%= points_count %> points
+    </p>
+  </div>
+  <div class="col-sm-4 text-center">
+    <%= image_tag "question-icon.png", class: "img-circle stats-icon" %>
+    <p class="text-center">
+      You've completed:
+      <br>
+      <%= "#{questions_count} questions" %>
+    </p>
+  </div>
+  <div class="col-sm-4 text-center">
+    <%= image_tag "logo-icon.png", class: "img-circle stats-icon" %>
+    <p class="text-center">
+      Most active category:
+      <br>
+      <%= most_active_category %>
+    </p>
+  </div>
+</div>

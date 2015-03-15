@@ -1,0 +1,132 @@
+body {
+  $dark-gray: #555;
+  $green: #00c39c;
+
+  .answers-container {
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 75px;
+    min-height: 100%;
+    background-color: #f8f8f8;
+  }
+
+  .question-dual-input {
+    text-align: center !important;
+    display: inline !important;
+
+    input {
+      border: none;
+      background-color: #e7e7e7;
+      padding: 15px;
+      margin-top: 5px;
+    }
+  }
+
+  .demographic {
+    /* TEMPORARY. NEED TO REDESIGN */
+    display: none;
+    margin-bottom: 2em;
+
+    .title {
+      margin-bottom: 0.5em;
+    }
+
+    .genders, .age {
+      font-weight: 300;
+      font-size: 1.25em;
+      line-height: 1.25em;
+
+      strong {
+        font-weight: 600;
+        color: $green;
+      }
+    }
+  }
+
+  .report-points-rewarded {
+    height: 100px;
+    width: 100%;
+    line-height: 100px;
+    text-align: center;
+    background-color: #09B895;
+    color: #fff;
+    font-weight: 600;
+    font-size: 22px;
+  }
+
+  .answers {
+    &#answers-card {
+      margin: auto;
+      padding-bottom: 3em;
+      box-shadow: 0px 2px 2px rgba(121,121,121,0.5);
+    }
+
+    &.modal-body {
+      padding: 0;
+      margin-top: -1.1em;
+      text-align: center;
+    }
+
+    .header {
+      background-color: $green;
+      color: white;
+      padding: 10px 40px 40px;
+      padding-top: 0.5em;
+
+      .semi-bold {
+        font-weight: 600;
+      }
+
+      .question-label {
+        a:hover{
+          text-decoration: underline;
+        }
+        @extend .semi-bold;
+        font-size: 2em;
+        margin-bottom: 0.5em;
+        text-align: center;
+      }
+
+      .summary-section {
+        vertical-align: top;
+        word-wrap: break-word;
+        text-align: center;
+        width: 90%;
+        margin: auto;
+        margin-top: 1em;
+
+        .title {
+          @extend .semi-bold;
+          font-size: 1.3em;
+        }
+      }
+
+      .you-answered {
+        .title {
+
+        }
+
+        .answer {
+          font-size: 2.5em;
+          text-transform: capitalize;
+        }
+      }
+    }
+
+    .compare-stats {
+      font-size: 1.5em;
+      margin: 2em 3% 0.5em;
+
+      .average {
+        height: 2em;
+        margin: auto;
+        width: 85%;
+
+        p {
+          color: #4a4a4a;
+        }
+      }
+    }
+  }
+}

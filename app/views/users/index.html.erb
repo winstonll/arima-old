@@ -1,0 +1,21 @@
+<% provide(:title, 'Leaderboard') %>
+
+<div class="leaderboard">
+  <div class="leaderboard-hero">
+    <h1 class="leaderboard-title">Leaderboard</h1>
+    <p class="leaderboard-subtitle">The top 50 users of Arima</p>
+  </div>
+  <div class="leaderboard-user-rank-container">
+    <h1 class="leaderboard-user-rank-title">Your rank is:</h1>
+    <p class="leaderboard-user-rank"><%= @user_rank %></p>
+  </div>
+  <div class="filter">
+    <%= form_tag('users', remote: true) do %>
+      <span class="filter-span">Country:</span>
+      <%= select_tag 'country-filter', options_for_select(@countries, params[:country_type]), { prompt: "All", class: "filter-location-select"} %>
+    <% end %>
+  </div>
+  <div class="users2">
+    <%= render "user_list" %>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<p class="text-center">
+  <span class="large-text"><%= @user.age %></span>
+  <br>
+  Happy <%= @user.age.ordinalize %> year of being alive!
+  <br>
+  Spend your time wisely.
+</p>
+<br>
+<br>
+<div class="col-sm-6 graph-wrapper">
+  <!-- [graph] -->
+  <br>
+  <span class="large-text"><%= @age_stats[:age_count] %></span>
+  <br>
+  There are <%= @age_stats[:age_count] %> users registered with us that are <%= @user.age %> years old.
+</div>
+<div class="col-sm-3 graph-wrapper">
+  <!-- [graph] -->
+  <br>
+  <span class="large-text" style="color:#54C0E4;"><%= @age_stats[:male] %><small>%</small></span>
+  <br>
+  of them are male.
+</div>
+<div class="col-sm-3 graph-wrapper">
+  <!-- [graph] -->
+  <br>
+  <span class="large-text" style="color:#9E347D;"><%= @age_stats[:female] %><small>%</small></span>
+  <br>
+  of them are female.
+</div>

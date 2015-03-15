@@ -1,0 +1,11 @@
+$(document).ready(function() {
+  <% if @user && @unanswered.any? %>
+    $("#questions-container").html('<%= escape_javascript(render partial: "categories/show_unanswered_questions") %>');
+  <% else %>
+    $("#questions-container").html('<%= escape_javascript(render partial: "categories/show_popular_questions") %>');
+  <% end %>
+
+  <% if @user && !@answered.empty? %>
+    <%= render partial: "categories/show_answered_questions" %>
+  <% end %>
+});

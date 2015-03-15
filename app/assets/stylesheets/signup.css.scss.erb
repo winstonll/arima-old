@@ -1,0 +1,251 @@
+.signin-container {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  padding-top: 9em;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+  .signin-title {
+    margin: 0;
+    margin-bottom: 0.25em;
+    font-weight: 700;
+    font-size: 45px;
+  }
+
+  .signin-intro {
+    font-weight: 600;
+    font-size: 17px;
+  }
+
+  .signin-form {
+    margin-top: 3em;
+    padding-bottom: 2em;
+
+    .input-box {
+      color: grey;
+    }
+
+    .signin-section {
+      margin: auto;
+    }
+
+    .input-box {
+      height: 38px;
+      width: 300px;
+      margin-bottom: 5px;
+      margin: auto;
+      font-size: 12px;
+      font-weight: normal;
+      background-color: #fff;
+      border: 0;
+      color: grey;
+      padding-left: 0.75em;
+      border-radius: 3px;
+    }
+
+    .signin-fields-left,
+    .signin-fields-right {
+      display: inline-block;
+      vertical-align: top;
+      text-align: left;
+      max-width: 26em;
+      padding: 0 2em;
+
+      #email-input,
+      #password-input {
+        display: inline;
+      }
+
+      .lock {
+        display: inline;
+        padding-left: 5px;
+        padding-botton: 5px;
+        width: 5%;
+      }
+
+      .location-input {
+        div {
+          display: inline-block;
+
+          input,
+          select {
+            width: 100px;
+          }
+        }
+
+        #city-section {
+          width: 50%;
+          margin-right: 0.5em;
+
+          #location_city {
+            width: 100%;
+          }
+        }
+
+        #country-section {
+          width: 46%;
+
+          #location_country_code {
+            width: 100%;
+          }
+        }
+      }
+
+      label {
+        display: block;
+        font-weight: 400;
+        text-shadow: 0px 1px 2px rgba(0,0,0,0.5);
+      }
+
+      input,
+      select {
+        width: 300px;
+        border-radius: 3px;
+        border: 1px solid #aaa;
+        padding: 5px;
+        color: #555;
+        border: 0;
+
+        &::-webkit-input-placeholder {
+          color: #aaa;
+          font-style: italic;
+          font-size: 12px;
+        }
+
+        &:-moz-placeholder {
+          color: #aaa;
+          opacity: 1;
+          font-style: italic;
+          font-size: 12px;
+        }
+
+        &::-moz-placeholder {
+          color: #aaa;
+          opacity:  1;
+          font-style: italic;
+          font-size: 12px;
+        }
+
+        &:-ms-input-placeholder {
+          color: #aaa;
+          font-style: italic;
+          font-size: 12px;
+        }
+      }
+
+      .signup-button {
+        background-color: #00c39c;
+        font-size: 15px;
+        color: #fff;
+        border-radius: 4px;
+        width: 25%;
+        font-weight: bold;
+        margin-top: 2em;
+        margin-bottom: 1em;
+        border: 0;
+      }
+
+      a {
+        text-decoration: underline;
+      }
+    }
+
+    .signin-fields-left {
+      border-right: 1px solid white;
+
+      #user_username,
+      #user_email{
+        width: 300px;
+        height: 38px;
+        padding: 5px;
+        font-style: italic;
+        padding-left: 0.75em;
+        margin-bottom: 1.75em;
+      }
+
+      #user_email {
+        margin-top: 0.25em;
+      }
+
+      #user_password {
+        width: 300px;
+        height: 38px;
+        padding: 5px;
+        font-style: italic;
+        padding-left: 0.75em;
+        margin-top: 0.25em;
+      }
+    }
+
+    .signin-fields-right {
+      .gender-input, {
+        padding-bottom: 1em;
+      }
+
+      #location_city,
+      #location_country_code,
+      #user_birthyear,
+      #user_gender,
+      #user_measurement_unit {
+        width: 300px;
+        padding: 5px;
+        font-style: italic;
+        color: grey;
+      }
+
+      #location_city {
+        padding-left: 0.75em;
+      }
+      #location_country_code {
+        width: 100%;
+      }
+
+      #user_birthyear,
+      #user_gender,
+      #user_measurement_unit {
+        width: 156px;
+      }
+
+      .login-here-home,
+      .terms-notice {
+        font-size: 12px;
+        margin: 0;
+      }
+    }
+
+    .signin-inputs {
+      text-align: left;
+      margin: 0;
+      display: inline-block;
+      min-width: 19em;
+      padding-bottom: 1em;
+
+      label {
+        display: block;
+        font-weight: 400;
+        text-shadow: 0px 1px 2px rgba(0,0,0,0.5);
+        padding-right: 1em;
+      }
+    }
+
+    .signin-button {
+      margin: auto;
+      margin-bottom: 1em;
+    }
+  }
+}
+
+#signup-container {
+  background-image: url(<%= image_path "backgrounds/nyc_bg.jpg" %>);
+}
+
+#login-container {
+  background-image: url(<%= image_path "backgrounds/taipei_bg.jpg" %>);
+}

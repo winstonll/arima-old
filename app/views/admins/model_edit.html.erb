@@ -1,0 +1,13 @@
+<h2>Edit <%= @model_name %></h2>
+
+<%= simple_form_for @resource, url: admin_model_update_path(@model_name, @resource.id), method: :put, html: {class: 'form'} do |f| %>
+  <%= @sa.simple_form_field f, @model_name, {country: "country_select"} %>
+
+  <div class="form-group">
+    <%= f.submit nil, class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<hr>
+
+<pre><%= @resource.inspect %></pre>

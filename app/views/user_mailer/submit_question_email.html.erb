@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>    
+    <h3>Hi there, Admin!</h3>
+    <%= @user.name %> (<em><%= @user.email %></em>) 
+    has submitted a new question for you to review.
+    <br />
+    <br />
+    
+    <strong>Question Title:</strong><%= @question_name %>
+    <br />
+    
+    <strong>Question Category:</strong>
+    <%= @question_category %>
+    <br />
+
+    <strong>Question Answer Type:</strong>
+    <%= @question_answer_type %>
+    <br />
+
+    <% if @question_answer_type == "Multiple Choice" %>
+    <strong>Question Answers:</strong>
+    	<% @question_answers.each do |given_answer| %>
+      		<li><%= given_answer %></li>
+    	<% end %>
+    <% end %>
+    <br />
+
+    <strong>Appear in thank-you blog post:</strong>
+    <%= @wants_subscription %>
+    <br />
+    <br />
+    
+    Like this question?
+    <br />
+    Click <a href=<%= @admin_url %>>here</a> to go to your admin panel and approve it!
+  </body>
+</html>

@@ -1,0 +1,50 @@
+<% if @resources.present? %>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <%= @model_name %>
+      <%= @creatable_resources.include?(@model_name.constantize) ? link_to("New", admin_model_new_path(@model_name), class: "btn btn-success btn-xs") : nil %>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered table-hover table-condensed">
+        <thead>
+          <tr>
+            <% @sa.visible_attributes_for_model(@model_name.constantize).each do |col_name| %>
+              <th><%= col_name %></th>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <% col_names = @sa.visible_attributes_for_model(@model_name.constantize) || [] %>
+          <% @resources.each do |resource| %>
+            <tr>
+              <% col_names.each do |col_name| %>
+                <td class="<%= @sa.decorate_column_class(col_name) %> content"><%= resource.send(col_name) %></td>
+              <% end %>
+              <td class="action">
+                <a href="<%= url_for admin_model_edit_path(@model_name, resource.id) %>" title="Edit" class="btn btn-default btn-xs">
+                  <span class="glyphicon glyphicon-pencil"></span>
+                </a>
+                &nbsp;
+                <%= link_to admin_model_destroy_path(@model_name, resource.id), data: { confirm: "Are you sure you want to delete this?" }, method: :delete, title: "Destroy", class: "btn btn-danger btn-xs" do %>
+                  <span class="glyphicon glyphicon-remove"></span>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="panel-footer text-center">
+      <%= paginate @resources %>
+    </div>
+
+  </div>
+
+  <hr>
+
+  <pre><% @resources.each do |resource| %><%= pp "#{resource.to_json}\n\n" %><% end %></pre>
+<% else %>
+  <p>Dashboard...</p>
+<% end %>
