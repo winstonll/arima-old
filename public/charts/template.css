@@ -1,0 +1,14 @@
+.chart-label {
+  margin-bottom: 0px;
+  text-align: center;
+}
+
+nav a {
+  margin: 0 5px;
+}
+
+nav .selected {
+  text-decoration: none;
+  font-weight: bold;
+  color: black;
+}
