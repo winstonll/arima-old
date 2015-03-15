@@ -5,10 +5,18 @@
 
 <div class="share-answer">
   Share this answer! Better yet, <%= link_to 'Sign Up', new_registration_path(resource_name), id: "share-signup-btn" if !user_signed_in? %> and gain 5 points at the same time!
-  <div class="social-media-buttons">
+  <!-- <div class="social-media-buttons">
     <ul>
-      <li><a href="https://twitter.com/arima_io"><%= image_tag("twitter-grey-logo.png", :id => "footer-social-img") %></a></li>
-      <li><a href="https://www.facebook.com/friendsofarima"><%= image_tag("fb-grey-logo.png", :id => "footer-social-img") %></a></li>
+      <li><a href="https://twitter.com/arima_io"><%#= image_tag("twitter-grey-logo.png", :id => "footer-social-img") %></a></li>
+      <li><a href="https://www.facebook.com/friendsofarima"><%#= image_tag("fb-grey-logo.png", :id => "footer-social-img") %></a></li>
     </ul>
-  </div>
+  </div> -->
+<%= render partial: "questions/share", locals: {
+          id: question.id,
+          url: "#{request.protocol}#{request.host_with_port}" + question_path(question),
+          title: "Check out this question and see how you compare to the rest of the world!!",
+          description: "Check out this question and see how you compare to the rest of the world!!",
+          image: "#{request.protocol}#{request.host_with_port}" + answer_thumb_path(question)
+        }
+%>
 </div>
