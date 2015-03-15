@@ -6,7 +6,7 @@ set :whenever_gem, "bundle exec whenever"
 require "whenever/capistrano"
 
 set :application,       "arima"
-set :repository,        "git@bitbucket.org:winstonl/arima.git"
+set :repository,        "git@github.com:winstonll/arima.git"
 set :domain,            "162.243.7.145"
 
 set :scm,               :git
@@ -16,7 +16,7 @@ set :deploy_via,        :copy
 set :keep_releases,     5
 set :use_sudo,          false
 set :ssh_options,       {:forward_agent => true}
-set :branch, 'master'
+set :branch,            'master'
 set :scm_verbose,       true
 set :scm_username,      "root"
 set :scm_passphrase,    "4dm1np455!"  # The deploy user's password
