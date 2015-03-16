@@ -30,6 +30,18 @@
         $("#answer-types").css('display','block');
         }
      })
+
+     function updateCountdown() {
+    // 140 is the max message length
+    var remaining = 150 - jQuery('#input-q-title').val().length;
+    jQuery('.countdown').text(remaining + ' characters remaining.');
+    }
+
+      jQuery(document).ready(function($) {
+      updateCountdown();
+      $('#input-q-title').change(updateCountdown);
+      $('#input-q-title').keyup(updateCountdown);
+      });
   });
 
 </script>
@@ -58,6 +70,7 @@
             </p>
             <p class="submit-q-input-box">
               <input type="text" name="submit_question_name" id="input-q-title" placeholder="When during the day do you enjoy to eating a snack?">
+              <span class="countdown"></span>
             </p>
           </article>
           <article class="submit-q-container">

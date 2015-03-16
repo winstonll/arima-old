@@ -1,0 +1,64 @@
+<a href="#"
+   data-type="twitter"
+   data-url="<%= url %>"
+   data-description="<%= description %>"
+   data-via="arima_io"
+   id="twitter-share-<%= id %>"
+   class="twitter-share prettySocial<%= id %>">
+  <img src="<%= image_path 'twitter-logo.png' %>">
+</a>
+
+<a href="#"
+   data-type="facebook"
+   data-url="<%= url %>"
+   data-title="<%= title %>"
+   data-description="<%= description %>"
+   data-media="<%= image %>"
+   id="fb-share-<%= id %>"
+   class='fb-share prettySocial<%= id %>'>
+  <img src="<%= image_path 'fb-logo.png' %>">
+</a>
+
+<!-- <a href="#"
+   data-type="googleplus"
+   data-url="<%= url %>"
+   data-description="<%= description %>"
+   id="gplus-share-<%= id %>"
+   class='gplus-share prettySocial<%= id %>'>
+  <img src="<%= image_path 'google-plus-icon.png' %>">
+</a> -->
+
+<a href="#"
+   data-type="pinterest"
+   data-url="<%= url %>"
+   data-description="<%= description %>"
+   data-media="<%= image %>"
+   class="pinterest-share prettySocial<%= id %>">
+  <img src="<%= image_path 'pinterest-logo.png' %>">
+</a>
+<!--
+<a href="#"
+   data-type="linkedin"
+   data-url="<%= url %>"
+   data-title="<%= title %>"
+   data-description="<%= description %>"
+   data-media="<%= image %>"
+   class="linkedin-share prettySocial<%= id %>">
+  <img src="<%= image_path 'linkedin-logo.png' %>">
+</a> -->
+
+<script>
+  $('.prettySocial<%= id %>').prettySocial();
+</script>
+<script>
+  $('.prettySocial<%= id %>').click(function () {
+    $.ajax({
+      url: "/question/share",
+      type: "POST",
+      dataType: "script",
+      data: { ans_id: "<%= @question.id %>",
+             share_type: $(this).data('type')
+      }
+    });
+  });
+</script>

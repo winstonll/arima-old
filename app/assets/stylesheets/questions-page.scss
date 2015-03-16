@@ -11,14 +11,11 @@ body {
   }
 
   #question-card-container {
-
     margin: auto;
     border-radius: 5px;
-    box-shadow: 0px 2px 3px 1px rgba(100, 100, 100, 0.5);
 
       /* Question Header Colours */
-
-      .question-container- {
+      .question-container {
         background-color: #a25fbc ;
         padding: 3em;
         padding-bottom: 0.25em;
@@ -186,12 +183,33 @@ body {
       border-radius: 5px;
       box-shadow: 0px 1px 1px 1px rgba(100, 100, 100, 0.35);
     }
+
+    .form-group {
+      .answer_value {
+        .form-control {
+          display: block;
+          height: 35px;
+          width: 40%;
+          margin: auto;
+          margin-top: 2em;
+          margin-bottom: 1em;
+
+          color: #9B9B9B;
+          text-align: center;
+          font-size: 12px;
+          background-color: #f7f7f7;
+
+          border: 0;
+          border-radius: 5px;
+          box-shadow: 0px 1px 1px 1px rgba(100, 100, 100, 0.35);
+        }
+      }
+    }
   }
 
   .report-container {
     width: 100%;
     padding: 2em 5px;
-    background-color: #FAFAFA;
     text-align: center;
 
     #answer-chart{
@@ -209,27 +227,16 @@ body {
 
   }
 
-  .form_group {
-    display: block;
-    height: 25px;
-    width: 40%;
-    margin: auto;
-    margin-top: 2em;
-    margin-bottom: 1em;
-
-    color: #9B9B9B;
-    text-align: center;
-    font-size: 12px;
-    background-color: #f7f7f7;
-
-    border: 0;
-    border-radius: 5px;
-    box-shadow: 0px 1px 1px 1px rgba(100, 100, 100, 0.35);
-  }
-
   .share-answer {
     text-align: center;
-    // position: fixed;
+
+    .share-answer-text {
+      margin-bottom: 15px;
+
+      a {
+        text-decoration: underline;
+      }
+    }
 
     #share-signup-btn {
       color: rgb(0, 195, 156);
