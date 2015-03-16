@@ -1,30 +1,3 @@
-<!-- User answer (if signed in) -->
-<% if user_signed_in? %>
-<!-- <div class="user-submitted-answer">
-  <%#= "#{@answer.value_symbol}#{@answer.value} <small>#{@answer.placeholder}</small>".html_safe %>
-</div> -->
-
-<!-- Share section -->
-<% if current_user.is_set_up? then %>
-<!-- share buttons -->
-<div class="share-answer-section">
-  <div class="col-sm-12">
-    <div class="text-center">
-      <div class="answers-share-container">
-        <%= render partial: "answers/share", locals: {
-          id: answer.id,
-          url: "#{request.protocol}#{request.host_with_port}" + answer_path(answer),
-          title: "See what I got compared to the rest of the world!",
-          description: answer.description,
-          image: "#{request.protocol}#{request.host_with_port}" + answer_thumb_path(answer)
-        }
-        %>
-      </div>
-    </div>
-  </div>
-</div>
-<% end %>
-
 <!-- Report Container -->
 <div class="report-container">
     <div class="compare-stats" id="c-answer">
@@ -42,14 +15,25 @@
       </div>
      
       <div class="average">
-      <% if @user_submitted_answer %>
-        <p class="city" style="display: none;"><%= answer.formatted_diff_average 'city' %></p>
-        <p class="country"><%= answer.formatted_diff_average 'country' %></p>
-        <p class="world" style="display: none;"><%= answer.formatted_diff_average 'world' %></p>
-      <% end %>
+        <% if @user_submitted_answer %>
+          <p class="city" style="display: none;"><%= answer.formatted_diff_average 'city' %></p>
+          <p class="country"><%= answer.formatted_diff_average 'country' %></p>
+          <p class="world" style="display: none;"><%= answer.formatted_diff_average 'world' %></p>
+        <% end %>
       </div>
     </div>
 
     <%= render partial: 'common/visualization', locals: {answer: answer} %>
-  <% end %>
+</div>
+
+<div class="share-answer">
+  <div class="share-answer-text">Share this answer to gain 5 points!</div>
+  <%= render partial: "questions/share", locals: {
+            id: question.id,
+            url: "#{request.protocol}#{request.host_with_port}" + question_path(question),
+            title: "Check out this question and see how you compare to the rest of the world!!",
+            description: "Check out this question and see how you compare to the rest of the world!!",
+            image: "#{request.protocol}#{request.host_with_port}" + question_path(question)
+          }
+  %>
 </div>

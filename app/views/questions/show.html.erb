@@ -1,6 +1,6 @@
 <div class="main-site-container" id="question-page-container">
   <div id="question-card-container">
-    <div class="question-container-<%= @question.group_id %>">
+    <div class="question-container question-container-<%= @question.group_id %>">
       <div class="question-title"><%= @question.label %>
         <div class="question-title-count">
           <%= "#{@question.users.count} #{@question.users.count == 1 ? 'person' : 'people'}" %> answered this
@@ -42,9 +42,9 @@
     </div>
   <div id="answer-info">
     <% if !@user_submitted_answer && !user_signed_in? %>
-      <%= render partial: 'questions/unanswered_input', locals: { question: @question } %>
+      <%= render partial: 'questions/unanswered_report', locals: { question: @question } %>
     <% else @user_submitted_answer %>
-      <%= render partial: 'questions/answer_report', locals: {answer: @answer} %>
+      <%= render partial: 'questions/answer_report', locals: { question: @question, answer: @answer} %>
     <% end %>
   </div>
 

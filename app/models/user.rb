@@ -52,8 +52,13 @@ class User < ActiveRecord::Base
 
   def age
     now = Date.today
-    now.year - birthyear.year - ((now.month > birthyear.month ||
-        (now.month == birthyear.month && now.day >= birthyear.day)) ? 0 : 1)
+
+    # Fallback if user doesn't have birthyear for some reason
+    if self.birthyear
+      now.year - self.birthyear
+    else
+      now.year - 1965
+    end
   end
 
   def is_set_up?

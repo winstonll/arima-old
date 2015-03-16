@@ -1,6 +1,7 @@
 <div class="visualization" id="v-answer">
 
   <div class="location-select">
+  
     <span class="location-label" <%= unless defined?(from_show_view) then
       'style="display: block;"'.html_safe end %>>
       Currently visualizing:
@@ -49,7 +50,7 @@
   <% end %>
   data_answer.country = <%= answer.data_array('country').html_safe %>;
   data_answer.world = <%= answer.data_array('world').html_safe %>;
-  data_answer.selected = 'country';
+  data_answer.selected = 'world';
   <% if answer.question.value_type == "collection" %>
     data_answer.collection = true;
   <% end %>
@@ -111,7 +112,7 @@
 
   function show_location_answer(loc) {
     data_answer.selected = loc;
-    var loc_arr = ['city', 'country', 'world'];
+    var loc_arr = ['city', 'world', 'country'];
     loc_arr.splice( $.inArray(loc, loc_arr), 1 );
     chart_answer.load({columns: transform_data_answer(loc)});
     setTimeout(function(){
