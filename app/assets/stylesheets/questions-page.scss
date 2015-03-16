@@ -243,9 +243,19 @@ body {
       font-style: underline;
     }
 
+    .share-link {
+      &:not(:first-child) {
+        margin-right: 10px;
+      }
+    }
+
     .share-image {
       height: auto;
       width: 30px;
+
+      &:hover {
+        opacity: 0.8;
+      }
     }
 
     .social-media-buttons {
