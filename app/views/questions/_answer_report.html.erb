@@ -13,10 +13,10 @@
       <div class="answers-share-container">
         <%= render partial: "answers/share", locals: {
           id: answer.id,
-          url: "#{request.protocol}#{request.host_with_port}" + answer_path(answer),
+          url: "#{request.protocol}#{request.host_with_port}" + question_path(question),
           title: "See what I got compared to the rest of the world!",
           description: answer.description,
-          image: "#{request.protocol}#{request.host_with_port}" + answer_thumb_path(answer)
+          image: "#{request.protocol}#{request.host_with_port}" + question_path(question)
         }
         %>
       </div>
