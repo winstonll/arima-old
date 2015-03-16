@@ -8,11 +8,11 @@
     <div class="location-list" <%= unless defined?(from_show_view) then
       'style="float:none; margin: 0.4em 0;"'.html_safe end %>>
       <ul class="report-location-list" role="tablist">
-        <li class="report-location">
-          <a class="country" data-toggle="pill" href="javascript:void()">Country</a>
-        </li>
         <li class="report-location active">
           <a class="world" data-toggle="pill" href="javascript:void()">World</a>
+        </li>
+        <li class="report-location">
+          <a class="country" data-toggle="pill" href="javascript:void()">Country</a>
         </li>
         <li class="report-location">
           <a class="city" data-toggle="pill" href="javascript:void()">City</a>
