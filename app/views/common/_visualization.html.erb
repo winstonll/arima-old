@@ -1,34 +1,33 @@
 <div class="visualization" id="v-answer">
-  <div class="compare-stats" id="c-answer">
-<!--     <div class="demographic">
-      <div class="title">
-        Demographic:
-      </div>
-      <div class="genders">
-        <strong><%#= question.percent_gender[:males] %>%</strong> Male
-        <strong><%#= question.percent_gender[:females] %>%</strong> Female
-      </div>
-      <div class="age">
-        Average age: <strong><%#= question.average_age %></strong> years old
-      </div>
-    </div> -->
-
-<!--     <div class="average">
-      <p class="world"><%#= question.formatted_diff_average 'world' %></p>
-    </div> -->
-  </div>
 
   <div class="location-select">
     <span class="location-label" <%= unless defined?(from_show_view) then
       'style="display: block;"'.html_safe end %>>
       Currently visualizing:
-      <span class="location-current">your Country</span>
+      <% if @user_submitted_answer %>
+      <span class="location-current">The World</span>
+      <% else %>
+      <span class="location-current">Please submit an answer to view the report</span>
+      <% end %>
     </span>
 
     <div class="location-list" <%= unless defined?(from_show_view) then
       'style="float:none; margin: 0.4em 0;"'.html_safe end %>>
       <ul class="report-location-list" role="tablist">
+          <li class="report-location active">
+            <a class="world" data-toggle="pill" href="javascript:void()">
+              World
+            </a>
+          </li>
         <% has_country = user_signed_in? ?  answer.user.location.country.present? : false %>
+        <% if has_country %>
+          <li class="report-location">
+            <a class="country" data-toggle="pill" href="javascript:void()">
+              <%= answer.user.location.country %>
+            </a>
+          </li>
+        <% end %>
+        <% has_city = user_signed_in? ? answer.user.location.city.present? : false %>
         <% if has_city %>
           <li class="report-location">
             <a class="city" data-toggle="pill" href="javascript:void()">
@@ -36,18 +35,6 @@
             </a>
           </li>
         <% end %>
-        <% if has_country %>
-        <li class="report-location active">
-          <a class="country" data-toggle="pill" href="javascript:void()">
-            <%= answer.user.location.country %>
-          </a>
-        </li>
-        <% end %>
-        <li class="report-location">
-          <a class="world" data-toggle="pill" href="javascript:void()">
-            World
-          </a>
-        </li>
       </ul>
     </div>
   </div>

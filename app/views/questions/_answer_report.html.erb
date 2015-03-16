@@ -40,17 +40,16 @@
           Average age: <strong><%= answer.average_age %></strong> years old
         </div>
       </div>
-
-      <% has_city = user_signed_in? ? answer.user.location.city.present? : false %>
+     
       <div class="average">
-        <% if has_city %>
-          <p class="city" style="display: none;"><%= answer.formatted_diff_average 'city' %></p>
-          <p class="country"><%= answer.formatted_diff_average 'country' %></p>
-        <% end %>
+      <% if @user_submitted_answer %>
+        <p class="city" style="display: none;"><%= answer.formatted_diff_average 'city' %></p>
+        <p class="country"><%= answer.formatted_diff_average 'country' %></p>
         <p class="world" style="display: none;"><%= answer.formatted_diff_average 'world' %></p>
+      <% end %>
       </div>
     </div>
 
-    <%= render partial: 'common/visualization', locals: {answer: answer, has_city: has_city} %>
+    <%= render partial: 'common/visualization', locals: {answer: answer} %>
   <% end %>
 </div>
