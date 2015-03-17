@@ -51,6 +51,8 @@ class ProfilesController < ApplicationController
     @random_questions     = Question.random_for_user current_user
     @trending_questions   = Question.trending_for_user current_user
     @answered_questions   = current_user.answers.order("updated_at desc")
+    @asked_questions      = self.questions#.order("updated_at desc")
+    # @asked_questions      = Question.find_by
   end
 
   protected
@@ -60,5 +62,9 @@ class ProfilesController < ApplicationController
     user.referral_code = "#{user.first_name}-#{SecureRandom.hex[0,5]}"
     user.save!
     user.referral_code
+  end
+
+  def questions
+    Question.where("user_id = #{current_user.id}").order("updated_at desc")
   end
 end

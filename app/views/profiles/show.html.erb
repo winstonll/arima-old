@@ -26,11 +26,15 @@
   <br />
 
   <article class="answered-questions-container">
-    <div class="questions-answered-title">Questions you've answered</div>
+    <div class="questions-answered-title">Questions answered</div>
     <div class="questions-answered-subtitle">Click on a question to view your answer and report</div>
     <div class="questions-answered" id="user-answered">
       <%= render 'answered_questions' %>
     </div> <!-- end questions-answered -->
+    <div class="questions-answered-subtitle">Questions asked </div>
+    <div>
+      <%= render 'asked_questions' %>
+    </div>
 
     <!-- answered questions on right -->
     <!--<div id="#paginator">
