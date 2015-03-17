@@ -48,12 +48,11 @@
       <%= render partial: 'questions/unanswered_report', locals: { question: @question } %>
     <% end %>
     <% if !@user_submitted_answer %>
-
+      <div class="no-answer-container">
+        <p class="no-answer-prompt">Answer the question to view your personalized report</p>
+      </div>
     <% elsif @user_submitted_answer %>
       <%= render partial: 'questions/answer_report', locals: { question: @question, answer: @answer} %>
     <% end %>
-  </div>
-  <div class="back-to-category", id="back-to-category">
-    <%= link_to 'Back to Category', "/categories/#{@question.group_id}", :class => "back-to-category" %>
   </div>
 </div>
