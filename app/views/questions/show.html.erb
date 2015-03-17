@@ -32,14 +32,14 @@
                              min: @question.min_value
                            }) %>
             <% end %>
-          <% end %>
             <div class="modal-save-wrapper text-center">
-            <% unless @user_submitted_answer %>
-              <%= f.submit "Save", class: "modal-button" %>
-            <% end %>
+              <% unless @user_submitted_answer %>
+                <%= f.submit "Save", class: "modal-button" %>
+              <% end %>
             </div>
-          </div>
           <% end %>
+          </div>
+        <% end %>
         </div>
       </div>
     </div>
