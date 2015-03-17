@@ -53,4 +53,7 @@
       <%= render partial: 'questions/answer_report', locals: { question: @question, answer: @answer} %>
     <% end %>
   </div>
+  <div class="back-to-category", id="back-to-category">
+    <%= link_to 'Back to Category', "/categories/#{@question.group_id}", :class => "back-to-category" %>
+  </div>
 </div>
