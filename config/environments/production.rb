@@ -64,6 +64,8 @@ Arima::Application.configure do
 
   config.assets.precompile += %w(home.js)
   config.assets.precompile += %w(sidebar-hide.js)
+  
+  config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
