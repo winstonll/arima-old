@@ -118,17 +118,17 @@ class Question < ActiveRecord::Base
   end
 
   def numeric_aggregation(list)
-    
+    #raw_value = value
     if self.input_type == 'integer' then
       list = list.map(&:to_i)
-      
+      #raw_value = value.to_i
     elsif self.input_type == 'float' then
       list = list.map(&:to_f)
-     
+      #raw_value = value.to_f
     end
     list.sort!
     aggregated_list = list.each_with_object(Hash.new(0)) { |i,h| h[i] += 1; h }
-    
+    #index = list.index(raw_value)
     return aggregated_list
   end
 
