@@ -44,9 +44,12 @@
       </div>
     </div>
   <div id="answer-info">
-    <% if !@user_submitted_answer && !user_signed_in? %>
+    <% if !user_signed_in? %>
       <%= render partial: 'questions/unanswered_report', locals: { question: @question } %>
-    <% else @user_submitted_answer %>
+    <% end %>
+    <% if !@user_submitted_answer %>
+
+    <% elsif @user_submitted_answer %>
       <%= render partial: 'questions/answer_report', locals: { question: @question, answer: @answer} %>
     <% end %>
   </div>
