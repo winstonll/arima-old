@@ -11,7 +11,7 @@
           <div class="form-inline">
             <select><option value="select">Select...</option></select>
           </div>
-          <div class="fake-signin-button">Sign up to answer</div>
+          <%= link_to 'Sign up to answer', new_registration_path(resource_name), class: "fake-signin-button" %>
         <% end %>
         <% if user_signed_in? %>
           <%= simple_form_for @answer, url: question_answers_path(@question, @answer), class: "form-inline", role: "form", html: {novalidate: false} do |f| %>
@@ -52,9 +52,5 @@
     <% elsif @user_submitted_answer %>
       <%= render partial: 'questions/answer_report', locals: { question: @question, answer: @answer} %>
     <% end %>
-  </div>
-
-  <div class="back-to-category", id="back-to-category">
-    <%= link_to 'Back to Category', "/categories/#{@question.group_id}", :class => "back-to-category" %>
   </div>
 </div>
