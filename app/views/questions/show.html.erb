@@ -13,6 +13,7 @@
           </div>
           <div class="fake-signin-button">Sign up to answer</div>
         <% end %>
+        <% if user_signed_in? %>
           <%= simple_form_for @answer, url: question_answers_path(@question, @answer), class: "form-inline", role: "form", html: {novalidate: false} do |f| %>
           <div class="form-group">
             <% if @question.input_type == "measurement" %>
@@ -31,6 +32,7 @@
                              min: @question.min_value
                            }) %>
             <% end %>
+          <% end %>
             <div class="modal-save-wrapper text-center">
             <% unless @user_submitted_answer %>
               <%= f.submit "Save", class: "modal-button" %>
