@@ -135,7 +135,7 @@ class AdminsController < ApplicationController
       "daily_score_award_date"
     ]
 
-    @sa.creatable_models_whitelist = ["Question", "Group", "FunFact"]
+    @sa.creatable_models_whitelist = ["Question", "Group"]
 
     @sa.editable_associations_whitelist = {
       "Question" => [:groups]
