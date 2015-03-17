@@ -2,7 +2,7 @@
 
 $(document).ready(function(){
   <% images = ['hongkong_bg.jpg', 'miami_bg.jpg', 'nyc_bg.jpg', 'paris_bg.jpg', 'shanghai_bg.jpg', 'taipei_bg.jpg', 'tokyo_bg.jpg', 'toronto_bg.jpg'] %>
-  $('#landing').css("background", "url( <%=images[Random.rand(images.length)] %>) center center");
+  $('#landing').css("background", "url( backgrounds/<%=images[Random.rand(images.length)]%>) center center");
 	$('#landing').css("background-size", "cover");
 });
 

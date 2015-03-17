@@ -1,17 +1,6 @@
 <div class="visualization" id="v-answer">
 
   <div class="location-select">
-  
-    <span class="location-label" <%= unless defined?(from_show_view) then
-      'style="display: block;"'.html_safe end %>>
-      Currently visualizing:
-      <% if @user_submitted_answer %>
-      <span class="location-current">The World</span>
-      <% else %>
-      <span class="location-current">Please submit an answer to view the report</span>
-      <% end %>
-    </span>
-
     <div class="location-list" <%= unless defined?(from_show_view) then
       'style="float:none; margin: 0.4em 0;"'.html_safe end %>>
       <ul class="report-location-list" role="tablist">
