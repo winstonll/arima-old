@@ -32,12 +32,15 @@ class AnswersController < ApplicationController
       @answer.shared_twitter = false
       @answer.shared_facebook = false
       @answer.shared_pinterest = false
-      @answer.save!
+      
+      if @answer.save
+        redirect_to question_path(@question)
+      end
+
     end
 
-    if params[:answer].has_key? :from_modal
-      redirect_to question_path(@question)
-    end
+    # if params[:answer].has_key? :from_modal
+    # end
   end
 
   def intro_question

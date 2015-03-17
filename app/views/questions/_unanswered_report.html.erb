@@ -8,8 +8,8 @@
   <%= render partial: "questions/share", locals: {
             id: question.id,
             url: "#{request.protocol}#{request.host_with_port}" + question_path(question),
-            title: "Check out this question and see how you compare to the rest of the world!!",
-            description: "Check out this question and see how you compare to the rest of the world!!",
+            title: "#{question.label[0..25]}...",
+            description: "#{question.label[0..25]}...",
             image: "#{request.protocol}#{request.host_with_port}" + question_path(question)
           }
   %>
