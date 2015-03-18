@@ -47,7 +47,7 @@
     <% if !user_signed_in? %>
       <%= render partial: 'questions/unanswered_report', locals: { question: @question } %>
     <% end %>
-    <% if !@user_submitted_answer %>
+    <% if user_signed_in? && !@user_submitted_answer %>
       <div class="no-answer-container">
         <p class="no-answer-prompt">Answer the question to view your personalized report</p>
       </div>

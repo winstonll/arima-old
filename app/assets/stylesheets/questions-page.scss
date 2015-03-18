@@ -109,6 +109,14 @@ body {
         font-size: 25px;
         font-weight: 600;
         color: #aaa;
+
+        a {
+          color: #00c39c;
+
+          &:hover {
+            opacity: 0.8;
+          }
+        }
       }
     }
 

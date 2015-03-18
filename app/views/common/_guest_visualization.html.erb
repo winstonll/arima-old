@@ -17,6 +17,7 @@
   </div>
 
   <div id="answer-chart"></div>
+  <div id="guest-signup-prompt"></div>
 </div>
 
 <script>
@@ -95,16 +96,20 @@
   }
 
   $('#v-answer .location-list .city').click(function (e) {
-    $('#v-answer .location-label .location-current')[0].innerHTML = 'Please Log in or Sign up to view your City';
-
+    $('#guest-signup-prompt').css("display", "block");
+    $('#answer-chart').css("display", "none");
+    $('#guest-signup-prompt').html('<div class="no-answer-container"><p class="no-answer-prompt">Please <%= link_to 'Sign Up', new_registration_path(resource_name) %> or <%= link_to 'Log in', new_user_session_path %> to view personalized data</p></div>');
   });
 
   $('#v-answer .location-list .country').click(function (e) {
-    $('#v-answer .location-label .location-current')[0].innerHTML = 'Please Log in or Sign up to view your Country';
-
+    $('#guest-signup-prompt').css("display", "block");
+    $('#answer-chart').css("display", "none");
+    $('#guest-signup-prompt').html('<div class="no-answer-container"><p class="no-answer-prompt">Please <%= link_to 'Sign Up', new_registration_path(resource_name) %> or <%= link_to 'Log in', new_user_session_path %> to view personalized data</p></div>');
   });
 
   $('#v-answer .location-list .world').click(function (e) {
+    $('#guest-signup-prompt').css("display", "none");
+    $('#answer-chart').css("display", "block");
     $('#v-answer .location-label .location-current')[0].innerHTML = 'the World';
     show_location_answer('world');
   });
