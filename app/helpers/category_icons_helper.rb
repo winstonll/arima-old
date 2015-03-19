@@ -1,4 +1,0 @@
-module CategoryIconsHelper
-
-
-end
