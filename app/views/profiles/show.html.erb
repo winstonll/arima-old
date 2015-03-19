@@ -18,20 +18,15 @@
         <div class="stat-title">Leaderboard</div>
       </section>
     </a>
-    <section class="stat-container" id="user-questions-answered">
-      <h1 class="stat-number"><%= current_user.questions.count %></h1>
-      <div class="stat-title">Questions answered</div>
-    </section>
   </div>
   <br />
 
   <article class="answered-questions-container">
-    <div class="questions-answered-title">Questions answered</div>
-    <div class="questions-answered-subtitle">Click on a question to view your answer and report</div>
+    <div class="profile-questions-answered"><%= current_user.questions.count %> <br> Questions answered</div>
     <div class="questions-answered" id="user-answered">
       <%= render 'answered_questions' %>
     </div> <!-- end questions-answered -->
-    <div class="questions-answered-subtitle">Questions asked </div>
+    <div class="profile-questions-asked"><%= @asked_questions.count %> <br> Questions asked </div>
     <div>
       <%= render 'asked_questions' %>
     </div>
