@@ -7,9 +7,9 @@
        var newBoxNumber = answerBoxCounter + 1
 
        if (newBoxNumber <= MAX_BOX_COUNT) {
-         //var oldHtml = $(".answer-type-input-box").html()
-         var newHtml = '<input type="text" class="answer-box" id="answer_box_' + newBoxNumber +'" placeholder="Answer here">'
-         //$(".answer-type-input-box").html(oldHtml + newHtml)
+
+         var newHtml = '<input type="text" name="answer_box_' + newBoxNumber +'" id="answer-box-' + newBoxNumber +'" placeholder="Answer here">'
+
          $(".answer-type-input-box").append(newHtml)
          answerBoxCounter++
        }
@@ -87,7 +87,7 @@
                 Answer Type:
               </p>
               <p class="submit-q-dropdown">
-                <%= select_tag(:value_type, options_for_select([["Multiple Choice", "collection"],["Numerical Value", "quantity"],["Currency", "currency"],["Measurment", "measurment"],["Length", "length"],["Weight", "weight"],["Time(minutes)", "minutes"], ["Time(hours)", "hours"],["Time(years)", "years"]]), onchange: "field_reveal()", required: "required", class: "answer-type-select") %>
+                <%= select_tag(:value_type, options_for_select([["Multiple Choice", "collection"],["Numerical Value", "quantity"]]), onchange: "field_reveal()", required: "required", class: "answer-type-select") %>
               </p>
               <section class="selected-multiple-choices" id="answer-types">
                 <p class="modal-input-title">
@@ -98,7 +98,7 @@
 
                   <div class="answer-type-input-box">
                     <input type="text" name="answer_box_1" id="answer-box-1" placeholder="Answer here">
-                    <!-- <input type="text" class="answer-box" id="answer-box-2" placeholder="Answer here"> -->
+                    <input type="text" name="answer_box_2" id="answer-box-2" placeholder="Answer here">
                   </div>
                 </section>
                 <input type="button" value="Add another answer" id="add-answer-button"/>
