@@ -8,7 +8,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     )
 
     respond_to do |format|
-      if @user.save!
+      if @user.save
 
         # After signup is submitted, check if the user was referred
         reward_referral(params[:referral]) if params[:referral].present?
@@ -20,6 +20,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       else
         format.html { render action: :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
+
       end
     end
   end
