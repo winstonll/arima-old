@@ -62,6 +62,7 @@ class AdminsController < ApplicationController
     render "admins/extensions/#{params[:name]}"
   end
 
+  # This method works with /lib/upload_dummy_data.rb
   def extension_post
     @extension = @sa.extensions.find{ |ext| ext.class_name == params[:name].camelize }
     @extension_instance = @extension.instantiate

@@ -21,11 +21,12 @@ class QuestionsController < ApplicationController
   end
 
   def create
+    @answerboxes = params[:answer_box_1].to_s << ',' << params[:answer_box_2].to_s << ',' << params[:answer_box_3].to_s << ',' << params[:answer_box_4].to_s << ',' << params[:answer_box_5].to_s << ',' << params[:answer_box_6].to_s
     @subquestion = Question.create!(
       :label => params[:submit_question_name],
       :group_id => params[:group_id],
       :value_type => params[:value_type],
-      :options_for_collection => params[:answer_box_1])
+      :options_for_collection => @answerboxes)
 
     GroupsQuestion.create!(group_id: params[:group_id], question_id: @subquestion.id)
 
