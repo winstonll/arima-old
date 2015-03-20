@@ -34,7 +34,7 @@ class UploadDummyData
           # puts "Question: #{question}"
 
           begin
-            qs = Question.create!(label: question)
+            qs = Question.create!(label: question, value_type: "collection")
           rescue Exception => e
             self.flash_alert = e.message
             raise ActiveRecord::Rollback
