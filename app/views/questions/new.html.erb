@@ -8,7 +8,7 @@
 
        if (newBoxNumber <= MAX_BOX_COUNT) {
 
-         var newHtml = '<input type="text" name="answer_box_' + newBoxNumber +'" id="answer-box-' + newBoxNumber +'" placeholder="Answer here">'
+         var newHtml = '<input type="text" name="answer_box_' + newBoxNumber +'" id="answer-box-' + newBoxNumber +'" class="answer-box" placeholder="Answer here">'
 
          $(".answer-type-input-box").append(newHtml)
          answerBoxCounter++
@@ -91,14 +91,14 @@
               </p>
               <section class="selected-multiple-choices" id="answer-types">
                 <p class="modal-input-title">
-                  Answers (separated by commas):
+                  Answers:
                 </p>
                 <p>* Maximum of 6 answers, empty boxes will not be added.</p>
                 <section class="submit-input-container">
 
                   <div class="answer-type-input-box">
-                    <input type="text" name="answer_box_1" id="answer-box-1" placeholder="Answer here">
-                    <input type="text" name="answer_box_2" id="answer-box-2" placeholder="Answer here">
+                    <input type="text" name="answer_box_1" id="answer-box-1" class="answer-box" placeholder="Answer here">
+                    <input type="text" name="answer_box_2" id="answer-box-2" class="answer-box" placeholder="Answer here">
                   </div>
                 </section>
                 <input type="button" value="Add another answer" id="add-answer-button"/>
