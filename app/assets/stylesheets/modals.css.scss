@@ -94,10 +94,18 @@
 
 input[name="submit_question_name"],
 input[name="submit_question_category"],
-input[name="submit_question_type"],
-input[name="answer_box_1"] {
+input[name="submit_question_type"] {
   height: 65px;
   width: 100%;
+  padding: 15px;
+  font-style: italic;
+  background-color: #e7e7e7;
+  border: none;
+  font-size: 20px;
+}
+
+.answer-box {
+  height: 65px;
   padding: 15px;
   font-style: italic;
   background-color: #e7e7e7;
