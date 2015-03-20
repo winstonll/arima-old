@@ -17,8 +17,8 @@
       <div class="average">
         <% if @user_submitted_answer %>
           <p class="city" style="display: none;"><%= answer.formatted_diff_average 'city' %></p>
-          <p class="country"><%= answer.formatted_diff_average 'country' %></p>
-          <p class="world" style="display: none;"><%= answer.formatted_diff_average 'world' %></p>
+          <p class="world"><%= answer.formatted_diff_average 'world' %></p>
+          <p class="country" style="display: none;"><%= answer.formatted_diff_average 'country' %></p>
         <% end %>
       </div>
     </div>
