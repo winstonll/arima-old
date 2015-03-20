@@ -7,14 +7,6 @@
           World
         </a>
       </li>
-      <% has_city = user_signed_in? ? answer.user.location.city.present? : false %>
-      <% if has_city %>
-        <li class="report-location">
-          <a class="city" data-toggle="pill" href="javascript:void()">
-            <%= answer.user.location.city %>
-          </a>
-        </li>
-      <% end %>
       <% has_country = user_signed_in? ?  answer.user.location.country.present? : false %>
       <% if has_country %>
       <li class="report-location">
@@ -22,6 +14,14 @@
           <%= answer.user.location.country %>
         </a>
       </li>
+      <% end %>
+      <% has_city = user_signed_in? ? answer.user.location.city.present? : false %>
+      <% if has_city %>
+        <li class="report-location">
+          <a class="city" data-toggle="pill" href="javascript:void()">
+            <%= answer.user.location.city %>
+          </a>
+        </li>
       <% end %>
     </ul>
   </div>
