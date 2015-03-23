@@ -1,0 +1,34 @@
+<div class="profile-hero-container">
+  <div class="profile-hero-content">
+    <div id="profile-picture-container">
+      <% if (user.avatar.url.include? "missing") %>
+        <div class="profile-picture-default"><%= user.username.to_s[0].capitalize %></div>
+      <% else %>
+        <%= image_tag user.avatar.url(:thumb), class: "profile-picture" %>
+      <% end %>
+    </div>
+
+    <div class="profile-username"><span><%= user.username.to_s %></span></div>
+
+    <!-- Button trigger modal -->
+    <p class="text-center"><button class="profile-edit" data-toggle="modal" data-target="#myModal">Edit profile</button></p>
+    <%= render partial: 'profiles/modal_profile_edit', locals: { user: user } %>
+  </div>
+</div>
+
+<div class="profile-stats-container">
+  <div class="user-location">
+    <span><%= full_location(user) %></span>
+  </div>
+
+  <div class="stat-container" id="user-points">
+    <h1 class="stat-number"><%= user.points %></h1>
+    <div class="stat-title">Points <a id="about-points-indicator" href="/faq#about-points"><div class="about-points-circle">?</div></a></div>
+  </div>
+  <a href="<%= leaderboard_path(curr_user: true) %>">
+    <div class="stat-container" id="user-leaderboard">
+      <h1 class="stat-number"><%= user.get_user_rank %></h1>
+      <div class="stat-title">Leaderboard</div>
+    </div>
+  </a>
+</div>
