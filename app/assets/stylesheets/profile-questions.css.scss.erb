@@ -1,4 +1,5 @@
 .answered-questions-container {
+  text-align: center;
 
   .profile-questions-answered,
   .profile-questions-asked {
@@ -6,12 +7,19 @@
     text-align: center;
     color: #4A4A4A;
     padding: 20px 0px 0px 20px;
+    display: inline-block;
   }
 
-  #questions-answered {
+  #questions-answered,
+  #questions-asked {
     color: grey;
   }
+
   .answered-question {
+    /* width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left; */
 
     .profile-question-wrapper {
 
@@ -19,7 +27,7 @@
 
       img.category-icon {
         display: inline-block;
-        float: left;
+        vertical-align: top;
         height: 40px;
         padding: 0.5em;
       }
@@ -28,10 +36,10 @@
         display: inline-block;
         padding: 0.5em;
         border-radius: 0.75em;
-
+        text-align: left;
 
         &:hover {
-          background-color: #E3E2E2;
+          background-color: grey;
           color: white;
         }
 

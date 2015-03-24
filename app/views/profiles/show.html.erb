@@ -1,16 +1,49 @@
+<script>
+  $(document).ready(function() {
+    $("#questions-answered").bind('click', function() {
+      $('#questions-answered').addClass('active');
+
+      $.ajax({
+        url: "/profiles/<%= @user %>/answered_questions",
+        data: "id=<%= @user %>",
+        type: "POST"
+      });
+    });
+
+    $("#asked_questions").bind('click', function () {
+      $('#asked_questions').addClass('active');
+
+      $.ajax({
+        url: "/profiles/<%= @user %>/asked_questions"
+        data: "id=<%= @user %>"
+        type: "POST"
+      })
+    })
+  })
+</script>
+
 <% provide(:title, 'Profile') %>
 
 <div class="profile-container">
   <%= render partial: "profile_hero", locals: {user: current_user} %>
 
   <div class="answered-questions-container">
-    <div class="profile-questions-answered"><%= current_user.questions.count %> <br> Questions answered</div>
-    <div class="questions-answered" id="user-answered">
-      <%= render 'answered_questions' %>
-    </div> <!-- end questions-answered -->
-    <div class="profile-questions-asked"><%= @asked_questions.count %> <br> Questions asked </div>
-    <div>
-      <%= render 'asked_questions' %>
+    <div class="profile-questions-answered">
+      <%= current_user.questions.count %> <br> <%= link_to 'Questions answered', { method: "show" }, :remote => 'true', :id=> 'questions-answered' %>
     </div>
+    <div class="profile-questions-asked">
+      <%= @asked_questions.count %> <br> <%= link_to 'Questions asked', { method: 'show' }, :remote => 'true', :id => 'questions-asked' %>
+    </div>
+    <div class="questions-list" id="user-answered">
+    <% if @user && @unanswered.any? %>
+      <%= render partial: 'asked_questions' %>
+    <% else %>
+      <%= render partial: 'answered_questions' %>
+    <% end %>
+
+    <% if @user && !@answered.empty? %>
+      <%= render partial: 'asked_questions' %>
+    <% end %>
+    </div> <!-- end questions-answered -->
   </div>
 </div>
