@@ -53,8 +53,11 @@ class ProfilesController < ApplicationController
     @random_questions     = Question.random_for_user current_user
     @trending_questions   = Question.trending_for_user current_user
     @answered_questions   = current_user.answers.order("updated_at desc")
-    @asked_questions      = self.questions#.order("updated_at desc")
-    # @asked_questions      = Question.find_by
+    @asked_questions      = self.questions
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   protected

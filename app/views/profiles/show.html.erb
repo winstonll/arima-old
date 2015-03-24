@@ -34,7 +34,7 @@
     <div class="profile-questions-asked">
       <%= @asked_questions.count %> <br> <%= link_to 'Questions asked', { method: 'show' }, :remote => 'true', :id => 'questions-asked' %>
     </div>
-    <div class="questions-list" id="user-answered">
+    <div class="questions-list">
     <% if @user && @unanswered.any? %>
       <%= render partial: 'asked_questions' %>
     <% else %>
