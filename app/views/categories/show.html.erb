@@ -48,7 +48,7 @@
 
     <!-- Filter buttons -->
     <div class="most-recent-popular-buttons">
-      <div class="most-recent-button"><%=link_to 'Most Recent', {method: "show"}, :remote=>'true', :id=>'most-recent', :class => "active" %></div>
+      <div class="most-recent-button"><%=link_to 'Most Recent', {method: "show_questions"}, :remote=>'true', :id=>'most-recent', :class => "active" %></div>
       <div class="most-popular-button"><%= link_to 'Most Popular', {method: "show_popular" }, :remote => 'true', :id => "most-popular" %></div>
     </div>
 
