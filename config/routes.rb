@@ -30,7 +30,7 @@ Arima::Application.routes.draw do
   #get "reports/:username/:answer_id" => "reports#show",  as: :reports_show
 
   # leaderboard
-  get 'leaderboard' => "users#index"
+  get 'leaderboard' => "leaderboards#index"
 
   # admin lib
   scope :admin, as: :admin do
