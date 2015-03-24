@@ -1,5 +1,6 @@
 <div class="profile-hero-container">
   <div class="profile-hero-content">
+    <div class="grey-banner"></div>
     <div id="profile-picture-container">
       <% if (user.avatar.url.include? "missing") %>
         <div class="profile-picture-default"><%= user.username.to_s[0].capitalize %></div>
