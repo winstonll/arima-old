@@ -6,29 +6,33 @@
       <% else %>
         <%= image_tag user.avatar.url(:thumb), class: "profile-picture" %>
       <% end %>
+      <!-- Button trigger modal -->
+      <div class="edit-profile">
+        <p class="text-center"><button class="profile-edit" data-toggle="modal" data-target="#myModal">Edit</button></p>
+        <%= render partial: 'profiles/modal_profile_edit', locals: { user: user } %>
+      </div>
     </div>
 
-    <div class="profile-username"><span><%= user.username.to_s %></span></div>
-
-    <!-- Button trigger modal -->
-    <p class="text-center"><button class="profile-edit" data-toggle="modal" data-target="#myModal">Edit profile</button></p>
-    <%= render partial: 'profiles/modal_profile_edit', locals: { user: user } %>
+    <div id="profile-info">
+      <div class="profile-info">
+        <div class="profile-username"><%= user.username.to_s %></div>
+        <div class="user-location"><%= full_location(user) %></div>
+      </div>
+      <div id="profile-stats-container">
+        <div class="stat-container">
+          <div id="user-leaderboard">
+            <a href="<%= leaderboard_path(curr_user: true) %>">
+            <div class="stat-title">Leaderboard Rank</div>
+            <div class="stat-number"><%= user.get_user_rank %></div>
+            </a>
+          </div>
+          <div id="user-points">
+            <div class="stat-title">Points <a id="about-points-indicator" href="/faq#about-points"><div class="about-points-circle">?</div></a></div>
+            <div class="stat-number"><%= user.points %></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
-<div class="profile-stats-container">
-  <div class="user-location">
-    <span><%= full_location(user) %></span>
-  </div>
-
-  <div class="stat-container" id="user-points">
-    <h1 class="stat-number"><%= user.points %></h1>
-    <div class="stat-title">Points <a id="about-points-indicator" href="/faq#about-points"><div class="about-points-circle">?</div></a></div>
-  </div>
-  <a href="<%= leaderboard_path(curr_user: true) %>">
-    <div class="stat-container" id="user-leaderboard">
-      <h1 class="stat-number"><%= user.get_user_rank %></h1>
-      <div class="stat-title">Leaderboard</div>
-    </div>
-  </a>
-</div>

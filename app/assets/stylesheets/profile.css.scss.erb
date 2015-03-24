@@ -9,6 +9,7 @@
   border: none;
   margin: 10px;
   display: inline-block;
+  float: left;
   -webkit-user-select: none;
   text-align: center;
   transition: all 150ms linear;
@@ -40,13 +41,86 @@ input[type="file"]{
 
   .profile-hero-container {
     width: 100%;
-    margin: 0 auto;
+    margin-bottom: 1em;
     background: #639ee3;
 
     .profile-hero-content {
       text-align: center;
 
-      /* Style for new profile UI here */
+      #profile-picture-container {
+        background-color: rgb(237, 237, 237);
+        height: 9em;
+        width: 9em;
+        margin: 1em;
+        border-radius: 0.5em;
+        border: white solid;
+        display: inline-block;
+
+        .profile-picture-default {
+          color: #3e8ae5;
+          font-weight: bold;
+          font-size: xx-large;
+          padding-top: 1em;
+        }
+      }
+
+    /* Style for new profile UI here */
+      .edit-profile {
+        display: inline-block;
+        padding-top: 3em;
+      }
+
+      #profile-info,
+      #profile-stats-container {
+        display: inline-block;
+        vertical-align: top;
+      }
+
+      #profile-info {
+        font-familt: sans-serif;
+
+        .profile-info {
+          display: inline-block;
+          padding: 5em 1em 1em 0;
+
+          .profile-username {
+            color: white;
+            font-size: 23px;
+            font-weight: bold;
+          }
+
+          .user-location {
+            font-size: 14px;
+            font-weight: 100;
+            /*color: #639ee3;*/
+            color: white;
+          }
+        }
+
+        #profile-stats-container {
+          .stat-container {
+            padding-top: 5em;
+
+            #user-leaderboard,
+            #user-points {
+              display: inline-block;
+
+              .stat-title {
+                font-color: white;
+                color: white;
+                font-size: 20px;
+                padding: 0 2em 0 2em;
+              }
+
+              .stat-number {
+                font-size: 18px;
+                /*color: #639ee3*/
+                color: white;
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
