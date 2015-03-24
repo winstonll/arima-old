@@ -1,25 +1,13 @@
 <script>
   $(document).ready(function() {
     $("#questions-answered").bind('click', function() {
-      $('#questions-answered').addClass('active');
-
-      $.ajax({
-        url: "/profiles/<%= @user %>/answered_questions",
-        data: "id=<%= @user %>",
-        type: "POST"
-      });
+      $('#questions-asked').css('display', 'none');
     });
 
-    $("#asked_questions").bind('click', function () {
-      $('#asked_questions').addClass('active');
-
-      $.ajax({
-        url: "/profiles/<%= @user %>/asked_questions"
-        data: "id=<%= @user %>"
-        type: "POST"
-      })
-    })
-  })
+    $("#questions-asked").bind('click', function () {
+      $('#questions-answered').css('display', 'none');
+    });
+  });
 </script>
 
 <% provide(:title, 'Profile') %>
@@ -29,21 +17,16 @@
 
   <div class="answered-questions-container">
     <div class="profile-questions-answered">
-      <%= current_user.questions.count %> <br> <%= link_to 'Questions answered', { method: "show" }, :remote => 'true', :id=> 'questions-answered' %>
+      <%= current_user.questions.count %> <br> <button id="questions-answered">Questions answered</button><%#= link_to "Questions answered", :id => "questions-answered" %>
     </div>
     <div class="profile-questions-asked">
-      <%= @asked_questions.count %> <br> <%= link_to 'Questions asked', { method: 'show' }, :remote => 'true', :id => 'questions-asked' %>
+      <%= @asked_questions.count %> <br> <button id="questions-asked">Questions asked</button><%#= link_to "Questions asked", :id => "questions-asked" %>
     </div>
-    <div class="questions-list">
-    <% if @user && @unanswered.any? %>
-      <%= render partial: 'asked_questions' %>
-    <% else %>
-      <%= render partial: 'answered_questions' %>
-    <% end %>
-
-    <% if @user && !@answered.empty? %>
-      <%= render partial: 'asked_questions' %>
-    <% end %>
-    </div> <!-- end questions-answered -->
+    <div class="questions-answered" id="user-answered">
+      <%= render 'answered_questions' %>
+    </div>
+    <div class="questions-asked" id="user-unanswered">
+      <%= render 'asked_questions' %>
+    </div>
   </div>
 </div>
