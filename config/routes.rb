@@ -1,7 +1,7 @@
 Arima::Application.routes.draw do
 
   # custom registration route
-  devise_for :users
+  devise_for :users, controllers: { registrations: "users/registrations" }
 
   resource :profile, only: [:show, :update]
 

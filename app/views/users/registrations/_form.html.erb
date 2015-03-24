@@ -6,7 +6,7 @@
   <p class="signin-intro">Just fill out the short form below and you're ready!</p>
 
   <div class="signin-form">
-    <%= form_for(resource, :as => resource_name, :url => user_sessions_path(resource_name), html: {class: "form"}) do |f| %>
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: {class: "form"}) do |f| %>
     <div class="signin-section">
       <div class="signin-fields-left">
         <div class="username-input">
