@@ -1,9 +1,4 @@
-<% if !answered %>
-  <a href="<%= question_path(question) %>" title="<%= question.label %>" class="question-link">
-  <% else %>
-  <a href="<%= question_path(question) %>" title="<%= question.label %>" class="question-link-answered">
-<% end -%>
-
+<a href="<%= question_path(question) %>" title="<%= question.label %>" class="question-link">
   <div class="profile-question-wrapper">
     <%= image_tag(category_icon(question.group_id), class: "category-icon")  %>
     <div class="profile-question-info">

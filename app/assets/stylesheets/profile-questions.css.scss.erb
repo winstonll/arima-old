@@ -1,51 +1,85 @@
-.answered-questions-container {
+.questions-toggle-container {
+  margin-top: 7em;
+  margin-top: 5em;
   text-align: center;
 
   .profile-questions-answered,
   .profile-questions-asked {
-    font-size: 15px;
-    text-align: center;
-    color: #4A4A4A;
-    padding: 20px 0px 0px 20px;
-    display: inline-block;
-  }
 
-  #questions-answered,
-  #questions-asked {
-    color: grey;
-  }
+    &:hover {
+      cursor: pointer;
+    }
 
-  .answered-question {
-    /* width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: left; */
+    &:not(:first-child) {
+      margin-left: 15px;
+    }
 
-    .profile-question-wrapper {
+    .profile-questions-toggle-div {
+      height: 90px;
+      width: 200px;
+      font-size: 15px;
+      text-align: center;
+      color: #9B9A9C;
+      padding-top: 8px;
+      display: inline-block;
+      border: 2px solid #9B9A9C;
+      border-radius: 5px;
 
-      padding: 1em;
-
-      img.category-icon {
-        display: inline-block;
-        vertical-align: top;
-        height: 40px;
-        padding: 0.5em;
+      .profile-questions-stat-num {
+        font-weight: 600;
+        font-size: 25px;
       }
 
-      .profile-question-info {
-        display: inline-block;
-        padding: 0.5em;
-        border-radius: 0.75em;
-        text-align: left;
+      .profile-questions-stat-label {
+        font-size: 20px;
+      }
+    }
 
-        &:hover {
-          background-color: grey;
-          color: white;
-        }
+    .profile-questions-active-toggle {
+      border: 2px solid #4A90E2;
+      color: #4A90E2;
+    }
+  }
+}
 
-        .question-info {
-          font-weight: 100;
-        }
+.questions-container {
+  margin-top: 2em;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+
+  .questions-hidden {
+    display: none;
+  }
+
+  .profile-question-wrapper {
+    padding: 1em;
+
+    .category-icon {
+      display: inline-block;
+      vertical-align: top;
+      height: 40px;
+      padding: 0.5em;
+    }
+
+    .profile-question-info {
+      display: inline-block;
+      padding: 0.5em;
+      border-radius: 0.75em;
+      text-align: left;
+
+      &:hover {
+        color: white;
+        background-color: #BBBBBB;
+      }
+
+      .profile-question-title {
+        font-weight: 600;
+      }
+
+      .question-info {
+        font-weight: 400;
       }
     }
   }

@@ -6,8 +6,4 @@ $(document).ready(function() {
   <% else %>
     $("#questions-list").html('<%= escape_javascript(render partial: "answered_questions") %>');
   <% end %>
-
-  <% if @user && !@answered.empty? %>
-    <%= render partial: "asked_questions" %>
-  <% end %>
 })

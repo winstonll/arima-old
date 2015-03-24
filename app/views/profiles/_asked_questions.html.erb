@@ -1,6 +1,4 @@
 <!-- List the users questions -->
 <% for question in @asked_questions %>
-  <div class="answered-question">
-    <%= render partial: "profile_question", locals: { answered: false, answer: nil, question: question, show_number_of_answers: false } %>
-  </div> <!-- end questions-answered -->
+  <%= render partial: "profile_question", locals: { answered: false, answer: nil, question: question, show_number_of_answers: false } %>
 <% end %>
