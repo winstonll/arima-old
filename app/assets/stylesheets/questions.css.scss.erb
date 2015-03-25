@@ -2,21 +2,19 @@ body {
   #questions-container {
     width: 55%;
     margin: 0 auto;
-    margin-top: 2em;
     margin-bottom: 2em;
   }
 
   .container-category-banner {
-    height: 350px;
+    height: 250px;
     width: 100%;
     display: table;
     text-align: center;
-    border-radius: 8px;
 
     background-repeat: repeat;
 
     .container-category-title {
-      font-size: 50px;
+      font-size: 45px;
       font-weight: 600;
       color: #fff;
       display: table-cell;
@@ -30,33 +28,13 @@ body {
     font-weight: 600;
     text-transform: uppercase;
     margin-bottom: 17px;
-
-    .category-banner-title-breadcrumb-pre {
-      color: #aaa;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
-
-  .random-questions-container {
-    background-color: #e2e2e2;
-    min-height: 25px;
-    margin: 15px 0px;
-    margin-top: 1.5em;
-  }
-
-  .random-question {
-    background: #fff;
-    margin: 0px;
-    font-family: 'Open Sans', sans-serif;
   }
 
   .category-section {
     .most-recent-popular-buttons {
+      margin-top: 2em;
+      margin-bottom: 1em;
       text-align: center;
-      font-size: 18px;
 
       .most-recent-button, .most-popular-button {
         display: inline-block;
@@ -65,6 +43,11 @@ body {
         #most-recent,
         #most-popular {
           color: #aaa;
+          font-size: 16px;
+
+          &:hover {
+            opacity: 0.7;
+          }
         }
 
         a.active {
@@ -131,8 +114,6 @@ body {
 
     .question-wrapper {
       width: intrinsic;
-      width: -moz-max-content;
-      max-width: -moz-fit-content;
       border-radius: 10px;
       padding: 10px 20px 10px 10px;
 
@@ -585,9 +566,7 @@ body {
     }
   }
 
-    $dark-gray: #555;
   #question-container{
-
     .question-label{
       text-align: left;
       color: #4a4a4a;
@@ -627,7 +606,7 @@ body {
 
     .location-select {
       .location-label {
-        color: $dark-gray;
+        color: #555;
         display: inline-block;
         font-size: 23px;
         margin-top: 0.5em;
@@ -655,7 +634,7 @@ body {
     }
 
     .c3-tooltip tr td{
-      color: $dark-gray;
+      color: #555;
     }
   }
 }
