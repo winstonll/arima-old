@@ -7,7 +7,7 @@
   <div class="question-wrapper">
     <p class="question-title"><%= question.label %></p>
 
-    <div class="question-info">
+    <div class="question-dates">
       <% if !answered %>
         <div class="num-answers">
           <%= "#{question.users.count} #{question.users.count == 1 ? 'person answered' : 'people answered'}" %>
