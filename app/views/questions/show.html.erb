@@ -11,7 +11,7 @@
           <div class="form-inline">
             <select><option value="select">Select...</option></select>
           </div>
-          <%= link_to 'Sign up to answer', new_registration_path(resource_name), class: "fake-signin-button" %>
+          <%= link_to 'Answer', new_registration_path(resource_name), class: "fake-signin-button" %>
         <% end %>
         <% if user_signed_in? %>
           <%= simple_form_for @answer, url: question_answers_path(@question, @answer), class: "form-inline", role: "form", html: {novalidate: false} do |f| %>
@@ -34,7 +34,7 @@
               <% end %>
               <div class="modal-save-wrapper text-center">
                 <% if !@user_submitted_answer %>
-                  <%= f.submit "Save", class: "modal-button" %>
+                  <%= f.submit "Answer", class: "modal-button" %>
                 <% end %>
               </div>
           <% end %>
