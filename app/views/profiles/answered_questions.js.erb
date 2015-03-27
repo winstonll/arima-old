@@ -1,0 +1,9 @@
+$(document).ready(function() {
+  // $(".questions-list").html('<%= escape_javascript(render partial: "profiles/answered_questions") %>')
+
+  <% if @user && @unanswered.any? %>
+    $("#questions-list").html('<%= escape_javascript(render partial: "asked_questions") %>');
+  <% else %>
+    $("#questions-list").html('<%= escape_javascript(render partial: "answered_questions") %>');
+  <% end %>
+})

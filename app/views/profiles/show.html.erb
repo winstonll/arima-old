@@ -1,44 +1,35 @@
 <% provide(:title, 'Profile') %>
 
-<section class="profile-container">
+<div class="profile-container">
+  <%= render partial: "profile_hero", locals: {user: current_user} %>
 
-  <!-- Fetch user info and photo -->
-  <div class="profile-information">
-    <%= render partial: "common/user_photo_name", locals: {user: current_user} %>
-    <div class="clearfix"></div>
-  </div>
-  <div class="user-stats">
-    <section class="stat-container" id="user-points">
-      <h1 class="stat-number"><%= current_user.points %></h1>
-      <div class="stat-title">Points <a id="about-points-indicator" href="/faq#about-points"><div class="about-points-circle">?</div></a></div>
-    </section>
-    <a href="<%= leaderboard_path(curr_user: true) %>">
-      <section class="stat-container" id="user-leaderboard">
-        <h1 class="stat-number"><%= current_user.get_user_rank %></h1>
-        <div class="stat-title">Leaderboard</div>
-      </section>
+  <div class="questions-toggle-container">
+    <a class="profile-questions-answered" data-toggle="pill">
+      <div class="profile-questions-toggle-answered profile-questions-toggle-active">
+        <p class="profile-questions-stat-num" data-toggle="pill"><%= current_user.questions.count %></p>
+        <p id="profile-questions-stat-label" data-toggle="pill">Questions answered</p>
+      </div>
+    </a>
+    <a class="profile-questions-asked" data-toggle="pill">
+      <div class="profile-questions-toggle-asked">
+        <p class="profile-questions-stat-num" data-toggle="pill"><%= @asked_questions.count %></p>
+        <p id="profile-questions-stat-label" data-toggle="pill">Questions asked</p><%#= link_to "Questions asked", :id => "questions-asked" %>
+      </div>
     </a>
   </div>
-  <br />
 
-  <article class="answered-questions-container">
-    <div class="profile-questions-answered"><%= current_user.questions.count %> <br> Questions answered</div>
-    <div class="questions-answered" id="user-answered">
+  <div class="questions-container">
+    <% if @answered_questions.empty? && @asked_questions.empty? %>
+      <div class="no-questions-filler">
+        <p>Answer or ask some questions to see this space fill up!</p>
+      </div>
+    <% end %>
+
+    <div class="questions-answered">
       <%= render 'answered_questions' %>
-    </div> <!-- end questions-answered -->
-    <div class="profile-questions-asked"><%= @asked_questions.count %> <br> Questions asked </div>
-    <div>
+    </div>
+    <div class="questions-asked questions-hidden">
       <%= render 'asked_questions' %>
     </div>
-
-    <!-- answered questions on right -->
-    <!--<div id="#paginator">
-      <%#= paginate @answered_questions, :remote => true %>
-    </div>-->
-
-    <%#= form_tag('users', remote: true) do %>
-    <%#= select_tag 'category', options_from_collection_for_select(@categories, "label", "label"), {include_blank: "Select a Category", class: "category_select"} %>
-    <%# end %>
-  </article> <!-- end answered-questions-container -->
-  <div style="clear: left;"></div>
-</section> <!-- end profile-container-->
+  </div>
+</div>

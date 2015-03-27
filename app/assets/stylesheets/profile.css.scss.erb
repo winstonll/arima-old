@@ -1,8 +1,4 @@
-// Place all the styles related to the profile controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
-/* General */
+/* Edit Button and Modal Elements styles */
 .profile-edit,
 .profile-upload::before {
   width: 100px;
@@ -13,60 +9,13 @@
   border: none;
   margin: 10px;
   display: inline-block;
+  float: left;
   -webkit-user-select: none;
   text-align: center;
   transition: all 150ms linear;
   -webkit-transition: all 150ms linear;
   -ms-transition: all 150ms linear;
   -moz-transition: all 150ms linear;
-}
-
-.profile-information {
-  width: 100%;
-  margin: 0 auto;
-  border-radius: 8px 8px 0px 0px !important;
-  background: #639ee3;
-  padding: 25px;
-
-  .centered-info {
-    text-align: center;
-
-    .user-info-container {
-      .user-photo-default {
-        font-family: 'Montserrat', 'Open Sans', sans-serif;
-        height: 125px;
-        width: 125px;
-        margin: auto;
-        line-height: 125px;
-        font-size: 50px;
-        background-color: #00c39c;
-        font-weight: 400;
-        text-align: center;
-        border-radius: 50%;
-        color: #fff;
-        z-index: 1;
-      }
-
-      .user-name {
-        font-family: 'Roboto', 'Open Sans', sans-serif;
-        font-size: 35px;
-        text-align: center;
-        color: #fff;
-        font-weight: 600;
-        margin-top: 15px;
-      }
-
-      .user-location {
-        font-family: 'Roboto', 'Open Sans', sans-serif;
-        font-size: 20px;
-        margin-bottom: 0.5em;
-        color: #4a4a4a;
-        text-align: center;
-        font-weight: 400;
-        margin-top: -10px;
-      }
-    }
-  }
 }
 
 .profile-edit:hover {
@@ -85,197 +34,97 @@ input[type="file"]{
   display: inline;
 }
 
-.user-stats {
-  width: 85%;
-  margin: 0 auto;
-  border-radius: 0px 0px 8px 8px !important;
-  display: inline !important;
-}
-
-.stat-container {
-  width: 33.33%;
-  float: left;
-  background-color: #1FD5B0;
-  color: #fff;
-  height: 100px;
-  text-align: center;
-}
-
+/* Profile Page Styles */
 .profile-container {
-  width: 80%;
-  margin: 0 auto;
-  margin-top: 5em;
-}
-
-.stat-number {
-  font-size: 35px;
-}
-
-.stat-title {
-  font-size: 13px;
-  font-weight: 600;
-  color:#4a4a4a;
-  margin-top: -2%;
-  text-transform: uppercase;
-}
-
-#user-points {
-  border-radius: 0px 0px 0px 8px !important;
-}
-
-#user-leaderboard {
-  background: #00c39c;
-}
-
-#user-questions-answered {
-  border-radius: 0px 0px 8px 0px !important;
-}
-
-.answered-questions-container {
+  height: 100%;
   width: 100%;
-  margin: 0 auto;
-  padding: 100px 0px 50px 0px !important;
-}
 
-.questions-answered-title {
-  font-weight: 600;
-  font-size: 25px;
-  color: #4A4A4A;
-  line-height: 41px;
-  padding: 20px 0px 0px 20px;
-}
-
-.questions-answered-subtitle {
-  font-weight: 700;
-  font-size: 15px;
-  color: #979797;
-  line-height: 24px;
-  padding: 0px 0px 40px 20px;
-}
-
-body {
-  .categories-container{
+  .profile-hero-container {
     width: 100%;
-  }
+    margin-bottom: 1em;
+    background: #639ee3;
 
-  hr {
-    margin: 0px 0px;
-    margin: 0 auto;
-  }
+    .profile-hero-content {
+      text-align: center;
 
-  .answered-question {
-    background: #fff;
-    margin: 0px;
-    padding-left: 25px;
-    padding-right: 25px;
-  }
-
-  .questions-header, {
-    text-align: center;
-    background-color: #fff;
-    padding-bottom: 25px;
-    font-weight: 700;
-    font-size: 18px;
-    color: #979797;
-    line-height: 24px;
-  }
-
-  .questions-container {
-    /* margin-left equals width of sidebar + 1.5em padding*/
-    margin-top: 1.5em;
-  }
-
-  /* Profile */
-
-  body {
-    .profile-photo-name {
-      background-color: #639ee2;
-      background-repeat: no-repeat;
-      background-position: center;
-      -webkit-background-size: cover;
-      -moz-background-size: cover;
-      -o-background-size: cover;
-      background-size: cover;
-      padding: 80px;
-
-      #upload-image-wrapper {
-        max-width: 300px;
-        margin-bottom: -70px;
-      }
-      h2 {
-        margin-bottom: 15px;
-      }
-      h3 {
-        color: #404141;
-        margin-top:10px;
-        font-size: 20px;
-      }
-      color: white;
-    }
-    .score {
-      padding: 40px;
-      h3, i {
-        color: #E5436C;
-      }
-      p {
-        font-size: 20px;
-      }
-      h5 {
-        font-size: 30px;
-        color: white;
-      }
-    }
-    .questions-quicknav {
-      background-color: #2A6B87;
-      padding: 40px;
-      h3 {
-        color:#FFF8AA;
-        font-size: 30px;
-      }
-      h4 {
-        font-size: 30px;
-      }
-      p {
-        font-size: small;
-      }
-    }
-
-    .suggested {
-      color:#7CC142;
-    }
-    .trending {
-      color:#BFD730;
-    }
-    .random {
-      color:#AEABD5;
-    }
-
-    &.profiles,
-    &.reports {
-      .suggested-questions {
-        background: #7CC142;
-      }
-      .trending-questions {
-        background: #BFD730;
-      }
-      .random-questions {
-        background: #AEABD5;
+      .grey-banner {
+        height: 1em;
+        width: 100%;
+        color: grey;
       }
 
-      .suggested-questions,
-      .trending-questions,
-      .random-questions {
-        small {
-          color: inherit;
-          font-size: small;
+      #profile-picture-container {
+        background-color: rgb(237, 237, 237);
+        height: 9em;
+        width: 9em;
+        margin: 1em;
+        border-radius: 0.5em;
+        border: white solid;
+        display: inline-block;
+
+        .profile-picture-default {
+          color: #3e8ae5;
+          font-weight: bold;
+          font-size: xx-large;
+          padding-top: 1em;
         }
-        padding: 40px;
-        color: #044082;
-        .content {
-          max-width: 900px;
+      }
+
+    /* Style for new profile UI here */
+      .edit-profile {
+        display: inline-block;
+        padding-top: 3em;
+      }
+
+      #profile-info,
+      #profile-stats-container {
+        display: inline-block;
+        vertical-align: top;
+      }
+
+      #profile-info {
+        font-familt: sans-serif;
+
+        .profile-info {
+          display: inline-block;
+          padding: 7em 1em 1em 0;
+
+          .profile-username {
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+          }
+
+          .user-location {
+            font-size: 14px;
+            font-weight: 100;
+            /*color: #639ee3;*/
+            color: white;
+          }
         }
-        .question {
-          color: #12374B;
+
+        #profile-stats-container {
+          .stat-container {
+            padding-top: 7em;
+
+            #user-leaderboard,
+            #user-points {
+              display: inline-block;
+
+              .stat-title {
+                font-color: white;
+                color: white;
+                font-size: 18px;
+                padding: 0 1em 0 1em;
+              }
+
+              .stat-number {
+                font-size: 18px;
+                /*color: #639ee3*/
+                color: white;
+              }
+            }
+          }
         }
       }
     }
