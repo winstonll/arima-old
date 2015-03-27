@@ -22,19 +22,23 @@ class QuestionsController < ApplicationController
 
   def create
     @answerboxes = params[:answer_box_1].to_s << ',' << params[:answer_box_2].to_s << ',' << params[:answer_box_3].to_s << ',' << params[:answer_box_4].to_s << ',' << params[:answer_box_5].to_s << ',' << params[:answer_box_6].to_s
-    @subquestion = Question.create!(
+    @subquestion = Question.create(
       :label => params[:submit_question_name],
       :group_id => params[:group_id],
       :value_type => params[:value_type],
       :options_for_collection => @answerboxes)
 
-    GroupsQuestion.create!(group_id: params[:group_id], question_id: @subquestion.id)
 
-    @subquestion.user_id = current_user.id
-
-    if @subquestion.save
-      redirect_to question_path(@subquestion)
-    end
+    #the logic works, just need to output the error message in the else statement.
+      if @subquestion.valid?
+        GroupsQuestion.create!(group_id: params[:group_id], question_id: @subquestion.id)
+        @subquestion.user_id = current_user.id
+        redirect_to question_path(@subquestion)
+      else
+        #redirect_to root_path
+        redirect_to root_path
+        flash[:notice] = "This Question has already been asked!!!"
+      end
   end
 
 end

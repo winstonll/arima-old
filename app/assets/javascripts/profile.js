@@ -1,13 +1,17 @@
-// Place all the behaviors and hooks related to the matching controller here.
-// All this logic will automatically be available in application.js.
+$(document).ready(function() {
+  $(".profile-questions-answered").click(function() {
+    $(".profile-questions-toggle-answered").addClass("profile-questions-toggle-active");
+    $(".profile-questions-toggle-asked").removeClass("profile-questions-toggle-active");
 
-$(document).ready( function() {
-  $(".category_select").on("change", function() {
-    $.ajax({
-      url: "/profile",
-      type: "GET",
-      dataType: "script",
-      data: { category_type: $(".category_select").val() }
-    });
+    $(".questions-asked").addClass("questions-hidden");
+    $(".questions-answered").removeClass("questions-hidden");
+  });
+
+  $(".profile-questions-asked").click(function() {
+    $(".profile-questions-toggle-asked").addClass("profile-questions-toggle-active");
+    $(".profile-questions-toggle-answered").removeClass("profile-questions-toggle-active");
+
+    $(".questions-answered").addClass("questions-hidden");
+    $(".questions-asked").removeClass("questions-hidden");
   });
 });
