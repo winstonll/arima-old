@@ -287,8 +287,9 @@ body {
     text-align: center;
 
     #answer-chart{
+      height: 475px;    
       svg{
-        display: block;
+        display: inline;
         margin: 0 auto;
       }
     }
@@ -391,6 +392,12 @@ body {
 
         &:hover {
           opacity: 0.8;
+        }
+
+        .country {
+          .country {
+            background-color: #aaa;
+            border: none;          }
         }
       }
     }
