@@ -44,12 +44,15 @@
   var chart_answer = c3.generate({
     bindto: '#answer-chart',
     <% unless defined?(from_show_view) %>
-      size: { width: 580 },
+      size: { width: 450 },
     <% end %>
     data: {
       x: data_answer.collection ? null : 'x',
       columns: transform_data_answer(data_answer.selected),
       type: data_answer.collection ? 'donut' : 'bar'
+    },
+    legend: {
+        position: 'right',
     },
     axis: {
       x: {
