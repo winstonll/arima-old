@@ -5,7 +5,7 @@
 
   <div class="questions-toggle-container">
     <a class="profile-questions-answered" data-toggle="pill">
-      <div class="profile-questions-toggle-answered">
+      <div class="profile-questions-toggle-answered profile-questions-toggle-active">
         <p class="profile-questions-stat-num" data-toggle="pill"><%= current_user.questions.count %></p>
         <p id="profile-questions-stat-label" data-toggle="pill">Questions answered</p>
       </div>
@@ -19,10 +19,16 @@
   </div>
 
   <div class="questions-container">
-    <div class="questions-answered questions-hidden">
+    <% if @answered_questions.empty? && @asked_questions.empty? %>
+      <div class="no-questions-filler">
+        <p>Answer or ask some questions to see this space fill up!</p>
+      </div>
+    <% end %>
+
+    <div class="questions-answered">
       <%= render 'answered_questions' %>
     </div>
-    <div class="questions-asked">
+    <div class="questions-asked questions-hidden">
       <%= render 'asked_questions' %>
     </div>
   </div>

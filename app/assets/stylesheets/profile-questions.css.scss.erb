@@ -22,6 +22,11 @@
       color: #639ee3;
     }
 
+    .profile-questions-toggle-active {
+      border: 2px solid #639ee3 !important;
+      color: #639ee3 !important;
+    }
+
     .profile-questions-toggle-answered,
     .profile-questions-toggle-asked {
       height: 70px;
@@ -32,10 +37,6 @@
       display: inline-block;
       border: 2px solid #9B9A9C;
       border-radius: 0.5em;
-
-      .active {
-        border: 2px solid #639ee3;
-      }
 
       .profile-questions-stat-num {
         font-weight: 600;
@@ -61,6 +62,15 @@
   margin-left: auto;
   margin-right: auto;
   text-align: left;
+
+  .no-questions-filler {
+    text-align: center;
+    font-size: 17px;
+    font-weight: 600;
+    color: #aaa;
+    margin-top: 5em;
+    margin-bottom: 5em;
+  }
 
   .questions-hidden {
     display: none;
