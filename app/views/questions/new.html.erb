@@ -1,24 +1,30 @@
 <script>
-  $(document).ready(function(){
-    var answerBoxCounter = 2
-    var MAX_BOX_COUNT = 6
+  $(document).ready(function() {
+    // Make sure the add answer button is showing
+    $("#add-answer-button").css("display", "block");
+
+    var answerBoxCounter = 2;
+    var MAX_BOX_COUNT = 12;
+
      $("#add-answer-button").click(function() {
        // add another answer text box when clicked under existing text box.
-       var newBoxNumber = answerBoxCounter + 1
+       var newBoxNumber = answerBoxCounter + 1;
 
        if (newBoxNumber <= MAX_BOX_COUNT) {
+         var newHtml = '<input type="text" name="answer_box_' + newBoxNumber +'" id="answer-box-' + newBoxNumber +'" class="answer-box" placeholder="Answer here">';
 
-         var newHtml = '<input type="text" name="answer_box_' + newBoxNumber +'" id="answer-box-' + newBoxNumber +'" class="answer-box" placeholder="Answer here">'
-
-         $(".answer-type-input-box").append(newHtml)
-         answerBoxCounter++
+         $(".answer-type-input-box").append(newHtml);
+         answerBoxCounter++;
+       } else {
+         $("#add-answer-button").css("display", "none");
        }
-     })
+     });
+
      if($('#value_type').val() != "collection"){
         $("#answer-types").css('display','none');
 
      }
-     else{
+     else {
         $("#answer-types").css('display','block');
      }
 
@@ -93,7 +99,7 @@
                 <p class="modal-input-title">
                   Answers:
                 </p>
-                <p>* Maximum of 6 answers, empty boxes will not be added.</p>
+                <p>* Maximum of 12 answers, empty boxes will not be added.</p>
                 <section class="submit-input-container">
 
                   <div class="answer-type-input-box">
