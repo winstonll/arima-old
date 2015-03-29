@@ -3,19 +3,19 @@ class Answer < ActiveRecord::Base
   belongs_to :user
   belongs_to :question
 
-  validates :user_id,     presence: true
-  validates :question_id, presence: true,
-                          uniqueness: {
-                            scope: :user_id,
-                            message: "Cannot submit duplicate answers"
-                          }
+  # validates :user_id,     presence: true
+  validates :question_id, presence: true
+                          # uniqueness: {
+                          #   scope: :user_id,
+                          #   message: "Cannot submit duplicate answers"
+                          # }
   validates :value,       presence: true
 
   # make sure the Question min_value matches
   validates :numerical_value, numericality: { greater_than_or_equal_to: 0 }, if: :validates_numericality?
 
   before_save :clean_value
-  after_create :point_for_user
+  # after_create :point_for_user
 
   # virtual attribute for numericality validator
   def numerical_value
