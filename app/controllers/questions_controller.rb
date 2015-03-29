@@ -29,15 +29,15 @@ class QuestionsController < ApplicationController
       :value_type => params[:value_type],
       :options_for_collection => @answerboxes)
 
+    GroupsQuestion.create(group_id: params[:group_id], question_id: @subquestion.id)
 
     #the logic works, just need to output the error message in the else statement.
       if @subquestion.valid?
-        GroupsQuestion.create!(group_id: params[:group_id], question_id: @subquestion.id)
-        @subquestion.user_id = current_user.id
+        #@subquestion.user_id = current_user.id
         redirect_to question_path(@subquestion)
       else
         #redirect_to root_path
-        redirect_to root_path
+        redirect_to categories_path
         flash[:notice] = "This Question has already been asked!!!"
       end
   end
