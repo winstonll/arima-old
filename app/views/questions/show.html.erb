@@ -3,7 +3,7 @@
     <div class="question-container question-container-<%= @question.group_id %>">
       <div class="question-title"><%= @question.label %>
         <div class="question-title-count">
-          <!-- <%#= "#{@question.users.count} #{@question.users.count == 1 ? 'person' : 'people'}" %> answered this -->
+           <%= "#{@question.answers.count} #{@question.answers.count == 1 ? 'person' : 'people'}" %> answered this
         </div>
       </div>
         <div class="answer-prompt">
