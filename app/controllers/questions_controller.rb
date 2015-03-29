@@ -22,7 +22,16 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @answerboxes = params[:answer_box_1].to_s << ',' << params[:answer_box_2].to_s << ',' << params[:answer_box_3].to_s << ',' << params[:answer_box_4].to_s << ',' << params[:answer_box_5].to_s << ',' << params[:answer_box_6].to_s
+    #concatenate the answer boxes into one string, checking for empty boxes and removing them
+    6.times do |count|
+      counter = "answer_box_#{count}".to_sym
+      unless (params[counter].to_s.empty?)
+        @answerboxes = @answerboxes.to_s + params[counter].to_s << ','
+      end
+    end
+    #strip the last comma
+    @answerboxes = @answerboxes[0...-1]
+
     @subquestion = Question.create(
       :label => params[:submit_question_name],
       :group_id => params[:group_id],
