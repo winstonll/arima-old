@@ -7,7 +7,9 @@
           <a class="world" data-toggle="pill" href="javascript:void()">World</a>
         </li>
         <li class="report-location">
-          <a class="country" data-toggle="pill" href="javascript:void()"><%= select_tag(:locations, options_for_select([["Canada"],["US"]]), onchange: "field_reveal()", class: "country") %></a>
+          <a class="country" data-toggle="pill" href="javascript:void()">
+            <%= select_tag 'country-filter', options_for_select(@countries, params[:country_type]), { prompt: "Country", class: "filter-location-select"} %>
+          </a>
         </li>
         <li class="report-location">
           <a class="city" data-toggle="pill" href="javascript:void()">City</a>

@@ -402,9 +402,22 @@ body {
         }
 
         .country {
-          .country {
-            background-color: #aaa;
-            border: none;          }
+
+          .filter-location-select {
+            #width: 80px;
+            #height: 35px;
+            font-size: 15px;
+            background-color: #00C39C;
+            border-radius: 4px;
+            outline: none;
+            border: 0;
+            color: #fff;
+            text-align: center;
+
+            &:hover {
+              background-color: #00C39C !important;
+            }
+          }
         }
       }
     }
