@@ -19,7 +19,7 @@ class CategoriesController < ApplicationController
     @question = Group.friendly.find(params[:id])
 
     # Show recent questions by default
-    @all = @question.questions.order(created_at: :desc).page(params[:page]).per(7)
+    @all = @question.questions.order(created_at: :desc).page(params[:page]).per(2)
 
     # all questions answered by the user
     if @user
@@ -31,7 +31,7 @@ class CategoriesController < ApplicationController
 
   def show_popular
     @question = Group.friendly.find(params[:id])
-    @all = @question.questions.page(params[:page]).per(7)
+    @all = @question.questions.page(params[:page]).per(2)
 
     # displaying the questions by total user count
     @questions_hash = Hash.new
@@ -58,7 +58,7 @@ class CategoriesController < ApplicationController
   def show_recent
     @question = Group.friendly.find(params[:id])
 
-    @all = @question.questions.order(created_at: :desc).page(params[:page]).per(7)
+    @all = @question.questions.order(created_at: :desc).page(params[:page]).per(2)
 
     # all questions answered by the user
     if @user
