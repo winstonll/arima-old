@@ -8,4 +8,6 @@ $(document).ready(function() {
   <% if @user && !@answered.empty? %>
     $("#questions-container").append('<%= escape_javascript(render partial: "categories/show_answered_questions") %>');
   <% end %>
+
+  $('#paginator').html('<%= escape_javascript(paginate(@all, :remote => true).to_s) %>');
 });

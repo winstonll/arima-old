@@ -57,5 +57,7 @@
       <%= render partial: "categories/show_answered_questions" %>
     <% end %>
   </div>
-  <%= paginate @all %>
+  <div id="paginator">
+    <%= paginate @all, :remote => true %>
+  </div>
 </div>
