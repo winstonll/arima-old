@@ -8,16 +8,10 @@ Arima::Application.routes.draw do
   # constraint allows special characters in the route
   #get "users/:first_name:last_name:id" => "profiles#show", as: :profile_show , constraints: { first_name: /[a-zA-Z1-9\-]+/, last_name: /[a-zA-Z1-9\-]+/ }
 
-  concern :paginatable do
-    get '(page/:page)', :action => :show, :on => :collection, :as => ''
-  end
-
-  resources :categories, only: [:index, :show], :concerns => :paginatable do
+  resources :categories, only: [:index, :show] do
     post 'show_recent' => "categories#show_recent"
     post 'show_popular' => "categories#show_popular"
   end
-
-  # resources :categories, :concerns => :paginatable
 
   resources :questions, only: [:show] do
     resources :answers, only: [:new, :create]
