@@ -43,6 +43,10 @@ class QuestionsController < ApplicationController
     #the logic works, just need to output the error message in the else statement.
       if @subquestion.valid?
         #@subquestion.user_id = current_user.id
+        @testing = Location.country_name
+        ip = request.remote_ip
+        result = request.location
+        puttt
         redirect_to question_path(@subquestion)
       else
         #redirect_to root_path

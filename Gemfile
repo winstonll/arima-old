@@ -34,7 +34,7 @@ gem 'devise'
 gem 'kaminari'
 
 gem 'chartkick'
-
+gem 'geocoder'
 gem 'passenger'
 gem 'spring'
 gem 'pry-rails'
