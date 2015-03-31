@@ -12,7 +12,7 @@ class QuestionsController < ApplicationController
         @user_submitted_answer = false
         @answer = @question.answers.build(user: @user)
       else
-        @user_submitted_answer = true
+        @user_submitted_answer = true_
       end
     end
   end
@@ -43,7 +43,7 @@ class QuestionsController < ApplicationController
     #the logic works, just need to output the error message in the else statement.
       if @subquestion.valid?
         #@subquestion.user_id = current_user.id
-        @testing = Location.country_name
+        @user.build_location()
         ip = request.remote_ip
         result = request.location
         puttt
