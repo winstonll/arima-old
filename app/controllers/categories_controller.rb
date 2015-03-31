@@ -19,7 +19,7 @@ class CategoriesController < ApplicationController
     @question = Group.friendly.find(params[:id])
 
     # Show recent questions by default
-    @all = @question.questions.order(created_at: :desc)
+    @all = @question.questions.order(created_at: :desc).page(params[:page]).per(7)
 
     # all questions answered by the user
     if @user
