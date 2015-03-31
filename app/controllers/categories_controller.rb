@@ -58,7 +58,7 @@ class CategoriesController < ApplicationController
   def show_recent
     @question = Group.friendly.find(params[:id])
 
-    @all = @question.questions.order(created_at: :desc)
+    @all = @question.questions.order(created_at: :desc).page params[:page].per(7)
 
     # all questions answered by the user
     if @user
