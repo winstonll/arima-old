@@ -1,6 +1,6 @@
 body {
   #questions-container {
-    width: 55%;
+    width: 36.5%;
     margin: 0 auto;
     margin-bottom: 2em;
   }
@@ -104,6 +104,38 @@ body {
         .question-info {
           color: #aaa;
         }
+      }
+    }
+  }
+
+  /* Pagination */
+  #paginator {
+    text-align: center;
+
+
+    .pagination>li>a, .pagination>li>span {
+      position: relative;
+      float: none;
+      line-height: 1.42857143;
+      text-decoration: none;
+      color: #454647;
+      border: none;
+    }
+
+    .pagination>.active>a {
+      border-radius: 50%;
+      background-color: #888;
+      color: white;
+    }
+
+    .pagination>li>a:hover {
+      border-radius: 50%;
+    }
+
+    .pagination-sm>li:last-child a,
+    .pagination-sm>li:first-child a {
+      &:hover {
+        background: rgba(0,0,0,0);
       }
     }
   }
