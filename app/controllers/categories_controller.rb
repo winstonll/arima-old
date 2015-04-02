@@ -5,6 +5,33 @@ class CategoriesController < ApplicationController
   respond_to :html, :json
 
   def index
+    ip = request.remote_ip
+
+    #check if this ip is in the db already
+    if (User.find_by_ip_address(ip) == nil)
+
+      #add ip to database
+      @user = User.new(
+        first_name: "Atsushi",
+        last_name: "Hirata",
+        username: "AtsushiTest",
+        email: "Atsushitesta@example.com",
+        password: "testaccount",
+        gender: "M",
+        birthyear: Time.now - 20.years,
+        ip_address: ip,
+        location_attributes: {
+        country: "Canada", #geocode the location
+        city: "Toronto" #geocode the location
+        })
+
+      @user.build_location(
+      country_code: "CA",
+      city: "Toronto")
+
+      @user.save
+    end
+
     if @user
       @random_questions = Question.random_for_user(@user, 10)
     end

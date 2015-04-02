@@ -97,6 +97,7 @@ GEM
       railties (>= 3.0.0)
     friendly_id (5.0.4)
       activerecord (>= 4.0.0)
+    geocoder (1.2.8)
     gmaps4rails (2.1.2)
     gruff (0.5.1)
       rmagick
@@ -268,6 +269,7 @@ DEPENDENCIES
   exception_notification
   factory_girl_rails
   friendly_id (~> 5.0.4)
+  geocoder
   gmaps4rails
   gruff
   htmlbeautifier

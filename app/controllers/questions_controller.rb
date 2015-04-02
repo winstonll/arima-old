@@ -12,7 +12,7 @@ class QuestionsController < ApplicationController
         @user_submitted_answer = false
         @answer = @question.answers.build(user: @user)
       else
-        @user_submitted_answer = true
+        @user_submitted_answer = true_
       end
     end
   end
