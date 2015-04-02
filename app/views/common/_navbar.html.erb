@@ -18,7 +18,7 @@
   <section class="right">
     <ul class="nav-links">
       <li>
-        <%#= link_to 'Sign Up', new_registration_path(resource_name), class: "nav-btn", id: "nav-signup-btn" if !user_signed_in? %>
+        <%= link_to 'Sign Up', new_registration_path(resource_name), class: "nav-btn", id: "nav-signup-btn" if !user_signed_in? %>
       </li>
       <%# if user_signed_in? && current_user.username.present? %>
         <li>
@@ -53,7 +53,7 @@
         </li>
       <% else %>
         <li>
-          <%#= link_to 'Login', new_user_session_path, class: "nav-btn", id: "nav-login-btn" %>
+          <%= link_to 'Login', new_user_session_path, class: "nav-btn", id: "nav-login-btn" %>
         </li>
       <% end %>
     </ul>
