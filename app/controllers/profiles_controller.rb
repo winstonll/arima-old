@@ -39,8 +39,10 @@ class ProfilesController < ApplicationController
      flash[:notice] = 'You\'ve sucessfully updated your profile!' and return
   end
 
+  #generates correct referral code
   def show
-    generate_referral_code(current_user) unless current_user.referral_code.present?
+    generate_referral_code(current_user) unless
+    (current_user.referral_code.present? && (current_user.referral_code).start_with?(current_user.username))
 
     @points_count = current_user.points || 0
     @questions_count = current_user.questions.count
@@ -51,14 +53,19 @@ class ProfilesController < ApplicationController
     @random_questions     = Question.random_for_user current_user
     @trending_questions   = Question.trending_for_user current_user
     @answered_questions   = current_user.answers.order("updated_at desc")
+    @asked_questions      = self.questions
   end
 
   protected
 
-  # TODO: Fix this to use username instead of first name
+  #Generates referral code "username-hexcode"
   def generate_referral_code user
-    user.referral_code = "#{user.first_name}-#{SecureRandom.hex[0,5]}"
+    user.referral_code = "#{user.username}-#{SecureRandom.hex[0,5]}"
     user.save!
     user.referral_code
+  end
+
+  def questions
+    Question.where("user_id = #{current_user.id}").order("updated_at desc")
   end
 end

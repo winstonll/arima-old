@@ -1,9 +1,4 @@
 <!-- List the users answered questions -->
 <% for answer in @answered_questions %>
-  <div class="answered-question">
-    <%= render partial: "common/question_normal", locals: { answered: true, answer: answer, question: answer.question, show_number_of_answers: false } %>
-  </div> <!-- end questions-answered -->
-<% end %>
-<% unless current_user.questions.any? %>
-  <p>You haven't answered any questions yet!</p>
+  <%= render partial: "profile_question", locals: { answered: true, answer: answer, question: answer.question, show_number_of_answers: false } %>
 <% end %>

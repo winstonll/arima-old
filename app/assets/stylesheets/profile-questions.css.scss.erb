@@ -1,0 +1,110 @@
+.questions-toggle-container {
+  margin-top: 7em;
+  margin-top: 5em;
+  text-align: center;
+
+  .profile-questions-answered,
+  .profile-questions-asked {
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:not(:first-child) {
+      margin-left: 15px;
+    }
+
+    .active {
+      background: 2px solid #639ee3;
+    }
+
+    .stat-active {
+      color: #639ee3;
+    }
+
+    .profile-questions-toggle-active {
+      border: 2px solid #639ee3 !important;
+      color: #639ee3 !important;
+    }
+
+    .profile-questions-toggle-answered,
+    .profile-questions-toggle-asked {
+      height: 70px;
+      width: 180px;
+      text-align: center;
+      color: #9B9A9C;
+      padding-top: 0.5em;
+      display: inline-block;
+      border: 2px solid #9B9A9C;
+      border-radius: 0.5em;
+
+      .profile-questions-stat-num {
+        font-weight: 600;
+        font-size: 20px;
+        margin-bottom: 0;
+      }
+
+      #profile-questions-stat-label {
+        font-size: 16px;
+      }
+    }
+
+    .profile-questions-active-toggle {
+      border: 2px solid #4A90E2;
+      color: #4A90E2;
+    }
+  }
+}
+
+.questions-container {
+  margin-top: 2em;
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+
+  .no-questions-filler {
+    text-align: center;
+    font-size: 17px;
+    font-weight: 600;
+    color: #aaa;
+    margin-top: 5em;
+    margin-bottom: 5em;
+  }
+
+  .questions-hidden {
+    display: none;
+  }
+
+  .profile-question-wrapper {
+    padding: 1em;
+
+    .category-icon {
+      display: inline-block;
+      vertical-align: top;
+      height: 40px;
+      padding: 0.5em;
+    }
+
+    .profile-question-info {
+      display: inline-block;
+      padding: 0.5em;
+      border-radius: 0.75em;
+      text-align: left;
+
+      &:hover {
+        color: white;
+        background-color: #BBBBBB;
+      }
+
+      .profile-question-title {
+        font-weight: 600;
+        font-size: 16px;
+      }
+
+      .question-info {
+        font-weight: 400;
+      }
+    }
+  }
+}

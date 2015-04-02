@@ -6,6 +6,8 @@ $(document).ready(function() {
   <% end %>
 
   <% if @user && !@answered.empty? %>
-    <%= render partial: "categories/show_answered_questions" %>
+    $("#questions-container").append('<%= escape_javascript(render partial: "categories/show_answered_questions") %>');
   <% end %>
+
+  $('#paginator').html('<%= escape_javascript(paginate(@all, :remote => true).to_s) %>');
 });

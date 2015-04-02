@@ -5,6 +5,33 @@ class CategoriesController < ApplicationController
   respond_to :html, :json
 
   def index
+    ip = request.remote_ip
+
+    #check if this ip is in the db already
+    if (User.find_by_ip_address(ip) == nil)
+
+      #add ip to database
+      @user = User.new(
+        first_name: "Atsushi",
+        last_name: "Hirata",
+        username: "AtsushiTest",
+        email: "Atsushitesta@example.com",
+        password: "testaccount",
+        gender: "M",
+        birthyear: Time.now - 20.years,
+        ip_address: ip,
+        location_attributes: {
+        country: "Canada", #geocode the location
+        city: "Toronto" #geocode the location
+        })
+
+      @user.build_location(
+      country_code: "CA",
+      city: "Toronto")
+
+      @user.save
+    end
+
     if @user
       @random_questions = Question.random_for_user(@user, 10)
     end
@@ -19,7 +46,7 @@ class CategoriesController < ApplicationController
     @question = Group.friendly.find(params[:id])
 
     # Show recent questions by default
-    @all = @question.questions.order(created_at: :desc)
+    @all = @question.questions.order(created_at: :desc).page(params[:page]).per(2)
 
     # all questions answered by the user
     if @user
@@ -31,7 +58,7 @@ class CategoriesController < ApplicationController
 
   def show_popular
     @question = Group.friendly.find(params[:id])
-    @all = @question.questions
+    @all = @question.questions.page(params[:page]).per(2)
 
     # displaying the questions by total user count
     @questions_hash = Hash.new
@@ -58,7 +85,7 @@ class CategoriesController < ApplicationController
   def show_recent
     @question = Group.friendly.find(params[:id])
 
-    @all = @question.questions.order(created_at: :desc)
+    @all = @question.questions.order(created_at: :desc).page(params[:page]).per(2)
 
     # all questions answered by the user
     if @user

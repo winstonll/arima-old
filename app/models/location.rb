@@ -4,6 +4,9 @@ class Location < ActiveRecord::Base
   #validates :user_id, presence: true
   validates :country_code, presence: true
 
+  geocoded_by :ip_address
+  before_validation :geocode
+
   def country_obj
     # return the object!
     ISO3166::Country[country_code]

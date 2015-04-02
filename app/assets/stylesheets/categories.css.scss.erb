@@ -1,0 +1,244 @@
+body {
+  #questions-container {
+    width: 36.5%;
+    margin: 0 auto;
+    margin-bottom: 2em;
+  }
+
+  .container-category-banner {
+    height: 225px;
+    width: 100%;
+    display: table;
+    text-align: center;
+
+    background-repeat: repeat;
+
+    .container-category-title {
+      font-size: 45px;
+      font-weight: 600;
+      color: #fff;
+      display: table-cell;
+      vertical-align: middle;
+    }
+  }
+
+  .category-banner-title {
+    color: #5a5a5a;
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 17px;
+  }
+
+  .category-section {
+    .most-recent-popular-buttons {
+      margin-top: 2em;
+      margin-bottom: 1em;
+      text-align: center;
+
+      .most-recent-button, .most-popular-button {
+        display: inline-block;
+        padding: 10px;
+
+        #most-recent,
+        #most-popular {
+          color: #aaa;
+          font-size: 16px;
+
+          &:hover {
+            opacity: 0.7;
+          }
+        }
+
+        a.active {
+          font-weight: 600;
+          color: #82B7F6 !important;
+        }
+      }
+    }
+  }
+
+  /* Hero */
+  .category-questions-header {
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.7em;
+    background-color: #fff;
+    padding-bottom: 20px;
+  }
+
+  .question-link {
+    color: #555;
+
+    &:hover {
+      .question-wrapper {
+        background-color: #00C39C;
+
+        .question-title,
+        .question-info,
+        .num-answers {
+          color: #fff;
+        }
+
+        .question-info {
+          color: #555;
+        }
+      }
+    }
+  }
+
+  /* Answered question links */
+  .question-link-answered {
+    color: #aaa;
+
+    &:hover {
+      .question-wrapper {
+        background-color: #ccc;
+
+        .question-title,
+        .question-info,
+        .answered-when {
+          color: #fff;
+        }
+
+        .question-info {
+          color: #aaa;
+        }
+      }
+    }
+  }
+
+  /* Pagination */
+  #paginator {
+    text-align: center;
+
+
+    .pagination>li>a, .pagination>li>span {
+      position: relative;
+      float: none;
+      line-height: 1.42857143;
+      text-decoration: none;
+      color: #454647;
+      border: none;
+    }
+
+    .pagination>.active>a {
+      border-radius: 50%;
+      background-color: #888;
+      color: white;
+    }
+
+    .pagination>li>a:hover {
+      border-radius: 50%;
+    }
+
+    .pagination-sm>li:last-child a,
+    .pagination-sm>li:first-child a {
+      &:hover {
+        background: rgba(0,0,0,0);
+      }
+    }
+  }
+
+  /* Question links */
+  .question-link,
+  .question-link-answered {
+    text-decoration: none !important;
+    font-weight: 600;
+
+    .question-wrapper {
+      width: intrinsic;
+      width: -moz-max-content;
+      max-width: -moz-fit-content;
+      border-radius: 8px;
+      padding: 10px 25px 10px 25px;
+
+      .question-title {
+        font-size: 15px;
+        margin: 0;
+      }
+
+      .question-dates {
+        font-weight: 500;
+        font-size: 15px;
+
+        div {
+          display: inline-block;
+          margin-right: 8px;
+        }
+
+        .question-answered-date {
+          line-height: 11px;
+        }
+      }
+    }
+  }
+
+  /* category page styling */
+
+  &.electronics-gadgets {
+    .container-category-banner {
+      background-image: url("<%= image_path("category-heros/Electronics & Gadgets.png") %>");
+    }
+  }
+
+  &.money-matters {
+    .container-category-banner{
+      background-image: url("<%= image_path("category-heros/Money Matters.png") %>");
+    }
+  }
+
+  &.health-fitness {
+    .container-category-banner {
+      background-image: url("<%= image_path("category-heros/Health & Fitness.png") %>");
+    }
+  }
+
+  &.education-knowledge {
+    .container-category-banner {
+      background-image: url("<%= image_path("category-heros/Education & Knowledge.png") %>");
+    }
+  }
+
+  &.business-career {
+    .container-category-banner{
+      background-image: url("<%= image_path("category-heros/Business & Career.png") %>");
+    }
+  }
+
+  &.sports {
+    .container-category-banner{
+      background-image: url("<%= image_path("category-heros/Sports.png") %>");
+    }
+  }
+
+  &.food {
+    .container-category-banner{
+      background-image: url("<%= image_path("category-heros/Food.png") %>");
+    }
+  }
+
+  &.travel {
+    .container-category-banner{
+      background-image: url("<%= image_path("category-heros/Travel.png") %>");
+    }
+  }
+
+  &.lifestyle {
+    .container-category-banner{
+      background-image: url("<%= image_path("category-heros/Lifestyle.png") %>");
+    }
+  }
+
+  &.entertainment {
+    .container-category-banner{
+      background-image: url("<%= image_path("category-heros/Entertainment.png") %>");
+    }
+  }
+
+  &.current-events {
+    .container-category-banner {
+      background-image: url("<%= image_path("category-heros/Current Events.png") %>");
+    }
+  }
+}

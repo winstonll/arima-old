@@ -7,7 +7,9 @@
           <a class="world" data-toggle="pill" href="javascript:void()">World</a>
         </li>
         <li class="report-location">
-          <a class="country" data-toggle="pill" href="javascript:void()">Country</a>
+          <a class="country" data-toggle="pill" href="javascript:void()">
+            <%= select_tag 'country-filter', options_for_select(@countries, params[:country_type]), { prompt: "Country", class: "filter-location-select"} %>
+          </a>
         </li>
         <li class="report-location">
           <a class="city" data-toggle="pill" href="javascript:void()">City</a>
@@ -31,12 +33,15 @@
   var chart_answer = c3.generate({
     bindto: '#answer-chart',
     <% unless defined?(from_show_view) %>
-      size: { width: 580 },
+      size: { width: 450 },
     <% end %>
     data: {
       x: data_answer.collection ? null : 'x',
       columns: transform_data_answer(data_answer.selected),
       type: data_answer.collection ? 'donut' : 'bar'
+    },
+    legend: {
+        position: 'right',
     },
     axis: {
       x: {

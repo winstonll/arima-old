@@ -3,28 +3,28 @@
     <div class="question-container question-container-<%= @question.group_id %>">
       <div class="question-title"><%= @question.label %>
         <div class="question-title-count">
-          <%= "#{@question.users.count} #{@question.users.count == 1 ? 'person' : 'people'}" %> answered this
+           <%= "#{@question.answers.count} #{@question.answers.count == 1 ? 'person' : 'people'}" %> answered this
         </div>
       </div>
         <div class="answer-prompt">
-        <% if !@user_submitted_answer && !user_signed_in? %>
-          <div class="form-inline">
-            <select><option value="select">Select...</option></select>
-          </div>
-          <%= link_to 'Sign up to answer', new_registration_path(resource_name), class: "fake-signin-button" %>
-        <% end %>
-        <% if user_signed_in? %>
-          <%= simple_form_for @answer, url: question_answers_path(@question, @answer), class: "form-inline", role: "form", html: {novalidate: false} do |f| %>
+        <%# if !@user_submitted_answer && !user_signed_in? %>
+          <!-- <div class="form-inline"> -->
+            <!-- <select><option value="select">Select...</option></select> -->
+          <!-- </div> -->
+          <%#= link_to 'Answer', new_registration_path(resource_name), class: "fake-signin-button" %>
+        <%# end %>
+        <%# if user_signed_in? %>
+          <%= simple_form_for Answer.new, url: question_answers_path(@question, @answer), class: "form-inline", role: "form", html: {novalidate: false} do |f| %>
             <div class="form-group">
               <% if @question.input_type == "measurement" %>
                 <section class="question-dual-input">
-                  <%= f.input(:value, label: false, pattern: "\d*", placeholder: @user_units["large_unit"]) %>
-                  <%= f.input(:value, label: false, pattern: "\d*", placeholder: @user_units["small_unit"]) %>
+                  <%#= f.input(:value, label: false, pattern: "\d*", placeholder: @user_units["large_unit"]) %>
+                  <%#= f.input(:value, label: false, pattern: "\d*", placeholder: @user_units["small_unit"]) %>
                 </section>
               <% elsif @question.input_type == "collection" %>
                 <%= f.input(:value, label: false, prompt: "Select one...", collection: @question.options_array, input_html: { class: "questions-page-input form-control input-lg"}) %>
               <% else %>
-                <%= f.input(:value, label: false, placeholder: @question.placeholder(@user),
+                <%= f.input(:value, label: false, placeholder: @question,
                              as: @question.input_type.try(:to_sym),
                              input_html: {
                                class: "questions-page-input form-control input-lg",
@@ -34,12 +34,12 @@
               <% end %>
               <div class="modal-save-wrapper text-center">
                 <% if !@user_submitted_answer %>
-                  <%= f.submit "Save", class: "modal-button" %>
+                  <%= f.submit "Answer", class: "modal-button" %>
                 <% end %>
               </div>
           <% end %>
             </div>
-        <% end %>
+        <%# end %>
         </div>
       </div>
     </div>

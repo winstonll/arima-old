@@ -21,6 +21,12 @@ class Question < ActiveRecord::Base
   validates :label, uniqueness: true
   validates :value_type, inclusion: { in: ALLOWED_TYPES }
 
+
+  def country_name
+    country = ISO3166::Country[country_code]
+    country.translations[I18n.locale.to_s] || country.name
+  end
+
   def percent_gender
     genders = self.users.pluck(:gender).compact
     males = genders.select{|p| p == "M"}.count

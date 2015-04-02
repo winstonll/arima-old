@@ -47,14 +47,18 @@
   text-align: left;
   padding: 10px;
 
+  .category-inner-container-active {
+    background-color: #E3E2E2;
+  }
+
   .category-inner-container {
-    width: 205px;
+    width: 215px;
     margin: auto;
     padding: 10px;
     border-radius: 5px;
 
     .category-icon {
-      width: 30px;
+      width: 25px;
       height: auto;
       margin-right: 5px;
       text-align: center;
@@ -67,8 +71,11 @@
       text-align: left;
     }
 
-    &:hover,
-    &:active {
+    .category-title-active {
+      font-weight: bold;
+    }
+
+    &:hover {
       background-color: #E3E2E2;
     }
   }

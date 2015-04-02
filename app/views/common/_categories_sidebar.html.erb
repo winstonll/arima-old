@@ -10,7 +10,7 @@
       <!-- Categories -->
       <div class="sidebar-categories">
         <% Group.all.each do |group| %>
-        <a href="<%= category_path(group) %>" data-group-id="<%= group.id %>" class="<%= group.page_class %>">
+        <a href="<%= category_path(group) %>" data-group-id="<%= group.id %>" class="sidebar-category <%= group.page_class %>">
           <div class="category-container">
             <div class="category-inner-container">
               <%= image_tag("category-icons/#{group.label.sub("<br>", " ").html_safe}.png", class: "category-icon" ) %>
