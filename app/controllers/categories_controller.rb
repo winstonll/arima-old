@@ -8,8 +8,7 @@ class CategoriesController < ApplicationController
     ip = request.remote_ip
 
     #check if this ip is in the db already
-    if (User.find_by_ip_address(ip) == nil)
-
+    if (User.find_by(ip_address:ip) == nil)
       #add ip to database
       @user = User.new(
         first_name: "Atsushi",
