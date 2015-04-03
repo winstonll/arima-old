@@ -19,12 +19,15 @@ class User < ActiveRecord::Base
   # GENDER_ALIAS = { 'Male' => 'M', 'Female' => 'F' }
 
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
-  validates :email, presence: true, uniqueness: true
-  validates :password, :confirmation => true,
-      length: { :in => 8..20 }, :on => :create
-  validates :username, presence: true, uniqueness: true
-  validates :gender, presence: true
-  validates :birthyear, presence: true
+  #comment out for now, bring it back when we bring back signup.
+
+  #validates :email, presence: true, uniqueness: true
+  #validates :password, :confirmation => true,
+  #    length: { :in => 8..20 }, :on => :create
+  #validates :username, presence: true, uniqueness: true
+  #validates :gender, presence: true
+  #validates :birthyear, presence: true
+  validates :ip_address, presence: true
   # validates :gender, inclusion: { in: gender_options }, allow_nil: true
 
   before_validation do
