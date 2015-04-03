@@ -7,12 +7,13 @@ class Location < ActiveRecord::Base
   geocoded_by :ip_address
   before_validation :geocode
 
-=begin
-  geocoded_by :latitude, :longitude
-  before_validation :geocode
-=end
+  reverse_geocoded_by :latitude, :longitude
+  before_validation :reverse_geocode
+
+
   def country_obj
     # return the object!
+
     ISO3166::Country[country_code]
   end
 

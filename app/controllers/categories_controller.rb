@@ -6,22 +6,16 @@ class CategoriesController < ApplicationController
 
   def index
     ip = request.remote_ip
+    #c = Country.find_country_by_name('united states')
 
     #check if this ip is in the db already
     if (User.find_by(ip_address:ip) == nil)
       #add ip to database
-      @user = User.new(
-        ip_address: ip,
-        location_attributes: {
-        country: "Canada", #geocode the location
-        city: "Toronto" #geocode the location
-        })
+      @user = User.new(ip_address: ip)
 
       @user.build_location(
-      country_code: "CA",
-      city: "Toronto",
+      country_code: "BA",
       ip_address: ip)
-
       @user.save
     end
 
