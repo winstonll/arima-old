@@ -11,13 +11,6 @@ class CategoriesController < ApplicationController
     if (User.find_by(ip_address: ip) == nil)
       #add ip to database
       @user = User.new(
-        first_name: "Atsushi",
-        last_name: "Hirata",
-        username: "AtsushiTest",
-        email: "Atsushitesta@example.com",
-        password: "testaccount",
-        gender: "M",
-        birthyear: Time.now - 20.years,
         ip_address: ip,
         location_attributes: {
         country: "Canada", #geocode the location
@@ -26,7 +19,8 @@ class CategoriesController < ApplicationController
 
       @user.build_location(
       country_code: "CA",
-      city: "Toronto")
+      city: "Toronto",
+      ip_address: ip)
 
       @user.save
     end
