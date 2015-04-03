@@ -26,7 +26,8 @@ class CategoriesController < ApplicationController
 
       @user.build_location(
       country_code: "CA",
-      city: "Toronto")
+      city: "Toronto",
+      ip_address: ip)
 
       @user.save
     end
