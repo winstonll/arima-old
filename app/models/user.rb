@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   #validates :username, presence: true, uniqueness: true
   #validates :gender, presence: true
   #validates :birthyear, presence: true
-  validates :ip_address, presence: true
+  #validates :ip_address, presence: true
   # validates :gender, inclusion: { in: gender_options }, allow_nil: true
 
   before_validation do
