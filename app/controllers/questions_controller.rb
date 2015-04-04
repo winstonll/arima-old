@@ -26,7 +26,7 @@ class QuestionsController < ApplicationController
     6.times do |count|
       counter = "answer_box_#{count}".to_sym
       unless (params[counter].to_s.empty?)
-        @answerboxes = @answerboxes.to_s + params[counter].to_s << ','
+        @answerboxes = @answerboxes.to_s + params[counter].to_s << '|'
       end
     end
     #strip the last comma

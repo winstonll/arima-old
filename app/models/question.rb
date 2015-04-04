@@ -12,8 +12,8 @@ class Question < ActiveRecord::Base
 
 
   ALLOWED_TYPES = [
-    "currency", "quantity", "length", 
-    "weight", "text", "hours", "years", 
+    "currency", "quantity", "length",
+    "weight", "text", "hours", "years",
     "minutes", "collection", "measurement"
   ]
 
@@ -157,7 +157,7 @@ class Question < ActiveRecord::Base
   def options_array
     options = self.options_for_collection
     unless options.nil?
-      options = options.squish!.split(",")
+      options = options.squish!.split("|")
       options.map{ |v| v.strip }
     end
   end
