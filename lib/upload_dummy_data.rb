@@ -16,6 +16,7 @@ class UploadDummyData
 
         i += 1 # increment counter
 
+        # row[n]: Get the nth column in the row (from the CSV file)
         last_name = row[0]
         first_name = row[1]
 
