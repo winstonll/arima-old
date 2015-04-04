@@ -24,7 +24,7 @@ QUESTIONS = [
   {label: "How many hours of sleep do you get on a typical day?", value_type: "hours",         group_id: "2"},       #1
   {label: "How much is your daily budget for food expenditure?",  value_type: "currency",      group_id: "1"},
   {label: "What is your favourite hobby?",                        value_type: "collection",
-    options_for_collection: "programming, gaming, studying, soccer, basketball, swimming",     group_id: "7"},                                                                                        #3
+    options_for_collection: "programming|gaming|studying|soccer|basketball|swimming",          group_id: "4"},                                                                                        #3
   {label: "How many hours in a week do you spend on your hobby?", value_type: "hours",         group_id: "7"},
   {label: "How many hours do you study each day?",                value_type: "hours",         group_id: "3"},       #5
   {label: "On a typical weekday, what time do you wake up?",      value_type: "hours",         group_id: "2"},
@@ -36,11 +36,13 @@ QUESTIONS = [
   {label: "How many pets do you currently own?",                  value_type: "quantity",      group_id: "8"},
   {label: "What is your height?",                                 value_type: "measurement",   group_id: "2"},       #13
   {label: "Do you consider eSports to be real sports?",           value_type: "collection",
-    options_for_collection: "yes, no",                                                         group_id: "6"},
+    options_for_collection: "yes|no",                                                         group_id: "6"},
   {label: "Do you think the movie 'The Interview' have been shown in theatres?", value_type: "collection",
-    options_for_collection: "yes, no",                                                         group_id: "7"},       #15
+    options_for_collection: "yes|no",                                                         group_id: "7"},       #15
   {label: "Do you keep track of your calorie intake?", value_type: "collection",
-    options_for_collection: "yes, no",                                                         group_id: "2"}
+    options_for_collection: "yes|no",                                                         group_id: "2"},
+  {label: "Given tech startups like Uber and Airbnb are getting high valuations, do you think we are in another tech bubble?", value_type: "collection",
+    options_for_collection: "yes|no",                                                         group_id: "5"}
 ]
 
 # Sample answers for the questions above (orders must match)
@@ -63,7 +65,8 @@ GROUP_QUESTION_ASSOCIATIONS = [
   {8 => 12},
   {10 => 13},
   {7 => 15},
-  {9 => 16}
+  {9 => 16},
+  {5 => 17}
 ]
 
 # Create sample user
