@@ -47,10 +47,6 @@
   text-align: left;
   padding: 10px;
 
-  .category-inner-container-active {
-    background-color: #E3E2E2;
-  }
-
   .category-inner-container {
     width: 215px;
     margin: auto;
@@ -77,6 +73,14 @@
 
     &:hover {
       background-color: #E3E2E2;
+    }
+  }
+
+  .category-inner-container-active {
+    background-color: #E3E2E2;
+
+    .category-title {
+      font-weight: 600;
     }
   }
 }

@@ -16,7 +16,7 @@ $(document).ready(function() {
   };
 
   decideSidebarVisibility(null);
-  
+
   // Listen onResize to ensure sidebar is opened on wide screens
   window.onresize = decideSidebarVisibility
 
@@ -69,14 +69,4 @@ $(document).ready(function() {
 
   //Initialize scrolling
   $('.tse-scrollable').TrackpadScrollEmulator();
-
-  //Highlights the current category
-  $(function(){
-     $(".sidebar-category").each(function(){
-       if (window.location.href.indexOf($(this).attr("href")) != -1) {
-          $(this).find(".category-inner-container").addClass("category-inner-container-active");
-          $(this).find(".category-title").css({"font-weight": "bold"});  
-       }
-     });
-  });
 });

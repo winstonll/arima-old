@@ -24,7 +24,7 @@ QUESTIONS = [
   {label: "How many hours of sleep do you get on a typical day?", value_type: "hours",         group_id: "2"},       #1
   {label: "How much is your daily budget for food expenditure?",  value_type: "currency",      group_id: "1"},
   {label: "What is your favourite hobby?",                        value_type: "collection",
-    options_for_collection: "programming|gaming|studying|soccer|basketball|swimming",     group_id: "7"},                                                                                        #3
+    options_for_collection: "programming|gaming|studying|soccer|basketball|swimming",          group_id: "4"},                                                                                        #3
   {label: "How many hours in a week do you spend on your hobby?", value_type: "hours",         group_id: "7"},
   {label: "How many hours do you study each day?",                value_type: "hours",         group_id: "3"},       #5
   {label: "On a typical weekday, what time do you wake up?",      value_type: "hours",         group_id: "2"},

@@ -1,4 +1,4 @@
-<aside id="questions-sidebar" class="sidebar expanded">
+<div id="questions-sidebar" class="sidebar expanded">
   <div class="tse-scrollable">
     <div class="tse-content">
       <div id="sidebar-mobile-close-toggle">Close sidebar</div>
@@ -12,7 +12,11 @@
         <% Group.all.each do |group| %>
         <a href="<%= category_path(group) %>" data-group-id="<%= group.id %>" class="sidebar-category <%= group.page_class %>">
           <div class="category-container">
+            <% if ((group.id == @question.try(:id)) || (group.id == @question.try(group_id))) %>
+            <div class="category-inner-container category-inner-container-active">
+            <% else %>
             <div class="category-inner-container">
+            <% end %>
               <%= image_tag("category-icons/#{group.label.sub("<br>", " ").html_safe}.png", class: "category-icon" ) %>
               <span class="category-title"><%= group.label.sub("<br>", " ").html_safe %></span>
             </div>
@@ -22,4 +26,4 @@
       </div>
     </div>
   </div>
-</aside>
+</div>
