@@ -11,8 +11,10 @@ class Location < ActiveRecord::Base
   geocoded_by :latitude, :longitude
   before_validation :geocode
 =end
+
   def country_obj
     # return the object!
+
     ISO3166::Country[country_code]
   end
 
