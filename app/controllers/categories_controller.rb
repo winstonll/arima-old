@@ -11,6 +11,7 @@ class CategoriesController < ApplicationController
 
     #check if this ip is in the db already
     if (User.find_by(ip_address: ip) == nil)
+      #live site
       if(ip != "127.0.0.1")
         #add ip to database
         @user = User.new(ip_address: ip)
@@ -21,6 +22,7 @@ class CategoriesController < ApplicationController
         ip_address: ip)
 
         @user.save
+      #localhost
       else
         @user = User.new(ip_address: ip)
         @user.build_location(
