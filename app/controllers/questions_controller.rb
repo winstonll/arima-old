@@ -42,10 +42,9 @@ class QuestionsController < ApplicationController
 
     #the logic works, just need to output the error message in the else statement.
       if @subquestion.valid?
-        #@subquestion.user_id = current_user.id
+        @subquestion.user_id = current_user.id
         redirect_to question_path(@subquestion)
       else
-        #redirect_to root_path
         redirect_to categories_path
         flash[:notice] = "This Question has already been asked!!!"
       end
