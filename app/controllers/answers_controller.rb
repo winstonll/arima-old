@@ -25,9 +25,9 @@ class AnswersController < ApplicationController
     @question = Question.friendly.find(params[:question_id])
 
     #create answer if user hasn't already submitted one for this question
-    #if (@user && @answer = @question.answers.where(user: @user).first).nil?
+    if (@user && @answer = @question.answers.where(user: @user).first).nil?
       @answer = @question.answers.build(params[:answer].permit(:value))
-      #@answer.user = @user
+      @answer.user = @user
 
       @answer.shared_twitter = false
       @answer.shared_facebook = false
@@ -37,7 +37,7 @@ class AnswersController < ApplicationController
         redirect_to question_path(@question)
       end
 
-    #end
+    end
 
     # if params[:answer].has_key? :from_modal
     # end
