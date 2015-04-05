@@ -8,7 +8,6 @@ class CategoriesController < ApplicationController
     #ip = request.remote_ip
     @result = request.location
     ip = @result.data["ip"]
-
     #check if this ip is in the db already
     if (User.find_by(ip_address: ip) == nil)
       #live site
@@ -23,6 +22,7 @@ class CategoriesController < ApplicationController
         ip_address: ip)
 
         @user.save
+        sign_in(:user, @user)
       #localhost
       else
         @user = User.new(ip_address: ip)
@@ -31,7 +31,11 @@ class CategoriesController < ApplicationController
         city: "Toronto",
         ip_address: ip)
         @user.save
+        sign_in(:user, @user)
       end
+    else
+      @user = User.find_by(ip_address: ip)
+      sign_in(:user, @user)
     end
 
     if @user
