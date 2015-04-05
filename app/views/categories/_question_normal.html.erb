@@ -5,25 +5,39 @@
 <% end -%>
 
   <div class="question-wrapper">
-    <p class="question-title"><%= question.label %></p>
 
-    <div class="question-dates">
-      <% if !answered %>
-        <div class="num-answers">
-          <%= "#{question.users.count} #{question.users.count == 1 ? 'person answered' : 'people answered'}" %>
-        </div>
-      <% end -%>
+    <div class="votes">
+      <div class="upvote">
+        <%= link_to image_tag('upvote_inactive.png'), :remote => true %>
+      </div>
+      <div class="counter">
+        <%= "#{question.votecount}" %>
+      </div>
+      <div class="downvote">
+        <%= link_to image_tag('downvote_inactive.png'), :remote => true %>
+      </div>
+    </div>
+    <div class="question-info">
+      <p class="question-title"><%= question.label %></p>
 
-      <% if answered %>
-        <div class="answered-when">
-          <p class="question-answered-date">
-            <%= "#{question.users.count} #{question.users.count == 1 ? 'person' : 'people'}" %> answered.
-            You answered
-              <% num_days = (Date.today - answer.updated_at.to_date).to_i %>
-              <%= num_days >= 1 ? (num_days > 1 ? "#{num_days} days ago" : "#{num_days} day ago") : "today" %>
-          </p>
-        </div>
-      <% end -%>
+      <div class="question-dates">
+        <% if !answered %>
+          <div class="num-answers">
+            <%= "#{question.users.count} #{question.users.count == 1 ? 'person answered' : 'people answered'}" %>
+          </div>
+        <% end -%>
+
+        <% if answered %>
+          <div class="answered-when">
+            <p class="question-answered-date">
+              <%= "#{question.users.count} #{question.users.count == 1 ? 'person' : 'people'}" %> answered.
+              You answered
+                <% num_days = (Date.today - answer.updated_at.to_date).to_i %>
+                <%= num_days >= 1 ? (num_days > 1 ? "#{num_days} days ago" : "#{num_days} day ago") : "today" %>
+            </p>
+          </div>
+        <% end -%>
+      </div>
     </div>
   </div>
 </a>
