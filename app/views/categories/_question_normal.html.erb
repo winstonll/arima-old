@@ -10,14 +10,14 @@
     <div class="question-dates">
       <% if !answered %>
         <div class="num-answers">
-          <%= "#{question.users.count} #{question.users.count == 1 ? 'person answered' : 'people answered'}" %>
+          <%= "#{question.answers.count} #{question.answers.count == 1 ? 'person answered' : 'people answered'}" %>
         </div>
       <% end -%>
 
       <% if answered %>
         <div class="answered-when">
           <p class="question-answered-date">
-            <%= "#{question.users.count} #{question.users.count == 1 ? 'person' : 'people'}" %> answered.
+            <%= "#{question.answers.count} #{question.answers.count == 1 ? 'person' : 'people'}" %> answered.
             You answered
               <% num_days = (Date.today - answer.updated_at.to_date).to_i %>
               <%= num_days >= 1 ? (num_days > 1 ? "#{num_days} days ago" : "#{num_days} day ago") : "today" %>
