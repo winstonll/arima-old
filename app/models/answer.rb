@@ -3,12 +3,12 @@ class Answer < ActiveRecord::Base
   belongs_to :user
   belongs_to :question
 
-  validates :user_id,     presence: true
-  validates :question_id, presence: true,
-                           uniqueness: {
-                            scope: :user_id,
-                            message: "Cannot submit duplicate answers"
-                           }
+  # validates :user_id,     presence: true
+  validates :question_id, presence: true
+                          # uniqueness: {
+                          #   scope: :user_id,
+                          #   message: "Cannot submit duplicate answers"
+                          # }
   validates :value,       presence: true
 
   # make sure the Question min_value matches
