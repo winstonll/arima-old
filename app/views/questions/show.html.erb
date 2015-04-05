@@ -7,18 +7,17 @@
         </div>
       </div>
         <div class="answer-prompt">
-        <% if user_signed_in? %>
-          <%= simple_form_for @answer, url: question_answers_path(@question, @answer), class: "form-inline", role: "form", html: {novalidate: false} do |f| %>
+          <%= simple_form_for Answer.new, url: question_answers_path(@question, @answer), class: "form-inline", role: "form", html: {novalidate: false} do |f| %>
             <div class="form-group">
               <% if @question.input_type == "measurement" %>
                 <section class="question-dual-input">
-                  <%= f.input(:value, label: false, pattern: "\d*", placeholder: @user_units["large_unit"]) %>
-                  <%= f.input(:value, label: false, pattern: "\d*", placeholder: @user_units["small_unit"]) %>
+                  <%#= f.input(:value, label: false, pattern: "\d*", placeholder: @user_units["large_unit"]) %>
+                  <%#= f.input(:value, label: false, pattern: "\d*", placeholder: @user_units["small_unit"]) %>
                 </section>
               <% elsif @question.input_type == "collection" %>
                 <%= f.input(:value, label: false, prompt: "Select one...", collection: @question.options_array, input_html: { class: "questions-page-input form-control input-lg"}) %>
               <% else %>
-                <%= f.input(:value, label: false, placeholder: @question.placeholder(@user),
+                <%= f.input(:value, label: false, placeholder: @question,
                              as: @question.input_type.try(:to_sym),
                              input_html: {
                                class: "questions-page-input form-control input-lg",
@@ -34,14 +33,13 @@
             </div>
           <% end %>
         </div>
-        <% end %>
       </div>
     </div>
   <div id="answer-info">
-    <%# if !user_signed_in? %>
-      <%#= render partial: 'questions/unanswered_report', locals: { question: @question } %>
-    <%# end %>
-    <% if !@user_submitted_answer %>
+    <% if !user_signed_in? %>
+      <%= render partial: 'questions/unanswered_report', locals: { question: @question } %>
+    <% end %>
+    <% if user_signed_in? && !@user_submitted_answer %>
       <div class="no-answer-container">
         <p class="no-answer-prompt">Answer the question to view your personalized report</p>
       </div>
