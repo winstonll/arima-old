@@ -51,4 +51,15 @@ class QuestionsController < ApplicationController
       end
   end
 
+  def upvote
+    @question = Question.friendly.find(params[:id])
+    @question.update_attribute(votecount, votecount + 1)
+    @question.save
+  end
+
+  def downvote
+    @question = Question.friendly.find(params[:id])
+    @question.update_attribute(votecount, votecount - 1)
+    @question.save
+  end
 end
