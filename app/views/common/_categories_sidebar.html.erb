@@ -1,10 +1,16 @@
 <div id="questions-sidebar" class="sidebar expanded">
   <div class="tse-scrollable">
     <div class="tse-content">
+
       <div id="sidebar-mobile-close-toggle">Close sidebar</div>
 
       <div class="sidebar-title">
-        <%= link_to image_tag("logo-grey.png"), categories_path %>
+        <%= link_to image_tag("logo-icon-large.png"), categories_path %>
+      </div>
+
+      <div class="submit-question-container">
+        <a id="submit-question-link" href="#" data-toggle="modal" data-target="#submitQuestionModal">Ask a Question</a>
+        <hr>
       </div>
 
       <!-- Categories -->
@@ -23,6 +29,31 @@
           </div>
         </a>
         <% end %>
+      </div>
+
+      <!-- Footer -->
+      <div class="sidebar-footer">
+        <div class="sidebar-footer-sections">
+          <ul class="sidebar-footer-list">
+            <li><a href="/about">About Us</a> &sdot;</li>
+            <li><a href="/faq">FAQ</a> &sdot;</li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="http://medium.com/@arima_io">Blog</a></li>
+          </ul>
+        </div>
+        <div class="sidebar-footer-sections">
+          <ul class="sidebar-footer-list">
+            <li><a href="/terms">Terms &amp; Conditions</a>&sdot;</li>
+            <li><a href="/privacy">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <div class="sidebar-footer-sections">
+          <ul class="sidebar-footer-list">
+            <li><a href="https://www.facebook.com/friendsofarima"><%= image_tag("fb-grey-logo.png", :class => "sidebar-footer-social-img") %></a></li>
+            <li><a href="https://twitter.com/arima_io"><%= image_tag("twitter-grey-logo.png", :class => "sidebar-footer-social-img") %></a></li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>

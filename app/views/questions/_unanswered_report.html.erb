@@ -4,7 +4,7 @@
 </div>
 
 <div class="share-answer">
-  <div class="share-answer-text">Share this question! Better yet, <%= link_to 'Sign Up', new_registration_path(resource_name), id: "share-signup-btn" %> and gain 5 points at the same time!</div>
+  <div class="share-answer-text">Share this question</div>
   <%= render partial: "questions/share", locals: {
             id: question.id,
             url: "#{request.protocol}#{request.host_with_port}" + question_path(question),

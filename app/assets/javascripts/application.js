@@ -71,9 +71,6 @@ $(document).ready(function() {
     }
   });
 
-  // client side validations
-  // $('form').scrupulous();
-
   // toggle most popular and most recent buttons
   $(".most-popular").click(function() {
     $(this).addClass("active");
