@@ -16,7 +16,7 @@ class CategoriesController < ApplicationController
         @user = User.new(ip_address: ip)
 
         @user.build_location(
-        zip_code: @result.data["zipcode"],
+        #zip_code: @result.data["zipcode"],
         country_code: @result.data["country_code"],
         city: @result.data["city"],
         ip_address: ip)
