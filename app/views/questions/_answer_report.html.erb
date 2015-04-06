@@ -27,7 +27,7 @@
 </div>
 
 <div class="share-answer">
-  <div class="share-answer-text">Share this answer to gain 5 points!</div>
+  <div class="share-answer-text">Share this question</div>
   <%= render partial: "questions/share", locals: {
             id: question.id,
             url: "#{request.protocol}#{request.host_with_port}" + question_path(question),
