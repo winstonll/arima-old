@@ -4,6 +4,7 @@ class QuestionsController < ApplicationController
   layout "application_fluid"
 
   def show
+    check_guest()
     @countries = Location.select(:country_code).distinct.collect { |loc| loc.country_name }
     @question = Question.friendly.find(params[:id])
     if @user
