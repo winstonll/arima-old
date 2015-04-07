@@ -4,9 +4,20 @@ class QuestionsController < ApplicationController
   layout "application_fluid"
 
   def show
-    check_guest()
-    @countries = Location.select(:country_code).distinct.collect { |loc| loc.country_name }
+    #@countries = Location.select(:country_code).distinct.collect { |loc| loc.country_name }
+
     @question = Question.friendly.find(params[:id])
+    @users_list = Array.new
+      Answer.where(question_id: @question.id).find_each do |user|
+        @users_list << user.user_id
+      end
+
+    @countries_answered = Array.new
+      @users_list.count.times do |user|
+        @countries_answered << Location.where(user_id: @users_list[user])
+      end
+
+    check_guest()
     if @user
       @answer = @question.answers.where(user_id: @user.id).first
       if @answer.nil?

@@ -29,6 +29,7 @@ class ApplicationController < ActionController::Base
 
         @user.build_location(
         #zip_code: @result.data["zipcode"],
+        province: request.location.try(:state),
         country_code: @result.data["country_code"],
         city: request.location.try(:city), #try this code for city @result.data["city"]
         ip_address: ip)
@@ -39,6 +40,7 @@ class ApplicationController < ActionController::Base
       else
         @user = User.new(ip_address: ip)
         @user.build_location(
+        province: "Ontario",
         country_code: "CA",
         city: "Toronto",
         ip_address: ip)
