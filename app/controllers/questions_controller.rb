@@ -4,6 +4,10 @@ class QuestionsController < ApplicationController
   layout "application_fluid"
 
   def show
+
+    
+    #@countries = Location.select(:country_code).distinct.collect { |loc| loc.country_name }
+
     @question = Question.friendly.find(params[:id])
     @users_list = Array.new
       Answer.where(question_id: @question.id).find_each do |user|
