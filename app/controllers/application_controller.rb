@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
         @user.build_location(
         #zip_code: @result.data["zipcode"],
         country_code: @result.data["country_code"],
-        city: @result.data["city"], #try this code for city 'request.location.try(:city)''
+        city: request.location.try(:city), #try this code for city @result.data["city"]
         ip_address: ip)
 
         @user.save
