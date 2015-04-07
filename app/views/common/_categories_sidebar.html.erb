@@ -1,34 +1,36 @@
 <div id="questions-sidebar" class="sidebar expanded">
   <div class="tse-scrollable">
     <div class="tse-content">
+      <div class="sidebar-wrapper">
+        <div id="sidebar-mobile-close-toggle">Close sidebar</div>
 
-      <div id="sidebar-mobile-close-toggle">Close sidebar</div>
+        <div class="sidebar-title">
+          <%= link_to image_tag("logo-icon-large.png"), categories_path %>
+        </div>
 
-      <div class="sidebar-title">
-        <%= link_to image_tag("logo-icon-large.png"), categories_path %>
-      </div>
+        <div class="submit-question-container">
+          <a id="submit-question-link" href="#" data-toggle="modal" data-target="#submitQuestionModal">Ask a Question</a>
+          <hr>
+        </div>
 
-      <div class="submit-question-container">
-        <a id="submit-question-link" href="#" data-toggle="modal" data-target="#submitQuestionModal">Ask a Question</a>
-        <hr>
-      </div>
-
-      <!-- Categories -->
-      <div class="sidebar-categories">
-        <% Group.all.each do |group| %>
-        <a href="<%= category_path(group) %>" data-group-id="<%= group.id %>" class="sidebar-category <%= group.page_class %>">
-          <div class="category-container">
-            <% if ((group.id == @question.try(:id)) || (group.id == @question.try(:group_id))) %>
-            <div class="category-inner-container category-inner-container-active">
-            <% else %>
-            <div class="category-inner-container">
-            <% end %>
-              <%= image_tag("category-icons/#{group.label.sub("<br>", " ").html_safe}.png", class: "category-icon" ) %>
-              <span class="category-title"><%= group.label.sub("<br>", " ").html_safe %></span>
+        <!-- Categories -->
+        <div class="sidebar-categories">
+          <% Group.all.each do |group| %>
+          <a href="<%= category_path(group) %>" data-group-id="<%= group.id %>" class="sidebar-category <%= group.page_class %>">
+            <div class="category-container">
+              <% if ((group.id == @question.try(:id)) || (group.id == @question.try(:group_id))) %>
+              <div class="category-inner-container category-inner-container-active">
+              <% else %>
+              <div class="category-inner-container">
+              <% end %>
+                <%= image_tag("category-icons/#{group.label.sub("<br>", " ").html_safe}.png", class: "category-icon" ) %>
+                <span class="category-title"><%= group.label.sub("<br>", " ").html_safe %></span>
+              </div>
             </div>
-          </div>
-        </a>
-        <% end %>
+          </a>
+          <% end %>
+          <div class="sidebar-footer-push"></div>
+        </div>
       </div>
 
       <!-- Footer -->

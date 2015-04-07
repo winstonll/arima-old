@@ -5,7 +5,6 @@
   text-align: center;
   overflow-y: hidden;
   float: left;
-  margin: 0 auto -155px;
   margin-left: 0;
   margin-right: 0;
   position: fixed;
@@ -13,6 +12,11 @@
   bottom: 0;
   left: 0;
   z-index: 3;
+
+  .sidebar-wrapper {
+    min-height: 100%;
+    margin: 0 auto -155px;
+  }
 }
 
 .sidebar-title {
@@ -36,7 +40,7 @@
     padding: 0.5em 1.5em 0.5em 1.5em;
     background-color: #56A1F8;
     border-radius: 5px;
-    box-shadow: 2px 2px 2px rgba(0,0,0,0.25);
+    box-shadow: 2px 2px 1px rgba(0,0,0,0.35);
     -webkit-transition: all 150ms linear;
 
     &:hover {
@@ -73,6 +77,10 @@
 
 .sidebar-categories {
   padding-bottom: 15px;
+
+  .sidebar-footer-push {
+    height: 155px;
+  }
 
   .category-container {
     white-space: nowrap;
@@ -119,7 +127,7 @@
 }
 
 .sidebar-footer {
-  height: 155px;
+
   width: 100%;
   padding: 10px;
   color: #A09E9E;

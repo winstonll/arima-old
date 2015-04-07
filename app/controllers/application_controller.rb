@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+  helper_method :check_guest
 
   before_filter :visible_groups, :other_groups
   after_filter :store_location
@@ -13,6 +14,41 @@ class ApplicationController < ActionController::Base
 
   def other_groups
     @other_groups ||= Group.other_groups(visible_groups)
+  end
+
+  def check_guest
+    #ip = request.remote_ip
+    @result = request.location
+    ip = @result.data["ip"]
+    #check if this ip is in the db already
+    if (User.find_by(ip_address: ip) == nil)
+      #live site
+      if(ip != "127.0.0.1")
+        #add ip to database
+        @user = User.new(ip_address: ip)
+
+        @user.build_location(
+        #zip_code: @result.data["zipcode"],
+        country_code: @result.data["country_code"],
+        city: request.location.try(:city), #try this code for city @result.data["city"]
+        ip_address: ip)
+
+        @user.save
+        sign_in(:user, @user)
+      #localhost
+      else
+        @user = User.new(ip_address: ip)
+        @user.build_location(
+        country_code: "CA",
+        city: "Toronto",
+        ip_address: ip)
+        @user.save
+        sign_in(:user, @user)
+      end
+    else
+      @user = User.find_by(ip_address: ip)
+      sign_in(:user, @user)
+    end
   end
 
   protected
