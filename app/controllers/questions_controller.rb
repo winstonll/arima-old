@@ -8,16 +8,25 @@ class QuestionsController < ApplicationController
 
     @question = Question.friendly.find(params[:id])
 
+    #extracting all of the users that answered this question
     @users_list = Array.new
       Answer.where(question_id: @question.id).find_each do |user|
       @users_list << user.user_id
     end
 
+    #extracting all of the countries that answered the question
     @countries_answered = Array.new
     @users_list.count.times do |user|
       @countries_answered << Location.where(user_id: @users_list[user]).pluck(:country_code)
     end
 
+    #@countries_answered is an array in an array, extracting the value inside of the inner array and recreating the array.
+    @revised_answered = Array.new
+    @countries_answered.count.times do |country|
+      @revised_answered << @countries_answered[country][0]
+    end
+
+asda
     check_guest()
     if @user
       @answer = @question.answers.where(user_id: @user.id).first
