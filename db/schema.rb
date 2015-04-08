@@ -79,10 +79,6 @@ ActiveRecord::Schema.define(version: 20150405152412) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.string   "country_code"
-    t.float    "latitude"
-    t.float    "longitude"
-    t.string   "ip_address"
-    t.string   "zip_code"
   end
 
   add_index "locations", ["city"], name: "index_locations_on_city", using: :btree
@@ -99,6 +95,7 @@ ActiveRecord::Schema.define(version: 20150405152412) do
     t.string   "category"
     t.integer  "user_id"
     t.integer  "group_id"
+    t.integer  "votecount",              default: 0
   end
 
   create_table "sessions", force: true do |t|
@@ -150,16 +147,17 @@ ActiveRecord::Schema.define(version: 20150405152412) do
     t.date     "daily_score_award_date"
     t.string   "gender"
     t.string   "username"
+    t.date     "dob"
     t.string   "password_reset_token"
     t.boolean  "subscribed_to_blog",     default: false
+    t.datetime "share_fact_date"
     t.string   "referral_code"
     t.datetime "last_emailed_at"
     t.integer  "birthyear"
-    t.datetime "share_fact_date"
-    t.date     "dob"
-    t.string   "ip_address"
   end
 
+  add_index "users", ["dob"], name: "index_users_on_dob", using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
