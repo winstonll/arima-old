@@ -26,7 +26,6 @@ class QuestionsController < ApplicationController
       @revised_answered << @countries_answered[country][0]
     end
 
-asda
     check_guest()
     if @user
       @answer = @question.answers.where(user_id: @user.id).first
