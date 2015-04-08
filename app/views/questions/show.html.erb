@@ -1,3 +1,37 @@
+<script>
+$(document).ready(function() {
+    // $('.answer-prompt form-inline').keyup(function() {
+    //     var empty = false;
+    //     $('.answer-prompt form-inline').each(function() {
+    //         if ($(this).val().length == 0) {
+    //             empty = true;
+    //         }
+    //     });
+
+    //     if (empty) {
+    //         $('.modal-button').attr('disabled', 'disabled');
+    //     } else {
+    //         $('.modal-button').removeAttr('disabled');
+    //     }
+    // });
+      $('#answer_value').keyup(function() {
+          var empty = true;
+            $('value').each(function() {
+              if($(this).val() !== "Select one...") {
+                empty = false;
+              }
+            });
+
+        if (empty) {
+            $('.modal-button').attr('disabled', 'disabled');
+        } else {
+            $('.modal-button').removeAttr('disabled');
+        }
+    });
+
+</script>
+
+
 <div class="main-site-container" id="question-page-container">
   <div id="question-card-container">
     <div class="question-container question-container-<%= @question.group_id %>">
@@ -26,9 +60,9 @@
                                min: @question.min_value
                              }) %>
               <% end %>
-              <div class="modal-save-wrapper text-center">
+              <div class="modal-save-wrapper text-center" id="answer-button">
                 <% if !@user_submitted_answer %>
-                  <%= f.submit "Answer", class: "modal-button" %>
+                  <%= f.submit "Answer", class: "modal-button", data: {disable_with: "Submitting..."} %>
                 <% end %>
               </div>
             </div>
