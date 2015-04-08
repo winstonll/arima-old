@@ -4,9 +4,10 @@ class QuestionsController < ApplicationController
   layout "application_fluid"
 
   def show
-    #@countries = Location.select(:country_code).distinct.collect { |loc| loc.country_name }
+    #@countries = Location.where(country_code:).distinct.collect { |loc| loc.country_name }
 
     @question = Question.friendly.find(params[:id])
+    @answers = Answer.where(question_id: @question.id).count
 
     #extracting all of the users that answered this question
     @users_list = Array.new
