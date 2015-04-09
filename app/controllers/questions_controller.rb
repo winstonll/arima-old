@@ -27,6 +27,16 @@ class QuestionsController < ApplicationController
       @revised_answered << @countries_answered[country][0]
     end
 
+    @country_hash = Hash.new
+    @revised_answered.count.times do |index|
+      if (@country_hash[@revised_answered[index]] == nil)
+        @country_hash = {@revised_answered[index] => 1}
+      else
+        @country_hash = {@revised_answered[index] => @country_hash[@revised_answered[index]] + 1}
+      end
+    end
+
+
     check_guest()
     if @user
       @answer = @question.answers.where(user_id: @user.id).first
