@@ -19,7 +19,7 @@ class CategoriesController < ApplicationController
     @question = Group.friendly.find(params[:id])
 
     # Show recent questions by default
-    @all = @question.questions.order(created_at: :desc).page(params[:page]).per(7)
+    @all = @question.questions.order(created_at: :desc)
 
     # all questions answered by the user
     if @user
@@ -41,7 +41,8 @@ class CategoriesController < ApplicationController
     @questions_hash = @questions_hash.sort_by { |question, count| count }.reverse
 
     @all_popular_questions = Hash[@questions_hash.map {|question, count| [question, count]}]
-    @all_popular_questions.keys
+    @all = @all_popular_questions.keys
+    # @all = Kaminari.paginate_array(@all_popular_questions.keys).page(params[:page]).per(7)
 
     # all questions answered by the user
     if @user
@@ -58,7 +59,7 @@ class CategoriesController < ApplicationController
   def show_recent
     @question = Group.friendly.find(params[:id])
 
-    @all = @question.questions.order(created_at: :desc).page(params[:page]).per(7)
+    @all = @question.questions.order(created_at: :desc)
 
     # all questions answered by the user
     if @user

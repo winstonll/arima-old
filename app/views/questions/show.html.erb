@@ -1,32 +1,8 @@
 <script>
 $(document).ready(function() {
-    // $('.answer-prompt form-inline').keyup(function() {
-    //     var empty = false;
-    //     $('.answer-prompt form-inline').each(function() {
-    //         if ($(this).val().length == 0) {
-    //             empty = true;
-    //         }
-    //     });
-
-    //     if (empty) {
-    //         $('.modal-button').attr('disabled', 'disabled');
-    //     } else {
-    //         $('.modal-button').removeAttr('disabled');
-    //     }
-    // });
-      $('#answer_value').keyup(function() {
-          var empty = true;
-            $('value').each(function() {
-              if($(this).val() !== "Select one...") {
-                empty = false;
-              }
-            });
-
-        if (empty) {
-            $('.modal-button').attr('disabled', 'disabled');
-        } else {
-            $('.modal-button').removeAttr('disabled');
-        }
+      $('#answer_value').one('change', function() {
+        $('.modal-button').prop('disabled', false);
+      });
     });
 
 </script>
@@ -62,7 +38,7 @@ $(document).ready(function() {
               <% end %>
               <div class="modal-save-wrapper text-center" id="answer-button">
                 <% if !@user_submitted_answer %>
-                  <%= f.submit "Answer", class: "modal-button", data: {disable_with: "Submitting..."} %>
+                  <%= f.submit "Answer", class: "modal-button", disabled: true, data: {disable_with: "Submitting..."} %>
                 <% end %>
               </div>
             </div>

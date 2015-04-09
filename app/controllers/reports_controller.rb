@@ -17,7 +17,8 @@ class ReportsController < ApplicationController
     render plain: 'not found' and return unless answer
 
     # check duplicates in the answers controller
-    city = answer.user.location.city if answer.user.location.city.present?
+    #city = answer.user.location.city if answer.user.location.city.present?
+    city = answer.user.location.city.present? ? answer.user.location.city : nil
     country = answer.user.location.country if answer.user.location.country.present?
     # for the view
     @image = "#{request.protocol}#{request.host_with_port}#{answer_thumb_path(params[:answer_id])}"
@@ -26,12 +27,12 @@ class ReportsController < ApplicationController
     @url = answer_url(@answer.id)
 
     #This is to create custom views for a report
-    if user_signed_in? 
+    if user_signed_in?
       render template: "reports/index" and return
-    else 
+    else
       render template: "reports/shared_report" and return
     end
-  
+
   end
 
   private
