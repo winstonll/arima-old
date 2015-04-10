@@ -60,6 +60,7 @@ $(document).ready(function() {
     <% end %>
   </div>
 
+  <p class="next-question-label">Here's Another Question</p>
   <%# @random_question = Question.limit(1).order ("RANDOM()")%>
   <% @random_question = Question.where(:group_id => @question.group_id).order("RANDOM()").first %>
   <% @random_label = @random_question.label%>

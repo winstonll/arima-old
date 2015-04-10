@@ -170,15 +170,23 @@ body {
     }
   }
 
+  .next-question-label{
+    padding-top: 1em;
+    text-align: center;
+    font-family: open sans;
+    color: #00c39c;
+  }
+
   .next-question {
-    border-radius: 20px;
+    border-radius: 8px;
     border: 2px solid #DCDCDC;
     padding: 20px;
-    width: 600px;
-    height: 100px;
+    width: intrinsic;
+    width: -moz-max-content;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+    font-family: open sans;
   }
 
   .answer-prompt {
