@@ -16,7 +16,7 @@ class QuestionsController < ApplicationController
     end
 
     #extracting all of the countries that answered the question
-    @countries_answered = Array.new
+    @countries_answered = Array.new.country_name
     @users_list.count.times do |user|
       @countries_answered << Location.where(user_id: @users_list[user]).pluck(:country_code)#so i was thinking of something like country_name here
     end
