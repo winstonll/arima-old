@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
   layout "application_fluid"
 
   def show
-    @countries = Location.select(:country_code).distinct.collect { |loc| loc.country_code }
+    #@countries = Location.select(:country_code).distinct.collect { |loc| loc.country_code }
 
     @question = Question.friendly.find(params[:id])
     @answers = Answer.where(question_id: @question.id).count
@@ -16,7 +16,7 @@ class QuestionsController < ApplicationController
     end
 
     #extracting all of the countries that answered the question
-    @countries_answered = Array.new.country_name
+    @countries_answered = Array.new
     @users_list.count.times do |user|
       @countries_answered << Location.where(user_id: @users_list[user]).pluck(:country)
     end
