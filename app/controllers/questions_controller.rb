@@ -38,7 +38,7 @@ class QuestionsController < ApplicationController
 
     @dropdown_array = Array.new
     @country_hash.each do |key, value|
-      @dropdown_array << key + " " + "(" + value.to_s + ")"
+      @dropdown_array << key + " " + "(" + value.to_s + " answered" + ")"
     end
 
     check_guest()
