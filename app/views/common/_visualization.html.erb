@@ -12,6 +12,9 @@
       <li class="report-location">
         <a class="country" data-toggle="pill" href="javascript:void()">
         <%= select_tag 'country-filter', options_for_select(@country_hash, params[@country_hash]), { prompt: "Country", class: "filter-location-select"} %>
+          
+        <%= select_tag 'country-filter', options_for_select(@countries, params[:country_type]), { prompt: "Country", class: "filter-location-select"} %>
+
           <%#= answer.user.location.country %>
         </a>
       </li>
