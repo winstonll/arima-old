@@ -170,6 +170,17 @@ body {
     }
   }
 
+  .next-question {
+    border-radius: 20px;
+    border: 2px solid #DCDCDC;
+    padding: 20px;
+    width: 600px;
+    height: 75px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .answer-prompt {
     .form-inline {
       select {
@@ -285,7 +296,7 @@ body {
     .c3-tooltip tr td{
       color: #555;
     }
-    
+
   }
 
   .report-container {
@@ -294,7 +305,7 @@ body {
     text-align: center;
 
     #answer-chart{
-      height: 475px;    
+      height: 475px;
       svg{
         display: inline;
         margin: 0 auto;
