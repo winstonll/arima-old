@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
   layout "application_fluid"
 
   def show
-    @countries = Location.select(:country_code).distinct.collect { |loc| loc.country_code }
+    #@countries = Location.select(:country_code).distinct.collect { |loc| loc.country_code }
 
     @question = Question.friendly.find(params[:id])
     @answers = Answer.where(question_id: @question.id).count
