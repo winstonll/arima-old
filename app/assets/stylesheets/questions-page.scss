@@ -11,6 +11,8 @@ body {
     margin-top: 2em;
     margin-bottom: 2em;
     text-align: center;
+    position: relative;
+    top: 40px;
   }
 
   #question-card-container {
@@ -170,6 +172,24 @@ body {
     }
   }
 
+  .next-question-label{
+    padding-top: 1em;
+    text-align: center;
+    font-family: open sans;
+    color: #00c39c;
+  }
+
+  .next-question {
+    border-radius: 8px;
+    border: 2px solid #DCDCDC;
+    padding: 10px;
+    width: intrinsic;
+    width: -moz-max-content;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: open sans;
+  }
+
   .answer-prompt {
     .form-inline {
       select {
@@ -285,7 +305,7 @@ body {
     .c3-tooltip tr td{
       color: #555;
     }
-    
+
   }
 
   .report-container {
@@ -294,7 +314,7 @@ body {
     text-align: center;
 
     #answer-chart{
-      height: 475px;    
+      height: 475px;
       svg{
         display: inline;
         margin: 0 auto;
@@ -310,6 +330,8 @@ body {
   }
 
   .share-answer {
+    position: relative;
+    top: -40px;
     margin-bottom: 20px;
     text-align: center;
 

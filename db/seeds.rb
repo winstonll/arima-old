@@ -79,7 +79,8 @@ user = User.create!(
   gender: "M",
   birthyear: Time.now - 20.years,
   location_attributes: {
-    country_code: "CA"
+    country_code: "CA",
+    country: "Canada"
   })
 
 # Create the categories

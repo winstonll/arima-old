@@ -1,6 +1,6 @@
 <script>
 $(document).ready(function() {
-      $('#answer_value').one('change', function() {
+      $('#answer_value').on('input', function() {
         $('.modal-button').prop('disabled', false);
       });
     });
@@ -58,6 +58,20 @@ $(document).ready(function() {
     <% elsif @user_submitted_answer %>
       <%= render partial: 'questions/answer_report', locals: { question: @question, answer: @answer} %>
     <% end %>
+  </div>
+
+  <p class="next-question-label">Here's Another Question</p>
+  <%# @random_question = Question.limit(1).order ("RANDOM()")%>
+  <% @random_question = Question.where(:group_id => @question.group_id).order("RANDOM()").first %>
+  <% @random_label = @random_question.label%>
+  <div class="next-question">
+    <p class="question-label">
+      <a href="<%= question_path(@random_question) %>" title="<%= @random_label %>" class="question-link">
+      <%= raw(@random_label) %>
+      <div class="num-answers">
+        <%= "#{@random_question.answers.count} #{@random_question.answers.count == 1 ? 'person answered' : 'people answered'}" %>
+      </div>
+     </p>
   </div>
 
   <div id="comment-section">
