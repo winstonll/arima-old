@@ -67,6 +67,9 @@ $(document).ready(function() {
     <p class="question-label">
       <a href="<%= question_path(@random_question) %>" title="<%= @random_label %>" class="question-link">
       <%= raw(@random_label) %>
+      <div class="num-answers">
+        <%= "#{@random_question.answers.count} #{@random_question.answers.count == 1 ? 'person answered' : 'people answered'}" %>
+      </div>
      </p>
   </div>
 
