@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
   layout "application_fluid"
 
   def show
-    @countries = Location.select(:country_code).distinct.collect { |loc| loc.country_name }
+    @countries = Location.select(:country_code).distinct.collect { |loc| loc.country_name } #this is where country_name is being used
 
     @question = Question.friendly.find(params[:id])
     @answers = Answer.where(question_id: @question.id).count
@@ -18,7 +18,7 @@ class QuestionsController < ApplicationController
     #extracting all of the countries that answered the question
     @countries_answered = Array.new
     @users_list.count.times do |user|
-      @countries_answered << Location.where(user_id: @users_list[user]).pluck(:country)
+      @countries_answered << Location.where(user_id: @users_list[user]).pluck(:country_code)#so i was thinking of something like country_name here
     end
 
     #@countries_answered is an array in an array, extracting the value inside of the inner array and recreating the array.
