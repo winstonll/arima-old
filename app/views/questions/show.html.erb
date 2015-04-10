@@ -60,15 +60,15 @@ $(document).ready(function() {
     <% end %>
   </div>
 
-  <%# @random_question = Question.limit(1).order ("RANDOM()")%>
-  <% @random_question = Question.where(:group_id => @question.group_id).order("RANDOM()").first %>
-  <% @random_label = @random_question.label%>
-  <div class="next-question">
-    <p class="question-label">
-      <a href="<%= question_path(@random_question) %>" title="<%= @random_label %>" class="question-link">
-      <%= raw(@random_label) %>
-     </p>
-  </div>
+  <%= form_for Question.new do |f|%>
+    <% @random_question = Question.limit(1).order("RANDOM()") %>
+    <% @random_label = @random_question[0].label%>
+    <div class="next-question">
+      <p class="question-label">
+        <%= raw(@random_label) %>
+      </p>
+    </div>
+  <% end %>
 
   <div id="comment-section">
     <div id="fb-root"></div>
