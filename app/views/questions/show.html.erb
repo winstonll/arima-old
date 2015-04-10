@@ -60,6 +60,16 @@ $(document).ready(function() {
     <% end %>
   </div>
 
+  <%= form_for Question.new do |f|%>
+    <% @random_question = Question.limit(1).order("RANDOM()") %>
+    <% @random_label = @random_question[0].label%>
+    <div class="next-question">
+      <p class="question-label">
+        <%= raw(@random_label) %>
+      </p>
+    </div>
+  <% end %>
+
   <div id="comment-section">
     <div id="fb-root"></div>
 

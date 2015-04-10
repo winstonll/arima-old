@@ -4,18 +4,42 @@ class QuestionsController < ApplicationController
   layout "application_fluid"
 
   def show
-    #@countries = Location.select(:country_code).distinct.collect { |loc| loc.country_name }
+    @countries = Location.select(:country_code).distinct.collect { |loc| loc.country_code }
 
     @question = Question.friendly.find(params[:id])
+    @answers = Answer.where(question_id: @question.id).count
+
+    #extracting all of the users that answered this question
     @users_list = Array.new
       Answer.where(question_id: @question.id).find_each do |user|
-        @users_list << user.user_id
-      end
+      @users_list << user.user_id
+    end
 
+    #extracting all of the countries that answered the question
     @countries_answered = Array.new
-      @users_list.count.times do |user|
-        @countries_answered << Location.where(user_id: @users_list[user])
+    @users_list.count.times do |user|
+      @countries_answered << Location.where(user_id: @users_list[user]).pluck(:country)
+    end
+
+    #@countries_answered is an array in an array, extracting the value inside of the inner array and recreating the array.
+    @revised_answered = Array.new
+    @countries_answered.count.times do |country|
+      @revised_answered << @countries_answered[country][0]
+    end
+
+    @country_hash = Hash.new
+    @revised_answered.count.times do |index|
+      if (@country_hash[@revised_answered[index]] == nil)
+        @country_hash = {@revised_answered[index] => 1}
+      else
+        @country_hash = {@revised_answered[index] => @country_hash[@revised_answered[index]] + 1}
       end
+    end
+
+    @dropdown_array = Array.new
+    @country_hash.each do |key, value|
+      @dropdown_array << key + " " + "(" + value.to_s + " answered" + ")"
+    end
 
     check_guest()
     if @user
