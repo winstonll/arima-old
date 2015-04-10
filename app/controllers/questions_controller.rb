@@ -5,7 +5,7 @@ class QuestionsController < ApplicationController
 
   def show
     @countries = Location.select(:country_code).distinct.collect { |loc| loc.country_code }
-    
+
     @question = Question.friendly.find(params[:id])
     @answers = Answer.where(question_id: @question.id).count
 
@@ -36,6 +36,10 @@ class QuestionsController < ApplicationController
       end
     end
 
+    @dropdown_array = Array.new
+    @country_hash.each do |key, value|
+      @dropdown_array << key + " " + "(" + value.to_s + ")"
+    end
 
     check_guest()
     if @user
