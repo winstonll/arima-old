@@ -11,7 +11,8 @@
       <% if has_country %>
       <li class="report-location">
         <a class="country" data-toggle="pill" href="javascript:void()">
-        <%= select_tag 'country-filter', options_for_select(@dropdown_array, params[@dropdown_array]), { prompt: "Country", class: "filter-location-select"} %>
+        <%= answer.user.location.country %>
+        <%#= select_tag 'country-filter', options_for_select(@dropdown_array, params[@dropdown_array]), { prompt: "Country", class: "filter-location-select"} %>
         <%#= select_tag 'country-filter', options_for_select(@countries, params[:country_type]), { prompt: "Country", class: "filter-location-select"} %>
 
           <%#= answer.user.location.country %>
