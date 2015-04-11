@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
 
         @user.build_location(
         #zip_code: @result.data["zipcode"],
-        continent: c.subregion,
+        continent: @user_country.subregion,
         province: request.location.try(:state),
         country_code: @result.data["country_code"],
         country: request.location.try(:country_name),
