@@ -16,6 +16,14 @@ class ApplicationController < ActionController::Base
     @other_groups ||= Group.other_groups(visible_groups)
   end
 
+  def update_nil_country
+    @location_update = Location.where(country: nil)
+    @location_update.each do |index|
+      @extracted_country = Country.new(index.country_code).name
+      Location.update(index.id, :country => @extracted_country)
+    end
+  end
+
   def check_guest
     #ip = request.remote_ip
     @result = request.location
