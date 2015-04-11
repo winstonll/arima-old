@@ -18,7 +18,7 @@ class QuestionsController < ApplicationController
     #extracting all of the countries that answered the question
     @countries_answered = Array.new
     @users_list.count.times do |user|
-      @countries_answered << Location.where(user_id: @users_list[user]).pluck(:country)
+      @countries_answered << Location.where(user_id: @users_list[user]).pluck(:country_code)
     end
 
     #@countries_answered is an array in an array, extracting the value inside of the inner array and recreating the array.
