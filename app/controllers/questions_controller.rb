@@ -38,7 +38,7 @@ class QuestionsController < ApplicationController
 
     @dropdown_array = Array.new
     @country_hash.each do |key, value|
-      if (key != nil)
+      if (key != nil && value != nil)
         @dropdown_array << key + " " + "(" + value.to_s + " answered" + ")"
       end
     end
