@@ -26,10 +26,11 @@ class ApplicationController < ActionController::Base
       if(ip != "127.0.0.1")
         #add ip to database
         @user = User.new(ip_address: ip)
+        @user_country = Country.new(@result.data["country_code"])
 
         @user.build_location(
         #zip_code: @result.data["zipcode"],
-        continent: request.location.try(:region_name),
+        continent: c.subregion,
         province: request.location.try(:state),
         country_code: @result.data["country_code"],
         country: request.location.try(:country_name),
