@@ -11,8 +11,10 @@
       <% if has_country %>
       <li class="report-location">
         <a class="country" data-toggle="pill" href="javascript:void()">
+        <%= select_tag 'country-filter', options_for_select(@dropdown_array, params[@dropdown_array]), { prompt: "Country", class: "filter-location-select"} %>
         <%#= select_tag 'country-filter', options_for_select(@countries, params[:country_type]), { prompt: "Country", class: "filter-location-select"} %>
-          <%= answer.user.location.country %>
+
+          <%#= answer.user.location.country %>
         </a>
       </li>
       <% end %>
@@ -45,15 +47,12 @@
   var chart_answer = c3.generate({
     bindto: '#answer-chart',
     <% unless defined?(from_show_view) %>
-      size: { width: 500 },
+      size: { width: 450 },
     <% end %>
     data: {
       x: data_answer.collection ? null : 'x',
       columns: transform_data_answer(data_answer.selected),
       type: data_answer.collection ? 'donut' : 'bar'
-    },
-     legend: {
-        position: 'block',
     },
     axis: {
       x: {
