@@ -1,7 +1,11 @@
 <script>
 $(document).ready(function() {
+      $('#answer_value').on('change', function() {
+        $('.modal-button').prop('disabled', !(this.value.length > 0));
+      });
+
       $('#answer_value').on('input', function() {
-        $('.modal-button').prop('disabled', false);
+        $('.modal-button').prop('disabled', !(this.value.length > 0));
       });
     });
 
