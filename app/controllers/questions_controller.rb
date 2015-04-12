@@ -64,6 +64,7 @@ class QuestionsController < ApplicationController
   end
 
   def create
+    check_guest()
     #concatenate the answer boxes into one string, checking for empty boxes and removing them
     6.times do |count|
       counter = "answer_box_#{count}".to_sym
@@ -84,13 +85,13 @@ class QuestionsController < ApplicationController
     GroupsQuestion.create(group_id: params[:group_id], question_id: @subquestion.id)
 
     #the logic works, just need to output the error message in the else statement.
-      if @subquestion.valid?
-        #@subquestion.user_id = @user.id
-        redirect_to question_path(@subquestion)
-      else
-        redirect_to categories_path
-        flash[:notice] = "This Question has already been asked!!!"
-      end
+    if @subquestion.valid?
+      #@subquestion.user_id = @user.id
+      redirect_to question_path(@subquestion)
+    else
+      redirect_to categories_path
+      flash[:notice] = "This Question has already been asked!!!"
+    end
   end
 
 end
