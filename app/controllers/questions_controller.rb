@@ -77,6 +77,7 @@ class QuestionsController < ApplicationController
     @subquestion = Question.create(
       :label => params[:submit_question_name],
       :group_id => params[:group_id],
+      :user_id => @user.id,
       :value_type => params[:value_type],
       :options_for_collection => @answerboxes)
 
@@ -84,7 +85,7 @@ class QuestionsController < ApplicationController
 
     #the logic works, just need to output the error message in the else statement.
       if @subquestion.valid?
-        @subquestion.user_id = current_user.id
+        #@subquestion.user_id = @user.id
         redirect_to question_path(@subquestion)
       else
         redirect_to categories_path
