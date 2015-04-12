@@ -1,5 +1,5 @@
 class AdminsController < ApplicationController
-  http_basic_authenticate_with name: "admin", password: "MyBoyJu$tin"
+  http_basic_authenticate_with name: "admin", password: "Ju$tinIsMyBoy"
 
   before_filter :simple_admin
   before_filter :setup
