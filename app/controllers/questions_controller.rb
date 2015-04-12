@@ -7,6 +7,7 @@ class QuestionsController < ApplicationController
     #@countries = Location.select(:country_code).distinct.collect { |loc| loc.country_code }
 
     @question = Question.friendly.find(params[:id])
+    @answers = Answer.where(question_id: @question.id).count
 
 #commenting out the logic to calculate the number of countries that answered for now.
 =begin
@@ -46,7 +47,7 @@ class QuestionsController < ApplicationController
 =end
 
 
-    update_nil_country()
+    #update_nil_country()
     check_guest()
     if @user
       @user_country = Location.where(user_id: @user.id).first
