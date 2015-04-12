@@ -41,7 +41,7 @@ class ApplicationController < ActionController::Base
         continent: @user_country.subregion,
         province: request.location.try(:state),
         country_code: @result.data["country_code"],
-        country: request.location.try(:country),
+        country: Country.new(@result.data["country_code"]).name,
         city: request.location.try(:city), #try this code for city @result.data["city"]
         ip_address: ip)
 
