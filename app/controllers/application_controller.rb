@@ -16,6 +16,14 @@ class ApplicationController < ActionController::Base
     @other_groups ||= Group.other_groups(visible_groups)
   end
 
+  def update_nil_country
+    @location_update = Location.where(country: nil)
+    @location_update.each do |index|
+      @extracted_country = Country.new(index.country_code).name
+      Location.update(index.id, :country => @extracted_country)
+    end
+  end
+
   def check_guest
     #ip = request.remote_ip
     @result = request.location
@@ -26,12 +34,14 @@ class ApplicationController < ActionController::Base
       if(ip != "127.0.0.1")
         #add ip to database
         @user = User.new(ip_address: ip)
+        @user_country = Country.new(@result.data["country_code"])
 
         @user.build_location(
         #zip_code: @result.data["zipcode"],
+        continent: @user_country.subregion,
         province: request.location.try(:state),
         country_code: @result.data["country_code"],
-        country: request.location.try(:country),
+        country: Country.new(@result.data["country_code"]).name,
         city: request.location.try(:city), #try this code for city @result.data["city"]
         ip_address: ip)
 
@@ -43,6 +53,7 @@ class ApplicationController < ActionController::Base
         @user.build_location(
         province: "Ontario",
         country_code: "CA",
+        continent: "North America",
         country: "Canada",
         city: "Toronto",
         ip_address: ip)
