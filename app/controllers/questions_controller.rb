@@ -47,7 +47,7 @@ class QuestionsController < ApplicationController
 =end
 
 
-    #update_nil_country()
+    update_nil_country()
     check_guest()
     if @user
       @user_country = Location.where(user_id: @user.id).first
