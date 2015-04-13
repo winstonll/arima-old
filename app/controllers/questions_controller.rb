@@ -9,8 +9,6 @@ class QuestionsController < ApplicationController
     @question = Question.friendly.find(params[:id])
     @answers = Answer.where(question_id: @question.id).count
 
-#commenting out the logic to calculate the number of countries that answered for now.
-=begin
     #extracting all of the users that answered this question
     @users_list = Array.new
       Answer.where(question_id: @question.id).find_each do |user|
@@ -44,14 +42,12 @@ class QuestionsController < ApplicationController
         @dropdown_array << key + " " + "(" + value.to_s + " answered" + ")"
       end
     end
-=end
 
-
-    update_nil_country()
+    #update_nil_country()
     check_guest()
     if @user
-      @user_country = Location.where(user_id: @user.id).first
-      @dropdown_array = [@user_country.country]
+      #@user_country = Location.where(user_id: @user.id).first
+      #@dropdown_array = [@user_country.country]
 
       @answer = @question.answers.where(user_id: @user.id).first
       if @answer.nil?
@@ -68,6 +64,7 @@ class QuestionsController < ApplicationController
   end
 
   def create
+    check_guest()
     #concatenate the answer boxes into one string, checking for empty boxes and removing them
     6.times do |count|
       counter = "answer_box_#{count}".to_sym
@@ -81,19 +78,20 @@ class QuestionsController < ApplicationController
     @subquestion = Question.create(
       :label => params[:submit_question_name],
       :group_id => params[:group_id],
+      :user_id => @user.id,
       :value_type => params[:value_type],
       :options_for_collection => @answerboxes)
 
     GroupsQuestion.create(group_id: params[:group_id], question_id: @subquestion.id)
 
     #the logic works, just need to output the error message in the else statement.
-      if @subquestion.valid?
-        @subquestion.user_id = current_user.id
-        redirect_to question_path(@subquestion)
-      else
-        redirect_to categories_path
-        flash[:notice] = "This Question has already been asked!!!"
-      end
+    if @subquestion.valid?
+      #@subquestion.user_id = @user.id
+      redirect_to question_path(@subquestion)
+    else
+      redirect_to categories_path
+      flash[:notice] = "This Question has already been asked!!!"
+    end
   end
 
 end
