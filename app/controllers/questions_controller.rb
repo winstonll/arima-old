@@ -8,18 +8,19 @@ class QuestionsController < ApplicationController
 
     @question = Question.friendly.find(params[:id])
     @answers = Answer.where(question_id: @question.id).count
+    @answer_list = Answer.where(question_id: @question.id).find_each
 
 #commenting out the logic to calculate the number of countries that answered for now.
     #extracting all of the users that answered this question
     @users_list = Array.new
-      Answer.where(question_id: @question.id).find_each do |user|
+      @answer_list.each do |user|
       @users_list << user.user_id
     end
 
     #extracting all of the countries that answered the question
     @countries_answered = Array.new
     @users_list.each do |user|
-      @countries_answered << Location.where(user_id: user).pluck(:country_code)
+      @countries_answered << Location.where(user_id: user).pluck(:country)
     end
 
     #@countries_answered is an array in an array, extracting the value inside of the inner array and recreating the array.
@@ -33,7 +34,6 @@ class QuestionsController < ApplicationController
       if (@country_hash[country] == nil)
         @country_hash = {country => 1}
       else
-        @country_hash = {country => @country_hash[country] + 1}
         @country_hash = {country => @country_hash[country] + 1}
       end
     end
