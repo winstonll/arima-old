@@ -10,7 +10,6 @@ class QuestionsController < ApplicationController
     @answers = Answer.where(question_id: @question.id).count
 
 #commenting out the logic to calculate the number of countries that answered for now.
-=begin
     #extracting all of the users that answered this question
     @users_list = Array.new
       Answer.where(question_id: @question.id).find_each do |user|
@@ -44,14 +43,12 @@ class QuestionsController < ApplicationController
         @dropdown_array << key + " " + "(" + value.to_s + " answered" + ")"
       end
     end
-=end
 
-
-    update_nil_country()
+    #update_nil_country()
     check_guest()
     if @user
-      @user_country = Location.where(user_id: @user.id).first
-      @dropdown_array = [@user_country.country]
+      #@user_country = Location.where(user_id: @user.id).first
+      #@dropdown_array = [@user_country.country]
 
       @answer = @question.answers.where(user_id: @user.id).first
       if @answer.nil?
