@@ -8,12 +8,11 @@ class QuestionsController < ApplicationController
 
     @question = Question.friendly.find(params[:id])
     @answers = Answer.where(question_id: @question.id).count
-    @answer_list = Answer.where(question_id: @question.id).find_each
 
 #commenting out the logic to calculate the number of countries that answered for now.
     #extracting all of the users that answered this question
     @users_list = Array.new
-      @answer_list.each do |user|
+    Answer.where(question_id: @question.id).find_each do |user|
       @users_list << user.user_id
     end
 
