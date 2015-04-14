@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
   include DetermineUserAndUnits
 
+  skip_before_filter :verify_authenticity_token, :only => :create
   layout "application_fluid"
   respond_to :html, :json
 
