@@ -8,33 +8,33 @@ class QuestionsController < ApplicationController
 
     @question = Question.friendly.find(params[:id])
     @answers = Answer.where(question_id: @question.id).count
+    @answer_list = Answer.where(question_id: @question.id).find_each
 
 #commenting out the logic to calculate the number of countries that answered for now.
-=begin
     #extracting all of the users that answered this question
     @users_list = Array.new
-      Answer.where(question_id: @question.id).find_each do |user|
+      @answer_list.each do |user|
       @users_list << user.user_id
     end
 
     #extracting all of the countries that answered the question
     @countries_answered = Array.new
-    @users_list.count.times do |user|
-      @countries_answered << Location.where(user_id: @users_list[user]).pluck(:country_code)
+    @users_list.each do |user|
+      @countries_answered << Location.where(user_id: user).pluck(:country)
     end
 
     #@countries_answered is an array in an array, extracting the value inside of the inner array and recreating the array.
     @revised_answered = Array.new
-    @countries_answered.count.times do |country|
-      @revised_answered << @countries_answered[country][0]
+    @countries_answered.each do |country|
+      @revised_answered << country[0]
     end
 
     @country_hash = Hash.new
-    @revised_answered.count.times do |index|
-      if (@country_hash[@revised_answered[index]] == nil)
-        @country_hash = {@revised_answered[index] => 1}
+    @revised_answered.each do |country|
+      if (@country_hash[country] == nil)
+        @country_hash = {country => 1}
       else
-        @country_hash = {@revised_answered[index] => @country_hash[@revised_answered[index]] + 1}
+        @country_hash = {country => @country_hash[country] + 1}
       end
     end
 
@@ -44,14 +44,12 @@ class QuestionsController < ApplicationController
         @dropdown_array << key + " " + "(" + value.to_s + " answered" + ")"
       end
     end
-=end
 
-
-    update_nil_country()
+    #update_nil_country()
     check_guest()
     if @user
-      @user_country = Location.where(user_id: @user.id).first
-      @dropdown_array = [@user_country.country]
+      #@user_country = Location.where(user_id: @user.id).first
+      #@dropdown_array = [@user_country.country]
 
       @answer = @question.answers.where(user_id: @user.id).first
       if @answer.nil?
