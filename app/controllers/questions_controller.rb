@@ -13,8 +13,8 @@ class QuestionsController < ApplicationController
 =begin
     #extracting all of the users that answered this question
     @users_list = Array.new
-    Answer.where(question_id: @question.id).find_each do |user|
-      @users_list << user.user_id
+    Answer.where(question_id: @question.id).find_each do |answer|
+      @users_list << answer.user_id
     end
 
     #extracting all of the countries that answered the question
