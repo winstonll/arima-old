@@ -27,7 +27,9 @@ class ApplicationController < ActionController::Base
   def check_guest
     #ip = request.remote_ip
     @result = request.location
-    ip = @result.data["ip"]
+    if (@result)
+      ip = @result.data["ip"]
+    end
     #check if this ip is in the db already
     if (User.find_by(ip_address: ip) == nil)
       #live site
