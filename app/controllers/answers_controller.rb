@@ -1,4 +1,6 @@
 class AnswersController < ApplicationController
+
+  skip_before_filter :verify_authenticity_token, :only => :create
   before_filter :authenticate_user!, except: [:intro_question, :show, :create, :show_image]
   include DetermineUserAndUnits
 
