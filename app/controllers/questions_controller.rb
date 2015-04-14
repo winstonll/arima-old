@@ -47,7 +47,10 @@ class QuestionsController < ApplicationController
 =end
 
     #update_nil_country()
-    check_guest()
+    if(@user == nil)
+      check_guest()
+    end
+
     if @user
       @user_country = Location.where(user_id: @user.id).first
       @dropdown_array = [@user_country.country]
@@ -67,7 +70,11 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    check_guest()
+
+    if(@user == nil)
+      check_guest()
+    end
+
     #concatenate the answer boxes into one string, checking for empty boxes and removing them
     6.times do |count|
       counter = "answer_box_#{count}".to_sym

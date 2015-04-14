@@ -242,7 +242,7 @@ class Answer < ActiveRecord::Base
   end
 
   def by_city
-    Answer.where(question_id: self.question.id, user_id: user_ids_for_city)
+    Answer.where(question_id: self.question_id, user_id: user_ids_for_city)
   end
 
   def user_ids_for_country
@@ -250,14 +250,15 @@ class Answer < ActiveRecord::Base
       .joins(:location)
       .where("locations.country_code = ?", self.user.location.country_code)
       .pluck(:id).compact
+      adssa
   end
 
   def by_country
-    Answer.where(question_id: self.question.id, user_id: user_ids_for_country)
+    Answer.where(question_id: self.question_id, user_id: user_ids_for_country)
   end
 
   def by_world
-    Answer.where(question_id: self.question.id)
+    Answer.where(question_id: self.question_id)
   end
 
   # PERCENT DIFFERENCE FROM AVERAGE
