@@ -250,7 +250,6 @@ class Answer < ActiveRecord::Base
       .joins(:location)
       .where("locations.country_code = ?", self.user.location.country_code)
       .pluck(:id).compact
-      adssa
   end
 
   def by_country
