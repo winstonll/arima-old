@@ -33,6 +33,8 @@ gem 'devise'
 # Pagination library
 gem 'kaminari'
 
+gem 'pointpin', '~> 1.0.0'
+
 gem 'geoip2'
 gem 'chartkick'
 gem 'geocoder'
