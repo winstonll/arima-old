@@ -163,6 +163,10 @@ GEM
       rack
       rake (>= 0.8.1)
     pg (0.18.1)
+    pointpin (1.0.0)
+      faraday
+      hashie
+      multi_json
     polyglot (0.3.5)
     pry (0.10.1)
       coderay (~> 1.1.0)
@@ -304,6 +308,7 @@ DEPENDENCIES
   paperclip (~> 4.1)
   passenger
   pg
+  pointpin (~> 1.0.0)
   pry-rails
   quiet_assets
   rails (= 4.1.0)

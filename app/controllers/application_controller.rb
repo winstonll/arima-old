@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
+  require 'open-uri'
+  require 'json'
   protect_from_forgery with: :exception
   helper_method :check_guest
 
@@ -27,11 +29,15 @@ class ApplicationController < ActionController::Base
   def check_guest
     ip = request.remote_ip
 
+    #url = "http://geo.pointp.in/[c85a59bd-bcd8-481c-b84b-ad53dabc6f8b]/json/[99.231.244.158]"
+    #location_data = JSON.parse(URI.parse(url).read)
+
     #check if this ip is in the db already
     if (User.find_by(ip_address: ip) == nil)
       #live site
       if(ip != "127.0.0.1")
         #add ip to database
+        #@location = Pointpin.locate(ip)
         @result = request.location
         @user = User.new(ip_address: ip)
         @user_country = Country.new(@result.data["country_code"])
