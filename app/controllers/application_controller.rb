@@ -25,33 +25,24 @@ class ApplicationController < ActionController::Base
   end
 
   def check_guest
-    ip = request.remote_ip
-
-=begin
+    #ip = request.remote_ip
     @result = request.location
-    if (@result)
-      ip = @result.data["ip"]
-    end
-=end
-
+    ip = @result.data["ip"]
     #check if this ip is in the db already
     if (User.find_by(ip_address: ip) == nil)
       #live site
       if(ip != "127.0.0.1")
         #add ip to database
         @user = User.new(ip_address: ip)
-        @ip_data = Geocoder.search(ip)[0]
-        @user_country = Country.new(@ip_data.country_code)
+        @user_country = Country.new(@result.data["country_code"])
 
         @user.build_location(
         #zip_code: @result.data["zipcode"],
-        latitude: @ip_data.latitude,
-        longitude: @ip_data.longitude,
         continent: @user_country.subregion,
-        province: @ip_data.state,
-        country_code: @ip_data.country_code,
-        country: @user_country.name,
-        city: @ip_data.city,
+        province: request.location.try(:state),
+        country_code: @result.data["country_code"],
+        country: Country.new(@result.data["country_code"]).name,
+        city: request.location.try(:city), #try this code for city @result.data["city"]
         ip_address: ip)
 
         @user.save
@@ -60,8 +51,6 @@ class ApplicationController < ActionController::Base
       else
         @user = User.new(ip_address: ip)
         @user.build_location(
-        longitude: 0,
-        latitude: 0,
         province: "Ontario",
         country_code: "CA",
         continent: "North America",
