@@ -29,7 +29,8 @@ class ApplicationController < ActionController::Base
   def check_guest
     ip = request.remote_ip
 
-    #url = "http://geo.pointp.in/[c85a59bd-bcd8-481c-b84b-ad53dabc6f8b]/json/[99.231.244.158]"
+    #manual way of retrieving geocode data through pointpin online api
+    #url = "http://geo.pointp.in/c85a59bd-bcd8-481c-b84b-ad53dabc6f8b/json/82.164.108.48"
     #location_data = JSON.parse(URI.parse(url).read)
 
     #check if this ip is in the db already
