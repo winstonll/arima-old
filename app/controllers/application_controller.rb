@@ -25,14 +25,14 @@ class ApplicationController < ActionController::Base
   end
 
   def check_guest
-    #ip = request.remote_ip
-    @result = request.location
-    ip = @result.data["ip"]
+    ip = request.remote_ip
+
     #check if this ip is in the db already
     if (User.find_by(ip_address: ip) == nil)
       #live site
       if(ip != "127.0.0.1")
         #add ip to database
+        @result = request.location
         @user = User.new(ip_address: ip)
         @user_country = Country.new(@result.data["country_code"])
 
