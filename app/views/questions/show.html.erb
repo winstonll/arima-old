@@ -52,13 +52,14 @@ $(document).ready(function() {
     <% end %>
 
     <div id="trending-questions-container">
-      <% @random_questions = Question.where(:group_id => @question.group_id).order("RANDOM()").first(5) %>
+      <% @random_questions = Question.order("RANDOM()").first(5) %>
 
       <p class="trending-questions-label">Trending Questions</p>
 
       <% @random_questions.each do |random_question| %>
         <a href="<%= question_path(random_question) %>" title="<%= @random_label %>" class="trending-question">
           <div class="trending-question-container">
+            <%= image_tag("category-icons/#{random_question.group_id}.png", class: "trending-question-icon" ) %>
             <p class="trending-question-title"><%= raw(random_question.label) %></p>
             <p class="trending-question-num-answers"><%= "#{random_question.answers.count} #{random_question.answers.count == 1 ? 'person answered' : 'people answered'}" %></p>
           </div>

@@ -196,7 +196,7 @@
 
     /* Next Question Section */
     #trending-questions-container {
-      width: 39%;
+      width: 38%;
       float: right;
       display: inline-block;
       vertical-align: top;
@@ -218,6 +218,12 @@
           padding: 10px;
           width: intrinsic;
           width: -moz-max-content;
+
+          .trending-question-icon {
+            width: 20px;
+            height: auto;
+            float: right;
+          }
 
           .trending-question-title {
             font-weight: 600;
