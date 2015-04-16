@@ -22,12 +22,19 @@ $(document).ready(function() {
     <!-- Counter + Share Section -->
     <div id="question-meta-container">
       <div class="question-title-count">
-        <%= "#{@question.answers.count} #{@question.answers.count == 1 ? 'person' : 'people'}" %>
-        <p class="meta-title">People Answered</p>
+        <%= @question.answers.count %>
+        <p class="meta-title"><%= @question.answers.count == 1 ? 'Person' : 'People' %> Answered</p>
       </div>
 
       <div class="question-share-container">
         <p class="meta-title">Share this Question</p>
+        <%= render partial: "questions/share", locals: {
+            id: @question.id,
+            url: "#{request.protocol}#{request.host_with_port}" + question_path(@question),
+            title: "#{@question.label[0..70]}...",
+            description: "#{@question.label[0..70]}...",
+            image: "#{request.protocol}#{request.host_with_port}" + question_path(@question)
+          }%>
       </div>
     </div>
   </div>

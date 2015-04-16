@@ -17,12 +17,15 @@
   /* Question Header Colours */
   #question-hero {
     .question-container {
-      width: 75%;
+      height: 200px;
+      width: 70%;
+      float: left;
       display: inline-block;
       border-radius: 5px;
-      background-color: #a25fbc ;
-      padding: 0.5em;
-      padding-bottom: 0.25em;
+      border: 1px solid #DCDCDC;
+      background-color: #a25fbc;
+      padding-left: 0.5em;
+      padding-right: 0.5em;
 
       .question-title {
         font-weight: 600;
@@ -117,21 +120,49 @@
     }
 
     #question-meta-container {
+      width: 29%;
+      float: right;
       display: inline-block;
       vertical-align: top;
 
-      .question-title-count {
+      .question-title-count,
+      .question-share-container {
+        height: 95px;
         border-radius: 3px;
         border: 1px solid #DCDCDC;
         background-color: #F3F2F2;
         color: #878686;
+        text-align: center;
+        padding-top: 20px;
+      }
+
+      .meta-title {
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      .question-title-count {
+        font-size: 22px;
+        font-weight: 600;
       }
 
       .question-share-container {
-        border-radius: 3px;
-        border: 1px solid #DCDCDC;
-        background-color: #F3F2F2;
-        color: #878686;
+        margin-top: 10px;
+
+        .share-link {
+          &:hover {
+            opacity: 0.7;
+          }
+
+          &:not(:first-child) {
+            margin-left: 10px;
+          }
+
+          .share-image {
+            height: 23px;
+            width: auto;
+          }
+        }
       }
     }
   }

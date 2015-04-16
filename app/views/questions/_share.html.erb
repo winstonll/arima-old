@@ -1,0 +1,36 @@
+<a href="#"
+   data-type="facebook"
+   data-url="<%= url %>"
+   data-title="<%= title %>"
+   data-description="<%= description %>"
+   data-media="<%= image %>"
+   id="fb-share-<%= id %>"
+   class='share-link share-image prettySocial<%= id %>'>
+  <img class="share-image" src="<%= image_path 'fb-logo.png' %>">
+</a>
+
+<a href="#"
+   data-type="twitter"
+   data-url="<%= url %>"
+   data-description="<%= description %>"
+   data-via="arima_io"
+   id="twitter-share-<%= id %>"
+   class="share-link prettySocial<%= id %>">
+  <img class="share-image" src="<%= image_path 'twitter-logo.png' %>">
+</a>
+
+<script>
+  $('.prettySocial<%= id %>').prettySocial();
+</script>
+<script>
+  $('.prettySocial<%= id %>').click(function () {
+    $.ajax({
+      url: "/question/share",
+      type: "POST",
+      dataType: "script",
+      data: { ans_id: "<%= @question.id %>",
+             share_type: $(this).data('type')
+      }
+    });
+  });
+</script>
