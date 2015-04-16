@@ -19,6 +19,12 @@
   <img class="share-image" src="<%= image_path 'twitter-logo.png' %>">
 </a>
 
+<a href="//www.reddit.com/submit"
+   onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent(window.location); return false"
+   class="share-link prettySocial<%= id %>">
+   <img class="share-image" src="<%= image_path 'twitter-logo.png' %>">
+</a>
+
 <script>
   $('.prettySocial<%= id %>').prettySocial();
 </script>

@@ -41,15 +41,15 @@ $(document).ready(function() {
 
   <!-- Report -->
   <div id="question-content-container">
-    <div id="report-container">
-      <% if !@user_submitted_answer %>
-        <div class="no-answer-container">
-          <p class="no-answer-prompt">Answer the question to view your personalized report</p>
-        </div>
-      <% elsif @user_submitted_answer %>
+    <% if !@user_submitted_answer %>
+      <div class="no-answer-container">
+        <p class="no-answer-prompt">Answer the question to view your personalized report</p>
+      </div>
+    <% elsif @user_submitted_answer %>
+      <div class="report-container">
         <%= render partial: 'common/visualization', locals: { question: @question, answer: @answer} %>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
 
     <div id="trending-questions-container">
       <% @random_question = Question.where(:group_id => @question.group_id).order("RANDOM()").first %>

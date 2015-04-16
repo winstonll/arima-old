@@ -5,15 +5,6 @@
   margin: 0 auto;
   margin-top: 1em;
 
-  #comment-section {
-    display: none;
-    margin-top: 2em;
-    margin-bottom: 2em;
-    text-align: center;
-    position: relative;
-    top: 40px;
-  }
-
   /* Question Header Colours */
   #question-hero {
     .question-container {
@@ -169,27 +160,38 @@
 
 
   #question-content-container {
+    clear: both;
+    padding-top: 2em;
+
     /* Report */
-    #report-container {
-      width: 65%;
+    .report-container,
+    .no-answer-container {
+      width: 60%;
+      float: left;
       display: inline-block;
+    }
 
-      .no-answer-container {
-        padding-top: 10em;
-        padding-bottom: 10em;
-        width: 100%;
-        text-align: center;
+    .no-answer-container {
+      padding-top: 10em;
+      padding-bottom: 10em;
+      text-align: center;
 
-        .no-answer-prompt {
-          font-size: 25px;
-          font-weight: 600;
-          color: #aaa;
-        }
+      .no-answer-prompt {
+        font-size: 22px;
+        font-weight: 600;
+        color: #aaa;
       }
+    }
+
+    .report-container {
+      border: 1px solid #5AA3E8;
+      border-radius: 5px;
     }
 
     /* Next Question Section */
     #trending-questions-container {
+      width: 39%;
+      float: right;
       display: inline-block;
       vertical-align: top;
       text-align: center;
@@ -211,6 +213,14 @@
         font-family: open sans;
       }
     }
+  }
+
+  #comment-section {
+    clear: both;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    text-align: center;
+    position: relative;
   }
 
   /* Chart */
