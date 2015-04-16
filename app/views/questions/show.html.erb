@@ -8,74 +8,58 @@ $(document).ready(function() {
         $('.modal-button').prop('disabled', !(this.value.length > 0));
       });
     });
-
 </script>
 
 
 <div class="main-site-container" id="question-page-container">
-  <div id="question-card-container">
+  <div id="question-hero">
+    <!-- Question Title and Answer Box -->
     <div class="question-container question-container-<%= @question.group_id %>">
-      <div class="question-title"><%= @question.label %>
-        <div class="question-title-count">
-           <%= "#{@question.answers.count} #{@question.answers.count == 1 ? 'person' : 'people'}" %> answered this
-        </div>
+      <h1 class="question-title"><%= @question.label %></h1>
+      <%= render partial: 'questions/answer_input', locals: { question: @question, answer: @answer} %>
+    </div>
+
+    <!-- Counter + Share Section -->
+    <div id="question-meta-container">
+      <div class="question-title-count">
+        <%= "#{@question.answers.count} #{@question.answers.count == 1 ? 'person' : 'people'}" %>
+        <p class="meta-title">People Answered</p>
       </div>
-        <div class="answer-prompt">
-        <% if user_signed_in? %>
-          <%= simple_form_for @answer, url: question_answers_path(@question, @answer), class: "form-inline", role: "form", html: {novalidate: false} do |f| %>
-            <div class="form-group">
-              <% if @question.input_type == "measurement" %>
-                <section class="question-dual-input">
-                  <%= f.input(:value, label: false, pattern: "\d*", placeholder: @user_units["large_unit"]) %>
-                  <%= f.input(:value, label: false, pattern: "\d*", placeholder: @user_units["small_unit"]) %>
-                </section>
-              <% elsif @question.input_type == "collection" %>
-                <%= f.input(:value, label: false, prompt: "Select one...", collection: @question.options_array, input_html: { class: "questions-page-input form-control input-lg"}) %>
-              <% else %>
-                <%= f.input(:value, label: false, placeholder: @question.placeholder(@user),
-                             as: @question.input_type.try(:to_sym),
-                             input_html: {
-                               class: "questions-page-input form-control input-lg",
-                               title: @question.validation_message,
-                               min: @question.min_value
-                             }) %>
-              <% end %>
-              <div class="modal-save-wrapper text-center" id="answer-button">
-                <% if !@user_submitted_answer %>
-                  <%= f.submit "Answer", class: "modal-button", disabled: true, data: {disable_with: "Submitting..."} %>
-                <% end %>
-              </div>
-            </div>
-          <% end %>
-        </div>
-        <% end %>
+
+      <div class="question-share-container">
+        <p class="meta-title">Share this Question</p>
       </div>
     </div>
-  <div id="answer-info">
-    <%# if !user_signed_in? %>
-      <%#= render partial: 'questions/unanswered_report', locals: { question: @question } %>
-    <%# end %>
-    <% if !@user_submitted_answer %>
-      <div class="no-answer-container">
-        <p class="no-answer-prompt">Answer the question to view your personalized report</p>
-      </div>
-    <% elsif @user_submitted_answer %>
-      <%= render partial: 'questions/answer_report', locals: { question: @question, answer: @answer} %>
-    <% end %>
   </div>
 
-  <p class="next-question-label">Here's Another Question</p>
-  <%# @random_question = Question.limit(1).order ("RANDOM()")%>
-  <% @random_question = Question.where(:group_id => @question.group_id).order("RANDOM()").first %>
-  <% @random_label = @random_question.label%>
-  <div class="next-question">
-    <p class="question-label">
-      <a href="<%= question_path(@random_question) %>" title="<%= @random_label %>" class="question-link">
-      <%= raw(@random_label) %>
-      <div class="num-answers">
-        <%= "#{@random_question.answers.count} #{@random_question.answers.count == 1 ? 'person answered' : 'people answered'}" %>
+  <!-- Report -->
+  <div id="question-content-container">
+    <div id="report-container">
+      <% if !@user_submitted_answer %>
+        <div class="no-answer-container">
+          <p class="no-answer-prompt">Answer the question to view your personalized report</p>
+        </div>
+      <% elsif @user_submitted_answer %>
+        <%= render partial: 'common/visualization', locals: { question: @question, answer: @answer} %>
+      <% end %>
+    </div>
+
+    <div id="trending-questions-container">
+      <% @random_question = Question.where(:group_id => @question.group_id).order("RANDOM()").first %>
+      <% @random_label = @random_question.label%>
+
+      <p class="trending-questions-label">Trending Questions</p>
+
+      <div class="trending-question">
+        <p class="question-label">
+          <a href="<%= question_path(@random_question) %>" title="<%= @random_label %>" class="question-link">
+          <%= raw(@random_label) %>
+          <div class="num-answers">
+            <%= "#{@random_question.answers.count} #{@random_question.answers.count == 1 ? 'person answered' : 'people answered'}" %>
+          </div>
+         </p>
       </div>
-     </p>
+    </div>
   </div>
 
   <div id="comment-section">
