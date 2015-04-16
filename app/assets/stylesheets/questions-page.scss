@@ -8,8 +8,8 @@
   /* Question Header Colours */
   #question-hero {
     .question-container {
-      height: 200px;
-      width: 70%;
+      height: 180px;
+      width: 75%;
       float: left;
       display: inline-block;
       border-radius: 5px;
@@ -66,6 +66,12 @@
               box-shadow: 0px 1px 1px 1px rgba(100, 100, 100, 0.35);
             }
           }
+
+          #answer-button {
+            .modal-button:disabled {
+              background-color: #9a9a9a;
+            }
+          }
         }
       }
     }
@@ -111,20 +117,20 @@
     }
 
     #question-meta-container {
-      width: 29%;
+      width: 24%;
       float: right;
       display: inline-block;
       vertical-align: top;
 
       .question-title-count,
       .question-share-container {
-        height: 95px;
+        height: 85px;
         border-radius: 3px;
         border: 1px solid #DCDCDC;
         background-color: #F3F2F2;
         color: #878686;
         text-align: center;
-        padding-top: 20px;
+        padding-top: 10px;
       }
 
       .meta-title {
