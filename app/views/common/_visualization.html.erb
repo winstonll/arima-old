@@ -39,7 +39,7 @@
   <% end %>
   data_answer.country = <%= answer.data_array('country').html_safe %>;
   data_answer.world = <%= answer.data_array('world').html_safe %>;
-  data_answer.selected = 'country';
+  data_answer.selected = 'world';
   <% if answer.question.value_type == "collection" %>
     data_answer.collection = true;
   <% else %>
