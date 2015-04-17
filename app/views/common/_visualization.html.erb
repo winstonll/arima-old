@@ -104,16 +104,15 @@
   }
 
   function show_location_answer(loc) {
-    previous_selected = data_answer.selected;
     data_answer.selected = loc;
     var loc_arr = [];
 
     if(data_answer.collection){
-      for (i = 0; i < transform_data_answer(previous_selected).length; i++){
-        loc_arr.push(transform_data_answer(previous_selected)[i][0])
+      for (i = 0; i < transform_data_answer('world').length; i++){
+        loc_arr.push(transform_data_answer('world')[i][0])
       }
     } else {
-      loc_arr = [previous_selected];
+      loc_arr = ['world', 'country', 'city'];
     }
     console.log(data_answer.collection);
     console.log(loc_arr);
