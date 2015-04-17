@@ -22,57 +22,47 @@ $(document).ready(function() {
     <!-- Counter + Share Section -->
     <div id="question-meta-container">
       <div class="question-title-count">
-        <%= "#{@question.answers.count} #{@question.answers.count == 1 ? 'person' : 'people'}" %>
-        <p class="meta-title">People Answered</p>
+        <%= @question.answers.count %>
+        <p class="meta-title"><%= @question.answers.count == 1 ? 'Person' : 'People' %> Answered</p>
       </div>
 
       <div class="question-share-container">
         <p class="meta-title">Share this Question</p>
+        <%= render partial: "questions/share", locals: {
+            id: @question.id,
+            url: "#{request.protocol}#{request.host_with_port}" + question_path(@question),
+            title: "#{@question.label[0..70]}...",
+            description: "#{@question.label[0..70]}...",
+            image: "#{request.protocol}#{request.host_with_port}" + question_path(@question)
+          }%>
       </div>
     </div>
   </div>
 
   <!-- Report -->
   <div id="question-content-container">
-    <div id="report-container">
-      <% if !@user_submitted_answer %>
-        <div class="no-answer-container">
-          <p class="no-answer-prompt">Answer the question to view your personalized report</p>
-        </div>
-      <% elsif @user_submitted_answer %>
+    <% if !@user_submitted_answer %>
+      <div class="no-answer-container">
+        <p class="no-answer-prompt">Answer the question to view your personalized report</p>
+      </div>
+    <% elsif @user_submitted_answer %>
+      <div class="report-container">
         <%= render partial: 'common/visualization', locals: { question: @question, answer: @answer} %>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
 
     <div id="trending-questions-container">
-      <% @random_question = Question.where(:group_id => @question.group_id).order("RANDOM()").first %>
-      <% @random_label = @random_question.label%>
+      <% @random_questions = Question.order("RANDOM()").first(5) %>
 
       <p class="trending-questions-label">Trending Questions</p>
 
-      <div class="trending-question">
-        <p class="question-label">
-          <a href="<%= question_path(@random_question) %>" title="<%= @random_label %>" class="question-link">
-          <%= raw(@random_label) %>
-          <div class="num-answers">
-            <%= "#{@random_question.answers.count} #{@random_question.answers.count == 1 ? 'person answered' : 'people answered'}" %>
-          </div>
-         </p>
-      </div>
+      <% @random_questions.each do |random_question| %>
+        <%= render partial: 'common/question_with_category', locals: { question: random_question } %>
+      <% end %>
     </div>
   </div>
 
   <div id="comment-section">
-    <div id="fb-root"></div>
-
-    <script>(function(d, s, id) {
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) return;
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=896455457041729&version=v2.0";
-     fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
-
-    <div class="fb-comments" data-href="http://arima.io/<%= question_path(@question) %>" data-width="600" data-numposts="5" data-colorscheme="light"></div>
+    <%= render partial: 'questions/comments' %>
   </div>
 </div>

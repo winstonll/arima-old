@@ -16,7 +16,7 @@
           <!-- Header -->
           <div class="index-category-header index-category-<%= category.page_class %>">
             <p class="index-category-title"><%= category.label.sub("<br>", " ").html_safe %></p>
-            <%= image_tag("category-icons/#{category.label.sub("<br>", " ").html_safe} White.png", class: "index-category-icon" ) %>
+            <%= image_tag("category-icons/#{category.id} White.png", class: "index-category-icon" ) %>
             <p class="index-category-hint">Go to category</p>
           </div>
 

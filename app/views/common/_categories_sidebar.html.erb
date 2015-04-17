@@ -23,7 +23,7 @@
               <% else %>
               <div class="category-inner-container">
               <% end %>
-                <%= image_tag("category-icons/#{group.label.sub("<br>", " ").html_safe}.png", class: "category-icon" ) %>
+                <%= image_tag("category-icons/#{group.id}.png", class: "category-icon" ) %>
                 <span class="category-title"><%= group.label.sub("<br>", " ").html_safe %></span>
               </div>
             </div>
@@ -39,7 +39,7 @@
           <ul class="sidebar-footer-list">
             <li><a href="/about">About Us</a> &sdot;</li>
             <li><a href="/faq">FAQ</a> &sdot;</li>
-            <li><a href="/contact">Contact</a></li>
+            <li><a href="/contact">Contact</a> &sdot;</li>
             <li><a href="http://medium.com/@arima_io">Blog</a></li>
           </ul>
         </div>
