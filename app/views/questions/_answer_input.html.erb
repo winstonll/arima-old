@@ -1,0 +1,29 @@
+<div class="answer-prompt">
+  <% if user_signed_in? %>
+    <%= simple_form_for @answer, url: question_answers_path(@question, @answer), class: "form-inline", role: "form", html: {novalidate: false} do |f| %>
+      <div class="form-group">
+        <% if @question.input_type == "measurement" %>
+          <section class="question-dual-input">
+            <%= f.input(:value, label: false, pattern: "\d*", placeholder: @user_units["large_unit"]) %>
+            <%= f.input(:value, label: false, pattern: "\d*", placeholder: @user_units["small_unit"]) %>
+          </section>
+        <% elsif @question.input_type == "collection" %>
+          <%= f.input(:value, label: false, prompt: "Select one...", collection: @question.options_array, input_html: { class: "questions-page-input form-control input-lg"}) %>
+        <% else %>
+          <%= f.input(:value, label: false, placeholder: @question.placeholder(@user),
+                       as: @question.input_type.try(:to_sym),
+                       input_html: {
+                         class: "questions-page-input form-control input-lg",
+                         title: @question.validation_message,
+                         min: @question.min_value
+                       }) %>
+        <% end %>
+        <div class="modal-save-wrapper text-center" id="answer-button">
+          <% if !@user_submitted_answer %>
+            <%= f.submit "Answer", class: "modal-button", disabled: true, data: {disable_with: "Submitting..."} %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

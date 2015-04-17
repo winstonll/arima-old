@@ -1,0 +1,7 @@
+<a href="<%= question_path(question) %>" title="<%= question.label %>" class="question-with-category">
+  <div class="question-with-category-container">
+    <%= image_tag("category-icons/#{question.group_id}.png", class: "question-with-category-icon" ) %>
+    <p class="question-with-category-title"><%= raw(question.label) %></p>
+    <p class="question-with-category-num-answers"><%= "#{question.answers.count} #{question.answers.count == 1 ? 'person answered' : 'people answered'}" %></p>
+  </div>
+</a>

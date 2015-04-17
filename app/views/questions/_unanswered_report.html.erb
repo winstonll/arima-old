@@ -1,16 +1,1 @@
-<!-- Report Container -->
-<div class="report-container">
-  <%= render partial: 'common/guest_visualization', locals: { question: question } %>
-</div>
-
-<div class="share-answer">
-  <div class="share-answer-text">Share this question</div>
-  <%= render partial: "questions/share", locals: {
-            id: question.id,
-            url: "#{request.protocol}#{request.host_with_port}" + question_path(question),
-            title: "#{question.label[0..70]}...",
-            description: "#{question.label[0..70]}...",
-            image: "#{request.protocol}#{request.host_with_port}" + question_path(question)
-          }
-  %>
-</div>
+<%= render partial: 'common/guest_visualization', locals: { question: question } %>
