@@ -39,7 +39,7 @@
   <% end %>
   data_answer.country = <%= answer.data_array('country').html_safe %>;
   data_answer.world = <%= answer.data_array('world').html_safe %>;
-  data_answer.selected = 'country';
+  data_answer.selected = 'world';
   <% if answer.question.value_type == "collection" %>
     data_answer.collection = true;
   <% else %>
@@ -72,9 +72,7 @@
     },
     tooltip: {
       format: {
-        title: function (d) {
-          return null;
-        },
+        title: function (d) { return null; },
         value: function (value, ratio, id) {
           var sum = data_answer[data_answer.selected].reduce(function(p, c) {
             return p + c[1];
@@ -88,10 +86,12 @@
           this.getTooltipContent(d, defaultTitleFormat, defaultValueFormat, color) : '';
       }
     }
-  })
+  });
 
   function transform_data_answer(loc) {
     var data = data_answer[loc];
+    console.log(loc);
+    console.log(data);
     if (data_answer.collection) {return data;}
     else{
       data = [['x'], [loc]];
@@ -104,25 +104,10 @@
   }
 
   function show_location_answer(loc) {
-    previous_selected = data_answer.selected;
     data_answer.selected = loc;
-    var loc_arr = [];
 
-    if(data_answer.collection){
-      for (i = 0; i < transform_data_answer(previous_selected).length; i++){
-        loc_arr.push(transform_data_answer(previous_selected)[i][0])
-      }
-    } else {
-      loc_arr = [previous_selected];
-    }
-    console.log(data_answer.collection);
-    console.log(loc_arr);
-    chart_answer.unload({ids: loc_arr});
+    chart_answer.unload();
     chart_answer.load({columns: transform_data_answer(loc)});
-
-    $('.compare-stats#c-answer .average p').hide(500);
-    $('.compare-stats#c-answer .average p.' + loc).show(500);
-
   }
 
   $('#v-answer .location-list .city').click(function (e) {
