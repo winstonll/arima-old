@@ -76,12 +76,13 @@ class QuestionsController < ApplicationController
     end
 
     #concatenate the answer boxes into one string, checking for empty boxes and removing them
-    6.times do |count|
+    13.times do |count|
       counter = "answer_box_#{count}".to_sym
       unless (params[counter].to_s.empty?)
         @answerboxes = @answerboxes.to_s + params[counter].to_s << '|'
       end
     end
+    
     #strip the last comma
     @answerboxes = @answerboxes[0...-1]
 
