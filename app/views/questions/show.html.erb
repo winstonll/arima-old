@@ -57,7 +57,7 @@ $(document).ready(function() {
       <p class="trending-questions-label">Trending Questions</p>
 
       <% @random_questions.each do |random_question| %>
-        <%= render partial: 'common/question_with_category', locals: { question: random_question } %>
+        <%= render partial: 'common/trending_question', locals: { question: random_question } %>
       <% end %>
     </div>
   </div>
