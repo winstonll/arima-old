@@ -25,6 +25,12 @@ class QuestionsController < ApplicationController
     @users_list.each do |user|
       @countries_array << Location.where(user_id: user).pluck(:country)
     end
+
+     #@countries_array is a two dimensional array, so this extracts the first element of each inner array.
+    @countries_answered = @countries_array.collect(&:first)
+
+    #@country_answer_hash matches the country to an array of answers from that country
+    @country_answer_hash = Hash[@revised_answered.zip @answers_given]
     
     # @country_hash = Hash.new
     # @countries_answered.each do |country|
