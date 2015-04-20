@@ -30,7 +30,7 @@ class QuestionsController < ApplicationController
     @countries_answered = @countries_array.collect(&:first)
 
     #@country_answer_hash matches the country to an array of answers from that country
-    @country_answer_hash = Hash[@revised_answered.zip @answers_given]
+    @country_answer_hash = Hash[@countries_answered.zip @answers_given]
     
     # @country_hash = Hash.new
     # @countries_answered.each do |country|
