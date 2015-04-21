@@ -1,21 +1,21 @@
-<% if !answered %>
-  <div class="question-wrapper">
-<% else %>
-  <div class="question-wrapper question-wrapper-answered">
-<% end -%>
+<div class="question-wrapper">
   <div class="votes">
     <div class="upvote">
-      <%= link_to image_tag('upvote_inactive.png'), :remote => true %>
+      <%= link_to image_tag('upvote_inactive.png', class: "vote-image"), :remote => true %>
     </div>
     <div class="counter">
       <%= "#{question.votecount}" %>
     </div>
     <div class="downvote">
-      <%= link_to image_tag('downvote_inactive.png'), :remote => true %>
+      <%= link_to image_tag('downvote_inactive.png', class: "vote-image"), :remote => true %>
     </div>
   </div>
 
+  <% if !answered %>
   <a href="<%= question_path(question) %>" title="<%= question.label %>" class="question-link">
+  <% else %>
+  <a href="<%= question_path(question) %>" title="<%= question.label %>" class="question-link question-link-answered">
+  <% end -%>
     <div class="question-info">
       <p class="question-title"><%= question.label %></p>
 

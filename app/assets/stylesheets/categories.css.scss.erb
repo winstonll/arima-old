@@ -110,11 +110,24 @@ body {
     max-width: -moz-fit-content;
     border: 1px solid #E5E5E5;
     border-radius: 5px;
-    padding: 8px 30px 8px 30px;
+    padding: 5px 40px 5px 40px;
 
     .votes {
       display: inline-block;
       text-align: center;
+
+      .upvote,
+      .downvote {
+        .vote-image {
+          &:hover {
+            opacity: 0.75;
+          }
+        }
+      }
+
+      .counter {
+        color: #888;
+      }
     }
 
     .question-link {
@@ -133,7 +146,7 @@ body {
 
       .question-dates {
         font-weight: 500;
-        font-size: 15px;
+        font-size: 14px;
         margin-top: 3px;
 
         div {
@@ -145,36 +158,30 @@ body {
           line-height: 11px;
         }
       }
+
+      &:hover {
+        .question-title,
+        .question-info,
+        .num-answers {
+          color: #00C39C;
+        }
+      }
     }
 
-    &:hover {
-      background-color: #00C39C;
+    .question-link-answered {
+      color: #aaa;
 
-      .question-title,
-      .question-info,
-      .num-answers {
-        color: #fff;
+      &:hover {
+        .question-title,
+        .question-info,
+        .num-answers {
+          color: #777;
+        }
       }
     }
 
     &:not(:first-child) {
       margin-top: 15px;
-    }
-  }
-
-  .question-wrapper-answered {
-    .question-link {
-      color: #aaa;
-    }
-
-    &:hover {
-      background-color: #ccc;
-
-      .question-title,
-      .question-info,
-      .num-answers {
-        color: #fff;
-      }
     }
   }
 
