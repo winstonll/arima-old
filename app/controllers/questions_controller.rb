@@ -31,7 +31,7 @@ class QuestionsController < ApplicationController
 
     #@country_answer_hash matches the country to an array of answers from that country
     @country_answer_hash = Hash[@countries_answered.zip @answers_given]
-    
+
     # @country_hash = Hash.new
     # @countries_answered.each do |country|
     # #   if (@country_hash[country] == nil)
@@ -71,6 +71,18 @@ class QuestionsController < ApplicationController
     @subquestion = Question.new
   end
 
+  def upvote
+    @question = Question.friendly.find(params[:id])
+    @question.update_attribute(votecount, votecount + 1)
+    @question.save
+  end
+
+  def downvote
+    @question = Question.friendly.find(params[:id])
+    @question.update_attribute(votecount, votecount - 1)
+    @question.save
+  end
+
   def create
 
     if(@user == nil)
@@ -84,7 +96,7 @@ class QuestionsController < ApplicationController
         @answerboxes = @answerboxes.to_s + params[counter].to_s << '|'
       end
     end
-    
+
     #strip the last comma
     @answerboxes = @answerboxes[0...-1]
 
