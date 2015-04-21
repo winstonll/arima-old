@@ -31,7 +31,7 @@ class QuestionsController < ApplicationController
 
     #@country_answer_hash matches the country to an array of answers from that country
     @country_answer_hash = Hash[@countries_answered.zip @answers_given]
-    
+
     # @country_hash = Hash.new
     # @countries_answered.each do |country|
     # #   if (@country_hash[country] == nil)
@@ -49,6 +49,7 @@ class QuestionsController < ApplicationController
     # end
 
     #update_nil_country()
+    #create_dummy_users()
     if(@user == nil)
       check_guest()
     end
@@ -84,7 +85,7 @@ class QuestionsController < ApplicationController
         @answerboxes = @answerboxes.to_s + params[counter].to_s << '|'
       end
     end
-    
+
     #strip the last comma
     @answerboxes = @answerboxes[0...-1]
 

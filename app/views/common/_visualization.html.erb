@@ -90,6 +90,7 @@
 
   function transform_data_answer(loc) {
     var data = data_answer[loc];
+    console.log(data);
     if (data_answer.collection) {return data;}
     else{
       data = [['x'], [loc]];
@@ -102,10 +103,22 @@
   }
 
   function show_location_answer(loc) {
+    previous_selected = data_answer.selected;
     data_answer.selected = loc;
+    var loc_arr = [];
 
-    chart_answer.unload();
-    chart_answer.load({columns: transform_data_answer(loc)});
+    if(data_answer.collection){
+      for (i = 0; i < transform_data_answer('world').length; i++){
+        loc_arr.push(transform_data_answer('world')[i][0])
+      }
+    } else {
+      loc_arr = [previous_selected];
+    }
+
+    chart_answer.load({
+      columns: transform_data_answer(loc),
+      unload: loc_arr
+    });
   }
 
   $('#v-answer .location-list .city').click(function (e) {
