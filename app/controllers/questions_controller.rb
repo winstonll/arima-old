@@ -9,44 +9,49 @@ class QuestionsController < ApplicationController
     @question = Question.friendly.find(params[:id])
     @answers = Answer.where(question_id: @question.id).count
 
-#commenting out the logic to calculate the number of countries that answered for now.
 =begin
     #extracting all of the users that answered this question
     @users_list = Array.new
     Answer.where(question_id: @question.id).find_each do |answer|
       @users_list << answer.user_id
     end
+    #extracting all of the answers for the question
+    @answers_given = Array.new
+    Answer.where(question_id: @question.id).find_each do |answer|
+      @answers_given << answer.value
+    end
 
     #extracting all of the countries that answered the question
-    @countries_answered = Array.new
+    @countries_array = Array.new
     @users_list.each do |user|
-      @countries_answered << Location.where(user_id: user).pluck(:country)
+      @countries_array << Location.where(user_id: user).pluck(:country)
     end
 
-    #@countries_answered is an array in an array, extracting the value inside of the inner array and recreating the array.
-    @revised_answered = Array.new
-    @countries_answered.each do |country|
-      @revised_answered << country[0]
-    end
+     #@countries_array is a two dimensional array, so this extracts the first element of each inner array.
+    @countries_answered = @countries_array.collect(&:first)
 
-    @country_hash = Hash.new
-    @revised_answered.each do |country|
-      if (@country_hash[country] == nil)
-        @country_hash = {country => 1}
-      else
-        @country_hash = {country => @country_hash[country] + 1}
-      end
-    end
-
-    @dropdown_array = Array.new
-    @country_hash.each do |key, value|
-      if (key != nil && value != nil)
-        @dropdown_array << key + " " + "(" + value.to_s + " answered" + ")"
-      end
-    end
+    #@country_answer_hash matches the country to an array of answers from that country
+    @country_answer_hash = Hash[@countries_answered.zip @answers_given]
 =end
 
+    # @country_hash = Hash.new
+    # @countries_answered.each do |country|
+    # #   if (@country_hash[country] == nil)
+    #     @country_hash = {country => 1}
+    #   else
+    #     @country_hash = {country => @country_hash[country] + 1}
+    #   end
+     #end
+
+    # @dropdown_array = Array.new
+    # @country_hash.each do |key, value|
+    #   if (key != nil && value != nil)
+    #     @dropdown_array << key + " " + "(" + value.to_s + " answered" + ")"
+    #   end
+    # end
+
     #update_nil_country()
+    #create_dummy_users()
     if(@user == nil)
       check_guest()
     end
@@ -76,12 +81,13 @@ class QuestionsController < ApplicationController
     end
 
     #concatenate the answer boxes into one string, checking for empty boxes and removing them
-    6.times do |count|
+    13.times do |count|
       counter = "answer_box_#{count}".to_sym
       unless (params[counter].to_s.empty?)
         @answerboxes = @answerboxes.to_s + params[counter].to_s << '|'
       end
     end
+
     #strip the last comma
     @answerboxes = @answerboxes[0...-1]
 

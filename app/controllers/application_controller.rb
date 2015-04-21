@@ -26,6 +26,89 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  #used to create a larger sample size on localhost
+  def create_dummy_users
+    @user1 = User.new(first_name: "Number",
+                      last_name: "One")
+    @user1.build_location(
+      province: "Ontario",
+      country_code: "CA",
+      continent: "North America",
+      country: "Canada",
+      city: "Toronto")
+      @user1.save
+
+    @user2 = User.new(first_name: "Number",
+                      last_name: "Two")
+    @user2.build_location(
+      province: "Pennsylvania",
+      country_code: "US",
+      continent: "North America",
+      country: "United States",
+      city: "Downingtown")
+      @user2.save
+
+    @user3 = User.new(first_name: "Number",
+                      last_name: "Three")
+    @user3.build_location(
+      province: "Florida",
+      country_code: "US",
+      continent: "North America",
+      country: "United States",
+      city: "Port Richey")
+      @user3.save
+
+    @user4 = User.new(first_name: "Number",
+                      last_name: "Four")
+    @user4.build_location(
+      province: "South Dakota",
+      country_code: "US",
+      continent: "North America",
+      country: "United States",
+      city: "Sioux Falls")
+      @user4.save
+
+    @user5 = User.new(first_name: "Number",
+                      last_name: "Five")
+    @user5.build_location(
+      province: "Rio de Janeiro",
+      country_code: "BR",
+      continent: "South America",
+      country: "Brazil",
+      city: "Rio de Janeiro")
+      @user5.save
+
+    @user6 = User.new(first_name: "Number",
+                      last_name: "Six")
+    @user6.build_location(
+      province: "Ontario",
+      country_code: "CA",
+      continent: "North America",
+      country: "Canada",
+      city: "Toronto")
+      @user6.save
+
+    @user7 = User.new(first_name: "Number",
+                      last_name: "Seven")
+    @user7.build_location(
+      province: "Ontario",
+      country_code: "CA",
+      continent: "North America",
+      country: "Canada",
+      city: "Toronto")
+      @user7.save
+
+    @user8 = User.new(first_name: "Number",
+                      last_name: "Eight")
+    @user8.build_location(
+      province: "Ontario",
+      country_code: "CA",
+      continent: "North America",
+      country: "Canada",
+      city: "Toronto")
+    @user8.save
+  end
+
   def check_guest
     ip = request.remote_ip
 
@@ -58,12 +141,12 @@ class ApplicationController < ActionController::Base
       else
         @user = User.new(ip_address: ip)
         @user.build_location(
-        province: "Ontario",
-        country_code: "CA",
-        continent: "North America",
-        country: "Canada",
-        city: "Toronto",
-        ip_address: ip)
+          province: "Ontario",
+          country_code: "CA",
+          continent: "North America",
+          country: "Canada",
+          city: "Toronto",
+          ip_address: ip)
         @user.save
         sign_in(:user, @user)
       end
