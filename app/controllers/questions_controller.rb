@@ -9,6 +9,7 @@ class QuestionsController < ApplicationController
     @question = Question.friendly.find(params[:id])
     @answers = Answer.where(question_id: @question.id).count
 
+=begin
     #extracting all of the users that answered this question
     @users_list = Array.new
     Answer.where(question_id: @question.id).find_each do |answer|
@@ -31,6 +32,7 @@ class QuestionsController < ApplicationController
 
     #@country_answer_hash matches the country to an array of answers from that country
     @country_answer_hash = Hash[@countries_answered.zip @answers_given]
+=end
 
     # @country_hash = Hash.new
     # @countries_answered.each do |country|
