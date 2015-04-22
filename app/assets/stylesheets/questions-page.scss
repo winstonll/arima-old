@@ -353,17 +353,23 @@
 
       li.active {
         background-color: #5AA3E8;
+        border: 1px solid #5AA3E8;
+
+        a {
+          color: #fff;
+        }
       }
 
       a{
         display: inline-block;
-        padding: 0.75em 1.5em 0.75em 1.5em;
-        color: #fff;
+        padding: 0.25em 1.25em 0.25em 1.25em;
+        color: #888;
       }
 
       .report-location {
         display: inline-block;
-        background-color: #5AA3E8;
+        border: 1px solid #888;
+        color: #888;
         border-radius: 5px;
 
         &:not(:first-child) {
