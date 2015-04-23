@@ -15,44 +15,10 @@ class QuestionsController < ApplicationController
     Answer.where(question: @question).find_each do |answer|
       @users_list << answer.user_id
     end
-    #extracting all of the answers for the question
-    # @answers_given = Array.new
-    # Answer.where(question_id: @question.id).find_each do |answer|
-    #   @answers_given << answer.value
-    # end
-
-    #extracting all of the countries that answered the question
-    # @countries_array = Array.new
+    
     @countries_answered = @users_list.flat_map do |user|
-      Location.where(user_id: user).pluck(:country_code)
+      Location.where(user_id: user).pluck(:country)
     end
-
-    # @users_list.each do |user|
-    #   @countries_array << Location.where(user_id: user).pluck(:country)
-    # end
-
-     #@countries_array is a two dimensional array, so this extracts the first element of each inner array.
-    # @countries_answered = @countries_array.collect(&:first)
-
-    #@country_answer_hash matches the country to an array of answers from that country
-    #@country_answer_hash = Hash[@countries_answered.zip @answers_given]
-
-
-    # @country_hash = Hash.new
-    # @countries_answered.each do |country|
-    # #   if (@country_hash[country] == nil)
-    #     @country_hash = {country => 1}
-    #   else
-    #     @country_hash = {country => @country_hash[country] + 1}
-    #   end
-     #end
-
-    # @dropdown_array = Array.new
-    # @country_hash.each do |key, value|
-    #   if (key != nil && value != nil)
-    #     @dropdown_array << key + " " + "(" + value.to_s + " answered" + ")"
-    #   end
-    # end
 
     #update_nil_country()
     #create_dummy_users()

@@ -90,9 +90,9 @@ class Answer < ActiveRecord::Base
     "<h1 style='color:##{color_generator.create_hex}'>#{val}% Rank</h1>".html_safe
   end
 
-  def country_answer
-    self.formatted_diff_average 'country'
-  end
+  # def country_answer
+  #   self.formatted_diff_average 'country'
+  # end
 
   def city_answer
     self.formatted_diff_average 'city'
@@ -102,21 +102,21 @@ class Answer < ActiveRecord::Base
     ActionController::Base.helpers.strip_tags("#{self.question.label}")
   end
 
-  def chart(value)
-    if self.question.value_type == "collection"
-      case value
-        when "city" then collection_chart percent_city
-        when "country" then collection_chart percent_country
-        when "world" then collection_chart percent_world
-      end
-    else
-      case value
-        when "city" then numeric_chart by_city.pluck(:value).compact
-        when "country" then numeric_chart by_country.pluck(:value).compact
-        when "world" then numeric_chart by_world.pluck(:value).compact
-      end
-    end
-  end
+  # def chart(value)
+  #   if self.question.value_type == "collection"
+  #     case value
+  #       when "city" then collection_chart percent_city
+  #       when "country" then collection_chart percent_country
+  #       when "world" then collection_chart percent_world
+  #     end
+  #   else
+  #     case value
+  #       when "city" then numeric_chart by_city.pluck(:value).compact
+  #       when "country" then numeric_chart by_country.pluck(:value).compact
+  #       when "world" then numeric_chart by_world.pluck(:value).compact
+  #     end
+  #   end
+  # end
 
   def data_array(value)
     if self.question.value_type == "collection"
@@ -254,14 +254,14 @@ class Answer < ActiveRecord::Base
 
   def by_country
     # FIND ME
-    warbl = question.answers.reduce({}) do |res, ans|
-      key = ans.user.location.country_code
+    country_answer = question.answers.reduce({}) do |res, answ|
+      key = answ.user.location.country
       res[key] ||= []
-      res[key] << ans
+      res[key] << answ
       res
     end
     
-    warbl
+    country_answer
   end
 
   def by_world
