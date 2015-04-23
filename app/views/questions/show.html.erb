@@ -13,10 +13,25 @@ $(document).ready(function() {
 
 <div class="main-site-container" id="question-page-container">
   <div id="question-hero">
-    <!-- Question Title and Answer Box -->
     <div class="question-container question-container-<%= @question.group_id %>">
-      <h1 class="question-title"><%= @question.label %></h1>
-      <%= render partial: 'questions/answer_input', locals: { question: @question, answer: @answer} %>
+      <!-- Votes -->
+      <div class="question-vote-container">
+        <div class="question-upvote">
+          <%= link_to image_tag('upvote_white.png', class: "question-vote-image"), :remote => true %>
+        </div>
+        <div class="question-vote-counter">
+          <%= "#{@question.votecount}" %>
+        </div>
+        <div class="question-downvote">
+          <%= link_to image_tag('downvote_white.png', class: "question-vote-image"), :remote => true %>
+        </div>
+      </div>
+
+      <!-- Question Title and Answer Box -->
+      <div class="question-title-container">
+        <h1 class="question-title"><%= @question.label %></h1>
+        <%= render partial: 'questions/answer_input', locals: { question: @question, answer: @answer} %>
+      </div>
     </div>
 
     <!-- Counter + Share Section -->
