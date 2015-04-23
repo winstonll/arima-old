@@ -26,21 +26,23 @@
           </a>
         </li>
       <% end %>
-    </ul>
-      <div class="country_dropdown">
+      <li class="country_dropdown">
           <%= select_tag(@countries_answered, options_for_select(@countries_answered)) %>
-      </div>
+      <li/>
+    </ul>
   </div>
 
   <div id="answer-chart"></div>
 </div>
 
 <script>
+
+
   var data_answer = {};
   <% if has_city %>
     data_answer.city = <%= answer.data_array('city').html_safe %>;
   <% end %>
-  data_answer.country = <%= answer.data_array('country').html_safe %>;
+  data_answer.country = <%= answer.percent_country.to_json.html_safe %>;
   data_answer.world = <%= answer.data_array('world').html_safe %>;
   data_answer.selected = 'world';
   <% if answer.question.value_type == "collection" %>
@@ -93,6 +95,9 @@
 
   function transform_data_answer(loc) {
     var data = data_answer[loc];
+    if (loc == 'country'){
+      data = data_answer.country_stats;
+    }
     console.log(data);
     if (data_answer.collection) {return data;}
     else{
@@ -129,6 +134,8 @@
   });
 
   $('#v-answer .location-list .country_dropdown').change(function (e) {
+    var country = $(e.target).find(":selected").val();
+    data_answer.country_stats = data_answer.country[country]
     show_location_answer('country');
   });
 
