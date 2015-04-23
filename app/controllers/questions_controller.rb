@@ -7,12 +7,12 @@ class QuestionsController < ApplicationController
     #@countries = Location.select(:country_code).distinct.collect { |loc| loc.country_code }
 
     @question = Question.friendly.find(params[:id])
-    @answers = Answer.where(question_id: @question.id).count
+    @answers = Answer.where(question: @question).count
 
 
     #extracting all of the users that answered this question
     @users_list = Array.new
-    Answer.where(question_id: @question.id).find_each do |answer|
+    Answer.where(question: @question).find_each do |answer|
       @users_list << answer.user_id
     end
     #extracting all of the answers for the question
@@ -22,13 +22,17 @@ class QuestionsController < ApplicationController
     # end
 
     #extracting all of the countries that answered the question
-    @countries_array = Array.new
-    @users_list.each do |user|
-      @countries_array << Location.where(user_id: user).pluck(:country)
+    # @countries_array = Array.new
+    @countries_answered = @users_list.flat_map do |user|
+      Location.where(user_id: user).pluck(:country_code)
     end
 
+    # @users_list.each do |user|
+    #   @countries_array << Location.where(user_id: user).pluck(:country)
+    # end
+
      #@countries_array is a two dimensional array, so this extracts the first element of each inner array.
-    @countries_answered = @countries_array.collect(&:first)
+    # @countries_answered = @countries_array.collect(&:first)
 
     #@country_answer_hash matches the country to an array of answers from that country
     #@country_answer_hash = Hash[@countries_answered.zip @answers_given]
@@ -72,6 +76,16 @@ class QuestionsController < ApplicationController
 
   def new
     @subquestion = Question.new
+  end
+
+  def stats
+    q = Question.find(params[:id])
+    result = {
+      name: q.label,
+      answers: q.grouped_answers
+    }
+
+    render json: result
   end
 
   def create
