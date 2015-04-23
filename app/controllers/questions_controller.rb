@@ -73,18 +73,35 @@ class QuestionsController < ApplicationController
 
   def upvote
     @question = Question.friendly.find(params[:id])
-    @question.update_attribute(votecount, votecount + 1)
-    @question.save
+
+    # Update the question table votecount value
+    @question.increment_counter(votecount)
+
+    # Update the Votes table with the new vote
+    Vote.create(
+      :user_id => @user.id,
+      :question_id => params[:group_id],
+      :vote_type => params[:value_type])
+
+      render nothing: true
   end
 
   def downvote
     @question = Question.friendly.find(params[:id])
-    @question.update_attribute(votecount, votecount - 1)
-    @question.save
+
+    # Update the question table votecount value
+    @question.decrement_counter(votecount)
+
+    # Update the Votes table with the new vote
+    Vote.create(
+      :user_id => @user.id,
+      :question_id => params[:group_id],
+      :vote_type => params[:value_type])
+
+      render nothing: true
   end
 
   def create
-
     if(@user == nil)
       check_guest()
     end
