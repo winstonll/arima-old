@@ -74,14 +74,20 @@ class QuestionsController < ApplicationController
   def upvote
     @question = Question.friendly.find(params[:id])
 
-    # Update the question table votecount value
-    @question.increment_counter(votecount)
+    # Check to see if the question has already been voted on
+    @question_check = Vote.where(:question_id => params[:id]).where(:user_id => @user.id)
 
-    # Update the Votes table with the new vote
-    Vote.create(
-      :user_id => @user.id,
-      :question_id => params[:group_id],
-      :vote_type => params[:value_type])
+    if (@question_check.empty?)
+      # Update the question table votecount value
+      @question.increment(:votecount)
+      @question.save!
+
+      # Update the Votes table with the new vote
+      Vote.create(
+        :user_id => @user.id,
+        :question_id => params[:id],
+        :vote_type => "upvote")
+    end
 
       render nothing: true
   end
@@ -90,13 +96,14 @@ class QuestionsController < ApplicationController
     @question = Question.friendly.find(params[:id])
 
     # Update the question table votecount value
-    @question.decrement_counter(votecount)
+    @question.decrement(:votecount)
+    @question.save!
 
     # Update the Votes table with the new vote
     Vote.create(
       :user_id => @user.id,
-      :question_id => params[:group_id],
-      :vote_type => params[:value_type])
+      :question_id => params[:id],
+      :vote_type => "downvote")
 
       render nothing: true
   end
