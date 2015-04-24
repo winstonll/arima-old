@@ -75,9 +75,9 @@ class QuestionsController < ApplicationController
     @question = Question.friendly.find(params[:id])
 
     # Check to see if the question has already been voted on
-    @question_check = Vote.where(:question_id => params[:id]).where(:user_id => @user.id)
+    @existing_vote = Vote.where(:question_id => params[:id]).where(:user_id => @user.id)
 
-    if (@question_check.empty?)
+    if (@existing_vote.empty?)
       # Update the question table votecount value
       @question.increment(:votecount)
       @question.save!
@@ -87,6 +87,13 @@ class QuestionsController < ApplicationController
         :user_id => @user.id,
         :question_id => params[:id],
         :vote_type => "upvote")
+    elsif (@existing_vote.pluck(:vote_type)[0] == "downvote")
+      # Change the question from downvote to upvote
+      @existing_vote.first.update_attributes(vote_type: "upvote")
+
+      # Increment counter by 2 to counter the downvote
+      @question.increment(:votecount, 2)
+      @question.save!
     end
 
       render nothing: true

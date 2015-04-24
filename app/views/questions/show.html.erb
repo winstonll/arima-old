@@ -16,6 +16,7 @@ $(document).ready(function() {
     <div class="question-container question-container-<%= @question.group_id %>">
       <!-- Votes -->
       <div class="question-vote-container">
+        <!-- Should probably refactor this and use _question_normal -->
         <div class="question-upvote">
           <% if Vote.where(:user_id => @user.id).where(:question_id => @question.id).pluck(:vote_type)[0] == "upvote" %>
             <%= link_to image_tag('upvote_blue.png', class: "question-vote-image"), upvote_question_path(:id => @question.id), :method => :put, :remote => true %>
