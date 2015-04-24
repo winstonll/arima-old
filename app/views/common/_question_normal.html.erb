@@ -4,7 +4,7 @@
       <% if Vote.where(:user_id => @user.id).where(:question_id => question.id).pluck(:vote_type)[0] == "upvote" %>
         <%= link_to image_tag('upvote_blue.png', class: "vote-image"), upvote_question_path(:id => question.id), :method => :put, :remote => true %>
       <% else %>
-        <%= link_to image_tag('upvote_inactive.png', class: "vote-image"), upvote_question_path(:id => question.id), :method => :put, :remote => true %>
+        <%= link_to image_tag('upvote_grey.png', class: "vote-image"), upvote_question_path(:id => question.id), :method => :put, :remote => true %>
       <% end %>
     </div>
     <div class="counter">
@@ -14,7 +14,7 @@
       <% if Vote.where(:user_id => @user.id).where(:question_id => question.id).pluck(:vote_type)[0] == "downvote" %>
         <%= link_to image_tag('downvote_orange.png', class: "vote-image"), downvote_question_path(:id => question.id), :method => :put, :remote => true %>
       <% else %>
-        <%= link_to image_tag('downvote_inactive.png', class: "vote-image"), downvote_question_path(:id => question.id), :method => :put, :remote => true %>
+        <%= link_to image_tag('downvote_grey.png', class: "vote-image"), downvote_question_path(:id => question.id), :method => :put, :remote => true %>
       <% end %>
     </div>
   </div>

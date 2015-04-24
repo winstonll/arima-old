@@ -23,12 +23,12 @@
         width: 5%;
         text-align: center;
         margin: 30px 0px 0px 15px;
-        background-color: #f3f2f2;
+        background-color: #fff;
         border-radius: 3px;
         border: 1px solid #DCDCDC;
 
         .question-vote-image {
-          width: 40px;
+          width: 35px;
           height: auto;
 
           &:hover {
@@ -38,18 +38,20 @@
 
         .question-vote-counter {
           font-size: 20px;
-          color: #fff;
+          color: #aaa;
         }
       }
 
       .question-title-container {
         overflow: hidden;
-        margin-right: 5%;
+        margin-top: 7px;
+        margin-right: 3%;
         text-align: center;
 
         .question-title {
           font-weight: 600;
-          font-size: 19px;
+          font-size: 17px;
+          line-height: 23px;
           text-align: center;
           color: #fff;
         }
@@ -61,7 +63,7 @@
               height: 25px;
               width: 40%;
               margin: auto;
-              margin-top: 2em;
+              margin-top: 1em;
               margin-bottom: 1em;
 
               color: #9B9B9B;
@@ -82,7 +84,7 @@
                 height: 35px;
                 width: 40%;
                 margin: auto;
-                margin-top: 2em;
+                margin-top: 1em;
                 margin-bottom: 1em;
 
                 color: #9B9B9B;
@@ -97,6 +99,15 @@
             }
 
             #answer-button {
+              .modal-button {
+                height: 32px;
+                padding: 0px 30px 0px 30px;
+                background-color: #00C39C;
+                color: #fff;
+                border-radius: 5px;
+                border: none;
+              }
+
               .modal-button:disabled {
                 background-color: #9a9a9a;
               }
