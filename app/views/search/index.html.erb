@@ -1,0 +1,5 @@
+<h1> Result </h1>
+
+<% @result.each do |question| %>
+  <%= render partial: "common/question_normal", locals: { answered: true, answer: question.answers.where(user_id: @user.id).first, question: question } %>
+<% end %>

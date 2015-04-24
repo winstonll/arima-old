@@ -41,33 +41,6 @@ class QuestionsController < ApplicationController
     end
   end
 
-  def search_result
-    data = params[:search_text].downcase
-
-    stripped= data.split(" ")
-    stripped -= %w{for and nor but or yet so either not only may neither both whether just as much rather why the is a this then than them their}
-    stripped = stripped.join(" ")
-
-    @result = Array.new()
-    r = Regexp.new(Regexp.escape(data.downcase))
-
-    unless(stripped.empty?)
-      Question.find_each do |question|
-        unless (r.match(question.label.downcase).to_s.empty?)
-          @result << question.label
-        end
-      end
-    end
-
-    if(@result.empty?)
-      redirect_to categories_path
-      flash[:notice] = "Nothing matched your search."
-    else
-      #render result page here
-      redirect_to categories_path
-    end
-  end
-
   def new
     @subquestion = Question.new
   end
@@ -133,7 +106,7 @@ class QuestionsController < ApplicationController
       @question.decrement(:votecount, 2)
       @question.save!
     end
-    
+
     render nothing: true
   end
 
