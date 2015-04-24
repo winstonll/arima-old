@@ -15,7 +15,7 @@ class QuestionsController < ApplicationController
     Answer.where(question: @question).find_each do |answer|
       @users_list << answer.user_id
     end
-    
+
     @countries_answered = @users_list.flat_map do |user|
       Location.where(user_id: user).pluck(:country)
     end
@@ -50,12 +50,66 @@ class QuestionsController < ApplicationController
       name: q.label,
       answers: q.grouped_answers
     }
-
     render json: result
   end
 
-  def create
+  def upvote
+    @question = Question.friendly.find(params[:id])
 
+    # Check to see if the question has already been voted on
+    @existing_vote = Vote.where(:question_id => params[:id]).where(:user_id => @user.id)
+
+    if (@existing_vote.empty?)
+      # Update the question table votecount value
+      @question.increment(:votecount)
+      @question.save!
+
+      # Update the Votes table with the new vote
+      Vote.create(
+        :user_id => @user.id,
+        :question_id => params[:id],
+        :vote_type => "upvote")
+    elsif (@existing_vote.pluck(:vote_type)[0] == "downvote")
+      # Change the question from downvote to upvote
+      @existing_vote.first.update_attributes(vote_type: "upvote")
+
+      # Increment counter by 2 to counter the downvote
+      @question.increment(:votecount, 2)
+      @question.save!
+    end
+
+      render nothing: true
+  end
+
+  def downvote
+    @question = Question.friendly.find(params[:id])
+
+    # Check to see if the question has already been voted on
+    @existing_vote = Vote.where(:question_id => params[:id]).where(:user_id => @user.id)
+
+    if (@existing_vote.empty?)
+      # Update the question table votecount value
+      @question.decrement(:votecount)
+      @question.save!
+
+      # Update the Votes table with the new vote
+      Vote.create(
+        :user_id => @user.id,
+        :question_id => params[:id],
+        :vote_type => "downvote")
+    elsif (@existing_vote.pluck(:vote_type)[0] == "upvote")
+      # Change the question from downvote to upvote
+      @existing_vote.first.update_attributes(vote_type: "downvote")
+
+      # Increment counter by 2 to counter the downvote
+      @question.decrement(:votecount, 2)
+      @question.save!
+    end
+    
+    render nothing: true
+  end
+
+  def create
     if(@user == nil)
       check_guest()
     end

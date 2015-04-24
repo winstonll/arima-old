@@ -18,39 +18,47 @@
       padding-left: 0.5em;
       padding-right: 0.5em;
 
-      .question-title {
-        font-weight: 600;
-        font-size: 19px;
+      .question-vote-container {
+        float: left;
+        width: 5%;
         text-align: center;
-        color: #fff;
-      }
+        margin: 30px 0px 0px 15px;
+        background-color: #f3f2f2;
+        border-radius: 3px;
+        border: 1px solid #DCDCDC;
 
-      .answer-prompt {
-        .form-inline {
-          select {
-            display: block;
-            height: 25px;
-            width: 40%;
-            margin: auto;
-            margin-top: 2em;
-            margin-bottom: 1em;
+        .question-vote-image {
+          width: 40px;
+          height: auto;
 
-            color: #9B9B9B;
-            text-align: center;
-            font-size: 12px;
-            background-color: #f7f7f7;
-
-            border: 0;
-            border-radius: 5px;
-            box-shadow: 0px 1px 1px 1px rgba(100, 100, 100, 0.35);
+          &:hover {
+            opacity: 0.8;
           }
         }
 
-        .form-group {
-          .answer_value {
-            .form-control {
+        .question-vote-counter {
+          font-size: 20px;
+          color: #fff;
+        }
+      }
+
+      .question-title-container {
+        overflow: hidden;
+        margin-right: 5%;
+        text-align: center;
+
+        .question-title {
+          font-weight: 600;
+          font-size: 19px;
+          text-align: center;
+          color: #fff;
+        }
+
+        .answer-prompt {
+          .form-inline {
+            select {
               display: block;
-              height: 35px;
+              height: 25px;
               width: 40%;
               margin: auto;
               margin-top: 2em;
@@ -67,9 +75,31 @@
             }
           }
 
-          #answer-button {
-            .modal-button:disabled {
-              background-color: #9a9a9a;
+          .form-group {
+            .answer_value {
+              .form-control {
+                display: block;
+                height: 35px;
+                width: 40%;
+                margin: auto;
+                margin-top: 2em;
+                margin-bottom: 1em;
+
+                color: #9B9B9B;
+                text-align: center;
+                font-size: 12px;
+                background-color: #f7f7f7;
+
+                border: 0;
+                border-radius: 5px;
+                box-shadow: 0px 1px 1px 1px rgba(100, 100, 100, 0.35);
+              }
+            }
+
+            #answer-button {
+              .modal-button:disabled {
+                background-color: #9a9a9a;
+              }
             }
           }
         }

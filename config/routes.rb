@@ -17,6 +17,13 @@ Arima::Application.routes.draw do
     resources :answers, only: [:new, :create]
   end
 
+  resources :questions do
+    member do
+      put 'upvote' => "questions#upvote"
+      put 'downvote' => "questions#downvote"
+    end
+  end
+
   resources :questions, only: [:new, :create] do
     post 'questions/create' => "questions#create", as: :question
   end
@@ -75,7 +82,6 @@ Arima::Application.routes.draw do
 
   #categories
   #match 'questions' => 'categories#index', :via => :get
-
 
   root 'home#index'
 end
