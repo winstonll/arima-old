@@ -1,5 +1,26 @@
-<h1> Result </h1>
+<style>
+h3 {
+    color: #00c39c;
+    margin: 2% auto;
+    position: relative;
+    left: 32%;
+}
 
-<% @result.each do |question| %>
-  <%= render partial: "common/question_normal", locals: { answered: true, answer: question.answers.where(user_id: @user.id).first, question: question } %>
-<% end %>
+</style>
+
+<h3> Results: </h3>
+
+<div class="main-site-container">
+
+  <div id="questions-container">
+    <% if @user && @unanswered.any? %>
+      <%= render partial: "categories/show_unanswered_questions" %>
+    <% else %>
+      <%= render partial: "categories/show_questions" %>
+    <% end %>
+
+    <% if @user && !@answered.empty? %>
+      <%= render partial: "categories/show_answered_questions" %>
+    <% end %>
+  </div>
+</div>
