@@ -4,6 +4,10 @@ class SearchController < ApplicationController
   layout "application_fluid"
 
   def index
+    if(@user == nil)
+      check_guest()
+    end
+
     data = params[:search_text].downcase
 
     stripped= data.split(" ")
