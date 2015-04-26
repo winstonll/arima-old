@@ -407,6 +407,13 @@
         color: #888;
       }
 
+      .country_dropdown {
+        display: inline-block;
+        font-size: 15px;
+        color: #888;
+        text-align: center;
+      }
+
       .report-location {
         display: inline-block;
         border: 1px solid #888;
@@ -421,23 +428,6 @@
           opacity: 0.8;
         }
 
-        .country {
-          .filter-location-select {
-            #width: 80px;
-            #height: 35px;
-            font-size: 15px;
-            background-color: #00C39C;
-            border-radius: 4px;
-            outline: none;
-            border: 0;
-            color: #fff;
-            text-align: center;
-
-            &:hover {
-              background-color: #00C39C !important;
-            }
-          }
-        }
       }
     }
   }
