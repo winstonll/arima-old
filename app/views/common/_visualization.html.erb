@@ -11,7 +11,7 @@
       <% if has_country %>
       <li class="report-location">
         <a class="country" data-toggle="pill" href="javascript:void()">
-          <%= answer.user.location.country %>
+        <%= answer.user.location.country %>
         </a>
       </li>
       <% end %>
@@ -24,9 +24,6 @@
         </li>
       <% end %>
     </ul>
-      <div class="country_dropdown">
-          <%#= select_tag(@countries_answered, options_for_select(@countries_answered)) %>
-      </div>
   </div>
 
   <div id="answer-chart"></div>
@@ -88,6 +85,7 @@
   });
   function transform_data_answer(loc) {
     var data = data_answer[loc];
+    console.log(data);
     if (data_answer.collection) {return data;}
     else{
       data = [['x'], [loc]];
@@ -99,14 +97,25 @@
     }
   }
   function show_location_answer(loc) {
+    previous_selected = data_answer.selected;
     data_answer.selected = loc;
-    chart_answer.unload();
-    chart_answer.load({columns: transform_data_answer(loc)});
+    var loc_arr = [];
+    if(data_answer.collection){
+      for (i = 0; i < transform_data_answer('world').length; i++){
+        loc_arr.push(transform_data_answer('world')[i][0])
+      }
+    } else {
+      loc_arr = [previous_selected];
+    }
+    chart_answer.load({
+      columns: transform_data_answer(loc),
+      unload: loc_arr
+    });
   }
   $('#v-answer .location-list .city').click(function (e) {
     show_location_answer('city');
   });
-  $('#v-answer .location-list .country_dropdown').change(function (e) {
+  $('#v-answer .location-list .country').click(function (e) {
     show_location_answer('country');
   });
   $('#v-answer .location-list .world').click(function (e) {
