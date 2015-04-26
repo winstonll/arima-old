@@ -1,6 +1,7 @@
 $(document).ready(function(){
   $("#home-navbar").css({"box-shadow":"none", "background-color": "rgba(0,0,0,0)"});
   $("#submit-question-link").css({"display":"none"});
+  $("#st").css({"display":"none"});
   $("#questions-menu").css({"display":"none"});
   $(".logo-container").css({"display":"none"});
 
