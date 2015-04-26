@@ -67,47 +67,6 @@ body {
     padding-bottom: 20px;
   }
 
-  .question-link {
-    color: #555;
-
-    &:hover {
-      .question-wrapper {
-        background-color: #00C39C;
-
-        .question-title,
-        .question-info,
-        .num-answers {
-          color: #fff;
-        }
-
-        .question-info {
-          color: #555;
-        }
-      }
-    }
-  }
-
-  /* Answered question links */
-  .question-link-answered {
-    color: #aaa;
-
-    &:hover {
-      .question-wrapper {
-        background-color: #ccc;
-
-        .question-title,
-        .question-info,
-        .answered-when {
-          color: #fff;
-        }
-
-        .question-info {
-          color: #aaa;
-        }
-      }
-    }
-  }
-
   /* Pagination */
   #paginator {
     text-align: center;
@@ -145,41 +104,88 @@ body {
   }
 
   /* Question links */
-  .question-link,
-  .question-link-answered {
-    text-decoration: none !important;
-    font-weight: 600;
+  .question-wrapper {
+    border: 1px solid #E5E5E5;
+    border-radius: 5px;
+    padding: 5px 40px 5px 25px;
 
-    .question-wrapper {
-      width: intrinsic;
-      width: -moz-max-content;
-      max-width: -moz-fit-content;
-      border-radius: 8px;
-      padding: 10px 25px 10px 25px;
+    .votes {
+      float: left;
+      width: 5%;
+      text-align: center;
 
-      .question-title {
-        font-size: 15px;
-        margin: 0;
+      .upvote,
+      .downvote {
+        .vote-image {
+          &:hover {
+            opacity: 0.75;
+          }
+        }
       }
 
-      .question-dates {
-        font-weight: 500;
-        font-size: 15px;
+      .counter {
+        color: #888;
+      }
+    }
 
-        div {
-          display: inline-block;
-          margin-right: 8px;
+    .question-title-container {
+      overflow: hidden;
+      padding: 10px 15px 5px 15px;
+
+      .question-link {
+        text-decoration: none !important;
+        font-weight: 600;
+        color: #555;
+
+        .question-title {
+          font-size: 15px;
+          margin: 0;
         }
 
-        .question-answered-date {
-          line-height: 11px;
+        .question-dates {
+          font-weight: 500;
+          font-size: 14px;
+          margin-top: 3px;
+
+          div {
+            display: inline-block;
+            margin-right: 8px;
+          }
+
+          .question-answered-date {
+            line-height: 11px;
+          }
+        }
+
+        &:hover {
+          .question-title,
+          .question-info,
+          .num-answers {
+            color: #00C39C;
+          }
+        }
+      }
+
+      .question-link-answered {
+        color: #aaa;
+
+        &:hover {
+          .question-title,
+          .question-info,
+          .num-answers {
+            color: #777;
+          }
         }
       }
     }
+
+    &:not(:first-child) {
+      margin-top: 15px;
+    }
   }
 
-  /* category page styling */
 
+  /* category page styling */
   &.electronics-gadgets {
     .container-category-banner {
       background-image: url("<%= image_path("category-heros/Electronics & Gadgets.png") %>");

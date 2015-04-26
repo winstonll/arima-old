@@ -5,6 +5,8 @@ Arima::Application.routes.draw do
 
   resource :profile, only: [:show, :update]
 
+  get 'search' => "search#index"
+
   # constraint allows special characters in the route
   #get "users/:first_name:last_name:id" => "profiles#show", as: :profile_show , constraints: { first_name: /[a-zA-Z1-9\-]+/, last_name: /[a-zA-Z1-9\-]+/ }
 
@@ -15,6 +17,13 @@ Arima::Application.routes.draw do
 
   resources :questions, only: [:show] do
     resources :answers, only: [:new, :create]
+  end
+
+  resources :questions do
+    member do
+      put 'upvote' => "questions#upvote"
+      put 'downvote' => "questions#downvote"
+    end
   end
 
   resources :questions, only: [:new, :create] do
@@ -75,7 +84,6 @@ Arima::Application.routes.draw do
 
   #categories
   #match 'questions' => 'categories#index', :via => :get
-
 
   root 'home#index'
 end

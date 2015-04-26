@@ -1,0 +1,4 @@
+$("#upvote-image-<%=@question.id%>").attr("src", "<%= image_path 'upvote_blue.png' %>");
+$("#downvote-image-<%=@question.id%>").attr("src", "<%= image_path 'downvote_grey.png' %>");
+
+$("#votecount-<%=@question.id%>").html('<%=escape_javascript @question.votecount.to_s %>');

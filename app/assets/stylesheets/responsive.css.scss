@@ -2,7 +2,19 @@
  * Reserve this stylesheet for all responsive media queries.
  */
 
+
+ @media screen and ( max-width: 1150px ) {
+   body {
+     .question-wrapper {
+       .question-link {
+         width: 85%;
+       }
+     }
+   }
+ }
+
 @media screen and ( max-width: 1000px ) {
+
   body {
     #questions-container,
     .profile-container {

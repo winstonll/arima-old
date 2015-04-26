@@ -10,12 +10,12 @@
       <% has_country = user_signed_in? ?  answer.user.location.country.present? : false %>
       <% if has_country %>
       <li class="report-location">
-        <a class="country" data-toggle="pill" href="javascript:void()">
-        <%= answer.user.location.country %>
+        <!-- <a class="country" data-toggle="pill" href="javascript:void()">
+        <%#= answer.user.location.country %>
         <%#= select_tag 'country-filter', options_for_select(@dropdown_array, params[@dropdown_array]), { prompt: "Country", class: "filter-location-select"} %>
         <%#= select_tag 'country-filter', options_for_select(@countries, params[:country_type]), { prompt: "Country", class: "filter-location-select"} %>
           <%#= answer.user.location.country %>
-        </a>
+        </a> -->
       </li>
       <% end %>
       <% has_city = user_signed_in? ? answer.user.location.city.present? : false %>
@@ -26,6 +26,9 @@
           </a>
         </li>
       <% end %>
+      <li class="country_dropdown">
+          <%= select_tag(@countries_answered, options_for_select(@countries_answered)) %>
+      <li/>
     </ul>
   </div>
 
@@ -33,11 +36,13 @@
 </div>
 
 <script>
+
+
   var data_answer = {};
   <% if has_city %>
     data_answer.city = <%= answer.data_array('city').html_safe %>;
   <% end %>
-  data_answer.country = <%= answer.data_array('country').html_safe %>;
+  data_answer.country = <%= answer.percent_country.to_json.html_safe %>;
   data_answer.world = <%= answer.data_array('world').html_safe %>;
   data_answer.selected = 'world';
   <% if answer.question.value_type == "collection" %>
@@ -90,6 +95,9 @@
 
   function transform_data_answer(loc) {
     var data = data_answer[loc];
+    if (loc == 'country'){
+      data = data_answer.country_stats;
+    }
     console.log(data);
     if (data_answer.collection) {return data;}
     else{
@@ -125,7 +133,9 @@
     show_location_answer('city');
   });
 
-  $('#v-answer .location-list .country').click(function (e) {
+  $('#v-answer .location-list .country_dropdown').change(function (e) {
+    var country = $(e.target).find(":selected").val();
+    data_answer.country_stats = data_answer.country[country]
     show_location_answer('country');
   });
 

@@ -7,51 +7,22 @@ class QuestionsController < ApplicationController
     #@countries = Location.select(:country_code).distinct.collect { |loc| loc.country_code }
 
     @question = Question.friendly.find(params[:id])
-    @answers = Answer.where(question_id: @question.id).count
+    @answers = Answer.where(question: @question).count
 
-=begin
+
     #extracting all of the users that answered this question
     @users_list = Array.new
-    Answer.where(question_id: @question.id).find_each do |answer|
+    Answer.where(question: @question).find_each do |answer|
       @users_list << answer.user_id
     end
-    #extracting all of the answers for the question
-    @answers_given = Array.new
-    Answer.where(question_id: @question.id).find_each do |answer|
-      @answers_given << answer.value
+
+    @countries_answered = @users_list.flat_map do |user|
+      Location.where(user_id: user).pluck(:country)
     end
-
-    #extracting all of the countries that answered the question
-    @countries_array = Array.new
-    @users_list.each do |user|
-      @countries_array << Location.where(user_id: user).pluck(:country)
-    end
-
-     #@countries_array is a two dimensional array, so this extracts the first element of each inner array.
-    @countries_answered = @countries_array.collect(&:first)
-
-    #@country_answer_hash matches the country to an array of answers from that country
-    @country_answer_hash = Hash[@countries_answered.zip @answers_given]
-=end
-
-    # @country_hash = Hash.new
-    # @countries_answered.each do |country|
-    # #   if (@country_hash[country] == nil)
-    #     @country_hash = {country => 1}
-    #   else
-    #     @country_hash = {country => @country_hash[country] + 1}
-    #   end
-     #end
-
-    # @dropdown_array = Array.new
-    # @country_hash.each do |key, value|
-    #   if (key != nil && value != nil)
-    #     @dropdown_array << key + " " + "(" + value.to_s + " answered" + ")"
-    #   end
-    # end
 
     #update_nil_country()
     #create_dummy_users()
+
     if(@user == nil)
       check_guest()
     end
@@ -74,8 +45,76 @@ class QuestionsController < ApplicationController
     @subquestion = Question.new
   end
 
-  def create
+  def stats
+    q = Question.find(params[:id])
+    result = {
+      name: q.label,
+      answers: q.grouped_answers
+    }
+    render json: result
+  end
 
+  def upvote
+    @question = Question.friendly.find(params[:id])
+
+    # Check to see if the question has already been voted on
+    @existing_vote = Vote.where(:question_id => params[:id]).where(:user_id => @user.id)
+
+    if (@existing_vote.empty?)
+      # Update the question table votecount value
+      @question.increment(:votecount)
+      @question.save!
+
+      # Update the Votes table with the new vote
+      Vote.create(
+        :user_id => @user.id,
+        :question_id => params[:id],
+        :vote_type => "upvote")
+    elsif (@existing_vote.pluck(:vote_type)[0] == "downvote")
+      # Change the question from downvote to upvote
+      @existing_vote.first.update_attributes(vote_type: "upvote")
+
+      # Increment counter by 2 to counter the downvote
+      @question.increment(:votecount, 2)
+      @question.save!
+    end
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def downvote
+    @question = Question.friendly.find(params[:id])
+
+    # Check to see if the question has already been voted on
+    @existing_vote = Vote.where(:question_id => params[:id]).where(:user_id => @user.id)
+
+    if (@existing_vote.empty?)
+      # Update the question table votecount value
+      @question.decrement(:votecount)
+      @question.save!
+
+      # Update the Votes table with the new vote
+      Vote.create(
+        :user_id => @user.id,
+        :question_id => params[:id],
+        :vote_type => "downvote")
+    elsif (@existing_vote.pluck(:vote_type)[0] == "upvote")
+      # Change the question from downvote to upvote
+      @existing_vote.first.update_attributes(vote_type: "downvote")
+
+      # Increment counter by 2 to counter the downvote
+      @question.decrement(:votecount, 2)
+      @question.save!
+    end
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def create
     if(@user == nil)
       check_guest()
     end
@@ -100,7 +139,6 @@ class QuestionsController < ApplicationController
 
     GroupsQuestion.create(group_id: params[:group_id], question_id: @subquestion.id)
 
-    # The logic works, just need to output the error message in the else statement.
     if @subquestion.valid?
       redirect_to question_path(@subquestion)
     else
