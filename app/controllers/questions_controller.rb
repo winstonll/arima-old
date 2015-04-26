@@ -22,6 +22,7 @@ class QuestionsController < ApplicationController
 
     #update_nil_country()
     #create_dummy_users()
+
     if(@user == nil)
       check_guest()
     end
@@ -138,7 +139,6 @@ class QuestionsController < ApplicationController
 
     GroupsQuestion.create(group_id: params[:group_id], question_id: @subquestion.id)
 
-    # The logic works, just need to output the error message in the else statement.
     if @subquestion.valid?
       redirect_to question_path(@subquestion)
     else

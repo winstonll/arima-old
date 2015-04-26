@@ -5,6 +5,8 @@ Arima::Application.routes.draw do
 
   resource :profile, only: [:show, :update]
 
+  get 'search' => "search#index"
+
   # constraint allows special characters in the route
   #get "users/:first_name:last_name:id" => "profiles#show", as: :profile_show , constraints: { first_name: /[a-zA-Z1-9\-]+/, last_name: /[a-zA-Z1-9\-]+/ }
 
