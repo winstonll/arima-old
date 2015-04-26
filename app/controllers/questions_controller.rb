@@ -79,7 +79,9 @@ class QuestionsController < ApplicationController
       @question.save!
     end
 
-      render nothing: true
+    respond_to do |format|
+      format.js
+    end
   end
 
   def downvote
@@ -107,7 +109,9 @@ class QuestionsController < ApplicationController
       @question.save!
     end
 
-    render nothing: true
+    respond_to do |format|
+      format.js
+    end
   end
 
   def create
