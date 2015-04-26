@@ -26,8 +26,7 @@ class SearchController < ApplicationController
     end
 
     if @user
-      user_questions = @user.questions
-      @answered         = @all & user_questions
+      @answered         = @all & @user.questions
       @unanswered       = @all - @answered
     end
 
