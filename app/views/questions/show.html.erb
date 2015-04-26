@@ -19,19 +19,19 @@ $(document).ready(function() {
         <!-- Should probably refactor this and use _question_normal -->
         <div class="question-upvote">
           <% if Vote.where(:user_id => @user.id).where(:question_id => @question.id).pluck(:vote_type)[0] == "upvote" %>
-            <%= link_to image_tag('upvote_blue.png', class: "question-vote-image"), upvote_question_path(:id => @question.id), :method => :put, :remote => true %>
+            <%= link_to image_tag('upvote_blue.png', id: "upvote-image-#{@question.id}", class: "question-vote-image"), upvote_question_path(:id => @question.id), :method => :put, :remote => true %>
           <% else %>
-            <%= link_to image_tag('upvote_grey.png', class: "question-vote-image"), upvote_question_path(:id => @question.id), :method => :put, :remote => true %>
+            <%= link_to image_tag('upvote_grey.png', id: "upvote-image-#{@question.id}", class: "question-vote-image"), upvote_question_path(:id => @question.id), :method => :put, :remote => true %>
           <% end %>
         </div>
-        <div class="question-vote-counter">
+        <div id="votecount-<%= @question.id %>" class="question-vote-counter">
           <%= "#{@question.votecount}" %>
         </div>
         <div class="question-downvote">
           <% if Vote.where(:user_id => @user.id).where(:question_id => @question.id).pluck(:vote_type)[0] == "downvote" %>
-            <%= link_to image_tag('downvote_orange.png', class: "question-vote-image"), downvote_question_path(:id => @question.id), :method => :put, :remote => true %>
+            <%= link_to image_tag('downvote_orange.png', id: "downvote-image-#{@question.id}", class: "question-vote-image"), downvote_question_path(:id => @question.id), :method => :put, :remote => true %>
           <% else %>
-            <%= link_to image_tag('downvote_grey.png', class: "question-vote-image"), downvote_question_path(:id => @question.id), :method => :put, :remote => true %>
+            <%= link_to image_tag('downvote_grey.png', id: "downvote-image-#{@question.id}", class: "question-vote-image"), downvote_question_path(:id => @question.id), :method => :put, :remote => true %>
           <% end %>
         </div>
       </div>
