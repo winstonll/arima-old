@@ -7,17 +7,6 @@
           World
         </a>
       </li>
-      <% has_country = user_signed_in? ?  answer.user.location.country.present? : false %>
-      <% if has_country %>
-      <li class="report-location">
-        <!-- <a class="country" data-toggle="pill" href="javascript:void()">
-        <%#= answer.user.location.country %>
-        <%#= select_tag 'country-filter', options_for_select(@dropdown_array, params[@dropdown_array]), { prompt: "Country", class: "filter-location-select"} %>
-        <%#= select_tag 'country-filter', options_for_select(@countries, params[:country_type]), { prompt: "Country", class: "filter-location-select"} %>
-          <%#= answer.user.location.country %>
-        </a> -->
-      </li>
-      <% end %>
       <% has_city = user_signed_in? ? answer.user.location.city.present? : false %>
       <% if has_city %>
         <li class="report-location">
