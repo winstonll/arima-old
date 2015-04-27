@@ -409,9 +409,21 @@
 
       .country_dropdown {
         display: inline-block;
-        font-size: 15px;
         color: #888;
+        margin-left: 0.5em;
         text-align: center;
+      
+      select {
+        display: inline-block;
+        background: transparent;
+        font-size: 14px;
+        line-height: 1;
+        border: 1px solid #888;
+        border-radius: 5px;
+        height: 30px;
+        padding: 0.25em 1.25em 0.25em 1.25em;
+        -webkit-appearance: none;
+        }
       }
 
       .report-location {
