@@ -118,7 +118,8 @@ class QuestionsController < ApplicationController
       check_guest()
     end
 
-    # Concatenate the answer boxes into one string, checking for empty boxes and removing them
+    # For Multiple Choice Questions, concatenate the answer boxes into
+    # one string, checking for empty boxes and removing them
     13.times do |count|
       counter = "answer_box_#{count}".to_sym
       unless (params[counter].to_s.empty?)
@@ -126,8 +127,10 @@ class QuestionsController < ApplicationController
       end
     end
 
-    # Strip the last comma
-    @answerboxes = @answerboxes[0...-1]
+    # Strip the last comma from multiple choice questions
+    if @answerboxes
+      @answerboxes = @answerboxes[0...-1]
+    end
 
     @subquestion = Question.create(
       :label => params[:submit_question_name],
