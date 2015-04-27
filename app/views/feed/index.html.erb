@@ -1,2 +1,21 @@
-<h1>Feed#index</h1>
-<p>Find me in app/views/feed/index.html.erb</p>
+<div id="feed-container">
+  <div id="feed-stats-container">
+    <div class="feed-stats feed-stats-num-answers">
+      <p class="feed-stats-data"><%= Question.count %></p>
+      <p class="feed-stats-title">Answers Submitted</p>
+    </div>
+
+    <div class="feed-stats feed-stats-num-users">
+      <p class="feed-stats-data"><%= User.count %></p>
+      <p class="feed-stats-title">Users on Arima</p>
+    </div>
+  </div>
+
+  <hr />
+
+  <div id="feed">
+    <% @all.each do |question| %>
+      <%= render partial: "common/question_with_category", locals: { answered: false, question: question } %>
+    <% end %>
+  </div>
+</div>
