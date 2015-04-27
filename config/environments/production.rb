@@ -102,7 +102,7 @@ Arima::Application.configure do
   config.middleware.use ExceptionNotification::Rack, :email => {
     :email_prefix         => "[Arima ERROR] ",
     :sender_address       => %{"Arima ERROR" <error@arima.io>},
-    :exception_recipients => %w{jeff@arima.io, atsushi@arima.io, ruben@arima.io, janet@arima.io},
+    :exception_recipients => %w{jeff@arima.io, atsushi@arima.io, ruben@arima.io},
     :ignore_crawlers      => %w{Googlebot bingbot}
   }
 end
