@@ -6,14 +6,7 @@ class CategoriesController < ApplicationController
   respond_to :html, :json
 
   def index
-    if @user
-      @random_questions = Question.random_for_user(@user, 10)
-    end
-
-    # random_for_user may return nil. Handle it here
-    if (@random_questions && @random_questions.empty?) || @random_questions.nil?
-      @random_questions = Question.all.sample 10
-    end
+    redirect_to feed_path
   end
 
   def show
