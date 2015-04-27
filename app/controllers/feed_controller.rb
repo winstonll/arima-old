@@ -5,6 +5,6 @@ class FeedController < ApplicationController
   respond_to :html, :json
 
   def index
-    @all = Question.all.order(created_at: :desc)
+    @all = Question.all.order(created_at: :desc).page(params[:page]).per(15)
   end
 end
