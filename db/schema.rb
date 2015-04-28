@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150421173810) do
+ActiveRecord::Schema.define(version: 20150428020305) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 20150421173810) do
     t.datetime "updated_at"
     t.boolean  "shared_twitter"
     t.boolean  "shared_facebook"
-    t.boolean  "shared_pinterest"
   end
 
   add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
@@ -53,8 +52,6 @@ ActiveRecord::Schema.define(version: 20150421173810) do
     t.string   "label"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "background_color"
-    t.string   "text_color"
     t.string   "page_class"
     t.string   "slug"
   end
@@ -96,7 +93,6 @@ ActiveRecord::Schema.define(version: 20150421173810) do
     t.string   "value_type"
     t.text     "options_for_collection"
     t.string   "slug"
-    t.string   "category"
     t.integer  "user_id"
     t.integer  "group_id"
     t.integer  "votecount",              default: 0
@@ -152,11 +148,9 @@ ActiveRecord::Schema.define(version: 20150421173810) do
     t.string   "gender"
     t.string   "username"
     t.string   "password_reset_token"
-    t.boolean  "subscribed_to_blog",     default: false
     t.string   "referral_code"
     t.datetime "last_emailed_at"
     t.integer  "birthyear"
-    t.datetime "share_fact_date"
     t.date     "dob"
     t.string   "ip_address"
   end
