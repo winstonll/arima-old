@@ -1,5 +1,7 @@
 Arima::Application.routes.draw do
 
+  get 'feed' => 'feed#index'
+
   # custom registration route
   devise_for :users, controllers: { registrations: "users/registrations" }
 
@@ -81,9 +83,6 @@ Arima::Application.routes.draw do
   get 'contact' => "home#contact", as: :contact
 
   # post 'submit_questions/create' => "submit_questions#create", as: :submit_question
-
-  #categories
-  #match 'questions' => 'categories#index', :via => :get
 
   root 'home#index'
 end

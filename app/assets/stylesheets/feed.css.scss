@@ -1,0 +1,45 @@
+#feed-container {
+  height: 100%;
+  width: 100%;
+
+  #feed-stats-container {
+    width: 50%;
+    margin: auto;
+    margin-top: 5em;
+    margin-bottom: 2em;
+    text-align: center;
+
+    .feed-stats {
+      display: inline-block;
+
+      &:not(:first-child) {
+        margin-left: 75px;
+      }
+
+      .feed-stats-data {
+        font-size: 45px;
+        font-weight: 600;
+        color: #00c39c;
+        margin-bottom: 5px;
+      }
+
+      .feed-stats-title {
+        font-size: 19px;
+        color: #00c39c;
+        margin-top: 5px;
+      }
+    }
+  }
+
+  hr {
+    width: 25%;
+    text-align: center;
+  }
+
+  #feed {
+    width: 42%;
+    margin: auto;
+    padding-top: 20px;
+    margin-bottom: 2em;
+  }
+}

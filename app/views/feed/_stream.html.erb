@@ -1,0 +1,3 @@
+<% @all.each do |question| %>
+  <%= render partial: "common/question_with_category", locals: { answered: false, question: question } %>
+<% end %>
