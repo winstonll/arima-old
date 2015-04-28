@@ -33,7 +33,6 @@ class AnswersController < ApplicationController
 
       @answer.shared_twitter = false
       @answer.shared_facebook = false
-      @answer.shared_pinterest = false
 
       if @answer.save
         redirect_to question_path(@question)
