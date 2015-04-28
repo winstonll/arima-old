@@ -1,10 +1,11 @@
 /* Share New Question Modal */
-#shareNewQuestionModal {
+#shareNewQuestionModal,
+#shareAnswerModal {
   width: 700px;
   padding: 100px 0px 20px 0px;
   margin: 0 auto;
 
-  .share-new-question-modal-header {
+  .share-question-modal-header {
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
     background-color: #00c39c !important;
@@ -12,12 +13,12 @@
     padding-top: 15px;
     padding-bottom: 25px;
 
-    #share-new-question-label {
+    .share-question-label {
       font-weight: 500;
       font-size: 25px;
     }
 
-    #share-new-question-subtitle {
+    .share-question-subtitle {
       font-weight: 400;
       font-size: 17px;
       margin-bottom: 0;
