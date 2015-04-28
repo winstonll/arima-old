@@ -7,71 +7,14 @@
     </div>
   </section>
 
-  <section class="middle">
-    <div class="logo-container">
-      <a href="/">
-        <%= image_tag 'logo-icon-large.png', class: "nav-logo" %>
-      </a>
-    </div>
-
-  </section>
-
   <section class="right">
-
-  <form class="form-horizontal" role="form" action="/search">
-    <div class="form-group">
-      <div class="col-sm-10">
-        <input type="text" name="search_text" class="form-control" id="st" placeholder="Search for questions...">
+    <form class="form-horizontal" role="form" action="/search">
+      <div class="form-group">
+        <div class="col-sm-10">
+          <input type="text" name="search_text" class="form-control" id="st" placeholder="Search for questions...">
+        </div>
       </div>
-    </div>
-  </form>
-
-<!-- non bootstrap code
-    <div id="search">
-      <form action="/search" class='sfm'>
-        <input type="text" name="search_text" id="sf" placeholder="Search">
-        <input type="submit" value="Submit" id="btn">
-      </form>
-    </div>
--->
-
-    <ul class="nav-links">
-
-      <li>
-        <%#= link_to 'Sign Up', new_registration_path(resource_name), class: "nav-btn", id: "nav-signup-btn" if !user_signed_in? %>
-      </li>
-
-      <% if user_signed_in? && current_user.username.present? %>
-        <li class="dropdown">
-          <a href="#" class="nav-link">
-            <div class="nav-user-circle"><%= current_user.username[0].capitalize %></div>
-              <%= current_user.username %>
-              <i class="chevron-down"></i>
-          </a>
-          <ul class="menu">
-            <li>
-              <a href="#" class="nav-link dropdown-nav-link">
-                <div class="nav-user-circle"><%= current_user.username[0].capitalize %></div>
-                <%= current_user.username %>
-              </a>
-            </li>
-            <li>
-              <%= link_to 'Profile', profile_path, class: "nav-link" %>
-            </li>
-            <li>
-              <%= link_to 'Leaderboard'.html_safe, leaderboard_path, class: "nav-link" %>
-            </li>
-            <li>
-              <%= link_to 'Log Out', destroy_user_session_path, :method => :delete, title: "#{current_user.email}", class: "nav-link" %>
-            </li>
-          </ul>
-        </li>
-      <% else %>
-        <li>
-          <%#= link_to 'Login', new_user_session_path, class: "nav-btn", id: "nav-login-btn" %>
-        </li>
-      <% end %>
-    </ul>
+    </form>
   </section>
 </nav>
 

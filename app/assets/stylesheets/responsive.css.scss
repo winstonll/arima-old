@@ -2,7 +2,6 @@
  * Reserve this stylesheet for all responsive media queries.
  */
 
-
  @media screen and ( max-width: 1150px ) {
    body {
      .question-wrapper {
@@ -142,23 +141,13 @@
   }
 
   #home-navbar {
-    .logo-container {
-      display: inline-block;
-    }
-
     .nav-btn {
       font-size: 12px;
       padding: 5px 8px 5px 8px;
     }
 
-    .nav-links {
-      li {
-        margin-right: 5px;
-
-        .nav-link {
-          font-size: 15px;
-        }
-      }
+    #st {
+      width: 250px;
     }
   }
 
