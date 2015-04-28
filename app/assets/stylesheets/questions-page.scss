@@ -249,6 +249,24 @@
       border-radius: 5px;
       padding-top: 10px;
 
+      #view-feed-button {
+        width: 60%;
+        margin: auto;
+        margin-top: 15px;
+        padding: 10px 15px 10px 15px;
+        color: #fff;
+        background-color: #00c39c;
+        border-radius: 3px;
+        transition: all 150ms linear;
+        -webkit-transition: all 150ms linear;
+        -ms-transition: all 150ms linear;
+        -moz-transition: all 150ms linear;
+
+        &:hover {
+          box-shadow: 0px 2px 1px rgba(0,0,0,0.35);
+        }
+      }
+
       .trending-questions-label {
         color: #00c39c;
         font-weight: 600;
