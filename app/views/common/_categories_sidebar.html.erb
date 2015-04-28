@@ -1,3 +1,11 @@
+<script>
+  $(document).ready(function() {
+    if (window.location.href.indexOf("/feed") != -1) {
+      $('#feed-category-container').addClass('category-inner-container-active');
+    }
+  });
+</script>
+
 <div id="questions-sidebar" class="sidebar expanded">
   <div class="tse-scrollable">
     <div class="tse-content">
@@ -15,6 +23,16 @@
 
         <!-- Categories -->
         <div class="sidebar-categories">
+          <!-- Feed Link -->
+          <a href="<%= feed_path %>" class="sidebar-category">
+            <div class="category-container">
+              <div id="feed-category-container" class="category-inner-container">
+                <%= image_tag("feed-icon.png", class: "category-icon" ) %>
+                <span class="category-title">Home Feed</span>
+              </div>
+            </div>
+          </a>
+          <!-- Category Links -->
           <% Group.all.each do |group| %>
           <a href="<%= category_path(group) %>" data-group-id="<%= group.id %>" class="sidebar-category <%= group.page_class %>">
             <div class="category-container">
