@@ -1,0 +1,26 @@
+<!-- Share New Question Modal -->
+<div class="modal fade" id="shareNewQuestionModal" tabindex="-1" role="dialog" aria-labelledby="shareNewQuestionModal" aria-hidden="true">
+  <div class="share-new-question-modal-content">
+    <div class="share-new-question-modal-header">
+      <h2 class="share-modal-title" id="share-new-question-label">Great Question!</h2>
+      <p class="share-modal-subtitle" id="share-new-question-subtitle">Share it to get as many answers as possible</p>
+    </div> <!-- ./modal-header -->
+
+    <div class="share-modal-content-container">
+      <div class="share-sections">
+        <%= render partial: "questions/share", locals: {
+            id: @question.id,
+            url: "#{request.protocol}#{request.host_with_port}" + question_path(@question),
+            title: "#{@question.label[0..70]}...",
+            description: "#{@question.label[0..70]}...",
+            image: "#{request.protocol}#{request.host_with_port}" + question_path(@question)
+          }
+        %>
+      </div>
+
+      <a data-dismiss="modal" data-target="#shareNewQuestionModal" class="go-back-link">Go to your question</a>
+
+      <p class="share-modal-tip">Tip: Use hashtags and tag friends to help gain exposure</p>
+    </div>
+  </div><!-- /.modal-content -->
+</div><!-- /.modal -->
