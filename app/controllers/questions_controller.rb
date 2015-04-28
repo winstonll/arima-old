@@ -4,10 +4,8 @@ class QuestionsController < ApplicationController
   layout "application_fluid"
 
   def show
-
     @question = Question.friendly.find(params[:id])
     @answers = Answer.where(question: @question).count
-
 
     #extracting all of the users that answered this question
     @users_list = Array.new
@@ -142,7 +140,7 @@ class QuestionsController < ApplicationController
     GroupsQuestion.create(group_id: params[:group_id], question_id: @subquestion.id)
 
     if @subquestion.valid?
-      redirect_to question_path(@subquestion)
+      redirect_to question_path(@subquestion), flash: { share_modal: true }
     else
       redirect_to categories_path
       flash[:notice] = "This Question has already been asked"
