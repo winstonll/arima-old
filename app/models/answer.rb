@@ -335,6 +335,18 @@ class Answer < ActiveRecord::Base
     country_values.reduce({}){|m, (k,v)| m[k] = v.to_a; m}
   end
 
+  def numeric_country
+    country_values = by_country.reduce({}) do |res, (country, answers)|
+      country_values = answers.map(&:value).compact.group_by{|v| v}
+      res[country] = Hash[country_values.map{|k,v| [k.to_f, v.size]}]
+      res
+    end
+    result = country_values.flat_map do |country,categories|
+      categories.map {|category,value| {category => value.to_f}} 
+    end
+    country_values.reduce({}){|m, (k,v)| m[k] = v.to_a; m}
+  end
+
   def percent_world
     total_count = value_count_world.values.sum
     result = value_count_world.map{|k,v| {k => ((v.to_f / total_count.to_f) * 100).round(0)}}
