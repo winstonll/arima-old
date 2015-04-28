@@ -10,6 +10,15 @@ $(document).ready(function() {
     });
 </script>
 
+<% if flash[:share_modal] %>
+  <script>
+    $(document).ready(function() {
+      $('#shareNewQuestionModal').modal('show');
+    });
+  </script>
+<% end %>
+
+<%= render '/common/share_new_question_modal' %>
 
 <div class="main-site-container" id="question-page-container">
   <div id="question-hero">
@@ -79,6 +88,8 @@ $(document).ready(function() {
       <% @random_questions = Question.order("RANDOM()").first(5) %>
 
       <p class="trending-questions-label">Trending Questions</p>
+
+      <a href="<%= feed_path %>"><div id="view-feed-button">View Feed</div></a>
 
       <% @random_questions.each do |random_question| %>
         <%= render partial: 'common/trending_question', locals: { question: random_question } %>

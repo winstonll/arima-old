@@ -15,12 +15,12 @@ h3 {
   <div id="questions-container">
     <% if @user && @unanswered.any? %>
       <%= render partial: "categories/show_unanswered_questions" %>
+
+      <% if @user && !@answered.empty? %>
+        <%= render partial: "categories/show_answered_questions" %>
+      <% end %>
     <% else %>
       <%= render partial: "categories/show_questions" %>
-    <% end %>
-
-    <% if @user && !@answered.empty? %>
-      <%= render partial: "categories/show_answered_questions" %>
     <% end %>
   </div>
 </div>

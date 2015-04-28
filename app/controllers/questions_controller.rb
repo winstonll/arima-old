@@ -4,10 +4,8 @@ class QuestionsController < ApplicationController
   layout "application_fluid"
 
   def show
-
     @question = Question.friendly.find(params[:id])
     @answers = Answer.where(question: @question).count
-
 
     #extracting all of the users that answered this question
     @users_list = Array.new
@@ -118,7 +116,8 @@ class QuestionsController < ApplicationController
       check_guest()
     end
 
-    # Concatenate the answer boxes into one string, checking for empty boxes and removing them
+    # For Multiple Choice Questions, concatenate the answer boxes into
+    # one string, checking for empty boxes and removing them
     13.times do |count|
       counter = "answer_box_#{count}".to_sym
       unless (params[counter].to_s.empty?)
@@ -126,8 +125,10 @@ class QuestionsController < ApplicationController
       end
     end
 
-    # Strip the last comma
-    @answerboxes = @answerboxes[0...-1]
+    # Strip the last comma from multiple choice questions
+    if @answerboxes
+      @answerboxes = @answerboxes[0...-1]
+    end
 
     @subquestion = Question.create(
       :label => params[:submit_question_name],
@@ -139,7 +140,7 @@ class QuestionsController < ApplicationController
     GroupsQuestion.create(group_id: params[:group_id], question_id: @subquestion.id)
 
     if @subquestion.valid?
-      redirect_to question_path(@subquestion)
+      redirect_to question_path(@subquestion), flash: { share_modal: true }
     else
       redirect_to categories_path
       flash[:notice] = "This Question has already been asked"

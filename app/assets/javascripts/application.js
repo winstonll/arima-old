@@ -27,7 +27,6 @@
 //= require users
 //= require profile
 //= require sidebar
-//= require intro
 
 $(document).ready(function() {
 
