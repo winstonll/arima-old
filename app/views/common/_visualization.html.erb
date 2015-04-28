@@ -7,14 +7,6 @@
           World
         </a>
       </li>
-      <% has_country = user_signed_in? ?  answer.user.location.country.present? : false %>
-      <% if has_country %>
-      <li class="report-location">
-        <a class="country" data-toggle="pill" href="javascript:void()">
-        <%= answer.user.location.country %>
-        </a>
-      </li>
-      <% end %>
       <% has_city = user_signed_in? ? answer.user.location.city.present? : false %>
       <% if has_city %>
         <li class="report-location">
@@ -23,6 +15,9 @@
           </a>
         </li>
       <% end %>
+      <li class="country_dropdown">
+          <%= select_tag(@countries_answered, options_for_select(@countries_answered)) %>
+      <li/>
     </ul>
   </div>
 
@@ -31,17 +26,21 @@
 
 <script>
   var data_answer = {};
-  <% if has_city %>
-    data_answer.city = <%= answer.data_array('city').html_safe %>;
-  <% end %>
-  data_answer.country = <%= answer.data_array('country').html_safe %>;
-  data_answer.world = <%= answer.data_array('world').html_safe %>;
-  data_answer.selected = 'world';
   <% if answer.question.value_type == "collection" %>
     data_answer.collection = true;
   <% else %>
     data_answer.collection = false;
   <% end %>
+  <% if has_city %>
+    data_answer.city = <%= answer.data_array('city').html_safe %>;
+  <% end %>
+  <% if answer.question.value_type == "collection" %>
+    data_answer.country = <%= answer.percent_country.to_json.html_safe %>;
+  <% else %>
+   data_answer.country = <%= answer.numeric_country.to_json.html_safe %>;
+  <% end %>
+  data_answer.world = <%= answer.data_array('world').html_safe %>;
+  data_answer.selected = 'world';
   var chart_answer = c3.generate({
     bindto: '#answer-chart',
     <% unless defined?(from_show_view) %>
@@ -85,15 +84,21 @@
   });
   function transform_data_answer(loc) {
     var data = data_answer[loc];
-    console.log(data);
-    if (data_answer.collection) {return data;}
+    if (loc == 'country'){
+      data = data_answer.country_stats;
+     {return data;}
+    }
     else{
+      if (data_answer.collection) {return data;}
+      else {
+    console.log(data);
       data = [['x'], [loc]];
       data_answer[loc].forEach(function(el, i, arr) {
         data[0].push(el[0]);
         data[1].push(el[1]);
       });
       return data;
+      }
     }
   }
   function show_location_answer(loc) {
@@ -115,7 +120,9 @@
   $('#v-answer .location-list .city').click(function (e) {
     show_location_answer('city');
   });
-  $('#v-answer .location-list .country').click(function (e) {
+  $('#v-answer .location-list .country_dropdown').change(function (e) {
+    var country = $(e.target).find(":selected").val();
+    data_answer.country_stats = data_answer.country[country]
     show_location_answer('country');
   });
   $('#v-answer .location-list .world').click(function (e) {

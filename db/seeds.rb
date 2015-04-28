@@ -86,8 +86,7 @@ user = User.create!(
 
 # Create the categories
 GROUPS.each do |group|
-  Group.create!(label: group[:label], page_class: group[:page_class],
-    background_color: group[:bgcolor])
+  Group.create!(label: group[:label], page_class: group[:page_class])
 end
 
 # Create the questions

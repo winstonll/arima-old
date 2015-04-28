@@ -245,19 +245,27 @@ class Answer < ActiveRecord::Base
     Answer.where(question_id: self.question_id, user_id: user_ids_for_city)
   end
 
-  def user_ids_for_country
-    self.question.users
-      .joins(:location)
-      .where("locations.country_code = ?", self.user.location.country_code)
-      .pluck(:id).compact
-  end
+  # def user_ids_for_country
+  #   self.question.users
+  #     .joins(:location)
+  #     .where("locations.country_code = ?", self.user.location.country_code)
+  #     .pluck(:id).compact 
+  # end
 
   def by_country
-    Answer.where(question_id: self.question_id, user_id: user_ids_for_country)
+    # FIND ME
+    country_answer = question.answers.reduce({}) do |res, answ|
+      key = answ.user.location.country
+      res[key] ||= []
+      res[key] << answ
+      res
+    end
+    
+    country_answer
   end
 
   def by_world
-    Answer.where(question_id: self.question_id)
+    Answer.where(question_id: question_id)
   end
 
   # PERCENT DIFFERENCE FROM AVERAGE
@@ -316,9 +324,27 @@ class Answer < ActiveRecord::Base
   end
 
   def percent_country
-    total_count = value_count_country.values.sum
-    result = value_count_country.map{|k,v| {k => ((v.to_f / total_count.to_f) * 100).round(0)}}
-    result.reduce({}, :update) # get rid of enclosing array, make it a hash instead
+    country_values = value_count_country
+    total_count = country_values.delete('total_count')
+
+    result = country_values.flat_map do |country,categories|
+      # categories.map {|category,value| {category => ((value.to_f / total_count.to_f) * 100).round(0)}} 
+      categories.map {|category,value| {category => value.to_f}} 
+    end
+    country_values['totals'] = result.reduce({}, :update) # get rid of enclosing array, make it a hash instead\
+    country_values.reduce({}){|m, (k,v)| m[k] = v.to_a; m}
+  end
+
+  def numeric_country
+    country_values = by_country.reduce({}) do |res, (country, answers)|
+      country_values = answers.map(&:value).compact.group_by{|v| v}
+      res[country] = Hash[country_values.map{|k,v| [k.to_f, v.size]}]
+      res
+    end
+    result = country_values.flat_map do |country,categories|
+      categories.map {|category,value| {category => value.to_f}} 
+    end
+    country_values.reduce({}){|m, (k,v)| m[k] = v.to_a; m}
   end
 
   def percent_world
@@ -335,10 +361,18 @@ class Answer < ActiveRecord::Base
   end
 
   def value_count_country
-    a = self.by_country.pluck(:value).compact
+    answers_per_country = by_country
+    values_per_country = by_country.reduce({}) do |res, (country, answers)|
+      country_values = answers.map(&:value).compact.group_by{|v| v}
+      res[country] = Hash[country_values.map{|k,v| [k, v.size]}]
+      res
+    end
+    values_per_country['total_count'] = answers_per_country.values.map(&:count).sum
+    values_per_country
+    # a = self.by_country.pluck(:value).compact
 
-    ag = a.group_by{|value| value }
-    ag.map{|k,v| {k => v.size} }.reduce({}, :update)
+    # ag = a.group_by{|value| value }
+    # ag.map{|k,v| {k => v.size} }.reduce({}, :update)
   end
 
   def value_count_world
