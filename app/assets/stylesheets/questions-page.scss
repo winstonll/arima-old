@@ -15,21 +15,22 @@
       border-radius: 5px;
       border: 1px solid #DCDCDC;
       background-color: #a25fbc;
+      padding-top: 0.25em;
       padding-left: 0.5em;
       padding-right: 0.5em;
 
       .question-vote-container {
         float: left;
-        width: 5%;
+        width: 25%;
         text-align: center;
         margin: 30px 0px 0px 15px;
-        background-color: #fff;
-        border-radius: 3px;
-        border: 1px solid #DCDCDC;
 
         .question-vote-image {
-          width: 35px;
+          width: 27px;
           height: auto;
+          background-color: #fff;
+          border-radius: 50%;
+          padding: 5px;
 
           &:hover {
             opacity: 0.8;
@@ -37,15 +38,17 @@
         }
 
         .question-vote-counter {
-          font-size: 20px;
-          color: #aaa;
+          font-size: 22px;
+          color: #fff;
+          margin-top: 5px;
+          margin-bottom: 5px;
         }
       }
 
       .question-title-container {
         overflow: hidden;
         margin-top: 7px;
-        margin-right: 3%;
+        margin-right: 25%;
         text-align: center;
 
         .question-title {
@@ -250,52 +253,6 @@
         color: #00c39c;
         font-weight: 600;
         font-size: 18px;
-      }
-
-      .trending-question {
-        text-align: left;
-        color: #4a4a4a;
-
-        .trending-question-container {
-          padding: 10px;
-
-          .trending-question-icon-container {
-            height: 100%;
-            width: 20px;
-            line-height: 20px;
-            display: inline-block;
-            vertical-align: top;
-            margin-right: 3px;
-
-            .trending-question-icon {
-              width: 18px;
-              height: auto;
-            }
-          }
-
-          .trending-question-info {
-            width: 80%;
-            display: inline-block;
-
-            .trending-question-title {
-              font-weight: 600;
-              margin: 0;
-            }
-
-            .trending-question-num-answers {
-              font-weight: 400;
-              margin: 0;
-            }
-          }
-
-          &:hover {
-            opacity: 0.7;
-          }
-        }
-
-        &:not(:first-child) .trending-question-container {
-          margin-top: 15px;
-        }
       }
     }
   }
