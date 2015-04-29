@@ -1,42 +1,26 @@
-<a href="#"
+<a href="https://www.facebook.com/sharer/sharer.php?u=<%= url %>"
    data-type="facebook"
    data-url="<%= url %>"
    data-title="<%= title %>"
-   data-description="<%= description %>"
+   data-description="<%= title %>"
    data-media="<%= image %>"
    id="fb-share-<%= id %>"
-   class='share-link prettySocial<%= id %>'>
+   class='share-link'>
   <img class="share-image" src="<%= image_path 'fb-logo.png' %>">
 </a>
 
-<a href="#"
+<a href="https://twitter.com/home?status=<%= title %> <%= url %>"
    data-type="twitter"
    data-url="<%= url %>"
-   data-description="<%= description %>"
+   data-description="<%= title %>"
    data-via="arima_io"
    id="twitter-share-<%= id %>"
-   class="share-link prettySocial<%= id %>">
+   class="share-link">
   <img class="share-image" src="<%= image_path 'twitter-logo.png' %>">
 </a>
 
 <a href="//www.reddit.com/submit"
    onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent(window.location); return false"
-   class="share-link prettySocial<%= id %>">
+   class="share-link">
    <img class="share-image" src="<%= image_path 'reddit-logo.png' %>">
 </a>
-
-<script>
-  $('.prettySocial<%= id %>').prettySocial();
-</script>
-<script>
-  $('.prettySocial<%= id %>').click(function () {
-    $.ajax({
-      url: "/question/share",
-      type: "POST",
-      dataType: "script",
-      data: { ans_id: "<%= @question.id %>",
-             share_type: $(this).data('type')
-      }
-    });
-  });
-</script>
