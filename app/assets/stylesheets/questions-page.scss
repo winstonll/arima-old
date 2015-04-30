@@ -5,6 +5,74 @@
   margin: 0 auto;
   margin-top: 1em;
 
+  .tabs {
+    width:100%;
+    display:inline-block;
+  }
+
+  /*----- Tab Links -----*/
+  /* Clearfix */
+  .tab-links:after {
+    display:block;
+    clear:both;
+    content:'';
+  }
+
+  .tab-links ul {
+    width: 150%;
+  }
+
+  .tab-links li {
+    margin:0px 40px;
+    float:left;
+    list-style:none;
+  }
+
+  .tab-links a {
+    padding:9px 15px;
+    display:inline-block;
+    border-top: 1px solid #FCFCFC;
+    border-left: 1px solid #FCFCFC;
+    border-right: 1px solid #FCFCFC;
+    border-radius:7px 7px 0px 0px;
+    font-size:16px;
+    font-weight:600;
+    color:#C0C0C0;
+    transition:all linear 0.15s;
+  }
+
+  .tab-links a:hover {
+    color:#4A90E2;
+    background:#FCFCFC;
+    text-decoration:none;
+  }
+
+  li.active a, li.active a:hover {
+    color:#4A90E2;
+    background:#FCFCFC;
+    border-color: #5AA3E8;
+  }
+
+  /*----- Content of Tabs -----*/
+  .tab-content {
+    width: 106%;
+    position: relative;
+    top: -9px;
+    left: -30px;
+    padding:15px;
+    border-radius:5px;
+    border: 1px solid #5AA3E8;
+    background:#FCFCFC;
+  }
+
+  .tab {
+    display:none;
+  }
+
+  .tab.active {
+      display:block;
+  }
+
   /* Question Header Colours */
   #question-hero {
     .question-container {
@@ -233,11 +301,6 @@
       }
     }
 
-    .report-container {
-      border: 1px solid #5AA3E8;
-      border-radius: 5px;
-    }
-
     /* Next Question Section */
     #trending-questions-container {
       width: 24%;
@@ -289,6 +352,24 @@
     width: 100%;
     text-align: center;
 
+    .country_dropdown {
+      color: #4a90e2;
+
+      select {
+        position: relative;
+        bottom: 32em;
+        left: 18em;
+        display: inline-block;
+        background: transparent;
+        font-size: 14px;
+        line-height: 1;
+        border: 1px solid #888;
+        border-radius: 5px;
+        height: 30px;
+        width: 15em;
+        }
+      }
+
     .location-select {
       .location-label {
         color: #555;
@@ -318,37 +399,10 @@
       }
     }
 
-    .c3-legend-item {
-      font-size: 15px;
-      font-family: 'Open Sans';
-      font-weight: 700;
-      display: block;
-    }
-
     .c3-tooltip tr td{
       color: #555;
     }
 
-  }
-
-  .report-container {
-    width: 100%;
-    padding: 2em 5px;
-    text-align: center;
-
-    #answer-chart{
-      height: 475px;
-      svg{
-        display: inline;
-        margin: 0 auto;
-      }
-    }
-    .average {
-      p{
-        color: #50e3c2;
-        font-weight: bold;
-      }
-    }
   }
 
   .location-label {
@@ -381,41 +435,6 @@
         display: inline-block;
         padding: 0.25em 1.25em 0.25em 1.25em;
         color: #888;
-      }
-
-      .country_dropdown {
-        display: inline-block;
-        color: #888;
-        margin-left: 0.5em;
-        text-align: center;
-      
-      select {
-        display: inline-block;
-        background: transparent;
-        font-size: 14px;
-        line-height: 1;
-        border: 1px solid #888;
-        border-radius: 5px;
-        height: 30px;
-        padding: 0.25em 1.25em 0.25em 1.25em;
-        -webkit-appearance: none;
-        }
-      }
-
-      .report-location {
-        display: inline-block;
-        border: 1px solid #888;
-        color: #888;
-        border-radius: 5px;
-
-        &:not(:first-child) {
-          margin-left: 0.5em;
-        }
-
-        &:hover {
-          opacity: 0.8;
-        }
-
       }
     }
   }
