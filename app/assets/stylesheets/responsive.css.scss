@@ -259,6 +259,25 @@
         }
       }
 
+      .report-container {
+        .visualization {
+          .tabs {
+            .tab-links {
+              padding-left: 0;
+
+              li {
+                margin: 0;
+              }
+            }
+          }
+        }
+      }
+
+      .tab-content {
+        width: 100%;
+        left: 0;
+      }
+
       /* Next Question Section */
       #trending-questions-container {
         width: 100%;
