@@ -4,6 +4,8 @@ $(document).ready(function(){
   $("#st").css({"display":"none"});
   $("#questions-menu").css({"display":"none"});
   $(".logo-container").css({"display":"none"});
+  $(".back").css({"display":"none"});
+
 
   // Footer adjustments
   $(".footer").css({
