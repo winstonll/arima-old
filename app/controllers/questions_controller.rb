@@ -18,23 +18,6 @@ class QuestionsController < ApplicationController
 
     @country_hash = @countries_answered.inject(Hash.new(0)) { |country, count| country[count] += 1 ; country }
 
-
-    # @country_hash = Hash.new
-    # @countries_answered.each do |country, count|
-    #  if (@country_hash[country] == nil)
-    #     @country_hash = {country => count.length}
-    #   else
-    #     @country_hash = {country => @country_hash[country] + 1}
-    #   end
-    #  end
-
-    # @dropdown_array = Array.new
-    # @country_hash.each do |key, value|
-    #   if (key != nil && value != nil)
-    #     @dropdown_array << key + " " + "(" + value.to_s + " answered" + ")"
-    #   end
-    # end
-
     if(@user == nil)
       check_guest()
     end
