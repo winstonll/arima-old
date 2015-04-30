@@ -12,11 +12,15 @@ class QuestionsController < ApplicationController
     Answer.where(question: @question).find_each do |answer|
       @users_list << answer.user_id
     end
-    @countries_answered = @users_list.flat_map do |user|
-      Location.where(user_id: user).pluck(:country)
+    #extracting all of the countries that answered the question
+    @countries_array = Array.new
+    @users_list.each do |user|
+      @countries_array << Location.where(user_id: user).pluck(:country)
     end
 
-    @country_hash = @countries_answered.inject(Hash.new(0)) { |country, count| country[count] += 1 ; country }
+    #@countries_array is a two dimensional array, so this extracts the first element of each inner array.
+    @countries_answered = @countries_array.collect(&:first).uniq
+    
 
     if(@user == nil)
       check_guest()

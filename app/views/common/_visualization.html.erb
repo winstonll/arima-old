@@ -14,7 +14,7 @@
         <div id="country" class="tab">
           <div id="answer-country" class='answer-chart'></div>
           <div class="country_dropdown">
-            <%= collection_select('country', 'count', @country_hash, :last, :first) %>
+            <%= select_tag(@countries_answered, options_for_select(@countries_answered)) %>
           </div>
         </div>
         <% has_city = user_signed_in? ? answer.user.location.city.present? : false %>
