@@ -1,49 +1,62 @@
 <div class="visualization" id="v-answer">
-  <div class="location-list" <%= unless defined?(from_show_view) then
-    'style="float:none; margin: 0.4em 0;"'.html_safe end %>>
-    <ul class="report-location-list" role="tablist">
-      <li class="report-location active">
-        <a class="world" data-toggle="pill" href="javascript:void()">
-          World
-        </a>
-      </li>
-      <% has_country = user_signed_in? ?  answer.user.location.country.present? : false %>
-      <% if has_country %>
-      <li class="report-location">
-        <a class="country" data-toggle="pill" href="javascript:void()">
-        <%= answer.user.location.country %>
-        </a>
-      </li>
-      <% end %>
-      <% has_city = user_signed_in? ? answer.user.location.city.present? : false %>
-      <% if has_city %>
-        <li class="report-location">
-          <a class="city" data-toggle="pill" href="javascript:void()">
-            <%= answer.user.location.city %>
-          </a>
-        </li>
-      <% end %>
+  <div class="tabs">
+    <ul class="tab-links">
+        <li class="active"><a href="#world">World</a></li>
+        <li><a href="#country">Country</a></li>
+        <li><a href="#city">City</a></li>
     </ul>
-  </div>
 
-  <div id="answer-chart"></div>
+    <div class="tab-content">
+        <div id="world" class="tab active">
+          <div id="answer-world" class='answer-chart'></div>
+        </div>
+
+        <div id="country" class="tab">
+          <div id="answer-country" class='answer-chart'></div>
+        </div>
+        <% has_city = user_signed_in? ? answer.user.location.city.present? : false %>
+        <% if has_city %>
+          <div id="city" class="tab">
+            <div id="answer-city" class='answer-chart'></div>
+          </div>
+        <% end %>
+    </div>
+  </div>
 </div>
 
 <script>
+  jQuery(document).ready(function() {
+      jQuery('.tabs .tab-links a').on('click', function(e)  {
+          var currentAttrValue = jQuery(this).attr('href');
+
+          // Show/Hide Tabs
+          jQuery('.tabs ' + currentAttrValue).siblings().slideUp(400);
+          jQuery('.tabs ' + currentAttrValue).delay(400).slideDown(400);
+
+          // Change/remove current tab to active
+          jQuery(this).parent('li').addClass('active').siblings().removeClass('active');
+
+          e.preventDefault();
+          show_location_answer(currentAttrValue.substring(1, currentAttrValue.length));
+      });
+  });
+
   var data_answer = {};
+
   <% if has_city %>
     data_answer.city = <%= answer.data_array('city').html_safe %>;
   <% end %>
   data_answer.country = <%= answer.data_array('country').html_safe %>;
   data_answer.world = <%= answer.data_array('world').html_safe %>;
   data_answer.selected = 'world';
+  console.log(data_answer.selected);
   <% if answer.question.value_type == "collection" %>
     data_answer.collection = true;
   <% else %>
     data_answer.collection = false;
   <% end %>
+
   var chart_answer = c3.generate({
-    bindto: '#answer-chart',
     <% unless defined?(from_show_view) %>
       size: { width: 450 },
     <% end %>
@@ -51,6 +64,10 @@
       x: data_answer.collection ? null : 'x',
       columns: transform_data_answer(data_answer.selected),
       type: data_answer.collection ? 'donut' : 'bar'
+    },
+    size: {
+        height: 450,
+        width: 450
     },
     axis: {
       x: {
@@ -83,9 +100,11 @@
       }
     }
   });
+
+  $("#answer-" + data_answer.selected).append(chart_answer.element);
+
   function transform_data_answer(loc) {
     var data = data_answer[loc];
-    console.log(data);
     if (data_answer.collection) {return data;}
     else{
       data = [['x'], [loc]];
@@ -96,6 +115,7 @@
       return data;
     }
   }
+
   function show_location_answer(loc) {
     previous_selected = data_answer.selected;
     data_answer.selected = loc;
@@ -107,18 +127,11 @@
     } else {
       loc_arr = [previous_selected];
     }
+    console.log('#answer-' + loc);
+    $("#answer-" + data_answer.selected).append(chart_answer.element);
     chart_answer.load({
       columns: transform_data_answer(loc),
       unload: loc_arr
     });
   }
-  $('#v-answer .location-list .city').click(function (e) {
-    show_location_answer('city');
-  });
-  $('#v-answer .location-list .country').click(function (e) {
-    show_location_answer('country');
-  });
-  $('#v-answer .location-list .world').click(function (e) {
-    show_location_answer('world');
-  });
 </script>
