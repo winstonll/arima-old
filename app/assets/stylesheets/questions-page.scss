@@ -350,6 +350,24 @@
     width: 100%;
     text-align: center;
 
+    .country_dropdown {
+      color: #4a90e2;
+
+      select {
+        position: relative;
+        bottom: 32em;
+        left: 18em;
+        display: inline-block;
+        background: transparent;
+        font-size: 14px;
+        line-height: 1;
+        border: 1px solid #888;
+        border-radius: 5px;
+        height: 30px;
+        width: 15em;
+        }
+      }
+
     .location-select {
       .location-label {
         color: #555;
