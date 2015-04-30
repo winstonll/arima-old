@@ -13,28 +13,32 @@
   /*----- Tab Links -----*/
   /* Clearfix */
   .tab-links:after {
-      display:block;
-      clear:both;
-      content:'';
+    display:block;
+    clear:both;
+    content:'';
+  }
+
+  .tab-links ul {
+    width: 150%;
   }
 
   .tab-links li {
-      margin:0px 5px;
-      float:left;
-      list-style:none;
+    margin:0px 40px;
+    float:left;
+    list-style:none;
   }
 
   .tab-links a {
-      padding:9px 15px;
-      display:inline-block;
-      border-top: 1px solid #FCFCFC;
-      border-left: 1px solid #FCFCFC;
-      border-right: 1px solid #FCFCFC;
-      border-radius:7px 7px 0px 0px;
-      font-size:16px;
-      font-weight:600;
-      color:#4c4c4c;
-      transition:all linear 0.15s;
+    padding:9px 15px;
+    display:inline-block;
+    border-top: 1px solid #FCFCFC;
+    border-left: 1px solid #FCFCFC;
+    border-right: 1px solid #FCFCFC;
+    border-radius:7px 7px 0px 0px;
+    font-size:16px;
+    font-weight:600;
+    color:#4c4c4c;
+    transition:all linear 0.15s;
   }
 
   .tab-links a:hover {
@@ -411,25 +415,6 @@
         display: inline-block;
         padding: 0.25em 1.25em 0.25em 1.25em;
         color: #888;
-      }
-
-      .country_dropdown {
-        display: inline-block;
-        color: #888;
-        margin-left: 0.5em;
-        text-align: center;
-
-      select {
-        display: inline-block;
-        background: transparent;
-        font-size: 14px;
-        line-height: 1;
-        border: 1px solid #888;
-        border-radius: 5px;
-        height: 30px;
-        padding: 0.25em 1.25em 0.25em 1.25em;
-        -webkit-appearance: none;
-        }
       }
     }
   }
