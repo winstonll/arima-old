@@ -13,7 +13,6 @@
  }
 
 @media screen and ( max-width: 1000px ) {
-
   body {
     #questions-container,
     .profile-container {
@@ -104,7 +103,6 @@
 }
 
 @media screen and ( max-width: 768px ) {
-
   /* Home Page */
   #landing {
     #key-points-container {
@@ -140,6 +138,7 @@
     margin-top: -250px;
   }
 
+  /* Navbar */
   #home-navbar {
     .nav-btn {
       font-size: 12px;
@@ -147,81 +146,32 @@
     }
 
     #st {
-      width: 250px;
+      width: 200px;
+    }
+
+    .back {
+      display: none;
     }
   }
 
-  /* Profile Page */
-  .profile-information {
-    width: 100%;
-    margin: 0 auto;
-    border-radius: 8px 8px 0px 0px !important;
-    background: #639ee3;
-    padding: 50px;
+  /* Feed */
+  #feed-container {
+    #feed-stats-container {
+      width: 90%;
 
-    .centered-info {
-      text-align: center;
-      .user-info-container {
-        .user-photo-default {
-          font-family: 'Montserrat', 'Open Sans', sans-serif;
-          height: 125px;
-          width: 125px;
-          margin: auto;
-          line-height: 125px;
-          font-size: 50px;
-          background-color: #00c39c;
-          font-weight: 400;
-          text-align: center;
-          border-radius: 50%;
-          color: #fff;
-        }
-
-        .user-name {
+      .feed-stats {
+        .feed-stats-data {
           font-size: 35px;
-          margin-top: 15px;
         }
 
-        .user-location {
+        .feed-stats-title {
           font-size: 15px;
-          margin-top: -10px;
         }
       }
     }
-  }
 
-  .stat-number {
-    font-size: 25px;
-  }
-
-  .stat-title {
-    font-size: 11px;
-  }
-
-  /* Footer */
-  .footer {
-    padding: 10px;
-
-    .footer-answers {
-      .answers-submitted-num {
-        font-size: 1.5em;
-      }
-
-      answers-submitted-caption {
-        font-size: 1em;
-      }
-    }
-
-    .footer-links {
-      width: 100%;
-
-      .footer-sections {
-        margin-left: 5px;
-        margin-right: 5px;
-      }
-    }
-
-    h3 {
-      font-size: 17px;
+    #feed {
+      width: 95%;
     }
   }
 }
