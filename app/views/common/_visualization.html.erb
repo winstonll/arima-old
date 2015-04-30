@@ -40,7 +40,6 @@
         jQuery(this).parent('li').addClass('active').siblings().removeClass('active');
 
         e.preventDefault();
-        console.log(currentAttrValue);
 
         show_location_answer(currentAttrValue.substring(1, currentAttrValue.length));
     });
@@ -117,7 +116,15 @@
 
     if (loc == 'country'){
       data = data_answer.country_stats;
-     {return data;}
+      if(data != null){
+        return data;
+      }
+      else {
+        var country = "<%= answer.user_country %>";
+        data_answer.country_stats = data_answer.country[country];
+        data = data_answer.country_stats;
+        return data;
+      }
     }
     else{
       if (data_answer.collection) {return data;}

@@ -118,6 +118,10 @@ class Answer < ActiveRecord::Base
   #   end
   # end
 
+  def user_country
+    return user.location.country.to_s
+  end
+
   def data_array(value)
     if self.question.value_type == "collection"
       case value
@@ -249,7 +253,7 @@ class Answer < ActiveRecord::Base
   #   self.question.users
   #     .joins(:location)
   #     .where("locations.country_code = ?", self.user.location.country_code)
-  #     .pluck(:id).compact 
+  #     .pluck(:id).compact
   # end
 
   def by_country
@@ -260,7 +264,7 @@ class Answer < ActiveRecord::Base
       res[key] << answ
       res
     end
-    
+
     country_answer
   end
 
@@ -328,8 +332,8 @@ class Answer < ActiveRecord::Base
     total_count = country_values.delete('total_count')
 
     result = country_values.flat_map do |country,categories|
-      # categories.map {|category,value| {category => ((value.to_f / total_count.to_f) * 100).round(0)}} 
-      categories.map {|category,value| {category => value.to_f}} 
+      # categories.map {|category,value| {category => ((value.to_f / total_count.to_f) * 100).round(0)}}
+      categories.map {|category,value| {category => value.to_f}}
     end
     country_values['totals'] = result.reduce({}, :update) # get rid of enclosing array, make it a hash instead\
     country_values.reduce({}){|m, (k,v)| m[k] = v.to_a; m}
@@ -342,7 +346,7 @@ class Answer < ActiveRecord::Base
       res
     end
     result = country_values.flat_map do |country,categories|
-      categories.map {|category,value| {category => value.to_f}} 
+      categories.map {|category,value| {category => value.to_f}}
     end
     country_values.reduce({}){|m, (k,v)| m[k] = v.to_a; m}
   end
