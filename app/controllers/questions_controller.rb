@@ -1,8 +1,8 @@
 class QuestionsController < ApplicationController
   include DetermineUserAndUnits
-
   layout "application_fluid"
 
+  # Show method - called when question page is rendered
   def show
     @question = Question.friendly.find(params[:id])
     @answers = Answer.where(question: @question).count
@@ -16,9 +16,6 @@ class QuestionsController < ApplicationController
     @countries_answered = @users_list.flat_map do |user|
       Location.where(user_id: user).pluck(:country)
     end
-
-    #update_nil_country()
-    #create_dummy_users()
 
     if(@user == nil)
       check_guest()
@@ -38,10 +35,7 @@ class QuestionsController < ApplicationController
     end
   end
 
-  def new
-    @subquestion = Question.new
-  end
-
+  # Gets the question's answer stats for reports
   def stats
     q = Question.find(params[:id])
     result = {
@@ -51,6 +45,7 @@ class QuestionsController < ApplicationController
     render json: result
   end
 
+  # Upvotes the question
   def upvote
     @question = Question.friendly.find(params[:id])
 
@@ -81,6 +76,7 @@ class QuestionsController < ApplicationController
     end
   end
 
+  # Downvotes the question
   def downvote
     @question = Question.friendly.find(params[:id])
 
@@ -111,6 +107,7 @@ class QuestionsController < ApplicationController
     end
   end
 
+  # Method that is called when a question is created
   def create
     if(@user == nil)
       check_guest()

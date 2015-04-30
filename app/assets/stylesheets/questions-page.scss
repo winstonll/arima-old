@@ -5,6 +5,68 @@
   margin: 0 auto;
   margin-top: 1em;
 
+  .tabs {
+    width:100%;
+    display:inline-block;
+  }
+
+  /*----- Tab Links -----*/
+  /* Clearfix */
+  .tab-links:after {
+      display:block;
+      clear:both;
+      content:'';
+  }
+
+  .tab-links li {
+      margin:0px 5px;
+      float:left;
+      list-style:none;
+  }
+
+  .tab-links a {
+      padding:9px 15px;
+      display:inline-block;
+      border-top: 1px solid #FCFCFC;
+      border-left: 1px solid #FCFCFC;
+      border-right: 1px solid #FCFCFC;
+      border-radius:7px 7px 0px 0px;
+      font-size:16px;
+      font-weight:600;
+      color:#4c4c4c;
+      transition:all linear 0.15s;
+  }
+
+  .tab-links a:hover {
+      background:#FCFCFC;
+      text-decoration:none;
+  }
+
+  li.active a, li.active a:hover {
+      background:#FCFCFC;
+      border-color: #5AA3E8;
+  }
+
+  /*----- Content of Tabs -----*/
+  .tab-content {
+    width: 106%;
+    position: relative;
+    top: -9px;
+    left: -30px;
+    padding:15px;
+    border-radius:5px;
+    border: 1px solid #5AA3E8;
+    background:#FCFCFC;
+  }
+
+  .tab {
+    display:none;
+  }
+
+  .tab.active {
+      display:block;
+  }
+
   /* Question Header Colours */
   #question-hero {
     .question-container {
@@ -233,11 +295,6 @@
       }
     }
 
-    .report-container {
-      border: 1px solid #5AA3E8;
-      border-radius: 5px;
-    }
-
     /* Next Question Section */
     #trending-questions-container {
       width: 24%;
@@ -318,37 +375,10 @@
       }
     }
 
-    .c3-legend-item {
-      font-size: 15px;
-      font-family: 'Open Sans';
-      font-weight: 700;
-      display: block;
-    }
-
     .c3-tooltip tr td{
       color: #555;
     }
 
-  }
-
-  .report-container {
-    width: 100%;
-    padding: 2em 5px;
-    text-align: center;
-
-    #answer-chart{
-      height: 475px;
-      svg{
-        display: inline;
-        margin: 0 auto;
-      }
-    }
-    .average {
-      p{
-        color: #50e3c2;
-        font-weight: bold;
-      }
-    }
   }
 
   .location-label {
@@ -388,7 +418,7 @@
         color: #888;
         margin-left: 0.5em;
         text-align: center;
-      
+
       select {
         display: inline-block;
         background: transparent;
@@ -400,22 +430,6 @@
         padding: 0.25em 1.25em 0.25em 1.25em;
         -webkit-appearance: none;
         }
-      }
-
-      .report-location {
-        display: inline-block;
-        border: 1px solid #888;
-        color: #888;
-        border-radius: 5px;
-
-        &:not(:first-child) {
-          margin-left: 0.5em;
-        }
-
-        &:hover {
-          opacity: 0.8;
-        }
-
       }
     }
   }

@@ -18,7 +18,18 @@ $(document).ready(function() {
   </script>
 <% end %>
 
+<% if flash[:share_answer_modal] %>
+  <script>
+    $(document).ready(function() {
+      setTimeout(function() {
+        $('#shareAnswerModal').modal('show');
+      }, 20000);
+    });
+  </script>
+<% end %>
+
 <%= render '/common/share_new_question_modal' %>
+<%= render '/common/share_answer_modal' %>
 
 <div class="main-site-container" id="question-page-container">
   <div id="question-hero">
@@ -65,7 +76,6 @@ $(document).ready(function() {
             id: @question.id,
             url: "#{request.protocol}#{request.host_with_port}" + question_path(@question),
             title: "#{@question.label[0..70]}...",
-            description: "#{@question.label[0..70]}...",
             image: "#{request.protocol}#{request.host_with_port}" + question_path(@question)
           }%>
       </div>

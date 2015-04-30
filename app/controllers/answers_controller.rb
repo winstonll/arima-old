@@ -31,26 +31,10 @@ class AnswersController < ApplicationController
       @answer = @question.answers.build(params[:answer].permit(:value))
       @answer.user = @user
 
-      @answer.shared_twitter = false
-      @answer.shared_facebook = false
-
       if @answer.save
-        redirect_to question_path(@question)
+        redirect_to question_path(@question), flash: { share_answer_modal: true }
       end
-
     end
-
-    # if params[:answer].has_key? :from_modal
-    # end
-  end
-
-  def intro_question
-    @user = session[:intro_user]
-    @group = Group.find(params[:group_id])
-    @question = @group.questions.all.sample(1).first
-    @answer = @question.answers.build
-
-    render "intro_new", layout: false
   end
 
   def share
@@ -69,12 +53,5 @@ class AnswersController < ApplicationController
       ans_user.save
       @answer = answer
     end
-  end
-
-  # thumbnail
-  def show_image
-    # TODO: check for facebook user agent
-    chart = Answer.find(params[:answer_id]).generate_image
-    send_data chart.to_blob, :type => 'image/png', :disposition => 'inline'
   end
 end
