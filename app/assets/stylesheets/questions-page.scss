@@ -37,18 +37,20 @@
     border-radius:7px 7px 0px 0px;
     font-size:16px;
     font-weight:600;
-    color:#4c4c4c;
+    color:#C0C0C0;
     transition:all linear 0.15s;
   }
 
   .tab-links a:hover {
-      background:#FCFCFC;
-      text-decoration:none;
+    color:#4A90E2;
+    background:#FCFCFC;
+    text-decoration:none;
   }
 
   li.active a, li.active a:hover {
-      background:#FCFCFC;
-      border-color: #5AA3E8;
+    color:#4A90E2;
+    background:#FCFCFC;
+    border-color: #5AA3E8;
   }
 
   /*----- Content of Tabs -----*/
