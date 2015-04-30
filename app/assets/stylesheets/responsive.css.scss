@@ -174,4 +174,98 @@
       width: 95%;
     }
   }
+
+  /* Question Page */
+  #question-page-container {
+    #question-hero {
+      .question-container {
+        display: block;
+        width: 100%;
+
+        .question-vote-container {
+          width: 5%;
+          margin-right: 20px;
+        }
+
+        .question-title-container {
+          margin: 0;
+
+          .question-title {
+            font-size: 15px;
+          }
+
+          .answer-prompt {
+            .form-inline {
+              select {
+                width: 100%;
+                margin: 0;
+              }
+            }
+
+            .form-group {
+              .answer_value {
+                .form-control {
+                  width: 100%;
+                }
+              }
+
+              #answer-button {
+                .modal-button {
+                  width: 100%;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      #question-meta-container {
+        display: block;
+        float: none;
+        width: 100%;
+        clear: both;
+        text-align: center;
+
+        .question-title-count,
+        .question-share-container {
+          width: 48%;
+          display: inline-block;
+        }
+      }
+    }
+
+    #question-content-container {
+      clear: both;
+      padding-top: 2em;
+
+      /* Report */
+      .report-container,
+      .no-answer-container {
+        width: 100%;
+        float: none;
+        clear: both;
+        display: block;
+      }
+
+      .no-answer-container {
+        padding-top: 10em;
+        padding-bottom: 10em;
+        text-align: center;
+
+        .no-answer-prompt {
+          font-size: 18px;
+          font-weight: 600;
+          color: #aaa;
+        }
+      }
+
+      /* Next Question Section */
+      #trending-questions-container {
+        width: 100%;
+        float: none;
+        clear: both;
+        display: block;
+      }
+    }
+  }
 }
