@@ -13,7 +13,6 @@
  }
 
 @media screen and ( max-width: 1000px ) {
-
   body {
     #questions-container,
     .profile-container {
@@ -104,7 +103,6 @@
 }
 
 @media screen and ( max-width: 768px ) {
-
   /* Home Page */
   #landing {
     #key-points-container {
@@ -140,6 +138,7 @@
     margin-top: -250px;
   }
 
+  /* Navbar */
   #home-navbar {
     .nav-btn {
       font-size: 12px;
@@ -147,81 +146,126 @@
     }
 
     #st {
-      width: 250px;
+      width: 200px;
+    }
+
+    .back {
+      display: none;
     }
   }
 
-  /* Profile Page */
-  .profile-information {
-    width: 100%;
-    margin: 0 auto;
-    border-radius: 8px 8px 0px 0px !important;
-    background: #639ee3;
-    padding: 50px;
+  /* Feed */
+  #feed-container {
+    #feed-stats-container {
+      width: 90%;
 
-    .centered-info {
-      text-align: center;
-      .user-info-container {
-        .user-photo-default {
-          font-family: 'Montserrat', 'Open Sans', sans-serif;
-          height: 125px;
-          width: 125px;
-          margin: auto;
-          line-height: 125px;
-          font-size: 50px;
-          background-color: #00c39c;
-          font-weight: 400;
-          text-align: center;
-          border-radius: 50%;
-          color: #fff;
-        }
-
-        .user-name {
+      .feed-stats {
+        .feed-stats-data {
           font-size: 35px;
-          margin-top: 15px;
         }
 
-        .user-location {
+        .feed-stats-title {
           font-size: 15px;
-          margin-top: -10px;
         }
       }
     }
+
+    #feed {
+      width: 95%;
+    }
   }
 
-  .stat-number {
-    font-size: 25px;
-  }
+  /* Question Page */
+  #question-page-container {
+    #question-hero {
+      .question-container {
+        display: block;
+        width: 100%;
 
-  .stat-title {
-    font-size: 11px;
-  }
+        .question-vote-container {
+          width: 5%;
+          margin-right: 20px;
+        }
 
-  /* Footer */
-  .footer {
-    padding: 10px;
+        .question-title-container {
+          margin: 0;
 
-    .footer-answers {
-      .answers-submitted-num {
-        font-size: 1.5em;
+          .question-title {
+            font-size: 15px;
+          }
+
+          .answer-prompt {
+            .form-inline {
+              select {
+                width: 100%;
+                margin: 0;
+              }
+            }
+
+            .form-group {
+              .answer_value {
+                .form-control {
+                  width: 100%;
+                }
+              }
+
+              #answer-button {
+                .modal-button {
+                  width: 100%;
+                }
+              }
+            }
+          }
+        }
       }
 
-      answers-submitted-caption {
-        font-size: 1em;
+      #question-meta-container {
+        display: block;
+        float: none;
+        width: 100%;
+        clear: both;
+        text-align: center;
+
+        .question-title-count,
+        .question-share-container {
+          width: 48%;
+          display: inline-block;
+        }
       }
     }
 
-    .footer-links {
-      width: 100%;
+    #question-content-container {
+      clear: both;
+      padding-top: 2em;
 
-      .footer-sections {
-        margin-left: 5px;
-        margin-right: 5px;
+      /* Report */
+      .report-container,
+      .no-answer-container {
+        width: 100%;
+        float: none;
+        clear: both;
+        display: block;
       }
-    }
 
-    h3 {
-      font-size: 17px;
+      .no-answer-container {
+        padding-top: 10em;
+        padding-bottom: 10em;
+        text-align: center;
+
+        .no-answer-prompt {
+          font-size: 18px;
+          font-weight: 600;
+          color: #aaa;
+        }
+      }
+
+      /* Next Question Section */
+      #trending-questions-container {
+        width: 100%;
+        float: none;
+        clear: both;
+        display: block;
+      }
     }
   }
 }
