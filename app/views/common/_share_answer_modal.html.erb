@@ -18,7 +18,9 @@
         %>
       </div>
 
-      <a data-dismiss="modal" data-target="#shareAnswerModal" class="go-back-link">Go back to the question</a>
+      <%= link_to "Go back to the question", show_share_modal_question_path(:user_id => @user.id), :method => :put, :remote => true, :class => "go-back-link", :data => { :dismiss => "modal", :target => "#shareAnswerModal" } %>
+      <%= link_to "Don't show me this again", hide_share_modal_question_path(:user_id => @user.id), :method => :put, :remote => true, :class => "never-show-again-link", :data => { :dismiss => "modal", :target => "#shareAnswerModal" } %>
+
       <p class="share-modal-tip">Tip: Use hashtags and tag friends to help gain exposure</p>
     </div>
   </div><!-- /.modal-content -->
