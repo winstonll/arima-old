@@ -25,6 +25,8 @@ Arima::Application.routes.draw do
     member do
       put 'upvote' => "questions#upvote"
       put 'downvote' => "questions#downvote"
+      put 'hide_share_modal' => "questions#hide_share_modal"
+      put 'show_share_modal' => "questions#show_share_modal"
     end
   end
 
