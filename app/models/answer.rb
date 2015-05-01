@@ -122,6 +122,16 @@ class Answer < ActiveRecord::Base
     return user.location.country.to_s
   end
 
+  def user_lat_long
+    arr = Array.new
+    r = self.question.users.pluck(:id).compact
+    l = Location.where(id: r)
+    l.each do |loc|
+      arr.push("#{loc.latitude}, #{loc.longitude}")
+    end
+    return arr.to_s
+  end
+
   def data_array(value)
     if self.question.value_type == "collection"
       case value
