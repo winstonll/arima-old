@@ -23,14 +23,15 @@
   }
 
   .tab-links li {
-    margin:0px 40px;
+    margin:0px 15px;
     float:left;
     list-style:none;
   }
 
   .tab-links a {
-    padding:9px 15px;
+    padding:10px 70px;
     display:inline-block;
+    //border: 1px solid #FCFCFC;
     border-top: 1px solid #FCFCFC;
     border-left: 1px solid #FCFCFC;
     border-right: 1px solid #FCFCFC;
@@ -45,6 +46,7 @@
     color:#4A90E2;
     background:#FCFCFC;
     text-decoration:none;
+    border-color: #5AA3E8;
   }
 
   li.active a, li.active a:hover {
@@ -62,6 +64,9 @@
     padding:15px;
     border-radius:5px;
     border: 1px solid #5AA3E8;
+    //border-right: 1px solid #5AA3E8;
+    //border-left: 1px solid #5AA3E8;
+    //border-bottom: 1px solid #5AA3E8;
     background:#FCFCFC;
   }
 
