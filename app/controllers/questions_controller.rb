@@ -20,7 +20,7 @@ class QuestionsController < ApplicationController
 
     #@countries_array is a two dimensional array, so this extracts the first element of each inner array.
     @countries_answered = @countries_array.collect(&:first).uniq
-    
+
 
     if(@user == nil)
       check_guest()
@@ -149,4 +149,19 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def hide_share_modal
+    if (@user)
+      @user.update_attributes(share_modal_state: "hide")
+    end
+
+    render :nothing => true
+  end
+
+  def show_share_modal
+    if (@user)
+      @user.update_attributes(share_modal_state: "show_20")
+    end
+
+    render :nothing => true
+  end
 end
