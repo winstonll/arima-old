@@ -273,6 +273,7 @@ class Answer < ActiveRecord::Base
       res[key] ||= []
       res[key] << answ
       res
+      end
     end
 
     country_answer
