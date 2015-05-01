@@ -257,8 +257,8 @@ class Answer < ActiveRecord::Base
   # end
 
   def by_country
-    # FIND ME
     country_answer = question.answers.reduce({}) do |res, answ|
+      unless user == nil
       key = answ.user.location.country
       res[key] ||= []
       res[key] << answ
