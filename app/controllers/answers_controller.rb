@@ -32,7 +32,11 @@ class AnswersController < ApplicationController
       @answer.user = @user
 
       if @answer.save
-        redirect_to question_path(@question), flash: { share_answer_modal: true }
+        if @user.share_modal_state != "hide"
+          redirect_to question_path(@question), flash: { share_answer_modal: true }
+        else
+          redirect_to question_path(@question)
+        end
       end
     end
   end

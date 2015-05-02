@@ -52,6 +52,11 @@
 
   });
 
+  var map, pointarray, heatmap;
+  var heatData = new Array();
+
+  var userLocation = <%= answer.user_lat_long.html_safe %>;
+
   var data_answer = {};
   <% if answer.question.value_type == "collection" %>
     data_answer.collection = true;
