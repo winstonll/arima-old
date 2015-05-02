@@ -45,7 +45,6 @@
       width: 25%;
       margin: auto;
       margin-top: 5em;
-      margin-bottom: 2em;
       cursor: pointer;
 
       &:hover {
@@ -54,10 +53,12 @@
     }
 
     .never-show-again-link {
-      display: block;
-      margin-top: 0.75em;
       color: #aaa;
       cursor: pointer;
+      display: block;
+      width: 175px;
+      margin: auto;
+      margin-top: 0.75em;
     }
 
     .share-modal-tip {
