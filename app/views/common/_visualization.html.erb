@@ -4,18 +4,12 @@
         <li class="active"><a href="#world">World</a></li>
         <li><a href="#country">Country</a></li>
         <li><a href="#city"><%= answer.user.location.city %></a></li>
+        <li><a href="#heatmap">Heat Map</a></li>
     </ul>
 
     <div class="tab-content">
         <div id="world" class="tab active">
-          <!-- <div id="answer-world" class='answer-chart'></div> -->
-          <div id="panel">
-            <button onclick="toggleHeatmap()">Toggle Heatmap</button>
-            <button onclick="changeGradient()">Change gradient</button>
-            <button onclick="changeRadius()">Change radius</button>
-            <button onclick="changeOpacity()">Change opacity</button>
-          </div>
-          <div id="map-canvas"></div>
+          <div id="answer-world" class='answer-chart'></div>
         </div>
 
         <div id="country" class="tab">
@@ -24,12 +18,23 @@
             <%= select_tag(@countries_answered, options_for_select(@countries_answered)) %>
           </div>
         </div>
+
         <% has_city = user_signed_in? ? answer.user.location.city.present? : false %>
         <% if has_city %>
           <div id="city" class="tab">
             <div id="answer-city" class='answer-chart'></div>
           </div>
         <% end %>
+
+        <div id="heatmap" class="tab">
+          <div id="panel">
+            <button onclick="toggleHeatmap()">Toggle Heatmap</button>
+            <button onclick="changeGradient()">Change gradient</button>
+            <button onclick="changeRadius()">Change radius</button>
+            <button onclick="changeOpacity()">Change opacity</button>
+          </div>
+          <div id="map-canvas"></div>
+        </div>
     </div>
   </div>
 </div>
