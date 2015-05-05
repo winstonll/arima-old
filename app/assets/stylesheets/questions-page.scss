@@ -57,6 +57,7 @@
 
   /*----- Content of Tabs -----*/
   .tab-content {
+    min-height: 450px;
     width: 106%;
     position: relative;
     top: -9px;
@@ -68,6 +69,15 @@
     //border-left: 1px solid #5AA3E8;
     //border-bottom: 1px solid #5AA3E8;
     background:#FCFCFC;
+
+    #heatmap {
+      height: 100%;
+
+      #map-canvas {
+        min-height: 450px;
+        height: 100%;
+      }
+    }
   }
 
   .tab {
