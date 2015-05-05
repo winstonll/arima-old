@@ -355,6 +355,7 @@
   }
 
   #comment-section {
+    display: none; /* Remove this to bring back comments */
     clear: both;
     padding-top: 5em;
     margin-bottom: 2em;
