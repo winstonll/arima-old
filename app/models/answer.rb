@@ -122,11 +122,15 @@ class Answer < ActiveRecord::Base
     return user.location.country.to_s
   end
 
+  def center_lat_long
+    loc = Location.where(user_id: self.user_id)[0]
+    arr = [loc.latitude.to_s, loc.longitude.to_s]
+    return arr
+  end
+
   def user_lat_long
     arr = Hash.new
     loc_arr = Array.new
-    r = self.question.users.pluck(:id).compact
-    l = Location.where(id: r)
 
     answer_arr = Answer.where(question_id: self.question_id)
     answer_arr.each do |a|
@@ -138,10 +142,6 @@ class Answer < ActiveRecord::Base
         arr[a.value] = Array.new().push(current.latitude.to_s + ", " + current.longitude.to_s)
       end
     end
-
-    #l.each do |loc|
-    #  arr.push("#{loc.latitude}, #{loc.longitude}")
-    #end
     return arr
   end
 

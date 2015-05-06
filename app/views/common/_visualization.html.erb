@@ -76,7 +76,7 @@
   function initialize() {
     var mapOptions = {
       zoom: 13,
-      center: new google.maps.LatLng(43.67023,  -79.38676),
+      center: new google.maps.LatLng(Number(<%= answer.center_lat_long()[0].to_json.html_safe %>),  Number(<%= answer.center_lat_long()[1].to_json.html_safe %>)),
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 
@@ -132,8 +132,7 @@
         var currentAttrValue = jQuery(this).attr('href');
 
         // Show/Hide Tabs
-        jQuery('.tabs ' + currentAttrValue).siblings().slideUp(400);
-        jQuery('.tabs ' + currentAttrValue).delay(400).slideDown(400);
+        jQuery('.tabs ' + currentAttrValue).show().siblings().hide();
 
         // Change/remove current tab to active
         jQuery(this).parent('li').addClass('active').siblings().removeClass('active');
@@ -144,7 +143,6 @@
         }
         else{
           google.maps.event.trigger(map, 'resize');
-          map.setZoom( map.getZoom() );
         }
     });
   });
