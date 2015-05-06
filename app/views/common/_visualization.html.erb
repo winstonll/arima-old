@@ -159,9 +159,11 @@
   $('#heat_position').change(function (e) {
     var country = $(e.target).find(":selected").val();
     createHeat(country);
+
     google.maps.event.addDomListener(window, 'load', initialize);
-    google.maps.event.trigger(map, 'resize');
-    //userLocation[country]
+    //Manually toggle the map twice to refresh the map
+    heatmap.setMap(heatmap.getMap() ? null : map);
+    heatmap.setMap(heatmap.getMap() ? null : map);
   });
 
   var data_answer = {};
