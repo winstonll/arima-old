@@ -123,13 +123,26 @@ class Answer < ActiveRecord::Base
   end
 
   def user_lat_long
-    arr = Array.new
+    arr = Hash.new
+    loc_arr = Array.new
     r = self.question.users.pluck(:id).compact
     l = Location.where(id: r)
-    l.each do |loc|
-      arr.push("#{loc.latitude}, #{loc.longitude}")
+
+    answer_arr = Answer.where(question_id: self.question_id)
+    answer_arr.each do |a|
+      if (arr[a.value])
+        current = Location.where(user_id: a.user_id)[0]
+        arr[a.value].push(current.latitude.to_s + ", " + current.longitude.to_s)
+      else
+        current = Location.where(user_id: a.user_id)[0]
+        arr[a.value] = Array.new().push(current.latitude.to_s + ", " + current.longitude.to_s)
+      end
     end
-    return arr.to_s
+
+    #l.each do |loc|
+    #  arr.push("#{loc.latitude}, #{loc.longitude}")
+    #end
+    return arr
   end
 
   def data_array(value)

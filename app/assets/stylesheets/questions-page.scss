@@ -70,12 +70,22 @@
     //border-bottom: 1px solid #5AA3E8;
     background:#FCFCFC;
 
+    #panel {
+      position: absolute;
+
+      left: 50%;
+      margin-left: -180px;
+      z-index: 5;
+      background-color: #fff;
+      padding: 5px;
+      border: 1px solid #999;
+    }
+
     #heatmap {
       height: 100%;
 
       #map-canvas {
         min-height: 450px;
-        width: 100%;
         height: 100%;
       }
     }
@@ -374,9 +384,7 @@
       color: #4a90e2;
 
       select {
-        position: relative;
-        bottom: 32em;
-        left: 18em;
+
         display: inline-block;
         background: transparent;
         font-size: 14px;
@@ -384,9 +392,21 @@
         border: 1px solid #888;
         border-radius: 5px;
         height: 30px;
-        width: 15em;
-        }
+        width: 13%;
       }
+    }
+
+    #country_position{
+        position: relative;
+        bottom: 32em;
+        left: 35%;
+    }
+
+    #heat_position{
+      position: relative;
+      bottom: -8px;
+      left: 43.5%;
+    }
 
     .location-select {
       .location-label {

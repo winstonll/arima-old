@@ -21,7 +21,7 @@ class QuestionsController < ApplicationController
     #@countries_array is a two dimensional array, so this extracts the first element of each inner array.
     @countries_answered = @countries_array.collect(&:first).uniq
 
-
+    create_dummy_users()
     if(@user == nil)
       check_guest()
     end
