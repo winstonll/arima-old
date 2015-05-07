@@ -14,7 +14,7 @@
         <div id="country" class="tab">
           <div id="answer-country" class='answer-chart'></div>
           <div class="country_dropdown">
-            <%= select_tag(@countries_answered, options_for_select(@countries_answered)) %>
+            <%= select_tag(@countries_answered, options_for_select(@countries_answered), prompt: "Select a Country") %>
           </div>
         </div>
         <% has_city = user_signed_in? ? answer.user.location.city.present? : false %>
