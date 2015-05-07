@@ -57,6 +57,7 @@
 
   /*----- Content of Tabs -----*/
   .tab-content {
+    min-height: 450px;
     width: 106%;
     position: relative;
     top: -9px;
@@ -68,6 +69,27 @@
     //border-left: 1px solid #5AA3E8;
     //border-bottom: 1px solid #5AA3E8;
     background:#FCFCFC;
+
+    #panel {
+      position: absolute;
+
+      left: 50%;
+      margin-left: -180px;
+      z-index: 5;
+      background-color: #fff;
+      padding: 5px;
+      border: 1px solid #999;
+    }
+
+    #heatmap {
+      height: 100%;
+
+      #map-canvas {
+        min-height: 450px;
+        height: 100%;
+        max-width: none;
+      }
+    }
   }
 
   .tab {
@@ -93,6 +115,7 @@
       padding-right: 0.5em;
 
       .question-vote-container {
+        display: none; /* Remove this to bring votes back */
         float: left;
         width: 17%;
         text-align: center;
@@ -121,7 +144,7 @@
       .question-title-container {
         overflow: hidden;
         margin-top: 7px;
-        margin-right: 17%;
+        //margin-right: 17%; /* Add this back when you bring votes back */
         text-align: center;
 
         .question-title {
@@ -344,6 +367,7 @@
   }
 
   #comment-section {
+    display: none; /* Remove this to bring back comments */
     clear: both;
     padding-top: 5em;
     margin-bottom: 2em;
@@ -361,9 +385,7 @@
       color: #4a90e2;
 
       select {
-        position: relative;
-        bottom: 32em;
-        left: 18em;
+
         display: inline-block;
         background: transparent;
         font-size: 14px;
@@ -371,9 +393,21 @@
         border: 1px solid #888;
         border-radius: 5px;
         height: 30px;
-        width: 15em;
-        }
+        width: 13%;
       }
+    }
+
+    #country_position{
+        position: relative;
+        bottom: 32em;
+        left: 35%;
+    }
+
+    #heat_position{
+      position: relative;
+      bottom: -8px;
+      left: 43.5%;
+    }
 
     .location-select {
       .location-label {

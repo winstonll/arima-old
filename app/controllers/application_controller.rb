@@ -35,8 +35,12 @@ class ApplicationController < ActionController::Base
       country_code: "CA",
       continent: "North America",
       country: "Canada",
-      city: "Toronto")
-      @user1.save
+      city: "Toronto",
+      latitude: 43.67023,
+      longitude: -79.38676)
+    @user1.save
+    @answer1 = Answer.new(user_id: @user1.id, question_id: 3, value:"programming")
+    @answer1.save
 
     @user2 = User.new(first_name: "Number",
                       last_name: "Two")
@@ -45,8 +49,12 @@ class ApplicationController < ActionController::Base
       country_code: "US",
       continent: "North America",
       country: "United States",
-      city: "Downingtown")
-      @user2.save
+      city: "Downingtown",
+      latitude: 43.67023,
+      longitude: -79.38676)
+    @user2.save
+    @answer2 = Answer.new(user_id: @user2.id, question_id: 3, value:"programming")
+    @answer2.save
 
     @user3 = User.new(first_name: "Number",
                       last_name: "Three")
@@ -55,8 +63,12 @@ class ApplicationController < ActionController::Base
       country_code: "US",
       continent: "North America",
       country: "United States",
-      city: "Port Richey")
-      @user3.save
+      city: "Port Richey",
+      latitude: 43.67023,
+      longitude: -79.38676)
+    @user3.save
+    @answer3 = Answer.new(user_id: @user3.id, question_id: 3, value:"gaming")
+    @answer3.save
 
     @user4 = User.new(first_name: "Number",
                       last_name: "Four")
@@ -65,8 +77,12 @@ class ApplicationController < ActionController::Base
       country_code: "US",
       continent: "North America",
       country: "United States",
-      city: "Sioux Falls")
-      @user4.save
+      city: "Sioux Falls",
+      latitude: 43.67023,
+      longitude: -79.38676)
+    @user4.save
+    @answer4 = Answer.new(user_id: @user4.id, question_id: 3, value:"soccer")
+    @answer4.save
 
     @user5 = User.new(first_name: "Number",
                       last_name: "Five")
@@ -75,8 +91,12 @@ class ApplicationController < ActionController::Base
       country_code: "BR",
       continent: "South America",
       country: "Brazil",
-      city: "Rio de Janeiro")
-      @user5.save
+      city: "Rio de Janeiro",
+      latitude: 39.67023,
+      longitude: -81.38676)
+    @user5.save
+    @answer5 = Answer.new(user_id: @user5.id, question_id: 3, value:"basketball")
+    @answer5.save
 
     @user6 = User.new(first_name: "Number",
                       last_name: "Six")
@@ -85,8 +105,12 @@ class ApplicationController < ActionController::Base
       country_code: "CA",
       continent: "North America",
       country: "Canada",
-      city: "Toronto")
-      @user6.save
+      city: "Toronto",
+      latitude: 41.67023,
+      longitude: -76.38676)
+    @user6.save
+    @answer6 = Answer.new(user_id: @user6.id, question_id: 3, value:"swimming")
+    @answer6.save
 
     @user7 = User.new(first_name: "Number",
                       last_name: "Seven")
@@ -95,8 +119,12 @@ class ApplicationController < ActionController::Base
       country_code: "CA",
       continent: "North America",
       country: "Canada",
-      city: "Toronto")
-      @user7.save
+      city: "Toronto",
+      latitude: 40.67023,
+      longitude: -75.38676)
+    @user7.save
+    @answer7 = Answer.new(user_id: @user7.id, question_id: 3, value:"studying")
+    @answer7.save
 
     @user8 = User.new(first_name: "Number",
                       last_name: "Eight")
@@ -105,8 +133,12 @@ class ApplicationController < ActionController::Base
       country_code: "CA",
       continent: "North America",
       country: "Canada",
-      city: "Toronto")
+      city: "Toronto",
+      latitude: 42.67023,
+      longitude: -80.38676)
     @user8.save
+    @answer8 = Answer.new(user_id: @user8.id, question_id: 3, value:"soccer")
+    @answer8.save
   end
 
   def check_guest
