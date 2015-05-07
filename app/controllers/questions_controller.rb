@@ -40,6 +40,14 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def report_preview
+    @question = @question = Question.friendly.find(params[:id])
+    respond_to do |format| 
+      format.html
+      format.js {render partial: 'report_preview'}  
+    end
+  end
+
   # Gets the question's answer stats for reports
   def stats
     q = Question.find(params[:id])
