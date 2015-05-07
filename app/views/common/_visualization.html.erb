@@ -34,7 +34,7 @@
               <% temp.each do |ans, arr| %>
               <% @answer_selection.push(ans); %>
             <% end %>
-            <%= select_tag(@answer_selection, options_for_select(@answer_selection)) %>
+            <%= select_tag(@answer_selection, options_for_select(@answer_selection),prompt: "Answers:") %>
           </div>
         </div>
     </div>
