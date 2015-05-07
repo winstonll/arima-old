@@ -27,12 +27,6 @@
         <% end %>
 
         <div id="heatmap" class="tab">
-          <div id="panel">
-            <button onclick="toggleHeatmap()">Toggle Heatmap</button>
-            <button onclick="changeGradient()">Change gradient</button>
-            <button onclick="changeRadius()">Change radius</button>
-            <button onclick="changeOpacity()">Change opacity</button>
-          </div>
           <div id="map-canvas"></div>
           <div id="heat_position" class="country_dropdown">
             <% temp = answer.user_lat_long %>
@@ -64,6 +58,7 @@
   <% end %>
 
   function createHeat(select){
+    heatData = [];
     for(i=0; i<userLocation[select].length; i++){
       indexComma = userLocation[select][i].indexOf(",");
       latitude = Number(userLocation[select][i].substring(0, indexComma-1));
@@ -75,7 +70,7 @@
 
   function initialize() {
     var mapOptions = {
-      zoom: 13,
+      zoom: 3,
       center: new google.maps.LatLng(Number(<%= answer.center_lat_long()[0].to_json.html_safe %>),  Number(<%= answer.center_lat_long()[1].to_json.html_safe %>)),
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
@@ -90,38 +85,6 @@
     });
 
     heatmap.setMap(map);
-  }
-
-  function toggleHeatmap() {
-    heatmap.setMap(heatmap.getMap() ? null : map);
-  }
-
-  function changeGradient() {
-    var gradient = [
-      'rgba(0, 255, 255, 0)',
-      'rgba(0, 255, 255, 1)',
-      'rgba(0, 191, 255, 1)',
-      'rgba(0, 127, 255, 1)',
-      'rgba(0, 63, 255, 1)',
-      'rgba(0, 0, 255, 1)',
-      'rgba(0, 0, 223, 1)',
-      'rgba(0, 0, 191, 1)',
-      'rgba(0, 0, 159, 1)',
-      'rgba(0, 0, 127, 1)',
-      'rgba(63, 0, 91, 1)',
-      'rgba(127, 0, 63, 1)',
-      'rgba(191, 0, 31, 1)',
-      'rgba(255, 0, 0, 1)'
-    ]
-    heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
-  }
-
-  function changeRadius() {
-    heatmap.set('radius', heatmap.get('radius') ? null : 20);
-  }
-
-  function changeOpacity() {
-    heatmap.set('opacity', heatmap.get('opacity') ? null : 0.2);
   }
 
   google.maps.event.addDomListener(window, 'load', initialize);
@@ -158,7 +121,9 @@
     var country = $(e.target).find(":selected").val();
     createHeat(country);
 
-    google.maps.event.addDomListener(window, 'load', initialize);
+    //google.maps.event.addDomListener(window, 'load', initialize);
+    initialize();
+
     //Manually toggle the map twice to refresh the map
     heatmap.setMap(heatmap.getMap() ? null : map);
     heatmap.setMap(heatmap.getMap() ? null : map);
