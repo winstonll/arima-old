@@ -23,6 +23,21 @@ class AnswersController < ApplicationController
     end
   end
 
+  def gender
+    year = params[:age_text].to_i
+    gender = params[:gender_id].to_i == 1 ? "M" : "F"
+    @user.gender = gender
+
+    if( 1900 < year && year < Time.now.year && @user.gender != nil)
+      @user.birthyear = year
+      @user.save
+      redirect_to :back
+    else
+      flash[:notice] = "Year of birth and/or gender was invalid!"
+      redirect_to :back
+    end
+  end
+
   def create
     @question = Question.friendly.find(params[:question_id])
 
