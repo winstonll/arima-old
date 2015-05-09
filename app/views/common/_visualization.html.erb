@@ -46,8 +46,7 @@
               <%= select_tag(:gender_id, options_for_select([['Male', 1], ['Female', 2]], 1), class: "form-control", id: "age_form") %>
             <% end %>
           <% else %>
-            <!-- PROCESS DATA FOR CHART PSTM AND MAKE AGE DEFAULT TO NIL  -->
-            <div id="answer-city" class='answer-chart'></div>
+            <div id="answer-pstm" class='answer-chart'></div>
           <% end %>
         </div>
     </div>
@@ -184,10 +183,11 @@
    data_answer.country = <%= answer.numeric_country.to_json.html_safe %>;
   <% end %>
   data_answer.world = <%= answer.data_array('world').html_safe %>;
+  data_answer.pstm = <%= answer.data_array('pstm').html_safe %>;
   data_answer.selected = 'world';
 
   var chart_answer = c3.generate({
-    size: { width: 450,
+    size: { width: 600,
             height: 450 },
     data: {
       x: data_answer.collection ? null : 'x',
@@ -243,6 +243,9 @@
         return data;
       }
     }
+    else if (loc == 'pstm'){
+      if(data_answer.collection){return data;}
+    }
     else{
       if (data_answer.collection) {return data;}
       else {
@@ -259,6 +262,7 @@
   function show_location_answer(loc) {
     previous_selected = data_answer.selected;
     data_answer.selected = loc;
+    console.log(data_answer.selected);
     var loc_arr = [];
 
     if(data_answer.collection){

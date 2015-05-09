@@ -29,7 +29,9 @@ class ApplicationController < ActionController::Base
   #used to create a larger sample size on localhost
   def create_dummy_users
     @user1 = User.new(first_name: "Number",
-                      last_name: "One")
+                      last_name: "One",
+                      birthyear: 1992,
+                      gender: "M")
     @user1.build_location(
       province: "Ontario",
       country_code: "CA",
@@ -43,7 +45,9 @@ class ApplicationController < ActionController::Base
     @answer1.save
 
     @user2 = User.new(first_name: "Number",
-                      last_name: "Two")
+                      last_name: "Two",
+                      birthyear: 1993,
+                      gender: "F")
     @user2.build_location(
       province: "Pennsylvania",
       country_code: "US",
@@ -57,7 +61,9 @@ class ApplicationController < ActionController::Base
     @answer2.save
 
     @user3 = User.new(first_name: "Number",
-                      last_name: "Three")
+                      last_name: "Three",
+                      birthyear: 1994,
+                      gender: "M")
     @user3.build_location(
       province: "Florida",
       country_code: "US",
@@ -71,7 +77,9 @@ class ApplicationController < ActionController::Base
     @answer3.save
 
     @user4 = User.new(first_name: "Number",
-                      last_name: "Four")
+                      last_name: "Four",
+                      birthyear: 1990,
+                      gender: "F")
     @user4.build_location(
       province: "South Dakota",
       country_code: "US",
@@ -85,7 +93,9 @@ class ApplicationController < ActionController::Base
     @answer4.save
 
     @user5 = User.new(first_name: "Number",
-                      last_name: "Five")
+                      last_name: "Five",
+                      birthyear: 1989,
+                      gender: "M")
     @user5.build_location(
       province: "Rio de Janeiro",
       country_code: "BR",
@@ -99,7 +109,9 @@ class ApplicationController < ActionController::Base
     @answer5.save
 
     @user6 = User.new(first_name: "Number",
-                      last_name: "Six")
+                      last_name: "Six",
+                      birthyear: 1988,
+                      gender: "F")
     @user6.build_location(
       province: "Ontario",
       country_code: "CA",
@@ -113,7 +125,9 @@ class ApplicationController < ActionController::Base
     @answer6.save
 
     @user7 = User.new(first_name: "Number",
-                      last_name: "Seven")
+                      last_name: "Seven",
+                      birthyear: 1991,
+                      gender: "M")
     @user7.build_location(
       province: "Ontario",
       country_code: "CA",
@@ -127,7 +141,9 @@ class ApplicationController < ActionController::Base
     @answer7.save
 
     @user8 = User.new(first_name: "Number",
-                      last_name: "Eight")
+                      last_name: "Eight",
+                      birthyear: 1991,
+                      gender: "F")
     @user8.build_location(
       province: "Ontario",
       country_code: "CA",
