@@ -45,6 +45,8 @@
             <%= form_tag({controller: "answers", action: "gender"}, method: "get" ) do |f| %>
               <%= text_field_tag(:age_text, nil, :placeholder => "Enter your Birthyear", class: "form-control", id: "age_form") %>
               <%= select_tag(:gender_id, options_for_select([['Male', 1], ['Female', 2]], 2), class: "form-control", id: "gender_form") %>
+              <%= submit_tag("Show Me", data: { disable_with: "Please wait..." }, class: "modal-button", :id =>
+                "gender_age_submit")  %>
             <% end %>
           <% else %>
             <div id="answer-pstm" class='answer-chart'></div>
