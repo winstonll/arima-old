@@ -151,12 +151,14 @@ class Answer < ActiveRecord::Base
         when "city" then collection_data percent_city
         when "country" then collection_data percent_country
         when "world" then collection_data percent_world
+        when "pstm" then collection_data percent_pstm
       end
     else
       case value
         when "city" then numeric_data by_city.pluck(:value).compact
         when "country" then numeric_data by_country.pluck(:value).compact
         when "world" then numeric_data by_world.pluck(:value).compact
+        when "pstm"
       end
     end
   end
@@ -379,6 +381,30 @@ class Answer < ActiveRecord::Base
     total_count = value_count_world.values.sum
     result = value_count_world.map{|k,v| {k => ((v.to_f / total_count.to_f) * 100).round(0)}}
     result.reduce({}, :update) # get rid of enclosing array, make it a hash instead
+  end
+
+  def percent_pstm
+    year = self.user.birthyear
+    gender = self.user.gender
+    arr = {}
+    total = 0
+
+    Answer.where(question_id: self.question_id).find_each do |answer|
+      if(answer.user.birthyear != nil && answer.user.gender == gender && answer.user.birthyear <= year + 3 && answer.user.birthyear >= year - 3)
+        total = total + 1
+        if(arr[answer.value] == nil)
+          arr[answer.value] = 1.0
+        else
+          arr[answer.value] = arr[answer.value] + 1.0
+        end
+      end
+    end
+
+    arr.each do |k , v|
+      arr[k] = ((arr[k] /total) * 100).round(0)
+    end
+
+    return arr
   end
 
   def value_count_city

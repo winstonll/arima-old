@@ -81,6 +81,25 @@
       border: 1px solid #999;
     }
 
+    #age_form {
+      position: relative;
+      width: 15%;
+      left: 35%;
+      top: 150px;
+    }
+
+    #gender_form {
+      position: relative;
+      left: 51%;
+      width: 15%;
+      top: 117px;
+    }
+
+    #gender_age_label {
+      position: relative;
+      top: 150px;
+    }
+
     #heatmap {
       height: 100%;
 

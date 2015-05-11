@@ -5,6 +5,7 @@
         <li><a href="#country">Country</a></li>
         <!-- <li><a href="#city"><%#= answer.user.location.city %></a></li> -->
         <li><a href="#heatmap">Heat Map</a></li>
+        <li><a href="#pstm">People Like Me</a></li>
     </ul>
 
     <div class="tab-content">
@@ -36,6 +37,18 @@
             <% end %>
             <%= select_tag(@answer_selection, options_for_select(@answer_selection),prompt: "Answers:") %>
           </div>
+        </div>
+
+        <div id="pstm" class="tab">
+          <% unless (@user.gender != nil && @user.age != nil) %>
+            <p id="gender_age_label">Fill in the form below to see a report tailored for you.</p>
+            <%= form_tag({controller: "answers", action: "gender"}, method: "get" ) do |f| %>
+              <%= text_field_tag(:age_text, nil, :placeholder => "Enter your Birthyear", class: "form-control", id: "age_form") %>
+              <%= select_tag(:gender_id, options_for_select([['Male', 1], ['Female', 2]], 2), class: "form-control", id: "gender_form") %>
+            <% end %>
+          <% else %>
+            <div id="answer-pstm" class='answer-chart'></div>
+          <% end %>
         </div>
     </div>
   </div>
@@ -171,10 +184,11 @@
    data_answer.country = <%= answer.numeric_country.to_json.html_safe %>;
   <% end %>
   data_answer.world = <%= answer.data_array('world').html_safe %>;
+  data_answer.pstm = <%= answer.data_array('pstm').html_safe %>;
   data_answer.selected = 'world';
 
   var chart_answer = c3.generate({
-    size: { width: 450,
+    size: { width: 600,
             height: 450 },
     data: {
       x: data_answer.collection ? null : 'x',
@@ -230,6 +244,9 @@
         return data;
       }
     }
+    else if (loc == 'pstm'){
+      if(data_answer.collection){return data;}
+    }
     else{
       if (data_answer.collection) {return data;}
       else {
@@ -246,6 +263,7 @@
   function show_location_answer(loc) {
     previous_selected = data_answer.selected;
     data_answer.selected = loc;
+    console.log(data_answer.selected);
     var loc_arr = [];
 
     if(data_answer.collection){
