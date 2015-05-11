@@ -147,15 +147,16 @@ ActiveRecord::Schema.define(version: 20150501025332) do
     t.date     "daily_score_award_date"
     t.string   "gender"
     t.string   "username"
+    t.date     "dob"
     t.string   "password_reset_token"
     t.string   "referral_code"
     t.datetime "last_emailed_at"
     t.integer  "birthyear"
-    t.date     "dob"
     t.string   "ip_address"
     t.string   "share_modal_state",      default: "show"
   end
 
+  add_index "users", ["dob"], name: "index_users_on_dob", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
