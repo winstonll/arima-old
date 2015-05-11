@@ -40,8 +40,9 @@
         </div>
 
         <div id="pstm" class="tab">
-          <% unless (@user.gender != nil && @user.age != nil) %>
-            <p id="gender_age_label">Fill in the form below to see a report tailored for you.</p>
+          <% unless (@user.gender != nil && @user.age != nil) %> 
+            <p id="pstm_description">This tab shows you what people similiar to your age and gender have answered.</p> 
+            <p id="gender_age_label">Fill in the form below to see a report tailored for you!</p>
             <%= form_tag({controller: "answers", action: "gender"}, method: "get" ) do |f| %>
               <%= text_field_tag(:age_text, nil, :placeholder => "Enter your Birthyear", class: "form-control", id: "age_form") %>
               <%= select_tag(:gender_id, options_for_select([['Male', 1], ['Female', 2]], 2), class: "form-control", id: "gender_form") %>
