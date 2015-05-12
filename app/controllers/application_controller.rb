@@ -184,7 +184,8 @@ class ApplicationController < ActionController::Base
         ip_address: ip)
 
         @user.save
-        sign_in(:user, @user)
+        #sign_in(:user, @user)
+        session[:guest] = @user
       #localhost
       else
         @user = User.new(ip_address: ip)
@@ -196,11 +197,15 @@ class ApplicationController < ActionController::Base
           city: "Toronto",
           ip_address: ip)
         @user.save
-        sign_in(:user, @user)
+
+        session[:guest] = @user
+        #sign_in(:user, @user)
       end
     else
       @user = User.find_by(ip_address: ip)
-      sign_in(:user, @user)
+
+      session[:guest] = @user
+      #sign_in(:user, @user)
     end
   end
 

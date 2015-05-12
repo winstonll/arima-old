@@ -16,8 +16,8 @@ class CategoriesController < ApplicationController
     @all = @question.questions.order(created_at: :desc)
 
     # all questions answered by the user
-    if @user
-      user_questions = @user.questions
+    if session[:guest]
+      user_questions = session[:guest].questions
       @answered         = @all & user_questions
       @unanswered       = @all - @answered
     end
@@ -39,8 +39,8 @@ class CategoriesController < ApplicationController
     # @all = Kaminari.paginate_array(@all_popular_questions.keys).page(params[:page]).per(7)
 
     # all questions answered by the user
-    if @user
-      user_questions = @user.questions
+    if session[:guest]
+      user_questions = session[:guest].questions
       @answered         = @all_popular_questions.keys & user_questions
       @unanswered       = @all_popular_questions.keys - @answered
     end
@@ -56,8 +56,8 @@ class CategoriesController < ApplicationController
     @all = @question.questions.order(created_at: :desc)
 
     # all questions answered by the user
-    if @user
-      user_questions = @user.questions
+    if session[:guest]
+      user_questions = @session[:guest].questions
       @answered         = @all & user_questions
       @unanswered       = @all - @answered
     end

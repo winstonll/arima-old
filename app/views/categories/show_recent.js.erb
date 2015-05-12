@@ -1,11 +1,11 @@
 $(document).ready(function() {
-  <% if @user && @unanswered.any? %>
+  <% if session[:guest] && @unanswered.any? %>
     $("#questions-container").html('<%= escape_javascript(render partial: "categories/show_unanswered_questions") %>');
   <% else %>
     $("#questions-container").html('<%= escape_javascript(render partial: "categories/show_questions") %>');
   <% end %>
 
-  <% if @user && !@answered.empty? %>
+  <% if session[:guest] && !@answered.empty? %>
     $("#questions-container").append('<%= escape_javascript(render partial: "categories/show_answered_questions") %>');
   <% end %>
 });
