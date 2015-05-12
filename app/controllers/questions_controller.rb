@@ -40,6 +40,26 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def report
+    @question = Question.friendly.find(params[:id])
+    @users_list = Array.new
+    Answer.where(question: @question).find_each do |answer|
+      @users_list << answer.user_id
+    end
+    #extracting all of the countries that answered the question
+    @countries_array = Array.new
+    @users_list.each do |user|
+      @countries_array << Location.where(user_id: user).pluck(:country)
+    end
+
+    #@countries_array is a two dimensional array, so this extracts the first element of each inner array.
+    @countries_answered = @countries_array.collect(&:first).uniq
+    
+    respond_to do |format| 
+      format.html
+    end
+  end
+
   # Gets the question's answer stats for reports
   def stats
     q = Question.find(params[:id])

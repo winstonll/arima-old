@@ -42,27 +42,20 @@ class Question < ActiveRecord::Base
     self.users.average('AGE(dob)').to_i
   end
 
-  def formatted_diff_average(location)
-    if self.value_type == "collection"
-      case location
-        when 'world'
-          collection = percent_world
-          location = 'the whole world'
-      end
-      # "In #{location}, #{collection[value]}% of people selected #{value}".html_safe
-    else
-      case location
-        when 'world'
-          average = average_world
-          location = 'all over the world'
-          loc_addr = 'global'
-      end
-      # diff = percent_diff value, average
-      # response = "Compared to people from #{location}, #{value_symbol}#{value} #{placeholder} is"
-      # response += " #{diff == 0 ? '' : diff.abs.to_s + '%'} #{less_more diff} the"
-      # response += " #{loc_addr} average (#{value_symbol}#{average} #{placeholder})"
-      # response.html_safe
+  def user_country
+    return users.joins(:location).pluck(:country).first.to_s
+  end
+
+  def percent_country
+    country_values = value_count_country
+    total_count = country_values.delete('total_count')
+
+    result = country_values.flat_map do |country,categories|
+      # categories.map {|category,value| {category => ((value.to_f / total_count.to_f) * 100).round(0)}}
+      categories.map {|category,value| {category => value.to_f}}
     end
+    country_values['totals'] = result.reduce({}, :update) # get rid of enclosing array, make it a hash instead\
+    country_values.reduce({}){|m, (k,v)| m[k] = v.to_a; m}
   end
 
   def percent_world
@@ -71,11 +64,33 @@ class Question < ActiveRecord::Base
     result.reduce({}, :update) # get rid of enclosing array, make it a hash instead
   end
 
+  def value_count_country
+    answers_per_country = by_country
+    values_per_country = by_country.reduce({}) do |res, (country, answers)|
+      country_values = answers.map(&:value).compact.group_by{|v| v}
+      res[country] = Hash[country_values.map{|k,v| [k, v.size]}]
+      res
+    end
+    values_per_country['total_count'] = answers_per_country.values.map(&:count).sum
+    values_per_country
+  end
+
   def value_count_world
     a = self.by_world.pluck(:value).compact
 
     ag = a.group_by{|value| value }
     ag.map{|k,v| {k => v.size} }.reduce({}, :update)
+  end
+
+  def by_country
+    country_answer = self.answers.reduce({}) do |res, answ|
+      key = answ.user.location.country
+      res[key] ||= []
+      res[key] << answ
+      res
+    end
+
+    country_answer
   end
 
   def by_world
@@ -106,21 +121,57 @@ class Question < ActiveRecord::Base
     response
   end
 
+  def user_lat_long
+    arr = Hash.new
+    loc_arr = Array.new
+
+    answer_arr = Answer.where(question_id: self.id)
+    answer_arr.each do |a|
+      if (arr[a.value])
+        current = Location.where(user_id: a.user_id)[0]
+        arr[a.value].push(current.latitude.to_s + ", " + current.longitude.to_s)
+      else
+        current = Location.where(user_id: a.user_id)[0]
+        arr[a.value] = Array.new().push(current.latitude.to_s + ", " + current.longitude.to_s)
+      end
+    end
+    return arr
+  end
+
   def data_array(value)
     if self.value_type == "collection"
       case value
+        when "city" then collection_data percent_city
+        when "country" then collection_data percent_country
         when "world" then collection_data percent_world
       end
     else
       case value
+        when "city" then numeric_data by_city.pluck(:value).compact
+        when "country" then numeric_data by_country.pluck(:value).compact
         when "world" then numeric_data by_world.pluck(:value).compact
       end
     end
   end
 
-  def numeric_data(list)
-    data, = numeric_aggregation list
-    return data.to_a.to_s
+  def numeric_country
+    country_values = by_country.reduce({}) do |res, (country, answers)|
+      country_values = answers.map(&:value).compact.group_by{|v| v}
+      res[country] = Hash[country_values.map{|k,v| [k.to_f, v.size]}]
+      res
+    end
+    result = country_values.flat_map do |country,categories|
+      categories.map {|category,value| {category => value.to_f}}
+    end
+    country_values.reduce({}){|m, (k,v)| m[k] = v.to_a; m}
+  end
+  
+  def collection_data(value)
+    arr = Array.new
+    value.map do |key, val|
+      arr.push [key, val]
+    end
+    arr.to_s
   end
 
   def numeric_aggregation(list)
@@ -138,12 +189,9 @@ class Question < ActiveRecord::Base
     return aggregated_list
   end
 
-  def collection_data(value)
-    arr = Array.new
-    value.map do |key, val|
-      arr.push [key, val]
-    end
-    arr.to_s
+  def numeric_data(list)
+    data, = numeric_aggregation list
+    return data.to_a.to_s
   end
 
   def average_world
