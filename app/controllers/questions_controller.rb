@@ -22,18 +22,18 @@ class QuestionsController < ApplicationController
     @countries_answered = @countries_array.collect(&:first).uniq
 
     #create_dummy_users()
-    if(@user == nil)
-      check_guest()
-    end
 
-    if @user
-      @user_country = Location.where(user_id: @user.id).first
+
+    check_guest()
+
+    if session[:guest]
+      @user_country = Location.where(user_id: session[:guest].id).first
       @dropdown_array = [@user_country.country]
 
-      @answer = @question.answers.where(user_id: @user.id).first
+      @answer = @question.answers.where(user_id: session[:guest].id).first
       if @answer.nil?
         @user_submitted_answer = false
-        @answer = @question.answers.build(user: @user)
+        @answer = @question.answers.build(user: session[:guest])
       else
         @user_submitted_answer = true
       end
@@ -54,8 +54,8 @@ class QuestionsController < ApplicationController
 
     #@countries_array is a two dimensional array, so this extracts the first element of each inner array.
     @countries_answered = @countries_array.collect(&:first).uniq
-    
-    respond_to do |format| 
+
+    respond_to do |format|
       format.html
     end
   end
@@ -75,7 +75,7 @@ class QuestionsController < ApplicationController
     @question = Question.friendly.find(params[:id])
 
     # Check to see if the question has already been voted on
-    @existing_vote = Vote.where(:question_id => params[:id]).where(:user_id => @user.id)
+    @existing_vote = Vote.where(:question_id => params[:id]).where(:user_id => session[:guest].id)
 
     if (@existing_vote.empty?)
       # Update the question table votecount value
@@ -84,7 +84,7 @@ class QuestionsController < ApplicationController
 
       # Update the Votes table with the new vote
       Vote.create(
-        :user_id => @user.id,
+        :user_id => session[:guest].id,
         :question_id => params[:id],
         :vote_type => "upvote")
     elsif (@existing_vote.pluck(:vote_type)[0] == "downvote")
@@ -106,7 +106,7 @@ class QuestionsController < ApplicationController
     @question = Question.friendly.find(params[:id])
 
     # Check to see if the question has already been voted on
-    @existing_vote = Vote.where(:question_id => params[:id]).where(:user_id => @user.id)
+    @existing_vote = Vote.where(:question_id => params[:id]).where(:user_id => session[:guest].id)
 
     if (@existing_vote.empty?)
       # Update the question table votecount value
@@ -115,7 +115,7 @@ class QuestionsController < ApplicationController
 
       # Update the Votes table with the new vote
       Vote.create(
-        :user_id => @user.id,
+        :user_id => session[:guest].id,
         :question_id => params[:id],
         :vote_type => "downvote")
     elsif (@existing_vote.pluck(:vote_type)[0] == "upvote")
@@ -134,7 +134,7 @@ class QuestionsController < ApplicationController
 
   # Method that is called when a question is created
   def create
-    if(@user == nil)
+    if(session[:guest] == nil)
       check_guest()
     end
 
@@ -155,7 +155,7 @@ class QuestionsController < ApplicationController
     @subquestion = Question.create(
       :label => params[:submit_question_name],
       :group_id => params[:group_id],
-      :user_id => @user.id,
+      :user_id => session[:guest].id,
       :value_type => params[:value_type],
       :options_for_collection => @answerboxes)
 
@@ -170,16 +170,16 @@ class QuestionsController < ApplicationController
   end
 
   def hide_share_modal
-    if (@user)
-      @user.update_attributes(share_modal_state: "hide")
+    if (session[:guest])
+      session[:guest].update_attributes(share_modal_state: "hide")
     end
 
     render :nothing => true
   end
 
   def show_share_modal
-    if (@user)
-      @user.update_attributes(share_modal_state: "show_20")
+    if (session[:guest])
+      session[:guest].update_attributes(share_modal_state: "show_20")
     end
 
     render :nothing => true

@@ -26,7 +26,9 @@ class AnswersController < ApplicationController
   def gender
     year = params[:age_text].to_i
     gender = params[:gender_id].to_i == 1 ? "M" : "F"
-    @user.gender = gender
+    #@user.gender = gender
+    session[:guest].gender = gender
+    asd
 
     if( 1900 < year && year < Time.now.year && @user.gender != nil)
       @user.birthyear = year
@@ -34,7 +36,7 @@ class AnswersController < ApplicationController
       redirect_to :back
     else
       flash[:notice] = "Year of birth and/or gender was invalid!"
-      redirect_to :back
+    redirect_to :back
     end
   end
 
@@ -42,12 +44,12 @@ class AnswersController < ApplicationController
     @question = Question.friendly.find(params[:question_id])
 
     #create answer if user hasn't already submitted one for this question
-    if (@user && @answer = @question.answers.where(user: @user).first).nil?
+    if (session[:guest] && @answer = @question.answers.where(user: session[:guest]).first).nil?
       @answer = @question.answers.build(params[:answer].permit(:value))
-      @answer.user = @user
+      @answer.user = session[:guest]
 
       if @answer.save
-        if @user.share_modal_state != "hide"
+        if session[:guest].share_modal_state != "hide"
           redirect_to question_path(@question), flash: { share_answer_modal: true }
         else
           redirect_to question_path(@question)

@@ -13,10 +13,10 @@ h3 {
 <div class="main-site-container">
 
   <div id="questions-container">
-    <% if @user && @unanswered.any? %>
+    <% if session[:guest] && @unanswered.any? %>
       <%= render partial: "categories/show_unanswered_questions" %>
 
-      <% if @user && !@answered.empty? %>
+      <% if session[:guest] && !@answered.empty? %>
         <%= render partial: "categories/show_answered_questions" %>
       <% end %>
     <% else %>
