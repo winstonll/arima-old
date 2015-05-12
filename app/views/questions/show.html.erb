@@ -87,6 +87,7 @@ $(document).ready(function() {
     <% if !@user_submitted_answer %>
       <div class="no-answer-container">
         <p class="no-answer-prompt">Answer the question to view your personalized report</p>
+        <p class="no-answer-prompt"><%= link_to "I just want to see the report", report_question_path %></p>
       </div>
     <% elsif @user_submitted_answer %>
       <div class="report-container">
