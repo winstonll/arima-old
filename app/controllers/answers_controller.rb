@@ -1,7 +1,7 @@
 class AnswersController < ApplicationController
 
   #skip_before_filter :verify_authenticity_token, :only => :create
-  before_filter :authenticate_user!, except: [:intro_question, :show, :create, :show_image]
+  #before_filter :authenticate_user!, except: [:intro_question, :show, :create, :show_image]
   include DetermineUserAndUnits
 
   layout "application_fluid"
@@ -28,15 +28,14 @@ class AnswersController < ApplicationController
     gender = params[:gender_id].to_i == 1 ? "M" : "F"
     #@user.gender = gender
     session[:guest].gender = gender
-    asd
 
-    if( 1900 < year && year < Time.now.year && @user.gender != nil)
-      @user.birthyear = year
-      @user.save
+    if( 1900 < year && year < Time.now.year && session[:guest].gender != nil)
+      session[:guest].birthyear = year
+      session[:guest].save
       redirect_to :back
     else
       flash[:notice] = "Year of birth and/or gender was invalid!"
-    redirect_to :back
+      redirect_to :back
     end
   end
 

@@ -23,7 +23,6 @@ class QuestionsController < ApplicationController
 
     #create_dummy_users()
 
-
     check_guest()
 
     if session[:guest]
