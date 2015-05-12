@@ -28,7 +28,7 @@ Arima::Application.routes.draw do
       put 'downvote' => "questions#downvote"
       put 'hide_share_modal' => "questions#hide_share_modal"
       put 'show_share_modal' => "questions#show_share_modal"
-      get 'report_preview'
+      get 'report'
     end
   end
 

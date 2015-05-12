@@ -40,11 +40,10 @@ class QuestionsController < ApplicationController
     end
   end
 
-  def report_preview
-    @question = @question = Question.friendly.find(params[:id])
+  def report
+    @question = Question.friendly.find(params[:id])
     respond_to do |format| 
       format.html
-      format.js {render partial: 'report_preview'}  
     end
   end
 
