@@ -136,12 +136,12 @@ class Answer < ActiveRecord::Base
     answer_arr.each do |a|
       if (arr[a.value])
         current = Location.where(user_id: a.user_id)[0]
-        if(current.country != nil || current.province != nil || current.city != nil || decimals(current.latitude) > 1)
+        if((current.country != nil || current.province != nil || current.city != nil) && (decimals(current.latitude) > 1 || decimals(current.longitude) > 1))
           arr[a.value].push(current.latitude.to_s + ", " + current.longitude.to_s)
         end
       else
         current = Location.where(user_id: a.user_id)[0]
-        if(current.country != nil || current.province != nil || current.city != nil || decimals(current.latitude) > 1)
+        if((current.country != nil || current.province != nil || current.city != nil) && (decimals(current.latitude) > 1 || decimals(current.longitude) > 1))
           arr[a.value] = Array.new().push(current.latitude.to_s + ", " + current.longitude.to_s)
         end
       end
