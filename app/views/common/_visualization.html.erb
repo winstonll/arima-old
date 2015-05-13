@@ -28,7 +28,6 @@
         <% end %>
 
         <div id="heatmap" class="tab">
-          <div id="map-canvas"></div>
           <div id="heat_position" class="country_dropdown">
             <% temp = answer.user_lat_long %>
               <% @answer_selection = Array.new %>
@@ -37,10 +36,11 @@
             <% end %>
             <%= select_tag(@answer_selection, options_for_select(@answer_selection),prompt: "Answers:") %>
           </div>
+          <div id="map-canvas"></div>
         </div>
 
         <div id="pstm" class="tab">
-          <% unless (@user.gender != nil && @user.age != nil) %>
+          <% unless (session[:guest].gender != nil && session[:guest].age != nil) %>
             <p id="pstm_description">This tab shows you what people similiar to your age and gender have answered.</p>
             <p id="gender_age_label">Fill in the form below to see a report tailored for you!</p>
             <%= form_tag({controller: "answers", action: "gender"}, method: "get" ) do |f| %>

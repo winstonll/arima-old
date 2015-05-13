@@ -1,5 +1,5 @@
 <div class="answer-prompt">
-  <% if user_signed_in? %>
+  <% if session[:guest] != nil %>
     <%= simple_form_for @answer, url: question_answers_path(@question, @answer), class: "form-inline", role: "form", html: {novalidate: false} do |f| %>
       <div class="form-group">
         <% if @question.input_type == "measurement" %>
@@ -10,7 +10,7 @@
         <% elsif @question.input_type == "collection" %>
           <%= f.input(:value, label: false, prompt: "Select one...", collection: @question.options_array, input_html: { class: "questions-page-input form-control input-lg"}) %>
         <% else %>
-          <%= f.input(:value, label: false, placeholder: @question.placeholder(@user),
+          <%= f.input(:value, label: false, placeholder: @question.placeholder(session[:guest]),
                        as: @question.input_type.try(:to_sym),
                        input_html: {
                          class: "questions-page-input form-control input-lg",

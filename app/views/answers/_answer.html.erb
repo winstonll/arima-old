@@ -5,7 +5,7 @@
   <div class="summary-container">
     <div class="summary-section you-answered">
       <div class="title">
-        <% if user_signed_in? && answer.user == current_user   %>
+        <% if session[:guest] != nil && answer.user == current_user   %>
           You
         <% else %>
           <%= answer.user.display_name %>
@@ -19,7 +19,7 @@
   </div>
 </div>
 
-<% if user_signed_in? && @answer.user == current_user %>
+<% if session[:guest] != nil && @answer.user == current_user %>
   <div class="report-points-rewarded">
     <span>You earned 1 point for answering this question! <a id="about-points-indicator" href="/faq#about-points"><div class="about-points-circle">?</div></a></span>
   </div>

@@ -1,9 +1,9 @@
 <div class="question-wrapper">
   <div class="votes">
     <div class="upvote">
-      <% if @user == nil %>
+      <% if session[:guest] == nil %>
         <%= link_to image_tag('upvote_grey.png', id: "upvote-image-#{question.id}", class: "vote-image"), upvote_question_path(:id => question.id), :method => :put, :remote => true %>
-      <% elsif Vote.where(:user_id => @user.id).where(:question_id => question.id).pluck(:vote_type)[0] == "upvote" %>
+      <% elsif Vote.where(:user_id => session[:guest].id).where(:question_id => question.id).pluck(:vote_type)[0] == "upvote" %>
         <%= link_to image_tag('upvote_blue.png', id: "upvote-image-#{question.id}", class: "vote-image"), upvote_question_path(:id => question.id), :method => :put, :remote => true %>
       <% else %>
         <%= link_to image_tag('upvote_grey.png', id: "upvote-image-#{question.id}", class: "vote-image"), upvote_question_path(:id => question.id), :method => :put, :remote => true %>
@@ -13,16 +13,16 @@
       <%= "#{question.votecount}" %>
     </div>
     <div class="downvote">
-      <% if @user == nil %>
+      <% if session[:guest] == nil %>
         <%= link_to image_tag('downvote_grey.png', id: "downvote-image-#{question.id}", class: "vote-image"), downvote_question_path(:id => question.id), :method => :put, :remote => true %>
-      <% elsif Vote.where(:user_id => @user.id).where(:question_id => question.id).pluck(:vote_type)[0] == "downvote" %>
+      <% elsif Vote.where(:user_id => session[:guest].id).where(:question_id => question.id).pluck(:vote_type)[0] == "downvote" %>
         <%= link_to image_tag('downvote_orange.png', id: "downvote-image-#{question.id}", class: "vote-image"), downvote_question_path(:id => question.id), :method => :put, :remote => true %>
       <% else %>
         <%= link_to image_tag('downvote_grey.png', id: "downvote-image-#{question.id}", class: "vote-image"), downvote_question_path(:id => question.id), :method => :put, :remote => true %>
       <% end %>
     </div>
   </div>
-  
+
   <div class="question-title-container">
     <% if !answered %>
     <a href="<%= question_path(question) %>" title="<%= question.label %>" class="question-link">

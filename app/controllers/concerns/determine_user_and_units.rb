@@ -9,7 +9,7 @@ module DetermineUserAndUnits
   private
 
   def set_user
-    @user = current_user
+    @user = session[:guest]
   end
 
   def determine_units

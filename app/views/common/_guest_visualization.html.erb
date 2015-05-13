@@ -2,16 +2,16 @@
   <div id="question-hero">
     <div class="question-container question-container-<%= @question.group_id %>" style= "width: 100%;">
       <div class="question-title-container">
-          <h1 class="question-title"><%= @question.label %></h1>
+          <h1 class="question-title" style= "padding-bottom: 20px"><%= @question.label %></h1>
       </div>
       <div class="answer-redirect text-center" id="answer-button">
-            <%= link_to 'Answer', question_path(@question), :target => "_blank", class: "modal-button" %>
+            <%= link_to 'Answer', question_path(@question),{:style=>'padding: 10px 30px 10px 30px;', :class => "modal-button"} %>
         </div>
     </div>
   </div>
     <div class="visualization" id="v-answer">
       <div class="tabs">
-        <ul class="tab-links">
+        <ul class="tab-links" style= "margin-top: 40px;">
             <li class="active"><a href="#world">World</a></li>
             <li><a href="#country">Country</a></li>
             <!-- <li><a href="#city"><%#= answer.user.location.city %></a></li> -->
