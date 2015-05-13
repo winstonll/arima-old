@@ -151,9 +151,11 @@ class Answer < ActiveRecord::Base
 
   def decimals(a)
     num = 0
-    while(a != a.to_i)
-        num += 1
-        a *= 10
+    if (a != nil)
+      while(a != a.to_i)
+          num += 1
+          a *= 10
+      end
     end
     num
   end
