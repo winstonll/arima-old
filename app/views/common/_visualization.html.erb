@@ -78,6 +78,7 @@
 
   function createHeat(select){
     heatData = [];
+    console.log(select);
     for(i=0; i<userLocation[select].length; i++){
       indexComma = userLocation[select][i].indexOf(",");
       latitude = Number(userLocation[select][i].substring(0, indexComma-1));
@@ -151,7 +152,13 @@
           show_location_answer(currentAttrValue.substring(1, currentAttrValue.length));
         }
         else{
+
           google.maps.event.trigger(map, 'resize');
+          createHeat(<%= answer.user_answer.to_json.html_safe %>);
+          initialize();
+
+          heatmap.setMap(heatmap.getMap() ? null : map);
+          heatmap.setMap(heatmap.getMap() ? null : map);
         }
     });
   });
