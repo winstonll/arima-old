@@ -31,7 +31,7 @@
             </div>
 
             <div id="heatmap" class="tab">
-              <div id="map-canvas"></div>
+              
               <div id="heat_position" class="country_dropdown">
                 <% temp = question.user_lat_long %>
                   <% @answer_selection = Array.new %>
@@ -40,9 +40,9 @@
                 <% end %>
                 <%= select_tag(@answer_selection, options_for_select(@answer_selection),prompt: "Answers:") %>
               </div>
-            </div>
-        </div>
-      </div>
+            <div id="map-canvas"></div>
+          </div>
+      
       <div id="answer-chart"></div>
     </div>
 
