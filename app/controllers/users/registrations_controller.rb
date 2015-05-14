@@ -26,7 +26,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   private
     def user_params
-      params.require(:user).permit(:email, :password, :measurement_unit, :gender, :username, :birthyear)
+      params.require(:user).permit(:email, :password, :username)
     end
 
   def reward_referral(user_referral_code)

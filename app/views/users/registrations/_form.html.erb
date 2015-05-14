@@ -31,34 +31,6 @@
       </div>
 
       <div class="signin-fields-right">
-        <div class="location-input">
-          <div class="city-input" id="city-section">
-            <label>City</label>
-            <%= text_field_tag('location[city]')%>
-          </div>
-          <div class="country-input" id="country-section">
-            <label>Country</label>
-            <%= country_select("location", "country_code", { priority_countries: ["CA", "US"] }, { class: '', name: 'location[country_code]' } ) %>
-          </div>
-
-        </div>
-
-        <div class="birthyear-input">
-          <%= f.label :what_year_were_you_born? %>
-          <%= f.select :birthyear,  (1950..2015), prompt: "Select..." %>
-          <p class="error-text"> <%= @user.errors['birthyear'].first if @user.errors['birthyear'] %></p>
-        </div>
-
-        <div class="gender-input" id="gender-section">
-          <%= f.label :gender, "Male or Female?" %>
-          <%= f.select :gender, ["Male", "Female"], prompt: "Select..." %>
-          <p class="error-text"> <%= @user.errors['gender'].first if @user.errors['birthyear'] %></p>
-        </div>
-
-        <div class="measurement_unit-input" id="measurement-section">
-          <%= f.label :metric_or_imperial, "Metric or Imperial?" %>
-          <%= f.select :measurement_unit, ["Metric", "Imperial"], prompt: "Select..." %>
-        </div>
 
         <%= f.submit "Start", class: "signup-button" %>
 
