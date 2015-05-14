@@ -128,6 +128,10 @@ class Answer < ActiveRecord::Base
     return arr
   end
 
+  def user_answer
+    return self.value.to_s
+  end
+
   def user_lat_long
     arr = Hash.new
     loc_arr = Array.new
