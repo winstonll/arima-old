@@ -6,9 +6,9 @@
       <div></div>
     </div>
   </section>
-  <section class="back">
-    <div class>
-      <%= link_to image_tag("back_arrow.png"), :back %> Back
+  <section>
+    <div class="back">
+      <%= link_to "#{image_tag("back_arrow.png")} Back".html_safe, :back, {:style=>'color:#00c39c'} %>
     </div>
   </section>
 
