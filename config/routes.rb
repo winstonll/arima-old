@@ -5,7 +5,7 @@ Arima::Application.routes.draw do
   # custom registration route
   devise_for :users, controllers: { registrations: "users/registrations" }
 
-  resource :profile, only: [:show, :update]
+  resource :profile, only: [:show, :edit, :update]
 
   get 'search' => "search#index"
   get 'gender' => "answers#gender"
