@@ -9,6 +9,7 @@
       <div class="edit-profile">
         <button class="profile-edit"><%= link_to 'Edit', edit_profile_path %></button>
       </div>
+        <div class="grey-banner"></div>
     </div>
 
     <div id="profile-info">
@@ -16,6 +17,8 @@
         <div class="profile-username"><%= user.username.to_s %></div>
         <div class="user-location"><%= full_location(user) %></div>
       </div>
+
+      
       <div id="profile-stats-container">
         <div class="stat-container">
           <div id="user-leaderboard">
