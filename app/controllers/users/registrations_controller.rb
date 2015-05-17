@@ -2,10 +2,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
     @user = User.new(user_params)
-    @user.build_location(
-      country_code: params["location"]["country_code"].strip,
-      city: params["location"]["city"].strip.downcase.capitalize
-    )
+    #@user.build_location(
+    #  country_code: params["location"]["country_code"].strip,
+    #  city: params["location"]["city"].strip.downcase.capitalize
+    #)
 
     respond_to do |format|
       if @user.save
