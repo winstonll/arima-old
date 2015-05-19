@@ -12,10 +12,10 @@
     <div class="visualization" id="v-answer">
       <div class="tabs">
         <ul class="tab-links" style= "margin-top: 40px;">
-            <li class="active"><a href="#world">World</a></li>
-            <li><a href="#country">Country</a></li>
+            <li class="active"><a href="#world">Global Data</a></li>
+            <li><a href="#heatmap">World Map</a></li>
             <!-- <li><a href="#city"><%#= answer.user.location.city %></a></li> -->
-            <li><a href="#heatmap">Heat Map</a></li>
+            <li><a href="#country">Country Data</a></li>
         </ul>
 
         <div class="tab-content">
@@ -38,7 +38,7 @@
                   <% temp.each do |ans, arr| %>
                   <% @answer_selection.push(ans); %>
                 <% end %>
-                <%= select_tag(@answer_selection, options_for_select(@answer_selection),prompt: "Answers:") %>
+                <%= select_tag(@answer_selection, options_for_select(@answer_selection),prompt: "Select an Answer") %>
               </div>
             <div id="map-canvas"></div>
           </div>

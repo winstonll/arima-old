@@ -7,38 +7,6 @@ class ProfilesController < ApplicationController
 
   respond_to :json, :html
 
-  def update
-  	# Validate before attempting update
-  	if !(valid_alphanum?(
-      params[:user][:username]
-    ) or valid_email?(
-      params[:user][:email])
-    ) then
-      redirect_to(request.referer)
-     #flash[:notice] = "Letters and numbers only!"
-   	else
-      params[:user][:location_attributes][:city].downcase!.capitalize!              if params[:user][:location_attributes][:city].present?
-
-      # It's all good, update
-	   	current_user.update(params[:user].permit(
-	      :avatar,
-        :first_name,
-        :last_name,
-	      :gender,
-	      :email,
-	      :username,
-	      :measurement_unit,
-	      location_attributes: [
-	        :id,
-	        :city,
-	        :country_code
-	      ]
-	    ))
-	   end
-     redirect_to(request.referer)
-     flash[:notice] = 'You\'ve sucessfully updated your profile!' and return
-  end
-
   #generates correct referral code
   def show
     generate_referral_code(current_user) unless
@@ -55,6 +23,43 @@ class ProfilesController < ApplicationController
     @answered_questions   = current_user.answers.order("updated_at desc")
     @asked_questions      = self.questions
   end
+
+  def edit
+    @profile = current_user
+  end
+
+  def update
+    # Validate before attempting update
+    if !(valid_alphanum?(
+      params[:user][:username]
+    ) or valid_email?(
+      params[:user][:email])
+    ) then
+      redirect_to(request.referer)
+     #flash[:notice] = "Letters and numbers only!"
+    else
+      params[:user][:location_attributes][:city].downcase!.capitalize!              if params[:user][:location_attributes][:city].present?
+
+      # It's all good, update
+      current_user.update(params[:user].permit(
+        :avatar,
+        :first_name,
+        :last_name,
+        :gender,
+        :email,
+        :username,
+        :measurement_unit,
+        location_attributes: [
+          :id,
+          :city,
+          :country_code
+        ]
+      ))
+     end
+     redirect_to(request.referer)
+     flash[:notice] = 'You\'ve sucessfully updated your profile!' and return
+  end
+
 
   protected
 

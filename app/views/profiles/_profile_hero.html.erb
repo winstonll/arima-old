@@ -6,11 +6,10 @@
       <% else %>
         <%= image_tag user.avatar.url(:thumb), class: "profile-picture" %>
       <% end %>
-      <!-- Button trigger modal -->
       <div class="edit-profile">
-        <p class="text-center"><button class="profile-edit" data-toggle="modal" data-target="#myModal">Edit</button></p>
-        <%= render partial: 'profiles/modal_profile_edit', locals: { user: user } %>
+        <button class="profile-edit"><%= link_to 'Edit', edit_profile_path %></button>
       </div>
+        <div class="grey-banner"></div>
     </div>
 
     <div id="profile-info">
@@ -18,6 +17,8 @@
         <div class="profile-username"><%= user.username.to_s %></div>
         <div class="user-location"><%= full_location(user) %></div>
       </div>
+
+      
       <div id="profile-stats-container">
         <div class="stat-container">
           <div id="user-leaderboard">
