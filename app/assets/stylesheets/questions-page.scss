@@ -31,10 +31,10 @@
   .tab-links a {
     padding:10px 30px;
     display:inline-block;
-    //border: 1px solid #FCFCFC;
-    border-top: 1px solid #FCFCFC;
-    border-left: 1px solid #FCFCFC;
-    border-right: 1px solid #FCFCFC;
+    //border: 1px solid #C0C0C0;
+    border-top: 1px solid #C0C0C0;
+    border-left: 1px solid #C0C0C0;
+    border-right: 1px solid #C0C0C0;
     border-radius:7px 7px 0px 0px;
     font-size:16px;
     font-weight:600;
@@ -435,7 +435,7 @@
     #heat_position{
       position: relative;
       bottom: 8px;
-      left: 35%;
+      right: 35%;
     }
 
     .location-select {
