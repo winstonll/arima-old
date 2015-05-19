@@ -18,7 +18,8 @@ GROUPS = [
   {label: "Lifestyle",               page_class: "lifestyle",           bgcolor: "lightorange"},
   {label: "Food",                    page_class: "food",                bgcolor: "lightgreen"}, #9
   {label: "Current Events",          page_class: "current-events",      bgcolor: "white"},
-  {label: "Politics",                page_class: "politics",            bgcolor: "darkblue"}
+  {label: "Politics",                page_class: "politics",            bgcolor: "darkblue"},
+  {label: "Gaming",                page_class: "gaming",            bgcolor: "purple"}
 ]
 
 QUESTIONS = [
