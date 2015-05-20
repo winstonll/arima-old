@@ -129,22 +129,22 @@ li {
     visibility: visible;
 }
 
-.dropdown:hover .dropdown-menu {
-    display: block;
-    background-color: #eee;
-    box-shadow: none;
-    border-style: none;
-
-}
-
 .dropdown {
   list-style-type: none;
   position: relative;
   right: 75px;
 
+
+
   .nav-link {
     font-size: 15px;
   }
+}
+
+.menu {
+  background-color: #eee;
+  box-shadow: none;
+  border-style: none;
 }
 
 /* Chevron Up */
