@@ -26,7 +26,6 @@ class AnswersController < ApplicationController
   def gender
     year = params[:age_text].to_i
     gender = params[:gender_id].to_i == 1 ? "M" : "F"
-    #@user.gender = gender
     session[:guest].gender = gender
 
     if( 1900 < year && year < Time.now.year && session[:guest].gender != nil)

@@ -3,6 +3,15 @@
     if (window.location.href.indexOf("/feed") != -1) {
       $('#feed-category-container').addClass('category-inner-container-active');
     }
+
+    //$("#drop").off("click");
+    $("#down").off("click");
+
+    $("#drop").hover(function(){
+        $("#down").css("margin-bottom", "150px");
+        },function(){
+        $("#down").css("margin-bottom", "60px");
+    });
   });
 </script>
 
@@ -19,6 +28,41 @@
         <div class="submit-question-container">
           <a id="submit-question-link" href="#" data-toggle="modal" data-target="#submitQuestionModal">Ask a Question</a>
           <hr>
+        </div>
+
+
+        <!-- login/signup -->
+        <div class="sidebar-right" id="down">
+          <ul class="nav-links">
+            <% if user_signed_in? && current_user.username.present? %>
+              <li class="dropdown" id="drop">
+                <a data-toggle="dropdown" class="dropdown-toggle" href="#" class="nav-link">
+                  <div class="nav-user-circle"><%= current_user.username[0].capitalize %></div>
+                    <%= current_user.username %>
+                    <i class="chevron-down"></i>
+                </a>
+                <ul class="menu dropdown-menu">
+                  <li>
+                    <%= link_to 'Profile', profile_path, class: "nav-link" %>
+                  </li>
+                  <li>
+                    <%= link_to 'Leaderboard'.html_safe, leaderboard_path, class: "nav-link" %>
+                  </li>
+                  <li>
+                    <%= link_to 'Log Out', destroy_user_session_path, :method => :delete, title: "#{current_user.email}", class: "nav-link" %>
+                  </li>
+                </ul>
+              </li>
+            <% else %>
+              <li>
+                <%= link_to 'Login', new_user_session_path, class: "nav-btn", id: "nav-login-btn" %>
+              </li>
+
+              <li>
+                <%= link_to 'Sign Up', new_registration_path(resource_name), class: "nav-btn", id: "nav-signup-btn" if !user_signed_in? %>
+              </li>
+            <% end %>
+          </ul>
         </div>
 
         <!-- Categories -->
