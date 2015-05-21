@@ -39,28 +39,30 @@ input[type="file"]{
   width: 100%;
 
   .profile-hero-container {
-    height: 8.5em;
+    height: 10em;
     width: 100%;
     background: #4a90e2;
+    position: absolute;
+    z-index: 1;
 
     .profile-hero-content {
       text-align: center;
       
       #grey-banner {
-        height: 3em;
+        height: 2.5em;
         width: 100%;
         background: rgb(237, 237, 237);
         margin: 0 auto;
         z-index: 1;
         position: absolute;
-        top: 25.6%;
+        top: 77%;
       }
 
       #profile-picture-container {
         background-color: rgb(237, 237, 237);
         height: 9em;
         width: 9em;
-        margin: 2em;
+        margin: -4em 0 0 17.5em;
         border-radius: 0.5em;
         border: white solid;
         box-shadow: 0 0 0 1pt #d0d0d0;
@@ -81,17 +83,12 @@ input[type="file"]{
         padding-top: 3em;
       }
 
-      #profile-info,
-      #profile-stats-container {
-        display: inline-block;
-      }
-
       #profile-info {
-        font-familt: sans-serif;
-
+        font-family: sans-serif;
         .profile-info {
-          display: inline-block;
-          padding: 0 5em 0 0;
+          width: 9em;
+          text-align: left;
+          margin: 6em 0 0 28em;
 
           .profile-username {
             color: white;
@@ -109,20 +106,20 @@ input[type="file"]{
 
         #profile-stats-container {
           .stat-container {
-            padding-top: 7em;
+            text-align: center;
 
             #user-leaderboard,
             #user-points {
-              display: inline-block;
 
               .stat-title {
-                font-color: white;
                 color: white;
                 font-size: 18px;
-                padding: 0 1em 0 1em;
+                margin: -2em 0 0 30em;
+
               }
 
               .stat-number {
+                margin: -1em 0 0 30em;
                 font-size: 18px;
                 color: #4a90e2;
                 position: absolute;
