@@ -48,10 +48,20 @@
       border-radius: 3px;
     }
 
+    .signin-fields-left {
+      position: relative;
+      right: 150px;
+    }
+
+    .signin-fields-right {
+      position: relative;
+      right: 160px;
+    }
+
+
     .signin-fields-left,
     .signin-fields-right {
       display: inline-block;
-      vertical-align: top;
       text-align: left;
       max-width: 26em;
       padding: 0 2em;
@@ -65,39 +75,24 @@
         display: inline;
       }
 
+      .email-input {
+        position: relative;
+        left: 350px;
+        bottom: 93px;
+      }
+
+      .password-input {
+        position: relative;
+        left: 700px;
+        bottom: 186px;
+      }
+
+
       .lock {
         display: inline;
         padding-left: 5px;
         padding-botton: 5px;
         width: 5%;
-      }
-
-      .location-input {
-        div {
-          display: inline-block;
-
-          input,
-          select {
-            width: 100px;
-          }
-        }
-
-        #city-section {
-          width: 50%;
-          margin-right: 0.5em;
-
-          #location_city {
-            width: 100%;
-          }
-        }
-
-        #country-section {
-          width: 46%;
-
-          #location_country_code {
-            width: 100%;
-          }
-        }
       }
 
       label {
@@ -152,6 +147,8 @@
         margin-top: 2em;
         margin-bottom: 1em;
         border: 0;
+        position: relative;
+        left: 80px;
       }
 
       a {
@@ -160,7 +157,6 @@
     }
 
     .signin-fields-left {
-      border-right: 1px solid white;
 
       #user_username,
       #user_email{
@@ -187,33 +183,6 @@
     }
 
     .signin-fields-right {
-      .gender-input, {
-        padding-bottom: 1em;
-      }
-
-      #location_city,
-      #location_country_code,
-      #user_birthyear,
-      #user_gender,
-      #user_measurement_unit {
-        width: 300px;
-        padding: 5px;
-        font-style: italic;
-        color: grey;
-      }
-
-      #location_city {
-        padding-left: 0.75em;
-      }
-      #location_country_code {
-        width: 100%;
-      }
-
-      #user_birthyear,
-      #user_gender,
-      #user_measurement_unit {
-        width: 156px;
-      }
 
       .login-here-home,
       .terms-notice {
