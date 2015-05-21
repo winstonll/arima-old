@@ -34,7 +34,7 @@
               <% temp.each do |ans, arr| %>
               <% @answer_selection.push(ans); %>
             <% end %>
-            <%= select_tag(@answer_selection, options_for_select(@answer_selection, answer.user_answer),prompt: "Select an Answer") %>
+            <%= select_tag(@answer_selection, options_for_select(@answer_selection, answer.user_answer), prompt: "Select an Answer") %>
           </div>
           <div id="map-canvas"></div>
         </div>

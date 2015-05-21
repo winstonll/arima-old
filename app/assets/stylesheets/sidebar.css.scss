@@ -96,13 +96,13 @@ ul {
 }
 
 li {
-  float: right;
+  float: left;
 }
 
 .sidebar-right {
   margin-bottom: 60px;
   position: relative;
-  right: 40px;
+  left: 63px;
   top: 15px;
 }
 
@@ -138,6 +138,8 @@ li {
 
   .nav-link {
     font-size: 15px;
+    position: relative;
+    left: 10px;
   }
 }
 

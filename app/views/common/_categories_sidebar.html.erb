@@ -7,11 +7,26 @@
     //$("#drop").off("click");
     $("#down").off("click");
 
-    $("#drop").hover(function(){
+    /**$("#drop").hover(function(){
         $("#down").css("margin-bottom", "150px");
         },function(){
         $("#down").css("margin-bottom", "60px");
+    });**/
+
+    var clicked = false;
+
+    $("#drop").click(function(){
+      if(clicked){
+        clicked = false;
+        $("#down").css("margin-bottom", "60px");
+      }
+      else{
+        clicked = true;
+        $("#down").css("margin-bottom", "150px");
+      }
     });
+
+
   });
 </script>
 
