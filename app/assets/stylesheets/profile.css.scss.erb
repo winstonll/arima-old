@@ -1,5 +1,6 @@
 /* Edit Button and Modal Elements styles */
-.profile-edit{
+.profile-edit,
+.profile-upload::before {
   width: 100px;
   height: 25px;
   background-color: #e0e0e0;
@@ -39,34 +40,29 @@ input[type="file"]{
   width: 100%;
 
   .profile-hero-container {
-    height: 10em;
     width: 100%;
     background: #4a90e2;
-    position: absolute;
-    z-index: 1;
 
     .profile-hero-content {
       text-align: center;
-      
-      #grey-banner {
+
+      .grey-banner {
         height: 2.5em;
         width: 100%;
         background: rgb(237, 237, 237);
-        margin: 0 auto;
-        z-index: 1;
-        position: absolute;
-        top: 77%;
+        margin: -2.5em 0 0 0;
+        position: relative;
+        z-index: 1em;
       }
 
       #profile-picture-container {
         background-color: rgb(237, 237, 237);
         height: 9em;
         width: 9em;
-        margin: -4em 0 0 17.5em;
         border-radius: 0.5em;
         border: white solid;
         box-shadow: 0 0 0 1pt #d0d0d0;
-        position: absolute;
+        position: relative;
         z-index: 2;
 
         .profile-picture-default {
@@ -83,12 +79,18 @@ input[type="file"]{
         padding-top: 3em;
       }
 
+      #profile-info,
+      #profile-stats-container {
+        display: inline-block;
+        vertical-align: top;
+      }
+
       #profile-info {
-        font-family: sans-serif;
+        font-familt: sans-serif;
+
         .profile-info {
-          width: 9em;
-          text-align: left;
-          margin: 6em 0 0 28em;
+          display: inline-block;
+          padding: 7em 1em 1em 0;
 
           .profile-username {
             color: white;
@@ -99,30 +101,30 @@ input[type="file"]{
           .user-location {
             font-size: 14px;
             color: #4a90e2;
-            position: absolute;
+            position: relative;
             z-index: 2;
           }
         }
 
         #profile-stats-container {
           .stat-container {
-            text-align: center;
+            padding-top: 7em;
 
             #user-leaderboard,
             #user-points {
+              display: inline-block;
 
               .stat-title {
+                font-color: white;
                 color: white;
                 font-size: 18px;
-                margin: -2em 0 0 30em;
-
+                padding: 0 1em 0 1em;
               }
 
               .stat-number {
-                margin: -1em 0 0 30em;
                 font-size: 18px;
                 color: #4a90e2;
-                position: absolute;
+                position: relative;
                 z-index: 2;
               }
             }
