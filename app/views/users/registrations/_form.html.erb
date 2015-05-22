@@ -2,12 +2,9 @@
 <%= javascript_include_tag "home", :type => "text/javascript" %>
 
 <div class="signin-container" id="signup-container">
-  <div class="logo-name-container">
-      <a href="/"><%= image_tag "logo-lg-white.png", id: "logo" %></a>
-      <h1 id="welcome">Sign up for Arima</h1>
-    </div>
-  <p class="signin-intro">Arima is a Q&A website for mass opinion.
-                          By signing up, you can ask questions, get answers from <br>users all around the world,
+  <h1 class="signin-title">Sign Up</h1>
+  <p class="signin-intro">Arima is a Q&A website for mass opinion.<br>
+                          By signing up, you can ask questions, get answers from users all around the world,<br>
                           and see them visualized and compared with the rest of the planet.</p>
 
   <div class="signin-form">
@@ -22,7 +19,7 @@
 
         <div class="email-input">
           <%= f.label :email_address, id: "email-input" %><%= image_tag ("lock.png"), class: "lock" %>
-          <%= f.email_field :email, placeholder: "No spam, no verifications. We promise.", class: "input-box" %>
+          <%= f.email_field :email, placeholder: "We'll never share this without your permission.", class: "input-box" %>
           <p class="error-text"> <%= @user.errors['email'].first if @user.errors['email'] %> </p>
         </div>
 
