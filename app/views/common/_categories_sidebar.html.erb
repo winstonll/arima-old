@@ -69,13 +69,15 @@
                 </ul>
               </li>
             <% else %>
-              <li>
-                <%= link_to 'Login', new_user_session_path, class: "nav-btn", id: "nav-login-btn" %>
-              </li>
-
+              <div class="button-container">
               <li>
                 <%= link_to 'Sign Up', new_registration_path(resource_name), class: "nav-btn", id: "nav-signup-btn" if !user_signed_in? %>
               </li>
+
+              <li>
+                <%= link_to 'Login', new_user_session_path, class: "nav-btn", id: "nav-login-btn" %>
+              </li>
+          </div>
             <% end %>
           </ul>
         </div>
