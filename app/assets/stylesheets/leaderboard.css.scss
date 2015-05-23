@@ -51,25 +51,24 @@
     margin-bottom: 3em;
 
     .filter-span {
-      font-size: 22px;
+      font-size: 17px;
       font-weight: 600;
-      color: #9B9B9B;
+      color: #4A4A4A;
       line-height: 30px;
     }
 
     .filter-location-select {
-      width: 80px;
+      width: 250px;
       height: 35px;
       font-size: 15px;
-      background-color: #00C39C;
+      background-color: #fff;
       border-radius: 4px;
-      outline: none;
-      border: 0;
-      color: #fff;
+      border: 1px solid #DBDBDB;
+      color: 4A4A4A;
       text-align: center;
 
       &:hover {
-        background-color: #00C39C !important;
+        background-color: #dbdbdb !important;
       }
     }
   }
@@ -84,9 +83,9 @@
       .users-table-headers {
         th {
           text-align: center;
-          color: #9b9b9b;
+          color: #00c39c;
           font-weight: 800;
-          font-size: 17px;
+          font-size: 18px;
         }
       }
 
@@ -105,7 +104,7 @@
 
         td {
           text-align: center;
-          font-size: 22px;
+          font-size: 17px;
           font-weight: 600;
         }
 
