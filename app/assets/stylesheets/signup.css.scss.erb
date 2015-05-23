@@ -3,8 +3,8 @@
   width: 100%;
   height: 100%;
   color: #fff;
-  padding-top: 10em;
-  padding-bottom: 15em;
+  padding-top: 5em;
+  padding-bottom: 20em;
 
   background-position: center;
   background-repeat: no-repeat;
@@ -13,17 +13,32 @@
   -o-background-size: cover;
   background-size: cover;
 
+  .logo-name-container {
+      #welcome {
+        font-weight: 600;
+        text-shadow: 0px 2px 4px rgba(0,0,0,0.4);
+      }
+
+      #logo {
+        height: 150px;
+        width: auto;
+      }
+    }
+
   .signin-title {
     margin: 0;
     margin-bottom: 0.25em;
     font-weight: 700;
     font-size: 45px;
+    text-shadow: 0px 2px 4px rgba(0,0,0,0.4);
   }
 
   .signin-intro {
-    font-weight: 600;
+    font-weight: 400;
     font-size: 17px;
-    text-shadow: 2px 2px #A9A9A9
+    text-shadow: 0px 2px 4px rgba(0,0,0,0.4);
+    margin-top: 2em;
+
   }
 
   .signin-form {
@@ -50,12 +65,12 @@
 
     .signin-fields-left {
       position: relative;
-      right: 150px;
+      right: 180px;
     }
 
     .signin-fields-right {
       position: relative;
-      right: 160px;
+      right: 180px;
     }
 
 
@@ -138,21 +153,26 @@
       }
 
       .signup-button {
-        background-color: #00c39c;
-        font-size: 15px;
+        background-color: #50E3C2;
         color: #fff;
         border-radius: 4px;
         width: 25%;
-        font-weight: bold;
+        font-weight: 600px;
         margin-top: 2em;
-        margin-bottom: 1em;
+        margin-bottom: 5em;
         border: 0;
         position: relative;
-        left: 80px;
+        left: 120px;
+
+        &:hover {
+        opacity: 0.8;
       }
+      
+    }
 
       a {
         text-decoration: underline;
+        color: #fff;
       }
     }
 
@@ -183,11 +203,14 @@
     }
 
     .signin-fields-right {
+       max-width: 30em;
 
       .login-here-home,
       .terms-notice {
         font-size: 12px;
         margin: 0;
+        text-align: center;
+
       }
     }
 
@@ -214,7 +237,7 @@
 }
 
 #signup-container {
-  background-image: url(<%= image_path "backgrounds/nyc_bg.jpg" %>);
+  background-image: url(<%= image_path "backgrounds/tokyo_bg.jpg" %>);
 }
 
 #login-container {
