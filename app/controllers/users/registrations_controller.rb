@@ -3,6 +3,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
 
     @user = User.new(user_params)
+    @user.first_name = nil
+    @user.save
 
     #@user.build_location(
     #  country_code: params["location"]["country_code"].strip,
