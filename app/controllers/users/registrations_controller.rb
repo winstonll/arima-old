@@ -2,8 +2,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
 
-    @user = User.new(user_params)
+    check_guest()
+    @user = session[:guest]
     @user.first_name = nil
+    @user.password = user_params["password"]
+    @user.email = user_params["email"]
+    @user.username = user_params["username"]
     @user.save
 
     #@user.build_location(
