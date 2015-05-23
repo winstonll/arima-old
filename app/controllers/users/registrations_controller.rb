@@ -14,7 +14,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     #  country_code: params["location"]["country_code"].strip,
     #  city: params["location"]["city"].strip.downcase.capitalize
     #)
-
+    flash[:notice] = @user.errors['password'].first if @user.errors['password']
 
 
     respond_to do |format|
