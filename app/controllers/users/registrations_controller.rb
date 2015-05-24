@@ -5,7 +5,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     check_guest()
     @user = session[:guest]
     @user.first_name = nil
-    #@user.password = user_params["password"]
+    @user.password = user_params["password"]
     @user.email = user_params["email"]
     @user.username = user_params["username"]
     @user.save
@@ -25,7 +25,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
       else
         flash[:notice] = flash[:notice] + "/Username " + @user.errors['username'].first
       end
-
     end
 
     if(!@user.errors["password"].empty?)
