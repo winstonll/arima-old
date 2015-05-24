@@ -5,7 +5,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     check_guest()
     @user = session[:guest]
     @user.first_name = nil
-    @user.password = user_params["password"]
+    #@user.password = user_params["password"]
     @user.email = user_params["email"]
     @user.username = user_params["username"]
     @user.save
@@ -14,8 +14,27 @@ class Users::RegistrationsController < Devise::RegistrationsController
     #  country_code: params["location"]["country_code"].strip,
     #  city: params["location"]["city"].strip.downcase.capitalize
     #)
-    flash[:notice] = @user.errors['password'].first if @user.errors['password']
 
+    if(!@user.errors["email"].empty?)
+      flash[:notice] = "Email " + @user.errors['email'].first
+    end
+
+    if(!@user.errors["username"].empty?)
+      if(flash[:notice].nil?)
+        flash[:notice] = "Username " + @user.errors['username'].first
+      else
+        flash[:notice] = flash[:notice] + "/Username " + @user.errors['username'].first
+      end
+
+    end
+
+    if(!@user.errors["password"].empty?)
+      if(flash[:notice].nil?)
+        flash[:notice] = "Password " + @user.errors['password'].first
+      else
+        flash[:notice] = flash[:notice] + "/Password " + @user.errors['password'].first
+      end
+    end
 
     respond_to do |format|
       if @user.save
