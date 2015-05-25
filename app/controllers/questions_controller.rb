@@ -137,6 +137,11 @@ class QuestionsController < ApplicationController
       check_guest()
     end
 
+    if(!user_signed_in?)
+      redirect_to "/users/sign_up"
+      return
+    end
+
     # For Multiple Choice Questions, concatenate the answer boxes into
     # one string, checking for empty boxes and removing them
     13.times do |count|
