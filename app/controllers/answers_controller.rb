@@ -55,14 +55,27 @@ class AnswersController < ApplicationController
 
     #create answer if user hasn't already submitted one for this question
     if (session[:guest] && @answer = @question.answers.where(user: session[:guest]).first).nil?
-      @answer = @question.answers.build(params[:answer].permit(:value))
-      @answer.user = session[:guest]
+      if(user_signed_in?)
+        @answer = @question.answers.build(params[:answer].permit(:value))
+        @answer.user = current_user
 
-      if @answer.save
-        if session[:guest].share_modal_state != "hide"
-          redirect_to question_path(@question), flash: { share_answer_modal: true }
-        else
-          redirect_to question_path(@question)
+        if @answer.save
+          if current_user.share_modal_state != "hide"
+            redirect_to question_path(@question), flash: { share_answer_modal: true }
+          else
+            redirect_to question_path(@question)
+          end
+        end
+      else
+        @answer = @question.answers.build(params[:answer].permit(:value))
+        @answer.user = session[:guest]
+
+        if @answer.save
+          if session[:guest].share_modal_state != "hide"
+            redirect_to question_path(@question), flash: { share_answer_modal: true }
+          else
+            redirect_to question_path(@question)
+          end
         end
       end
     end
