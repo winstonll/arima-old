@@ -72,7 +72,7 @@
             </div>
 
             <div class="profile-gender">
-              Gender <%= f.input :gender, label: false, required: true, input_html: { class: "small-input-box" }, collection: User.gender_options, :include_blank => false %>
+              Gender <%= f.input :gender, label: false, required: true, input_html: { class: "small-input-box" }, collection: User.gender_options, :include_blank => true %>
             </div>
 
             <div class="profile-unit-measurement">
