@@ -10,11 +10,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user.username = user_params["username"]
     @user.save
 
-    #@user.build_location(
-    #  country_code: params["location"]["country_code"].strip,
-    #  city: params["location"]["city"].strip.downcase.capitalize
-    #)
-
     if(!@user.errors["email"].empty?)
       flash[:notice] = "Email " + @user.errors['email'].first
     end
@@ -27,7 +22,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
       end
     end
 
-    if(!@user.errors["password"].empty?)
+    if(!(user_params['password'].length > 5 && user_params['password'].length < 21))
+      @user.errors.add(:password, "legnth must be within 6-20")
       if(flash[:notice].nil?)
         flash[:notice] = "Password " + @user.errors['password'].first
       else
@@ -35,20 +31,24 @@ class Users::RegistrationsController < Devise::RegistrationsController
       end
     end
 
-    respond_to do |format|
-      if @user.save
+    if(@user.errors['password'].empty?)
+      respond_to do |format|
+        if @user.save
 
-        # After signup is submitted, check if the user was referred
-        reward_referral(params[:referral]) if params[:referral].present?
+          # After signup is submitted, check if the user was referred
+          reward_referral(params[:referral]) if params[:referral].present?
 
-        #UserMailer.signup_email(@user).deliver!
-        sign_in(:user, @user)
-        format.html { redirect_to categories_path }
-        format.json { render json: @user, status: :created, location: @user }
-      else
-        format.html { redirect_to :back }
-        #format.json { render json: @user.errors, status: :unprocessable_entity }
+          #UserMailer.signup_email(@user).deliver!
+          sign_in(:user, @user)
+          format.html { redirect_to categories_path }
+          format.json { render json: @user, status: :created, location: @user }
+        else
+          format.html { redirect_to :back }
+          #format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      redirect_to :back
     end
   end
 
