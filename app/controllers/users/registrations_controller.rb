@@ -23,7 +23,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
 
     if(!(user_params['password'].length > 5 && user_params['password'].length < 21))
-      @user.errors.add(:password, "legnth must be within 6-20")
+      @user.errors.add(:password, "length must be within 6-20")
       if(flash[:notice].nil?)
         flash[:notice] = "Password " + @user.errors['password'].first
       else
