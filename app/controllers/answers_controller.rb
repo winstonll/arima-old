@@ -26,15 +26,27 @@ class AnswersController < ApplicationController
   def gender
     year = params[:age_text].to_i
     gender = params[:gender_id].to_i == 1 ? "M" : "F"
-    session[:guest].gender = gender
+    user_signed_in? ? current_user.gender = gender : session[:guest].gender = gender
+    #session[:guest].gender = gender
 
-    if( 1900 < year && year < Time.now.year && session[:guest].gender != nil)
-      session[:guest].birthyear = year
-      session[:guest].save
-      redirect_to :back
+    if(user_signed_in?)
+      if( 1900 < year && year < Time.now.year && current_user.gender != nil)
+        current_user.birthyear = year
+        current_user.save
+        redirect_to :back
+      else
+        flash[:notice] = "Year of birth and/or gender was invalid!"
+        redirect_to :back
+      end
     else
-      flash[:notice] = "Year of birth and/or gender was invalid!"
-      redirect_to :back
+      if( 1900 < year && year < Time.now.year && session[:guest].gender != nil)
+        session[:guest].birthyear = year
+        session[:guest].save
+        redirect_to :back
+      else
+        flash[:notice] = "Year of birth and/or gender was invalid!"
+        redirect_to :back
+      end
     end
   end
 
