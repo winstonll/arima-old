@@ -2,8 +2,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
 
-    @user = User.new(user_params)
+    check_guest()
+    @user = session[:guest]
     @user.first_name = nil
+    @user.password = user_params["password"]
+    @user.email = user_params["email"]
+    @user.username = user_params["username"]
     @user.save
 
     #@user.build_location(
@@ -11,7 +15,25 @@ class Users::RegistrationsController < Devise::RegistrationsController
     #  city: params["location"]["city"].strip.downcase.capitalize
     #)
 
+    if(!@user.errors["email"].empty?)
+      flash[:notice] = "Email " + @user.errors['email'].first
+    end
 
+    if(!@user.errors["username"].empty?)
+      if(flash[:notice].nil?)
+        flash[:notice] = "Username " + @user.errors['username'].first
+      else
+        flash[:notice] = flash[:notice] + "/Username " + @user.errors['username'].first
+      end
+    end
+
+    if(!@user.errors["password"].empty?)
+      if(flash[:notice].nil?)
+        flash[:notice] = "Password " + @user.errors['password'].first
+      else
+        flash[:notice] = flash[:notice] + "/Password " + @user.errors['password'].first
+      end
+    end
 
     respond_to do |format|
       if @user.save
@@ -24,8 +46,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
         format.html { redirect_to categories_path }
         format.json { render json: @user, status: :created, location: @user }
       else
-        format.html { render action: :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        format.html { redirect_to :back }
+        #format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
