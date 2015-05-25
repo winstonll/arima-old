@@ -16,7 +16,7 @@ class LeaderboardsController < ApplicationController
       @ranked_registered_users = @registered_users[0...50]
     end
 
-		@user_rank = @user_rank = current_user.get_user_rank
+		#@user_rank = @user_rank = current_user.get_user_rank
 
 	  respond_to do |format|
 	    format.html

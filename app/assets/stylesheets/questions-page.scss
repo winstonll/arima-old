@@ -23,13 +23,13 @@
   }
 
   .tab-links li {
-    margin:0px 15px;
+    margin:0px 10px;
     float:left;
     list-style:none;
   }
 
   .tab-links a {
-    padding:10px 30px;
+    padding:10px 16px;
     display:inline-block;
     //border: 1px solid #C0C0C0;
     border-top: 1px solid #C0C0C0;
@@ -423,6 +423,7 @@
         border-radius: 5px;
         height: 30px;
         width: 30%;
+
       }
     }
 
@@ -436,6 +437,7 @@
       position: relative;
       bottom: 8px;
       right: 35%;
+
     }
 
     .location-select {
