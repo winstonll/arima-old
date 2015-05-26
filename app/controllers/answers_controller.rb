@@ -65,6 +65,9 @@ class AnswersController < ApplicationController
           else
             redirect_to question_path(@question)
           end
+
+          current_user.points = current_user.points + 1
+          current_user.save
         end
       else
         @answer = @question.answers.build(params[:answer].permit(:value))
