@@ -156,14 +156,21 @@ class QuestionsController < ApplicationController
       @answerboxes = @answerboxes[0...-1]
     end
 
-    @subquestion = Question.create(
-      :label => params[:submit_question_name],
-      :group_id => params[:group_id],
-      :user_id => session[:guest].id,
-      :value_type => params[:value_type],
-      :options_for_collection => @answerboxes)
+    if(params[:submit_question_name].length < 256)
+      @subquestion = Question.create(
+        :label => params[:submit_question_name],
+        :group_id => params[:group_id],
+        :user_id => session[:guest].id,
+        :value_type => params[:value_type],
+        :options_for_collection => @answerboxes)
 
-    GroupsQuestion.create(group_id: params[:group_id], question_id: @subquestion.id)
+      GroupsQuestion.create(group_id: params[:group_id], question_id: @subquestion.id)
+    else
+      redirect_to categories_path
+      flash[:notice] = "The length of the question was too long. Please try again."
+      return
+    end
+
 
     if @subquestion.valid?
       redirect_to question_path(@subquestion), flash: { share_modal: true }
