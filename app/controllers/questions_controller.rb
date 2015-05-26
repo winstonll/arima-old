@@ -29,10 +29,10 @@ class QuestionsController < ApplicationController
       @user_country = Location.where(user_id: session[:guest].id).first
       @dropdown_array = [@user_country.country]
 
-      @answer = @question.answers.where(user_id: session[:guest].id).first
+      @answer = user_signed_in? ? @question.answers.where(user_id: current_user.id).first : @question.answers.where(user_id: session[:guest].id).first
       if @answer.nil?
         @user_submitted_answer = false
-        @answer = @question.answers.build(user: session[:guest])
+        @answer = user_signed_in? ? @question.answers.build(user: current_user) : @question.answers.build(user: session[:guest])
       else
         @user_submitted_answer = true
       end
