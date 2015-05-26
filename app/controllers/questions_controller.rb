@@ -29,10 +29,10 @@ class QuestionsController < ApplicationController
       @user_country = Location.where(user_id: session[:guest].id).first
       @dropdown_array = [@user_country.country]
 
-      @answer = @question.answers.where(user_id: session[:guest].id).first
+      @answer = user_signed_in? ? @question.answers.where(user_id: current_user.id).first : @question.answers.where(user_id: session[:guest].id).first
       if @answer.nil?
         @user_submitted_answer = false
-        @answer = @question.answers.build(user: session[:guest])
+        @answer = user_signed_in? ? @question.answers.build(user: current_user) : @question.answers.build(user: session[:guest])
       else
         @user_submitted_answer = true
       end
@@ -137,6 +137,11 @@ class QuestionsController < ApplicationController
       check_guest()
     end
 
+    if(!user_signed_in?)
+      redirect_to "/users/sign_up"
+      return
+    end
+
     # For Multiple Choice Questions, concatenate the answer boxes into
     # one string, checking for empty boxes and removing them
     13.times do |count|
@@ -151,14 +156,21 @@ class QuestionsController < ApplicationController
       @answerboxes = @answerboxes[0...-1]
     end
 
-    @subquestion = Question.create(
-      :label => params[:submit_question_name],
-      :group_id => params[:group_id],
-      :user_id => session[:guest].id,
-      :value_type => params[:value_type],
-      :options_for_collection => @answerboxes)
+    if(params[:submit_question_name].length < 256)
+      @subquestion = Question.create(
+        :label => params[:submit_question_name],
+        :group_id => params[:group_id],
+        :user_id => session[:guest].id,
+        :value_type => params[:value_type],
+        :options_for_collection => @answerboxes)
 
-    GroupsQuestion.create(group_id: params[:group_id], question_id: @subquestion.id)
+      GroupsQuestion.create(group_id: params[:group_id], question_id: @subquestion.id)
+    else
+      redirect_to categories_path
+      flash[:notice] = "The length of the question was too long. Please try again."
+      return
+    end
+
 
     if @subquestion.valid?
       redirect_to question_path(@subquestion), flash: { share_modal: true }
