@@ -280,13 +280,13 @@ li {
 .sidebar-footer {
   height: 155px;
   width: 100%;
-  padding: 25px 10px 10px 10px;
+  padding: 10px 10px 0px 10px;
   color: #A09E9E;
   background-color: #E3E3E3;
 
   .sidebar-footer-sections {
     .sidebar-footer-list {
-      padding: 0;
+      padding: 10px 0px 10px 15px;
 
       li {
         font-size: 12px;
@@ -299,7 +299,8 @@ li {
           .sidebar-footer-social-img {
             width: 25px;
             height: auto;
-            margin-right: 5px;
+            margin-left: 55px;
+            margin-right: -40px;
           }
         }
       }
