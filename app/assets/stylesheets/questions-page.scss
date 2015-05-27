@@ -144,7 +144,7 @@
       padding-right: 0.5em;
 
       .question-vote-container {
-        display: none; /* Remove this to bring votes back */
+        /* display: none; Remove this to bring votes back */
         float: left;
         width: 17%;
         text-align: center;
@@ -173,7 +173,7 @@
       .question-title-container {
         overflow: hidden;
         margin-top: 7px;
-        //margin-right: 17%; /* Add this back when you bring votes back */
+        margin-right: 17%; /* Add this back when you bring votes back */
         text-align: center;
 
         .question-title {
