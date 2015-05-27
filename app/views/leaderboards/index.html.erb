@@ -1,22 +1,28 @@
 <% provide(:title, 'Leaderboard') %>
 
-
+<div class="leaderboard-top-container">
   <div class="leaderboard-hero">
     <h1 class="leaderboard-title">Leaderboard</h1>
     <p class="leaderboard-subtitle">The top 50 users of Arima</p>
   </div>
   
+<div class="rank-points">
   <div class="leaderboard-user-rank-container">
     <h1 class="leaderboard-user-rank-title">Your rank</h1>
     <p class="leaderboard-user-rank"><%= @user_rank %></p>
   </div>
 
   <div class="leaderboard-points-rank-container">
-    <h1 class="leaderboard-points-rank-title">Points</h1>
-    <p class="leaderboard-points-rank"><%= @user.points %></p>
+      <h1 class="leaderboard-points-rank-title">Points</h1>
+      <p class="leaderboard-points-rank"><%= @user.points %></p>
   </div>
+</div>
+
+<div class="verticalLine"></div>
+
+</div> 
   
-  <div class="verticalLine"></div>
+  
 
 
 <div class="leaderboard">
