@@ -65,17 +65,6 @@ class AnswersController < ApplicationController
           else
             redirect_to question_path(@question)
           end
-
-          current_user.points = current_user.points + 1
-          current_user.save
-
-          if(@question.user_id != nil)
-            if((Answer.where(question_id: @question.id).length % 10) == 0)
-              q_owner = User.where(id: @question.user_id)
-              q_owner.points = q_owner.points + 1
-              q_owner.save
-            end
-          end
         end
       else
         @answer = @question.answers.build(params[:answer].permit(:value))

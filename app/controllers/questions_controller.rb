@@ -81,11 +81,6 @@ class QuestionsController < ApplicationController
       @question.increment(:votecount)
       @question.save!
 
-      # Give 1 point to the user who created the question
-      q_owner = User.where(id: @question.user_id)
-      q_owner.points = q_owner.points + 1
-      q_owner.save!
-
       # Update the Votes table with the new vote
       Vote.create(
         :user_id => session[:guest].id,
@@ -98,11 +93,6 @@ class QuestionsController < ApplicationController
       # Increment counter by 2 to counter the downvote
       @question.increment(:votecount, 2)
       @question.save!
-
-      # Give 2 point to the user who created the question
-      q_owner = User.where(id: @question.user_id)
-      q_owner.points = q_owner.points + 2
-      q_owner.save!
     end
 
     respond_to do |format|
@@ -122,11 +112,6 @@ class QuestionsController < ApplicationController
       @question.decrement(:votecount)
       @question.save!
 
-      # Subtract 1 point to the user who created the question
-      q_owner = User.where(id: @question.user_id)
-      q_owner.points = q_owner.points - 1
-      q_owner.save!
-
       # Update the Votes table with the new vote
       Vote.create(
         :user_id => session[:guest].id,
@@ -139,11 +124,6 @@ class QuestionsController < ApplicationController
       # Increment counter by 2 to counter the downvote
       @question.decrement(:votecount, 2)
       @question.save!
-
-      # subtract 2 point to the user who created the question
-      q_owner = User.where(id: @question.user_id)
-      q_owner.points = q_owner.points - 2
-      q_owner.save!
     end
 
     respond_to do |format|
@@ -193,9 +173,6 @@ class QuestionsController < ApplicationController
 
 
     if @subquestion.valid?
-      current_user.points = current_user.points + 10
-      current_user.save
-
       redirect_to question_path(@subquestion), flash: { share_modal: true }
     else
       redirect_to categories_path
