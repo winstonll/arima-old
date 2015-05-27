@@ -82,9 +82,9 @@ class QuestionsController < ApplicationController
       @question.save!
 
       # Give 1 point to the user who created the question
-      q_owner = User.where(id: @question.user_id)
-      q_owner.points = q_owner.points + 1
-      q_owner.save!
+      #q_owner = User.where(id: @question.user_id)
+      #q_owner.points = q_owner.points + 1
+      #q_owner.save!
 
       # Update the Votes table with the new vote
       Vote.create(
@@ -100,9 +100,9 @@ class QuestionsController < ApplicationController
       @question.save!
 
       # Give 2 point to the user who created the question
-      q_owner = User.where(id: @question.user_id)
-      q_owner.points = q_owner.points + 2
-      q_owner.save!
+      #q_owner = User.where(id: @question.user_id)
+      #q_owner.points = q_owner.points + 2
+      #q_owner.save!
     end
 
     respond_to do |format|
@@ -123,9 +123,9 @@ class QuestionsController < ApplicationController
       @question.save!
 
       # Subtract 1 point to the user who created the question
-      q_owner = User.where(id: @question.user_id)
-      q_owner.points = q_owner.points - 1
-      q_owner.save!
+      #q_owner = User.where(id: @question.user_id)
+      #q_owner.points = q_owner.points - 1
+      #q_owner.save!
 
       # Update the Votes table with the new vote
       Vote.create(
@@ -141,9 +141,10 @@ class QuestionsController < ApplicationController
       @question.save!
 
       # subtract 2 point to the user who created the question
-      q_owner = User.where(id: @question.user_id)
-      q_owner.points = q_owner.points - 2
-      q_owner.save!
+      #q_owner = User.where(id: @question.user_id)
+      #q_owner.points = q_owner.points - 2
+      #q_owner.save!
+
     end
 
     respond_to do |format|
