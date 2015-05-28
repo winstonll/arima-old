@@ -40,7 +40,7 @@
         </div>
 
         <div id="pstm" class="tab">
-          <% unless (session[:guest].gender != nil && session[:guest].age != nil) %>
+          <% unless (session[:guest].gender != nil && session[:guest].age != nil) || (user_signed_in? ? (current_user.gender != nil && current_user.age != nil) : false) %>
             <p id="pstm_description">This tab shows you what people similiar to your age and gender have answered.</p>
             <p id="gender_age_label">Fill in the form below to see a report tailored for you!</p>
             <%= form_tag({controller: "answers", action: "gender"}, method: "get" ) do |f| %>
@@ -300,4 +300,16 @@
       unload: loc_arr
     });
   }
+</script>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-50543337-1', 'arima.io');
+  ga('send', 'pageview');
+
 </script>

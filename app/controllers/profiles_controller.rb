@@ -48,6 +48,7 @@ class ProfilesController < ApplicationController
         :gender,
         :email,
         :username,
+        :birthyear,
         :measurement_unit,
         location_attributes: [
           :id,
