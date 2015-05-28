@@ -29,10 +29,10 @@ class QuestionsController < ApplicationController
       @user_country = Location.where(user_id: session[:guest].id).first
       @dropdown_array = [@user_country.country]
 
-      @answer = user_signed_in? ? @question.answers.where(user_id: current_user.id).first : @question.answers.where(user_id: session[:guest].id).first
+      @answer = @question.answers.where(user_id: session[:guest].id).first
       if @answer.nil?
         @user_submitted_answer = false
-        @answer = user_signed_in? ? @question.answers.build(user: current_user) : @question.answers.build(user: session[:guest])
+        @answer = @question.answers.build(user: session[:guest])
       else
         @user_submitted_answer = true
       end
@@ -81,11 +81,6 @@ class QuestionsController < ApplicationController
       @question.increment(:votecount)
       @question.save!
 
-      # Give 1 point to the user who created the question
-      #q_owner = User.where(id: @question.user_id)
-      #q_owner.points = q_owner.points + 1
-      #q_owner.save!
-
       # Update the Votes table with the new vote
       Vote.create(
         :user_id => session[:guest].id,
@@ -98,11 +93,6 @@ class QuestionsController < ApplicationController
       # Increment counter by 2 to counter the downvote
       @question.increment(:votecount, 2)
       @question.save!
-
-      # Give 2 point to the user who created the question
-      #q_owner = User.where(id: @question.user_id)
-      #q_owner.points = q_owner.points + 2
-      #q_owner.save!
     end
 
     respond_to do |format|
@@ -122,11 +112,6 @@ class QuestionsController < ApplicationController
       @question.decrement(:votecount)
       @question.save!
 
-      # Subtract 1 point to the user who created the question
-      #q_owner = User.where(id: @question.user_id)
-      #q_owner.points = q_owner.points - 1
-      #q_owner.save!
-
       # Update the Votes table with the new vote
       Vote.create(
         :user_id => session[:guest].id,
@@ -139,12 +124,6 @@ class QuestionsController < ApplicationController
       # Increment counter by 2 to counter the downvote
       @question.decrement(:votecount, 2)
       @question.save!
-
-      # subtract 2 point to the user who created the question
-      #q_owner = User.where(id: @question.user_id)
-      #q_owner.points = q_owner.points - 2
-      #q_owner.save!
-
     end
 
     respond_to do |format|
@@ -156,11 +135,6 @@ class QuestionsController < ApplicationController
   def create
     if(session[:guest] == nil)
       check_guest()
-    end
-
-    if(!user_signed_in?)
-      redirect_to "/users/sign_up"
-      return
     end
 
     # For Multiple Choice Questions, concatenate the answer boxes into
@@ -177,26 +151,16 @@ class QuestionsController < ApplicationController
       @answerboxes = @answerboxes[0...-1]
     end
 
-    if(params[:submit_question_name].length < 256)
-      @subquestion = Question.create(
-        :label => params[:submit_question_name],
-        :group_id => params[:group_id],
-        :user_id => session[:guest].id,
-        :value_type => params[:value_type],
-        :options_for_collection => @answerboxes)
+    @subquestion = Question.create(
+      :label => params[:submit_question_name],
+      :group_id => params[:group_id],
+      :user_id => session[:guest].id,
+      :value_type => params[:value_type],
+      :options_for_collection => @answerboxes)
 
-      GroupsQuestion.create(group_id: params[:group_id], question_id: @subquestion.id)
-    else
-      redirect_to categories_path
-      flash[:notice] = "The length of the question was too long. Please try again."
-      return
-    end
-
+    GroupsQuestion.create(group_id: params[:group_id], question_id: @subquestion.id)
 
     if @subquestion.valid?
-      current_user.points = current_user.points + 10
-      current_user.save
-
       redirect_to question_path(@subquestion), flash: { share_modal: true }
     else
       redirect_to categories_path

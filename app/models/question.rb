@@ -125,32 +125,17 @@ class Question < ActiveRecord::Base
     arr = Hash.new
     loc_arr = Array.new
 
-    answer_arr = Answer.where(question_id: self)
+    answer_arr = Answer.where(question_id: self.id)
     answer_arr.each do |a|
       if (arr[a.value])
         current = Location.where(user_id: a.user_id)[0]
-        if((current.country != nil || current.province != nil || current.city != nil) && (decimals(current.latitude) > 1 || decimals(current.longitude) > 1))
-          arr[a.value].push(current.latitude.to_s + ", " + current.longitude.to_s)
-        end
+        arr[a.value].push(current.latitude.to_s + ", " + current.longitude.to_s)
       else
         current = Location.where(user_id: a.user_id)[0]
-        if((current.country != nil || current.province != nil || current.city != nil) && (decimals(current.latitude) > 1 || decimals(current.longitude) > 1))
-          arr[a.value] = Array.new().push(current.latitude.to_s + ", " + current.longitude.to_s)
-        end
+        arr[a.value] = Array.new().push(current.latitude.to_s + ", " + current.longitude.to_s)
       end
     end
     return arr
-  end
-
-  def decimals(a)
-    num = 0
-    if (a != nil)
-      while(a != a.to_i)
-          num += 1
-          a *= 10
-      end
-    end
-    num
   end
 
   def data_array(value)

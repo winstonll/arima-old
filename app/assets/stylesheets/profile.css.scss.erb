@@ -1,6 +1,5 @@
 /* Edit Button and Modal Elements styles */
-.profile-edit-button,
-.profile-upload::before {
+.profile-edit{
   width: 100px;
   height: 25px;
   background-color: #e0e0e0;
@@ -18,7 +17,7 @@
   -moz-transition: all 150ms linear;
 }
 
-.profile-edit-button:hover {
+.profile-edit:hover {
   background-color: #d0d0d0;
   box-shadow: 0px 2px 2px rgba(100, 100, 100, 0.5);
 }
@@ -40,33 +39,33 @@ input[type="file"]{
   width: 100%;
 
   .profile-hero-container {
+    height: 8.5em;
     width: 100%;
     background: #4a90e2;
 
     .profile-hero-content {
       text-align: center;
-
-      .grey-banner {
-        height: 2.5em;
+      
+      #grey-banner {
+        height: 3em;
         width: 100%;
-        background: #ededed;
-        margin: -3.8em 0 0 0;
-        position: relative;
-        z-index: 1em;
+        background: rgb(237, 237, 237);
+        margin: 0 auto;
+        z-index: 1;
+        position: absolute;
+        top: 25.6%;
       }
 
       #profile-picture-container {
-        background-color: #ededed;
+        background-color: rgb(237, 237, 237);
         height: 9em;
         width: 9em;
+        margin: 2em;
         border-radius: 0.5em;
         border: white solid;
         box-shadow: 0 0 0 1pt #d0d0d0;
-        display: inline-block;
-        position: relative;
+        position: absolute;
         z-index: 2;
-        top: 3em;
-        left: -1em;
 
         .profile-picture-default {
           color: #3e8ae5;
@@ -85,7 +84,6 @@ input[type="file"]{
       #profile-info,
       #profile-stats-container {
         display: inline-block;
-        vertical-align: top;
       }
 
       #profile-info {
@@ -93,11 +91,10 @@ input[type="file"]{
 
         .profile-info {
           display: inline-block;
-          padding: 7em 1em 1em 0;
+          padding: 0 5em 0 0;
 
           .profile-username {
             color: white;
-            text-align: left;
             font-size: 18px;
             font-weight: bold;
           }
@@ -105,7 +102,7 @@ input[type="file"]{
           .user-location {
             font-size: 14px;
             color: #4a90e2;
-            position: relative;
+            position: absolute;
             z-index: 2;
           }
         }
@@ -128,7 +125,7 @@ input[type="file"]{
               .stat-number {
                 font-size: 18px;
                 color: #4a90e2;
-                position: relative;
+                position: absolute;
                 z-index: 2;
               }
             }
@@ -137,149 +134,4 @@ input[type="file"]{
       }
     }
   }
-}
-
-/* Profile edit Page Styles */
-
-.profile-edit-container {
-  height: 100%;
-  width: 100%;
-  position: relative;
-  
-
-  .profile-edit {
-    height: 8em;
-    width: 100%;
-    background: #4a90e2;
-    position: absolute;
-
-    .profile-content {
-      text-align: center;
-        h3 {
-          margin-top: 2em;
-        }
-      
-      .grey-banner {
-        height: 2.5em;
-        width: 100%;
-        background: #ededed;
-        position: relative;
-        z-index: 0;
-        top: 1.2em;
-        margin-bottom: -2em;
-
-        #profile-path-link {
-          position: relative;
-          z-index: 1;
-          color: #4a90e2;
-          text-decoration: underline;
-          font-weight:bold;
-          top: .5em;
-        }
-      }
-
-      .profile-info-container {
-        display: inline-block;
-
-        #profile-picture-container {
-          background-color: #ededed;
-          height: 9em;
-          width: 9em;
-          border-radius: 0.5em;
-          border: white solid;
-          box-shadow: 0 0 0 1pt #d0d0d0;
-          position: relative;
-          top: 8em;
-          right: 7em;
-
-          .profile-picture-default {
-            color: #3e8ae5;
-            font-weight: bold;
-            font-size: xx-large;
-            padding-top: 1em;
-          }
-        }
-
-
-        .profile-edit-info {
-          color: #4a90e2;
-          position: relative;
-          bottom: 2em;
-          left: 6em;
-          text-align: left;
-
-          .profile-pic {
-            position: relative;
-            right: 12em;
-
-         } 
-
-          .input-box {
-            height: 33px;
-            width: 250px;
-            margin-bottom: 5px;
-            background-color: #fff;
-            border: 1px solid #c2c2c2;
-            border-radius: 3px;
-            position: relative;
-            color: black;
-            text-align: left;
-            text-indent: 10px;
-            
-          }
-
-          .small-input-box {
-            height: 29px;
-            width: 100px;
-            margin-bottom: 5px;
-            font-size: 12px;
-            background-color: #fff;
-            border: 1px solid #c2c2c2;
-            border-radius: 3px;
-            color: black;
-            text-align: left;
-            text-indent: 10px;
-
-          }
-
-          #profile-city {
-            margin: 0;
-          }
-
-          #profile-country {
-            float: right;
-
-          }
-
-          .profile-birthyear {
-            float: right;
-          }
-
-          #profile-save{
-            float: right;
-
-            .edit-profile-save {
-              position: relative;
-              display: inline-block;
-              height: 29px;
-              width: 100px;
-              font-size: 12px;
-              color: white;
-              background-color: #4a90e2;
-              border: 1px solid #4a90e2;
-              border-radius: 4px;
-              bottom: 3em;
-            }
-          }
-
-
-
-
-
-
-        }
-      }
-    }
-  } 
-
 }

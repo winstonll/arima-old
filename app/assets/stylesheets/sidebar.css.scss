@@ -30,10 +30,8 @@
   padding: 35px 0px 35px 0px;
 
   img {
-    height: 75px;
+    height: 50px;
     width: auto;
-    margin-top: -15px;
-
   }
 }
 
@@ -43,7 +41,7 @@
   #submit-question-link {
     height: 25px;
     line-height: 25px;
-    padding: 0.8em 2.3em 0.8em 2.3em;
+    padding: 0.5em 1.5em 0.5em 1.5em;
     background-color: #56A1F8;
     border-radius: 5px;
     box-shadow: 2px 2px 1px rgba(0,0,0,0.35);
@@ -63,152 +61,8 @@
     width: 50px;
     border-top: 1px solid #DCDCDC;
     margin-bottom: 5px;
-    margin-top: 25px;
-
   }
 }
-
-/* Signup, Login and Browse as Guest buttons for the home page*/
-.nav-btn {
-  font-size: 12px;
-  color: #fff;
-  border-radius: 4px;
-  transition: all 150ms linear;
-  -webkit-transition: all 150ms linear;
-  -ms-transition: all 150ms linear;
-  -moz-transition: all 150ms linear;
-   margin-right: 12px;
-   margin-left: 4px;
-}
-
-.nav-btn:hover {
-  opacity: 0.8;
-  box-shadow: 0px 2px 2px rgba(100,100,100,0.5);
-}
-
-#nav-signup-btn {
-  padding: 7px 16px 7px 16px;
-  background-color: #00c39c;
-}
-
-#nav-login-btn {
-  padding: 7px 21px 7px 21px;
-  background-color: #5986dd;
-}
-
-.button-container{
- padding-bottom: 10px;
-}
-
-ul {
-  list-style-type: none;
-}
-
-li {
-  float: left;
-}
-
-.sidebar-right {
-  margin-bottom: 60px;
-  position: relative;
-  top: 15px;
-}
-
-.nav-user-circle {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background-color: #00c39c;
-  display: inline-block;
-  color: #fff;
-  line-height: 26px;
-  text-align: center;
-}
-
-.dropdown-menu .menu {
-  left: 100%;
-  position: absolute;
-  top: 0;
-  visibility: hidden;
-  margin-top: -1px;
-}
-
-.dropdown-menu li:hover .menu {
-    visibility: visible;
-}
-
-.dropdown {
-  list-style-type: none;
-  position: relative;
-  right: 75px;
-
-  position: relative;
-  left: -12px;
-
-  .nav-link {
-    font-size: 15px;
-    position: relative;
-    left: 10px;
-  }
-}
-
-.menu {
-  background-color: #eee;
-  box-shadow: none;
-  border-style: none;
-}
-
-/* Chevron Up */
-  .chevron-up {
-    position: relative;
-    display: inline-block;
-    height: 10px; /*double of border*/
-  }
-
-  .chevron-up:before,
-  .chevron-up:after{
-    position: absolute;
-    display: block;
-    content: "";
-    margin-top: 10px;
-    border: 5px solid transparent; /*size*/
-  }
-
-  .chevron-up:before{
-    bottom: 0;
-    border-bottom-color: #00c39c; /*colour*/
-  }
-
-  .chevron-up:after{
-    bottom: -3px; /* thickness*/
-    border-bottom-color: #eee; /*Match background colour*/
-  }
-
-  /* Chevron Down */
-  .chevron-down {
-    position: relative;
-    display: inline-block;
-    height: 10px; /*double of border*/
-  }
-
-  .chevron-down:before,
-  .chevron-down:after{
-    position: absolute;
-    display: block;
-    content: "";
-    border: 10px solid transparent; /*size*/
-    border-radius: 5px;
-  }
-
-  .chevron-down:before{
-    top: 0;
-    border-top-color: #00c39c; /*colour*/
-  }
-
-  .chevron-down:after{
-    top: -3px; /* thickness*/
-    border-top-color: #eee; /*Match background colour*/
-  }
 
 #sidebar-mobile-close-toggle {
   display: none;
@@ -236,7 +90,7 @@ li {
   .category-container {
     white-space: nowrap;
     text-align: left;
-    padding: 4px 10px 4px 10px;
+    padding: 5px 10px 5px 10px;
 
     .category-inner-container {
       width: 215px;
@@ -280,14 +134,13 @@ li {
 .sidebar-footer {
   height: 155px;
   width: 100%;
-  padding: 10px 10px 0px 10px;
+  padding: 25px 10px 10px 10px;
   color: #A09E9E;
   background-color: #E3E3E3;
 
   .sidebar-footer-sections {
     .sidebar-footer-list {
-      padding: 10px 0px 10px 15px;
-
+      padding: 0;
 
       li {
         font-size: 12px;
@@ -300,8 +153,7 @@ li {
           .sidebar-footer-social-img {
             width: 25px;
             height: auto;
-            margin-right: -40px;
-            margin-left: 55px;
+            margin-right: 5px;
           }
         }
       }
