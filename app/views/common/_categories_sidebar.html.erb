@@ -69,15 +69,13 @@
                 </ul>
               </li>
             <% else %>
-              <div class="button-container">
-              <li>
-                <%= link_to 'Sign Up', new_registration_path(resource_name), class: "nav-btn", id: "nav-signup-btn" if !user_signed_in? %>
-              </li>
-
               <li>
                 <%= link_to 'Login', new_user_session_path, class: "nav-btn", id: "nav-login-btn" %>
               </li>
-          </div>
+
+              <li>
+                <%= link_to 'Sign Up', new_registration_path(resource_name), class: "nav-btn", id: "nav-signup-btn" if !user_signed_in? %>
+              </li>
             <% end %>
           </ul>
         </div>
@@ -116,7 +114,7 @@
       <div class="sidebar-footer">
         <div class="sidebar-footer-sections">
           <ul class="sidebar-footer-list">
-            <li>&nbsp;&nbsp;&nbsp;<a href="/about">About Us</a> &sdot;</li>
+            <li><a href="/about">About Us</a> &sdot;</li>
             <li><a href="/faq">FAQ</a> &sdot;</li>
             <li><a href="/contact">Contact</a> &sdot;</li>
             <li><a href="http://medium.com/@arima_io">Blog</a></li>
@@ -129,14 +127,12 @@
           </ul>
         </div>
 
-        
         <div class="sidebar-footer-sections">
           <ul class="sidebar-footer-list">
             <li><a href="https://www.facebook.com/friendsofarima"><%= image_tag("fb-grey-logo.png", :class => "sidebar-footer-social-img") %></a></li>
             <li><a href="https://twitter.com/arima_io"><%= image_tag("twitter-grey-logo.png", :class => "sidebar-footer-social-img") %></a></li>
           </ul>
         </div>
-        
       </div>
     </div>
   </div>

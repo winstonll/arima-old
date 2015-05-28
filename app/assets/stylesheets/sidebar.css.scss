@@ -30,10 +30,8 @@
   padding: 35px 0px 35px 0px;
 
   img {
-    height: 75px;
+    height: 50px;
     width: auto;
-    margin-top: -15px;
-
   }
 }
 
@@ -63,22 +61,20 @@
     width: 50px;
     border-top: 1px solid #DCDCDC;
     margin-bottom: 5px;
-    margin-top: 25px;
-
   }
 }
 
 /* Signup, Login and Browse as Guest buttons for the home page*/
 .nav-btn {
-  font-size: 12px;
+  font-size: 10px;
   color: #fff;
+  padding: 5px 13px 5px 13px;
   border-radius: 4px;
   transition: all 150ms linear;
   -webkit-transition: all 150ms linear;
   -ms-transition: all 150ms linear;
   -moz-transition: all 150ms linear;
    margin-right: 12px;
-   margin-left: 4px;
 }
 
 .nav-btn:hover {
@@ -87,17 +83,12 @@
 }
 
 #nav-signup-btn {
-  padding: 7px 16px 7px 16px;
   background-color: #00c39c;
 }
 
 #nav-login-btn {
-  padding: 7px 21px 7px 21px;
+  padding: 5px 19px 5px 19px;
   background-color: #5986dd;
-}
-
-.button-container{
- padding-bottom: 10px;
 }
 
 ul {
@@ -236,7 +227,7 @@ li {
   .category-container {
     white-space: nowrap;
     text-align: left;
-    padding: 4px 10px 4px 10px;
+    padding: 5px 10px 5px 10px;
 
     .category-inner-container {
       width: 215px;
@@ -280,14 +271,13 @@ li {
 .sidebar-footer {
   height: 155px;
   width: 100%;
-  padding: 10px 10px 0px 10px;
+  padding: 25px 10px 10px 10px;
   color: #A09E9E;
   background-color: #E3E3E3;
 
   .sidebar-footer-sections {
     .sidebar-footer-list {
-      padding: 10px 0px 10px 15px;
-
+      padding: 0;
 
       li {
         font-size: 12px;
@@ -300,8 +290,7 @@ li {
           .sidebar-footer-social-img {
             width: 25px;
             height: auto;
-            margin-right: -40px;
-            margin-left: 55px;
+            margin-right: 5px;
           }
         }
       }

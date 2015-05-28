@@ -3,8 +3,8 @@
   width: 100%;
   height: 100%;
   color: #fff;
-  padding-top: 5em;
-  padding-bottom: 20em;
+  padding-top: 10em;
+  padding-bottom: 15em;
 
   background-position: center;
   background-repeat: no-repeat;
@@ -13,32 +13,17 @@
   -o-background-size: cover;
   background-size: cover;
 
-  .logo-name-container {
-      #welcome {
-        font-weight: 600;
-        text-shadow: 0px 2px 4px rgba(0,0,0,0.4);
-      }
-
-      #logo {
-        height: 150px;
-        width: auto;
-      }
-    }
-
   .signin-title {
     margin: 0;
     margin-bottom: 0.25em;
     font-weight: 700;
     font-size: 45px;
-    text-shadow: 0px 2px 4px rgba(0,0,0,0.4);
   }
 
   .signin-intro {
-    font-weight: 400;
+    font-weight: 600;
     font-size: 17px;
-    text-shadow: 0px 2px 4px rgba(0,0,0,0.4);
-    margin-top: 2em;
-
+    text-shadow: 2px 2px #A9A9A9
   }
 
   .signin-form {
@@ -63,47 +48,56 @@
       border-radius: 3px;
     }
 
-    .signin-fields-left {
-      position: relative;
-      right: 180px;
-    }
-
-    .signin-fields-right {
-      position: relative;
-      right: 180px;
-    }
-
-
     .signin-fields-left,
     .signin-fields-right {
       display: inline-block;
+      vertical-align: top;
       text-align: left;
       max-width: 26em;
       padding: 0 2em;
+
+      .error-text{
+        color: red;
+      }
 
       #email-input,
       #password-input {
         display: inline;
       }
 
-      .email-input {
-        position: relative;
-        left: 350px;
-        bottom: 93px;
-      }
-
-      .password-input {
-        position: relative;
-        left: 700px;
-        bottom: 186px;
-      }
-
-
       .lock {
         display: inline;
         padding-left: 5px;
         padding-botton: 5px;
         width: 5%;
+      }
+
+      .location-input {
+        div {
+          display: inline-block;
+
+          input,
+          select {
+            width: 100px;
+          }
+        }
+
+        #city-section {
+          width: 50%;
+          margin-right: 0.5em;
+
+          #location_city {
+            width: 100%;
+          }
+        }
+
+        #country-section {
+          width: 46%;
+
+          #location_country_code {
+            width: 100%;
+          }
+        }
       }
 
       label {
@@ -149,30 +143,24 @@
       }
 
       .signup-button {
-        background-color: #50E3C2;
+        background-color: #00c39c;
+        font-size: 15px;
         color: #fff;
         border-radius: 4px;
         width: 25%;
-        font-weight: 600px;
+        font-weight: bold;
         margin-top: 2em;
-        margin-bottom: 5em;
+        margin-bottom: 1em;
         border: 0;
-        position: relative;
-        left: 120px;
-
-        &:hover {
-        opacity: 0.8;
       }
-
-    }
 
       a {
         text-decoration: underline;
-        color: #fff;
       }
     }
 
     .signin-fields-left {
+      border-right: 1px solid white;
 
       #user_username,
       #user_email{
@@ -181,11 +169,11 @@
         padding: 5px;
         font-style: italic;
         padding-left: 0.75em;
-        margin-bottom: 31px;
+        margin-bottom: 1.75em;
       }
 
       #user_email {
-        margin-top: 0.30em;
+        margin-top: 0.25em;
       }
 
       #user_password {
@@ -194,22 +182,45 @@
         padding: 5px;
         font-style: italic;
         padding-left: 0.75em;
-        margin-top: 5px;
+        margin-top: 0.25em;
       }
     }
 
     .signin-fields-right {
-       max-width: 30em;
+      .gender-input, {
+        padding-bottom: 1em;
+      }
+
+      #location_city,
+      #location_country_code,
+      #user_birthyear,
+      #user_gender,
+      #user_measurement_unit {
+        width: 300px;
+        padding: 5px;
+        font-style: italic;
+        color: grey;
+      }
+
+      #location_city {
+        padding-left: 0.75em;
+      }
+      #location_country_code {
+        width: 100%;
+      }
+
+      #user_birthyear,
+      #user_gender,
+      #user_measurement_unit {
+        width: 156px;
+      }
 
       .login-here-home,
       .terms-notice {
         font-size: 12px;
         margin: 0;
-        text-align: center;
-
       }
     }
-
 
     .signin-inputs {
       text-align: left;
@@ -234,7 +245,7 @@
 }
 
 #signup-container {
-  background-image: url(<%= image_path "backgrounds/tokyo_bg.jpg" %>);
+  background-image: url(<%= image_path "backgrounds/nyc_bg.jpg" %>);
 }
 
 #login-container {

@@ -21,11 +21,10 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   #comment out for now, bring it back when we bring back signup.
 
-  validates :email, presence: true, uniqueness: true, unless: "username.nil?"
-  validates :password, presence: true, :confirmation => true,
-      length: { :in => 8..20 }, :on => :create, unless: "last_emailed_at.nil?"
-  validates :username, presence: true, uniqueness: true, unless: "username.nil?"
-
+  #validates :email, presence: true, uniqueness: true
+  #validates :password, :confirmation => true,
+  #    length: { :in => 8..20 }, :on => :create
+  #validates :username, presence: true, uniqueness: true
   #validates :gender, presence: true
   #validates :birthyear, presence: true
   #validates :ip_address, presence: true

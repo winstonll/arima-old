@@ -1,5 +1,6 @@
 <div class="profile-hero-container">
   <div class="profile-hero-content">
+        <div id="grey-banner"></div>
     <div id="profile-picture-container">
       <% if (user.avatar.url.include? "missing") %>
         <div class="profile-picture-default"><%= user.username.to_s[0].capitalize %></div>
@@ -7,18 +8,17 @@
         <%= image_tag user.avatar.url(:thumb), class: "profile-picture" %>
       <% end %>
       <div class="edit-profile">
-        <%= button_to 'Edit', edit_profile_path, :method => "get", class: "profile-edit-button" %>
+        <%= button_to 'Edit', edit_profile_path, :method => "get", class: "profile-edit" %>
       </div>
     </div>
-    
 
     <div id="profile-info">
-
       <div class="profile-info">
         <div class="profile-username"><%= user.username.to_s %></div>
         <div class="user-location"><%= full_location(user) %></div>
       </div>
 
+      
       <div id="profile-stats-container">
         <div class="stat-container">
           <div id="user-leaderboard">
@@ -31,12 +31,10 @@
             <div class="stat-title">
               Points <%= link_to image_tag("about_points_icon.png"), "/faq#about-points"%>
               <div class="stat-number"><%= user.points %></div>
-            </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="grey-banner"></div>
   </div>
 </div>
 

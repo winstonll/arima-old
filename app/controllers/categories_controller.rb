@@ -39,16 +39,11 @@ class CategoriesController < ApplicationController
     # @all = Kaminari.paginate_array(@all_popular_questions.keys).page(params[:page]).per(7)
 
     # all questions answered by the user
-    if (user_signed_in?)
-      user_questions = current_user.questions
-      @answered         = @all_popular_questions.keys & user_questions
-      @unanswered       = @all_popular_questions.keys - @answered
-    else
+    if session[:guest]
       user_questions = session[:guest].questions
       @answered         = @all_popular_questions.keys & user_questions
       @unanswered       = @all_popular_questions.keys - @answered
     end
-
 
     respond_to do |format|
       format.js

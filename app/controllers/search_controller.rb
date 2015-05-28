@@ -25,10 +25,7 @@ class SearchController < ApplicationController
       end
     end
 
-    if (user_signed_in?)
-      @answered         = @all & current_user.questions
-      @unanswered       = @all - @answered
-    else
+    if session[:guest]
       @answered         = @all & session[:guest].questions
       @unanswered       = @all - @answered
     end
