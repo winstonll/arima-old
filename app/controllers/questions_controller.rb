@@ -73,8 +73,11 @@ class QuestionsController < ApplicationController
   def upvote
     @question = Question.friendly.find(params[:id])
 
+    check_guest()
+
+
     # Check to see if the question has already been voted on
-    @existing_vote = Vote.where(:question_id => params[:id]).where(:user_id => session[:guest].id)
+    @existing_vote = Vote.where(:question_id => params[:id]).where(:user_id => user_signed_in? ? current_user.id : session[:guest].id)
 
     if (@existing_vote.empty?)
       # Give 1 point to the user who created the question
@@ -114,8 +117,10 @@ class QuestionsController < ApplicationController
   def downvote
     @question = Question.friendly.find(params[:id])
 
+    check_guest()
+
     # Check to see if the question has already been voted on
-    @existing_vote = Vote.where(:question_id => params[:id]).where(:user_id => session[:guest].id)
+    @existing_vote = Vote.where(:question_id => params[:id]).where(:user_id => user_signed_in? ? current_user.id : session[:guest].id)
 
     if (@existing_vote.empty?)
       # Update the question table votecount value
