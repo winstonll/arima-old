@@ -171,10 +171,10 @@ class ApplicationController < ActionController::Base
         #add ip to database
         #@location = Pointpin.locate(ip)
         @result = request.location
-        @user = User.new(ip_address: ip)
+        @guest = User.new(ip_address: ip)
         @user_country = Country.new(@result.data["country_code"])
 
-        @user.build_location(
+        @guest.build_location(
         #zip_code: @result.data["zipcode"],
         continent: @user_country.subregion,
         province: request.location.try(:state),
@@ -183,28 +183,29 @@ class ApplicationController < ActionController::Base
         city: request.location.try(:city), #try this code for city @result.data["city"]
         ip_address: ip)
 
-        @user.save
+        @guest.save
         #sign_in(:user, @user)
         session[:guest] = @user
       #localhost
       else
-        @user = User.new(ip_address: ip)
-        @user.build_location(
+
+        @guest = User.new(ip_address: ip)
+        @guest.build_location(
           province: "Ontario",
           country_code: "CA",
           continent: "North America",
           country: "Canada",
           city: "Toronto",
           ip_address: ip)
-        @user.save
+        @guest.save!
 
-        session[:guest] = @user
+        session[:guest] = @guest
         #sign_in(:user, @user)
       end
     else
-      @user = User.find_by(ip_address: ip)
+      @guest = User.find_by(ip_address: ip)
 
-      session[:guest] = @user
+      session[:guest] = @guest
       #sign_in(:user, @user)
     end
   end

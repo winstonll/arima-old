@@ -26,16 +26,27 @@ class AnswersController < ApplicationController
   def gender
     year = params[:age_text].to_i
     gender = params[:gender_id].to_i == 1 ? "M" : "F"
-    #@user.gender = gender
-    session[:guest].gender = gender
+    user_signed_in? ? current_user.gender = gender : session[:guest].gender = gender
+    #session[:guest].gender = gender
 
-    if( 1900 < year && year < Time.now.year && session[:guest].gender != nil)
-      session[:guest].birthyear = year
-      session[:guest].save
-      redirect_to :back
+    if(user_signed_in?)
+      if( 1900 < year && year < Time.now.year && current_user.gender != nil)
+        current_user.birthyear = year
+        current_user.save
+        redirect_to :back
+      else
+        flash[:notice] = "Year of birth and/or gender was invalid!"
+        redirect_to :back
+      end
     else
-      flash[:notice] = "Year of birth and/or gender was invalid!"
-      redirect_to :back
+      if( 1900 < year && year < Time.now.year && session[:guest].gender != nil)
+        session[:guest].birthyear = year
+        session[:guest].save
+        redirect_to :back
+      else
+        flash[:notice] = "Year of birth and/or gender was invalid!"
+        redirect_to :back
+      end
     end
   end
 
@@ -44,14 +55,38 @@ class AnswersController < ApplicationController
 
     #create answer if user hasn't already submitted one for this question
     if (session[:guest] && @answer = @question.answers.where(user: session[:guest]).first).nil?
-      @answer = @question.answers.build(params[:answer].permit(:value))
-      @answer.user = session[:guest]
+      if(user_signed_in?)
+        @answer = @question.answers.build(params[:answer].permit(:value))
+        @answer.user = current_user
 
-      if @answer.save
-        if session[:guest].share_modal_state != "hide"
-          redirect_to question_path(@question), flash: { share_answer_modal: true }
-        else
-          redirect_to question_path(@question)
+        if @answer.save
+          if current_user.share_modal_state != "hide"
+            redirect_to question_path(@question), flash: { share_answer_modal: true }
+          else
+            redirect_to question_path(@question)
+          end
+
+          current_user.points = current_user.points + 1
+          current_user.save
+
+          if(@question.user_id != nil)
+            if((Answer.where(question_id: @question.id).length % 10) == 0)
+              q_owner = User.where(id: @question.user_id)
+              q_owner.points = q_owner.points + 1
+              q_owner.save
+            end
+          end
+        end
+      else
+        @answer = @question.answers.build(params[:answer].permit(:value))
+        @answer.user = session[:guest]
+
+        if @answer.save
+          if session[:guest].share_modal_state != "hide"
+            redirect_to question_path(@question), flash: { share_answer_modal: true }
+          else
+            redirect_to question_path(@question)
+          end
         end
       end
     end

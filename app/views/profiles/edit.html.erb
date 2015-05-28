@@ -1,78 +1,90 @@
+<div class="profile-edit-container">
+  <div class="profile-edit">
+    <div class="profile-content">
+      <h3 class="submit-q-text" id="submit-question-label">Edit Profile</h3>
+      
+      <div class="grey-banner">
+        <div id="profile-path-link">
+          <%= link_to 'Back to Profile', profile_path(@profile) %>
+        </div> 
+      </div>
 
-  <div class="modal-dialog">
-    <div class="modal-content">
-    <article class="modal-header bg-blue">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="color: #fff;">&times;</button>
-      <h2 class="modal-title submit-q-text" id="submit-question-label">Edit Profile</h2>
-    </article> <!-- ./modal-header -->
+      <div class="profile-info-container">
 
-      <div class="modal-body">
-      <%= simple_form_for current_user, url: profile_path, html: { multipart: true, novalidate: false } do |f| %>
-        <div class="form-group">
-          <%= f.input :avatar %>
-        </div>
-        <div class="form-group">
-          <article class="referral-container">
-          <p>Your personal invite link is: </p>
-          <p>
-            <strong>
-              <%= "arima.io%{sign_up_path}?referral=%{user_referral_code}" % {sign_up_path: new_registration_path(resource_name), user_referral_code: current_user.referral_code} %>  
-            </strong>
-          </p>              
-          <p>You get bonus points when people use your link to sign up for Arima!</p>
-          </article>
-        </div>
-        <div class="form-group">
-          <%= f.input :first_name, input_html: { class: "form-control" }, required: true %>
-        </div>
-        <div class="form-group">
-          <%= f.input :last_name, input_html: { class: "form-control" } %>
-        </div>
-        <div class="form-group">
-          <%= f.input :email, input_html: { class: "form-control" }, required: true %>
-          <p class="help-block">
-            Use this to log-in and keep in touch.
-          </p>
-        </div>
-        <div class="form-group">
-          <%= f.input :username, input_html: { class: "form-control" }, required: true %>
-          <p class="help-block">
-            You can change your username unlimited times during beta.
-            <br />
-            Note that the url for accessing your reports will be changed!
-          </p>
-        </div>
-        <div class="form-group">
-          <%= f.input :measurement_unit, collection: ["Metric", "Imperial"], input_html: { class: "form-control" }, required: true, :include_blank => false %>
+        <div id="profile-picture-container">
+          <% if (current_user.avatar.url.include? "missing") %>
+            <div class="profile-picture-default"><%= current_user.username.to_s[0].capitalize %></div>
+          <% else %>
+            <%= image_tag current_user.avatar.url(:thumb), class: "profile-picture" %>
+          <% end %>
         </div>
 
-        <h3>Location</h3>
-        <%= f.simple_fields_for :location do |location| %>
-          <div class="form-group">
-            <label>Country <%= location.country_select :country_code, {}, { class: "form-control" } %></label>
-          </div>
-          <div class="form-group">
-            <%= location.input :province, input_html: { class: "form-control" } %>
-          </div>
-          <div class="form-group">
-            <%= location.input :city, input_html: { class: "form-control" } %>
-          </div>
-        <% end %>
+        <div class="profile-edit-info"> 
+          <%= simple_form_for @profile, url: profile_path, html: { multipart: true, novalidate: false } do |f| %>
+          
+             <!--  <article class="referral-container">
+              <p>Your personal invite link is: </p>
+              <p>
+                <strong>
+                  <%#= "arima.io%{sign_up_path}?referral=%{user_referral_code}" % {sign_up_path: new_registration_path(resource_name), user_referral_code: current_user.referral_code} %>  
+                </strong>
+              </p>              
+              <p>You get bonus points when people use your link to sign up for Arima!</p>
+              </article> -->
 
-        <h3>Physiology</h3>
-        <div class="form-group">
-          <%= f.input :birthyear, required: true, label_html: { style: "display: block" },
-            start_year: Date.today.year - 90, end_year: Date.today.year - 12, input_html: {
-            class: "form-control", style: "display: inline; width: inherit" } %>
+              <%#= f.input :first_name, input_html: { class: "input-box" }, required: true %>
+              <%#= f.input :last_name, input_html: { class: "input-box" } %>
+
+            <div class="profile-username">
+              Username <%= f.input :username, label: false, input_html: { class: "input-box" }, required: true %>
+              <!-- <p class="help-block">
+                You can change your username unlimited times during beta.
+                Note that the url for accessing your reports will be changed!
+              </p> -->
+            </div>
+
+            <div class="profile-email">
+              Email <%= f.input :email, label: false, input_html: { class: "input-box" }, required: true %>
+              <p class="help-block">
+                Use this to log-in and keep in touch.
+              </p>
+            </div>
+
+            <div id="profile-pic">  
+              <%= f.input :avatar, label: false, input_html: {class: "profile-pic"}%>
+            </div>
+
+            <div class="profile-location">
+              <%= f.simple_fields_for :location do |location| %>
+                <p id="profile-country">
+                  Country <br/> <%= location.country_select :country_code, {}, { class: "small-input-box" } %>
+                </p>
+                <p id="profile-city">
+                  City <%= location.input :city, label: false, input_html: { class: "small-input-box" } %>
+                </p>
+                  <%#= location.input :province, input_html: { class: "small-input-box" } %>
+              <% end %>
+            </div>
+
+            <div class="profile-birthyear">
+              Birthyear <%= f.input :birthyear, label: false, required: true, start_year: Date.today.year - 90, end_year: Date.today.year - 12, input_html: {
+                class: "small-input-box" } %>
+            </div>
+
+            <div class="profile-gender">
+              Gender <%= f.input :gender, label: false, required: true, input_html: { class: "small-input-box" }, collection: User.gender_options, :include_blank => true %>
+            </div>
+
+            <div class="profile-unit-measurement">
+              Unit of Measure <%= f.input :measurement_unit, label: false, collection: ["Metric", "Imperial"], input_html: { class: "small-input-box" }, required: true, :include_blank => false %>
+            </div>
+
+            <div id="profile-save">
+              <%= f.submit "Save Changes", class: "edit-profile-save" %>
+            </div>
         </div>
-        <div class="form-group">
-          <%= f.input :gender, required: true, input_html: { class: "form-control" }, collection: User.gender_options, :include_blank => false %>
-        </div>
-        <br />
-        <div class="form-group text-center">
-          <%= f.submit "Save", class: "modal-finished-button" %>
-        </div>
-      <% end %>
+          <% end %>
       </div>
     </div>
   </div>
+</div>

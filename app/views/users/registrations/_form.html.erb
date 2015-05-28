@@ -2,10 +2,16 @@
 <%= javascript_include_tag "home", :type => "text/javascript" %>
 
 <div class="signin-container" id="signup-container">
-  <h1 class="signin-title">Sign Up</h1>
-  <p class="signin-intro">Arima is a Q&A website for mass opinion.<br>
-                          By signing up, you can ask questions, get answers from users all around the world,<br>
-                          and see them visualized and compared with the rest of the planet.</p>
+  <div class="logo-name-container">
+      <a href="/"><%= image_tag "logo-lg-white.png", id: "logo" %></a>
+      <h1 id="welcome">Sign up for Arima</h1>
+  </div>
+  <div class="signin-intro">
+    Arima is a Q&A website for mass opinion.
+    By signing up, you can ask questions, get answers from <br>users all around the world,
+    and see them visualized and compared with the rest of the planet.
+  </div>
+
 
   <div class="signin-form">
     <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: {class: "form"}) do |f| %>
@@ -14,56 +20,25 @@
         <div class="username-input">
           <%= f.label :username %>
           <%= f.text_field :username, placeholder: "This is how you will appear on Arima.", class: "input-box" %>
-          <p class="error-text"> <%= @user.errors['username'].first if @user.errors['username'] %> </p>
         </div>
 
         <div class="email-input">
           <%= f.label :email_address, id: "email-input" %><%= image_tag ("lock.png"), class: "lock" %>
-          <%= f.email_field :email, placeholder: "We'll never share this without your permission.", class: "input-box" %>
-          <p class="error-text"> <%= @user.errors['email'].first if @user.errors['email'] %> </p>
+          <%= f.email_field :email, placeholder: "No spam, no verifications. We promise.", class: "input-box" %>
         </div>
 
         <div class="password-input">
           <%= f.label :password, id: "password-input" %><%= image_tag ("lock.png"), class: "lock" %>
           <%= f.password_field :password, placeholder: "Your password is safe with us!", class: "input-box" %>
-          <p class="error-text"> <%= @user.errors['password'].first if @user.errors['password'] %> </p>
         </div>
       </div>
 
       <div class="signin-fields-right">
-        <div class="location-input">
-          <div class="city-input" id="city-section">
-            <label>City</label>
-            <%= text_field_tag('location[city]')%>
-          </div>
-          <div class="country-input" id="country-section">
-            <label>Country</label>
-            <%= country_select("location", "country_code", { priority_countries: ["CA", "US"] }, { class: '', name: 'location[country_code]' } ) %>
-          </div>
-
-        </div>
-
-        <div class="birthyear-input">
-          <%= f.label :what_year_were_you_born? %>
-          <%= f.select :birthyear,  (1950..2015), prompt: "Select..." %>
-          <p class="error-text"> <%= @user.errors['birthyear'].first if @user.errors['birthyear'] %></p>
-        </div>
-
-        <div class="gender-input" id="gender-section">
-          <%= f.label :gender, "Male or Female?" %>
-          <%= f.select :gender, ["Male", "Female"], prompt: "Select..." %>
-          <p class="error-text"> <%= @user.errors['gender'].first if @user.errors['birthyear'] %></p>
-        </div>
-
-        <div class="measurement_unit-input" id="measurement-section">
-          <%= f.label :metric_or_imperial, "Metric or Imperial?" %>
-          <%= f.select :measurement_unit, ["Metric", "Imperial"], prompt: "Select..." %>
-        </div>
 
         <%= f.submit "Start", class: "signup-button" %>
 
         <p class="login-here-home">
-        Already have an account? <%= link_to "Log in here!", new_user_session_path %>
+          Already have an account? <%= link_to "Log in here!", new_user_session_path %>
         </p>
 
         <p class="terms-notice">
@@ -72,6 +47,6 @@
 
       </div>
     </div>
+    <% end %>
   </div>
-  <% end %>
 </div>

@@ -3,6 +3,30 @@
     if (window.location.href.indexOf("/feed") != -1) {
       $('#feed-category-container').addClass('category-inner-container-active');
     }
+
+    //$("#drop").off("click");
+    $("#down").off("click");
+
+    /**$("#drop").hover(function(){
+        $("#down").css("margin-bottom", "150px");
+        },function(){
+        $("#down").css("margin-bottom", "60px");
+    });**/
+
+    var clicked = false;
+
+    $("#drop").click(function(){
+      if(clicked){
+        clicked = false;
+        $("#down").css("margin-bottom", "60px");
+      }
+      else{
+        clicked = true;
+        $("#down").css("margin-bottom", "150px");
+      }
+    });
+
+
   });
 </script>
 
@@ -19,6 +43,43 @@
         <div class="submit-question-container">
           <a id="submit-question-link" href="#" data-toggle="modal" data-target="#submitQuestionModal">Ask a Question</a>
           <hr>
+        </div>
+
+
+        <!-- login/signup -->
+        <div class="sidebar-right" id="down">
+          <ul class="nav-links">
+            <% if user_signed_in? && current_user.username.present? %>
+              <li class="dropdown" id="drop">
+                <a data-toggle="dropdown" class="dropdown-toggle" href="#" class="nav-link">
+                  <div class="nav-user-circle"><%= current_user.username[0].capitalize %></div>
+                    <%= current_user.username %>
+                    <i class="chevron-down"></i>
+                </a>
+                <ul class="menu dropdown-menu">
+                  <li>
+                    <%= link_to 'Profile', profile_path, class: "nav-link" %>
+                  </li>
+                  <li>
+                    <%= link_to 'Leaderboard'.html_safe, leaderboard_path, class: "nav-link" %>
+                  </li>
+                  <li>
+                    <%= link_to 'Log Out', destroy_user_session_path, :method => :delete, title: "#{current_user.email}", class: "nav-link" %>
+                  </li>
+                </ul>
+              </li>
+            <% else %>
+              <div class="button-container">
+              <li>
+                <%= link_to 'Sign Up', new_registration_path(resource_name), class: "nav-btn", id: "nav-signup-btn" if !user_signed_in? %>
+              </li>
+
+              <li>
+                <%= link_to 'Login', new_user_session_path, class: "nav-btn", id: "nav-login-btn" %>
+              </li>
+          </div>
+            <% end %>
+          </ul>
         </div>
 
         <!-- Categories -->
@@ -55,7 +116,7 @@
       <div class="sidebar-footer">
         <div class="sidebar-footer-sections">
           <ul class="sidebar-footer-list">
-            <li><a href="/about">About Us</a> &sdot;</li>
+            <li>&nbsp;&nbsp;&nbsp;<a href="/about">About Us</a> &sdot;</li>
             <li><a href="/faq">FAQ</a> &sdot;</li>
             <li><a href="/contact">Contact</a> &sdot;</li>
             <li><a href="http://medium.com/@arima_io">Blog</a></li>
@@ -68,12 +129,14 @@
           </ul>
         </div>
 
+        
         <div class="sidebar-footer-sections">
           <ul class="sidebar-footer-list">
             <li><a href="https://www.facebook.com/friendsofarima"><%= image_tag("fb-grey-logo.png", :class => "sidebar-footer-social-img") %></a></li>
             <li><a href="https://twitter.com/arima_io"><%= image_tag("twitter-grey-logo.png", :class => "sidebar-footer-social-img") %></a></li>
           </ul>
         </div>
+        
       </div>
     </div>
   </div>
