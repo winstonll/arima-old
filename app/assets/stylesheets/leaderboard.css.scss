@@ -1,7 +1,6 @@
 .leaderboard-top-container{
    width: 100%;
    margin-top: 4em;
-   height: 320px;
 
   
 
@@ -19,7 +18,7 @@
 
     .leaderboard-subtitle {
       font-size: 20px;
-      color: #898989;
+      color: #9B9B9B;
       line-height: 25px;
     }
  }
@@ -27,7 +26,6 @@
   .rank-points{
     display: inline-block;
     margin-left: 180px;
-    margin-top: 20px;
 
     
     .leaderboard-user-rank-container {
@@ -47,7 +45,7 @@
       .leaderboard-user-rank-title {
         font-size: 18px;
         font-weight: 500;
-        margin-top: 30px;
+        padding-top: 1.25em;
       }
 
       .leaderboard-user-rank {
@@ -64,7 +62,8 @@
         color: #fff;
         text-align: center;
         display: inline-block;
-        
+        float:right;
+      
         
       
       }
@@ -79,7 +78,7 @@
       .leaderboard-points-rank-title {
         font-size: 18px;
         font-weight: 500;
-        margin-top: 30px;
+        padding-top: 1.25em;
         color: #00c39c;
       }
   }
@@ -91,7 +90,7 @@
        width: 0px;
        position: relative;
        left: 35em;
-       top: -15em;
+       top: -24em;
        
     }
 }
@@ -101,7 +100,7 @@
   margin: 0 auto;
   color: #4a4a4a;
   padding-bottom: 5em;
-  padding-top: -10em;
+  padding-top: 5em;
  
 
       
