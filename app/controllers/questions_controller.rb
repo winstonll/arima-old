@@ -73,13 +73,23 @@ class QuestionsController < ApplicationController
   def upvote
     @question = Question.friendly.find(params[:id])
 
+    check_guest()
+
+
     # Check to see if the question has already been voted on
-    @existing_vote = Vote.where(:question_id => params[:id]).where(:user_id => session[:guest].id)
+    @existing_vote = Vote.where(:question_id => params[:id]).where(:user_id => user_signed_in? ? current_user.id : session[:guest].id)
 
     if (@existing_vote.empty?)
       # Update the question table votecount value
       @question.increment(:votecount)
       @question.save!
+
+      if(!@question.user_id.nil?)
+        # Give 1 point to the user who created the question
+        q_owner = User.where(id: @question.user_id)[0]
+        q_owner.points = q_owner.points + 1
+        q_owner.save!
+      end
 
       # Update the Votes table with the new vote
       Vote.create(
@@ -89,6 +99,13 @@ class QuestionsController < ApplicationController
     elsif (@existing_vote.pluck(:vote_type)[0] == "downvote")
       # Change the question from downvote to upvote
       @existing_vote.first.update_attributes(vote_type: "upvote")
+
+      if(!@question.user_id.nil?)
+        # Give 2 point to the user who created the question
+        q_owner = User.where(id: @question.user_id)[0]
+        q_owner.points = q_owner.points + 2
+        q_owner.save!
+      end
 
       # Increment counter by 2 to counter the downvote
       @question.increment(:votecount, 2)
@@ -104,13 +121,22 @@ class QuestionsController < ApplicationController
   def downvote
     @question = Question.friendly.find(params[:id])
 
+    check_guest()
+
     # Check to see if the question has already been voted on
-    @existing_vote = Vote.where(:question_id => params[:id]).where(:user_id => session[:guest].id)
+    @existing_vote = Vote.where(:question_id => params[:id]).where(:user_id => user_signed_in? ? current_user.id : session[:guest].id)
 
     if (@existing_vote.empty?)
       # Update the question table votecount value
       @question.decrement(:votecount)
       @question.save!
+
+      if(!@question.user_id.nil?)
+        # Subtract 1 point to the user who created the question
+        q_owner = User.where(id: @question.user_id)[0]
+        q_owner.points = q_owner.points - 1
+        q_owner.save!
+      end
 
       # Update the Votes table with the new vote
       Vote.create(
@@ -124,6 +150,14 @@ class QuestionsController < ApplicationController
       # Increment counter by 2 to counter the downvote
       @question.decrement(:votecount, 2)
       @question.save!
+
+      if(!@question.user_id.nil?)
+        # subtract 2 point to the user who created the question
+        q_owner = User.where(id: @question.user_id)[0]
+        q_owner.points = q_owner.points - 2
+        q_owner.save!
+      end
+
     end
 
     respond_to do |format|
@@ -173,6 +207,9 @@ class QuestionsController < ApplicationController
 
 
     if @subquestion.valid?
+      current_user.points = current_user.points + 10
+      current_user.save
+
       redirect_to question_path(@subquestion), flash: { share_modal: true }
     else
       redirect_to categories_path
