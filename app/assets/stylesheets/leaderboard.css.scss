@@ -1,53 +1,114 @@
-.leaderboard {
-  width: 85%;
-  margin: 0 auto;
-  color: #4a4a4a;
-  padding-bottom: 10em;
+.leaderboard-top-container{
+   width: 100%;
+   margin-top: 4em;
+   height: 320px;
+
+
 
   .leaderboard-hero {
-    width: 100%;
-    margin-top: 10em;
-    text-align: center;
+    margin-top: 2em;
+    text-align: left;
+    margin-left: 13em;
+
 
     .leaderboard-title {
       font-weight: 600;
-      font-size: 45px;
-      line-height: 50px;
+      font-size: 39px;
+      line-height: 43px;
     }
 
     .leaderboard-subtitle {
-      font-size: 22px;
-      color: #9B9B9B;
+      font-size: 20px;
+      color: #898989;
       line-height: 25px;
     }
+ }
+
+  .rank-points{
+    display: inline-block;
+    margin-left: 180px;
+    margin-top: 20px;
+
+
+    .leaderboard-user-rank-container {
+      height: 110px;
+      width: 110px;
+      background-color: #00C39C;
+      border-radius: 6px;
+      color: #fff;
+      text-align: center;
+      display: inline-block;
+
+
+      }
+
+
+
+      .leaderboard-user-rank-title {
+        font-size: 18px;
+        font-weight: 500;
+        margin-top: 30px;
+      }
+
+      .leaderboard-user-rank {
+        font-size: 30px;
+        font-weight: 600;
+        margin-top: -5px;
+      }
+
+      .leaderboard-points-rank-container {
+        height: 110px;
+        width: 110px;
+        background-color: #fff;
+        border-radius: 6px;
+        color: #fff;
+        text-align: center;
+        display: inline-block;
+        float:right;
+
+
+
+      }
+
+      .leaderboard-points-rank {
+        font-size: 30px;
+        font-weight: 600;
+        margin-top: -5px;
+        color: #00c39c;
+      }
+
+      .leaderboard-points-rank-title {
+        font-size: 18px;
+        font-weight: 500;
+        margin-top: 30px;
+        color: #00c39c;
+      }
   }
 
-  .leaderboard-user-rank-container {
-    height: 200px;
-    width: 200px;
-    margin: auto;
-    margin-top: 3.5em;
-    margin-bottom: 7em;
-    background-color: #50E3C2;
-    border-radius: 4px;
-    color: #fff;
-    text-align: center;
 
-    .leaderboard-user-rank-title {
-      font-size: 20px;
-      font-weight: 300;
-      padding-top: 2.25em;
-    }
+    .verticalLine {
+       border-left: solid #DBDBDB 1px;
+       height: 230px;
+       width: 0px;
+       position: relative;
+       left: 35em;
+       top: -15em;
 
-    .leaderboard-user-rank {
-      font-size: 70px;
-      font-weight: 600;
-      margin-top: -20px;
     }
-  }
+}
+
+.leaderboard {
+  width: 68%;
+  margin: 0 auto;
+  color: #4a4a4a;
+  padding-bottom: 5em;
+  padding-top: -10em;
+
+
+
 
   .filter {
-    margin-left: 4.5em;
+    margin-left: 3em;
     margin-bottom: 3em;
 
     .filter-span {
@@ -104,8 +165,8 @@
 
         td {
           text-align: center;
-          font-size: 17px;
-          font-weight: 600;
+          font-size: 16px;
+          font-weight: 600px;
         }
 
         .leaderboard-user-rank {
