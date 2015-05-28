@@ -77,14 +77,14 @@ class QuestionsController < ApplicationController
     @existing_vote = Vote.where(:question_id => params[:id]).where(:user_id => session[:guest].id)
 
     if (@existing_vote.empty?)
+      # Give 1 point to the user who created the question
+      q_owner = User.where(id: @question.user_id)[0]
+      q_owner.points = q_owner.points + 1
+      q_owner.save!
+
       # Update the question table votecount value
       @question.increment(:votecount)
       @question.save!
-
-      # Give 1 point to the user who created the question
-      #q_owner = User.where(id: @question.user_id)
-      #q_owner.points = q_owner.points + 1
-      #q_owner.save!
 
       # Update the Votes table with the new vote
       Vote.create(
@@ -95,14 +95,14 @@ class QuestionsController < ApplicationController
       # Change the question from downvote to upvote
       @existing_vote.first.update_attributes(vote_type: "upvote")
 
+      # Give 2 point to the user who created the question
+      q_owner = User.where(id: @question.user_id)[0]
+      q_owner.points = q_owner.points + 2
+      q_owner.save!
+
       # Increment counter by 2 to counter the downvote
       @question.increment(:votecount, 2)
       @question.save!
-
-      # Give 2 point to the user who created the question
-      #q_owner = User.where(id: @question.user_id)
-      #q_owner.points = q_owner.points + 2
-      #q_owner.save!
     end
 
     respond_to do |format|
@@ -123,9 +123,9 @@ class QuestionsController < ApplicationController
       @question.save!
 
       # Subtract 1 point to the user who created the question
-      #q_owner = User.where(id: @question.user_id)
-      #q_owner.points = q_owner.points - 1
-      #q_owner.save!
+      q_owner = User.where(id: @question.user_id)[0]
+      q_owner.points = q_owner.points - 1
+      q_owner.save!
 
       # Update the Votes table with the new vote
       Vote.create(
@@ -141,9 +141,9 @@ class QuestionsController < ApplicationController
       @question.save!
 
       # subtract 2 point to the user who created the question
-      #q_owner = User.where(id: @question.user_id)
-      #q_owner.points = q_owner.points - 2
-      #q_owner.save!
+      q_owner = User.where(id: @question.user_id)[0]
+      q_owner.points = q_owner.points - 2
+      q_owner.save!
 
     end
 
