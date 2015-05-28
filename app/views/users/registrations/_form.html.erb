@@ -1,52 +1,51 @@
 <% provide(:title, "Sign Up") %>
 <%= javascript_include_tag "home", :type => "text/javascript" %>
 
-<div class="signup-container">
+<div class="signin-container" id="signup-container">
   <div class="logo-name-container">
       <a href="/"><%= image_tag "logo-lg-white.png", id: "logo" %></a>
       <h1 id="welcome">Sign up for Arima</h1>
   </div>
-  <div class="signup-intro">
+  <div class="signin-intro">
     Arima is a Q&A website for mass opinion.
     By signing up, you can ask questions, get answers from <br>users all around the world,
     and see them visualized and compared with the rest of the planet.
   </div>
 
 
-  <div class="signup-form">
+  <div class="signin-form">
     <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: {class: "form"}) do |f| %>
-    <div class="signup-section">
-      <div class="signup-input">
-        <div class="input-username">
+    <div class="signin-section">
+      <div class="signin-fields-left">
+        <div class="username-input">
           <%= f.label :username %>
           <%= f.text_field :username, placeholder: "This is how you will appear on Arima.", class: "input-box" %>
         </div>
 
-        <div class="input-email">
+        <div class="email-input">
           <%= f.label :email_address, id: "email-input" %><%= image_tag ("lock.png"), class: "lock" %>
           <%= f.email_field :email, placeholder: "No spam, no verifications. We promise.", class: "input-box" %>
         </div>
 
-        <div class="input-password">
+        <div class="password-input">
           <%= f.label :password, id: "password-input" %><%= image_tag ("lock.png"), class: "lock" %>
           <%= f.password_field :password, placeholder: "Your password is safe with us!", class: "input-box" %>
         </div>
       </div>
 
-      <div class="signup-links-bottom">
-        <div id="signup-start">
+      <div class="signin-fields-right">
+
         <%= f.submit "Start", class: "signup-button" %>
-        </div>
 
-        <div class="login-here-home">
+        <p class="login-here-home">
           Already have an account? <%= link_to "Log in here!", new_user_session_path %>
-        </div>
+        </p>
 
-        <div class="terms-notice">
+        <p class="terms-notice">
           By signing up, you agree to Arima's <a href="/terms">Terms and Conditions</a>.
-        </div>
-      </div>
+        </p>
 
+      </div>
     </div>
     <% end %>
   </div>

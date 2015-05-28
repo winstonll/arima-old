@@ -1,41 +1,40 @@
 <% provide(:title, 'Log In') %>
 <%= javascript_include_tag "home", :type => "text/javascript" %>
 
-<div class="login-container">
-  <div class="signin-container">
-    <h1 class="signin-title">Welcome Back</h1>
-    <div class="signin-form">
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "form"}) do |f| %>
+<div class="signin-container" id="login-container">
+  <h1 class="signin-title">Welcome Back</h1>
 
-        <div class="email-input">
-          <span class="signin-inputs">
-            <%= f.label "Email Address" %>
-            <%= f.email_field :email, placeholder: "email@example.com", class: "input-box" %>
-          </span>
-        </div>
+  <div class="signin-form">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "form"}) do |f| %>
 
-        <div class="password-input">
-          <span class="signin-inputs">
-            <%= f.label :password %>
-            <%= f.password_field :password, placeholder: "Don't get it wrong!", class: "input-box" %>
-          </span>
-        </div>
+      <div class="email-input">
+        <span class="signin-inputs">
+          <%= f.label "Email Address" %>
+          <%= f.email_field :email, placeholder: "email@example.com", class: "input-box" %>
+        </span>
+      </div>
 
-        <div class="signin-methods">
-          <%= f.submit "Login", class: "signin-button" %>
-        </div>
+      <div class="password-input">
+        <span class="signin-inputs">
+          <%= f.label :password %>
+          <%= f.password_field :password, placeholder: "Don't get it wrong!", class: "input-box" %>
+        </span>
+      </div>
 
-        <% if devise_mapping.rememberable? %>
-          <div class="form-group">
-            <%= f.check_box :remember_me, class: "form-checkbox" %>
-            <%= f.label :remember_me, class: "signin-link" %>
-          </div>
-        <% end %>
+      <div class="signin-methods">
+        <%= f.submit "Login", class: "signin-button" %>
+      </div>
 
-        <div class="devise-shared-links">
-          <%= render "devise/shared/links" %>
+      <% if devise_mapping.rememberable? %>
+        <div class="form-group">
+          <%= f.check_box :remember_me, class: "form-checkbox" %>
+          <%= f.label :remember_me, class: "signin-link" %>
         </div>
       <% end %>
-    </div>
+
+      <div class="devise-shared-links">
+        <%= render "devise/shared/links" %>
+      </div>
+    <% end %>
   </div>
 </div>
