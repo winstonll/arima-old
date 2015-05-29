@@ -11,7 +11,7 @@
   </td>
 
   <td class="leaderboard-user-location">
-    <%= "#{user.location.country}" %>
+    <%= user != nil ? "#{user.location.country}" : "empty" %>
   </td>
 
   <td class="leaderboard-user-points">
