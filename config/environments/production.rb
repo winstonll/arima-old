@@ -94,7 +94,7 @@ Arima::Application.configure do
     :address              => 'smtp.mandrillapp.com',
     :port                 => 2525,
     :user_name            => 'error@arima.io',
-    :password             => '11111111',
+    :password             => 'QieuCukCxNQZ7qNtUQ0rVw',
     :enable_starttls_auto => true,
     :authentication       => 'plain'
   }
