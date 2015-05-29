@@ -19,9 +19,9 @@ class LeaderboardsController < ApplicationController
 	@user_rank = user_signed_in? ? current_user.get_user_rank : 0
 	@user = current_user
 
-	  respond_to do |format|
-	    format.html
-	    format.js
-	  end
+	  #respond_to do |format|
+	  #  format.html
+	  #  format.js
+	  #end
 	end
 end
