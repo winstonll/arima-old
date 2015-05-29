@@ -19,8 +19,8 @@
 </div>
 
 <div class="verticalLine"></div>
- 
- <div class="about-points-container">     
+
+ <div class="about-points-container">
      <p>
       <ul>
       <b id= "title">How to earn points:</b>
@@ -34,7 +34,7 @@
 
 <div class="verticalLine2"></div>
 
-  <div class="why-earn-points-container"> 
+  <div class="why-earn-points-container">
     <p>
       <ul>
       <b id="title">Why earn points?</b>
@@ -51,12 +51,12 @@
 
 
 <div class="leaderboard">
-  <div class="filter">
-    <%= form_tag('users', remote: true) do %>
+  <!--<div class="filter">
+    <%#= form_tag('users', remote: true) do %>
       <span class="filter-span">Country:</span>
-      <%= select_tag 'country-filter', options_for_select(@countries, params[:country_type]), { prompt: "All", class: "filter-location-select"} %>
-    <% end %>
-  </div>
+      <%#= select_tag 'country-filter', options_for_select(@countries, params[:country_type]), { prompt: "All", class: "filter-location-select"} %>
+    <#% end %>
+  </div>-->
   <div class="users2">
     <%= render "leaderboard_list" %>
   </div>
