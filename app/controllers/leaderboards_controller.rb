@@ -16,7 +16,7 @@ class LeaderboardsController < ApplicationController
       @ranked_registered_users = User.order("points DESC").limit(50)
     #end
     #user_signed_in? ? current_user.get_user_rank :
-	  @user_rank =  0
+	  @user_rank =  "?"
 	  @user = current_user
 
 	  #respond_to do |format|
