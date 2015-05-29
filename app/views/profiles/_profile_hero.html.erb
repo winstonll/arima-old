@@ -10,7 +10,7 @@
         <%= button_to 'Edit', edit_profile_path, :method => "get", class: "profile-edit-button" %>
       </div>
     </div>
-    
+
 
     <div id="profile-info">
 
@@ -24,7 +24,7 @@
           <div id="user-leaderboard">
             <a href="<%= leaderboard_path(curr_user: true) %>">
             <div class="stat-title">Leaderboard Rank</div>
-            <div class="stat-number"><%= user.get_user_rank %></div>
+            <div class="stat-number"> ? <%#= user.get_user_rank %> </div>
             </a>
           </div>
           <div id="user-points">

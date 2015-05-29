@@ -4,7 +4,6 @@
    height: 320px;
 
 
-
   .leaderboard-hero {
     margin-top: 2em;
     text-align: left;
@@ -93,7 +92,7 @@
        height: 230px;
        width: 0px;
        position: relative;
-       left: 35em;
+       left: 34em;
        top: -15em;
 
     }
@@ -103,7 +102,7 @@
        height: 230px;
        width: 0px;
        position: relative;
-       left: 66em;
+       left: 63em;
        top: -52em;
 
     }
@@ -113,7 +112,7 @@
       display: inline-block;
       position: relative;
       top: -33em;
-      left: 36em;
+      left: 34em;
       line-height: 50px;
     
     #title{
@@ -126,6 +125,8 @@
     color: #4A90E2;
     
     }
+
+
     
    p {
       padding-bottom: 0px;
@@ -135,8 +136,15 @@
       margin-bottom: 1.75em;
 
       li {
-        margin-left: 2em;
+        margin-left: 0em;
         list-style-type: none;
+      }
+
+      .points-icons{
+      position:relative;
+      bottom: 3px;
+      padding-right: 10px;
+      
       }
 
     }
@@ -146,7 +154,7 @@
       display: inline-block;
       position: relative;
       top: -69.8em;
-      left: 68em;
+      left: 63em;
       line-height: 50px;
     
     #title{
@@ -173,17 +181,18 @@
 }
 
 .leaderboard {
-  width: 68%;
+  width: 75%;
   margin: 0 auto;
   color: #4a4a4a;
   padding-bottom: 5em;
   padding-top: -10em;
+  margin-left: 12em;
 
 
 
 
   .filter {
-    margin-left: 3em;
+    margin-left: 1em;
     margin-bottom: 3em;
 
     .filter-span {
@@ -245,7 +254,7 @@
         }
 
         .leaderboard-user-rank {
-          color: #9B9B9B;
+          color: #4a4a4a;
 
           &::before {
             content: counter(rowNumber);
