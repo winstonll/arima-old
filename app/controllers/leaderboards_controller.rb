@@ -10,11 +10,11 @@ class LeaderboardsController < ApplicationController
     # Use as a base for location filtering and user rank
     @registered_users = User.get_ranked_users
 
-    if @countries.find { |c| c == params[:country_type] }
-      @ranked_registered_users = @registered_users.where('locations.country_code' => params[:country_type])[0...50]
-    else
+    #if @countries.find { |c| c == params[:country_type] }
+    #  @ranked_registered_users = @registered_users.where('locations.country_code' => params[:country_type])[0...50]
+    #else
       @ranked_registered_users = @registered_users[0...50]
-    end
+    #end
 
 	@user_rank = user_signed_in? ? current_user.get_user_rank : 0
 	@user = current_user
