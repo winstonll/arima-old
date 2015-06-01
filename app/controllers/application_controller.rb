@@ -226,6 +226,11 @@ class ApplicationController < ActionController::Base
 
   private
 
+  # Overwriting the sign_out redirect path method
+  def after_sign_out_path_for(resource_or_scope)
+    categories_path
+  end
+
   def store_location
     # store last url - this is needed for post-login redirect to whatever the user last visited.
     return unless request.get?
