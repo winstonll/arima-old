@@ -40,7 +40,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
           #UserMailer.signup_email(@user).deliver!
           sign_in(:user, @user)
-          format.html { redirect_to categories_path }
+          format.html { render "users/registrations/welcome", :as => 'welcome' }
           format.json { render json: @user, status: :created, location: @user }
         else
           format.html { redirect_to :back }
