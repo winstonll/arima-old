@@ -1,31 +1,5 @@
-/* Edit Button and Modal Elements styles */
-.profile-edit-button,
-.profile-upload::before {
-  width: 100px;
-  height: 25px;
-  background-color: #e0e0e0;
-  border-radius: 3px;
-  color: #4a4a4a;
-  border: none;
-  margin: 10px;
-  display: inline-block;
-  float: left;
-  -webkit-user-select: none;
-  text-align: center;
-  transition: all 150ms linear;
-  -webkit-transition: all 150ms linear;
-  -ms-transition: all 150ms linear;
-  -moz-transition: all 150ms linear;
-}
+/* Edit Button and input styles */
 
-.profile-edit-button:hover {
-  background-color: #d0d0d0;
-  box-shadow: 0px 2px 2px rgba(100, 100, 100, 0.5);
-}
-
-.profile-upload::-webkit-file-upload-button {
-  visibility: hidden;
-}
 
 input[type="file"]{
   color: transparent;
@@ -35,25 +9,13 @@ input[type="file"]{
 }
 
 /* Profile Page Styles */
-.profile-container {
-  height: 100%;
-  width: 100%;
 
-  .profile-hero-container {
+.profile-hero-container {
     width: 100%;
     background: #4a90e2;
 
-    .profile-hero-content {
+  .profile-hero-content {
       text-align: center;
-
-      .grey-banner {
-        height: 2.5em;
-        width: 100%;
-        background: #ededed;
-        margin: -3.8em 0 0 0;
-        position: relative;
-        z-index: 1em;
-      }
 
       #profile-picture-container {
         background-color: #ededed;
@@ -63,10 +25,6 @@ input[type="file"]{
         border: white solid;
         box-shadow: 0 0 0 1pt #d0d0d0;
         display: inline-block;
-        position: relative;
-        z-index: 2;
-        top: 3em;
-        left: -1em;
 
         .profile-picture-default {
           color: #3e8ae5;
@@ -74,70 +32,64 @@ input[type="file"]{
           font-size: xx-large;
           padding-top: 1em;
         }
-      }
 
-    /* Style for new profile UI here */
-      .edit-profile {
-        display: inline-block;
-        padding-top: 3em;
-      }
+        .edit-profile {
 
-      #profile-info,
-      #profile-stats-container {
-        display: inline-block;
-        vertical-align: top;
-      }
-
-      #profile-info {
-        font-familt: sans-serif;
-
-        .profile-info {
-          display: inline-block;
-          padding: 7em 1em 1em 0;
-
-          .profile-username {
-            color: white;
-            text-align: left;
-            font-size: 18px;
-            font-weight: bold;
+          .profile-edit-button {
+            width: 100px;
+            height: 25px;
+            background-color: #e0e0e0;
+            border-radius: 3px;
+            border: none;
           }
 
-          .user-location {
-            font-size: 14px;
-            color: white;
-            position: relative;
-            z-index: 2;
+          .profile-edit-button:hover {
+            background-color: #d0d0d0;
+            box-shadow: 0px 2px 2px rgba(100, 100, 100, 0.5);
           }
         }
+      }
 
-        #profile-stats-container {
-          .stat-container {
-            padding-top: 7em;
+      .profile-info {
 
-            #user-leaderboard,
-            #user-points {
-              display: inline-block;
+        .profile-username {
+          color: white;
+          font-size: 18px;
+          font-weight: bold;
+        }
 
-              .stat-title {
-                font-color: white;
-                color: white;
-                font-size: 18px;
-                padding: 0 1em 0 1em;
-              }
+        .user-location {
+          font-size: 14px;
+          color: white;
+          position: relative;
+          z-index: 2;
+        }
 
-              .stat-number {
-                font-size: 18px;
-                color: white;
-                position: relative;
-                z-index: 2;
-              }
+        .stat-container {
+
+          #user-leaderboard,
+          #user-points {
+
+            .stat-title {
+              font-color: white;
+              color: white;
+              font-size: 18px;
+            }
+
+            .stat-number {
+              font-size: 18px;
+              color: white;
+              position: relative;
+              z-index: 2;
             }
           }
         }
       }
-    }
   }
+
 }
+
+
 
 /* Profile edit Page Styles */
 
