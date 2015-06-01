@@ -167,10 +167,6 @@ class QuestionsController < ApplicationController
 
   # Method that is called when a question is created
   def create
-    if(session[:guest] == nil)
-      check_guest()
-    end
-
     if(!user_signed_in?)
       redirect_to "/users/sign_up"
       return
@@ -194,7 +190,7 @@ class QuestionsController < ApplicationController
       @subquestion = Question.create(
         :label => params[:submit_question_name],
         :group_id => params[:group_id],
-        :user_id => session[:guest].id,
+        :user_id => current_user.id,
         :value_type => params[:value_type],
         :options_for_collection => @answerboxes)
 
