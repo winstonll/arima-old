@@ -97,7 +97,7 @@ $(document).ready(function() {
     <% end %>
 
     <div id="trending-questions-container">
-      <% @random_questions = Question.order("RANDOM()").first(5) %>
+      <% @random_questions = Question.where(group_id: @question.group_id).order("RANDOM()").limit(5) %>
 
       <p class="trending-questions-label">Trending Questions</p>
 
