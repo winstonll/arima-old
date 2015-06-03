@@ -7,7 +7,7 @@ require "whenever/capistrano"
 
 set :application,       "arima"
 set :repository,        "git@github.com:winstonll/arima.git"
-set :domain,            "162.243.7.145"
+set :domain,            "45.55.245.43"
 
 set :scm,               :git
 set :user,              'admin'
