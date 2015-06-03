@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
 
   # Show method - called when question page is rendered
   def show
-    @question = Question.friendly.find(params[:id])
+    @question = Question.where(slug: params[:id])[0]
     @answers = Answer.where(question: @question).count
 
     #extracting all of the users that answered this question
