@@ -1,3 +1,11 @@
+<script>
+  $(document).ready(function() {
+    setTimeout(function() {
+      window.location.reload();
+    }, 10000);
+  });
+</script>
+
 <div class="answer-prompt">
   <% if session[:guest] != nil %>
     <%= simple_form_for @answer, url: question_answers_path(@question, @answer), class: "form-inline", role: "form", html: {novalidate: false} do |f| %>
