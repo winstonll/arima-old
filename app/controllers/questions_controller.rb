@@ -26,7 +26,7 @@ class QuestionsController < ApplicationController
       check_guest()
     end
 
-    if session[:guest]
+    if session[:guest] != nil
       @user_country = Location.where(user_id: session[:guest].id).first
       @dropdown_array = [@user_country.country]
 
