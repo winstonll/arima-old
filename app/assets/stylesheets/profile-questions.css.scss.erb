@@ -7,6 +7,7 @@
 
     &:hover {
       cursor: pointer;
+
     }
 
     &:not(:first-child) {
@@ -28,8 +29,8 @@
 
     .profile-questions-toggle-answered,
     .profile-questions-toggle-asked {
-      height: 70px;
-      width: 180px;
+      height: 85px;
+      width: 250px;
       text-align: center;
       color: #9B9A9C;
       padding-top: 0.5em;
@@ -37,14 +38,21 @@
       border: 2px solid #9B9A9C;
       border-radius: 0.5em;
 
+      &:hover {
+      color:#4A90E2;
+      text-decoration:none;
+      border-color: #4A90E2;
+
+      }
+
       .profile-questions-stat-num {
         font-weight: 600;
-        font-size: 20px;
-        margin-bottom: 0;
+        font-size: 24px;
+        margin-bottom: 2px;
       }
 
       #profile-questions-stat-label {
-        font-size: 16px;
+        font-size: 19px;
       }
     }
 
@@ -84,7 +92,7 @@
       vertical-align: top;
       height: 40px;
       padding: 0.5em;
-      left: 0;
+      left: 1em;
       position: absolute;
       top: 0;
     }
