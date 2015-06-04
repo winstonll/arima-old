@@ -43,7 +43,7 @@ class QuestionsController < ApplicationController
   end
 
   def report
-    @question = Question.friendly.find(params[:id])
+    @question = Question.where(slug: params[:id])[0]
     @users_list = Array.new
     Answer.where(question: @question).find_each do |answer|
       @users_list << answer.user_id
