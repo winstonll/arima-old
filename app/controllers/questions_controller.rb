@@ -26,7 +26,7 @@ class QuestionsController < ApplicationController
       check_guest()
     end
 
-    if session[:guest]
+    if session[:guest] != nil
       @user_country = Location.where(user_id: session[:guest].id).first
       @dropdown_array = [@user_country.country]
 
@@ -43,7 +43,7 @@ class QuestionsController < ApplicationController
   end
 
   def report
-    @question = Question.friendly.find(params[:id])
+    @question = Question.where(slug: params[:id])[0]
     @users_list = Array.new
     Answer.where(question: @question).find_each do |answer|
       @users_list << answer.user_id
