@@ -22,8 +22,9 @@ class QuestionsController < ApplicationController
     @countries_answered = @countries_array.collect(&:first).uniq
 
     #create_dummy_users()
-
-    check_guest()
+    if (session[:guest] == nil)
+      check_guest()
+    end
 
     if session[:guest]
       @user_country = Location.where(user_id: session[:guest].id).first
