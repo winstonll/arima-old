@@ -35,7 +35,8 @@ class QuestionsController < ApplicationController
       @answer = user_signed_in? ? @question.answers.where(user_id: current_user.id).first : @question.answers.where(user_id: session[:guest].id).first
       if @answer.nil?
         @user_submitted_answer = false
-        @answer = user_signed_in? ? @question.answers.build(user: current_user) : @question.answers.build(user: session[:guest])
+        @answer = Answer.new
+        @answer = user_signed_in? ? @question.answers.build(user_id: current_user.id) : @question.answers.build(user_id: session[:guest].id)
       else
         @user_submitted_answer = true
       end
