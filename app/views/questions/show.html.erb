@@ -39,6 +39,9 @@ $(document).ready(function() {
       <div class="question-vote-container">
         <!-- Should probably refactor this and use _question_normal -->
         <div class="question-upvote">
+          <% if (session[:guest] == nil) %>
+          <%   check_guest() %>
+          <% end %>
           <% if Vote.where(:user_id => session[:guest].id).where(:question_id => @question.id).pluck(:vote_type)[0] == "upvote" %>
             <%= link_to image_tag('upvote_blue.png', id: "upvote-image-#{@question.id}", class: "question-vote-image"), upvote_question_path(:id => @question.id), :method => :put, :remote => true %>
           <% else %>
