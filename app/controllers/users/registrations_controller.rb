@@ -38,13 +38,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
           # After signup is submitted, check if the user was referred
           reward_referral(params[:referral]) if params[:referral].present?
 
-          #UserMailer.signup_email(@user).deliver!
+          UserMailer.signup_email(@user).deliver!
           sign_in(:user, @user)
           format.html { render "users/registrations/welcome", :as => 'welcome' }
           format.json { render json: @user, status: :created, location: @user }
         else
           format.html { redirect_to :back }
-          #format.json { render json: @user.errors, status: :unprocessable_entity }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
         end
       end
     else
