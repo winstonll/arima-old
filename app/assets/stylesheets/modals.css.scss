@@ -87,27 +87,42 @@
   }
 }
 
-/* About Points Modal */
-#about-points-modal-body {
-  padding: 20px 70px 35px 70px;
+#shareSignupModal {
+  background-image: url("backgrounds/taipeiday_bg.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 50em;
+  height: 30em;
+  margin: 10em 0 0 20em;
+  overflow: hidden;
+  border-radius: 10px;
 
-  .emphasized {
-    font-weight: 600;
-    color: #5986dd;
-  }
+  .share-modal-content-container {
+    text-align: left;
+    padding-top: 3em;
+    padding-left: 4em;
 
-  a {
-    color: #25c297;
-  }
+    .go-back-link {
+      padding: 5px 10px 5px 10px;
+      background-color: #00c39c;
+      color: #fff;
+      font-weight: 600;
+      border-radius: 3px;
+      width: 25%;
+      margin: auto;
+      margin-top: 5em;
+      cursor: pointer;
 
-  h2 {
-    font-variant: small-caps;
-    font-weight: 600;
-    font-size: 25px;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
   }
 }
 
-/* Edit Profile and Submit Question Modals */
+
+/* Submit Question Modals */
 .modal-finished-button {
   height: 50px;
   width: 100px;
@@ -122,13 +137,6 @@
 
 .modal-finished-button:hover {
   opacity: 0.8;
-}
-
-/* Edit Profile Modal */
-#myModal {
-  .devise-links, :not(.edit_user) .form-group label  {
-    color: #4a4a4a;
-  }
 }
 
 /* Submit Question Modal */

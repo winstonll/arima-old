@@ -1,0 +1,54 @@
+<!-- Share New Question Modal -->
+<div class="modal fade" id="shareSignupModal" tabindex="-1" role="dialog" aria-labelledby="shareSignupModal" aria-hidden="true">
+    <div class="share-modal-content-container">
+      <h4> This is your current Profile, complete it for the full Arima experience! </h4>
+        <p>Ask questions and see personalized reports</p>
+        <p>Keep track of what you asked and answered</p>
+        <p>Gain points, unlock premium features, and more!</p>
+  
+      <div class="signup-form">
+        <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: {class: "form"}) do |f| %>
+            <div class="signup-section">
+              <div class="signup-input">
+                <div class="input-username">
+                  <%= f.label :username, id:"username-input" %>
+                  <%= f.text_field :username, placeholder: "This is how you will appear on Arima.", class: "input-box" %>
+                </div>
+
+                <div class="input-email">
+                  <%= f.label :email_address, id: "email-input" %>
+                  <%= f.email_field :email, placeholder: "No spam, no verifications. We promise.", class: "input-box" %>
+                </div>
+
+                <div class="input-password">
+                  <%= f.label :password, id: "password-input" %>
+                  <%= f.password_field :password, placeholder: "Your password is safe with us!", class: "input-box" %>
+                </div>
+              </div>
+
+              <div class="signup-links-bottom">
+                <div id="signup-start">
+                <%= f.submit "Start", class: "signup-button" %>
+                </div>
+
+               <!--  <div class="login-here-home">
+                  Already have an account? <%#= link_to "Log in here!", new_user_session_path %>
+                </div>
+
+                <div class="terms-notice">
+                  By signing up, you agree to Arima's <a href="/terms">Terms and Conditions</a>.
+                </div> -->
+              </div>
+
+            </div>
+            <% end %>
+          </div>
+          
+
+        <%= link_to "Go back to the question", show_share_modal_question_path(:user_id => session[:guest].id), :method => :put, :remote => true, :class => "go-back-link", :data => { :dismiss => "modal", :target => "#shareAnswerModal" } %>
+     
+
+    </div>
+</div><!-- /.modal -->
+
+
