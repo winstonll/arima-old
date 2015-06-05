@@ -102,13 +102,13 @@ $(document).ready(function() {
     <div id="trending-questions-container">
       <% @random_questions = Question.where(group_id: @question.group_id).order("RANDOM()").limit(5) %>
 
-      <p class="trending-questions-label">Trending Questions</p>
+      <p class="trending-questions-label">Questions You May Like:</p>
 
-      <a href="<%= feed_path %>"><div id="view-feed-button">View Feed</div></a>
 
       <% @random_questions.each do |random_question| %>
         <%= render partial: 'common/trending_question', locals: { question: random_question } %>
       <% end %>
+      <a href="<%= feed_path %>"><div id="view-feed-button">View More</div></a>
     </div>
   </div>
 
