@@ -1,4 +1,12 @@
 <div class="answer-prompt">
+<% if @question == nil %>
+<% @question = Question.where(slug: params[:id])[0] %>
+<% end %>
+
+<% if @answer == nil %>
+<% @answer = user_signed_in? ? @question.answers.where(user_id: current_user.id).first : @question.answers.where(user_id: session[:guest].id).first %>
+<% end %>
+
   <% if session[:guest] != nil %>
     <%= simple_form_for @answer, url: question_answers_path(@question, @answer), class: "form-inline", role: "form", html: {novalidate: false} do |f| %>
       <div class="form-group">
