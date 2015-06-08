@@ -16,7 +16,7 @@
 
       <div class="profile-info">
         <div class="profile-username"><%= user.username.to_s %></div>
-        <div class="user-location"><%= full_location(user) %></div>
+        <div class="user-location"><%= user.location.city + ", " + user.location.country %></div>
       </div>
 
       <div id="profile-stats-container">

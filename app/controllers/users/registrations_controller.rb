@@ -8,7 +8,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user.password = user_params["password"]
     @user.email = user_params["email"]
     @user.username = user_params["username"]
+    @user.gender = user_params["gender"]
+    @user.birthyear = user_params["birthyear"]
+    @location = @user.location
+    @location.country_code = params[:user]["location_attributes"]["country"]
+    @location.country = Country.new(params[:user]["location_attributes"]["country"]).name
+    @location.city = params[:user]["location_attributes"]["city"].strip.downcase.capitalize
+
     @user.save
+    @location.save
+
 
     if(!@user.errors["email"].empty?)
       flash[:notice] = "Email " + @user.errors['email'].first
@@ -54,7 +63,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   private
     def user_params
-      params.require(:user).permit(:email, :password, :username)
+      params.require(:user).permit(
+        :email,
+        :password,
+        :username,
+        :gender,
+        :birthyear,
+        location_attributes: [
+          :city,
+          :country
+        ])
     end
 
   def reward_referral(user_referral_code)
