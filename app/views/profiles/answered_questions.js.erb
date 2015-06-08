@@ -1,7 +1,7 @@
 $(document).ready(function() {
   // $(".questions-list").html('<%= escape_javascript(render partial: "profiles/answered_questions") %>')
 
-  <% if session[:guest] && @unanswered.any? %>
+  <% if !cookies[:guest].nil? && @unanswered.any? %>
     $("#questions-list").html('<%= escape_javascript(render partial: "asked_questions") %>');
   <% else %>
     $("#questions-list").html('<%= escape_javascript(render partial: "answered_questions") %>');

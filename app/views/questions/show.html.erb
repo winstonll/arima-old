@@ -39,10 +39,10 @@ $(document).ready(function() {
       <div class="question-vote-container">
         <!-- Should probably refactor this and use _question_normal -->
         <div class="question-upvote">
-          <% if (session[:guest] == nil) %>
+          <% if (cookies[:guest].nil?) %>
           <%   check_guest() %>
           <% end %>
-          <% if Vote.where(:user_id => session[:guest].id).where(:question_id => @question.id).pluck(:vote_type)[0] == "upvote" %>
+          <% if Vote.where(:user_id => cookies[:guest]).where(:question_id => @question.id).pluck(:vote_type)[0] == "upvote" %>
             <%= link_to image_tag('upvote_blue.png', id: "upvote-image-#{@question.id}", class: "question-vote-image"), upvote_question_path(:id => @question.id), :method => :put, :remote => true %>
           <% else %>
             <%= link_to image_tag('upvote_grey.png', id: "upvote-image-#{@question.id}", class: "question-vote-image"), upvote_question_path(:id => @question.id), :method => :put, :remote => true %>
@@ -52,7 +52,7 @@ $(document).ready(function() {
           <%= "#{@question.votecount}" %>
         </div>
         <div class="question-downvote">
-          <% if Vote.where(:user_id => session[:guest].id).where(:question_id => @question.id).pluck(:vote_type)[0] == "downvote" %>
+          <% if Vote.where(:user_id => cookies[:guest]).where(:question_id => @question.id).pluck(:vote_type)[0] == "downvote" %>
             <%= link_to image_tag('downvote_orange.png', id: "downvote-image-#{@question.id}", class: "question-vote-image"), downvote_question_path(:id => @question.id), :method => :put, :remote => true %>
           <% else %>
             <%= link_to image_tag('downvote_grey.png', id: "downvote-image-#{@question.id}", class: "question-vote-image"), downvote_question_path(:id => @question.id), :method => :put, :remote => true %>

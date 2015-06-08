@@ -9,7 +9,7 @@ module DetermineUserAndUnits
   private
 
   def set_user
-    @user = session[:guest]
+    @user = User.where(id: cookies[:guest]).first
   end
 
   def determine_units

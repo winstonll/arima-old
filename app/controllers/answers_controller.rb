@@ -26,7 +26,8 @@ class AnswersController < ApplicationController
   def gender
     year = params[:age_text].to_i
     gender = params[:gender_id].to_i == 1 ? "M" : "F"
-    user_signed_in? ? current_user.gender = gender : session[:guest].gender = gender
+    @guest = User.where(id: cookies[:guest]).first
+    user_signed_in? ? current_user.gender = gender : @guest.gender = gender
     #session[:guest].gender = gender
 
     if(user_signed_in?)
@@ -39,9 +40,9 @@ class AnswersController < ApplicationController
         redirect_to :back
       end
     else
-      if( 1900 < year && year < Time.now.year && session[:guest].gender != nil)
-        session[:guest].birthyear = year
-        session[:guest].save
+      if( 1900 < year && year < Time.now.year && @guest.gender != nil)
+        @guest.birthyear = year
+        @guest.save
         redirect_to :back
       else
         flash[:notice] = "Year of birth and/or gender was invalid!"
@@ -54,7 +55,7 @@ class AnswersController < ApplicationController
     @question = Question.friendly.find(params[:question_id])
 
     #create answer if user hasn't already submitted one for this question
-    if (session[:guest] && @answer = @question.answers.where(user: session[:guest]).first).nil?
+    if (!cookies[:guest].nil? && @answer = @question.answers.where(user: User.where(id: cookies[:guest])).first).nil?
       if(user_signed_in?)
         @answer = @question.answers.build(params[:answer].permit(:value))
         @answer.user = current_user
@@ -79,10 +80,11 @@ class AnswersController < ApplicationController
         end
       else
         @answer = @question.answers.build(params[:answer].permit(:value))
-        @answer.user = session[:guest]
+        @guest = User.where(id: cookies[:guest])
+        @answer.user = @guest
 
         if @answer.save
-          if session[:guest].share_modal_state != "hide"
+          if @guest.share_modal_state != "hide"
             redirect_to question_path(@question), flash: { share_answer_modal: true }
           else
             redirect_to question_path(@question)

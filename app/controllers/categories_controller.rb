@@ -16,8 +16,10 @@ class CategoriesController < ApplicationController
     @all = @question.questions.order(created_at: :desc)
 
     # all questions answered by the user
-    if session[:guest]
-      user_questions = session[:guest].questions
+
+    if !cookies[:guest].nil?
+      @guest = User.where(id: cookies[:guest]).first
+      user_questions = @guest.questions
       @answered         = @all & user_questions
       @unanswered       = @all - @answered
     end
@@ -44,7 +46,8 @@ class CategoriesController < ApplicationController
       @answered         = @all_popular_questions.keys & user_questions
       @unanswered       = @all_popular_questions.keys - @answered
     else
-      user_questions = session[:guest].questions
+      @guest = User.where(id: cookies[:guest]).first
+      user_questions = @guest.questions
       @answered         = @all_popular_questions.keys & user_questions
       @unanswered       = @all_popular_questions.keys - @answered
     end
@@ -61,8 +64,9 @@ class CategoriesController < ApplicationController
     @all = @question.questions.order(created_at: :desc)
 
     # all questions answered by the user
-    if session[:guest]
-      user_questions = @session[:guest].questions
+    if !cookies[:guest].nil?
+      @guest = User.where(id: cookies[:guest]).first
+      user_questions = @guest.questions
       @answered         = @all & user_questions
       @unanswered       = @all - @answered
     end

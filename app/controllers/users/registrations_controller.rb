@@ -1,9 +1,8 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
-
     check_guest()
-    @user = session[:guest]
+    @user = User.where(id: cookies[:guest]).first
     @user.first_name = nil
     @user.password = user_params["password"]
     @user.email = user_params["email"]

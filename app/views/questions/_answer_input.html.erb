@@ -4,10 +4,10 @@
 <% end %>
 
 <% if @answer == nil %>
-<% @answer = user_signed_in? ? @question.answers.build(user_id: current_user.id) : @question.answers.build(user_id: session[:guest].id) %>
+<% @answer = user_signed_in? ? @question.answers.build(user_id: current_user.id) : @question.answers.build(user_id: cookies[:guest]) %>
 <% end %>
 
-  <% if session[:guest] != nil %>
+  <% if cookies[:guest] != nil %>
     <%= simple_form_for @answer, url: question_answers_path(@question, @answer), class: "form-inline", role: "form", html: {novalidate: false} do |f| %>
       <div class="form-group">
         <% if @question.input_type == "measurement" %>
@@ -18,7 +18,7 @@
         <% elsif @question.input_type == "collection" %>
           <%= f.input(:value, label: false, prompt: "Select one...", collection: @question.options_array, input_html: { class: "questions-page-input form-control input-lg"}) %>
         <% else %>
-          <%= f.input(:value, label: false, placeholder: @question.placeholder(session[:guest]),
+          <%= f.input(:value, label: false, placeholder: @question.placeholder(User.where(id: cookies[:guest]).first),
                        as: @question.input_type.try(:to_sym),
                        input_html: {
                          class: "questions-page-input form-control input-lg",
