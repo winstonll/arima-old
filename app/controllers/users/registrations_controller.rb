@@ -8,6 +8,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user.password = user_params["password"]
     @user.email = user_params["email"]
     @user.username = user_params["username"]
+    @user.gender = user_params["gender"]
+    @user.birthyear = user_params["birthyear"]
+    @user.location.country = user_params["location_attributes"]["country"]
     @user.save
 
     if(!@user.errors["email"].empty?)
@@ -54,7 +57,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   private
     def user_params
-      params.require(:user).permit(:email, :password, :username)
+      params.require(:user).permit(
+        :email, 
+        :password,
+        :username,
+        :gender,
+        :birthyear,
+        location_attributes: [
+          :city,
+          :country
+        ])
     end
 
   def reward_referral(user_referral_code)
