@@ -10,11 +10,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user.username = user_params["username"]
     @user.gender = user_params["gender"]
     @user.birthyear = user_params["birthyear"]
-    @user.save
     @location = @user.location
-    @location.country = params[:user]["location_attributes"]["country"].strip
+    @location.country_code = params[:user]["location_attributes"]["country"]
+    @location.country = Country.new(params[:user]["location_attributes"]["country"]).name
     @location.city = params[:user]["location_attributes"]["city"].strip.downcase.capitalize
+
+    @user.save
     @location.save
+
 
     if(!@user.errors["email"].empty?)
       flash[:notice] = "Email " + @user.errors['email'].first
@@ -61,7 +64,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private
     def user_params
       params.require(:user).permit(
-        :email, 
+        :email,
         :password,
         :username,
         :gender,
