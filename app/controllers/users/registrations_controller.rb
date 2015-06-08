@@ -10,8 +10,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user.username = user_params["username"]
     @user.gender = user_params["gender"]
     @user.birthyear = user_params["birthyear"]
-    @user.location.country = user_params["location_attributes"]["country"]
     @user.save
+    @location = @user.location
+    @location.country = params[:user]["location_attributes"]["country"].strip
+    @location.city = params[:user]["location_attributes"]["city"].strip.downcase.capitalize
+    @location.save
 
     if(!@user.errors["email"].empty?)
       flash[:notice] = "Email " + @user.errors['email'].first
