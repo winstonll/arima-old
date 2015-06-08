@@ -87,27 +87,126 @@
   }
 }
 
-/* About Points Modal */
-#about-points-modal-body {
-  padding: 20px 70px 35px 70px;
+#shareSignupModal {
+  background-image: url("backgrounds/taipeiday_bg.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 50em;
+  height: 30em;
+  margin: 10em 0 0 20em;
+  overflow: hidden;
+  border-radius: 10px;
 
-  .emphasized {
-    font-weight: 600;
-    color: #5986dd;
+  .share-modal-content-container {
+    text-align: left;
+    padding-top: 2em;
+    padding-left: 4em;
+
+    .signup-form {
+
+      .signup-section {
+
+        .signup-input {
+          width: 22em;
+          float: left;
+
+          .input-username,
+          .input-email,
+          .input-password {
+            display: inline-block;
+            margin: 1em 0 0 0 ;
+
+            .lock {
+              position: relative;
+              right: 3px;
+              display: inline;
+              padding-left: 4px;
+              padding-bottom: 4.5px;
+              width: 5%;
+            }
+
+            .input-box {
+              height: 30px;
+              width: 270px;
+              margin: auto;
+              font-size: 12px;
+              font-weight: normal;
+              font-style: italic;
+              background-color: #fff;
+              border: 0;
+              border-radius: 3px;
+              color: grey;
+              padding-left: 0.75em;
+            }
+          }
+        }
+          
+          .info-input {
+
+            .birthyear-input,
+            .gender-input,
+            .country-input,
+            .city-input, {
+              display: inline-block;
+              margin: 1em 0 0 0;
+              margin-left: 20px;
+
+
+              .small-input-box {
+                height: 30px;
+                width: 100px;
+                font-size: 12px;
+                font-weight: normal;
+                background-color: #fff;
+                border: 0;
+                border-radius: 4px;
+                color: grey;
+                padding-left: 0.75em;
+              }
+            } 
+          }
+
+        .signup-links-bottom {
+          display: inline-block;
+          text-align: left;
+          text-shadow: 0px 1px 2px rgba(0,0,0,0.5);
+          margin-left: 20px;
+
+
+          .signup-button {
+            padding: 5px 10px 5px 10px;
+            background-color: #00c39c;
+            color: #fff;
+            border-radius: 3px;
+            border: 0;         
+            margin: 2.4em 0 1em 0;
+            cursor: pointer;
+
+            &:hover {
+              opacity: 0.8;
+            }
+          }
+          .go-back-link {
+            padding: 5px 10px 5px 18px;
+            background-color: grey;
+            color: #fff;
+            border-radius: 3px;
+            margin: auto;
+            cursor: pointer;
+
+            &:hover {
+              opacity: 0.8;
+            }
+          }
+        }
+      }    
+    }
   }
+} 
 
-  a {
-    color: #25c297;
-  }
 
-  h2 {
-    font-variant: small-caps;
-    font-weight: 600;
-    font-size: 25px;
-  }
-}
-
-/* Edit Profile and Submit Question Modals */
+/* Submit Question Modals */
 .modal-finished-button {
   height: 50px;
   width: 100px;
@@ -122,13 +221,6 @@
 
 .modal-finished-button:hover {
   opacity: 0.8;
-}
-
-/* Edit Profile Modal */
-#myModal {
-  .devise-links, :not(.edit_user) .form-group label  {
-    color: #4a4a4a;
-  }
 }
 
 /* Submit Question Modal */

@@ -1,0 +1,66 @@
+<!-- Share New Question Modal -->
+<div class="modal fade" id="shareSignupModal" tabindex="-1" role="dialog" aria-labelledby="shareSignupModal" aria-hidden="true">
+    <div class="share-modal-content-container">
+      <h4> This is your current Profile, complete it for the full Arima experience! </h4>
+        <p>Ask questions and see personalized reports</p>
+        <p>Keep track of what you asked and answered</p>
+        <p>Gain points, unlock premium features, and more!</p>
+  
+      <div class="signup-form">
+        <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: {class: "form"}) do |f| %>
+            <div class="signup-section">
+              <div class="signup-input">
+
+                <div class="input-username">
+                 Username </br><%= f.text_field :username, placeholder: "This is how you will appear on Arima.", class: "input-box" %>
+                </div>
+
+                <div class="input-email">
+                  Email <%= image_tag ("lock.png"), class: "lock" %> </br>
+                  <%= f.email_field :email, placeholder: "No spam, no verifications. We promise.", class: "input-box" %>
+                </div>
+
+                <div class="input-password">
+                  Password <%=image_tag ("lock.png"), class: "lock" %> </br>
+                  <%= f.password_field :password, placeholder: "Your password is safe with us!", class: "input-box" %>
+                </div>
+              </div>
+
+              <div class="info-input">
+                <div class="location-input">
+                  <%= f.simple_fields_for :location_attributes do |location| %>
+                    <div class="country-input">
+                      Country <%= location.input :country,label: false,input_html: { class: "small-input-box" } %>
+                    </div>
+                    <div class="city-input">
+                      City <%= location.input :city, label: false, input_html: { class: "small-input-box" } %>
+                    </div>
+                  <% end %>
+                </div>
+
+                <div class="birthyear-input">
+                  Birth Year </br><%= f.text_field :birthyear, placeholder: "(YYYY)", class: "small-input-box" %>
+                </div>
+
+                <div class="gender-input">
+                  Gender </br><%= select_tag(:gender, options_for_select(["Male", "Female", "Other"]), prompt: "Select...", class: "small-input-box") %>
+                </div>
+              </div>
+                
+              <div class="signup-links-bottom">
+                <div id="signup-start">
+                  <%= f.submit "Show me the full experience", class: "signup-button" %>
+                </div>
+                <div id="modal-hide">
+                  <%= link_to "I'm okay with being a guest", show_share_modal_question_path(:user_id => session[:guest].id), :method => :put, :remote => true, :class => "go-back-link", :data => { :dismiss => "modal", :target => "#shareAnswerModal" } %>
+                </div>
+              </div>
+
+            </div>
+            <% end %>
+          </div>
+
+    </div>
+</div><!-- /.modal -->
+
+
