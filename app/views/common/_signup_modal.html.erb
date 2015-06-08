@@ -5,7 +5,7 @@
         <p>Ask questions and see personalized reports</p>
         <p>Keep track of what you asked and answered</p>
         <p>Gain points, unlock premium features, and more!</p>
-  
+
       <div class="signup-form">
         <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: {class: "form"}) do |f| %>
             <div class="signup-section">
@@ -46,12 +46,13 @@
                   Gender </br><%= select_tag(:gender, options_for_select(["Male", "Female", "Other"]), prompt: "Select...", class: "small-input-box") %>
                 </div>
               </div>
-                
+
               <div class="signup-links-bottom">
                 <div id="signup-start">
                   <%= f.submit "Show me the full experience", class: "signup-button" %>
                 </div>
                 <div id="modal-hide">
+                  <% if session[:guest].nil? then checkguest end%>
                   <%= link_to "I'm okay with being a guest", show_share_modal_question_path(:user_id => session[:guest].id), :method => :put, :remote => true, :class => "go-back-link", :data => { :dismiss => "modal", :target => "#shareAnswerModal" } %>
                 </div>
               </div>
