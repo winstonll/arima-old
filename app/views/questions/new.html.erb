@@ -71,7 +71,7 @@
               Your Question:
             </p>
             <p class="submit-q-input-box">
-              <textarea type="text" name="submit_question_name" id="input-q-title" placeholder="Type your question here..."></textarea>
+              <%= f.text_area :label, name: "submit_question_name", placeholder: "Type your question here...", id: "input-q-title" %>
               <span class="countdown"></span>
             </p>
           </article>
