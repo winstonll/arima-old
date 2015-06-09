@@ -21,10 +21,8 @@ class QuestionsController < ApplicationController
     #@countries_array is a two dimensional array, so this extracts the first element of each inner array.
     @countries_answered = @countries_array.collect(&:first).uniq
 
-    create_dummy_users()
-    if (cookies[:guest].nil?)
-      check_guest()
-    end
+    #create_dummy_users()
+    check_guest()
 
     if cookies[:guest] != nil
       @user_country = Location.where(user_id: cookies[:guest]).first

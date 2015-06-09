@@ -80,7 +80,7 @@ class AnswersController < ApplicationController
         end
       else
         @answer = @question.answers.build(params[:answer].permit(:value))
-        @guest = User.where(id: cookies[:guest])
+        @guest = User.where(id: cookies[:guest]).first
         @answer.user = @guest
 
         if @answer.save
