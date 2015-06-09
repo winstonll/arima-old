@@ -14,10 +14,10 @@
         </div>
 
         <div id="country" class="tab">
-          <div id="answer-country" class='answer-chart'></div>
           <div id="country_position" class="country_dropdown">
             <%= select_tag(@countries_answered, options_for_select(@countries_answered, answer.user_country), prompt: "Select a Country") %>
           </div>
+          <div id="answer-country" class='answer-chart'></div>
         </div>
 
         <% has_city = user_signed_in? ? answer.user.location.city.present? : false %>
@@ -57,7 +57,7 @@
     </div>
   </div>
 
-  <%= link_to 'Please click here if you only want to see the data visualization', report_question_path, :target => "_blank" %>
+  <%= link_to 'This link shows the individual report, share it with your friends!', report_question_path, :target => "_blank" %>
 
 </div>
 

@@ -414,6 +414,7 @@
 
     .country_dropdown {
       color: #4a90e2;
+      text-align: right;
 
       select {
 
@@ -424,22 +425,27 @@
         border: 1px solid #888;
         border-radius: 5px;
         height: 30px;
-        width: 30%;
+        width: 15em;
 
       }
     }
 
-    #country_position{
-        position: relative;
-        bottom: 32em;
-        left: 35%;
-    }
-
     #heat_position{
-      position: relative;
-      bottom: 8px;
-      right: 35%;
+      color: #4a90e2;
+      text-align: right;
 
+      select {
+
+        display: inline-block;
+        background: transparent;
+        font-size: 14px;
+        line-height: 1;
+        border: 1px solid #888;
+        border-radius: 5px;
+        height: 30px;
+        width: 15em;
+
+      }
     }
 
     .location-select {
