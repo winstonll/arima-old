@@ -2,6 +2,8 @@ class QuestionsController < ApplicationController
   include DetermineUserAndUnits
   layout "application_fluid"
 
+  skip_before_filter :verify_authenticity_token, :only => :create
+
   # Show method - called when question page is rendered
   def show
     @question = Question.where(slug: params[:id])[0]
