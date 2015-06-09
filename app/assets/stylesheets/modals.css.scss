@@ -88,10 +88,13 @@
 }
 
 #shareSignupModal {
-  background-image: url("backgrounds/taipeiday_bg.png");
+  background: url(image_path('taipeiday_bg.png')) repeat-x center top;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   width: 50em;
   height: 30em;
   margin: 10em 0 0 20em;

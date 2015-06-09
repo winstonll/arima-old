@@ -27,7 +27,7 @@ class ReportsController < ApplicationController
     @url = answer_url(@answer.id)
 
     #This is to create custom views for a report
-    if session[:guest] != nil
+    if cookies[:guest] != nil
       render template: "reports/index" and return
     else
       render template: "reports/shared_report" and return
@@ -40,7 +40,7 @@ class ReportsController < ApplicationController
   def setup
     @resource ||= User.where(username: params[:username]).first
 
-    if session[:guest] != nil
+    if cookies[:guest] != nil
       @points_count = @resource.points || 0
       @questions_count = @resource.questions.count
       @most_active_category = @resource.most_active_category.keys.first if @resource.most_active_category

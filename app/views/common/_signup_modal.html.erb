@@ -52,8 +52,7 @@
                   <%= f.submit "Show me the full experience", class: "signup-button" %>
                 </div>
                 <div id="modal-hide">
-                  <% if session[:guest].nil? then checkguest end%>
-                  <%= link_to "I'm okay with being a guest", show_share_modal_question_path(:user_id => session[:guest].id), :method => :put, :remote => true, :class => "go-back-link", :data => { :dismiss => "modal", :target => "#shareAnswerModal" } %>
+                  <%= link_to "I'm okay with being a guest", show_share_modal_question_path(:user_id => cookies[:guest]), :method => :put, :remote => true, :class => "go-back-link", :data => { :dismiss => "modal", :target => "#shareAnswerModal" } %>
                 </div>
               </div>
 

@@ -4,7 +4,7 @@ class SearchController < ApplicationController
   layout "application_fluid"
 
   def index
-    if(session[:guest] == nil)
+    if(cookies[:guest] == nil)
       check_guest()
     end
 
@@ -29,7 +29,8 @@ class SearchController < ApplicationController
       @answered         = @all & current_user.questions
       @unanswered       = @all - @answered
     else
-      @answered         = @all & session[:guest].questions
+      @guest            = User.where(id: cookies[:guest])
+      @answered         = @all & @guest.questions
       @unanswered       = @all - @answered
     end
 

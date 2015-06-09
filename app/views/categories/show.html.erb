@@ -47,13 +47,13 @@
     </div>
 
   <div id="questions-container">
-    <% if session[:guest] && @unanswered.any? %>
+    <% if !cookies[:guest].nil? && @unanswered.any? %>
       <%= render partial: "categories/show_unanswered_questions" %>
     <% else %>
       <%= render partial: "categories/show_questions" %>
     <% end %>
 
-    <% if session[:guest] && !@answered.empty? %>
+    <% if !cookies[:guest].nil? && !@answered.empty? %>
       <%= render partial: "categories/show_answered_questions" %>
     <% end %>
   </div>

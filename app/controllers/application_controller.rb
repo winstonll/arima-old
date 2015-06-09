@@ -184,11 +184,9 @@ class ApplicationController < ActionController::Base
         ip_address: ip)
 
         @guest.save
-        #sign_in(:user, @user)
-        session[:guest] = @user
-      #localhost
+        cookies[:guest] = { :value => @guest.id, :expires => 1.week.from_now.utc }
       else
-
+        #localhost
         @guest = User.new(ip_address: ip)
         @guest.build_location(
           province: "Ontario",
@@ -199,14 +197,12 @@ class ApplicationController < ActionController::Base
           ip_address: ip)
         @guest.save!
 
-        session[:guest] = @guest
-        #sign_in(:user, @user)
+        cookies[:guest] = { :value => @guest.id, :expires => 1.week.from_now.utc }
       end
     else
       @guest = User.find_by(ip_address: ip)
 
-      session[:guest] = @guest
-      #sign_in(:user, @user)
+      cookies[:guest] = { :value => @guest.id, :expires => 1.week.from_now.utc }
     end
   end
 

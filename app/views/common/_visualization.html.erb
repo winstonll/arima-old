@@ -40,7 +40,8 @@
         </div>
 
         <div id="pstm" class="tab">
-          <% unless (session[:guest].gender != nil && session[:guest].age != nil) || (user_signed_in? ? (current_user.gender != nil && current_user.age != nil) : false) %>
+          <% @guest = User.where(id: cookies[:guest]).first %>
+          <% unless (@guest.gender != nil && @guest.age != nil) || (user_signed_in? ? (current_user.gender != nil && current_user.age != nil) : false) %>
             <p id="pstm_description">This tab shows you what people similiar to your age and gender have answered.</p>
             <p id="gender_age_label">Fill in the form below to see a report tailored for you!</p>
             <%= form_tag({controller: "answers", action: "gender"}, method: "get" ) do |f| %>
