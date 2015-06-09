@@ -30,10 +30,10 @@
                 <div class="location-input">
                   <%= f.simple_fields_for :location_attributes do |location| %>
                     <div class="country-input">
-                      Country <%= location.input :country,label: false,input_html: { class: "small-input-box" } %>
+                     Country </br><%= location.country_select(:country, { priority_countries: ["#{User.where(id: cookies[:guest]).first.location.country}"] }, { class: "small-input-box"} ) %>
                     </div>
                     <div class="city-input">
-                      City <%= location.input :city, label: false, input_html: { class: "small-input-box" } %>
+                      City <%= location.input :city, label: false, placeholder: "#{User.where(id: cookies[:guest]).first.location.city}", input_html: { class: "small-input-box" } %>
                     </div>
                   <% end %>
                 </div>
