@@ -71,8 +71,8 @@ class AnswersController < ApplicationController
           current_user.save
 
           if(@question.user_id != nil)
-            if((Answer.where(question_id: @question.id).length % 10) == 0)
-              q_owner = User.where(id: @question.user_id)
+            q_owner = User.where(id: @question.user_id)
+            if((Answer.where(question_id: @question.id).length % 10) == 0 && !q_owner.nil?)
               q_owner.points = q_owner.points + 1
               q_owner.save
             end
