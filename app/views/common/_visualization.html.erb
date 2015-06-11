@@ -153,6 +153,7 @@
         d3.select("g").remove();
         e.preventDefault();
         if(currentAttrValue != "#heatmap"){
+          data_answer.selected = currentAttrValue.substring(1, currentAttrValue.length);
           createChart(currentAttrValue.substring(1, currentAttrValue.length), <%= answer.user_country.to_json.html_safe%>);
           //show_location_answer(currentAttrValue.substring(1, currentAttrValue.length));
         }
@@ -243,11 +244,12 @@
 
       var width = $(".tab-content").width();
       var height = 450;
-      var radius = Math.min(width, height) / 2;
       var donutWidth = 75;
+      var radius = Math.min(width, height) / 2;
+
       var legendRectSize = 18;
       var legendSpacing = 4;
-      var color = d3.scale.category20b();
+      var color = d3.scale.category20();
       var svg = d3.select('#answer-' + tab_selection)
         .append('svg')
         .attr('width', width)
@@ -303,10 +305,16 @@
 
   createChart(data_answer.selected, "world");
 
-  $(window).on("resize", function() {
-    var targetWidth = $(".tab-content").width();
-    $("svg").attr("width", targetWidth);
-  });
+  d3.select(window).on('resize', resize);
+
+  function resize() {
+      // update width
+      d3.select("svg").remove();
+      d3.select("g").remove();
+      createChart(data_answer.selected, <%= answer.user_country.to_json.html_safe%>);
+  }
+
+
 </script>
 
 <!-- Google Analytics -->
