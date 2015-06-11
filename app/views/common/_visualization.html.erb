@@ -244,7 +244,6 @@
       var width = $(".tab-content").width();
       var height = 450;
       var radius = Math.min(width, height) / 2;
-      var donutWidth = 75;
       var legendRectSize = 18;
       var legendSpacing = 4;
       var color = d3.scale.category20();
@@ -257,7 +256,6 @@
           ',' + (height / 2) + ')');
 
       var arc = d3.svg.arc()
-        .innerRadius(radius - donutWidth)
         .outerRadius(radius);
 
       var pie = d3.layout.pie()
