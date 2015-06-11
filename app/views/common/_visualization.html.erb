@@ -63,6 +63,7 @@
 
 <!-- key=AIzaSyDELDDeZFCjRjY4yvz3o0ium-jSwRvnwFY -->
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=visualization"></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
 
 <script>
   // Heatmap Begin
@@ -79,7 +80,7 @@
 
   function createHeat(select){
     heatData = [];
-    console.log(select);
+    //console.log(select);
     for(i=0; i<userLocation[select].length; i++){
       indexComma = userLocation[select][i].indexOf(",");
       latitude = Number(userLocation[select][i].substring(0, indexComma-1));
@@ -148,9 +149,12 @@
         // Change/remove current tab to active
         jQuery(this).parent('li').addClass('active').siblings().removeClass('active');
 
+        d3.select("svg").remove();
+        d3.select("g").remove();
         e.preventDefault();
         if(currentAttrValue != "#heatmap"){
-          show_location_answer(currentAttrValue.substring(1, currentAttrValue.length));
+          createChart(currentAttrValue.substring(1, currentAttrValue.length), <%= answer.user_country.to_json.html_safe%>);
+          //show_location_answer(currentAttrValue.substring(1, currentAttrValue.length));
         }
         else{
 
@@ -166,8 +170,11 @@
 
   $('.country_dropdown').change(function (e) {
     var country = $(e.target).find(":selected").val();
-    data_answer.country_stats = data_answer.country[country]
-    show_location_answer('country');
+    data_answer.country_stats = data_answer.country[country];
+    console.log(country);
+    d3.select("svg").remove();
+    d3.select("g").remove();
+    createChart("country", country);
   });
 
   //heatmap drop down
@@ -201,106 +208,105 @@
   data_answer.pstm = <%= answer.data_array('pstm').html_safe %>;
   data_answer.selected = 'world';
 
-  var chart_answer = c3.generate({
-    size: { width: document.getElementsByClassName('tab-content').clientWidth,
-            height: 450 },
-    data: {
-      x: data_answer.collection ? null : 'x',
-      columns: transform_data_answer(data_answer.selected),
-      type: data_answer.collection ? 'donut' : 'bar'
-    },
-    axis: {
-      x: {
-        label: {
-          text: 'Answer Distribution',
-          position: 'outer-center'
-        }
-      },
-      y: {
-        label: {
-          text: 'Number of Votes',
-          position: 'outer-middle'
-        }
+  var chart_answer;
+
+  function createChart(tab_selection, country_name) {
+    console.log(tab_selection);
+    (function(d3) {
+      'use strict';
+      if (tab_selection == 'world'){
+        var dataset = data_answer[tab_selection].map(function(d) {
+            return {
+              label: d[0],
+              count: d[1]
+            };
+        });
       }
-    },
-    tooltip: {
-      format: {
-        title: function (d) { return null; },
-        value: function (value, ratio, id) {
-          var sum = data_answer[data_answer.selected].reduce(function(p, c) {
-            return p + c[1];
-          }, 0);
-          return (value / sum * 100).toFixed(1) + '%';
-        }
-      },
-      contents: function (d, defaultTitleFormat, defaultValueFormat, color) {
-        d.forEach(function(el){ el.name = el.value })
-        return this.getTooltipContent ?
-          this.getTooltipContent(d, defaultTitleFormat, defaultValueFormat, color) : '';
+
+      if (tab_selection == 'country'){
+         var dataset = data_answer[tab_selection][country_name].map(function(d) {
+            return {
+              label: d[0],
+              count: d[1]
+            };
+        });
       }
-    }
+
+      if (tab_selection == 'pstm'){
+        var dataset = data_answer[tab_selection].map(function(d) {
+            return {
+              label: d[0],
+              count: d[1]
+            };
+        });
+      }
+
+      var width = $(".tab-content").width();
+      var height = 450;
+      var radius = Math.min(width, height) / 2;
+      var donutWidth = 75;
+      var legendRectSize = 18;
+      var legendSpacing = 4;
+      var color = d3.scale.category20b();
+      var svg = d3.select('#answer-' + tab_selection)
+        .append('svg')
+        .attr('width', width)
+        .attr('height', height)
+        .append('g')
+        .attr('transform', 'translate(' + (width / 2) +
+          ',' + (height / 2) + ')');
+
+      var arc = d3.svg.arc()
+        .innerRadius(radius - donutWidth)
+        .outerRadius(radius);
+
+      var pie = d3.layout.pie()
+        .value(function(d) { return d.count; })
+        .sort(null);
+
+      var path = svg.selectAll('path')
+        .data(pie(dataset))
+        .enter()
+        .append('path')
+        .attr('d', arc)
+        .attr('fill', function(d, i) {
+          return color(d.data.label);
+        });
+
+      var legend = svg.selectAll('.legend')
+        .data(color.domain())
+        .enter()
+        .append('g')
+        .attr('class', 'legend').attr('transform', function(d, i) {
+          console.log(d);
+          console.log(i);
+          var height = legendRectSize + legendSpacing;
+          var offset =  height * color.domain().length / 2;
+          var horz = 10 * legendRectSize;
+          var vert = i * height - offset;
+          return 'translate(' + horz + ',' + vert + ')';
+        });
+
+
+      legend.append('rect')
+        .attr('width', legendRectSize)
+        .attr('height', legendRectSize)
+        .style('fill', color)
+        .style('stroke', color);
+
+      legend.append('text')
+        .attr('x', legendRectSize + legendSpacing)
+        .attr('y', legendRectSize - legendSpacing)
+        .text(function(d) { return d; });
+    })(window.d3);
+  }
+
+  createChart(data_answer.selected, "world");
+
+  $(window).on("resize", function() {
+    var targetWidth = $(".tab-content").width();
+    $("svg").attr("width", targetWidth);
   });
-
-  $("#answer-" + data_answer.selected).append(chart_answer.element);
-
-  window.addEventListener("resize", myFunction);
-
-  function myFunction() {
-    chart_answer.resize({width: document.getElementsByClassName('tab-content').clientWidth});
-  }
-
-  function transform_data_answer(loc) {
-    var data = data_answer[loc];
-
-    if (loc == 'country'){
-      data = data_answer.country_stats;
-      if(data != null){
-        return data;
-      }
-      else {
-        var country = "<%= answer.user_country %>";
-        data_answer.country_stats = data_answer.country[country];
-        data = data_answer.country_stats;
-        return data;
-      }
-    }
-    else if (loc == 'pstm'){
-      if(data_answer.collection){return data;}
-    }
-    else{
-      if (data_answer.collection) {return data;}
-      else {
-      data = [['x'], [loc]];
-      data_answer[loc].forEach(function(el, i, arr) {
-        data[0].push(el[0]);
-        data[1].push(el[1]);
-      });
-      return data;
-      }
-    }
-  }
-
-  function show_location_answer(loc) {
-    previous_selected = data_answer.selected;
-    data_answer.selected = loc;
-    console.log(data_answer.selected);
-    var loc_arr = [];
-
-    if(data_answer.collection){
-      for (i = 0; i < transform_data_answer('world').length; i++){
-        loc_arr.push(transform_data_answer('world')[i][0])
-      }
-    } else {
-      loc_arr = [previous_selected];
-    }
-
-    $("#answer-" + data_answer.selected).append(chart_answer.element);
-
-    chart_answer.load({
-      columns: transform_data_answer(loc),
-      unload: loc_arr
-    });
-  }
 </script>
 
 <!-- Google Analytics -->
