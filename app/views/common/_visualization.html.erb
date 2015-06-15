@@ -276,26 +276,9 @@
         });
 
       path.on('mouseover', function(d) {
-        //console.log(d.data.label);
-        //console.log(d3.select('.answer-chart'));
-        if(data_answer.selected == "world"){
-          d3.selectAll('.label1').html(d.data.label);
-          d3.selectAll('.count1').html(d.data.count);
-          console.log(tooltip.select('label1'));
-          d3.selectAll('.tooltip1').style('display', 'block');
-        }
-        else if (data_answer.selected == "country"){
-          d3.selectAll('.label1').html(d.data.label);
-          d3.selectAll('.count1').html(d.data.count);
-          console.log(tooltip.select('label2'));
-          d3.selectAll('.tooltip1').style('display', 'block');
-        }
-        else if (data_answer.selected == "pstm"){
-          d3.selectAll('.label1').html(d.data.label);
-          d3.selectAll('.count1').html(d.data.count);
-          console.log(tooltip.select('label3'));
-          d3.selectAll('.tooltip1').style('display', 'block');
-        }
+        d3.selectAll('.label1').html(d.data.label);
+        d3.selectAll('.count1').html(d.data.count);
+        d3.selectAll('.tooltip1').style('display', 'block');
       });
 
       path.on('mouseout', function() {
