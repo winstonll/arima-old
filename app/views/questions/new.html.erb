@@ -20,14 +20,6 @@
        }
      });
 
-     if($('#value_type').val() != "collection"){
-        $("#answer-types").css('display','none');
-
-     }
-     else {
-        $("#answer-types").css('display','block');
-     }
-
      $('#value_type').change(function(){
         if($(this).val() != "collection"){
           $("#answer-types").css('display','none');
