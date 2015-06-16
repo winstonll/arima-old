@@ -1,4 +1,19 @@
-<% content_for :title, "Feed"%> 
+<% content_for :title, "Feed"%>
+
+<% Group.all.each do |group| %>
+<a href="<%= category_path(group) %>" data-group-id="<%= group.id %>" class="sidebar-category <%= group.page_class %>">
+  <div class="category-container">
+    <% if ((group.id == @question.try(:id)) || (group.id == @question.try(:group_id))) %>
+    <div class="category-inner-container category-inner-container-active">
+    <% else %>
+    <div class="category-inner-container">
+    <% end %>
+      <%= image_tag("category-icons/#{group.id}.png", class: "category-icon" ) %>
+      <span class="category-title"><%= group.label.sub("<br>", " ").html_safe %></span>
+    </div>
+  </div>
+</a>
+<% end %>
 
 <div id="feed-container">
   <div id="feed-stats-container">
