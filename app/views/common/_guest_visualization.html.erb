@@ -12,18 +12,26 @@
     <div class="visualization" id="v-answer">
       <div class="tabs">
         <ul class="tab-links" style= "margin-top: 40px;">
-            <li class="active"><a href="#world">Global Data</a></li>
-            <li><a href="#heatmap">World Map</a></li>
+            <li class="active"><a href="#world" data-toggle="tab">Global Data</a></li>
+            <li><a href="#heatmap" data-toggle="tab">World Map</a></li>
             <!-- <li><a href="#city"><%#= answer.user.location.city %></a></li> -->
-            <li><a href="#country">Country Data</a></li>
+            <li><a href="#country" data-toggle="tab">Country Data</a></li>
         </ul>
 
         <div class="tab-content">
-            <div id="world" class="tab active">
-              <div id="answer-world" class='answer-chart'></div>
-            </div>
+          <div id="world" class="tab active">
+            <a class="btnPrevious"><%= image_tag("back_tab.png", :class => "visualization-tab-img")%></a>
+              This tab shows what everyone has answered.
+            <a class="btnNext"><%= image_tag("forward_tab_blue.png", :class => "visualization-tab-img") %></a>
+
+            <div id="answer-world" class='answer-chart' style= "margin-top: 20px;"></div>
+          </div>
 
             <div id="country" class="tab">
+              <a class="btnPrevious"><%= image_tag("back_tab_blue.png", :class => "visualization-tab-img")%></a>
+                This tab shows what everyone from "" has answered.
+              <a class="btnNext"><%= image_tag("forward_tab.png", :class => "visualization-tab-img")%></a>
+
               <div id="country_position" class="country_dropdown">
                 <%= select_tag(@countries_answered, options_for_select(@countries_answered), prompt: "Select a Country") %>
               </div>
@@ -31,6 +39,9 @@
             </div>
 
             <div id="heatmap" class="tab">
+              <a class="btnPrevious"><%= image_tag("back_tab_blue.png", :class => "visualization-tab-img")%></a>
+                This map shows where people who answered "" are from.
+              <a class="btnNext"><%= image_tag("forward_tab_blue.png", :class => "visualization-tab-img")%></a>
               
               <div id="heat_position" class="country_dropdown">
                 <% temp = question.user_lat_long %>
@@ -40,7 +51,7 @@
                 <% end %>
                 <%= select_tag(@answer_selection, options_for_select(@answer_selection),prompt: "Select an Answer") %>
               </div>
-            <div id="map-canvas"></div>
+            <div id="map-canvas" style="margin-top: 10px;"></div>
           </div>
       
       <div id="answer-chart"></div>
@@ -122,6 +133,14 @@
 
   google.maps.event.addDomListener(window, 'load', initialize);
   // Heatmap End
+
+  $('.btnNext').click(function(){
+    $('.tab-links > .active').next('li').find('a').trigger('click');
+  });
+
+  $('.btnPrevious').click(function(){
+    $('.tab-links > .active').prev('li').find('a').trigger('click');
+  });
 
   jQuery(document).ready(function() {
     jQuery('.tabs .tab-links a').on('click', function(e)  {

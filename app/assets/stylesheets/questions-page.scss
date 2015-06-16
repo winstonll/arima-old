@@ -72,6 +72,14 @@
     //border-bottom: 1px solid #5AA3E8;
     background:#FCFCFC;
 
+    a.btnNext {
+      float: right;
+    }
+
+    a.btnPrevious {
+      float: left;
+    }
+
     #panel {
       position: absolute;
 
