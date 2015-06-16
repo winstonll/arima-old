@@ -192,7 +192,7 @@ class QuestionsController < ApplicationController
 
     if(params[:submit_question_name].length < 256)
       @subquestion = Question.create(
-        :label => params[:submit_question_name],
+        :label => params[:submit_question_name].capitalize,
         :group_id => params[:group_id],
         :user_id => current_user.id,
         :value_type => params[:value_type],
