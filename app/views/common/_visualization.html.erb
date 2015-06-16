@@ -302,28 +302,14 @@
       path.on('mouseover', function(d) {
         //console.log(d.data.label);
         //console.log(d3.select('.answer-chart'));
-        if(data_answer.selected == "world"){
-          d3.selectAll('.label1').html(d.data.label);
-          d3.selectAll('.count1').html(d.data.count);
-          console.log(tooltip.select('label1'));
-          d3.selectAll('.tooltip1').style('display', 'block');
-        }
-        else if (data_answer.selected == "country"){
-          d3.selectAll('.label1').html(d.data.label);
-          d3.selectAll('.count1').html(d.data.count);
-          console.log(tooltip.select('label2'));
-          d3.selectAll('.tooltip1').style('display', 'block');
-        }
-        else if (data_answer.selected == "pstm"){
-          d3.selectAll('.label1').html(d.data.label);
-          d3.selectAll('.count1').html(d.data.count);
-          console.log(tooltip.select('label3'));
-          d3.selectAll('.tooltip1').style('display', 'block');
-        }
+        tooltip.select('.label1').html(d.data.label);
+        tooltip.select('.count1').html(d.data.count);
+        console.log(tooltip.select('label1'));
+        tooltip.style('display', 'block');
       });
 
       path.on('mouseout', function() {
-        d3.selectAll('.tooltip1').style('display', 'none');
+        tooltip.style('display', 'none');
       });
 
       var legend = svg.selectAll('.legend')
@@ -354,23 +340,11 @@
     })(window.d3);
   }
 
-  var tooltip = d3.select('#answer-world').append('div').attr('class', 'tooltip1');
+  var tooltip = d3.select('#answer-' + data_answer.selected).append('div').attr('class', 'tooltip1');
 
       tooltip.append('div').attr('class', 'label1');
 
       tooltip.append('div').attr('class', 'count1');
-
-  var tooltip1 = d3.select('#answer-country').append('div').attr('class', 'tooltip1');
-
-      tooltip1.append('div').attr('class', 'label1');
-
-      tooltip1.append('div').attr('class', 'count1');
-
-  var tooltip2 = d3.select('#answer-pstm').append('div').attr('class', 'tooltip1');
-
-      tooltip2.append('div').attr('class', 'label1');
-
-      tooltip2.append('div').attr('class', 'count1');
 
 
   createChart(data_answer.selected, "world");
