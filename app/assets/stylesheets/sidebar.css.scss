@@ -237,12 +237,14 @@
     white-space: nowrap;
     text-align: left;
     padding: 4px 10px 4px 10px;
+    float: left;
 
     .category-inner-container {
       width: 215px;
       margin: auto;
       padding: 5px 10px 5px 10px;
       border-radius: 5px;
+      float: left;
 
       .category-icon {
         width: 23px;

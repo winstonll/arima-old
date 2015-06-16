@@ -8,23 +8,39 @@
     <% else %>
     <div class="category-inner-container">
     <% end %>
-      <%= image_tag("category-icons/#{group.id}.png", class: "category-icon" ) %>
-      <span class="category-title"><%= group.label.sub("<br>", " ").html_safe %></span>
+      <center><%= image_tag("category_nav_icons_circular/#{group.id}.png", class: "category-icon" ) %></center>
+      <center class="category-title">
+      <% if group.label == "Money Matters" %>
+        Money
+      <% elsif group.label == "Health & Fitness"%>
+        Health
+      <% elsif group.label == "Education & Knowledge"%>
+        Education
+      <% elsif group.label == "Electronics & Gadgets"%>
+        Electronics
+      <% elsif group.label == "Business & Career"%>
+        Business
+      <% else %>
+      <%= group.label.sub("<br>", " ").html_safe %>
+      <% end %>
+      </center>
     </div>
   </div>
 </a>
 <% end %>
 
 <div id="feed-container">
-  <div id="feed-stats-container">
-    <div class="feed-stats feed-stats-num-answers">
-      <p class="feed-stats-data"><%= Answer.count %></p>
-      <p class="feed-stats-title">Answers Submitted</p>
-    </div>
+  <div class="dont-wrap">
+    <div id="feed-stats-container">
+      <div class="feed-stats feed-stats-num-answers">
+        <p class="feed-stats-data"><%= Answer.count %></p>
+        <p class="feed-stats-title">Answers Submitted</p>
+      </div>
 
-    <div class="feed-stats feed-stats-num-users">
-      <p class="feed-stats-data"><%= User.count %></p>
-      <p class="feed-stats-title">Contributors on Arima</p>
+      <div class="feed-stats feed-stats-num-users">
+        <p class="feed-stats-data"><%= User.count %></p>
+        <p class="feed-stats-title">Contributors on Arima</p>
+      </div>
     </div>
   </div>
 

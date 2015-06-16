@@ -1,6 +1,18 @@
+.category-inner-container {
+    float:left;
+    margin-right: 20px;
+    margin-top: 10px;
+    margin-left: 5px;
+  }
+
 #feed-container {
   height: 100%;
   width: 100%;
+
+  .dont-wrap {
+    white-space: nowrap;
+     clear:both;
+  }
 
   #feed-stats-container {
     width: 50%;
