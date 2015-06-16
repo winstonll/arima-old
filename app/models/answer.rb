@@ -132,6 +132,14 @@ class Answer < ActiveRecord::Base
     return self.value.to_s
   end
 
+  def user_age
+    return user.age
+  end
+
+  def user_gender
+    return user.gender.to_s
+  end
+
   def user_lat_long
     arr = Hash.new
     loc_arr = Array.new
