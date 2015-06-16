@@ -10,7 +10,7 @@
 
     <div class="tab-content">
         <div id="world" class="tab active">
-          <a><%= image_tag("back_tab.png", :class => "visualization-tab-img")%></a>
+          <a class="btnPrevious"><%= image_tag("back_tab.png", :class => "visualization-tab-img")%></a>
             This tab shows what everyone has answered.
           <a class="btnNext"><%= image_tag("forward_tab_blue.png", :class => "visualization-tab-img") %></a>
 
@@ -54,7 +54,7 @@
         <div id="pstm" class="tab">
           <a class="btnPrevious"><%= image_tag("back_tab_blue.png", :class => "visualization-tab-img")%></a>
             This tab shows what people who are "" have answered.
-          <a><%= image_tag("forward_tab.png", :class => "visualization-tab-img")%></a>
+          <a class="btnNext"><%= image_tag("forward_tab.png", :class => "visualization-tab-img")%></a>
 
           <% @guest = User.where(id: cookies[:guest]).first %>
           <% unless (@guest.gender != nil && @guest.age != nil) || (user_signed_in? ? (current_user.gender != nil && current_user.age != nil) : false) %>
