@@ -7,6 +7,7 @@ class AnswersController < ApplicationController
   layout "application_fluid"
 
   respond_to :json, :html, :js
+  skip_before_filter :verify_authenticity_token, :only => :create
 
   def show
     @answer = Answer.find(params[:id])
