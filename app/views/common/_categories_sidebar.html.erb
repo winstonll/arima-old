@@ -47,27 +47,10 @@
 
 
         <!-- login/signup -->
-        <div class="sidebar-right" id="down">
+        <div class="sidebar-right">
           <ul class="nav-links">
             <% if user_signed_in? && current_user.username.present? %>
-              <li class="dropdown sidebar-list" id="drop">
-                <a data-toggle="dropdown" class="dropdown-toggle" href="#" class="nav-link">
-                  <div class="nav-user-circle"><%= current_user.username[0].capitalize %></div>
-                    <%= current_user.username %>
-                    <i class="chevron-down"></i>
-                </a>
-                <ul class="menu dropdown-menu">
-                  <li class="sidebar-list">
-                    <%= link_to 'Profile', profile_path, class: "nav-link" %>
-                  </li>
-                  <li class="sidebar-list">
-                    <%= link_to 'Leaderboard'.html_safe, leaderboard_path, class: "nav-link" %>
-                  </li>
-                  <li class="sidebar-list">
-                    <%= link_to 'Log Out', destroy_user_session_path, :method => :delete, title: "#{current_user.email}", class: "nav-link" %>
-                  </li>
-                </ul>
-              </li>
+
             <% else %>
               <div class="button-container">
               <li class="sidebar-list">
@@ -93,7 +76,84 @@
               </div>
             </div>
           </a>
-          <!-- Category Links -->
+          <!-- Profile container -->
+          <div id="down" style="position: relative; left: 11px; top: 60px; height: 255px; width: 215px; background-color: #e8e8e8; border: 1px; border-radius: 10px;">
+            <% if user_signed_in? && current_user.username.present? %>
+            <ul class="navlinks" style="position: relative; bottom:20px;">
+              <li class="dropdown sidebar-list" id="drop">
+                <a data-toggle="dropdown" class="dropdown-toggle" href="#" class="nav-link">
+                  <div class="nav-user-circle"><%= current_user.username[0].capitalize %></div>
+                    <%= current_user.username %>
+                    <i class="chevron-down"></i>
+                </a>
+                <ul class="menu dropdown-menu">
+                  <li class="sidebar-list">
+                    <%= link_to 'Profile', profile_path, class: "nav-link" %>
+                  </li>
+                  <li class="sidebar-list">
+                    <%= link_to 'Leaderboard'.html_safe, leaderboard_path, class: "nav-link" %>
+                  </li>
+                  <li class="sidebar-list">
+                    <%= link_to 'Log Out', destroy_user_session_path, :method => :delete, title: "#{current_user.email}", class: "nav-link" %>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <% else %>
+              <span style="position: relative; bottom:35px; color: #4A90E2; font-weight: 700; font-size: 12px;">Sign Up & View Your Profile:</span><br>
+              <div style="position: relative; bottom: 15px;">
+                <tr align="left">
+                  <td> Rank: </td><br>
+                </tr>
+                <tr>
+                  <td> Points: </td><br>
+                </tr>
+                <tr>
+                  <td> Badges: </td>
+                </tr>
+              </div>
+            <% end %>
+
+          </div>
+          <!-- Global Leaderboard -->
+          <div id="leaderboard-container">
+            <div id="leaderboard-content">
+              <div id="leaderboard-title">
+                Global Leaderboard Top 5<br>
+              </div>
+              <div id="leaderboard-subtitle">
+                Rank & Username
+                <div id="leaderboard-point-subtitle">
+                  Points
+                </div>
+              </div>
+              <hr id="leaderboard-divider">
+              <% @ranked_registered_users = User.order("points DESC").limit(5) %>
+              <% @counter=1%>
+              <%  @ranked_registered_users.each do |user| %>
+              <tr>
+                <div id="leaderboard-username-counter">
+                  <td ><span style="font-weight: 800; color: #9B9B9B; font-size: 11px;"> <%= @counter%> </span></td>
+                  <% @counter= @counter+1%>
+
+                  <td><span style="color: #4A4A4A; font-size: 13px;">
+                    <% if user.username %>
+                      <%= "#{user.username}" %>
+                    <% else %>
+                      <%= "Unknown User " %>
+                    <% end %>
+                  </span></td>
+                </div>
+                <div id="leaderboard-point" style="color: #4A90E2">
+                  <td >
+                      <%= user.points %>
+                  </td>
+                </div>
+              </tr>
+              <br>
+              <% end %>
+            </div>
+          </div>
 
           <div class="sidebar-footer-push"></div>
         </div>
