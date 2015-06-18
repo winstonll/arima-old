@@ -197,7 +197,7 @@ class QuestionsController < ApplicationController
         :group_id => params[:group_id],
         :user_id => current_user.id,
         :value_type => params[:value_type],
-        :options_for_collection => @answerboxes << "|Add a new answer")
+        :options_for_collection => @answerboxes << "|Add your own answer")
 
       GroupsQuestion.create(group_id: params[:group_id], question_id: @subquestion.id)
     
