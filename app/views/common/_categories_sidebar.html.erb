@@ -45,26 +45,6 @@
           <hr>
         </div>
 
-
-        <!-- login/signup -->
-        <div class="sidebar-right">
-          <ul class="nav-links">
-            <% if user_signed_in? && current_user.username.present? %>
-
-            <% else %>
-              <div class="button-container">
-              <li class="sidebar-list">
-                <%= link_to 'Sign Up', new_registration_path(resource_name), class: "nav-btn", id: "nav-signup-btn" if !user_signed_in? %>
-              </li>
-
-              <li class="sidebar-list">
-                <%= link_to 'Login', new_user_session_path, class: "nav-btn", id: "nav-login-btn" %>
-              </li>
-          </div>
-            <% end %>
-          </ul>
-        </div>
-
         <!-- Categories -->
         <div class="sidebar-categories">
           <!-- Feed Link -->
@@ -77,40 +57,63 @@
             </div>
           </a>
           <!-- Profile container -->
-          <div id="down" style="position: relative; left: 11px; top: 60px; height: 255px; width: 215px; background-color: #e8e8e8; border: 1px; border-radius: 10px;">
+          <div style="position: relative; left: 11px; top: 60px; height: 255px; width: 215px; background-color: #e8e8e8; border: 1px; border-radius: 10px;">
             <% if user_signed_in? && current_user.username.present? %>
-            <ul class="navlinks" style="position: relative; bottom:20px;">
-              <li class="dropdown sidebar-list" id="drop">
-                <a data-toggle="dropdown" class="dropdown-toggle" href="#" class="nav-link">
-                  <div class="nav-user-circle"><%= current_user.username[0].capitalize %></div>
-                    <%= current_user.username %>
-                    <i class="chevron-down"></i>
-                </a>
-                <ul class="menu dropdown-menu">
-                  <li class="sidebar-list">
-                    <%= link_to 'Profile', profile_path, class: "nav-link" %>
-                  </li>
-                  <li class="sidebar-list">
-                    <%= link_to 'Leaderboard'.html_safe, leaderboard_path, class: "nav-link" %>
-                  </li>
-                  <li class="sidebar-list">
-                    <%= link_to 'Log Out', destroy_user_session_path, :method => :delete, title: "#{current_user.email}", class: "nav-link" %>
-                  </li>
-                </ul>
-              </li>
-            </ul>
+            <div>
+              <ul class="nav-link" style="position: relative; bottom:20px;">
+                <li class="dropdown sidebar-list" id="drop">
+                  <a data-toggle="dropdown" class="dropdown-toggle" href="#" class="nav-link">
+                    <div class="nav-user-circle"><%= current_user.username[0].capitalize %></div>
+                      <span style="font-size: 12px;"> <%= current_user.username %> </span>
+                      <i class="chevron-down"></i>
+                  </a>
+                  <ul class="menu dropdown-menu">
+                    <li class="sidebar-list">
+                      <%= link_to 'Profile', profile_path, class: "nav-link" %>
+                    </li>
+                    <li class="sidebar-list">
+                      <%= link_to 'Leaderboard'.html_safe, leaderboard_path, class: "nav-link" %>
+                    </li>
+                    <li class="sidebar-list">
+                      <%= link_to 'Log Out', destroy_user_session_path, :method => :delete, title: "#{current_user.email}", class: "nav-link" %>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <span style="color: #e8e8e8;">i</span>
             <% else %>
               <span style="position: relative; bottom:35px; color: #4A90E2; font-weight: 700; font-size: 12px;">Sign Up & View Your Profile:</span><br>
-              <div style="position: relative; bottom: 15px;">
-                <tr align="left">
-                  <td> Rank: </td><br>
-                </tr>
-                <tr>
-                  <td> Points: </td><br>
-                </tr>
-                <tr>
-                  <td> Badges: </td>
-                </tr>
+            <% end %>
+            <div id="textbox">
+              <p style="float: left; position:relative; left: 24px; color: #4A90E2; font-weight: 600; font-size: 13px;">Rank:</p>
+              <p style="float: right; position:relative; right: 26px; color: #4A90E2; font-weight: 600;">?</p>
+            </div>
+            <div style="clear: both;"></div>
+            <div id="textbox">
+              <p style="float: left; position:relative; left: 24px; color: #4A90E2; font-weight: 600; font-size: 13px;">Points:</p>
+              <p style="float: right; position:relative; right: 26px; color: #4A90E2; font-weight: 600;"><%= User.where(id:cookies[:guest])[0].points %></p>
+            </div>
+            <div style="clear: both;"></div>
+            <div id="textbox">
+              <p style="float: left; position:relative; left: 24px; color: #4A90E2; font-weight: 600; font-size: 13px;">Badges:</p>
+              <p style="float: right; position:relative; right: 26px; color: #4A90E2; font-weight: 600;">?</p>
+            </div>
+            <div style="clear: both;"></div>
+            <% if !(user_signed_in? && current_user.username.present?) %>
+              <span style="color: #4A90E2; font-size: 14px;">Your first unlock is close!</span>
+              <%= image_tag("guest_progress_bar.png", size: "160x9") %>
+              <div>
+                <ul class="nav-links">
+                  <div class="button-container">
+                  <li class="sidebar-list" style="position: relative; right: 17px; top: 10px;">
+                    <%= link_to 'Sign Up', new_registration_path(resource_name), class: "nav-btn", id: "nav-signup-btn" if !user_signed_in? %>
+                  </li>
+
+                  <li class="sidebar-list" style="position: relative; left: 71px; bottom: 10px;">
+                    <%= link_to 'Login', new_user_session_path, class: "nav-btn", id: "nav-login-btn" %>
+                  </li>
+                </ul>
               </div>
             <% end %>
 
