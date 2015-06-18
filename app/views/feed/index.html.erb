@@ -1,35 +1,37 @@
 <% content_for :title, "Feed"%>
-
+<center>
+<div>
 <% Group.all.each do |group| %>
-
-<a href="<%= category_path(group) %>" data-group-id="<%= group.id %>" class="sidebar-category <%= group.page_class %>">
-  <div class="category-container">
-    <% if ((group.id == @question.try(:id)) || (group.id == @question.try(:group_id))) %>
-    <div class="category-inner-container category-inner-container-active">
-    <% else %>
-    <div class="category-inner-container">
-    <% end %>
-      <%= link_to image_tag("category_nav_icons_circular/#{group.id}.png", :border => 0), {:action => 'category', :controller => 'feed', :group_id => group.id}, :class => 'category-icon'%>
-      <!--<center><%#= image_tag("category_nav_icons_circular/#{group.id}.png", class: "category-icon" ) %></center>-->
-      <center class="category-title">
-      <% if group.label == "Money Matters" %>
-        Money
-      <% elsif group.label == "Health & Fitness"%>
-        Health
-      <% elsif group.label == "Education & Knowledge"%>
-        Education
-      <% elsif group.label == "Electronics & Gadgets"%>
-        Electronics
-      <% elsif group.label == "Business & Career"%>
-        Business
+  <a href="<%= category_path(group) %>" data-group-id="<%= group.id %>" class="sidebar-category <%= group.page_class %>">
+    <div class="category-container">
+      <% if ((group.id == @question.try(:id)) || (group.id == @question.try(:group_id))) %>
+      <div class="category-inner-container category-inner-container-active">
       <% else %>
-      <%= group.label.sub("<br>", " ").html_safe %>
+      <div class="category-inner-container">
       <% end %>
-      </center>
+        <center><%= link_to image_tag("category_nav_icons_circular/#{group.id}.png", :border => 0), {:action => 'category', :controller => 'feed', :group_id => group.id}, :class => 'category-icon'%> </center>
+        <!--<center><%#= image_tag("category_nav_icons_circular/#{group.id}.png", class: "category-icon" ) %></center>-->
+        <center class="category-title">
+        <% if group.label == "Money Matters" %>
+          Money
+        <% elsif group.label == "Health & Fitness"%>
+          Health
+        <% elsif group.label == "Education & Knowledge"%>
+          Education
+        <% elsif group.label == "Electronics & Gadgets"%>
+          Electronics
+        <% elsif group.label == "Business & Career"%>
+          Business
+        <% else %>
+        <%= group.label.sub("<br>", " ").html_safe %>
+        <% end %>
+        </center>
+      </div>
     </div>
-  </div>
-</a>
+  </a>
 <% end %>
+</div>
+</center>
 
 <div id="feed-container">
   <div class="dont-wrap">
