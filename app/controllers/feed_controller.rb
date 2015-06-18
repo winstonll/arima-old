@@ -5,6 +5,9 @@ class FeedController < ApplicationController
   respond_to :html, :json
 
   def index
+    if(cookies[:guest] == nil)
+      check_guest()
+    end
     @all = Question.all.order(created_at: :desc).page(params[:page]).per(15)
   end
 
