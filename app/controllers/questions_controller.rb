@@ -190,7 +190,18 @@ class QuestionsController < ApplicationController
       @answerboxes = @answerboxes[0...-1]
     end
 
-    if(params[:submit_question_name].length < 256)
+
+    if params["checked"] != nil && params["checked"][cookies[:guest]] && (params[:submit_question_name].length < 256)
+      @subquestion = Question.create(
+        :label => params[:submit_question_name].capitalize,
+        :group_id => params[:group_id],
+        :user_id => current_user.id,
+        :value_type => params[:value_type],
+        :options_for_collection => @answerboxes << "|Add a new answer")
+
+      GroupsQuestion.create(group_id: params[:group_id], question_id: @subquestion.id)
+    
+    elsif(params[:submit_question_name].length < 256)
       @subquestion = Question.create(
         :label => params[:submit_question_name].capitalize,
         :group_id => params[:group_id],

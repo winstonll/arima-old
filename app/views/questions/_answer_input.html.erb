@@ -1,3 +1,16 @@
+<script type="text/javascript">
+$(document).ready(function() {
+  $('#answer_value').change(function (e) {
+    var input_dropdown = $(e.target).find(":selected").val();
+    if(input_dropdown == "Add a new answer"){
+      $('#answer-button').hide();
+      $('#otherTextBox').show();
+      }
+  });
+});
+
+</script>
+
 <div class="answer-prompt">
 <% if @question == nil %>
 <% @question = Question.where(slug: params[:id])[0] %>
@@ -16,7 +29,12 @@
             <%= f.input(:value, label: false, pattern: "\d*", placeholder: @user_units["small_unit"]) %>
           </section>
         <% elsif @question.input_type == "collection" %>
-          <%= f.input(:value, label: false, prompt: "Select one...", collection: @question.options_array, input_html: { class: "questions-page-input form-control input-lg"}) %>
+          <section id="input-dropdown">
+            <%= f.input(:value, label: false, prompt: "Select one...", collection: @question.options_array, input_html: { class: "questions-page-input form-control input-lg"}) %>  
+          </section>
+          <div id="otherTextBox">
+            <input type="text"/>
+          </div>
         <% else %>
           <%= f.input(:value, label: false, placeholder: @question.placeholder(User.where(id: cookies[:guest]).first),
                        as: @question.input_type.try(:to_sym),
