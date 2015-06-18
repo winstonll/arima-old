@@ -1,6 +1,7 @@
 <% content_for :title, "Feed"%>
 
 <% Group.all.each do |group| %>
+
 <a href="<%= category_path(group) %>" data-group-id="<%= group.id %>" class="sidebar-category <%= group.page_class %>">
   <div class="category-container">
     <% if ((group.id == @question.try(:id)) || (group.id == @question.try(:group_id))) %>
@@ -8,7 +9,8 @@
     <% else %>
     <div class="category-inner-container">
     <% end %>
-      <center><%= image_tag("category_nav_icons_circular/#{group.id}.png", class: "category-icon" ) %></center>
+      <%= link_to image_tag("category_nav_icons_circular/#{group.id}.png", :border => 0), {:action => 'category', :controller => 'feed', :group_id => group.id}, :class => 'category-icon'%>
+      <!--<center><%#= image_tag("category_nav_icons_circular/#{group.id}.png", class: "category-icon" ) %></center>-->
       <center class="category-title">
       <% if group.label == "Money Matters" %>
         Money
