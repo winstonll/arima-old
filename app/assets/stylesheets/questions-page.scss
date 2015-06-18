@@ -223,7 +223,6 @@
                 width: 40%;
                 margin: auto;
                 margin-top: 1em;
-                margin-bottom: 1em;
 
                 color: #9B9B9B;
                 text-align: center;
@@ -236,8 +235,38 @@
               }
             }
 
-            #otherTextBox{
+            #otherInputBox{
               display: none;
+
+              .other-input-text{
+                display: block;
+                height: 35px;
+                width: 12em;
+                margin: auto;
+                margin-top: 2px;
+                margin-bottom: 3px;
+                color: black;
+                text-align: center;
+                font-size: 12px;
+                background-color: #f7f7f7;
+                resize: none;
+                padding: 10px 30px 0px 30px;
+
+                border: 0;
+                border-radius: 5px;
+              }
+              .other-button {
+                height: 32px;
+                padding: 0px 30px 0px 30px;
+                background-color: #00C39C;
+                color: #fff;
+                border-radius: 5px;
+                border: none;
+              }
+
+              .other-button:disabled {
+                background-color: #9a9a9a;
+              }
             }
 
             #answer-button {
@@ -248,6 +277,7 @@
                 color: #fff;
                 border-radius: 5px;
                 border: none;
+                margin-top: 1em;
               }
 
               .modal-button:disabled {
