@@ -6,7 +6,17 @@ $(document).ready(function() {
       $('#answer-button').hide();
       $('#otherTextBox').show();
       }
+    else{
+      $('#answer-button').show();
+      $('#otherTextBox').hide();
+    }
   });
+  $("form").bind("keypress", function (e) {
+      if (e.keyCode == 13) {
+          return false;
+      }
+  });
+
 });
 
 </script>
@@ -33,10 +43,10 @@ $(document).ready(function() {
             <%= f.input(:value, label: false, prompt: "Select one...", collection: @question.options_array, input_html: { class: "questions-page-input form-control input-lg"}) %>  
           </section>
           <div id="otherTextBox">
-            <input type="text"/>
+            <% f.input(:value, input_html: { class: "questions-page-input form-control input-lg"}) %>
           </div>
-        <% else %>
-          <%= f.input(:value, label: false, placeholder: @question.placeholder(User.where(id: cookies[:guest]).first),
+        <%# else %>
+          <%#= f.input(:value, label: false, placeholder: @question.placeholder(User.where(id: cookies[:guest]).first),
                        as: @question.input_type.try(:to_sym),
                        input_html: {
                          class: "questions-page-input form-control input-lg",
