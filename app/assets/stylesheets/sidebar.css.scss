@@ -183,7 +183,7 @@
 
   .chevron-up:after{
     bottom: -3px; /* thickness*/
-    border-bottom-color: #eee; /*Match background colour*/
+    border-bottom-color: #e8e8e8; /*Match background colour*/
   }
 
   /* Chevron Down */
@@ -209,7 +209,7 @@
 
   .chevron-down:after{
     top: -3px; /* thickness*/
-    border-top-color: #eee; /*Match background colour*/
+    border-top-color: #e8e8e8; /*Match background colour*/
   }
 
 #sidebar-mobile-close-toggle {
@@ -230,6 +230,15 @@
 
 .sidebar-categories {
   padding-bottom: 15px;
+
+  .category-feed-icon {
+    position: relative;
+    right: 94px;
+  }
+
+  #textbox {
+    position: relative;
+  }
 
   #leaderboard-container {
     position: relative;
