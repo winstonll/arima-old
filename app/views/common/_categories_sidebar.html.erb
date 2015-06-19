@@ -35,7 +35,6 @@
     <div class="tse-content">
       <div class="sidebar-wrapper">
         <div id="sidebar-mobile-close-toggle">Close sidebar</div>
-
         <div class="sidebar-title">
           <%= link_to image_tag("logo-icon-large.png"), categories_path %>
         </div>
@@ -56,6 +55,11 @@
               </div>
             </div>
           </a>
+
+          <% if cookies[:group_id] != nil %>
+          <%= image_tag("/assets/category-icons/#{cookies[:group_id]}.png", size: "30x30", class: "category-feed-icon" ) %>
+          <%# asdads %>
+          <% end %>
           <!-- Profile container -->
           <div style="position: relative; left: 11px; top: 60px; height: 255px; width: 215px; background-color: #e8e8e8; border: 1px; border-radius: 10px;">
             <% if user_signed_in? && current_user.username.present? %>

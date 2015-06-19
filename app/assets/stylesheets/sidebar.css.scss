@@ -231,6 +231,15 @@
 .sidebar-categories {
   padding-bottom: 15px;
 
+  .category-feed-icon {
+    position: relative;
+    right: 80px;
+  }
+
+  #textbox {
+    position: relative;
+  }
+
   #leaderboard-container {
     position: relative;
     left: 11px;
