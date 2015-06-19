@@ -8,6 +8,7 @@ class FeedController < ApplicationController
     if(cookies[:guest] == nil)
       check_guest()
     end
+
     cookies[:group_id] = nil
     @all = Question.all.order(created_at: :desc).page(params[:page]).per(15)
   end

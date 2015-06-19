@@ -56,7 +56,7 @@
             </div>
           </a>
 
-          <% if cookies[:group_id] != nil %>
+          <% if cookies[:group_id] != nil && !cookies[:group_id].empty?%>
           <div><%= image_tag("/assets/category-icons/#{cookies[:group_id]}.png", size: "25x25", class: "category-feed-icon" ) %></div>
           <%# asdads %>
           <% end %>
@@ -65,8 +65,8 @@
             <div style="height: 200px; position:absolute; top:20px;">
               <% if user_signed_in? && current_user.username.present? %>
               <div style="position: absolute; width:200px; top: 15px;">
-                <ul class="nav-links" style="position: relative; bottom:20px;">
-                  <li class="dropdown sidebar-list" id="drop">
+                <ul class="nav-link" style="position: relative; bottom:20px;">
+                  <li class="dropdown sidebar-list">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#" class="nav-link">
                       <div class="nav-user-circle"><%= current_user.username[0].capitalize %></div>
                         <span style="font-size: 12px;"> <%= current_user.username %> </span>
