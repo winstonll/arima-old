@@ -233,7 +233,8 @@
 
   .category-feed-icon {
     position: relative;
-    right: 94px;
+    bottom:37px;
+    right: 34px;
   }
 
   #textbox {
@@ -300,6 +301,21 @@
 
   .sidebar-footer-push {
     height: 350px;
+  }
+
+  #category-return {
+    width: 215px;
+    height: 33px;
+    position:relative;
+    top:40px;
+    position:relative;
+    right:8px;
+    border-radius: 5px;
+    margin:auto;
+
+    &:hover {
+      background-color: #E3E2E2;
+    }
   }
 
   .category-container {

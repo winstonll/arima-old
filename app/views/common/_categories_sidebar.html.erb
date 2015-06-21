@@ -57,7 +57,13 @@
           </a>
 
           <% if cookies[:group_id] != nil && !cookies[:group_id].empty?%>
-          <div><%= image_tag("/assets/category-icons/#{cookies[:group_id]}.png", size: "25x25", class: "category-feed-icon" ) %></div>
+          <!-- Return to category feed button -->
+          <%= link_to "category?group_id=#{cookies[:group_id]}", :controller => :feed_controller, :action => :category do%>
+            <div id="category-return">
+                <%= image_tag("/assets/category-icons/#{cookies[:group_id]}.png", size: "25x25", class: "category-feed-icon" ) %>
+                <span style="position:relative; bottom:36px; right: 29px; font-size: 13px; color: #4a4a4a; font-weight: 500;">Back to Category</span>
+            </div>
+          <% end %>
           <%# asdads %>
           <% end %>
           <!-- Profile container -->
@@ -88,8 +94,10 @@
               </div>
               <span style="color: #e8e8e8;">i</span>
               <% else %>
+                <!-- Guest label -->
                 <span style="position: absolute; width:210px; bottom:195px; right: 4px; color: #4A90E2; font-weight: 700; font-size: 12px;">Sign Up & View Your Profile:</span>
               <% end %>
+              <!-- Guest/User Profile information -->
               <hr style="border-color: #e8e8e8; margin-top: -0.5em;">
               <span style="position:relative;">
                 <div>
@@ -109,6 +117,7 @@
                 <div style="clear: both;"></div>
               </span>
               <% if !(user_signed_in? && current_user.username.present?) %>
+                <!-- Guest progress bar -->
                 <span style="color: #4A90E2; font-size: 14px;">Your first unlock is close!</span>
                 <%= image_tag("guest_progress_bar.png", size: "160x9") %>
                 <div>
