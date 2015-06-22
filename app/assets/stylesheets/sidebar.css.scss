@@ -233,8 +233,9 @@
 
   .category-feed-icon {
     position: relative;
+    float:left;
     bottom:37px;
-    right: 34px;
+    left: 8px;
   }
 
   #textbox {
@@ -309,14 +310,10 @@
     position:relative;
     top:40px;
     position:relative;
-    left:34px;
+    right:8px;
     border-radius: 5px;
     margin:auto;
-    text-align: left;
-
-    &:hover {
-      background-color: #E3E2E2;
-    }
+    background-color: #E3E2E2;
   }
 
   .category-container {
