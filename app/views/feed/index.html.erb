@@ -1,6 +1,6 @@
 <% content_for :title, "Feed"%>
 <center>
-<div>
+<div style="margin: 0 0 0 5em">
 <% Group.all.each do |group| %>
   <a href="<%= category_path(group) %>" data-group-id="<%= group.id %>" class="sidebar-category <%= group.page_class %>">
     <div class="category-container">
