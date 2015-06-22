@@ -314,6 +314,16 @@
     border-radius: 5px;
     margin:auto;
     background-color: #E3E2E2;
+
+    #category-title-selected {
+      position:relative;
+      float: left;
+      left:17px;
+      bottom:34px;
+      font-size: 13px;
+      font-weight: bold;
+      color: #4a4a4a;
+    }
   }
 
   .category-container {

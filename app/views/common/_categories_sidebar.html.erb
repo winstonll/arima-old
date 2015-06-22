@@ -57,13 +57,12 @@
           </a>
           <% if cookies[:group_id] != nil && !cookies[:group_id].empty?%>
           <!-- Return to category feed button -->
-          <%= link_to "/category?group_id=#{cookies[:group_id]}", :controller => :feed_controller, :action => :category do%>
-            <div id="category-return">
-                <%= image_tag("/assets/category-icons/#{cookies[:group_id]}.png", size: "25x25", class: "category-feed-icon" ) %>
-                <span style="position:relative; float: left; left:17px; bottom:34px; font-size: 13px; color: #4a4a4a; font-weight: 650;"><%= params[:controller] == "feed" ? Group.where(id: cookies[:group_id]).first.label : "Back to Category" %></span>
-            </div>
-          <% end %>
-          <%# asdads %>
+            <%= link_to "/category?group_id=#{cookies[:group_id]}", :controller => :feed_controller, :action => :category do%>
+              <div id="category-return">
+                  <%= image_tag("/assets/category-icons/#{cookies[:group_id]}.png", size: "25x25", class: "category-feed-icon" ) %>
+                  <span id="category-title-selected"><%= params[:controller] == "feed" ? Group.where(id: cookies[:group_id]).first.label : "Back to Category" %></span>
+              </div>
+            <% end %>
           <% end %>
           <!-- Profile container -->
           <div style="position: relative; left: 11px; top: 60px; height: 255px; width: 215px; background-color: #e8e8e8; border: 1px; border-radius: 10px;">
