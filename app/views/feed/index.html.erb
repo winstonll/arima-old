@@ -9,9 +9,20 @@
       <% else %>
       <div class="category-inner-container">
       <% end %>
-        <center><%= link_to image_tag("category_nav_icons_circular/#{group.id}.png", :border => 0), {:action => 'category', :controller => 'feed', :group_id => group.id}, :class => 'category-icon'%> </center>
-        <!--<center><%#= image_tag("category_nav_icons_circular/#{group.id}.png", class: "category-icon" ) %></center>-->
-        <center class="category-title">
+        <!-- if selected -->
+        <% unless cookies[:group_id] != nil && !cookies[:group_id].empty? %>
+          <center><%= link_to image_tag("category_nav_icons_circular/#{group.id}.png", :border => 0), {:action => 'category', :controller => 'feed', :group_id => group.id}, :class => 'category-icon'%> </center>
+          <center class="category-title">
+        <!-- if not selected load greyed out icon here-->
+        <% else %>
+          <% if cookies[:group_id].to_i == group.id %>
+            <center class="category-title">
+          <% else %>
+            <center><%= link_to image_tag("category_nav_icons_circular_low_opacity/#{group.id}.png", :border => 0), {:action => 'category', :controller => 'feed', :group_id => group.id}, :class => 'category-icon'%> </center>
+            <center class="category-title">
+          <% end %>
+        <% end %>
+
         <% if group.label == "Money Matters" %>
           Money
         <% elsif group.label == "Health & Fitness"%>
@@ -35,17 +46,19 @@
 
 <div id="feed-container">
   <div class="dont-wrap">
-    <div id="feed-stats-container">
-      <div class="feed-stats feed-stats-num-answers">
-        <p class="feed-stats-data"><%= Answer.count %></p>
-        <p class="feed-stats-title">Answers Submitted</p>
-      </div>
+    <% unless cookies[:group_id] != nil && !cookies[:group_id].empty?%>
+      <div id="feed-stats-container">
+        <div class="feed-stats feed-stats-num-answers">
+          <p class="feed-stats-data"><%= Answer.count %></p>
+          <p class="feed-stats-title">Answers Submitted</p>
+        </div>
 
-      <div class="feed-stats feed-stats-num-users">
-        <p class="feed-stats-data"><%= User.count %></p>
-        <p class="feed-stats-title">Contributors on Arima</p>
+        <div class="feed-stats feed-stats-num-users">
+          <p class="feed-stats-data"><%= User.count %></p>
+          <p class="feed-stats-title">Contributors on Arima</p>
+        </div>
       </div>
-    </div>
+    <% end %>
   </div>
 
   <hr />
