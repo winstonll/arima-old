@@ -58,7 +58,7 @@
 
           <% if cookies[:group_id] != nil && !cookies[:group_id].empty?%>
           <!-- Return to category feed button -->
-          <%= link_to "category?group_id=#{cookies[:group_id]}", :controller => :feed_controller, :action => :category do%>
+          <%= link_to "/category?group_id=#{cookies[:group_id]}", :controller => :feed_controller, :action => :category do%>
             <div id="category-return">
                 <%= image_tag("/assets/category-icons/#{cookies[:group_id]}.png", size: "25x25", class: "category-feed-icon" ) %>
                 <span style="position:relative; bottom:36px; right: 29px; font-size: 13px; color: #4a4a4a; font-weight: 500;">Back to Category</span>
