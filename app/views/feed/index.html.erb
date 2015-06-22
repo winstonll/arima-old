@@ -1,6 +1,14 @@
+<script>
+  console.log(screen.width);
+
+  function centerIcons() {
+      $('#icon-container').css("margin-left", "10%");
+  }
+</script>
+
 <% content_for :title, "Feed"%>
 <center>
-<div style="margin: 0 0 0 7%">
+<div onresize="centerIcons()" id="icon-container">
 <% Group.all.each do |group| %>
   <a href="<%= category_path(group) %>" data-group-id="<%= group.id %>" class="sidebar-category <%= group.page_class %>">
     <div class="category-container">
