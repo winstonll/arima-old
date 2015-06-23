@@ -5,6 +5,7 @@ class FeedController < ApplicationController
   respond_to :html, :json
 
   def index
+    check_guest()
     if(cookies[:guest] == nil)
       check_guest()
     end
