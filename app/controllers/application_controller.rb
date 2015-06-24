@@ -26,6 +26,42 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def check_points_badge
+    @points = User.where(id: cookies[:guest]).first.points
+
+    if(@points >= 10)
+      return 2
+    elsif(@points >= 100)
+      return 3
+    elsif(@points >= 1000)
+      return 4
+    elsif(@points >= 10000)
+      return 5
+    elsif(@points >= 100000)
+      return 6
+    elsif(@points >= 1000000)
+      return 7
+    else
+      return 0
+    end
+  end
+
+  def check_question_badge
+    @num_question = Question.where(user_id: cookies[:guest]).count
+
+    if(@num_question >= 1)
+      return 8
+    elsif(@num_question >= 10)
+      return 9
+    elsif(@num_question >= 100)
+      return 10
+    elsif(@points >= 1000)
+      return 11
+    else
+      return 0
+    end
+  end
+
   #used to create a larger sample size on localhost
   def create_dummy_users
     @user1 = User.new(first_name: "Number",

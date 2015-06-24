@@ -55,7 +55,7 @@
               </div>
             </div>
           </a>
-          <% if cookies[:group_id] != nil && !cookies[:group_id].empty?%>
+          <% if cookies[:group_id] != nil && cookies[:group_id] != ""%>
           <!-- Return to category feed button -->
             <%= link_to "/category?group_id=#{cookies[:group_id]}", :controller => :feed_controller, :action => :category do%>
               <div id="category-return">

@@ -1,23 +1,23 @@
 <% if (Badge.where(user_id: cookies[:guest]).first.nil?) %>
   <div style="width:400px, height:600px;">
     <%= image_tag("Badges_faded/1.png", size: "80x80", alt: "trophy") %> <!-- completed -->
-    <%= image_tag("Badges_faded/2.png", size: "80x80", alt: "trophy") %>
-    <%= image_tag("Badges_faded/3.png", size: "80x80", alt: "trophy") %>
-    <%= image_tag("Badges_faded/4.png", size: "80x80", alt: "trophy") %>
-    <%= image_tag("Badges_faded/5.png", size: "80x80", alt: "trophy") %>
-    <%= image_tag("Badges_faded/6.png", size: "80x80", alt: "trophy") %>
-    <%= image_tag("Badges_faded/7.png", size: "80x80", alt: "trophy") %>
-    <%= image_tag("Badges_faded/8.png", size: "80x80", alt: "trophy") %>
-    <%= image_tag("Badges_faded/9.png", size: "80x80", alt: "trophy") %>
-    <%= image_tag("Badges_faded/10.png", size: "80x80", alt: "trophy") %>
-    <%= image_tag("Badges_faded/11.png", size: "80x80", alt: "trophy") %>
-    <%= image_tag("Badges_faded/12.png", size: "80x80", alt: "trophy") %>
-    <%= image_tag("Badges_faded/13.png", size: "80x80", alt: "trophy") %>
-    <%= image_tag("Badges_faded/14.png", size: "80x80", alt: "trophy") %>
-    <%= image_tag("Badges_faded/15.png", size: "80x80", alt: "trophy") %>
-    <%= image_tag("Badges_faded/16.png", size: "80x80", alt: "trophy") %>
-    <%= image_tag("Badges_faded/17.png", size: "80x80", alt: "trophy") %>
-    <%= image_tag("Badges_faded/18.png", size: "80x80", alt: "trophy") %>
+    <%= image_tag("Badges_faded/2.png", size: "80x80", alt: "trophy") %> <!--  -->
+    <%= image_tag("Badges_faded/3.png", size: "80x80", alt: "trophy") %> <!--  -->
+    <%= image_tag("Badges_faded/4.png", size: "80x80", alt: "trophy") %> <!--  -->
+    <%= image_tag("Badges_faded/5.png", size: "80x80", alt: "trophy") %> <!--  -->
+    <%= image_tag("Badges_faded/6.png", size: "80x80", alt: "trophy") %> <!--  -->
+    <%= image_tag("Badges_faded/7.png", size: "80x80", alt: "trophy") %> <!--  -->
+    <%= image_tag("Badges_faded/8.png", size: "80x80", alt: "trophy") %> <!--  -->
+    <%= image_tag("Badges_faded/9.png", size: "80x80", alt: "trophy") %> <!--  -->
+    <%= image_tag("Badges_faded/10.png", size: "80x80", alt: "trophy") %> <!--  -->
+    <%= image_tag("Badges_faded/11.png", size: "80x80", alt: "trophy") %> <!--  -->
+    <%= image_tag("Badges_faded/12.png", size: "80x80", alt: "trophy") %> <!--  -->
+    <%= image_tag("Badges_faded/13.png", size: "80x80", alt: "trophy") %> <!--  -->
+    <%= image_tag("Badges_faded/14.png", size: "80x80", alt: "trophy") %> <!--  -->
+    <%= image_tag("Badges_faded/15.png", size: "80x80", alt: "trophy") %> <!--  -->
+    <%= image_tag("Badges_faded/16.png", size: "80x80", alt: "trophy") %> <!--  -->
+    <%= image_tag("Badges_faded/17.png", size: "80x80", alt: "trophy") %> <!--  -->
+    <%= image_tag("Badges_faded/18.png", size: "80x80", alt: "trophy") %> <!--  -->
   </div>
 <% else %>
   <% check = Badge.where(user_id: cookies[:guest]).pluck(:badge_id) %>
