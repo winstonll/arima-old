@@ -48,29 +48,23 @@ $(document).ready(function() {
           <section id="input-dropdown">
             <%= f.input(:value, label: false, prompt: "Select one...", collection: @question.options_array, input_html: { class: "questions-page-input form-control input-lg"}) %>  
           </section>
-          <div id="otherInputBox">
-          <% if current_user %>
-            <%= f.input(:value, label: false, input_html:{class: "other-input-text", id:"other"}) %>
-            <%= f.submit "Answer", class: "other-button", disabled: true, data: {disable_with: "Submitting..."} %>
-          <% else %>
-            <p class="question-title" style="margin-top: 1em;"> Don't have an account? <%= link_to "Sign up!", new_registration_path(resource_name) %> <p>
-          <% end %>
-          </div>
-        <%# else %>
-          <%#= f.input(:value, label: false, placeholder: @question.placeholder(User.where(id: cookies[:guest]).first),
-                       as: @question.input_type.try(:to_sym),
-                       input_html: {
-                         class: "questions-page-input form-control input-lg",
-                         title: @question.validation_message,
-                         min: @question.min_value
-                       }) %>
         <% end %>
         <div class="modal-save-wrapper text-center" id="answer-button">
           <% if !@user_submitted_answer %>
             <%= f.submit "Answer", class: "modal-button", disabled: true, data: {disable_with: "Submitting..."} %>
           <% end %>
-        </div>
-      </div>
     <% end %>
+        </div>
+          <div id="otherInputBox">
+            <% if current_user %>
+              <%= simple_form_for @question, url: question_path, html: { multipart: true, novalidate: false } do |f| %>
+                <%= f.input(:options_for_collection, label: false, input_html:{ value: nil, placeholder: "Type answer", class: "other-input-text", id:"other"}) %>
+                <%= f.submit "Answer", class: "other-button", disabled: true, data: {disable_with: "Submitting..."} %>
+              <% end %>
+            <% else %>
+              <p class="question-title" style="margin-top: 1em;"> Don't have an account? <%= link_to "Sign up!", new_registration_path(resource_name) %> <p>
+            <% end %>
+          </div>
+      </div>
   <% end %>
 </div>
