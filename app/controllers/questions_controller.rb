@@ -79,7 +79,6 @@ class QuestionsController < ApplicationController
 
     check_guest()
 
-
     # Check to see if the question has already been voted on
     @existing_vote = Vote.where(:question_id => params[:id]).where(:user_id => user_signed_in? ? current_user.id : cookies[:guest])
 
@@ -225,6 +224,30 @@ class QuestionsController < ApplicationController
     else
       redirect_to categories_path
       flash[:notice] = "This Question has already been asked"
+    end
+  end
+
+  def edit
+     @question = Question.friendly.find(params[:id])
+  end
+
+  def update
+    @question = Question.friendly.find(params[:id])
+    answer_values = @question.options_for_collection
+    a = (0 ... answer_values.length).find_all { |i| answer_values[i,1] == '|' }
+    if @question.options_for_collection.include? params[:question][:options_for_collection]
+      flash[:notice] = "This answer value already exists!"
+    else
+      @question.options_for_collection = @question.options_for_collection[0..a.last] + params["question"]["options_for_collection"] + "|Add your own answer"
+      @question.save
+    end
+
+    if @question.save
+      @answer = Answer.new(user_id: current_user.id, question_id: @question.id, value: params[:question][:options_for_collection])
+      @answer.save
+      redirect_to @question
+    else
+      render :edit
     end
   end
 
