@@ -70,7 +70,7 @@ class AnswersController < ApplicationController
 
           current_user.points = current_user.points + 1
           current_user.save
-
+          check_points_badge
           if(@question.user_id != nil)
             q_owner = User.where(id: @question.user_id)
             if((Answer.where(question_id: @question.id).length % 10) == 0 && !q_owner.nil?)

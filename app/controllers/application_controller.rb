@@ -26,6 +26,75 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def check_points_badge
+    @points = User.where(id: cookies[:guest]).first.points
+
+    if(user_signed_in?)
+      if(@points >= 1000000)
+        if(Badge.where(user_id: cookies[:guest], badge_id: 7).first.nil?)
+          acquired = Badge.new(user_id: cookies[:guest], badge_id: 7)
+          acquired.save!
+        end
+      elsif(@points >= 100000)
+        if(Badge.where(user_id: cookies[:guest], badge_id: 6).first.nil?)
+          acquired = Badge.new(user_id: cookies[:guest], badge_id: 6)
+          acquired.save!
+        end
+      elsif(@points >= 10000)
+        if(Badge.where(user_id: cookies[:guest], badge_id: 5).first.nil?)
+          acquired = Badge.new(user_id: cookies[:guest], badge_id: 5)
+          acquired.save!
+        end
+      elsif(@points >= 1000)
+        if(Badge.where(user_id: cookies[:guest], badge_id: 4).first.nil?)
+          acquired = Badge.new(user_id: cookies[:guest], badge_id: 4)
+          acquired.save!
+        end
+      elsif(@points >= 100)
+        if(Badge.where(user_id: cookies[:guest], badge_id: 3).first.nil?)
+          acquired = Badge.new(user_id: cookies[:guest], badge_id: 3)
+          acquired.save!
+        end
+      elsif(@points >= 10)
+        if(Badge.where(user_id: cookies[:guest], badge_id: 2).first.nil?)
+          acquired = Badge.new(user_id: cookies[:guest], badge_id: 2)
+          acquired.save!
+        end
+      else
+        return 0
+      end
+    end
+  end
+
+  def check_question_badge
+    @num_question = Question.where(user_id: cookies[:guest]).count
+    if(user_signed_in?)
+      if(@num_question >= 1000)
+        if(Badge.where(user_id: cookies[:guest], badge_id: 11).first.nil?)
+          acquired = Badge.new(user_id: cookies[:guest], badge_id: 11)
+          acquired.save!
+        end
+      elsif(@num_question >= 100)
+        if(Badge.where(user_id: cookies[:guest], badge_id: 10).first.nil?)
+          acquired = Badge.new(user_id: cookies[:guest], badge_id: 10)
+          acquired.save!
+        end
+      elsif(@num_question >= 10)
+        if(Badge.where(user_id: cookies[:guest], badge_id: 9).first.nil?)
+          acquired = Badge.new(user_id: cookies[:guest], badge_id: 9)
+          acquired.save!
+        end
+      elsif(@num_question >= 1)
+        if(Badge.where(user_id: cookies[:guest], badge_id: 8).first.nil?)
+          acquired = Badge.new(user_id: cookies[:guest], badge_id: 8)
+          acquired.save!
+        end
+      else
+        return 0
+      end
+    end
+  end
+
   #used to create a larger sample size on localhost
   def create_dummy_users
     @user1 = User.new(first_name: "Number",

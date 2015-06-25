@@ -7,6 +7,7 @@ class QuestionsController < ApplicationController
   # Show method - called when question page is rendered
   def show
     @question = Question.where(slug: params[:id])[0]
+    cookies[:group_id] = @question.group_id
     @answers = Answer.where(question: @question).count
 
     #extracting all of the users that answered this question
@@ -209,6 +210,8 @@ class QuestionsController < ApplicationController
     if @subquestion.valid?
       current_user.points = current_user.points + 10
       current_user.save
+      check_points_badge
+      check_question_badge
 
       redirect_to question_path(@subquestion), flash: { share_modal: true }
     else
