@@ -22,6 +22,9 @@ class ProfilesController < ApplicationController
     @trending_questions   = Question.trending_for_user current_user
     @answered_questions   = current_user.answers.order("updated_at desc")
     @asked_questions      = self.questions
+
+    check_points_badge
+    check_question_badge
   end
 
   def edit

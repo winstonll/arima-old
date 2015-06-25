@@ -210,6 +210,8 @@ class QuestionsController < ApplicationController
     if @subquestion.valid?
       current_user.points = current_user.points + 10
       current_user.save
+      check_points_badge
+      check_question_badge
 
       redirect_to question_path(@subquestion), flash: { share_modal: true }
     else
