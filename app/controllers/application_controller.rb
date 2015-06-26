@@ -32,32 +32,32 @@ class ApplicationController < ActionController::Base
     if(user_signed_in?)
       if(@points >= 1000000)
         if(Badge.where(user_id: cookies[:guest], badge_id: 7).first.nil?)
-          acquired = Badge.new(user_id: cookies[:guest], badge_id: 7)
+          acquired = Badge.new(user_id: cookies[:guest], badge_id: 7,  date: Date.today.to_s, label: "Mama I made it!")
           acquired.save!
         end
       elsif(@points >= 100000)
         if(Badge.where(user_id: cookies[:guest], badge_id: 6).first.nil?)
-          acquired = Badge.new(user_id: cookies[:guest], badge_id: 6)
+          acquired = Badge.new(user_id: cookies[:guest], badge_id: 6, date: Date.today.to_s, label: "The Fort Knox")
           acquired.save!
         end
       elsif(@points >= 10000)
         if(Badge.where(user_id: cookies[:guest], badge_id: 5).first.nil?)
-          acquired = Badge.new(user_id: cookies[:guest], badge_id: 5)
+          acquired = Badge.new(user_id: cookies[:guest], badge_id: 5, date: Date.today.to_s, label: "The Fukuzawa")
           acquired.save!
         end
       elsif(@points >= 1000)
         if(Badge.where(user_id: cookies[:guest], badge_id: 4).first.nil?)
-          acquired = Badge.new(user_id: cookies[:guest], badge_id: 4)
+          acquired = Badge.new(user_id: cookies[:guest], badge_id: 4, date: Date.today.to_s, label: "The Hidalgo")
           acquired.save!
         end
       elsif(@points >= 100)
         if(Badge.where(user_id: cookies[:guest], badge_id: 3).first.nil?)
-          acquired = Badge.new(user_id: cookies[:guest], badge_id: 3)
+          acquired = Badge.new(user_id: cookies[:guest], badge_id: 3, date: Date.today.to_s, label: "The Benjamin")
           acquired.save!
         end
       elsif(@points >= 10)
         if(Badge.where(user_id: cookies[:guest], badge_id: 2).first.nil?)
-          acquired = Badge.new(user_id: cookies[:guest], badge_id: 2)
+          acquired = Badge.new(user_id: cookies[:guest], badge_id: 2, date: Date.today.to_s, label: "Sir J Mac D")
           acquired.save!
         end
       else
@@ -71,22 +71,22 @@ class ApplicationController < ActionController::Base
     if(user_signed_in?)
       if(@num_question >= 1000)
         if(Badge.where(user_id: cookies[:guest], badge_id: 11).first.nil?)
-          acquired = Badge.new(user_id: cookies[:guest], badge_id: 11)
+          acquired = Badge.new(user_id: cookies[:guest], badge_id: 11, date: Date.today.to_s, label: "Confucius Say")
           acquired.save!
         end
       elsif(@num_question >= 100)
         if(Badge.where(user_id: cookies[:guest], badge_id: 10).first.nil?)
-          acquired = Badge.new(user_id: cookies[:guest], badge_id: 10)
+          acquired = Badge.new(user_id: cookies[:guest], badge_id: 10, date: Date.today.to_s, label: "Professor")
           acquired.save!
         end
       elsif(@num_question >= 10)
         if(Badge.where(user_id: cookies[:guest], badge_id: 9).first.nil?)
-          acquired = Badge.new(user_id: cookies[:guest], badge_id: 9)
+          acquired = Badge.new(user_id: cookies[:guest], badge_id: 9, date: Date.today.to_s, label: "Curious George")
           acquired.save!
         end
       elsif(@num_question >= 1)
         if(Badge.where(user_id: cookies[:guest], badge_id: 8).first.nil?)
-          acquired = Badge.new(user_id: cookies[:guest], badge_id: 8)
+          acquired = Badge.new(user_id: cookies[:guest], badge_id: 8, date: Date.today.to_s, label: "My Boy")
           acquired.save!
         end
       else
