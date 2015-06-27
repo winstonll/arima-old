@@ -55,6 +55,7 @@ $(document).ready(function() {
           <% end %>
     <% end %>
         </div>
+        <% if !@user_submitted_answer %>
           <div id="otherInputBox">
             <% if current_user %>
               <%= simple_form_for @question, url: question_path, html: { multipart: true, novalidate: false } do |f| %>
@@ -65,6 +66,7 @@ $(document).ready(function() {
               <p class="question-title" style="margin-top: 1em;"> Don't have an account? <%= link_to "Sign up!", new_registration_path(resource_name) %> <p>
             <% end %>
           </div>
+        <% end %>
       </div>
   <% end %>
 </div>
