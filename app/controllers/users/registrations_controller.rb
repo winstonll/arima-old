@@ -45,7 +45,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
           # After signup is submitted, check if the user was referred
           reward_referral(params[:referral]) if params[:referral].present?
-          badge = Badge.new(user_id: cookies[:guest], badge_id: 1, , date: Date.today.to_s, label: "Starter Badge")
+          badge = Badge.new(user_id: cookies[:guest], badge_id: 1, date: Date.today.to_s, label: "Starter Badge")
           badge.save!
           UserMailer.signup_email(@user).deliver!
           sign_in(:user, @user)

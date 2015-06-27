@@ -22,16 +22,127 @@
     <%= link_to image_tag("Badges_faded/18.png", size: "80x80", alt: "trophy"), "javascript:void(0)", title: badge_label[18], rel: 'tooltip', relative: true %> <!--  -->
   </div>
 <% else %>
-  <div style="position: relative; right: 200px; width:500px; height:500px;">
+  <div style="position: relative; right: 200px; width:500px; height:500px;" id="trophy-container">
     <% check = Badge.where(user_id: cookies[:guest]).pluck(:badge_id) %>
     <% 18.times do |count| %>
       <% unless count == 0%>
         <% if  check.include? count %>
-          <%= link_to image_tag("Badges/#{count}.png", size: "80x80", alt: "trophy"), "javascript:void(0)", title: badge_label[count], rel: 'tooltip', relative: true%>
+          <%= link_to image_tag("Badges/#{count}.png", size: "80x80", alt: "trophy"), "javascript:void(0)", title: badge_label[count], rel: 'tooltip', relative: true, id: "#{count}-trophy"%>
         <% else %>
-          <%= link_to image_tag("Badges_faded/#{count}.png", size: "80x80", alt: "trophy"), "javascript:void(0)", title: badge_label[count], rel: 'tooltip', relative: true%>
+          <%= link_to image_tag("Badges_faded/#{count}.png", size: "80x80", alt: "trophy"), "javascript:void(0)", title: badge_label[count], rel: 'tooltip', relative: true, id: "#{count}-trophy"%>
         <% end %>
       <% end %>
     <% end %>
   </div>
 <% end %>
+
+<div style="position:relative; bottom:490px; left: 350px;  width: 260px; height:260px; border-style: solid; border-color: black; border-radius: 15px;" id:"trophy-description-container">
+<center><span id="description-title">Starter Badge</span></center>
+<center><span id="description-trophy-count">Total Award Count: <%= Badge.where(badge_id: 1).count %></span></center>
+<center><span></span></center>
+
+<center><div id="description-image"> <%=image_tag("Badges/1.png", size: "140x140", alt: "trophy")%> </div></center>
+
+<center><span id="description-label">Obtained by signing up to Arima.</span></center>
+
+</div>
+
+<script>
+
+document.getElementById("trophy-container").addEventListener('click', function(e)
+{
+  console.log(e.target);
+});
+
+/**
+document.getElementById("1-trophy").addEventListener('click', function(e)
+{
+  //document.getElementById("trophy-description").innerHTML =
+});
+
+document.getElementById("2-trophy").addEventListener('click', function(e)
+{
+  console.log(e.target);
+});
+
+document.getElementById("3-trophy").addEventListener('click', function(e)
+{
+  console.log(e.target);
+});
+
+document.getElementById("4-trophy").addEventListener('click', function(e)
+{
+  console.log(e.target);
+});
+
+document.getElementById("5-trophy").addEventListener('click', function(e)
+{
+  console.log(e.target);
+});
+
+document.getElementById("6-trophy").addEventListener('click', function(e)
+{
+  console.log(e.target);
+});
+
+document.getElementById("7-trophy").addEventListener('click', function(e)
+{
+  console.log(e.target);
+});
+
+document.getElementById("8-trophy").addEventListener('click', function(e)
+{
+  console.log(e.target);
+});
+
+document.getElementById("9-trophy").addEventListener('click', function(e)
+{
+  console.log(e.target);
+});
+
+document.getElementById("10-trophy").addEventListener('click', function(e)
+{
+  console.log(e.target);
+});
+
+document.getElementById("11-trophy").addEventListener('click', function(e)
+{
+  console.log(e.target);
+});
+
+document.getElementById("12-trophy").addEventListener('click', function(e)
+{
+  console.log(e.target);
+});
+
+document.getElementById("13-trophy").addEventListener('click', function(e)
+{
+  console.log(e.target);
+});
+
+document.getElementById("14-trophy").addEventListener('click', function(e)
+{
+  console.log(e.target);
+});
+
+document.getElementById("15-trophy").addEventListener('click', function(e)
+{
+  console.log(e.target);
+});
+
+document.getElementById("16-trophy").addEventListener('click', function(e)
+{
+  console.log(e.target);
+});
+
+document.getElementById("17-trophy").addEventListener('click', function(e)
+{
+  console.log(e.target);
+});
+
+document.getElementById("18-trophy").addEventListener('click', function(e)
+{
+  console.log(e.target);
+});
+**/
+</script>
