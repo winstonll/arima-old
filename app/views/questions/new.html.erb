@@ -105,7 +105,8 @@
               <p class="modal-input-title">
                 Allow users to input their own answers?
               </p>
-              <p><%= check_box_tag "checked[@user.id}]","true", true %></p>
+              
+              <p><%= check_box_tag "checked[#{current_user.id}]","true", true %></p>
               <% end %>
 
               <section class="selected-multiple-choices" id="answer-types">
