@@ -5,7 +5,7 @@ class ProfilesController < ApplicationController
 
   layout "application_fluid"
 
-  respond_to :json, :html
+  respond_to :json, :html, :js
 
   #generates correct referral code
   def show
@@ -29,6 +29,18 @@ class ProfilesController < ApplicationController
 
   def edit
     @profile = current_user
+  end
+
+  def badge
+    p params
+    @badge_label = params[:badgeLabel]
+    @badge_id = params[:badgeId].to_i
+    p @badge_label
+    p @badge_id
+    #respond_with(@test_user)
+    respond_to do |format|
+      format.js
+    end
   end
 
   def update
