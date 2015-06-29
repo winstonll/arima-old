@@ -25,7 +25,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt', '~> 3.1.2'
+gem 'bcrypt', '~> 3.1.10'
 
 # Authentication library
 gem 'devise'
