@@ -200,7 +200,7 @@ class QuestionsController < ApplicationController
         :options_for_collection => @answerboxes << "|Add your own answer")
 
       GroupsQuestion.create(group_id: params[:group_id], question_id: @subquestion.id)
-    
+
     elsif(params[:submit_question_name].length < 256)
       @subquestion = Question.create(
         :label => params[:submit_question_name].capitalize,
@@ -220,8 +220,10 @@ class QuestionsController < ApplicationController
     if @subquestion.valid?
       current_user.points = current_user.points + 10
       current_user.save
-      check_points_badge
-      check_question_badge
+      if(user_signed_in?)
+        check_points_badge
+        check_question_badge
+      end
 
       redirect_to question_path(@subquestion), flash: { share_modal: true }
     else

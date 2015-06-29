@@ -262,6 +262,9 @@
     #leaderboard-title {
       font-weight: 700;
       color: #00C39C;
+      a {
+        color: inherit;
+      }
     }
 
     #leaderboard-subtitle {
