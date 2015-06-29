@@ -193,7 +193,7 @@ class QuestionsController < ApplicationController
 
     if params["checked"] != nil && params["checked"][cookies[:guest]] && (params[:submit_question_name].length < 256)
       @subquestion = Question.create(
-        :label => params[:submit_question_name].capitalize,
+        :label => params[:submit_question_name].slice(0,1).capitalize + params[:submit_question_name].slice(1..-1),
         :group_id => params[:group_id],
         :user_id => current_user.id,
         :value_type => params[:value_type],
