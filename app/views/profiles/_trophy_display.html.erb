@@ -1,6 +1,6 @@
 <% badge_label = ["", "Starter Badge", "Sir J Mac D", "The Benjamin", "The Hidalgo", "The Fukuzawa", "The Fort Knox", "Mama I made it!", "My Boy", "Curious George", "Professor", "Confucius Say", "7 Day Streak", "14 Day Streak", "30 Day Streak", "Email Verification", "1 Year Anniversary", "2 Year Anniversary", "3 Year Anniversary"] %>
 
-<% if (Badge.where(user_id: cookies[:guest]).first.nil?) %>
+<% if (Badge.where(user_id: current_user.id).first.nil?) %>
   <div style="position: relative; left: 700px; width:400px; height:600px;">
     <%= link_to image_tag("Badges_faded/1.png", size: "80x80", alt: "trophy"), "javascript:void(0)", title: badge_label[1], rel: 'tooltip', relative: true%> <!-- completed -->
     <%= link_to image_tag("Badges_faded/2.png", size: "80x80", alt: "trophy"), "javascript:void(0)", title: badge_label[2], rel: 'tooltip', relative: true %> <!--  -->
@@ -23,7 +23,7 @@
   </div>
 <% else %>
   <div style="position: relative; right: 200px; width:500px; height:500px;" id="trophy-container">
-    <% check = Badge.where(user_id: cookies[:guest]).pluck(:badge_id) %>
+    <% check = Badge.where(user_id: current_user.id).pluck(:badge_id) %>
     <% 19.times do |count| %>
       <% unless count == 0%>
         <% if  check.include? count %>
@@ -43,7 +43,7 @@
 <div style="position:relative; bottom:490px; left: 350px;  width: 260px; height:260px; border-style: solid; border-color: #DCDCDC; border-radius: 15px;" id:"trophy-description-container">
 <center><span id="description-title">Starter Badge</span></center>
 <center><span id="description-trophy-count">Total Award Count: <%= Badge.where(badge_id: 1).count %></span></center>
-<center><span id="description-date-awarded">Awarded <%= Badge.where(user_id: cookies[:guest], badge_id: 1).first.date%></span></center>
+<center><span id="description-date-awarded">Awarded <%= Badge.where(user_id: current_user.id, badge_id: 1).first.date%></span></center>
 
 <center><div id="description-image"> <%=image_tag("Badges/1.png", :id => "image0", size: "140x140", alt: "trophy")%> </div></center>
 
