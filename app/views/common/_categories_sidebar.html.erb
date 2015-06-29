@@ -105,12 +105,24 @@
                 <div style="clear: both;"></div>
                 <div id="textbox">
                   <p style="float: left; position:relative; left: 24px; color: #4A90E2; font-weight: 600; font-size: 13px;">Points:</p>
-                  <p style="float: right; position:relative; right: 26px; color: #4A90E2; font-weight: 600;"><%= User.where(id:cookies[:guest])[0].points %></p>
+                  <p style="float: right; position:relative; right: 26px; color: #4A90E2; font-weight: 600;">
+                    <%if user_signed_in?%>
+                    <%= User.where(id: current_user.id)[0].points %>
+                    <%else%>
+                    0
+                    <%end%>
+                  </p>
                 </div>
                 <div style="clear: both;"></div>
                 <div id="textbox">
                   <p style="float: left; position:relative; left: 24px; color: #4A90E2; font-weight: 600; font-size: 13px;">Badges:</p>
-                  <p style="float: right; position:relative; right: 26px; color: #4A90E2; font-weight: 600;"><%= Badge.where(user_id: cookies[:guest]).count %></p>
+                  <p style="float: right; position:relative; right: 26px; color: #4A90E2; font-weight: 600;">
+                    <%if user_signed_in?%>
+                    <%= Badge.where(user_id: cookies[:guest]).count %>
+                    <%else%>
+                    0
+                    <%end%>
+                  </p>
                 </div>
                 <div style="clear: both;"></div>
               </span>
