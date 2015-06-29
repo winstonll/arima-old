@@ -1,0 +1,28 @@
+<div id="feed-container">
+  <div class="dont-wrap">
+    <% unless cookies[:group_id] != nil && !cookies[:group_id].empty?%>
+      <div id="feed-stats-container">
+        <div class="feed-stats feed-stats-num-answers">
+          <p class="feed-stats-data"><%= Answer.count %></p>
+          <p class="feed-stats-title">Answers Submitted</p>
+        </div>
+
+        <div class="feed-stats feed-stats-num-users">
+          <p class="feed-stats-data"><%= User.count %></p>
+          <p class="feed-stats-title">Contributors on Arima</p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <hr />
+
+  <div id="feed">
+
+    <%= render partial: 'stream' %>
+  </div>
+
+  <div id="paginator">
+    <%= paginate @all, :remote => true %>
+  </div>
+</div>

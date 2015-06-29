@@ -35,7 +35,6 @@
     <div class="tse-content">
       <div class="sidebar-wrapper">
         <div id="sidebar-mobile-close-toggle">Close sidebar</div>
-
         <div class="sidebar-title">
           <%= link_to image_tag("logo-icon-large.png"), categories_path %>
         </div>
@@ -43,43 +42,6 @@
         <div class="submit-question-container">
           <a id="submit-question-link" href="#" data-toggle="modal" data-target="#submitQuestionModal">Ask a Question</a>
           <hr>
-        </div>
-
-
-        <!-- login/signup -->
-        <div class="sidebar-right" id="down">
-          <ul class="nav-links">
-            <% if user_signed_in? && current_user.username.present? %>
-              <li class="dropdown sidebar-list" id="drop">
-                <a data-toggle="dropdown" class="dropdown-toggle" href="#" class="nav-link">
-                  <div class="nav-user-circle"><%= current_user.username[0].capitalize %></div>
-                    <%= current_user.username %>
-                    <i class="chevron-down"></i>
-                </a>
-                <ul class="menu dropdown-menu">
-                  <li class="sidebar-list">
-                    <%= link_to 'Profile', profile_path, class: "nav-link" %>
-                  </li>
-                  <li class="sidebar-list">
-                    <%= link_to 'Leaderboard'.html_safe, leaderboard_path, class: "nav-link" %>
-                  </li>
-                  <li class="sidebar-list">
-                    <%= link_to 'Log Out', destroy_user_session_path, :method => :delete, title: "#{current_user.email}", class: "nav-link" %>
-                  </li>
-                </ul>
-              </li>
-            <% else %>
-              <div class="button-container">
-              <li class="sidebar-list">
-                <%= link_to 'Sign Up', new_registration_path(resource_name), class: "nav-btn", id: "nav-signup-btn" if !user_signed_in? %>
-              </li>
-
-              <li class="sidebar-list">
-                <%= link_to 'Login', new_user_session_path, class: "nav-btn", id: "nav-login-btn" %>
-              </li>
-          </div>
-            <% end %>
-          </ul>
         </div>
 
         <!-- Categories -->
@@ -93,21 +55,126 @@
               </div>
             </div>
           </a>
-          <!-- Category Links -->
-          <% Group.all.each do |group| %>
-          <a href="<%= category_path(group) %>" data-group-id="<%= group.id %>" class="sidebar-category <%= group.page_class %>">
-            <div class="category-container">
-              <% if ((group.id == @question.try(:id)) || (group.id == @question.try(:group_id))) %>
-              <div class="category-inner-container category-inner-container-active">
-              <% else %>
-              <div class="category-inner-container">
-              <% end %>
-                <%= image_tag("category-icons/#{group.id}.png", class: "category-icon" ) %>
-                <span class="category-title"><%= group.label.sub("<br>", " ").html_safe %></span>
+          <% if cookies[:group_id] != nil && cookies[:group_id] != ""%>
+          <!-- Return to category feed button -->
+            <%= link_to "/category?group_id=#{cookies[:group_id]}", :controller => :feed_controller, :action => :category do%>
+              <div id="category-return">
+                  <%= image_tag("/assets/category-icons/#{cookies[:group_id]}.png", size: "25x25", class: "category-feed-icon" ) %>
+                  <span id="category-title-selected"><%= params[:controller] == "feed" ? Group.where(id: cookies[:group_id]).first.label : "Back to Category" %></span>
               </div>
-            </div>
-          </a>
+            <% end %>
           <% end %>
+          <!-- Profile container -->
+          <div style="position: relative; left: 11px; top: 60px; height: 255px; width: 215px; background-color: #e8e8e8; border: 1px; border-radius: 10px;">
+            <div style="height: 200px; position:absolute; top:20px;">
+              <% if user_signed_in? && current_user.username.present? %>
+              <div style="position: absolute; width:200px; top: 15px;">
+                <ul class="nav-link" style="position: relative; bottom:20px;">
+                  <li class="dropdown sidebar-list">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#" class="nav-link">
+                      <div class="nav-user-circle"><%= current_user.username[0].capitalize %></div>
+                        <span style="font-size: 12px;"> <%= current_user.username %> </span>
+                        <i class="chevron-down"></i>
+                    </a>
+                    <ul class="menu dropdown-menu">
+                      <li class="sidebar-list">
+                        <%= link_to 'Profile', profile_path, class: "nav-link" %>
+                      </li>
+                      <li class="sidebar-list">
+                        <%= link_to 'Leaderboard'.html_safe, leaderboard_path, class: "nav-link" %>
+                      </li>
+                      <li class="sidebar-list">
+                        <%= link_to 'Log Out', destroy_user_session_path, :method => :delete, title: "#{current_user.email}", class: "nav-link" %>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <span style="color: #e8e8e8;">i</span>
+              <% else %>
+                <!-- Guest label -->
+                <span style="position: absolute; width:210px; bottom:195px; right: 4px; color: #4A90E2; font-weight: 700; font-size: 12px;">Sign Up & View Your Profile:</span>
+              <% end %>
+              <!-- Guest/User Profile information -->
+              <hr style="border-color: #e8e8e8; margin-top: -0.5em;">
+              <span style="position:relative;">
+                <div>
+                  <p style="float: left; position:relative; width:200px; right: 59px; color: #4A90E2; font-weight: 600; font-size: 13px;">Rank:</p>
+                  <p style="float: right; position:relative; right: 26px; color: #4A90E2; font-weight: 600;">?</p>
+                </div>
+                <div style="clear: both;"></div>
+                <div id="textbox">
+                  <p style="float: left; position:relative; left: 24px; color: #4A90E2; font-weight: 600; font-size: 13px;">Points:</p>
+                  <p style="float: right; position:relative; right: 26px; color: #4A90E2; font-weight: 600;"><%= User.where(id:cookies[:guest])[0].points %></p>
+                </div>
+                <div style="clear: both;"></div>
+                <div id="textbox">
+                  <p style="float: left; position:relative; left: 24px; color: #4A90E2; font-weight: 600; font-size: 13px;">Badges:</p>
+                  <p style="float: right; position:relative; right: 26px; color: #4A90E2; font-weight: 600;"><%= Badge.where(user_id: cookies[:guest]).count %></p>
+                </div>
+                <div style="clear: both;"></div>
+              </span>
+              <% if !(user_signed_in? && current_user.username.present?) %>
+                <!-- Guest progress bar -->
+                <span style="color: #4A90E2; font-size: 14px;">Your first unlock is close!</span>
+                <%= image_tag("guest_progress_bar.png", size: "160x9") %>
+                <div>
+                  <ul class="nav-links">
+                    <div class="button-container">
+                    <li class="sidebar-list" style="position: relative; right: 17px; top: 10px;">
+                      <%= link_to 'Sign Up', new_registration_path(resource_name), class: "nav-btn", id: "nav-signup-btn" if !user_signed_in? %>
+                    </li>
+
+                    <li class="sidebar-list" style="position: relative; left: 71px; bottom: 10px;">
+                      <%= link_to 'Login', new_user_session_path, class: "nav-btn", id: "nav-login-btn" %>
+                    </li>
+                  </ul>
+                </div>
+              <% end %>
+            </div>
+          </div>
+
+
+          <!-- Global Leaderboard -->
+          <div id="leaderboard-container">
+            <div id="leaderboard-content">
+              <div id="leaderboard-title">
+                Global Leaderboard Top 5<br>
+              </div>
+              <div id="leaderboard-subtitle">
+                Rank & Username
+                <div id="leaderboard-point-subtitle">
+                  Points
+                </div>
+              </div>
+              <hr id="leaderboard-divider">
+              <% @ranked_registered_users = User.order("points DESC").limit(5) %>
+              <% @counter=1%>
+              <%  @ranked_registered_users.each do |user| %>
+              <tr>
+                <div id="leaderboard-username-counter">
+                  <td ><span style="font-weight: 800; color: #9B9B9B; font-size: 11px;"> <%= @counter%> </span></td>
+                  <% @counter= @counter+1%>
+
+                  <td><span style="color: #4A4A4A; font-size: 13px;">
+                    <% if user.username %>
+                      <%= "#{user.username}" %>
+                    <% else %>
+                      <%= "Unknown User " %>
+                    <% end %>
+                  </span></td>
+                </div>
+                <div id="leaderboard-point" style="color: #4A90E2">
+                  <td >
+                      <%= user.points %>
+                  </td>
+                </div>
+              </tr>
+              <br>
+              <% end %>
+            </div>
+          </div>
+
           <div class="sidebar-footer-push"></div>
         </div>
       </div>

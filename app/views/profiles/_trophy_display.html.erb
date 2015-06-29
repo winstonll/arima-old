@@ -1,0 +1,167 @@
+<% badge_label = ["", "Starter Badge", "Sir J Mac D", "The Benjamin", "The Hidalgo", "The Fukuzawa", "The Fort Knox", "Mama I made it!", "My Boy", "Curious George", "Professor", "Confucius Say", "7 Day Streak", "14 Day Streak", "30 Day Streak", "Email Verification", "1 Year Anniversary", "2 Year Anniversary", "3 Year Anniversary"] %>
+
+<% if (Badge.where(user_id: current_user.id).first.nil?) %>
+  <div style="position: relative; left: 700px; width:400px; height:600px;">
+    <%= link_to image_tag("Badges_faded/1.png", size: "80x80", alt: "trophy"), "javascript:void(0)", title: badge_label[1], rel: 'tooltip', relative: true%> <!-- completed -->
+    <%= link_to image_tag("Badges_faded/2.png", size: "80x80", alt: "trophy"), "javascript:void(0)", title: badge_label[2], rel: 'tooltip', relative: true %> <!--  -->
+    <%= link_to image_tag("Badges_faded/3.png", size: "80x80", alt: "trophy"), "javascript:void(0)", title: badge_label[3], rel: 'tooltip', relative: true %> <!--  -->
+    <%= link_to image_tag("Badges_faded/4.png", size: "80x80", alt: "trophy"), "javascript:void(0)", title: badge_label[4], rel: 'tooltip', relative: true %> <!--  -->
+    <%= link_to image_tag("Badges_faded/5.png", size: "80x80", alt: "trophy"), "javascript:void(0)", title: badge_label[5], rel: 'tooltip', relative: true %> <!--  -->
+    <%= link_to image_tag("Badges_faded/6.png", size: "80x80", alt: "trophy"), "javascript:void(0)", title: badge_label[6], rel: 'tooltip', relative: true %> <!--  -->
+    <%= link_to image_tag("Badges_faded/7.png", size: "80x80", alt: "trophy"), "javascript:void(0)", title: badge_label[7], rel: 'tooltip', relative: true %> <!--  -->
+    <%= link_to image_tag("Badges_faded/8.png", size: "80x80", alt: "trophy"), "javascript:void(0)", title: badge_label[8], rel: 'tooltip', relative: true %> <!--  -->
+    <%= link_to image_tag("Badges_faded/9.png", size: "80x80", alt: "trophy"), "javascript:void(0)", title: badge_label[9], rel: 'tooltip', relative: true %> <!--  -->
+    <%= link_to image_tag("Badges_faded/10.png", size: "80x80", alt: "trophy"), "javascript:void(0)", title: badge_label[10], rel: 'tooltip', relative: true %> <!--  -->
+    <%= link_to image_tag("Badges_faded/11.png", size: "80x80", alt: "trophy"), "javascript:void(0)", title: badge_label[11], rel: 'tooltip', relative: true %> <!--  -->
+    <%= link_to image_tag("Badges_faded/12.png", size: "80x80", alt: "trophy"), "javascript:void(0)", title: badge_label[12], rel: 'tooltip', relative: true %> <!--  -->
+    <%= link_to image_tag("Badges_faded/13.png", size: "80x80", alt: "trophy"), "javascript:void(0)", title: badge_label[13], rel: 'tooltip', relative: true %> <!--  -->
+    <%= link_to image_tag("Badges_faded/14.png", size: "80x80", alt: "trophy"), "javascript:void(0)", title: badge_label[14], rel: 'tooltip', relative: true %> <!--  -->
+    <%= link_to image_tag("Badges_faded/15.png", size: "80x80", alt: "trophy"), "javascript:void(0)", title: badge_label[15], rel: 'tooltip', relative: true %> <!--  -->
+    <%= link_to image_tag("Badges_faded/16.png", size: "80x80", alt: "trophy"), "javascript:void(0)", title: badge_label[16], rel: 'tooltip', relative: true %> <!--  -->
+    <%= link_to image_tag("Badges_faded/17.png", size: "80x80", alt: "trophy"), "javascript:void(0)", title: badge_label[17], rel: 'tooltip', relative: true %> <!--  -->
+    <%= link_to image_tag("Badges_faded/18.png", size: "80x80", alt: "trophy"), "javascript:void(0)", title: badge_label[18], rel: 'tooltip', relative: true %> <!--  -->
+  </div>
+<% else %>
+  <div style="position: relative; right: 200px; width:500px; height:500px;" id="trophy-container">
+    <% check = Badge.where(user_id: current_user.id).pluck(:badge_id) %>
+    <% 19.times do |count| %>
+      <% unless count == 0%>
+        <% if  check.include? count %>
+          <%= link_to image_tag("Badges/#{count}.png", size: "80x80", alt: "trophy"),
+          badge_path(badgeLabel: badge_label[count], badgeId: count), method: :post, remote: true, title: badge_label[count],
+          rel: 'tooltip', relative: true, id: "#{count}-trophy"%>
+        <% else %>
+          <%= link_to image_tag("Badges_faded/#{count}.png", size: "80x80", alt: "trophy"),
+          badge_path(badgeLabel: badge_label[count], badgeId: count), method: :post, remote: true,
+          title: badge_label[count], rel: 'tooltip', relative: true, id: "#{count}-trophy"%>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
+
+<div style="position:relative; bottom:490px; left: 350px;  width: 260px; height:260px; border-style: solid; border-color: #DCDCDC; border-radius: 15px;" id:"trophy-description-container">
+<center><span id="description-title">Starter Badge</span></center>
+<center><span id="description-trophy-count">Total Award Count: <%= Badge.where(badge_id: 1).count %></span></center>
+<center><span id="description-date-awarded">Awarded <%= Badge.where(user_id: current_user.id, badge_id: 1).first.date%></span></center>
+
+<center><div id="description-image"> <%=image_tag("Badges/1.png", :id => "image0", size: "140x140", alt: "trophy")%> </div></center>
+
+<center><span id="description-label">Be one of the first 1000 sign ups on Arima.</span></center>
+
+</div>
+
+<script>
+
+document.getElementById("trophy-container").addEventListener('click', function(e)
+{
+  if( e.target != null){
+    var slash = allIndeces(e.target.src);
+    var r = e.target.src.substring(slash[4]+1);
+    var period = r.indexOf('.');
+    var badgeId = r.substring(0,period);
+    console.log(badgeId);
+
+  }
+});
+
+function allIndeces(str){
+  var indices = [];
+  for(var i=0; i<str.length;i++) {
+      if (str[i] === "/") indices.push(i);
+  }
+  return indices;
+}
+
+/**
+document.getElementById("1-trophy").addEventListener('click', function(e)
+{
+  //document.getElementById("trophy-description").innerHTML =
+});
+
+document.getElementById("2-trophy").addEventListener('click', function(e)
+{
+  console.log(e.target);
+});
+
+document.getElementById("3-trophy").addEventListener('click', function(e)
+{
+  console.log(e.target);
+});
+
+document.getElementById("4-trophy").addEventListener('click', function(e)
+{
+  console.log(e.target);
+});
+
+document.getElementById("5-trophy").addEventListener('click', function(e)
+{
+  console.log(e.target);
+});
+
+document.getElementById("6-trophy").addEventListener('click', function(e)
+{
+  console.log(e.target);
+});
+
+document.getElementById("7-trophy").addEventListener('click', function(e)
+{
+  console.log(e.target);
+});
+
+document.getElementById("8-trophy").addEventListener('click', function(e)
+{
+  console.log(e.target);
+});
+
+document.getElementById("9-trophy").addEventListener('click', function(e)
+{
+  console.log(e.target);
+});
+
+document.getElementById("10-trophy").addEventListener('click', function(e)
+{
+  console.log(e.target);
+});
+
+document.getElementById("11-trophy").addEventListener('click', function(e)
+{
+  console.log(e.target);
+});
+
+document.getElementById("12-trophy").addEventListener('click', function(e)
+{
+  console.log(e.target);
+});
+
+document.getElementById("13-trophy").addEventListener('click', function(e)
+{
+  console.log(e.target);
+});
+
+document.getElementById("14-trophy").addEventListener('click', function(e)
+{
+  console.log(e.target);
+});
+
+document.getElementById("15-trophy").addEventListener('click', function(e)
+{
+  console.log(e.target);
+});
+
+document.getElementById("16-trophy").addEventListener('click', function(e)
+{
+  console.log(e.target);
+});
+
+document.getElementById("17-trophy").addEventListener('click', function(e)
+{
+  console.log(e.target);
+});
+
+document.getElementById("18-trophy").addEventListener('click', function(e)
+{
+  console.log(e.target);
+});
+**/
+</script>

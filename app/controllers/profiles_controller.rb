@@ -5,7 +5,7 @@ class ProfilesController < ApplicationController
 
   layout "application_fluid"
 
-  respond_to :json, :html
+  respond_to :json, :html, :js
 
   #generates correct referral code
   def show
@@ -22,10 +22,22 @@ class ProfilesController < ApplicationController
     @trending_questions   = Question.trending_for_user current_user
     @answered_questions   = current_user.answers.order("updated_at desc")
     @asked_questions      = self.questions
+
+    check_points_badge
+    check_question_badge
   end
 
   def edit
     @profile = current_user
+  end
+
+  def badge
+    @badge_label = params[:badgeLabel]
+    @badge_id = params[:badgeId].to_i
+    #respond_with(@test_user)
+    respond_to do |format|
+      format.js
+    end
   end
 
   def update

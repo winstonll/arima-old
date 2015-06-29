@@ -1,3 +1,32 @@
+<script type="text/javascript">
+$(document).ready(function() {
+  $('#answer_value').change(function (e) {
+    var input_dropdown = $(e.target).find(":selected").val();
+    if(input_dropdown == "Add your own answer"){
+      $('#answer-button').hide();
+      $('#otherInputBox').show();
+      }
+    else{
+      $('#answer-button').show();
+      $('#otherInputBox').hide();
+    }
+  });
+
+  $('#other').keyup(function() {
+    if($(this).val() != '') {
+       $('.other-button').removeAttr('disabled');
+    }
+  });
+
+  $("form").bind("keypress", function (e) {
+      if (e.keyCode == 13) {
+          return false;
+      }
+  });
+
+});
+</script>
+
 <div class="answer-prompt">
 <% if @question == nil %>
 <% @question = Question.where(slug: params[:id])[0] %>
@@ -16,22 +45,28 @@
             <%= f.input(:value, label: false, pattern: "\d*", placeholder: @user_units["small_unit"]) %>
           </section>
         <% elsif @question.input_type == "collection" %>
-          <%= f.input(:value, label: false, prompt: "Select one...", collection: @question.options_array, input_html: { class: "questions-page-input form-control input-lg"}) %>
-        <% else %>
-          <%= f.input(:value, label: false, placeholder: @question.placeholder(User.where(id: cookies[:guest]).first),
-                       as: @question.input_type.try(:to_sym),
-                       input_html: {
-                         class: "questions-page-input form-control input-lg",
-                         title: @question.validation_message,
-                         min: @question.min_value
-                       }) %>
+          <section id="input-dropdown">
+            <%= f.input(:value, label: false, prompt: "Select one...", collection: @question.options_array, input_html: { class: "questions-page-input form-control input-lg"}) %>  
+          </section>
         <% end %>
         <div class="modal-save-wrapper text-center" id="answer-button">
           <% if !@user_submitted_answer %>
             <%= f.submit "Answer", class: "modal-button", disabled: true, data: {disable_with: "Submitting..."} %>
           <% end %>
-        </div>
-      </div>
     <% end %>
+        </div>
+        <% if !@user_submitted_answer %>
+          <div id="otherInputBox">
+            <% if current_user %>
+              <%= simple_form_for @question, url: question_path, html: { multipart: true, novalidate: false } do |f| %>
+                <%= f.input(:options_for_collection, label: false, input_html:{ value: nil, placeholder: "Type answer", class: "other-input-text", id:"other"}) %>
+                <%= f.submit "Answer", class: "other-button", disabled: true, data: {disable_with: "Submitting..."} %>
+              <% end %>
+            <% else %>
+              <p class="question-title" style="margin-top: 1em;"> Don't have an account? <%= link_to "Sign up!", new_registration_path(resource_name) %> <p>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
   <% end %>
 </div>

@@ -73,11 +73,11 @@
     background:#FCFCFC;
 
     a.btnNext {
-      float: right;
+      margin-left: 3em;
     }
 
     a.btnPrevious {
-      float: left;
+      margin-right: 3em;
     }
 
     #panel {
@@ -127,6 +127,7 @@
         min-height: 450px;
         height: 100%;
         max-width: none;
+        margin-top: 10px;
       }
     }
   }
@@ -223,7 +224,6 @@
                 width: 40%;
                 margin: auto;
                 margin-top: 1em;
-                margin-bottom: 1em;
 
                 color: #9B9B9B;
                 text-align: center;
@@ -236,6 +236,40 @@
               }
             }
 
+            #otherInputBox{
+              display: none;
+
+              .other-input-text{
+                display: block;
+                height: 35px;
+                width: 12em;
+                margin: auto;
+                margin-top: 2px;
+                margin-bottom: 3px;
+                color: black;
+                text-align: center;
+                font-size: 12px;
+                background-color: #f7f7f7;
+                resize: none;
+                padding: 10px 30px 0px 30px;
+
+                border: 0;
+                border-radius: 5px;
+              }
+              .other-button {
+                height: 32px;
+                padding: 0px 30px 0px 30px;
+                background-color: #00C39C;
+                color: #fff;
+                border-radius: 5px;
+                border: none;
+              }
+
+              .other-button:disabled {
+                background-color: #9a9a9a;
+              }
+            }
+
             #answer-button {
               .modal-button {
                 height: 32px;
@@ -244,6 +278,7 @@
                 color: #fff;
                 border-radius: 5px;
                 border: none;
+                margin-top: 1em;
               }
 
               .modal-button:disabled {
@@ -425,37 +460,29 @@
     .country_dropdown {
       color: #4a90e2;
       text-align: right;
+      background: transparent;
+      font-size: 14px;
+      line-height: 1;
+      border: 1px solid #888;
+      border-radius: 5px;
+      height: 30px;
+      width: 11em;
+      float: right;
 
-      select {
-
-        display: inline-block;
-        background: transparent;
-        font-size: 14px;
-        line-height: 1;
-        border: 1px solid #888;
-        border-radius: 5px;
-        height: 30px;
-        width: 15em;
-
-      }
     }
 
     #heat_position{
       color: #4a90e2;
       text-align: right;
-
-      select {
-
-        display: inline-block;
-        background: transparent;
-        font-size: 14px;
-        line-height: 1;
-        border: 1px solid #888;
-        border-radius: 5px;
-        height: 30px;
-        width: 15em;
-
-      }
+      background: transparent;
+      font-size: 14px;
+      line-height: 1;
+      border: 1px solid #888;
+      border-radius: 5px;
+      height: 30px;
+      width: 12em;
+      float: right;
+      
     }
 
     .location-select {

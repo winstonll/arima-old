@@ -1,0 +1,88 @@
+$("#description-title").html("<%= @badge_label %>");
+
+$("#description-trophy-count").html("Total Award Count: " + "<%= Badge.where(badge_id: @badge_id).count%>");
+
+
+$("#description-date-awarded").html(
+  "<%= Badge.where(user_id: 2, badge_id: @badge_id).first.nil? ? "Not Yet Obtained" :
+  "Awarded " + Badge.where(user_id: 2, badge_id: @badge_id).first.date %>");
+
+$('#image0').attr( "src" , "<%= image_path "Badges/#{@badge_id}.png", :id => "image0" %>" );
+
+<%if @badge_id == 1%>
+  $("#description-label").html("Be one of the first 1000 sign ups on Arima.");
+<%elsif @badge_id == 2%>
+  <%if(Badge.where(user_id: current_user.id, badge_id: 2).first.nil?)%>
+    $("#description-label").html("<%= "#{User.where(id: cookies[:guest]).first.points}\/10 points gained" %>");
+  <%else%>
+    $("#description-label").html("<%= "10\/10 points gained" %>");
+  <%end%>
+<%elsif @badge_id == 3%>
+  <%if(Badge.where(user_id: current_user.id, badge_id: 3).first.nil?)%>
+    $("#description-label").html("<%= "#{User.where(id: cookies[:guest]).first.points}\/100 points gained" %>");
+  <%else%>
+    $("#description-label").html("<%= "100\/100 points gained" %>");
+  <%end%>
+<%elsif @badge_id == 4%>
+  <%if(Badge.where(user_id: current_user.id, badge_id: 4).first.nil?)%>
+    $("#description-label").html("<%= "#{User.where(id: cookies[:guest]).first.points}\/1000 points gained" %>");
+  <%else%>
+    $("#description-label").html("<%= "1000\/1000 points gained" %>");
+  <%end%>
+<%elsif @badge_id == 5%>
+  <%if(Badge.where(user_id: current_user.id, badge_id: 5).first.nil?)%>
+    $("#description-label").html("<%= "#{User.where(id: cookies[:guest]).first.points}\/10000 points gained" %>");
+  <%else%>
+    $("#description-label").html("<%= "10000\/10000 points gained" %>");
+  <%end%>
+<%elsif @badge_id == 6%>
+  <%if(Badge.where(user_id: current_user.id, badge_id: 6).first.nil?)%>
+    $("#description-label").html("<%= "#{User.where(id: cookies[:guest]).first.points}\/100000 points gained" %>");
+  <%else%>
+    $("#description-label").html("<%= "100000\/100000 points gained" %>");
+  <%end%>
+<%elsif @badge_id == 7%>
+  <%if(Badge.where(user_id: current_user.id, badge_id: 7).first.nil?)%>
+    $("#description-label").html("<%= "#{User.where(id: cookies[:guest]).first.points}\/1000000 points gained" %>");
+  <%else%>
+    $("#description-label").html("<%= "1000000\/1000000 points gained" %>");
+  <%end%>
+<%elsif @badge_id == 8%>
+  <%if(Badge.where(user_id: current_user.id, badge_id: 8).first.nil?)%>
+    $("#description-label").html("<%= "#{Question.where(user_id: current_user.id).count}\/1 questions answered" %>");
+  <%else%>
+    $("#description-label").html("<%= "1\/1 questions answered" %>");
+  <%end%>
+<%elsif @badge_id == 9%>
+  <%if(Badge.where(user_id: current_user.id, badge_id: 9).first.nil?)%>
+    $("#description-label").html("<%= "#{Question.where(user_id: current_user.id).count}\/10 questions answered" %>");
+  <%else%>
+    $("#description-label").html("<%= "10\/10 questions answered" %>");
+  <%end%>
+<%elsif @badge_id == 10%>
+  <%if(Badge.where(user_id: current_user.id, badge_id: 10).first.nil?)%>
+    $("#description-label").html("<%= "#{Question.where(user_id: current_user.id).count}\/100 questions answered" %>");
+  <%else%>
+    $("#description-label").html("<%= "100\/100 questions answered" %>");
+  <%end%>
+<%elsif @badge_id == 11%>
+  <%if(Badge.where(user_id: current_user.id, badge_id: 11).first.nil?)%>
+    $("#description-label").html("<%= "#{Question.where(user_id: current_user.id).count}\/1000 questions answered" %>");
+  <%else%>
+    $("#description-label").html("<%= "1000\/1000 questions answered" %>");
+  <%end%>
+<%elsif @badge_id == 12%>
+  $("#description-label").html("<%= "Ask and Answer questions 7 days in a row" %>");
+<%elsif @badge_id == 13%>
+  $("#description-label").html("<%= "Ask and Answer questions 14 days in a row" %>");
+<%elsif @badge_id == 14%>
+  $("#description-label").html("<%= "Ask and Answer questions 30 days in a row" %>");
+<%elsif @badge_id == 15%>
+  $("#description-label").html("<%= "Obtained through verification of email address" %>");
+<%elsif @badge_id == 16%>
+  $("#description-label").html("<%= "Become a member for a Year" %>");
+<%elsif @badge_id == 17%>
+  $("#description-label").html("<%= "Become a member for Two Years" %>");
+<%elsif @badge_id == 18%>
+  $("#description-label").html("<%= "Become a member for Three Years" %>");
+<%end%>
