@@ -29,7 +29,7 @@ class SearchController < ApplicationController
       @answered         = @all & current_user.questions
       @unanswered       = @all - @answered
     else
-      @guest            = User.where(id: cookies[:guest])
+      @guest            = User.where(id: cookies[:guest]).first
       @answered         = @all & @guest.questions
       @unanswered       = @all - @answered
     end
