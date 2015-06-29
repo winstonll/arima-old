@@ -73,11 +73,11 @@
     background:#FCFCFC;
 
     a.btnNext {
-      float: right;
+      margin-left: 3em;
     }
 
     a.btnPrevious {
-      float: left;
+      margin-right: 3em;
     }
 
     #panel {
@@ -127,6 +127,7 @@
         min-height: 450px;
         height: 100%;
         max-width: none;
+        margin-top: 10px;
       }
     }
   }
@@ -459,37 +460,29 @@
     .country_dropdown {
       color: #4a90e2;
       text-align: right;
+      background: transparent;
+      font-size: 14px;
+      line-height: 1;
+      border: 1px solid #888;
+      border-radius: 5px;
+      height: 30px;
+      width: 11em;
+      float: right;
 
-      select {
-
-        display: inline-block;
-        background: transparent;
-        font-size: 14px;
-        line-height: 1;
-        border: 1px solid #888;
-        border-radius: 5px;
-        height: 30px;
-        width: 15em;
-
-      }
     }
 
     #heat_position{
       color: #4a90e2;
       text-align: right;
-
-      select {
-
-        display: inline-block;
-        background: transparent;
-        font-size: 14px;
-        line-height: 1;
-        border: 1px solid #888;
-        border-radius: 5px;
-        height: 30px;
-        width: 15em;
-
-      }
+      background: transparent;
+      font-size: 14px;
+      line-height: 1;
+      border: 1px solid #888;
+      border-radius: 5px;
+      height: 30px;
+      width: 12em;
+      float: right;
+      
     }
 
     .location-select {

@@ -29,29 +29,28 @@
 
             <div id="country" class="tab">
               <a class="btnPrevious"><%= image_tag("back_tab_blue.png", :class => "visualization-tab-img")%></a>
-                This tab shows what everyone from "" has answered.
+                This tab shows what everyone from a particular Country has answered.
               <a class="btnNext"><%= image_tag("forward_tab.png", :class => "visualization-tab-img")%></a>
 
-              <div id="country_position" class="country_dropdown">
-                <%= select_tag(@countries_answered, options_for_select(@countries_answered), prompt: "Select a Country") %>
-              </div>
+              <%= select_tag(@countries_answered, options_for_select(@countries_answered), class: "country_dropdown", prompt: "Select a Country") %>
+
               <div id="answer-country" class='answer-chart'></div>
             </div>
 
             <div id="heatmap" class="tab">
-              <a class="btnPrevious"><%= image_tag("back_tab_blue.png", :class => "visualization-tab-img")%></a>
-                This map shows where people who answered "" are from.
-              <a class="btnNext"><%= image_tag("forward_tab_blue.png", :class => "visualization-tab-img")%></a>
-              
-              <div id="heat_position" class="country_dropdown">
+              <div class="heat_position">
                 <% temp = question.user_lat_long %>
                   <% @answer_selection = Array.new %>
                   <% temp.each do |ans, arr| %>
                   <% @answer_selection.push(ans); %>
                 <% end %>
-                <%= select_tag(@answer_selection, options_for_select(@answer_selection),prompt: "Select an Answer") %>
               </div>
-            <div id="map-canvas" style="margin-top: 10px;"></div>
+              <%= select_tag(@answer_selection, options_for_select(@answer_selection), id:"heat_position", prompt: "Select an Answer") %>
+              <a class="btnPrevious"><%= image_tag("back_tab_blue.png", :style => "margin-left: 10em;")%></a>
+                <i class="heat_text">This map shows where people who answered are from.</i>
+              <a class="btnNext"><%= image_tag("forward_tab_blue.png", :class => "visualization-tab-img")%></a>
+
+              <div id="map-canvas"></div>
           </div>
       
       <div id="answer-chart"></div>
