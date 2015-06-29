@@ -281,7 +281,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-session_store
-  bcrypt (~> 3.1.2)
+  bcrypt (~> 3.1.10)
   best_errors
   c3-rails (~> 0.3)
   capistrano
