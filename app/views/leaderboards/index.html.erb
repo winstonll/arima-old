@@ -14,7 +14,7 @@
 
   <div class="leaderboard-points-rank-container">
       <h1 class="leaderboard-points-rank-title">Points</h1>
-      <p class="leaderboard-points-rank"><%= @user.points %></p>
+      <p class="leaderboard-points-rank"><%= user_signed_in? ? current_user.points : "?" %></p>
   </div>
 </div>
 
