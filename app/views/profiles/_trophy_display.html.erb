@@ -40,14 +40,14 @@
   </div>
 <% end %>
 
-<div style="position:relative; bottom:490px; left: 350px;  width: 260px; height:260px; border-style: solid; border-color: black; border-radius: 15px;" id:"trophy-description-container">
+<div style="position:relative; bottom:490px; left: 350px;  width: 260px; height:260px; border-style: solid; border-color: #DCDCDC; border-radius: 15px;" id:"trophy-description-container">
 <center><span id="description-title">Starter Badge</span></center>
 <center><span id="description-trophy-count">Total Award Count: <%= Badge.where(badge_id: 1).count %></span></center>
 <center><span id="description-date-awarded">Awarded <%= Badge.where(user_id: cookies[:guest], badge_id: 1).first.date%></span></center>
 
 <center><div id="description-image"> <%=image_tag("Badges/1.png", :id => "image0", size: "140x140", alt: "trophy")%> </div></center>
 
-<center><span id="description-label">Obtained by signing up to Arima.</span></center>
+<center><span id="description-label">Be one of the first 1000 sign ups on Arima.</span></center>
 
 </div>
 
