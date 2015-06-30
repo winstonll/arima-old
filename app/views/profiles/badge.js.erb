@@ -4,8 +4,8 @@ $("#description-trophy-count").html("Total Award Count: " + "<%= Badge.where(bad
 
 
 $("#description-date-awarded").html(
-  "<%= Badge.where(user_id: 2, badge_id: @badge_id).first.nil? ? "Not Yet Obtained" :
-  "Awarded " + Badge.where(user_id: 2, badge_id: @badge_id).first.date %>");
+  "<%= Badge.where(user_id: current_user.id, badge_id: @badge_id).first.nil? ? "Not Yet Obtained" :
+  "Awarded " + Badge.where(user_id: current_user.id, badge_id: @badge_id).first.date %>");
 
 $('#image0').attr( "src" , "<%= image_path "Badges/#{@badge_id}.png", :id => "image0" %>" );
 
