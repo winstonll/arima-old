@@ -1,21 +1,54 @@
-/* Edit Button and input styles */
-
-
-input[type="file"]{
-  color: transparent;
-  line-height: 25px;
-  font-style: normal !important;
-  display: inline;
-}
-
 /* Profile Page Styles */
 
 .profile-hero-container {
     width: 100%;
+    height: 15em;
     background: #4a90e2;
 
   .profile-hero-content {
-      text-align: center;
+    text-align: center;
+
+    .profile-info {
+      z-index: 1;
+      font-weight:bold;
+      position: relative;
+      top: 11em;
+
+      .profile-username {
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        vertical-align: top;
+        display: inline-block;
+        padding-left: 1.5em;
+      }
+
+      .rank-title {
+        font-color: white;
+        color: white;
+        font-size: 18px;
+        vertical-align: top;
+        display: inline-block;
+        padding-left: 3em;
+      }  
+
+      .points-title {
+        font-color: white;
+        color: white;
+        font-size: 18px;
+        vertical-align: top;
+        display: inline-block;
+        padding-left: 3em;
+      } 
+    }
+        
+    .grey-banner {
+      height: 3em;
+      width: 100%;
+      background: #ededed;
+      position: relative;
+      z-index: 0;
+      top: 11em;
 
       #profile-picture-container {
         background-color: #ededed;
@@ -25,6 +58,10 @@ input[type="file"]{
         border: white solid;
         box-shadow: 0 0 0 1pt #d0d0d0;
         display: inline-block;
+        position: relative;
+        z-index: 1;
+        bottom: 6em;
+        right: 1.5em;
 
         .profile-picture-default {
           color: #3e8ae5;
@@ -34,7 +71,6 @@ input[type="file"]{
         }
 
         .edit-profile {
-
           .profile-edit-button {
             width: 100px;
             height: 25px;
@@ -50,45 +86,47 @@ input[type="file"]{
         }
       }
 
-      .profile-info {
+      .profile-bottom-container {
+        display: inline-block;
+        position: relative;
+        z-index: 1;
+        bottom: 5em;
+        right: 9.5em;
 
-        .profile-username {
-          color: white;
-          font-size: 18px;
-          font-weight: bold;
-        }
 
         .user-location {
-          font-size: 14px;
-          color: white;
+          font-size: 16px;
+          color: #4a90e2;
           position: relative;
-          z-index: 2;
+          z-index: 1;
+          vertical-align: top;
+          display: inline-block;
+          padding-left: 8em;
         }
 
-        .stat-container {
+        .stat-rank {
+          font-size: 17px;
+          color: #4a90e2;
+          position: relative;
+          z-index: 1;
+          vertical-align: top;
+          display: inline-block;
+          padding-left: 7em;
+        }
 
-          #user-leaderboard,
-          #user-points {
-
-            .stat-title {
-              font-color: white;
-              color: white;
-              font-size: 18px;
-            }
-
-            .stat-number {
-              font-size: 18px;
-              color: white;
-              position: relative;
-              z-index: 2;
-            }
-          }
+        .stat-points {
+          font-size: 17px;
+          color: #4a90e2;
+          position: relative;
+          z-index: 1;
+          vertical-align: top;
+          display: inline-block;
+          padding-left: 9em;
         }
       }
+    }
   }
-
 }
-
 
 
 /* Profile edit Page Styles */
@@ -112,7 +150,7 @@ input[type="file"]{
         }
       
       .grey-banner {
-        height: 2.5em;
+        height: 3em;
         width: 100%;
         background: #ededed;
         position: relative;
@@ -164,6 +202,12 @@ input[type="file"]{
             position: relative;
             right: 12em;
 
+            input[type="file"] {
+              color: transparent;
+              line-height: 25px;
+              font-style: normal !important;
+              display: inline;
+            }
          } 
 
           .input-box {
@@ -223,12 +267,6 @@ input[type="file"]{
               bottom: 3em;
             }
           }
-
-
-
-
-
-
         }
       }
     }
