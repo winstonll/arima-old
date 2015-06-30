@@ -118,7 +118,7 @@
                   <p style="float: left; position:relative; left: 24px; color: #4A90E2; font-weight: 600; font-size: 13px;">Badges:</p>
                   <p style="float: right; position:relative; right: 26px; color: #4A90E2; font-weight: 600;">
                     <%if user_signed_in?%>
-                    <%= Badge.where(user_id: cookies[:guest]).count %>
+                    <%= Badge.where(user_id: current_user.id).count %>
                     <%else%>
                     0
                     <%end%>
