@@ -10,7 +10,7 @@ $("#description-date-awarded").html(
 $('#image0').attr( "src" , "<%= image_path "Badges/#{@badge_id}.png", :id => "image0" %>" );
 
 <%if @badge_id == 1%>
-  $("#description-label").html("Be one of the first 1000 sign ups on Arima.");
+  $("#description-label").html("Be one of the first 3000 sign ups on Arima.");
 <%elsif @badge_id == 2%>
   <%if(Badge.where(user_id: current_user.id, badge_id: 2).first.nil?)%>
     $("#description-label").html("<%= "#{User.where(id: cookies[:guest]).first.points}\/10 points gained" %>");
@@ -49,27 +49,27 @@ $('#image0').attr( "src" , "<%= image_path "Badges/#{@badge_id}.png", :id => "im
   <%end%>
 <%elsif @badge_id == 8%>
   <%if(Badge.where(user_id: current_user.id, badge_id: 8).first.nil?)%>
-    $("#description-label").html("<%= "#{Question.where(user_id: current_user.id).count}\/1 questions answered" %>");
+    $("#description-label").html("<%= "#{Question.where(user_id: current_user.id).count}\/1 Questions Asked" %>");
   <%else%>
-    $("#description-label").html("<%= "1\/1 questions answered" %>");
+    $("#description-label").html("<%= "1\/1 Questions Asked" %>");
   <%end%>
 <%elsif @badge_id == 9%>
   <%if(Badge.where(user_id: current_user.id, badge_id: 9).first.nil?)%>
-    $("#description-label").html("<%= "#{Question.where(user_id: current_user.id).count}\/10 questions answered" %>");
+    $("#description-label").html("<%= "#{Question.where(user_id: current_user.id).count}\/10 Questions Asked" %>");
   <%else%>
-    $("#description-label").html("<%= "10\/10 questions answered" %>");
+    $("#description-label").html("<%= "10\/10 Questions Asked" %>");
   <%end%>
 <%elsif @badge_id == 10%>
   <%if(Badge.where(user_id: current_user.id, badge_id: 10).first.nil?)%>
-    $("#description-label").html("<%= "#{Question.where(user_id: current_user.id).count}\/100 questions answered" %>");
+    $("#description-label").html("<%= "#{Question.where(user_id: current_user.id).count}\/100 Questions Asked" %>");
   <%else%>
-    $("#description-label").html("<%= "100\/100 questions answered" %>");
+    $("#description-label").html("<%= "100\/100 Questions Asked" %>");
   <%end%>
 <%elsif @badge_id == 11%>
   <%if(Badge.where(user_id: current_user.id, badge_id: 11).first.nil?)%>
-    $("#description-label").html("<%= "#{Question.where(user_id: current_user.id).count}\/1000 questions answered" %>");
+    $("#description-label").html("<%= "#{Question.where(user_id: current_user.id).count}\/1000 Questions Asked" %>");
   <%else%>
-    $("#description-label").html("<%= "1000\/1000 questions answered" %>");
+    $("#description-label").html("<%= "1000\/1000 Questions Asked" %>");
   <%end%>
 <%elsif @badge_id == 12%>
   $("#description-label").html("<%= "Ask and Answer questions 7 days in a row" %>");
