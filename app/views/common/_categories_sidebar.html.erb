@@ -100,7 +100,13 @@
               <span style="position:relative;">
                 <div>
                   <p style="float: left; position:relative; width:200px; right: 59px; color: #4A90E2; font-weight: 600; font-size: 13px;">Rank:</p>
-                  <p style="float: right; position:relative; right: 26px; color: #4A90E2; font-weight: 600;">?</p>
+                  <p style="float: right; position:relative; right: 26px; color: #4A90E2; font-weight: 600;">
+                  <%if user_signed_in?%>
+                    <%= User.where(id: current_user.id)[0].rank %>
+                  <%else%>
+                    ?
+                  <%end%>
+                  </p>
                 </div>
                 <div style="clear: both;"></div>
                 <div id="textbox">
@@ -118,7 +124,7 @@
                   <p style="float: left; position:relative; left: 24px; color: #4A90E2; font-weight: 600; font-size: 13px;">Badges:</p>
                   <p style="float: right; position:relative; right: 26px; color: #4A90E2; font-weight: 600;">
                     <%if user_signed_in?%>
-                    <%= Badge.where(user_id: cookies[:guest]).count %>
+                    <%= Badge.where(user_id: current_user.id).count %>
                     <%else%>
                     0
                     <%end%>
