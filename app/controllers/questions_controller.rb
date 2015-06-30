@@ -198,7 +198,7 @@ class QuestionsController < ApplicationController
         :user_id => current_user.id,
         :value_type => params[:value_type],
         :options_for_collection => @answerboxes << "|Add your own answer")
-
+      puts @subquestion.options_for_collection
       GroupsQuestion.create(group_id: params[:group_id], question_id: @subquestion.id)
 
     elsif(params[:submit_question_name].length < 256)
@@ -208,6 +208,7 @@ class QuestionsController < ApplicationController
         :user_id => current_user.id,
         :value_type => params[:value_type],
         :options_for_collection => @answerboxes)
+      puts @subquestion.options_for_collection
 
       GroupsQuestion.create(group_id: params[:group_id], question_id: @subquestion.id)
     else
