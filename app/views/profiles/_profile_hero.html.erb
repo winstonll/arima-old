@@ -24,7 +24,7 @@
           <div id="user-leaderboard">
             <a href="<%= leaderboard_path(curr_user: true) %>">
             <div class="stat-title">Leaderboard Rank</div>
-            <div class="stat-number"> ? <%#= user.get_user_rank %> </div>
+            <div class="stat-number"> <%=  current_user.rank == nil ? "?" : current_user.rank%> </div>
             </a>
           </div>
           <div id="user-points">
