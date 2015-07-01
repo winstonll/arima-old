@@ -1,10 +1,7 @@
 Arima::Application.routes.draw do
 
   get 'feed' => 'feed#index'
-<<<<<<< HEAD
   get 'category' => 'feed#category'
-=======
->>>>>>> parent of 46b2e57... when you’re outside of the feed it now correctly send u back to the
 
   post 'badge' => 'profiles#badge'
 
