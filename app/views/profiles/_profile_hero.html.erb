@@ -11,22 +11,21 @@
       </div>
     </div>
 
-    <div class="grey-banner">
-      <div id="profile-picture-container">
-        <% if (user.avatar.url.include? "missing") %>
-          <div class="profile-picture-default"><%= user.username.to_s[0].capitalize %></div>
-        <% else %>
-          <%= image_tag user.avatar.url(:thumb), class: "profile-picture" %>
-        <% end %>
-        <div class="edit-profile">
-          <%= button_to 'Edit', edit_profile_path, :method => "get", class: "profile-edit-button" %>
-        </div>
+    <div id="profile-picture-container">
+      <% if (user.avatar.url.include? "missing") %>
+        <div class="profile-picture-default"><%= user.username.to_s[0].capitalize %></div>
+      <% else %>
+        <%= image_tag user.avatar.url(:thumb), class: "profile-picture" %>
+      <% end %>
+      <div class="edit-profile">
+        <%= button_to 'Edit', edit_profile_path, :method => "get", class: "profile-edit-button" %>
       </div>
+    </div>
+    <div class="grey-banner">
       <div class="profile-bottom-container">
         <div class="user-location"><%= user.location.city + ", " + user.location.country %></div>
-        <div class="stat-rank"> <%=  current_user.rank == nil ? "?" : current_user.rank%> </div>
+        <div class="stat-rank"> <%= current_user.rank == nil ? "?" : current_user.rank%> </div>
         <div class="stat-points"><%= user.points %></div>
-
     </div>
   </div>
 

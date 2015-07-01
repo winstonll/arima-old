@@ -1,9 +1,8 @@
 Arima::Application.routes.draw do
 
   get 'feed' => 'feed#index'
-
+  get 'category' => 'feed#category'
   post 'badge' => 'profiles#badge'
-  post 'category' => 'feed#category'
 
   # custom registration route
   devise_for :users, controllers: { registrations: "users/registrations" }
