@@ -19,15 +19,15 @@
       <% end %>
         <!-- if selected -->
         <% unless cookies[:group_id] != nil && !cookies[:group_id].empty? %>
-          <center><%= link_to image_tag("category_nav_icons_circular/#{group.id}.png", size: "74x74", :border => 0),category_path(group_id: group.id), :class => 'category-icon', method: :post, remote: true%> </center>
+          <center><%= link_to image_tag("category_nav_icons_circular/#{group.id}.png", size: "74x74", :border => 0), {:action => 'category', :controller => 'feed', :group_id => group.id}, :class => 'category-icon'%> </center>
           <center class="category-title">
         <!-- if not selected load greyed out icon here-->
         <% else %>
           <% if cookies[:group_id].to_i == group.id %>
-            <center><%= link_to image_tag("category_nav_icons_circular/#{group.id}.png", size: "74x74", :border => 0), category_path(group_id: group.id), :class => 'category-icon', method: :post, remote: true%> </center>
+            <center><%= link_to image_tag("category_nav_icons_circular/#{group.id}.png", size: "74x74", :border => 0), {:action => 'category', :controller => 'feed', :group_id => group.id}, :class => 'category-icon'%> </center>
             <center class="category-title-selected">
           <% else %>
-            <center><%= link_to image_tag("category_nav_icons_circular_low_opacity/#{group.id}.png", size: "74x74", :border => 0), category_path(group_id: group.id), :class => 'category-icon', method: :post, remote: true%> </center>
+            <center><%= link_to image_tag("category_nav_icons_circular_low_opacity/#{group.id}.png", size: "74x74", :border => 0), {:action => 'category', :controller => 'feed', :group_id => group.id}, :class => 'category-icon'%> </center>
             <center class="category-title-not-selected">
           <% end %>
         <% end %>

@@ -25,12 +25,9 @@ class FeedController < ApplicationController
 
   def category
     cookies[:group_id] = params[:group_id]
-    puts params[:group_id]
-    @all = Question.all.where(group_id: params[:group_id].to_i).page(params[:page]).per(15)
-    puts @all.first.label
-    puts "------------------------"
+    @all = Question.all.where(group_id: params[:group_id]).page(params[:page]).per(15)
     respond_to do |format|
-      format.js
+      format.html { render :template => "feed/index" }
     end
   end
 end
