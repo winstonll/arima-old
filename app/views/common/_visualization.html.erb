@@ -19,7 +19,7 @@
         </div>
 
         <div id="country" class="tab">
-          <%= select_tag(@countries_answered, options_for_select(@countries_answered, answer.user_country), class: "country_dropdown", prompt: "Select a Country") %>
+          <%= select_tag(@countries_answered, options_for_select(@countries_answered, answer.user_country),class: "country_dropdown", id:"country_position", prompt: "Select a Country") %>
 
           <a class="btnPrevious"><%= image_tag("back_tab_blue.png", :style => "margin-left: 10em;")%></a>
             <i class="country_text">This tab shows what everyone from "<%= answer.user_country%>" has answered.</i>
