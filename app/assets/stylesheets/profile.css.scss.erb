@@ -2,7 +2,7 @@
 
 .profile-hero-container {
     width: 100%;
-    height: 8em;
+    height: 11em;
     background: #4a90e2;
 
   .profile-hero-content {
@@ -12,15 +12,16 @@
       z-index: 1;
       font-weight:bold;
       position: relative;
-      top: 6em;
+      top: 9em;
+      left: 8em;
 
       .profile-username {
         color: white;
         font-size: 20px;
-        font-weight: bold;
         vertical-align: top;
         display: inline-block;
-        padding-left: 1.5em;
+        padding-left: 7em;
+        padding-right: 4em;
       }
 
       .rank-title {
@@ -30,6 +31,7 @@
         vertical-align: top;
         display: inline-block;
         padding-left: 3em;
+        padding-right: 4em;
       }  
 
       .points-title {
@@ -39,62 +41,60 @@
         vertical-align: top;
         display: inline-block;
         padding-left: 3em;
+        padding-right: 8em;
       } 
     }
         
+    #profile-picture-container {
+      background-color: #ededed;
+      height: 9em;
+      width: 9em;
+      border-radius: 0.5em;
+      border: white solid;
+      box-shadow: 0 0 0 1pt #d0d0d0;
+      display: inline-block;
+      position: relative;
+      z-index: 1;
+      top: 3em;
+      right: 20em;
+
+      .profile-picture-default {
+        color: #3e8ae5;
+        font-weight: bold;
+        font-size: xx-large;
+        padding-top: 1em;
+      }
+
+      .edit-profile {
+        .profile-edit-button {
+          width: 100px;
+          height: 25px;
+          background-color: #e0e0e0;
+          border-radius: 3px;
+          border: none;
+          position: relative;
+          top: 3em;
+        }
+
+        .profile-edit-button:hover {
+          background-color: #d0d0d0;
+          box-shadow: 0px 2px 2px rgba(100, 100, 100, 0.5);
+        }
+      }
+    }
+
     .grey-banner {
       height: 3em;
       width: 100%;
       background: #ededed;
       position: relative;
       z-index: 0;
-      top: 6em;
-
-      #profile-picture-container {
-        background-color: #ededed;
-        height: 9em;
-        width: 9em;
-        border-radius: 0.5em;
-        border: white solid;
-        box-shadow: 0 0 0 1pt #d0d0d0;
-        display: inline-block;
-        position: relative;
-        z-index: 1;
-        bottom: 6em;
-        right: 1.5em;
-
-        .profile-picture-default {
-          color: #3e8ae5;
-          font-weight: bold;
-          font-size: xx-large;
-          padding-top: 1em;
-        }
-
-        .edit-profile {
-          .profile-edit-button {
-            width: 100px;
-            height: 25px;
-            background-color: #e0e0e0;
-            border-radius: 3px;
-            border: none;
-            position: relative;
-            top: 4em;
-          }
-
-          .profile-edit-button:hover {
-            background-color: #d0d0d0;
-            box-shadow: 0px 2px 2px rgba(100, 100, 100, 0.5);
-          }
-        }
-      }
 
       .profile-bottom-container {
         display: inline-block;
         position: relative;
         z-index: 1;
-        bottom: 5em;
-        right: 9.5em;
-
+        left: 6em;
 
         .user-location {
           font-size: 16px;
@@ -103,7 +103,8 @@
           z-index: 1;
           vertical-align: top;
           display: inline-block;
-          padding-left: 8em;
+          padding-right: 4em;
+          padding-left: 1em;
         }
 
         .stat-rank {
@@ -113,7 +114,7 @@
           z-index: 1;
           vertical-align: top;
           display: inline-block;
-          padding-left: 7em;
+          padding-left: 6em;
         }
 
         .stat-points {
@@ -123,7 +124,7 @@
           z-index: 1;
           vertical-align: top;
           display: inline-block;
-          padding-left: 9em;
+          padding-left: 13em;
         }
       }
     }
