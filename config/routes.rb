@@ -1,11 +1,7 @@
 Arima::Application.routes.draw do
 
   get 'feed' => 'feed#index'
-<<<<<<< HEAD
-  get 'category' => 'feed#category_non_feed'
-=======
   get 'category' => 'feed#category'
->>>>>>> parent of 0980363... seamless loading of feed categories
 
   post 'badge' => 'profiles#badge'
 
