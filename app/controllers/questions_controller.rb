@@ -191,7 +191,7 @@ class QuestionsController < ApplicationController
     end
 
 
-    if params["checked"] != nil && params["checked"][current_user.id] && (params[:submit_question_name].length < 256)
+    if params["checked"] != nil && (params[:submit_question_name].length < 256)
       @subquestion = Question.create(
         :label => params[:submit_question_name].slice(0,1).capitalize + params[:submit_question_name].slice(1..-1),
         :group_id => params[:group_id],
