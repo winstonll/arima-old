@@ -243,12 +243,12 @@ class QuestionsController < ApplicationController
     if @question.options_for_collection.include? params[:question][:options_for_collection]
       flash[:notice] = "This answer value already exists!"
     else
-      @question.options_for_collection = @question.options_for_collection[0..a.last] + params["question"]["options_for_collection"].downcase + "|Add your own answer"
+      @question.options_for_collection = @question.options_for_collection[0..a.last] + params["question"]["options_for_collection"].capitalize + "|Add your own answer"
       @question.save
     end
 
     if @question.save
-      @answer = Answer.new(user_id: current_user.id, question_id: @question.id, value: params[:question][:options_for_collection])
+      @answer = Answer.new(user_id: current_user.id, question_id: @question.id, value: params[:question][:options_for_collection].capitalize)
       @answer.save
       redirect_to @question
     else
