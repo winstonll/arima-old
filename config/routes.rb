@@ -1,6 +1,7 @@
 Arima::Application.routes.draw do
 
   get 'feed' => 'feed#index'
+  get 'category' => 'feed#category_non_feed'
 
   post 'badge' => 'profiles#badge'
   post 'category' => 'feed#category'
