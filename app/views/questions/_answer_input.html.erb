@@ -1,12 +1,26 @@
 <script type="text/javascript">
 $(document).ready(function() {
 
-  <%if @question.answer_plus != false || nil%>
+  <%if @question.answer_plus != nil || @question.answer_plus == true%>
     $('#answer-button').show();
     $('#otherInputBox').show();
   <%else%>
     $('#answer-button').show();
     $('#otherInputBox').hide();
+  <%end%>
+
+  <%if @user_submitted_answer%>
+    $('.form-group').css("left", "115px");
+  <%else%>
+    $('.form-group').css("position", "relative");
+    $('.form-group').css("right", "2%");
+  <%end%>
+
+  <%if @question.answer_plus == nil || @question.answer_plus == false%>
+    $('.form-group').css("left", "110px");
+  <%else%>
+    $('.form-group').css("position", "relative");
+    $('.form-group').css("right", "2%");
   <%end%>
 
   $('#other').keyup(function() {
@@ -43,7 +57,7 @@ $(document).ready(function() {
           </section>
         <% elsif @question.input_type == "collection" %>
           <section id="input-dropdown">
-            <%= f.input(:value, label: false, prompt: "Select one...", collection: @question.options_array, input_html: { class: "questions-page-input form-control input-lg"}) %>
+            <%= f.input(:value, label: false, prompt: "Select an Answer", collection: @question.options_array, input_html: { class: "questions-page-input form-control input-lg"}) %>
           </section>
         <% end %>
         <div class="modal-save-wrapper text-center" id="answer-button">
@@ -56,7 +70,7 @@ $(document).ready(function() {
           <div id="otherInputBox">
             <% if current_user %>
               <%= simple_form_for @question, url: question_path, html: { multipart: true, novalidate: false } do |f| %>
-                <%= f.input(:options_for_collection, label: false, input_html:{ value: nil, placeholder: "Type answer", class: "other-input-text", id:"other"}) %>
+                <%= f.input(:options_for_collection, label: false, input_html:{ value: nil, placeholder: "Or add your own answer", class: "other-input-text", id:"other"}) %>
                 <%= f.submit "Answer", class: "other-button", disabled: true, data: {disable_with: "Submitting..."} %>
               <% end %>
             <% else %>
