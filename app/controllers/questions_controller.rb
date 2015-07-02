@@ -251,7 +251,7 @@ class QuestionsController < ApplicationController
 
     if @question.save
       @answer = Answer.new(user_id: current_user.id, question_id: @question.id, value: params[:question][:options_for_collection].capitalize)
-      @answer.save
+      @answer.save!
       redirect_to @question
     else
       render :edit

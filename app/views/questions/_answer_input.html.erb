@@ -10,17 +10,11 @@ $(document).ready(function() {
   <%end%>
 
   <%if @user_submitted_answer%>
-    $('.form-group').css("left", "115px");
+    $('.question-title-container').css("height", "180px");
+    $('.question-container').css("height", "180px");
   <%else%>
-    $('.form-group').css("position", "relative");
-    $('.form-group').css("right", "2%");
-  <%end%>
-
-  <%if @question.answer_plus == nil || @question.answer_plus == false%>
-    $('.form-group').css("left", "110px");
-  <%else%>
-    $('.form-group').css("position", "relative");
-    $('.form-group').css("right", "2%");
+    $('.question-title-container').css("height", "280px");
+    $('.question-container').css("height", "280px");
   <%end%>
 
   $('#other').keyup(function() {
