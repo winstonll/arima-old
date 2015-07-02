@@ -237,7 +237,7 @@
             }
 
             #otherInputBox{
-              display: none;
+              display: show;
 
               .other-input-text{
                 display: block;
@@ -482,7 +482,7 @@
       height: 30px;
       width: 12em;
       float: right;
-      
+
     }
 
     .location-select {
