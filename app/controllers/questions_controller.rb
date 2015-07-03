@@ -254,7 +254,7 @@ class QuestionsController < ApplicationController
     if @question.options_for_collection.include? params[:question][:options_for_collection]
       flash[:notice] = "This answer value already exists!"
     else
-      @question.options_for_collection = @question.options_for_collection[0..a.last] + params["question"]["options_for_collection"].capitalize + "|Add your own answer"
+      @question.options_for_collection = @question.options_for_collection + "|" + params["question"]["options_for_collection"].capitalize
       @question.save
     end
 
