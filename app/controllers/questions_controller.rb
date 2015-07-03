@@ -240,6 +240,15 @@ class QuestionsController < ApplicationController
 
   def update
     @question = Question.friendly.find(params[:id])
+
+    if (!user_signed_in?)
+      cookies[:signup] = 1
+      cookies[:q] = @question.id
+      redirect_to new_user_registration_path
+      return
+    end
+
+
     answer_values = @question.options_for_collection
     a = (0 ... answer_values.length).find_all { |i| answer_values[i,1] == '|' }
     if @question.options_for_collection.include? params[:question][:options_for_collection]
@@ -253,6 +262,7 @@ class QuestionsController < ApplicationController
       @answer = Answer.new(user_id: current_user.id, question_id: @question.id, value: params[:question][:options_for_collection].capitalize)
       @answer.save!
       redirect_to @question
+      return
     else
       render :edit
     end

@@ -49,8 +49,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
           badge.save!
           UserMailer.signup_email(@user).deliver!
           sign_in(:user, @user)
-          format.html { render "users/registrations/welcome", :as => 'welcome' }
-          format.json { render json: @user, status: :created, location: @user }
+
+          if (cookies[:signup] != nil && cookies[:signup] == "1")
+            @question = Question.where(id: cookies[:q]).first
+            cookies[:signup] = nil
+            cookies[:q] = nil
+
+            format.html { redirect_to question_path(@question) }
+            format.json { render json: @user, status: :created, location: @user }
+          else
+            format.html { render "users/registrations/welcome", :as => 'welcome' }
+            format.json { render json: @user, status: :created, location: @user }
+          end
         else
           format.html { redirect_to :back }
           format.json { render json: @user.errors, status: :unprocessable_entity }
