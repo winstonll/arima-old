@@ -10,17 +10,11 @@ $(document).ready(function() {
   <%end%>
 
   <%if @user_submitted_answer%>
-    $('.form-group').css("left", "115px");
+    $('.question-title-container').css("height", "180px");
+    $('.question-container').css("height", "180px");
   <%else%>
-    $('.form-group').css("position", "relative");
-    $('.form-group').css("right", "2%");
-  <%end%>
-
-  <%if @question.answer_plus == nil || @question.answer_plus == false%>
-    $('.form-group').css("left", "110px");
-  <%else%>
-    $('.form-group').css("position", "relative");
-    $('.form-group').css("right", "2%");
+    $('.question-title-container').css("height", "280px");
+    $('.question-container').css("height", "280px");
   <%end%>
 
   $('#other').keyup(function() {
@@ -68,14 +62,14 @@ $(document).ready(function() {
         </div>
         <% if !@user_submitted_answer %>
           <div id="otherInputBox">
-            <% if current_user %>
+            <%# if current_user %>
               <%= simple_form_for @question, url: question_path, html: { multipart: true, novalidate: false } do |f| %>
-                <%= f.input(:options_for_collection, label: false, input_html:{ value: nil, placeholder: "Or add your own answer", class: "other-input-text", id:"other"}) %>
+                <%= f.input(:options_for_collection, label: false, input_html:{ value: nil, placeholder: "Or add your answer to the list", class: "other-input-text", id:"other"}) %>
                 <%= f.submit "Answer", class: "other-button", disabled: true, data: {disable_with: "Submitting..."} %>
               <% end %>
-            <% else %>
-              <p class="question-title" style="margin-top: 1em;"> Don't have an account? <%= link_to "Sign up!", new_registration_path(resource_name) %> <p>
-            <% end %>
+            <%# else %>
+              <!--<p class="question-title" style="margin-top: 1em;"> Don't have an account? <%#= link_to "Sign up!", new_registration_path(resource_name) %> <p>-->
+            <%# end %>
           </div>
         <% end %>
       </div>

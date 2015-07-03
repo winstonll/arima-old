@@ -240,19 +240,29 @@ class QuestionsController < ApplicationController
 
   def update
     @question = Question.friendly.find(params[:id])
+
+    if (!user_signed_in?)
+      cookies[:signup] = 1
+      cookies[:q] = @question.id
+      redirect_to new_user_registration_path
+      return
+    end
+
+
     answer_values = @question.options_for_collection
     a = (0 ... answer_values.length).find_all { |i| answer_values[i,1] == '|' }
     if @question.options_for_collection.include? params[:question][:options_for_collection]
       flash[:notice] = "This answer value already exists!"
     else
-      @question.options_for_collection = @question.options_for_collection[0..a.last] + params["question"]["options_for_collection"].capitalize + "|Add your own answer"
+      @question.options_for_collection = @question.options_for_collection + "|" + params["question"]["options_for_collection"].capitalize
       @question.save
     end
 
     if @question.save
       @answer = Answer.new(user_id: current_user.id, question_id: @question.id, value: params[:question][:options_for_collection].capitalize)
-      @answer.save
+      @answer.save!
       redirect_to @question
+      return
     else
       render :edit
     end
