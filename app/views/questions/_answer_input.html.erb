@@ -61,6 +61,7 @@ $(document).ready(function() {
     <% end %>
         </div>
         <% if !@user_submitted_answer %>
+
           <div id="otherInputBox">
             <%# if current_user %>
               <%= simple_form_for @question, url: question_path, html: { multipart: true, novalidate: false } do |f| %>
