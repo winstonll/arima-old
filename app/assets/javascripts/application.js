@@ -40,13 +40,13 @@ $(document).ready(function() {
     }
   });
 
-  /**$("body").on("click", function(e) {
+  $("body").on("click", function(e) {
     if ($(e.target).closest('.dropdown').length === 0) {
       if ($(".dropdown .menu").css("display") == "block") {
         $(".dropdown .menu").css("display", "none");
       }
     }
-  });**/
+  });
 
   // stats/rank toggle button actions
   $("body").on("click", ".toggle-switches .btn", function(e){
