@@ -61,15 +61,16 @@ $(document).ready(function() {
     <% end %>
         </div>
         <% if !@user_submitted_answer %>
+
           <div id="otherInputBox">
-            <%# if current_user %>
               <%= simple_form_for @question, url: question_path, html: { multipart: true, novalidate: false } do |f| %>
+                <div>
                 <%= f.input(:options_for_collection, label: false, input_html:{ value: nil, placeholder: "Or add your answer to the list", class: "other-input-text", id:"other"}) %>
+                </div>
+                <div>
                 <%= f.submit "Answer", class: "other-button", disabled: true, data: {disable_with: "Submitting..."} %>
+                </div>
               <% end %>
-            <%# else %>
-              <!--<p class="question-title" style="margin-top: 1em;"> Don't have an account? <%#= link_to "Sign up!", new_registration_path(resource_name) %> <p>-->
-            <%# end %>
           </div>
         <% end %>
       </div>
