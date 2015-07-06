@@ -16,7 +16,6 @@ class FeedController < ApplicationController
 
   def category_non_feed
     cookies[:group_id] = params[:group_id]
-    puts params
     @all = Question.where(group_id: params[:group_id]).page(params[:page]).per(15)
     #@all = Question.all.order(created_at: :desc).page(params[:page]).per(15)
     respond_to do |format|
@@ -27,8 +26,6 @@ class FeedController < ApplicationController
   def category
     cookies[:group_id] = params[:group_id]
     @all = Question.where(group_id: params[:group_id]).page(params[:page]).per(15)
-    puts params
-    puts cookies[:group_id]
     respond_to do |format|
       format.js
     end

@@ -1,1 +1,4 @@
- $("#feed-container").html("<%= escape_javascript(render partial: 'feed', locals: { avgn: @all } ) %>");
+$("#feed-container").html("<%= escape_javascript(render partial: 'feed', locals: { avgn: @all } ) %>");
+
+var stateObj = { foo: "bar" };
+history.pushState(stateObj, "page 2", "cat?group_id=<%= cookies[:group_id]%>");
