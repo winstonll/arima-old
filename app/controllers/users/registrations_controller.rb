@@ -56,8 +56,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
           if (cookies[:signup] != nil && cookies[:signup] == "1")
             @question = Question.where(id: cookies[:q]).first
+            if(!Question.where(id: cookies[:q]).first.options_for_collection.split('|').include?(cookies[:answer]))
+              answer = Answer.new(user_id: cookies[:guest], question_id: cookies[:q], value: cookies[:answer])
+              question = Question.where(id: cookies[:q]).first
+              question.options_for_collection = question.options_for_collection + "|" + cookies[:answer].capitalize
+              question.save!
+              answer.save!
+            end
             cookies[:signup] = nil
             cookies[:q] = nil
+            cookies[:answer] = nil
 
             format.html { redirect_to question_path(@question) }
             format.json { render json: @user, status: :created, location: @user }
