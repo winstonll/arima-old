@@ -251,8 +251,11 @@ class QuestionsController < ApplicationController
 
     answer_values = @question.options_for_collection
     a = (0 ... answer_values.length).find_all { |i| answer_values[i,1] == '|' }
+
     if @question.options_for_collection.include? params[:question][:options_for_collection]
+      redirect_to @question
       flash[:notice] = "This answer value already exists!"
+      return
     else
       @question.options_for_collection = @question.options_for_collection + "|" + params["question"]["options_for_collection"].capitalize
       @question.save
