@@ -14,11 +14,20 @@ class FeedController < ApplicationController
     @all = Question.all.order(created_at: :desc).page(params[:page]).per(15)
   end
 
-  def category
+  def category_non_feed
     cookies[:group_id] = params[:group_id]
-    @all = Question.all.where(group_id: params[:group_id]).page(params[:page]).per(15)
+    @all = Question.where(group_id: params[:group_id]).page(params[:page]).per(15)
+    #@all = Question.all.order(created_at: :desc).page(params[:page]).per(15)
     respond_to do |format|
       format.html { render :template => "feed/index" }
+    end
+  end
+
+  def category
+    cookies[:group_id] = params[:group_id]
+    @all = Question.where(group_id: params[:group_id]).page(params[:page]).per(15)
+    respond_to do |format|
+      format.js
     end
   end
 end

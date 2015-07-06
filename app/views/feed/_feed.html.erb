@@ -1,3 +1,54 @@
+<script>
+$("#icon-container").empty();
+</script>
+
+<center>
+<div onresize="centerIcons()" id="icon-container">
+<% Group.all.each do |group| %>
+  <a href="<%= category_path(group) %>" data-group-id="<%= group.id %>" class="sidebar-category <%= group.page_class %>">
+    <div class="category-container">
+      <% if ((group.id == @question.try(:id)) || (group.id == @question.try(:group_id))) %>
+      <div class="category-inner-container category-inner-container-active">
+      <% else %>
+      <div class="category-inner-container nav-icons">
+      <% end %>
+        <!-- if selected -->
+        <% unless cookies[:group_id] != nil && !cookies[:group_id].empty? %>
+          <center><%= link_to image_tag("category_nav_icons_circular/#{group.id}.png", size: "74x74", :border => 0), category_path(group_id: group.id), method: :post, remote: true, :class => 'category-icon', :id => "category-#{group.id}"%> </center>
+          <center class="category-title">
+        <!-- if not selected load greyed out icon here-->
+        <% else %>
+          <% if cookies[:group_id].to_i == group.id %>
+            <center><%= link_to image_tag("category_nav_icons_circular/#{group.id}.png", size: "74x74", :border => 0), category_path(group_id: group.id), method: :post, remote: true, :class => 'category-icon', :id => "category-#{group.id}"%> </center>
+            <center class="category-title-selected">
+          <% else %>
+            <center><%= link_to image_tag("category_nav_icons_circular_low_opacity/#{group.id}.png", size: "74x74", :border => 0), category_path(group_id: group.id), method: :post, remote: true, :class => 'category-icon', :id => "category-#{group.id}"%> </center>
+            <center class="category-title-not-selected">
+          <% end %>
+        <% end %>
+
+        <% if group.label == "Money Matters" %>
+          Money
+        <% elsif group.label == "Health & Fitness"%>
+          Health
+        <% elsif group.label == "Education & Knowledge"%>
+          Education
+        <% elsif group.label == "Electronics & Gadgets"%>
+          Electronics
+        <% elsif group.label == "Business & Career"%>
+          Business
+        <% else %>
+        <%= group.label.sub("<br>", " ").html_safe %>
+        <% end %>
+        </center>
+      </div>
+    </div>
+  </a>
+<% end %>
+</div>
+</center>
+
+
 <div id="feed-container">
   <div class="dont-wrap">
     <% unless cookies[:group_id] != nil && !cookies[:group_id].empty?%>
