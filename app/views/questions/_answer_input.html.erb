@@ -63,7 +63,7 @@ $(document).ready(function() {
         <% if !@user_submitted_answer %>
           <div id="otherInputBox">
               <%= simple_form_for @question, url: question_path, html: { multipart: true, novalidate: false } do |f| %>
-                <%= f.input(:options_for_collection, label: false, :required => true, input_html:{ value: nil, placeholder: "Or add your answer to the list", class: "other-input-text", id:"other"}) %>
+                <%= f.input(:options_for_collection, label: false, input_html:{ value: nil, placeholder: "Or add your answer to the list", class: "other-input-text", id:"other"}) %>
                 <%= f.submit "Answer", class: "other-button", disabled: true, data: {disable_with: "Submitting..."} %>
               <% end %>
           </div>
