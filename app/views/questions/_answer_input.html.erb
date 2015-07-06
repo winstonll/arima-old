@@ -51,10 +51,10 @@ $(document).ready(function() {
           </section>
         <% elsif @question.input_type == "collection" %>
           <section id="input-dropdown">
-            <%= f.input(:value, label: false, prompt: "Select an Answer", collection: @question.options_array, input_html: { class: "questions-page-input form-control input-lg"}) %>
+            <%= f.input(:value, label: false, prompt: "Select an Answer", collection: @question.options_array, input_html: { class: "answer-dropdown-input"}) %>
           </section>
         <% end %>
-        <div class="modal-save-wrapper text-center" id="answer-button">
+        <div id="answer-button">
           <% if !@user_submitted_answer %>
             <%= f.submit "Answer", class: "modal-button", disabled: true, data: {disable_with: "Submitting..."} %>
           <% end %>
