@@ -244,6 +244,7 @@ class QuestionsController < ApplicationController
     if (!user_signed_in?)
       cookies[:signup] = 1
       cookies[:q] = @question.id
+      cookies[:answer] = params[:question][:options_for_collection]
       redirect_to new_user_registration_path
       return
     end
