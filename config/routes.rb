@@ -2,6 +2,9 @@ Arima::Application.routes.draw do
 
   get 'feed' => 'feed#index'
   get 'category' => 'feed#category'
+  get 'cat' => 'feed#category_non_feed'
+
+  post 'category' => 'feed#category'
   post 'badge' => 'profiles#badge'
 
   # custom registration route
