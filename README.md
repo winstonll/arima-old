@@ -6,7 +6,17 @@
 * Ruby version
 > 1.9.3+
 
-* Install dependencies
+* Install RVM
+> `\curl -sSL https://get.rvm.io | bash -s stable`
+
+* Install Ruby 
+> `rvm install 2.2.0 `
+
+* Get commandline tools for Mac OSX
+> `xcode-select --install`
+
+* Install bundler gem and Install dependencies
+> `gem install bundler`
 > `bundle install`
 
 * Configuration
