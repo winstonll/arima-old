@@ -56,10 +56,12 @@
           <% if cookies[:group_id] != nil && cookies[:group_id] != ""%>
           <!-- Return to category feed button -->
             <%= link_to "/cat?group_id=#{cookies[:group_id]}", {:controller => "feed", :action => "category_non_feed", :blah => true}  do %>
+            <%if params[:controller] != "feed"%>
               <div id="category-return">
                   <%= image_tag("category-icons/#{cookies[:group_id]}.png", size: "25x25", class: "category-feed-icon" ) %>
-                  <span id="category-title-selected"><%= params[:controller] == "feed" ? Group.where(id: cookies[:group_id]).first.label : "Back to Category" %></span>
+                  <span id="category-title-selected"><%= "Back to Category" %></span>
               </div>
+            <%end%>
             <% end %>
           <% end %>
           <!-- Profile container -->
