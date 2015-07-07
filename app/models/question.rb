@@ -225,6 +225,12 @@ class Question < ActiveRecord::Base
     end
   end
 
+  def option_count
+    if options_array.count > 6
+      return true
+    end
+  end
+
   def placeholder(user)
     FindPlaceholder.new(self.value_type, user).placeholder
   end
