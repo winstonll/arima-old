@@ -25,9 +25,18 @@
 * Configuration
 > See files in `src/config`
 
+* Start DB
+> `pg_ctl -D /usr/local/var/postgres/ start`
+
+* Configure local DB
+> `createuser -s -r arima`
+
 * Database setup
 > Copy config/database.yml.example to config/database.yml and run
  `rake db:create db:migrate db:seed`
+
+* Start Rails server
+> `rails s`
 
 * How to run the test suite
 > `rake`
