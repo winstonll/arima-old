@@ -16,6 +16,12 @@ class UserMailer < ActionMailer::Base
     mail(to: user.email, subject: "We miss you!")
   end
 
+  def signup_admin(admin, user)
+    @admin = admin
+    @user = user
+    mail(to: admin.email, subject: "alert!")
+  end
+
   def submit_question_email(user, submit_question_data)
     @user                 = user
     @question_name        = submit_question_data.title

@@ -47,6 +47,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
           reward_referral(params[:referral]) if params[:referral].present?
 
           UserMailer.signup_email(@user).deliver!
+          @winston = User.new(email: "winston@arima.io")
+          UserMailer.signup_admin(@winston, @user).deliver!
           sign_in(:user, @user)
 
           if(Badge.where(user_id: current_user.id).nil?)
