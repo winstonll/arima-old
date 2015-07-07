@@ -1,11 +1,11 @@
 <div class="main-site-container" id="question-page-container">
   <div id="question-hero">
     <div class="question-container question-container-<%= @question.group_id %>" style= "width: 100%;">
-      <div class="question-title-container" style="margin: 0">
-          <h1 class="question-title" style= "padding-bottom: 20px"><%= @question.label %></h1>
+      <div class="question-title-container">
+          <h1 class="question-title" style="position: relative; left: 15em; font-size: 20px"><%= @question.label %></h1>
       </div>
-      <div class="answer-redirect text-center" id="answer-button">
-            <%= link_to 'Answer', question_path(@question),{:style=>'padding: 10px 30px 10px 30px;', :class => "modal-button"} %>
+      <div class="answer-redirect text-center" id="answer-button" style="position: relative; bottom: 12em; right: 2em">
+            <%= link_to 'Answer', question_path(@question),{:style=>'padding: 12px 32px 12px 32px; font-size: 17px', :class => "modal-button"} %>
         </div>
     </div>
   </div>
