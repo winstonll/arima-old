@@ -32,7 +32,6 @@ $(document).ready(function() {
 });
 </script>
 
-<div class="answer-prompt">
 <% if @question == nil %>
 <% @question = Question.where(slug: params[:id])[0] %>
 <% end %>
@@ -41,6 +40,7 @@ $(document).ready(function() {
 <% @answer = user_signed_in? ? @question.answers.build(user_id: current_user.id) : @question.answers.build(user_id: cookies[:guest]) %>
 <% end %>
 
+<div class="answer-prompt">
   <% if cookies[:guest] != nil %>
     <%= simple_form_for @answer, url: question_answers_path(@question, @answer), class: "form-inline", role: "form", html: {novalidate: false} do |f| %>
       <div class="form-group">
@@ -58,16 +58,20 @@ $(document).ready(function() {
           <% if !@user_submitted_answer %>
             <%= f.submit "Answer", class: "modal-button", disabled: true, data: {disable_with: "Submitting..."} %>
           <% end %>
-    <% end %>
         </div>
-        <% if !@user_submitted_answer %>
-          <div id="otherInputBox">
-              <%= simple_form_for @question, url: question_path, html: { multipart: true, novalidate: false } do |f| %>
-                <%= f.input(:options_for_collection, label: false,input_html:{ value: nil, placeholder: "Or add your answer to the list", class: "other-input-text", id:"other"}) %>
-                <%= f.submit "Answer", class: "other-button", disabled: true, data: {disable_with: "Submitting..."} %>
-              <% end %>
-          </div>
-        <% end %>
       </div>
+    <% end %>
+    <% if !@user_submitted_answer %>
+      <%= simple_form_for @question, url: question_path, html: { multipart: true, novalidate: false } do |f| %>
+        <div id="otherInput">
+          <div id="otherInputBox">
+              <%= f.input(:options_for_collection, label: false,input_html:{ value: nil, placeholder: "Or add your answer to the list", class: "other-input-text", id:"other"}) %>
+          </div>
+          <div id="otherInputButton">
+              <%= f.submit "Answer", class: "other-button", disabled: true, data: {disable_with: "Submitting..."} %>
+          </div> 
+        </div>
+      <% end %>
+    <% end %>
   <% end %>
 </div>
