@@ -2,11 +2,11 @@
   <div class="profile-edit">
     <div class="profile-content">
       <h3 class="submit-q-text" id="submit-question-label">Edit Profile</h3>
-      
+
       <div class="grey-banner">
         <div id="profile-path-link">
-          <%= link_to 'Back to Profile', profile_path(@profile) %>
-        </div> 
+          <%= link_to 'Back to Profile', custom_show_path(:username => current_user.username) %>
+        </div>
       </div>
 
       <div class="profile-info-container">
@@ -19,16 +19,16 @@
           <% end %>
         </div>
 
-        <div class="profile-edit-info"> 
-          <%= simple_form_for @profile, url: profile_path, html: { multipart: true, novalidate: false } do |f| %>
-          
+        <div class="profile-edit-info">
+          <%= simple_form_for @profile, url: custom_show_path(:username => current_user.username), html: { multipart: true, novalidate: false } do |f| %>
+
              <!--  <article class="referral-container">
               <p>Your personal invite link is: </p>
               <p>
                 <strong>
-                  <%#= "arima.io%{sign_up_path}?referral=%{user_referral_code}" % {sign_up_path: new_registration_path(resource_name), user_referral_code: current_user.referral_code} %>  
+                  <%#= "arima.io%{sign_up_path}?referral=%{user_referral_code}" % {sign_up_path: new_registration_path(resource_name), user_referral_code: current_user.referral_code} %>
                 </strong>
-              </p>              
+              </p>
               <p>You get bonus points when people use your link to sign up for Arima!</p>
               </article> -->
 
@@ -50,7 +50,7 @@
               </p>
             </div>
 
-            <div id="profile-pic">  
+            <div id="profile-pic">
               <%= f.input :avatar, label: false, input_html: {class: "profile-pic"}%>
             </div>
 

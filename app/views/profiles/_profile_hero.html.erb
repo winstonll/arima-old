@@ -18,7 +18,9 @@
         <%= image_tag @user.avatar.url(:thumb), class: "profile-picture" %>
       <% end %>
       <div class="edit-profile">
-        <%#= button_to 'Edit', edit_profile_path, :method => "get", class: "profile-edit-button" %>
+        <%if params[:username] == current_user.username%>
+        <%= button_to 'Edit', profile_edit_path(@profile), :method => "get", class: "profile-edit-button" %>
+        <%end%>
       </div>
     </div>
     <div class="grey-banner">

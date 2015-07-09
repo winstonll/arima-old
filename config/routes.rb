@@ -9,10 +9,9 @@ Arima::Application.routes.draw do
 
   # custom registration route
   devise_for :users, controllers: { registrations: "users/registrations" }
-
+  get 'profile/edit' => 'profiles#edit'
+  patch 'profile/:username' => 'profiles#update'
   get 'profile/:username' => 'profiles#show', :as => 'custom_show'
-
-  get 'edit' => 'profiles#update'
 
   #resource :profile, only: [:show, :edit, :update]
 
