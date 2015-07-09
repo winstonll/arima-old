@@ -78,7 +78,7 @@
                     </a>
                     <ul class="menu dropdown-menu">
                       <li class="sidebar-list">
-                        <%= link_to 'Profile', profile_path, class: "nav-link" %>
+                        <%= link_to 'Profile', custom_show_path(:username => current_user.username), class: "nav-link" %>
                       </li>
                       <li class="sidebar-list">
                         <%= link_to 'Leaderboard'.html_safe, leaderboard_path, class: "nav-link" %>
