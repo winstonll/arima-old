@@ -15,8 +15,7 @@
           <a class="btnNext"><%= image_tag("forward_tab_blue.png", :class => "visualization-tab-img") %></a>
           <p></p>
 
-          <div id="answer-world" class='answer-chart' style="height: 400px;
-  width: 500px; margin-left: 20em;"></div>
+          <div id="answer-world" class='answer-chart'></div>
         </div>
 
         <div id="country" class="tab">
@@ -336,13 +335,13 @@
   var data = <%= answer.data_array('world').html_safe %>;
 
   var chart = document.getElementById("answer-world"),
-      axisMargin = 20,
+    axisMargin = 20,
     margin = 20,
     valueMargin = 4,
-    width = chart.offsetWidth,
-    height = chart.offsetHeight,
-    barHeight = (height - axisMargin - margin * 2) * 0.4 / data.length,
-    barPadding = (height - axisMargin - margin * 2) * 0.6 / data.length,
+    width = 500,
+    height = 400,
+    barHeight = (height - axisMargin - margin * 6) * 0.6 / data.length,
+    barPadding = (height - axisMargin - margin * 3) * 0.6 / data.length,
     data, bar, svg, scale, xAxis, labelWidth = 0;
 
   max = d3.max(data.map(function(i) {
@@ -354,7 +353,7 @@
     .attr("width", width)
     .attr("height", 400);
 
-  var colors = ['#0000b4', '#0082ca', '#0094ff', '#0d4bcf', '#0066AE', '#074285', '#00187B', '#285964', '#405F83', '#416545', '#4D7069', '#6E9985', '#7EBC89', '#0283AF', '#79BCBF', '#99C19E'];
+  var colors = ['#D52728', '#9467BC', '#E377C2', '#1F78B4', '#8C564A', '#FF7D07', '#18BDD0', '#BCBD23', '#C71585', '#DAA520', '#32CD32', '#1E90FF', '#66CDAA', '#FFD700'];
 
   var colorScale = d3.scale.quantize()
     .domain([0, data.length])
@@ -378,6 +377,7 @@
     .attr("class", "label")
     .attr("y", barHeight / 2)
     .attr("dy", ".35em")
+    .attr("dx", "-.50em")
     .style({
       'fill': '#333',
       'font-size': '18px'
@@ -407,7 +407,7 @@
 
   bar.append("text")
     .attr("class", "value").style({
-      'fill': '#fff',
+      'fill': '#333',
       'font-size': '14px'
     })
     .attr("y", barHeight / 2)
