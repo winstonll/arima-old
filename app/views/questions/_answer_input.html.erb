@@ -59,7 +59,6 @@ $(document).ready(function() {
           </div>
           <% end %>
         <% end %>
-        
         <div id="answer-button">
           <% if !@user_submitted_answer %>
             <%= f.submit "Answer", class: "modal-button", disabled: true, data: {disable_with: "Submitting..."} %>
