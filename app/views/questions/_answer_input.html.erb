@@ -1,9 +1,9 @@
 <script type="text/javascript">
 $(document).ready(function() {
   $('#other').keyup(function() {
-    console.log("here");
     if($(this).val() != '') {
        $('.modal-button').removeAttr('disabled');
+       $("input").prop("checked", false)
     }
   });
 
@@ -17,6 +17,7 @@ $(document).ready(function() {
     if ($('input').is(':checked')){
        $('.modal-button').removeAttr('disabled');
     }
+    $('#other').val('');
   });
 });
 </script>
@@ -58,6 +59,7 @@ $(document).ready(function() {
           </div>
           <% end %>
         <% end %>
+        
         <div id="answer-button">
           <% if !@user_submitted_answer %>
             <%= f.submit "Answer", class: "modal-button", disabled: true, data: {disable_with: "Submitting..."} %>

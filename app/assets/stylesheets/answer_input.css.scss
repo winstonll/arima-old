@@ -7,6 +7,7 @@
 
     .block_radio_button_collection {
       display: block;
+      text-align: left;
     }
 
     .collection_radio_buttons {
@@ -24,6 +25,7 @@
         background-color: #f7f7f7;
         border: 0;
         border-radius: 5px;
+        margin-bottom: 1em;
       }
     }
 
@@ -48,7 +50,6 @@
     position: relative;
 
     #otherInputBox {
-      float: left;
       margin-top: 1em;
       .question_options_for_collection {
         width: 240px;
