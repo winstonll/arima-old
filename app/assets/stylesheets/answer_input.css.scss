@@ -15,8 +15,6 @@
     }
 
     #input-dropdown {
-      float: left;
-
       .answer-dropdown-input {
         height: 36px;
         width: 240px;
@@ -31,7 +29,7 @@
 
     #answer-button {
       .modal-button {
-        margin-top: 1em;
+        margin-top: 2em;
         height: 36px;
         padding: 0px 30px 0px 30px;
         background-color: #00C39C;
@@ -50,7 +48,9 @@
     position: relative;
 
     #otherInputBox {
-      margin-top: 1em;
+      .answer_options_for_collection{
+        height:36px;
+      }
       .question_options_for_collection {
         width: 240px;
       }
@@ -64,6 +64,30 @@
         padding: 10px 20px 0px 20px;
         border: 0;
         border-radius: 5px;
+      }
+
+      ::-webkit-input-placeholder {
+         position:relative;
+         bottom: 5px;
+         text-align: center;
+      }
+
+      :-moz-placeholder { /* Firefox 18- */
+        position:relative;
+        bottom: 5px;
+        text-align: center;
+      }
+
+      ::-moz-placeholder {  /* Firefox 19+ */
+         position:relative;
+         bottom: 5px;
+         text-align: center;
+      }
+
+      :-ms-input-placeholder {
+         position:relative;
+         bottom: 5px;
+         text-align: center;
       }
     }
 

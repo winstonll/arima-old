@@ -117,7 +117,7 @@ $(document).ready(function() {
 <div style="position: relative; top:100px;">
 <center style="color: #4A90E2; font-weight: bold; font-size: 24px;"><%=@question.label %></center>
 <center class="meta-title"><%= @question.answers.count%><%= @question.answers.count >= 1 ? ' Person' : ' People' %> Answered</center>
-<center style="height:100%;">
+<center>
     <%= render partial: 'questions/answer_input', locals: { question: @question, answer: @answer} %>
 </div>
 </center>
