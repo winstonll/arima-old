@@ -238,40 +238,6 @@ class QuestionsController < ApplicationController
      @question = Question.friendly.find(params[:id])
   end
 
-  def update
-    @question = Question.friendly.find(params[:id])
-
-    if (!user_signed_in?)
-      cookies[:signup] = 1
-      cookies[:q] = @question.id
-      cookies[:answer] = params[:question][:options_for_collection]
-      redirect_to new_user_registration_path
-      return
-    end
-
-
-    answer_values = @question.options_for_collection
-    a = (0 ... answer_values.length).find_all { |i| answer_values[i,1] == '|' }
-
-    if @question.options_for_collection.include? params[:question][:options_for_collection]
-      redirect_to @question
-      flash[:notice] = "This answer value already exists!"
-      return
-    else
-      @question.options_for_collection = @question.options_for_collection + "|" + params["question"]["options_for_collection"].capitalize
-      @question.save
-    end
-
-    if @question.save
-      @answer = Answer.new(user_id: current_user.id, question_id: @question.id, value: params[:question][:options_for_collection].capitalize)
-      @answer.save!
-      redirect_to @question
-      return
-    else
-      render :edit
-    end
-  end
-
   def hide_share_modal
     if (!cookies[:guest].nil?)
       @guest = User.where(id: cookies[:guest]).first

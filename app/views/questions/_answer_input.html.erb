@@ -1,25 +1,9 @@
 <script type="text/javascript">
 $(document).ready(function() {
-
-  <%if @question.answer_plus != nil || @question.answer_plus == true%>
-    $('#answer-button').show();
-    $('#otherInputBox').show();
-  <%else%>
-    $('#answer-button').show();
-    $('#otherInputBox').hide();
-  <%end%>
-
-  <%if @user_submitted_answer%>
-    $('.question-title-container').css("height", "180px");
-    $('.question-container').css("height", "180px");
-  <%else%>
-    $('.question-title-container').css("height", "280px");
-    $('.question-container').css("height", "280px");
-  <%end%>
-
   $('#other').keyup(function() {
+    console.log("here");
     if($(this).val() != '') {
-       $('.other-button').removeAttr('disabled');
+       $('.modal-button').removeAttr('disabled');
     }
   });
 
@@ -29,8 +13,14 @@ $(document).ready(function() {
       }
   });
 
+  $('input').click(function() {
+    if ($('input').is(':checked')){
+       $('.modal-button').removeAttr('disabled');
+    }
+  });
 });
 </script>
+<%= stylesheet_link_tag 'answer_input' %>
 
 <% if @question == nil %>
 <% @question = Question.where(slug: params[:id])[0] %>
@@ -39,7 +29,6 @@ $(document).ready(function() {
 <% if @answer == nil %>
 <% @answer = user_signed_in? ? @question.answers.build(user_id: current_user.id) : @question.answers.build(user_id: cookies[:guest]) %>
 <% end %>
-
 <div class="answer-prompt">
   <% if cookies[:guest] != nil %>
     <%= simple_form_for @answer, url: question_answers_path(@question, @answer), class: "form-inline", role: "form", html: {novalidate: false} do |f| %>
@@ -50,9 +39,24 @@ $(document).ready(function() {
             <%= f.input(:value, label: false, pattern: "\d*", placeholder: @user_units["small_unit"]) %>
           </section>
         <% elsif @question.input_type == "collection" %>
-          <section id="input-dropdown">
-            <%= f.input(:value, label: false, prompt: "Select an Answer", collection: @question.options_array, input_html: { class: "answer-dropdown-input"}) %>
-          </section>
+            <%if @question.options_array.count <= 5 && !@user_submitted_answer%>
+              <%@multiple_choice = Array.new()
+              @question.options_array.each do |value|
+                @multiple_choice << [value, value]
+              end%>
+              <%= f.collection_radio_buttons :value, @multiple_choice, :first, :last,item_wrapper_class: :block_radio_button_collection%>
+            <%else%>
+            <section id="input-dropdown">
+              <%= f.input(:value, label: false, prompt: "Select an Answer", collection: @question.options_array, input_html: { class: "answer-dropdown-input"}) %>
+            </section>
+            <%end%>
+          <% if !@user_submitted_answer %>
+          <div id="otherInput">
+            <div id="otherInputBox">
+                <%= f.input(:options_for_collection, label: false,input_html:{ value: nil, placeholder: "Or add your answer to the list", class: "other-input-text", id:"other"}) %>
+            </div>
+          </div>
+          <% end %>
         <% end %>
         <div id="answer-button">
           <% if !@user_submitted_answer %>
@@ -60,18 +64,6 @@ $(document).ready(function() {
           <% end %>
         </div>
       </div>
-    <% end %>
-    <% if !@user_submitted_answer %>
-      <%= simple_form_for @question, url: question_path, html: { multipart: true, novalidate: false } do |f| %>
-        <div id="otherInput">
-          <div id="otherInputBox">
-              <%= f.input(:options_for_collection, label: false,input_html:{ value: nil, placeholder: "Or add your answer to the list", class: "other-input-text", id:"other"}) %>
-          </div>
-          <div id="otherInputButton">
-              <%= f.submit "Answer", class: "other-button", disabled: true, data: {disable_with: "Submitting..."} %>
-          </div> 
-        </div>
-      <% end %>
     <% end %>
   <% end %>
 </div>

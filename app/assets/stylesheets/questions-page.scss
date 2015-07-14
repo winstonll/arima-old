@@ -143,7 +143,7 @@
   /* Question Show */
   #question-hero {
     .question-container {
-      height: 280px;
+      height: 180px;
       width: 75%;
       float: left;
       display: inline-block;
@@ -181,6 +181,7 @@
       }
 
       .question-title-container {
+        height: 180px;
         .question-title {
           position: relative;
           right: 4em;
@@ -198,7 +199,7 @@
 
           .form-group {
             padding-bottom: 3em;
-            
+
             #input-dropdown {
               float: left;
 

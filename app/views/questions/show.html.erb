@@ -32,6 +32,7 @@ $(document).ready(function() {
 <%= render '/common/signup_modal' %>
 <%#= render '/common/share_answer_modal' %>
 
+<%if @user_submitted_answer%>
 <div class="main-site-container" id="question-page-container">
   <div id="question-hero">
     <div class="question-container question-container-<%= @question.group_id %>">
@@ -104,7 +105,6 @@ $(document).ready(function() {
 
       <p class="trending-questions-label">Questions You May Like:</p>
 
-
       <% @random_questions.each do |random_question| %>
         <%= render partial: 'common/trending_question', locals: { question: random_question } %>
       <% end %>
@@ -113,3 +113,13 @@ $(document).ready(function() {
   </div>
 
 </div>
+<%else%>
+<div style="position: relative; top:100px;">
+<center style="color: #4A90E2; font-weight: bold; font-size: 24px;"><%=@question.label %></center>
+<center class="meta-title"><%= @question.answers.count%><%= @question.answers.count >= 1 ? ' Person' : ' People' %> Answered</center>
+<center>
+    <%= render partial: 'questions/answer_input', locals: { question: @question, answer: @answer} %>
+</div>
+</center>
+</div>
+<%end%>
