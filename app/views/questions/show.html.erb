@@ -64,6 +64,7 @@ $(document).ready(function() {
       <!-- Question Title and Answer Box -->
       <div class="question-title-container">
         <h1 class="question-title"><%= @question.label %></h1>
+        <p class="meta-title"><%= @question.answers.count %><%= @question.answers.count == 1 ? 'Person' : 'People' %> Answered</p>
         <%= simple_form_for @answer, url: question_answers_path(@question, @answer), class: "form-inline", role: "form", html: {novalidate: false} do |f| %>
         <section id="input-dropdown">
           <%= f.input(:value, label: false, prompt: "Select an Answer", collection: @question.options_array, input_html: { class: "answer-dropdown-input"}) %>
@@ -77,7 +78,7 @@ $(document).ready(function() {
     <div id="question-meta-container">
       <div class="question-title-count">
         <%= @question.answers.count %>
-        <p class="meta-title"><%= @question.answers.count == 1 ? 'Person' : 'People' %> Answered</p>
+        <p class="meta-title"><%= @question.answers.count %><%= @question.answers.count == 1 ? 'Person' : 'People' %> Answered</p>
       </div>
 
       <div class="question-share-container">
