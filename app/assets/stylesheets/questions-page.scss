@@ -6,6 +6,8 @@
   margin-top: 1em;
 
   .tabs {
+    position: relative;
+    bottom: 50px;
     width:100%;
     display:inline-block;
   }
@@ -26,6 +28,8 @@
     margin:0px 10px;
     float:left;
     list-style:none;
+    display:inline-block;
+
   }
 
   .tab-links a {
