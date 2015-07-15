@@ -183,7 +183,7 @@
       }
 
       .question-title-container {
-        height: 100px;
+        height: auto;
 
         .answer-dropdown-input {
           height: 36px;
@@ -202,6 +202,15 @@
           font-size: 20px;
           line-height: 23px;
           color: #4A90E2;
+          float:left;
+          width:80%;
+        }
+
+        .answer-counter {
+          float: left;
+          width:80%;
+          height:23px;
+          margin-bottom: 1em;
         }
 
         .answer-prompt {
@@ -290,6 +299,7 @@
       float: right;
       display: inline-block;
       vertical-align: top;
+      height: auto;
 
       .question-title-count,
       .question-share-container {
@@ -336,7 +346,7 @@
 
   #question-content-container {
     clear: both;
-    padding-top: 2em;
+    padding-top: 3em;
 
     /* Report */
     .report-container,

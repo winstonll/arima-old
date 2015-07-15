@@ -64,7 +64,7 @@ $(document).ready(function() {
       <!-- Question Title and Answer Box -->
       <div class="question-title-container">
         <h1 class="question-title"><%= @question.label %></h1>
-        <p class="meta-title"><%= @question.answers.count %><%= @question.answers.count == 1 ? 'Person' : 'People' %> Answered</p>
+        <div class="answer-counter"><%= @question.answers.count %><%= @question.answers.count == 1 ? 'Person' : 'People' %> Answered</div>
         <%= simple_form_for @answer, url: question_answers_path(@question, @answer), class: "form-inline", role: "form", html: {novalidate: false} do |f| %>
         <section id="input-dropdown">
           <%= f.input(:value, label: false, prompt: "Select an Answer", collection: @question.options_array, input_html: { class: "answer-dropdown-input"}) %>
@@ -75,26 +75,21 @@ $(document).ready(function() {
     </div>
 
     <!-- Counter + Share Section -->
-    <div id="question-meta-container">
-      <div class="question-title-count">
-        <%= @question.answers.count %>
-        <p class="meta-title"><%= @question.answers.count %><%= @question.answers.count == 1 ? 'Person' : 'People' %> Answered</p>
-      </div>
-
+    <div id="question-meta-container" style="padding-top: 50px;">
       <div class="question-share-container">
-        <p class="meta-title">Share this Question</p>
         <%= render partial: "questions/share", locals: {
             id: @question.id,
             url: "#{request.protocol}#{request.host_with_port}" + question_path(@question),
             title: "#{@question.label[0..70]}...",
             image: "#{request.protocol}#{request.host_with_port}" + question_path(@question)
           }%>
+        <p class="meta-title">Click the icon to share this report</p>
       </div>
     </div>
   </div>
 
   <!-- Report -->
-  <div id="question-content-container">
+  <div id="question-content-container" style="padding-top: 120px;">
     <% if !@user_submitted_answer %>
       <div class="no-answer-container">
         <p class="no-answer-prompt">Answer the question to view your personalized report</p>
