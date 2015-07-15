@@ -241,15 +241,23 @@ class ApplicationController < ActionController::Base
         #@location = Pointpin.locate(ip)
         @result = request.location
         @guest = User.new(ip_address: ip)
-        @user_country = Country.new(@result.data["country_code"])
+        if(@result.data != nil)
+          @user_country = Country.new(@result.data["country_code"])
+          @city = request.location.try(:city)
+          @province = request.location.try(:state)
+        else
+          @user_country = Country.new("CA")
+          @city = "Toronto"
+          @province = "Ontario"
+        end
 
         @guest.build_location(
         #zip_code: @result.data["zipcode"],
         continent: @user_country.subregion,
-        province: request.location.try(:state),
-        country_code: @result.data["country_code"],
-        country: Country.new(@result.data["country_code"]).name,
-        city: request.location.try(:city), #try this code for city @result.data["city"]
+        province: , @province
+        country_code: @user_country.alpha2,
+        country: @user_country.name,
+        city: @city, #try this code for city @result.data["city"]
         ip_address: ip)
 
         @guest.save

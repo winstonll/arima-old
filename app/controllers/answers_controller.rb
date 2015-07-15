@@ -54,6 +54,7 @@ class AnswersController < ApplicationController
 
   def create
     @question = Question.friendly.find(params[:question_id])
+    #add new answer
     if params[:answer][:options_for_collection] != ""
       if (!user_signed_in?)
         cookies[:signup] = 1
@@ -130,7 +131,7 @@ class AnswersController < ApplicationController
         end
       end
     end
-
+    #refresh page if submitted with nothing
     if params[:answer][:options_for_collection] == ""
       redirect_to :back
     end
