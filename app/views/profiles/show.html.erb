@@ -1,12 +1,13 @@
 <% provide(:title, 'Profile') %>
 
+<%@user = User.where(username: params[:username]).first%>
 <div class="profile-container">
-  <%= render partial: "profile_hero", locals: {user: current_user} %>
+  <%= render partial: "profile_hero", locals: {user: @user} %>
 
   <div class="questions-toggle-container">
     <a class="profile-questions-answered" data-toggle="pill">
       <div class="profile-questions-toggle-answered profile-questions-toggle-active">
-        <p class="profile-questions-stat-num" data-toggle="pill"><%= current_user.questions.count %></p>
+        <p class="profile-questions-stat-num" data-toggle="pill"><%= @user.questions.count %></p>
         <p id="profile-questions-stat-label" data-toggle="pill">Questions Answered</p>
       </div>
     </a>

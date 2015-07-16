@@ -9,19 +9,25 @@ class ProfilesController < ApplicationController
 
   #generates correct referral code
   def show
+    user = User.where(username: params[:username]).first
+    if(user.nil?)
+      redirect_to custom_show_path(:username => current_user.username)
+      return
+    end
+
     generate_referral_code(current_user) unless
     (current_user.referral_code.present? && (current_user.referral_code).start_with?(current_user.username))
 
-    @points_count = current_user.points || 0
-    @questions_count = current_user.questions.count
+    @points_count = user.points || 0
+    @questions_count = Question.where(user_id: user.id).count
     @most_active_category = current_user.most_active_category.keys.first if current_user.most_active_category
 
     @categories           = Group.all.to_a.uniq { |category_group | category_group.label }
     @suggested_questions  = Question.suggested_for_user current_user
     @random_questions     = Question.random_for_user current_user
     @trending_questions   = Question.trending_for_user current_user
-    @answered_questions   = current_user.answers.order("updated_at desc")
-    @asked_questions      = self.questions
+    @answered_questions   = user.answers.order("updated_at desc")
+    @asked_questions      = Question.where(user_id: user.id)
 
     check_points_badge
     check_question_badge

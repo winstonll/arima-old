@@ -1,8 +1,8 @@
+<%@user = User.where(username: params[:username]).first%>
 <div class="profile-hero-container">
   <div class="profile-hero-content">
-      
     <div class="profile-info">
-      <div class="profile-username"><%= user.username.to_s %></div>
+      <div class="profile-username"><%= @user.username %></div>
       <a href="<%= leaderboard_path(curr_user: true) %>">
         <div class="rank-title">Leaderboard Rank</div>
       </a>
@@ -12,20 +12,21 @@
     </div>
 
     <div id="profile-picture-container">
-      <% if (user.avatar.url.include? "missing") %>
-        <div class="profile-picture-default"><%= user.username.to_s[0].capitalize %></div>
+      <% if (@user.avatar.url.include? "missing") %>
+        <div class="profile-picture-default"><%= @user.username.to_s[0].capitalize %></div>
       <% else %>
-        <%= image_tag user.avatar.url(:thumb), class: "profile-picture" %>
+        <%= image_tag @user.avatar.url(:thumb), class: "profile-picture" %>
       <% end %>
       <div class="edit-profile">
-        <%= button_to 'Edit', edit_profile_path, :method => "get", class: "profile-edit-button" %>
+        <%if params[:username] == current_user.username%>
+        <%= button_to 'Edit', profile_edit_path(@profile), :method => "get", class: "profile-edit-button" %>
+        <%end%>
       </div>
     </div>
     <div class="grey-banner">
       <div class="profile-bottom-container">
-        <div class="user-location"><%= user.location.city + ", " + user.location.country %></div>
-        <div class="stat-rank"> <%= current_user.rank == nil ? "?" : current_user.rank%> </div>
-        <div class="stat-points"><%= user.points %></div>
+        <div class="user-location"><%= @user.location.city + ", " + @user.location.country %></div>
+        <div class="stat-rank"> <%= @user.rank == nil ? "?" : @user.rank%> </div>
+        <div class="stat-points"><%= @user.points %></div>
     </div>
   </div>
-

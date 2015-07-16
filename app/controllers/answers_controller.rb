@@ -54,6 +54,39 @@ class AnswersController < ApplicationController
 
   def create
     @question = Question.friendly.find(params[:question_id])
+    
+    #add new answer
+    if params[:answer][:options_for_collection] != ""
+      if (!user_signed_in?)
+        cookies[:signup] = 1
+        cookies[:q] = @question.id
+        cookies[:answer] = params[:question][:options_for_collection]
+        redirect_to new_user_registration_path
+        return
+      end
+
+      answer_values = @question.options_for_collection
+      a = (0 ... answer_values.length).find_all { |i| answer_values[i,1] == '|' }
+
+      if @question.options_for_collection.include? params[:answer][:options_for_collection]
+        redirect_to @question
+        flash[:notice] = "This answer value already exists!"
+        return
+      else
+        @question.options_for_collection = @question.options_for_collection + "|" + params["answer"]["options_for_collection"].capitalize
+        @question.save
+      end
+
+      if @question.save
+        @answer = Answer.new(user_id: current_user.id, question_id: @question.id, value: params[:answer][:options_for_collection].capitalize)
+        @answer.save!
+        redirect_to @question
+        return
+      else
+        redirect_to :back
+        return
+      end
+    end
 
     #create answer if user hasn't already submitted one for this question
     if (!cookies[:guest].nil? && @answer = @question.answers.where(user: User.where(id: cookies[:guest])).first).nil?
@@ -62,12 +95,6 @@ class AnswersController < ApplicationController
         @answer.user = current_user
 
         if @answer.save
-          if current_user.share_modal_state != "hide"
-            redirect_to question_path(@question), flash: { share_answer_modal: true }
-          else
-            redirect_to question_path(@question)
-          end
-
           current_user.points = current_user.points + 1
           current_user.save
           if(user_signed_in?)
@@ -80,6 +107,14 @@ class AnswersController < ApplicationController
               q_owner.save
             end
           end
+
+          if current_user.share_modal_state != "hide"
+            redirect_to question_path(@question), flash: { share_answer_modal: true }
+            return
+          else
+            redirect_to question_path(@question)
+            return
+          end
         end
       else
         @answer = @question.answers.build(params[:answer].permit(:value))
@@ -89,11 +124,17 @@ class AnswersController < ApplicationController
         if @answer.save
           if @guest.share_modal_state != "hide"
             redirect_to question_path(@question), flash: { share_answer_modal: true }
+            return
           else
             redirect_to question_path(@question)
+            return
           end
         end
       end
+    end
+    #refresh page if submitted with nothing
+    if params[:answer][:options_for_collection] == ""
+      redirect_to :back
     end
   end
 
