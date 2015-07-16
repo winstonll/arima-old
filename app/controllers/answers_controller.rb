@@ -54,6 +54,7 @@ class AnswersController < ApplicationController
 
   def create
     @question = Question.friendly.find(params[:question_id])
+    
     #add new answer
     if params[:answer][:options_for_collection] != ""
       if (!user_signed_in?)

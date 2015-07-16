@@ -16,8 +16,8 @@ $(document).ready(function() {
   $('input').click(function() {
     if ($('input').is(':checked')){
        $('.modal-button').removeAttr('disabled');
+       $('#other').val('');
     }
-    $('#other').val('');
   });
 });
 </script>
