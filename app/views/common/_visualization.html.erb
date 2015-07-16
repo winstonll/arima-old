@@ -334,7 +334,7 @@
   
   var data = <%= answer.data_array('world').html_safe %>;
 
-  var chart = document.getElementById("answer-world"),
+  var chart = document.getElementById("world"),
     axisMargin = 20,
     margin = 20,
     valueMargin = 4,
@@ -342,7 +342,7 @@
     height = 400,
     barHeight = (height - axisMargin - margin * 6) * 0.6 / data.length,
     barPadding = (height - axisMargin - margin * 3) * 0.6 / data.length,
-    data, bar, svg, scale, xAxis, labelWidth = 0;
+    data, bar, svg, scale, xAxis, labelWidth = 85;
 
   max = d3.max(data.map(function(i) {
     return i[1];
@@ -353,7 +353,7 @@
     .attr("width", width)
     .attr("height", 400);
 
-  var colors = ['#D52728', '#9467BC', '#E377C2', '#1F78B4', '#8C564A', '#FF7D07', '#18BDD0', '#BCBD23', '#C71585', '#DAA520', '#32CD32', '#1E90FF', '#66CDAA', '#FFD700'];
+  var colors = [ '#ff355e', '#18BDD0', '#b5e900', '#f9429e', '#ffd500', '#1E90FF', '#ff748c', '#7cfc00', '#ffef00', '#00bfff', '#18d087', '#ad8acc', '#ed872d'];
 
   var colorScale = d3.scale.quantize()
     .domain([0, data.length])
@@ -377,7 +377,7 @@
     .attr("class", "label")
     .attr("y", barHeight / 2)
     .attr("dy", ".35em")
-    .attr("dx", "-.50em")
+    .attr("dx", "-1em")
     .style({
       'fill': '#333',
       'font-size': '18px'
