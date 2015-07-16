@@ -1,3 +1,112 @@
+.answer-prompt {
+  margin-top: 1em;
+  display: inline-block;
+
+  .form-group {
+    padding-bottom: 3em;
+
+    .block_radio_button_collection {
+      display: block;
+      text-align: left;
+    }
+
+    .collection_radio_buttons {
+      margin-left: 1em;
+    }
+
+    #input-dropdown {
+      .answer-dropdown-input {
+        height: 36px;
+        width: 240px;
+        color: #9B9B9B;
+        font-size: 12px;
+        background-color: #f7f7f7;
+        border: 0;
+        border-radius: 5px;
+        margin-bottom: 1em;
+      }
+    }
+
+    #answer-button {
+      .modal-button {
+        margin-top: 2em;
+        height: 36px;
+        padding: 0px 30px 0px 30px;
+        background-color: #00C39C;
+        color: #fff;
+        border-radius: 5px;
+        border: none;
+      }
+
+      .modal-button:disabled {
+        background-color: #9a9a9a;
+      }
+    }
+  }
+
+  #otherInput {
+    position: relative;
+
+    #otherInputBox {
+      .answer_options_for_collection{
+        height:36px;
+      }
+      .question_options_for_collection {
+        width: 240px;
+      }
+      .other-input-text {
+        height: 36px;
+        width: 240px;
+        color: black;
+        font-size: 12px;
+        background-color: #f7f7f7;
+        resize: none;
+        padding: 10px 20px 0px 20px;
+        border: 0;
+        border-radius: 5px;
+        padding-left: 8px;
+        padding-bottom: 10px;
+      }
+
+      ::-webkit-input-placeholder {
+         position:relative;
+         bottom: 1px;
+      }
+
+      :-moz-placeholder { /* Firefox 18- */
+        position:relative;
+        bottom: 1px;
+      }
+
+      ::-moz-placeholder {  /* Firefox 19+ */
+         position:relative;
+         bottom: 1px;
+      }
+
+      :-ms-input-placeholder {
+         position:relative;
+         bottom: 1px;
+      }
+    }
+
+    #otherInputButton {
+      float: left;
+      .other-button {
+        height: 36px;
+        padding: 0px 30px 0px 30px;
+        background-color: #00C39C;
+        color: #fff;
+        border-radius: 5px;
+        border: none;
+        margin-left: 1em;
+      }
+      .other-button:disabled {
+        background-color: #9a9a9a;
+      }
+    }
+  }
+}
+
 #question-page-container {
   height: 100%;
   min-height: 100%;
@@ -211,85 +320,6 @@
           width:80%;
           height:23px;
           margin-bottom: 1em;
-        }
-
-        .answer-prompt {
-          margin-top: 1em;
-          margin-left: 8em;
-          display: inline-block;
-
-          .form-group {
-            padding-bottom: 3em;
-
-            #input-dropdown {
-              float: left;
-
-              .answer-dropdown-input {
-                height: 36px;
-                width: 240px;
-                color: #9B9B9B;
-                font-size: 12px;
-                background-color: #f7f7f7;
-                border: 0;
-                border-radius: 5px;
-              }
-            }
-
-            #answer-button {
-              float: left;
-              .modal-button {
-                height: 36px;
-                padding: 0px 30px 0px 30px;
-                background-color: #00C39C;
-                color: #fff;
-                border-radius: 5px;
-                border: none;
-                margin-left: 1em;
-              }
-
-              .modal-button:disabled {
-                background-color: #9a9a9a;
-              }
-            }
-          }
-
-          #otherInput {
-            position: relative;
-
-            #otherInputBox {
-              float: left;
-              .question_options_for_collection {
-                width: 240px;
-              }
-              .other-input-text {
-                height: 36px;
-                width: 240px;
-                color: black;
-                font-size: 12px;
-                background-color: #f7f7f7;
-                resize: none;
-                padding: 10px 20px 0px 20px;
-                border: 0;
-                border-radius: 5px;
-              }
-            }
-
-            #otherInputButton {
-              float: left;
-              .other-button {
-                height: 36px;
-                padding: 0px 30px 0px 30px;
-                background-color: #00C39C;
-                color: #fff;
-                border-radius: 5px;
-                border: none;
-                margin-left: 1em;
-              }
-              .other-button:disabled {
-                background-color: #9a9a9a;
-              }
-            }
-          }
         }
       }
     }
