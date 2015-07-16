@@ -21,7 +21,7 @@ $(document).ready(function() {
   });
 });
 </script>
-<%= stylesheet_link_tag 'answer_input' %>
+<%= stylesheet_link_tag 'answer_input.css' %>
 
 <% if @question == nil %>
 <% @question = Question.where(slug: params[:id])[0] %>
