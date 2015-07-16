@@ -86,12 +86,15 @@ $(document).ready(function() {
     <!-- Counter + Share Section -->
     <div id="question-meta-container" style="padding-top: 50px;">
       <div class="question-share-container">
+        <!--Facebook like button-->
         <div class="fb-like" data-href="https://www.facebook.com/friendsofarima?fref=ts" style="float:right; width:100%;"
         data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
 
+        <!--Twitter like button-->
         <a class="twitter-follow-button twitter-count" data-show-screen-name="false"
         href="https://twitter.com/arima_io">
         Follow @TwitterDev</a>
+
         <%= render partial: "questions/share", locals: {
             id: @question.id,
             url: "#{request.protocol}#{request.host_with_port}" + question_path(@question),
