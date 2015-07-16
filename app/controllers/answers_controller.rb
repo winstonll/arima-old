@@ -54,13 +54,13 @@ class AnswersController < ApplicationController
 
   def create
     @question = Question.friendly.find(params[:question_id])
-    
+
     #add new answer
     if params[:answer][:options_for_collection] != ""
       if (!user_signed_in?)
         cookies[:signup] = 1
         cookies[:q] = @question.id
-        cookies[:answer] = params[:question][:options_for_collection]
+        cookies[:answer] = params[:answer][:options_for_collection]
         redirect_to new_user_registration_path
         return
       end
