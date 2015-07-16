@@ -11,6 +11,15 @@ $(document).ready(function() {
     });
 </script>
 
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
 <% if flash[:share_modal] %>
   <script>
     $(document).ready(function() {
@@ -77,13 +86,19 @@ $(document).ready(function() {
     <!-- Counter + Share Section -->
     <div id="question-meta-container" style="padding-top: 50px;">
       <div class="question-share-container">
+        <div class="fb-like" data-href="https://www.facebook.com/friendsofarima?fref=ts" style="float:right; width:100%;"
+        data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+
+        <a class="twitter-follow-button twitter-count" data-show-screen-name="false"
+        href="https://twitter.com/arima_io">
+        Follow @TwitterDev</a>
         <%= render partial: "questions/share", locals: {
             id: @question.id,
             url: "#{request.protocol}#{request.host_with_port}" + question_path(@question),
             title: "#{@question.label[0..70]}...",
             image: "#{request.protocol}#{request.host_with_port}" + question_path(@question)
           }%>
-        <p class="meta-title">Click the icon to share this report</p>
+        <p class="meta-title">Click the icon to share</p>
       </div>
     </div>
   </div>
