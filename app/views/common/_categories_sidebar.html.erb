@@ -38,7 +38,8 @@
         </div>
 
         <div class="submit-question-container">
-          <a id="submit-question-link" href="#" data-toggle="modal" data-target="#submitQuestionModal">Ask a Question</a>
+          <%= link_to "Ask a Question", new_question_path(:question => true), id: "submit-question-link"%>
+
           <hr>
         </div>
 

@@ -43,92 +43,84 @@
   });
 
 </script>
-
 <!-- Submit Question Modal -->
-<section class="modal fade" id="submitQuestionModal" tabindex="-1" role="dialog" aria-labelledby="submit-question-label" aria-hidden="true">
-  <section class="modal-dialog">
-    <section class="modal-content" >
+<section style="width: 70%; margin:auto;">
+    <%= form_for Question.new do |f|%>
+    <section class="submit-questions-container">
+      <article class="submit-q-container">
+        <span style="float:left; width:100%; color: #56A1F8; font-weight: 800; font-size: 19px; margin-left: 40px; margin-bottom: 10px;">Ask a Question(You can also attach an image or GIF):</span>
+        <%=image_tag "comment.png", class: "question-icon" %>
+        <p class="submit-q-input-box">
+          <%= f.text_field :label, name: "submit_question_name", placeholder: "Type your question here...", id: "input-q-title" %>
+          <div style="clear: both;"></div>
+          <span class="countdown"></span>
+        </p>
 
-      <article class="modal-header bg-blue">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="color: #fff;">×</button>
-        <h2 class="modal-title submit-q-text" id="submit-question-label">Ask a Question</h2>
-        <p class="modal-header-text" >Have a question you want to ask?</p>
-      </article> <!-- ./modal-header -->
-
-      <article class="modal-body">
-        <%= form_for Question.new do |f|%>
-        <section class="submit-questions-container">
-          <article class="submit-q-container">
-            <p class="modal-input-title">
-              Your Question:
-            </p>
-            <p class="submit-q-input-box">
-              <%= f.text_area :label, name: "submit_question_name", placeholder: "Type your question here...", id: "input-q-title" %>
-              <span class="countdown"></span>
-            </p>
-          </article>
-          <article class="submit-q-container">
-              <p class="modal-input-title">
-                Question Category:
-              </p>
-              <p class="submit-q-dropdown">
-                <!-- This list needs to match with the group IDs at arima.io/admin -->
-                <%= select_tag(:group_id, options_for_select([
-                  ["Money Matters", 1],
-                  ["Health & Fitness", 2],
-                  ["Education & Knowledge", 3],
-                  ["Electronics & Gadgets", 4],
-                  ["Business & Career", 5],
-                  ["Sports", 6],
-                  ["Entertainment", 7],
-                  ["Travel", 8],
-                  ["Food", 9],
-                  ["Current Events", 10],
-                  ["Lifestyle", 12],
-                  ["Politics", 13],
-                  ["Gaming", 14]
-                ]), onchange: "field_reveal()", required: "required", class: "answer-type-select") %>
-              </p>
-          </article>
-
-          <article class="submit-q-container">
-              <p class="modal-input-title">
-                Answer Type:
-              </p>
-              <p class="submit-q-dropdown">
-                <%= select_tag(:value_type, options_for_select([
-                  ["Multiple Choice", "collection"]#,
-                  #["Numerical Value", "quantity"]
-                ]), onchange: "field_reveal()", required: "required", class: "answer-type-select") %>
-              </p>
-              <% if user_signed_in? && current_user.username.present? %>
-              <p class="modal-input-title">
-                Allow users to input their own answers?
-              </p>
-
-              <p><%= check_box_tag "checked[#{current_user.id}]","true", true %></p>
-              <% end %>
-
-              <section class="selected-multiple-choices" id="answer-types">
-                <p class="modal-input-title">
-                  Answers:
-                </p>
-                <p>* Maximum of 12 answers, empty boxes will not be added.</p>
-                <section class="submit-input-container">
-
-                  <div class="answer-type-input-box">
-                    <input type="text" name="answer_box_1" id="answer-box-1" class="answer-box" placeholder="Answer here">
-                    <input type="text" name="answer_box_2" id="answer-box-2" class="answer-box" placeholder="Answer here">
-                  </div>
-                </section>
-                <input type="button" value="Add another answer" id="add-answer-button"/>
-
-              </section>
-          </article>
-          <%= f.submit "Submit", class: "modal-finished-button" %>
-        </section>
-        <% end %>
+        <%=image_tag "link_blue.png", class: "question-icon" %>
+        <p class="submit-q-input-box">
+          <%= f.text_field :label, name: "submit_question_name", placeholder: "Paste a URL here to attach an image (Currently only support imgur)", id: "input-q-title" %>
+          <div style="clear: both;"></div>
+        </p>
       </article>
-    </section><!-- /.modal-content -->
-  </section><!-- /.modal-dialog -->
+      <article class="submit-q-container">
+          <p class="modal-input-title">
+            Select a Category:
+          </p>
+          <p class="submit-q-dropdown">
+            <!-- This list needs to match with the group IDs at arima.io/admin -->
+            <%= select_tag(:group_id, options_for_select([
+              ["Money Matters", 1],
+              ["Health & Fitness", 2],
+              ["Education & Knowledge", 3],
+              ["Electronics & Gadgets", 4],
+              ["Business & Career", 5],
+              ["Sports", 6],
+              ["Entertainment", 7],
+              ["Travel", 8],
+              ["Food", 9],
+              ["Current Events", 10],
+              ["Lifestyle", 12],
+              ["Politics", 13],
+              ["Gaming", 14]
+            ]), onchange: "field_reveal()", required: "required", class: "answer-type-select") %>
+          </p>
+      </article>
+
+      <article class="submit-q-container">
+          <p class="modal-input-title">
+            Answer Type:
+          </p>
+          <p class="submit-q-dropdown">
+            <%= select_tag(:value_type, options_for_select([
+              ["Multiple Choice", "collection"]#,
+              #["Numerical Value", "quantity"]
+            ]), onchange: "field_reveal()", required: "required", class: "answer-type-select") %>
+          </p>
+          <% if user_signed_in? && current_user.username.present? %>
+          <p class="modal-input-title">
+            Allow users to input their own answers?
+          </p>
+
+          <p><%= check_box_tag "checked[#{current_user.id}]","true", true %></p>
+          <% end %>
+
+          <section class="selected-multiple-choices" id="answer-types">
+            <p class="modal-input-title">
+              Answers:
+            </p>
+            <p>* Maximum of 12 answers, empty boxes will not be added.</p>
+            <section class="submit-input-container">
+
+              <div class="answer-type-input-box">
+                <input type="text" name="answer_box_1" id="answer-box-1" class="answer-box" placeholder="Answer here">
+                <input type="text" name="answer_box_2" id="answer-box-2" class="answer-box" placeholder="Answer here">
+              </div>
+            </section>
+            <input type="button" value="Add another answer" id="add-answer-button"/>
+
+          </section>
+      </article>
+      <%= f.submit "Submit", class: "modal-finished-button" %>
+    </section>
+    <% end %>
 </section><!-- /.modal -->

@@ -144,7 +144,7 @@
             }
           }
         }
-          
+
           .info-input {
 
             .birthyear-input,
@@ -170,7 +170,7 @@
                 color: #4a4a4a;
                 padding-left: 0.75em;
               }
-            } 
+            }
           }
 
         .signup-links-bottom {
@@ -185,7 +185,7 @@
             background-color: #00c39c;
             color: #fff;
             border-radius: 3px;
-            border: 0;         
+            border: 0;
             margin: 2.4em 0 1em 0;
             cursor: pointer;
 
@@ -206,10 +206,10 @@
             }
           }
         }
-      }    
+      }
     }
   }
-} 
+}
 
 
 /* Submit Question Modals */
@@ -263,13 +263,34 @@
   font-weight: bold;
 }
 
+.question-title{
+  float:left;
+}
+
+.question-icon{
+  float:left;
+  margin-top: 6px;
+  margin-right: 1%;
+}
+
 .submit-questions-container {
   margin: 5px 20px 40px 20px;
 }
 
-.modal-body {
-  background-color: #fff;
-  border-radius: 0px 0px 6px 6px;
+#input-q-title{
+  float:left;
+  height: 35px;
+  width: 93%;
+  padding: 15px;
+  font-style: italic;
+  background-color: #e7e7e7;
+  border: none;
+  border-radius: 4px;
+  font-size: 20px;
+}
+
+.countdown {
+  margin-left: 42px;
 }
 
 .modal-input-title {
@@ -279,11 +300,10 @@
   margin: 1em 0em 0.25em 0em;
 }
 
-textarea[name="submit_question_name"],
 input[name="submit_question_category"],
 input[name="submit_question_type"] {
-  height: 65px;
-  width: 100%;
+  height: 40px;
+  width: 80%;
   padding: 15px;
   font-style: italic;
   background-color: #e7e7e7;
