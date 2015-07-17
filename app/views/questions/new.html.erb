@@ -97,15 +97,15 @@
               </p>
               <p class="submit-q-dropdown">
                 <%= select_tag(:value_type, options_for_select([
-                  ["Multiple Choice", "collection"],
-                  ["Numerical Value", "quantity"]
+                  ["Multiple Choice", "collection"]#,
+                  #["Numerical Value", "quantity"]
                 ]), onchange: "field_reveal()", required: "required", class: "answer-type-select") %>
               </p>
               <% if user_signed_in? && current_user.username.present? %>
               <p class="modal-input-title">
                 Allow users to input their own answers?
               </p>
-              
+
               <p><%= check_box_tag "checked[#{current_user.id}]","true", true %></p>
               <% end %>
 
