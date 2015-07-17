@@ -226,7 +226,7 @@
    data_answer.country = <%= answer.numeric_country.to_json.html_safe %>;
   <% end %>
   data_answer.world = <%= answer.data_array('world').html_safe %>;
-  //data_answer.pstm = <%= answer.data_array('pstm').html_safe %>;
+  //data_answer.pstm = <%#= answer.data_array('pstm').html_safe %>;
   data_answer.selected = 'world';
 
   var chart_answer = c3.generate({
