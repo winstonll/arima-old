@@ -241,7 +241,7 @@ class ApplicationController < ActionController::Base
         #@location = Pointpin.locate(ip)
         @result = request.location
         @guest = User.new(ip_address: ip)
-        if(@result.data != nil)
+        if(@result != nil)
           @user_country = Country.new(@result.data["country_code"])
           @city = request.location.try(:city)
           @province = request.location.try(:state)
@@ -254,7 +254,7 @@ class ApplicationController < ActionController::Base
         @guest.build_location(
         #zip_code: @result.data["zipcode"],
         continent: @user_country.subregion,
-        province: @province, 
+        province: @province,
         country_code: @user_country.alpha2,
         country: @user_country.name,
         city: @city, #try this code for city @result.data["city"]
