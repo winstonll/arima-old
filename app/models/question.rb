@@ -226,7 +226,7 @@ class Question < ActiveRecord::Base
   end
 
   def option_count
-    if options_array.count > 6
+    if options_array.count > 10
       return true
     end
   end

@@ -172,9 +172,13 @@
         // Change/remove current tab to active
         jQuery(this).parent('li').addClass('active').siblings().removeClass('active');
 
+        d3.select("svg").remove();
+        d3.select("g").remove();
         e.preventDefault();
         if(currentAttrValue != "#heatmap"){
-          show_location_answer(currentAttrValue.substring(1, currentAttrValue.length));
+          data_answer.selected = currentAttrValue.substring(1, currentAttrValue.length);
+          createChart(currentAttrValue.substring(1, currentAttrValue.length), <%= answer.user_country.to_json.html_safe%>);
+          //show_location_answer(currentAttrValue.substring(1, currentAttrValue.length));
         }
         else{
 
@@ -188,20 +192,19 @@
     });
   });
 
-  $('#country_position').change(function (e) {
+  $('.country_dropdown').change(function (e) {
     var country = $(e.target).find(":selected").val();
-    var text = "This tab shows what everyone from '" + country + "' has answered.";
-    $(".country_text").html(text);
-    data_answer.country_stats = data_answer.country[country]
-    show_location_answer('country');
+    data_answer.country_stats = data_answer.country[country];
+    console.log(country);
+    d3.select("svg").remove();
+    d3.select("g").remove();
+    createChart("country", country);
   });
 
   //heatmap drop down
   $('#heat_position').change(function (e) {
-    var user_selection = $(e.target).find(":selected").val();
-    var text = "This map shows where people who answered '" + user_selection + "' are from.";
-    $(".heat_text").html(text);
-    createHeat(user_selection);
+    var country = $(e.target).find(":selected").val();
+    createHeat(country);
 
     //google.maps.event.addDomListener(window, 'load', initialize);
     initialize();
@@ -211,6 +214,7 @@
     heatmap.setMap(heatmap.getMap() ? null : map);
   });
 
+<% if !question.option_count %>
   var data_answer = {};
   <% if answer.question.value_type == "collection" %>
     data_answer.collection = true;
@@ -329,6 +333,141 @@
       unload: loc_arr
     });
   }
+<% else %>
+  var data_answer = {};
+  
+  data_answer.country = <%= answer.percent_country.to_json.html_safe %>;
+  data_answer.world = <%= answer.data_array('world').html_safe %>;
+  data_answer.pstm = <%= answer.data_array('pstm').html_safe %>;
+  data_answer.selected = 'world';
+
+  function createChart(tab_selection, country_name) {
+    console.log(tab_selection);
+    (function(d3) {
+      'use strict';
+      if (tab_selection == 'world'){
+        var dataset = data_answer[tab_selection];
+      }
+
+      if (tab_selection == 'country'){
+         var dataset = data_answer[tab_selection][country_name];
+      }
+
+      if (tab_selection == 'pstm'){
+        var dataset = data_answer[tab_selection];
+      }
+      var axisMargin = 20;
+      var margin = 20;
+      var valueMargin = 4;
+      var width = 500;
+      var height = 400;
+      var barHeight = (height - axisMargin - margin * 6) * 0.6 / dataset.length;
+      var barPadding = (height - axisMargin - margin * 3) * 0.6 / dataset.length,
+    dataset, bar, svg, scale, xAxis, labelWidth = 85;
+
+  var max = d3.max(dataset.map(function(i) {
+    return i[1];
+  }));
+
+  var svg = d3.select('#answer-' + tab_selection)
+    .append("svg")
+    .attr("width", width)
+    .attr("height", 400);
+
+  var colors = [ '#ff355e', '#18BDD0', '#b5e900', '#f9429e', '#ffd500', '#1E90FF', '#ff748c', '#7cfc00', '#ffef00', '#00bfff', '#18d087', '#ad8acc', '#ed872d'];
+
+  var colorScale = d3.scale.quantize()
+    .domain([0, dataset.length])
+    .range(colors);
+
+  var bar = svg.selectAll("g")
+    .data(dataset)
+    .enter()
+    .append("g");
+
+  bar.attr("class", "bar")
+    .attr("cx", 0)
+    .style('fill', function(d, i) {
+      return colorScale(i);
+    })
+    .attr("transform", function(d, i) {
+      return "translate(" + margin + "," + (i * (barHeight + barPadding) + barPadding) + ")";
+    });
+
+  bar.append("text")
+    .attr("class", "label")
+    .attr("y", barHeight / 2)
+    .attr("dy", ".35em")
+    .attr("dx", "-1em")
+    .style({
+      'fill': '#333',
+      'font-size': '18px'
+    })
+    //vertical align middle
+    .text(function(d) {
+      return d[0];
+    }).each(function() {
+      labelWidth = Math.ceil(Math.max(labelWidth, this.getBBox().width));
+    });
+
+  var scale = d3.scale.linear()
+    .domain([0, max])
+    .range([0, width - margin * 2 - labelWidth]);
+
+  var xAxis = d3.svg.axis()
+    .scale(scale)
+    .tickSize(-height + 2 * margin + axisMargin)
+    .orient("bottom");
+
+  bar.append("rect")
+    .attr("transform", "translate(" + labelWidth + ", 0)")
+    .attr("height", barHeight)
+    .attr("width", function(d) {
+      return scale(d[1]);
+    });
+
+  bar.append("text")
+    .attr("class", "value").style({
+      'fill': '#333',
+      'font-size': '14px'
+    })
+    .attr("y", barHeight / 2)
+    .attr("dx", -valueMargin + labelWidth) //margin right
+    .attr("dy", ".35em") //vertical align middle
+    .attr("text-anchor", "end")
+    .text(function(d) {
+      return d[1] + "%";
+    })
+    .attr("x", function(d) {
+      var width = this.getBBox().width;
+      return Math.max(width + valueMargin, scale(d[1]));
+    });
+
+  svg.insert("g", ":first-child")
+    .attr("class", "axis")
+    .attr("transform", "translate(" + (margin + labelWidth) + "," + (height - axisMargin - margin) + ")")
+    .call(xAxis)
+    .style({
+      'stroke': '#adadad',
+      'stroke-width': '1px',
+      'fill': 'none'
+    });
+
+    })(window.d3);
+  }
+
+  createChart(data_answer.selected, "world");
+
+  d3.select(window).on('resize', resize);
+
+  function resize() {
+      // update width
+      d3.select("svg").remove();
+      d3.select("g").remove();
+      createChart(data_answer.selected, <%= answer.user_country.to_json.html_safe%>);
+  }
+
+<% end %>
 </script>
 
 <!-- Google Analytics -->
