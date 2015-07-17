@@ -178,14 +178,14 @@ class Answer < ActiveRecord::Base
         when "city" then collection_data percent_city
         when "country" then collection_data percent_country
         when "world" then collection_data percent_world
-        when "pstm" then collection_data percent_pstm
+        #when "pstm" then collection_data percent_pstm
       end
     else
       case value
         when "city" then numeric_data by_city.pluck(:value).compact
         when "country" then numeric_data by_country.pluck(:value).compact
         when "world" then numeric_data by_world.pluck(:value).compact
-        when "pstm"
+        #when "pstm"
       end
     end
   end
