@@ -346,15 +346,15 @@
     (function(d3) {
       'use strict';
       if (tab_selection == 'world'){
-        var dataset = <%= answer.data_array('world').html_safe %>;
+        var dataset = data_answer[tab_selection];
       }
 
       if (tab_selection == 'country'){
-         var dataset = <%= answer.percent_country.to_json.html_safe %>;
+         var dataset = data_answer[tab_selection][country_name];
       }
 
       if (tab_selection == 'pstm'){
-        var dataset = <%= answer.data_array('pstm').html_safe %>;
+        var dataset = data_answer[tab_selection];
       }
       var axisMargin = 20;
       var margin = 20;
