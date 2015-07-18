@@ -8,6 +8,11 @@ $(document).ready(function() {
       $('#answer_value').on('input', function() {
         $('.modal-button').prop('disabled', !(this.value.length > 0));
       });
+      <%if @question.image_link.nil? %>
+        console.log("hi");
+        $(".question-title").css("width", "80%");
+        $(".answer-counter").css("width", "80%");
+      <%end%>
     });
 </script>
 
@@ -69,7 +74,9 @@ $(document).ready(function() {
           <% end %>
         </div>
       </div>
-
+      <%if !@question.image_link.nil? %>
+      <div style="float:left; margin-top:20px; margin-right:10px;"><%= image_tag(@question.image_link, size: "100x100", alt:"image",class: "question_image")%></div>
+      <%end%>
       <!-- Question Title and Answer Box -->
       <div class="question-title-container">
         <h1 class="question-title"><%= @question.label %></h1>
@@ -134,6 +141,7 @@ $(document).ready(function() {
 </div>
 <%else%>
 <div style="position: relative; top:100px;">
+<center>  <%= @question.image_link.nil? ? "" : image_tag(@question.image_link, size: "300x250", alt:"image")%> </center>
 <center style="color: #4A90E2; font-weight: bold; font-size: 24px;"><%=@question.label %></center>
 <center class="meta-title"><%= @question.answers.count%><%= @question.answers.count >= 1 ? ' Person' : ' People' %> Answered</center>
 <center>

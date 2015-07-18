@@ -26,7 +26,7 @@ Arima::Application.routes.draw do
     post 'show_popular' => "categories#show_popular"
   end
 
-  resources :questions, only: [:show] do
+  resources :questions, only: [:show, :new] do
     resources :answers, only: [:new, :create]
   end
 
