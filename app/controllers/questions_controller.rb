@@ -196,7 +196,7 @@ class QuestionsController < ApplicationController
         :label => params[:submit_question_name].slice(0,1).capitalize + params[:submit_question_name].slice(1..-1),
         :group_id => params[:group_id],
         :user_id => current_user.id,
-        :value_type => params[:value_type],
+        :value_type => "collection",
         :options_for_collection => @answerboxes,
         :answer_plus => true)
 
@@ -207,7 +207,7 @@ class QuestionsController < ApplicationController
         :label => params[:submit_question_name].capitalize,
         :group_id => params[:group_id],
         :user_id => current_user.id,
-        :value_type => params[:value_type],
+        :value_type => "collection",
         :options_for_collection => @answerboxes,
         :answer_plus => false)
 
@@ -217,7 +217,6 @@ class QuestionsController < ApplicationController
       flash[:notice] = "The length of the question was too long. Please try again."
       return
     end
-
 
     if @subquestion.valid?
       current_user.points = current_user.points + 10

@@ -62,6 +62,7 @@
           <div style="clear: both;"></div>
         </p>
       </article>
+
       <article class="submit-q-container">
           <p class="modal-input-title">
             Select a Category:
@@ -88,39 +89,46 @@
 
       <article class="submit-q-container">
           <p class="modal-input-title">
-            Answer Type:
+            Select Answer Option:
           </p>
           <p class="submit-q-dropdown">
-            <%= select_tag(:value_type, options_for_select([
+            <div class="ask-questions-toggle-container" style="text-align:center;">
+              <a class="multiple-choice" data-toggle="pill">
+                <div class="multiple-choice-toggle ask-question-toggle-active">
+                  <p id="multiple-choice-label" data-toggle="pill">Multiple Choice</p>
+                </div>
+              </a>
+            </div>
+            <%#= select_tag(:value_type, options_for_select([
               ["Multiple Choice", "collection"]#,
               #["Numerical Value", "quantity"]
             ]), onchange: "field_reveal()", required: "required", class: "answer-type-select") %>
           </p>
-          <% if user_signed_in? && current_user.username.present? %>
-          <p class="modal-input-title">
-            Allow users to input their own answers?
-          </p>
-
-          <p><%= check_box_tag "checked[#{current_user.id}]","true", true %></p>
-          <% end %>
 
           <section class="selected-multiple-choices" id="answer-types">
             <p class="modal-input-title">
-              Answers:
+              Add your Answer Choices:
             </p>
-            <p>* Maximum of 12 answers, empty boxes will not be added.</p>
-            <section class="submit-input-container">
+            <p style="margin-left:2.6em;">Maximum of 12 answers, empty boxes will not be added.</p>
+            <section class="submit-input-container" style="margin-left: 2.5em;">
 
               <div class="answer-type-input-box">
                 <input type="text" name="answer_box_1" id="answer-box-1" class="answer-box" placeholder="Answer here">
                 <input type="text" name="answer_box_2" id="answer-box-2" class="answer-box" placeholder="Answer here">
               </div>
             </section>
-            <input type="button" value="Add another answer" id="add-answer-button"/>
+            <input type="button" value="+ Add another answer" id="add-answer-button"/>
 
           </section>
       </article>
-      <%= f.submit "Submit", class: "modal-finished-button" %>
+      <span style="float:left; margin-right:2em; margin-left: 2.6em;"><%= f.submit "Submit", class: "modal-finished-button" %></span>
+
+      <% if user_signed_in? && current_user.username.present? %>
+      <div style="margin-top:1.3em;">
+      <p style="float:left; margin-right: 1em;"><%= check_box_tag "checked[#{current_user.id}]","true", true %></p>
+      <p>Allow other users to add answers</p>
+      </div>
+      <% end %>
     </section>
     <% end %>
 </section><!-- /.modal -->
