@@ -338,7 +338,7 @@
   
   data_answer.country = <%= answer.percent_country.to_json.html_safe %>;
   data_answer.world = <%= answer.data_array('world').html_safe %>;
-  data_answer.pstm = <%= answer.data_array('pstm').html_safe %>;
+  // data_answer.pstm = <%= answer.data_array('pstm').html_safe %>;
   data_answer.selected = 'world';
 
   function createChart(tab_selection, country_name) {

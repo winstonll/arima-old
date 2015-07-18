@@ -144,7 +144,7 @@
             }
           }
         }
-          
+
           .info-input {
 
             .birthyear-input,
@@ -170,7 +170,7 @@
                 color: #4a4a4a;
                 padding-left: 0.75em;
               }
-            } 
+            }
           }
 
         .signup-links-bottom {
@@ -185,7 +185,7 @@
             background-color: #00c39c;
             color: #fff;
             border-radius: 3px;
-            border: 0;         
+            border: 0;
             margin: 2.4em 0 1em 0;
             cursor: pointer;
 
@@ -206,23 +206,23 @@
             }
           }
         }
-      }    
+      }
     }
   }
-} 
+}
 
 
 /* Submit Question Modals */
 .modal-finished-button {
-  height: 50px;
+  height: 25px;
   width: 100px;
-  background-color: #25c297;
+  background-color: #56A1F8;
   color: #fff;
   font-weight: bold;
-  font-size: 1.5em;
+  font-size: 1em;
   border: none;
-  border-radius: 3px;
-  margin: 25px 0px 15px 0px !important;
+  border-radius: 4px;
+  margin: 15px 0px 15px 0px !important;
 }
 
 .modal-finished-button:hover {
@@ -263,27 +263,96 @@
   font-weight: bold;
 }
 
+.question-icon{
+  float:left;
+  margin-top: 6px;
+  margin-right: 1%;
+}
+
 .submit-questions-container {
   margin: 5px 20px 40px 20px;
 }
 
-.modal-body {
-  background-color: #fff;
-  border-radius: 0px 0px 6px 6px;
+#input-q-title{
+  float:left;
+  height: 35px;
+  width: 93%;
+  padding: 15px;
+  font-style: italic;
+  background-color: #e7e7e7;
+  border: none;
+  border-radius: 4px;
+  font-size: 20px;
+}
+
+.countdown {
+  margin-left: 42px;
+}
+
+.submit-q-dropdown{
+  margin-left: 2.7em;
+}
+
+.multiple-choice{
+  &:hover {
+    cursor: pointer;
+
+  }
+
+  &:not(:first-child) {
+    margin-left: 15px;
+  }
+
+  .active {
+    background: 2px solid #4a90e2;
+  }
+
+  .stat-active {
+    color: #4a90e2;
+  }
+
+  .ask-question-toggle-active {
+    border: 2px solid #00C39C !important;
+    color: #00C39C !important;
+  }
+
+  .multiple-choice-toggle{
+    height: 50px;
+    width: 250px;
+    text-align: center;
+    color: #9B9A9C;
+    padding-top: 0.7em;
+    display: inline-block;
+    border: 2px solid #9B9A9C;
+    border-radius: 0.5em;
+
+    &:hover {
+    color:#00C39C;
+    text-decoration:none;
+    border-color: #00C39C;
+    }
+
+    #multiple-choice-label{
+      font-size: 20px;
+    }
+  }
+  .ask-question-active-toggle {
+    border: 2px solid #00C39C;
+    color: #00C39C;
+  }
 }
 
 .modal-input-title {
-  font-size: 20px;
-  color: #4a4a4a;
-  font-weight: 600;
-  margin: 1em 0em 0.25em 0em;
+  font-weight:800;
+  font-size: 19px;
+  color: #56A1F8;
+  margin: 1em 0em 0.25em 2em;
 }
 
-textarea[name="submit_question_name"],
 input[name="submit_question_category"],
 input[name="submit_question_type"] {
-  height: 65px;
-  width: 100%;
+  height: 40px;
+  width: 80%;
   padding: 15px;
   font-style: italic;
   background-color: #e7e7e7;
@@ -341,12 +410,12 @@ select[name="submit_question_answer_type"] {
 }
 
 #add-answer-button {
-  background-color: #25c297;
+  background-color: #56A1F8;
   color: #fff;
   font-size: 1.0em;
   border: none;
   border-radius: 3px;
-  margin: 20px 0 0 0;
+  margin: 20px 0 0 2.6em;
   font-style: normal;
   font-size: 1em;
   font-weight: 600;
