@@ -112,7 +112,7 @@
   min-height: 100%;
   width: 98%;
   margin: 0 auto;
-  margin-top: 1em;
+  margin-top: 2em;
 
   .tabs {
     position: relative;
@@ -138,6 +138,7 @@
     float:left;
     list-style:none;
     display:inline-block;
+
 
   }
 
@@ -313,6 +314,7 @@
           color: #4A90E2;
           float:left;
           width:80%;
+
         }
 
         .answer-counter {
@@ -320,6 +322,8 @@
           width:80%;
           height:23px;
           margin-bottom: 1em;
+          font-size: 16px;
+          color: #4a4a4a;
         }
       }
     }
@@ -331,16 +335,20 @@
       vertical-align: top;
       height: auto;
 
+
+
       .question-title-count,
       .question-share-container {
         color: #878686;
         text-align: center;
-        padding-top: 10px;
+
       }
 
       .meta-title {
-        font-size: 15px;
-        font-weight: 600;
+        font-size: 12px;
+        font-weight: 400;
+        color: #9B9B9B;
+        padding-top: 5px;
       }
 
       .question-title-count {
@@ -355,7 +363,7 @@
           width:100% !important;
           margin-top: 10px;
           margin-bottom: 30px;
-          padding-left: 84px;
+          padding-left: 105px;
         }
 
         .share-link {
