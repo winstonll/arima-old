@@ -134,6 +134,7 @@ $(document).ready(function() {
 </div>
 <%else%>
 <div style="position: relative; top:100px;">
+<center>  <%= @question.image_link.nil? ? "" : image_tag(@question.image_link, size: "300x250", alt:"image")%> </center>
 <center style="color: #4A90E2; font-weight: bold; font-size: 24px;"><%=@question.label %></center>
 <center class="meta-title"><%= @question.answers.count%><%= @question.answers.count >= 1 ? ' Person' : ' People' %> Answered</center>
 <center>

@@ -190,6 +190,24 @@ class QuestionsController < ApplicationController
       @answerboxes = @answerboxes[0...-1]
     end
 
+    @question_image = !params[:image_link].empty?
+
+    if(@question_image)
+      image_array = params[:image_link].split("/")
+      if ((params[:image_link].include? "imgur.com") && image_array.size >= 4)
+        if image_array.include? "gallery"
+          image_array.delete("gallery")
+          image_array[-1] = image_array.last + ".gif"
+          params[:image_link] = image_array.join("/")
+        else
+          image_array[-1] = image_array.last + ".gif"
+          params[:image_link] = image_array.join("/")
+        end
+        @question_image = true
+      else
+        @question_image = false
+      end
+    end
 
     if params["checked"] != nil && (params[:submit_question_name].length < 256)
       @subquestion = Question.create(
@@ -198,7 +216,8 @@ class QuestionsController < ApplicationController
         :user_id => current_user.id,
         :value_type => "collection",
         :options_for_collection => @answerboxes,
-        :answer_plus => true)
+        :answer_plus => true,
+        :image_link => @question_image ? params[:image_link] : nil)
 
       GroupsQuestion.create(group_id: params[:group_id], question_id: @subquestion.id)
 
@@ -209,7 +228,8 @@ class QuestionsController < ApplicationController
         :user_id => current_user.id,
         :value_type => "collection",
         :options_for_collection => @answerboxes,
-        :answer_plus => false)
+        :answer_plus => false,
+        :image_link => @question_image ? params[:image_link] : nil)
 
       GroupsQuestion.create(group_id: params[:group_id], question_id: @subquestion.id)
     else
