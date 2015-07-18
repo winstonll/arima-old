@@ -108,13 +108,13 @@ $(document).ready(function() {
             title: "#{@question.label[0..70]}...",
             image: "#{request.protocol}#{request.host_with_port}" + question_path(@question)
           }%>
-        <p class="meta-title">Click the icon to share</p>
+        <p class="meta-title">Click the icon to share this report!</p>
       </div>
     </div>
   </div>
 
   <!-- Report -->
-  <div id="question-content-container" style="padding-top: 120px;">
+  <div id="question-content-container">
     <% if !@user_submitted_answer %>
       <div class="no-answer-container">
         <p class="no-answer-prompt">Answer the question to view your personalized report</p>
