@@ -58,11 +58,11 @@
           </p>
         <%else%>
           <%=image_tag "link.png", class: "question-icon" %>
-        <%end%>
-        <p class="submit-q-input-box">
-          <%= f.text_field :image_link, name: "image_link", placeholder: "Paste a URL here to attach an image (Currently only support imgur)", id: "input-q-title" %>
-          <div style="clear: both;"></div>
-        </p>
+          <p class="submit-q-input-box">
+            <%= f.text_field :image_link, name: "image_link", placeholder: "Paste a URL here to attach an image (Currently only support imgur)", id: "input-q-title" %>
+            <div style="clear: both;"></div>
+          </p>
+        <%end%>  
         <%if !params[:question].nil?%>
           <%=image_tag "link_blue.png", class: "question-icon" %>
           <p class="submit-q-input-box">
@@ -71,12 +71,12 @@
           </p>
         <%else%>
           <%=image_tag "text2.png",size: "29x30", class: "share-icon" %>
+          <p class="submit-q-input-box">
+            <%= f.text_field :label, name: "submit_question_name", placeholder: "Add a description", id: "input-q-title" %>
+            <div style="clear: both;"></div>
+            <span class="countdown"></span>
+          </p>
         <%end%>
-        <p class="submit-q-input-box">
-          <%= f.text_field :label, name: "submit_question_name", placeholder: "Add a description", id: "input-q-title" %>
-          <div style="clear: both;"></div>
-          <span class="countdown"></span>
-        </p>
       </article>
 
       <article class="submit-q-container">
