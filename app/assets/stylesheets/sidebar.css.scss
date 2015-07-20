@@ -39,17 +39,18 @@
 
 .submit-question-container {
   margin-top: 20px;
-  margin-bottom: 80px;
+  margin-bottom: 20px;
 
-  #submit-question-link {
+  .submit-question-link {
     height: 25px;
     line-height: 25px;
-    padding: 0.8em 2.3em 0.8em 2.3em;
+    padding: 0.8em 2.71em 0.8em 2.71em;
     background-color: #56A1F8;
     border-radius: 5px;
     box-shadow: 2px 2px 1px rgba(0,0,0,0.35);
     -webkit-transition: all 150ms linear;
     color: #fff;
+    font-weight: 600;
 
     &:hover {
       box-shadow: 0px 2px 2px rgba(100,100,100,0.5);
@@ -59,15 +60,40 @@
       -moz-transform: scale(1.01);
     }
   }
+}
 
+.share-question-container{
+  margin-top: 30px;
+  margin-bottom: 10px;
+  .share-post-link {
+    height: 25px;
+    line-height: 25px;
+    padding: 0.8em 2.9em 0.8em 2.9em;
+    background-color: #FF7A40;
+    border-radius: 5px;
+    box-shadow: 2px 2px 1px rgba(0,0,0,0.35);
+    -webkit-transition: all 150ms linear;
+    color: #fff;
+    font-weight: 600;
+
+    &:hover {
+      box-shadow: 0px 2px 2px rgba(100,100,100,0.5);
+      transform: scale(1.01);
+      -webkit-transform: scale(1.01);
+      -ms-transform: scale(1.01);
+      -moz-transform: scale(1.01);
+    }
+  }
   hr {
     width: 50px;
     border-top: 1px solid #DCDCDC;
     margin-bottom: 5px;
-    margin-top: 25px;
+    margin-top: 35px;
 
   }
 }
+
+
 
 /* Signup, Login and Browse as Guest buttons for the home page*/
 .nav-btn {

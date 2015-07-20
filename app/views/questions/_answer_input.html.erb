@@ -21,7 +21,6 @@ $(document).ready(function() {
   });
 });
 </script>
-
 <% if @question == nil %>
 <% @question = Question.where(slug: params[:id])[0] %>
 <% end %>
@@ -53,7 +52,7 @@ $(document).ready(function() {
           <% if !@user_submitted_answer %>
           <div id="otherInput">
             <div id="otherInputBox">
-                <%= f.input(:options_for_collection, label: false,input_html:{ value: nil, placeholder: "Or add your answer to the list", class: "other-input-text", id:"other"}) %>
+                <%= f.input(:options_for_collection, label: false,input_html:{ value: nil, placeholder: "Add your own opinion to the list...", class: "other-input-text", id:"other"}) %>
             </div>
           </div>
           <% end %>

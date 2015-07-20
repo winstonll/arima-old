@@ -38,8 +38,10 @@
         </div>
 
         <div class="submit-question-container">
-          <%= link_to "Ask a Question", new_question_path(:question => true), id: "submit-question-link"%>
-
+          <%= link_to "Ask Question", new_question_path(:question => true), class: "submit-question-link"%>
+        </div>
+        <div class="share-question-container">
+          <%= link_to "Share Image", new_question_path, class: "share-post-link"%>
           <hr>
         </div>
 
