@@ -176,12 +176,6 @@ class QuestionsController < ApplicationController
       return
     end
 
-    if params[:submit_question_name].empty?
-      redirect_to :back
-      flash[:notice] = "Please enter a question label/description"
-      return
-    end
-
     # For Multiple Choice Questions, concatenate the answer boxes into
     # one string, checking for empty boxes and removing them
     13.times do |count|
