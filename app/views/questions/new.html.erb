@@ -44,11 +44,11 @@
 
 </script>
 <!-- Submit Question Modal -->
-<section style="width: 70%; margin:auto;">
+<section style="width: 70%; margin:auto; margin-top: 3em;">
     <%= form_for Question.new do |f|%>
     <section class="submit-questions-container">
       <article class="submit-q-container">
-        <span class=<%= !params[:question].nil? ? "submit-q-title" : "share-post-title"%>>Ask a Question(You can also attach an image or GIF):</span>
+        <span class=<%= !params[:question].nil? ? "submit-q-title" : "share-post-title"%>>Ask a Question (You can also attach an image or GIF):</span>
         <%if !params[:question].nil?%>
           <%=image_tag "comment.png", class: "question-icon" %>
           <p class="submit-q-input-box">
@@ -78,6 +78,13 @@
             <span class="countdown"></span>
           </p>
         <%end%>
+<<<<<<< Updated upstream
+=======
+        <p class="submit-q-input-box">
+          <%= f.text_field :image_link, name: "image_link", placeholder: "Paste a URL here to attach an image (Currently only supports imgur)", id: "input-q-title" %>
+          <div style="clear: both;"></div>
+        </p>
+>>>>>>> Stashed changes
       </article>
 
       <article class="submit-q-container">
