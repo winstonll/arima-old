@@ -162,6 +162,8 @@
     $('.tab-links > .active').prev('li').find('a').trigger('click');
   });
 
+<% if !question.option_count %>
+  
   jQuery(document).ready(function() {
     jQuery('.tabs .tab-links a').on('click', function(e)  {
         var currentAttrValue = jQuery(this).attr('href');
@@ -172,13 +174,9 @@
         // Change/remove current tab to active
         jQuery(this).parent('li').addClass('active').siblings().removeClass('active');
 
-        d3.select("svg").remove();
-        d3.select("g").remove();
         e.preventDefault();
         if(currentAttrValue != "#heatmap"){
-          data_answer.selected = currentAttrValue.substring(1, currentAttrValue.length);
-          createChart(currentAttrValue.substring(1, currentAttrValue.length), <%= answer.user_country.to_json.html_safe%>);
-          //show_location_answer(currentAttrValue.substring(1, currentAttrValue.length));
+          show_location_answer(currentAttrValue.substring(1, currentAttrValue.length));
         }
         else{
 
@@ -192,19 +190,20 @@
     });
   });
 
-  $('.country_dropdown').change(function (e) {
+  $('#country_position').change(function (e) {
     var country = $(e.target).find(":selected").val();
-    data_answer.country_stats = data_answer.country[country];
-    console.log(country);
-    d3.select("svg").remove();
-    d3.select("g").remove();
-    createChart("country", country);
+    var text = "This tab shows what everyone from '" + country + "' has answered.";
+    $(".country_text").html(text);
+    data_answer.country_stats = data_answer.country[country]
+    show_location_answer('country');
   });
 
   //heatmap drop down
   $('#heat_position').change(function (e) {
-    var country = $(e.target).find(":selected").val();
-    createHeat(country);
+    var user_selection = $(e.target).find(":selected").val();
+    var text = "This map shows where people who answered '" + user_selection + "' are from.";
+    $(".heat_text").html(text);
+    createHeat(user_selection);
 
     //google.maps.event.addDomListener(window, 'load', initialize);
     initialize();
@@ -212,9 +211,8 @@
     //Manually toggle the map twice to refresh the map
     heatmap.setMap(heatmap.getMap() ? null : map);
     heatmap.setMap(heatmap.getMap() ? null : map);
-  });
+  });  
 
-<% if !question.option_count %>
   var data_answer = {};
   <% if answer.question.value_type == "collection" %>
     data_answer.collection = true;
@@ -334,11 +332,63 @@
     });
   }
 <% else %>
+  jQuery(document).ready(function() {
+    jQuery('.tabs .tab-links a').on('click', function(e)  {
+        var currentAttrValue = jQuery(this).attr('href');
+
+        // Show/Hide Tabs
+        jQuery('.tabs ' + currentAttrValue).show().siblings().hide();
+
+        // Change/remove current tab to active
+        jQuery(this).parent('li').addClass('active').siblings().removeClass('active');
+
+        d3.select("svg").remove();
+        d3.select("g").remove();
+        e.preventDefault();
+        if(currentAttrValue != "#heatmap"){
+          data_answer.selected = currentAttrValue.substring(1, currentAttrValue.length);
+          createChart(currentAttrValue.substring(1, currentAttrValue.length), <%= answer.user_country.to_json.html_safe%>);
+          //show_location_answer(currentAttrValue.substring(1, currentAttrValue.length));
+        }
+        else{
+
+          google.maps.event.trigger(map, 'resize');
+          createHeat(<%= answer.user_answer.to_json.html_safe %>);
+          initialize();
+
+          heatmap.setMap(heatmap.getMap() ? null : map);
+          heatmap.setMap(heatmap.getMap() ? null : map);
+        }
+    });
+  });
+
+  $('.country_dropdown').change(function (e) {
+    var country = $(e.target).find(":selected").val();
+    data_answer.country_stats = data_answer.country[country];
+    console.log(country);
+    d3.select("svg").remove();
+    d3.select("g").remove();
+    createChart("country", country);
+  });
+
+  //heatmap drop down
+  $('#heat_position').change(function (e) {
+    var country = $(e.target).find(":selected").val();
+    createHeat(country);
+
+    //google.maps.event.addDomListener(window, 'load', initialize);
+    initialize();
+
+    //Manually toggle the map twice to refresh the map
+    heatmap.setMap(heatmap.getMap() ? null : map);
+    heatmap.setMap(heatmap.getMap() ? null : map);
+  });
+
   var data_answer = {};
   
   data_answer.country = <%= answer.percent_country.to_json.html_safe %>;
   data_answer.world = <%= answer.data_array('world').html_safe %>;
-  // data_answer.pstm = <%= answer.data_array('pstm').html_safe %>;
+  // data_answer.pstm = <%#= answer.data_array('pstm').html_safe %>;
   data_answer.selected = 'world';
 
   function createChart(tab_selection, country_name) {
