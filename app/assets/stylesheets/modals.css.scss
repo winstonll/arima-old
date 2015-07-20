@@ -326,11 +326,10 @@
   height: 35px;
   width: 93%;
   padding: 15px;
-  font-style: italic;
-  background-color: #e7e7e7;
+  background-color: #EFEFEF;
   border: none;
   border-radius: 4px;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 .countdown {
@@ -419,10 +418,10 @@ input[name="submit_question_type"] {
 .answer-box {
   height: 65px;
   padding: 15px;
-  font-style: italic;
-  background-color: #e7e7e7;
+  background-color: #EFEFEF;
   border: none;
   font-size: 20px;
+  border-radius: 5px;
 }
 
 select[name="submit_question_category"],
