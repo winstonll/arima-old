@@ -127,7 +127,7 @@
             <p class=<%= !params[:question].nil? ? "modal-input-title" : "modal-share-input-title"%>>
               <%= !params[:question].nil? ? "Add your Answer Choices:" : "Add Rating Opinions:"%>
             </p>
-            <p style="margin-left:2.6em;">Maximum of 12 answers, empty boxes will not be added.</p>
+            <p style="margin-left:2.6em;">Maximum of 12 <%= !params[:question].nil? ? "answers" : "opinions"%>, empty boxes will not be added.</p>
             <section class="submit-input-container" style="margin-left: 2.5em;">
 
               <div class="answer-type-input-box">
@@ -135,7 +135,8 @@
                 <input type="text" name="answer_box_2" id="answer-box-2" class="answer-box" placeholder="Answer here">
               </div>
             </section>
-            <input type="button" value="+ Add another answer" class="add-answer-button" id=<%= !params[:question].nil? ? "blue-button" : "orange-button" %> />
+            <input type="button" value="<%= !params[:question].nil? ? "+ Add another answer" : "+ Add another opinion" %>"
+            class="add-answer-button" id=<%= !params[:question].nil? ? "blue-button" : "orange-button" %> />
 
           </section>
       </article>
