@@ -21,7 +21,6 @@ $(document).ready(function() {
   });
 });
 </script>
-
 <% if @question == nil %>
 <% @question = Question.where(slug: params[:id])[0] %>
 <% end %>

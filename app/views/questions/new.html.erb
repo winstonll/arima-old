@@ -48,15 +48,22 @@
     <%= form_for Question.new do |f|%>
     <section class="submit-questions-container">
       <article class="submit-q-container">
-        <span style="float:left; width:100%; color: #56A1F8; font-weight: 800; font-size: 19px; margin-left: 40px; margin-bottom: 10px;">Ask a Question(You can also attach an image or GIF):</span>
-        <%=image_tag "comment.png", class: "question-icon" %>
+        <span class=<%= !params[:question].nil? ? "submit-q-title" : "share-post-title"%>>Ask a Question(You can also attach an image or GIF):</span>
+        <%if !params[:question].nil?%>
+          <%=image_tag "comment.png", class: "question-icon" %>
+        <%else%>
+          <%=image_tag "text2.png",size: "29x30", class: "share-icon" %>
+        <%end%>
         <p class="submit-q-input-box">
           <%= f.text_field :label, name: "submit_question_name", placeholder: "Type your question here...", id: "input-q-title" %>
           <div style="clear: both;"></div>
           <span class="countdown"></span>
         </p>
-
-        <%=image_tag "link_blue.png", class: "question-icon" %>
+        <%if !params[:question].nil?%>
+          <%=image_tag "link_blue.png", class: "question-icon" %>
+        <%else%>
+          <%=image_tag "link.png", class: "question-icon" %>
+        <%end%>
         <p class="submit-q-input-box">
           <%= f.text_field :image_link, name: "image_link", placeholder: "Paste a URL here to attach an image (Currently only support imgur)", id: "input-q-title" %>
           <div style="clear: both;"></div>
@@ -64,7 +71,7 @@
       </article>
 
       <article class="submit-q-container">
-          <p class="modal-input-title">
+          <p class=<%= !params[:question].nil? ? "modal-input-title" : "modal-share-input-title"%>>
             Select a Category:
           </p>
           <p class="submit-q-dropdown">
@@ -88,7 +95,7 @@
       </article>
 
       <article class="submit-q-container">
-          <p class="modal-input-title">
+          <p class=<%= !params[:question].nil? ? "modal-input-title" : "modal-share-input-title"%>>
             Select Answer Option:
           </p>
           <p class="submit-q-dropdown">
@@ -106,7 +113,7 @@
           </p>
 
           <section class="selected-multiple-choices" id="answer-types">
-            <p class="modal-input-title">
+            <p class=<%= !params[:question].nil? ? "modal-input-title" : "modal-share-input-title"%>>
               Add your Answer Choices:
             </p>
             <p style="margin-left:2.6em;">Maximum of 12 answers, empty boxes will not be added.</p>
@@ -117,16 +124,18 @@
                 <input type="text" name="answer_box_2" id="answer-box-2" class="answer-box" placeholder="Answer here">
               </div>
             </section>
-            <input type="button" value="+ Add another answer" id="add-answer-button"/>
+            <input type="button" value="+ Add another answer" class="add-answer-button" id=<%= !params[:question].nil? ? "blue-button" : "orange-button" %> />
 
           </section>
       </article>
-      <span style="float:left; margin-right:2em; margin-left: 2.6em;"><%= f.submit "Submit", class: "modal-finished-button" %></span>
+      <span class="modal-finished-container">
+        <%= f.submit "Submit", class: "modal-finished-button", id: !params[:question].nil? ? "blue-button" : "orange-button" %>
+      </span>
 
       <% if user_signed_in? && current_user.username.present? %>
-      <div style="margin-top:1.3em;">
-      <p style="float:left; margin-right: 1em;"><%= check_box_tag "checked[#{current_user.id}]","true", true %></p>
-      <p>Allow other users to add answers</p>
+      <div class="check-box-container">
+        <p class="check-box"><%= check_box_tag "checked[#{current_user.id}]","true", true %></p>
+        <p>Allow other users to add answers</p>
       </div>
       <% end %>
     </section>
