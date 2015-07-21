@@ -171,6 +171,7 @@ class QuestionsController < ApplicationController
 
   # Method that is called when a question is created
   def create
+
     if(!user_signed_in?)
       redirect_to "/users/sign_up"
       return
@@ -194,6 +195,12 @@ class QuestionsController < ApplicationController
     # Strip the last comma from multiple choice questions
     if @answerboxes
       @answerboxes = @answerboxes[0...-1]
+    end
+
+    if @answerboxes.nil? || @answerboxes.empty? || @answerboxes.size < 2
+      redirect_to :back
+      flash[:notice] = "Please fill in at least two answer choices"
+      return
     end
 
     @question_image = !params[:image_link].empty?
