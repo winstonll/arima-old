@@ -52,7 +52,7 @@
           <%= !params[:question].nil? ? "Ask a Question (You can also attach an image or GIF):" : "Share Image (you can also share GIFs)"%>
         </span>
         <%if !params[:question].nil?%>
-          <%=image_tag "comment.png", class: "question-icon" %>
+          <%=image_tag "comment.png", size: "28x24", class: "question-icon" %>
           <p class="submit-q-input-box">
             <%= f.text_field :label, name: "submit_question_name", :required => true,
             placeholder: "Type your question here...", id: "input-q-title" %>
@@ -60,25 +60,25 @@
             <span class="countdown"></span>
           </p>
         <%else%>
-          <%=image_tag "link.png", class: "question-icon" %>
+          <%=image_tag "link.png", size: "28x28", class: "question-icon" %>
           <p class="submit-q-input-box">
             <%= f.text_field :image_link, name: "image_link", :required => true,
-            placeholder: "Paste a URL here to attach an image (Currently only support imgur)",
+            placeholder: "Paste a URL here to attach an image (We currently only support imgur)",
             id: "input-q-title" %>
             <div style="clear: both;"></div>
           </p>
         <%end%>
         <%if !params[:question].nil?%>
-          <%=image_tag "link_blue.png", class: "question-icon" %>
+          <%=image_tag "link_blue.png", size: "28x28", class: "question-icon" %>
           <p class="submit-q-input-box">
-            <%= f.text_field :image_link, name: "image_link", placeholder: "Paste a URL here to attach an image (Currently only support imgur)", id: "input-q-title" %>
+            <%= f.text_field :image_link, name: "image_link", placeholder: "Paste a URL here to attach an image (We currently only support imgur)", id: "input-q-title" %>
             <div style="clear: both;"></div>
           </p>
         <%else%>
-          <%=image_tag "text2.png",size: "29x30", class: "share-icon" %>
+          <%=image_tag "text2.png",size: "22x28", class: "share-icon" %>
           <p class="submit-q-input-box">
             <%= f.text_field :label, name: "submit_question_name", :required => true,
-            placeholder: "Add a description", id: "input-q-title" %>
+            placeholder: "Add a Title/Description", id: "input-q-title" %>
             <div style="clear: both;"></div>
             <span class="countdown"></span>
           </p>
