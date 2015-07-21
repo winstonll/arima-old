@@ -1,13 +1,5 @@
 <% content_for :title, @question.label %>
 
-<meta property="og:site_name" content="Arima"/>
-<meta property="og:title" content="<%= @question.label %>"/>
-<% if !@question.image_link.nil? %>
-  <meta property="og:image" content="<%= @question.image_link %>">
-<% else %>
-  <meta property="og:image" content="http://i.imgur.com/1HNbKvE.png">
-<% end %>
-
 <script>
 $(document).ready(function() {
       $('#answer_value').on('change', function() {
