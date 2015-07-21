@@ -15,7 +15,10 @@
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
 
   <meta name="title" content="Arima">
-  <meta name="description" content="<%= @question.label %>">
+  <meta name="description"
+  content="<%= @question.nil? ? "Arima is a crowdsourced open-data knowledge base. As a contributor,
+  you will have the opportunity to answer questions ranging from a variety of topics,
+  and compare yourself against other users from your area, country and worldwide." : @question.label %>">
 
   <!-- Open Graphs Metadata -->
   <meta property="fb:app_id" content="294175180758323" />
