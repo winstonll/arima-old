@@ -2,14 +2,6 @@
 <% @question = Question.where(slug: params[:id])[0] %>
 <% end %>
 
-<meta property="og:site_name" content="Arima"/>
-<meta property="og:title" content="<%= @question.label %>"/>
-<% if !@question.image_link.nil? %>
-  <meta property="og:image" content="<%= @question.image_link %>">
-<% else %>
-  <meta property="og:image" content="<%= image_path "logo.png"%>">
-<% end %>
-
 <script type="text/javascript">
 $(document).ready(function() {
   $('#other').keyup(function() {
