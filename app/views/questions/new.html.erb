@@ -54,14 +54,17 @@
         <%if !params[:question].nil?%>
           <%=image_tag "comment.png", class: "question-icon" %>
           <p class="submit-q-input-box">
-            <%= f.text_field :label, name: "submit_question_name", placeholder: "Type your question here...", id: "input-q-title" %>
+            <%= f.text_field :label, name: "submit_question_name", :required => true,
+            placeholder: "Type your question here...", id: "input-q-title" %>
             <div style="clear: both;"></div>
             <span class="countdown"></span>
           </p>
         <%else%>
           <%=image_tag "link.png", class: "question-icon" %>
           <p class="submit-q-input-box">
-            <%= f.text_field :image_link, name: "image_link", placeholder: "Paste a URL here to attach an image (Currently only support imgur)", id: "input-q-title" %>
+            <%= f.text_field :image_link, name: "image_link", :required => true,
+            placeholder: "Paste a URL here to attach an image (Currently only support imgur)",
+            id: "input-q-title" %>
             <div style="clear: both;"></div>
           </p>
         <%end%>
@@ -74,7 +77,8 @@
         <%else%>
           <%=image_tag "text2.png",size: "29x30", class: "share-icon" %>
           <p class="submit-q-input-box">
-            <%= f.text_field :label, name: "submit_question_name", placeholder: "Add a description", id: "input-q-title" %>
+            <%= f.text_field :label, name: "submit_question_name", :required => true,
+            placeholder: "Add a description", id: "input-q-title" %>
             <div style="clear: both;"></div>
             <span class="countdown"></span>
           </p>
@@ -153,3 +157,7 @@
     </section>
     <% end %>
 </section><!-- /.modal -->
+<%if params[:question].nil?
+    cookies[:share] = 1
+  end
+%>
