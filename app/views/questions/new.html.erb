@@ -106,7 +106,7 @@
                 ["Gaming", 14]].each do |group| %>
                 <label class="group-icon">
                   <%= radio_button_tag :group_id, group.last, checked = false%>
-                  <%= image_tag("/assets/category_nav_icons_circular/#{group.last}.png")%>
+                  <%= image_tag("category_nav_icons_circular/#{group.last}.png")%>
                     <% if group.first == "Money Matters" %>
                       <%= label_tag "Money" %>
                     <% elsif group.first == "Health & Fitness"%>
