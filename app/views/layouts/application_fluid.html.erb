@@ -22,14 +22,8 @@
   <meta property="og:site_name" content="Arima"/>
   <meta property="og:url" content="http://thearima.com">
   <meta property="og:description" content="Arima is a crowdsourced open-data knowledge base. As a contributor, you will have the opportunity to answer questions ranging from a variety of topics, and compare yourself against other users from your area, country and worldwide.">
-  <%if !@question.nil?%>
   <meta property="og:title" content="<%= @question.label %>"/>
-    <% if !@question.image_link.nil? %>
-      <meta property="og:image" content="<%= @question.image_link %>">
-    <% else %>
-      <meta property="og:image" content="http://i.imgur.com/1HNbKvE.png">
-    <% end %>
-  <%end%>
+  
 
 
 </head>
