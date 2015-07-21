@@ -60,12 +60,12 @@
             <span class="countdown"></span>
           </p>
         <%else%>
-          <%=image_tag "link.png", size: "28x28", class: "question-icon" %>
+          <%=image_tag "text2.png",size: "22x28", class: "share-icon" %>
           <p class="submit-q-input-box">
-            <%= f.text_field :image_link, name: "image_link", :required => true,
-            placeholder: "Paste a URL here to attach an image (We currently only support imgur)",
-            id: "input-q-title" %>
+            <%= f.text_field :label, name: "submit_question_name", :required => true,
+            placeholder: "Add a Title/Description", id: "input-q-title" %>
             <div style="clear: both;"></div>
+            <span class="countdown"></span>
           </p>
         <%end%>
         <%if !params[:question].nil?%>
@@ -75,12 +75,12 @@
             <div style="clear: both;"></div>
           </p>
         <%else%>
-          <%=image_tag "text2.png",size: "22x28", class: "share-icon" %>
+          <%=image_tag "link.png", size: "28x28", class: "question-icon" %>
           <p class="submit-q-input-box">
-            <%= f.text_field :label, name: "submit_question_name", :required => true,
-            placeholder: "Add a Title/Description", id: "input-q-title" %>
+            <%= f.text_field :image_link, name: "image_link", :required => true,
+            placeholder: "Paste a URL here to attach an image (We currently only support imgur)",
+            id: "input-q-title" %>
             <div style="clear: both;"></div>
-            <span class="countdown"></span>
           </p>
         <%end%>
       </article>
