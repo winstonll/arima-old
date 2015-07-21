@@ -214,14 +214,14 @@ class QuestionsController < ApplicationController
     if(@question_image)
       image_array = params[:image_link].split("/")
       if ((params[:image_link].include? "imgur.com") && image_array.size >= 4)
+        if (!(image_array.include? "i.imgur.com"))
+          image_array[2] = "i.imgur.com"
+          image_array[-1] = image_array.last + ".gif"
+        end
         if image_array.include? "gallery"
           image_array.delete("gallery")
-          image_array[2] = "i.imgur.com"
-          image_array[-1] = image_array.last + ".gif"
           params[:image_link] = image_array.join("/")
         else
-          image_array[2] = "i.imgur.com"
-          image_array[-1] = image_array.last + ".gif"
           params[:image_link] = image_array.join("/")
         end
         @question_image = true
