@@ -13,16 +13,18 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
-  
-  <meta name="title" content="<%= @question.nil? ? "Arima" : "Arima|" + @question.label %>">
+
+  <meta name="title" content="<%= @question.nil? ? "Arima" : "Arima | " + @question.label %>">
   <meta name="description"
   content="<%= @question.nil? ? "Arima is a crowdsourced open-data knowledge base. As a contributor,
   you will have the opportunity to answer questions ranging from a variety of topics,
   and compare yourself against other users from your area, country and worldwide." : @question.label %>">
+  <link rel="image_src" href="http://imgur.com/1HNbKvE.png" />
 
   <!-- Open Graphs Metadata -->
   <meta property="fb:app_id" content="294175180758323" />
-  <meta property="og:site_name" content="<%= @question.nil? ? "Arima" : "Arima|" + @question.label %>"/>
+  <meta property="og:site_name" content="<%= @question.nil? ? "Arima" : "Arima | " + @question.label %>"/>
+  <meta property="og:image" content="<%= @question.nil? ? image_tag "logo.png" : @question.image_link/>
   <meta property="og:description"
   content="<%= @question.nil? ? "Arima is a crowdsourced open-data knowledge base. As a contributor,
   you will have the opportunity to answer questions ranging from a variety of topics,
