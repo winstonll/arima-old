@@ -324,9 +324,9 @@
         width: 50px;
         display: block;
         margin: 0 auto;
-        -webkit-filter: brightness(1.2) grayscale(.9) opacity(.9);
-        -moz-filter: brightness(1.2) grayscale(.9) opacity(.9);
-        filter: brightness(1.2) grayscale(.9) opacity(.9);
+        -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+        -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+        filter: brightness(1.2) grayscale(.5) opacity(.9);
       }
     &:hover {
       transform: scale(1.2);
