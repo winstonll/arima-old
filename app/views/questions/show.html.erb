@@ -143,7 +143,7 @@ $(document).ready(function() {
 <div style="position: relative; top:50px;">
 <center>  <%= @question.image_link.nil? ? "" : image_tag(@question.image_link, height: "350", alt:"image")%> </center>
 <center style="color: #4A90E2; font-weight: bold; font-size: 24px; padding-top: 15px;"><%=@question.label %></center>
-<center class="meta-title"><%= @question.answers.count%><%= @question.answers.count >= 1 ? ' Person' : ' People' %> Answered</center>
+<center class="meta-title"><%= @question.answers.count%><%= @question.answers.count == 1 ? ' Person' : ' People' %> Answered</center>
 <center>
     <%= render partial: 'questions/answer_input', locals: { question: @question, answer: @answer} %>
 </div>
