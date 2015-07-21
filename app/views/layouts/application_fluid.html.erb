@@ -24,7 +24,7 @@
   <!-- Open Graphs Metadata -->
   <meta property="fb:app_id" content="294175180758323" />
   <meta property="og:site_name" content="<%= @question.nil? ? "Arima" : "Arima | " + @question.label %>"/>
-  <meta property="og:image" content="<%= @question.nil? ? image_tag "logo.png" : @question.image_link/>
+  <meta property="og:image" content="<%= @question.nil? ? image_tag("logo.png") : @question.image_link %>" />
   <meta property="og:description"
   content="<%= @question.nil? ? "Arima is a crowdsourced open-data knowledge base. As a contributor,
   you will have the opportunity to answer questions ranging from a variety of topics,
