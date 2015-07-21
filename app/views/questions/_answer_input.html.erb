@@ -1,3 +1,15 @@
+<% if @question == nil %>
+<% @question = Question.where(slug: params[:id])[0] %>
+<% end %>
+
+<meta property="og:site_name" content="Arima"/>
+<meta property="og:title" content="<%= @question.label %>"/>
+<% if !@question.image_link.nil? %>
+  <meta property="og:image" content="<%= @question.image_link(:fixed) %>">
+<% else %>
+  <meta property="og:image" content="http://i.imgur.com/1HNbKvE.png">
+<% end %>
+
 <script type="text/javascript">
 $(document).ready(function() {
   $('#other').keyup(function() {
@@ -21,9 +33,6 @@ $(document).ready(function() {
   });
 });
 </script>
-<% if @question == nil %>
-<% @question = Question.where(slug: params[:id])[0] %>
-<% end %>
 
 <% if @answer == nil %>
 <% @answer = user_signed_in? ? @question.answers.build(user_id: current_user.id) : @question.answers.build(user_id: cookies[:guest]) %>
