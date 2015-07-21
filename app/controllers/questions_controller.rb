@@ -178,7 +178,13 @@ class QuestionsController < ApplicationController
 
     if params[:submit_question_name].empty?
       redirect_to :back
-      flash[:notice] = "Please enter a question label/description"
+      flash[:notice] = "Please enter a question Title/Description"
+      return
+    end
+
+    if params[:group_id].blank?
+      redirect_to :back
+      flash[:notice] = "Please select a Category"
       return
     end
 

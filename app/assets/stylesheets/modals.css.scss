@@ -298,6 +298,45 @@
 
 .submit-questions-container {
   margin: 5px 20px 40px 20px;
+  label {
+    cursor:pointer;
+    width: 90px;
+    height: 50px;
+    text-align: center;
+  }
+  label > input{
+    visibility: hidden;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+  }
+  input:checked + .group-icon {
+    transform: scale(1.2);
+  }
+  input:checked + img {
+    -webkit-filter: none;
+    -moz-filter: none;
+    filter: none;
+  }
+  .group-icon {
+      img {
+        height: 50px;
+        width: 50px;
+        display: block;
+        margin: 0 auto;
+        -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+        -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+        filter: brightness(1.2) grayscale(.5) opacity(.9);
+      }
+    &:hover {
+      transform: scale(1.2);
+      img {
+        -webkit-filter: none ;
+        -moz-filter: none ;
+        filter: none;
+      }
+    }
+  }
 }
 
 .submit-q-title {
