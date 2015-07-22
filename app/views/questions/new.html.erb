@@ -6,7 +6,7 @@
     var answerBoxCounter = 2;
     var MAX_BOX_COUNT = 12;
 
-     $(".add-answer-button").click(function() {
+     $(".add-answer").click(function() {
        // add another answer text box when clicked under existing text box.
        var newBoxNumber = answerBoxCounter + 1;
 
@@ -16,9 +16,26 @@
          $(".answer-type-input-box").append(newHtml);
          answerBoxCounter++;
        } else {
-         $("#add-answer-button").css("display", "none");
+         $(".add-answer").css("display", "none");
        }
      });
+
+     $(".default-answer").click(function() {
+       $("#default-answer-menu").css("display", "block");
+       $(".add-answer-container").css("height", "520px");
+       return false;
+     });
+
+     $('#default-answer-menu > li > a').click(function(){
+        if ($(this).attr('class') != 'active'){
+          $(".add-answer-container").css("height", "650px");
+          $('#default-answer-menu li ul').slideUp();
+          $(this).next().slideToggle();
+          $('#default-answer-menu li a').removeClass('active');
+          $(this).addClass('active');
+        }
+        return false;
+      });
 
      $('#value_type').change(function(){
         if($(this).val() != "collection"){
@@ -41,7 +58,6 @@
       $('#input-q-title').keyup(updateCountdown);
       });
   });
-
 </script>
 <!-- Submit Question Modal -->
 <section style="width: 70%; margin:auto; margin-top: 3em;">
@@ -127,7 +143,7 @@
           </p>
       </article>
 
-      <article class="submit-q-container">
+      <article class="submit-q-container add-answer-container">
           <p class=<%= !params[:question].nil? ? "modal-input-title" : "modal-share-input-title"%>>
             <%= !params[:question].nil? ? "Select Answer Option:" : "Select Rating Option:"%>
           </p>
@@ -158,10 +174,45 @@
               </div>
             </section>
             <input type="button" value="<%= !params[:question].nil? ? "+ Add another answer" : "+ Add another opinion" %>"
-            class="add-answer-button" id=<%= !params[:question].nil? ? "blue-button" : "orange-button" %> />
+            class="add-answer-button add-answer" id=<%= !params[:question].nil? ? "blue-button" : "orange-button" %> />
 
+            <button type='button' class="add-answer-button default-answer" id="green-button">Use Default Rating Choices</button>
+
+            <!--Default value accordion menu-->
+            <ul id="default-answer-menu">
+              <li><a href="#">Item 1</a>
+                <ul>
+                  <li><a href="#">Sub-Item 1 a</a></li>
+                  <li><a href="#">Sub-Item 1 b</a></li>
+                  <li><a href="#">Sub-Item 1 c</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Item 2</a>
+                <ul>
+                  <li><a href="#">Sub-Item 2 a</a></li>
+                  <li><a href="#">Sub-Item 2 b</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Item 3</a>
+                <ul>
+                  <li><a href="#">Sub-Item 3 a</a></li>
+                  <li><a href="#">Sub-Item 3 b</a></li>
+                  <li><a href="#">Sub-Item 3 c</a></li>
+                  <li><a href="#">Sub-Item 3 d</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Item 4</a>
+                <ul>
+                  <li><a href="#">Sub-Item 4 a</a></li>
+                  <li><a href="#">Sub-Item 4 b</a></li>
+                  <li><a href="#">Sub-Item 4 c</a></li>
+                </ul>
+              </li>
+            </ul>
+            <!--Accordion End-->
           </section>
       </article>
+
       <span class="modal-finished-container">
         <%= f.submit "Submit", class: "modal-finished-button", id: !params[:question].nil? ? "blue-button" : "orange-button" %>
       </span>
