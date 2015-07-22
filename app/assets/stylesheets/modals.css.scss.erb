@@ -275,10 +275,13 @@
 #default-answer-menu li ul {
     border: 1px solid #00C39C;
     border-radius: 10px;
-    list-style-type: disc;
+    list-style: none;
+    //list-style-image: url(image_path('dot.png'));
     display: none; // used to hide sub-menus
 }
 #default-answer-menu li ul li {
+    background: url(image_path('dot.png')) no-repeat 0 8px;
+    padding-left: 15px;
     margin-top: 2px;
     margin-bottom: 2px;
     color: black;
