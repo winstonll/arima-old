@@ -273,12 +273,14 @@
     color: #00C39C;
 }
 #default-answer-menu li ul {
+    border: 1px solid #00C39C;
+    border-radius: 10px;
     list-style-type: disc;
     display: none; // used to hide sub-menus
 }
-#default-answer-menu li ul li a {
-    padding: 10px 25px;
-    border-bottom: 1px dotted #ccc;
+#default-answer-menu li ul li {
+    margin-top: 2px;
+    margin-bottom: 2px;
     color: black;
     font-weight: normal;
 }
