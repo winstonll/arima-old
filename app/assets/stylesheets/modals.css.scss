@@ -266,18 +266,21 @@
     display: block;
     padding: 10px 15px;
     text-decoration: none;
-    color: #000;
+    color: #00C39C;
+    font-weight: 700;
 }
 #default-answer-menu li a:hover, #default-answer-menu li a.active {
-    background: #999;
-    color: #fff;
+    color: #00C39C;
 }
 #default-answer-menu li ul {
+    list-style-type: disc;
     display: none; // used to hide sub-menus
 }
 #default-answer-menu li ul li a {
     padding: 10px 25px;
     border-bottom: 1px dotted #ccc;
+    color: black;
+    font-weight: normal;
 }
 /* Accordion End */
 
