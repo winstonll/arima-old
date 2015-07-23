@@ -17,7 +17,7 @@ $(document).ready(function() {
     });
 </script>
 
-<!--<div id="fb-root"></div>
+<div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
@@ -25,7 +25,6 @@ $(document).ready(function() {
   js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
--->
 <% if flash[:share_modal] %>
   <script>
     $(document).ready(function() {
@@ -91,17 +90,20 @@ $(document).ready(function() {
       </div>
     </div>
 
-    <!-- Counter + Share Section -->
-    <div id="question-meta-container" style="padding-top: 50px;">
-      <div class="question-share-container">
+    <div id="Social-like-button">
         <!--Facebook like button-->
-        <!--<div class="fb-like" data-href="https://www.facebook.com/friendsofarima?fref=ts" style="float:right; width:100%;"
-        data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>-->
+        <div class="fb-like" data-href="https://www.facebook.com/friendsofarima?fref=ts"
+        data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
 
         <!--Twitter like button-->
-        <!--<a class="twitter-follow-button twitter-count" data-show-screen-name="false"
+        <a class="twitter-follow-button twitter-count" data-show-screen-name="false"
         href="https://twitter.com/arima_io">
-        Follow @TwitterDev</a>-->
+        Follow @TwitterDev</a>
+      </div>
+
+    <!-- Counter + Share Section -->
+    <div id="question-meta-container">
+      <div class="question-share-container">
 
         <%= render partial: "questions/share", locals: {
             id: @question.id,
@@ -141,10 +143,11 @@ $(document).ready(function() {
 
 </div>
 <%else%>
-<div style="position: relative; top:50px;">
-<center>  <%= @question.image_link.nil? ? "" : image_tag(@question.image_link, height: "350", alt:"image")%> </center>
-<center style="color: #4A90E2; font-weight: bold; font-size: 24px; padding-top: 15px;"><%=@question.label %></center>
+<div style="position: relative; top:30px;">
+<center>  <%= @question.image_link.nil? ? "" : image_tag(@question.image_link, height: "340", alt:"image")%> </center>
+<center style="color: #4A90E2; font-weight: bold; font-size: 24px; padding-top: 10px;"><%=@question.label %></center>
 <center class="meta-title"><%= @question.answers.count%><%= @question.answers.count == 1 ? ' Person' : ' People' %> Answered</center>
+<div class = "slogan"> Did you enjoy this? Share your opinion below!</div>
 <center>
     <%= render partial: 'questions/answer_input', locals: { question: @question, answer: @answer} %>
 </div>
