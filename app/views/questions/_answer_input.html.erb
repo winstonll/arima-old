@@ -60,7 +60,8 @@ $(document).ready(function() {
         <% end %>
         <div id="answer-button">
           <% if !@user_submitted_answer %>
-            <%= f.submit "View Results", class: "modal-button", disabled: true, data: {disable_with: "Submitting..."} %>
+            <%= f.submit "Answer & View Results", class: "modal-button", disabled: true, data: {disable_with: "Submitting..."} %>
+            <%= link_to "TL;DR", report_question_path, class:"no-answer-prompt" %>
           <% end %>
         </div>
       </div>

@@ -36,8 +36,6 @@
       font-weight: 500;
       font-size: 14px;
       display:inline;
-
-
     }
 
     #input-dropdown {
@@ -66,9 +64,18 @@
         border: none;
 
       }
-
       .modal-button:disabled {
         background-color: #9a9a9a;
+      }
+      .no-answer-prompt {
+        display: block;
+        margin-top: .5em;
+        height: 36px;
+        width: 10em;
+        padding: 9px 30px 9px 30px;
+        background-color: #56A1F8;
+        border-radius: 5px;
+        color: #fff;
       }
     }
   }
@@ -437,23 +444,10 @@
     padding-top: 4em;
 
     /* Report */
-    .report-container,
-    .no-answer-container {
+    .report-container {
       width: 75%;
       float: left;
       display: inline-block;
-    }
-
-    .no-answer-container {
-      padding-top: 10em;
-      padding-bottom: 10em;
-      text-align: center;
-
-      .no-answer-prompt {
-        font-size: 22px;
-        font-weight: 600;
-        color: #00c39c;
-      }
     }
 
     /* Next Question Section */
