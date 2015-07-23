@@ -29,7 +29,7 @@
     });
 
      $(".default-answer").click(function() {
-       $("#default-answer-menu").css("display", "block");
+       $("#default-answer-menu").css("display", "inline-block");
        $(".add-answer-container").css("height", "520px");
        return false;
      });
@@ -287,6 +287,7 @@
             <button type='button' class="add-answer-button default-answer" id="green-button">Use Default Rating Choices</button>
 
             <!--Default value accordion menu-->
+            <div style="float: left;">
             <ul id="default-answer-menu">
               <li><a href="#">Funny</a>
                 <ul>
@@ -333,9 +334,13 @@
                 </ul>
               </li>
             </ul>
+          </div>
             <!--Accordion End-->
           </section>
       </article>
+
+      <div style="clear: both;"></div>
+      
       <span class="modal-finished-container">
         <%= f.submit "Submit", class: "modal-finished-button", id: !params[:question].nil? ? "blue-button" : "orange-button" %>
       </span>
