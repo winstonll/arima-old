@@ -218,30 +218,31 @@
                 ["Electronics & Gadgets", 4],
                 ["Business & Career", 5],
                 ["Sports", 6],
-                ["Entertainment", 7],
+                ["Gaming", 14],
                 ["Travel", 8],
                 ["Food", 9],
                 ["Current Events", 10],
                 ["Lifestyle", 12],
                 ["Politics", 13],
-                ["Gaming", 14]].each do |group| %>
+                ["Entertainment", 7]
+                ].each do |group| %>
                 <label class="group-icon">
                   <%= radio_button_tag :group_id, group.last, checked = false%>
                   <%= image_tag("category_nav_icons_circular/#{group.last}.png")%>
                     <% if group.first == "Money Matters" %>
-                      <%= label_tag "Money" %>
+                      <%= "Money" %>
                     <% elsif group.first == "Health & Fitness"%>
-                      <%= label_tag "Health" %>
+                      <%= "Health" %>
                     <% elsif group.first == "Education & Knowledge"%>
-                      <%= label_tag "Education" %>
+                      <%= "Education" %>
                     <% elsif group.first == "Electronics & Gadgets"%>
-                      <%= label_tag "Electronics" %>
+                      <%= "Electronics" %>
                     <% elsif group.first == "Business & Career"%>
-                      <%= label_tag "Business" %>
+                      <%= "Business" %>
                     <% elsif group.first == "Current Events"%>
-                      <%= label_tag "Current" %>
+                      <%= "Current" %>
                     <% else %>
-                    <%= label_tag "#{group.first}" %>
+                      <%= "#{group.first}" %>
                     <% end %>
                 </label>
                 <% end %>
