@@ -19,13 +19,12 @@
   content="Arima is a crowdsourced open-data knowledge base. As a contributor,
   you will have the opportunity to answer questions ranging from a variety of topics,
   and compare yourself against other users from your area, country and worldwide.">
-  
+
   <!-- Open Graphs Metadata -->
   <meta property="fb:app_id" content="294175180758323" />
   <meta property="og:url" content="<%= request.original_url %>" />
   <meta property="og:site_name" content="<%= @question.nil? ? "Arima" : "Arima | " + @question.label %>"/>
-  <meta property="og:image" content="<%= (@question.nil? || @question.image_link.nil?) ? "http://i.imgur.com/1HNbKvE.jpg" : @question.image_link %>" />
-  <meta property="og:image:width" content="300" />
+<meta property="og:image" content="<%= @question.nil? ? "http://i.imgur.com/1HNbKvE.jpg" : (@question.image_link.nil? ? "http://i.imgur.com/1HNbKvE.jpg" : @question.image_link) %>" />  <meta property="og:image:width" content="300" />
   <meta property="og:image:height" content="300" />
   <meta property="og:description"
   content="Arima is a crowdsourced open-data knowledge base. As a contributor,

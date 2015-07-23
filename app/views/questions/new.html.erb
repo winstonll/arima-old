@@ -6,19 +6,142 @@
     var answerBoxCounter = 2;
     var MAX_BOX_COUNT = 12;
 
-     $(".add-answer-button").click(function() {
-       // add another answer text box when clicked under existing text box.
-       var newBoxNumber = answerBoxCounter + 1;
+    var funnyList = ["Hahah", "LOL", "LOL (not really)", "WTF", "Love it", "Meh"];
+    var educationalList = ["So True", "Very deep", "This is like my life",
+    "No! Not at all", "Yeah, there is maybe some truth in it.", "Nah", "TIL"];
+    var sportsList = ["Amazing skills", "True Legend", "Meh, who cares?",
+    "Seriously? I can do better", "Sexy as fuck", "Respect"];
+    var foodList = ["This looks amazing", "I am hungry", "It's alright, not really my taste",
+    "Ewwwwwww", "WTF??"];
 
-       if (newBoxNumber <= MAX_BOX_COUNT) {
-         var newHtml = '<input type="text" name="answer_box_' + newBoxNumber +'" id="answer-box-' + newBoxNumber +'" class="answer-box" placeholder="Answer here">';
+    $(".add-answer").click(function() {
+      // add another answer text box when clicked under existing text box.
+      var newBoxNumber = answerBoxCounter + 1;
 
-         $(".answer-type-input-box").append(newHtml);
-         answerBoxCounter++;
-       } else {
-         $("#add-answer-button").css("display", "none");
-       }
+      if (newBoxNumber <= MAX_BOX_COUNT) {
+        var newHtml = '<input type="text" name="answer_box_' + newBoxNumber +'" id="answer-box-' + newBoxNumber +'" class="answer-box" placeholder="Answer here">';
+
+        $(".answer-type-input-box").append(newHtml);
+        answerBoxCounter++;
+      } else {
+        return false;
+      }
+    });
+
+     $(".default-answer").click(function() {
+       $("#default-answer-menu").css("display", "inline-block");
+       $(".add-answer-container").css("height", "520px");
+       return false;
      });
+
+     $('#default-answer-menu > li > a').click(function(){
+        if ($(this).attr('class') != 'active'){
+          $(".add-answer-container").css("height", "700px");
+          $('#default-answer-menu li ul').slideUp();
+          $(this).next().slideToggle();
+          $('#default-answer-menu li a').removeClass('active');
+          $(this).addClass('active');
+        }
+        return false;
+      });
+
+      $('.funny-default').click(function(){
+       if(answerBoxCounter < funnyList.length){
+         for(i = 1; i <= answerBoxCounter; i++){
+           document.getElementById("answer-box-" + i).value = funnyList[i-1];
+         }
+         for(j = answerBoxCounter + 1; j <= funnyList.length; j++){
+           var newHtml = '<input type="text" name="answer_box_' + j +'" id="answer-box-' + j + '"value="' + funnyList[j-1] +'" class="answer-box" placeholder="Answer here">';
+           $(".answer-type-input-box").append(newHtml);
+           answerBoxCounter++;
+         }
+       }
+       else{
+         for(i = 1; i <= answerBoxCounter; i++){
+           if(i <= funnyList.length){
+             document.getElementById("answer-box-" + i).value = funnyList[i-1];
+           }
+           else {
+             document.getElementById("answer-box-" + i).value = "";
+           }
+         }
+       }
+       return false;
+     });
+
+     $('.educational-default').click(function(){
+        if(answerBoxCounter < educationalList.length){
+          for(i = 1; i <= answerBoxCounter; i++){
+            document.getElementById("answer-box-" + i).value = educationalList[i-1];
+          }
+          for(j = answerBoxCounter + 1; j <= educationalList.length; j++){
+            var newHtml = '<input type="text" name="answer_box_' + j +'" id="answer-box-' + j + '"value="' + educationalList[j-1] +'" class="answer-box" placeholder="Answer here">';
+            $(".answer-type-input-box").append(newHtml);
+            answerBoxCounter++;
+          }
+        }
+        else{
+          for(i = 1; i <= answerBoxCounter; i++){
+            if(i <= educationalList.length){
+              document.getElementById("answer-box-" + i).value = educationalList[i-1];
+            }
+            else {
+              document.getElementById("answer-box-" + i).value = "";
+            }
+          }
+        }
+        return false;
+      });
+
+      $('.sports-default').click(function(){
+         if(answerBoxCounter < sportsList.length){
+           for(i = 1; i <= answerBoxCounter; i++){
+             document.getElementById("answer-box-" + i).value = sportsList[i-1];
+           }
+           for(j = answerBoxCounter + 1; j <= sportsList.length; j++){
+             var newHtml = '<input type="text" name="answer_box_' + j +'" id="answer-box-' + j + '"value="' + sportsList[j-1] +'" class="answer-box" placeholder="Answer here">';
+             $(".answer-type-input-box").append(newHtml);
+             answerBoxCounter++;
+           }
+         }
+         else{
+           for(i = 1; i <= answerBoxCounter; i++){
+             if(i <= sportsList.length){
+               document.getElementById("answer-box-" + i).value = sportsList[i-1];
+             }
+             else {
+               document.getElementById("answer-box-" + i).value = "";
+             }
+           }
+         }
+         return false;
+       });
+
+       $('.food-default').click(function(){
+          if(answerBoxCounter < foodList.length){
+            for(i = 1; i <= answerBoxCounter; i++){
+              document.getElementById("answer-box-" + i).value = foodList[i-1];
+            }
+            for(j = answerBoxCounter + 1; j <= foodList.length; j++){
+              var newHtml = '<input type="text" name="answer_box_' + j +'" id="answer-box-' + j + '"value="' + foodList[j-1] +'" class="answer-box" placeholder="Answer here">';
+              $(".answer-type-input-box").append(newHtml);
+              answerBoxCounter++;
+            }
+          }
+          else{
+            for(i = 1; i <= answerBoxCounter; i++){
+              if(i <= foodList.length){
+                document.getElementById("answer-box-" + i).value = foodList[i-1];
+              }
+              else {
+                document.getElementById("answer-box-" + i).value = "";
+              }
+            }
+          }
+          return false;
+        });
+
+
 
      $('#value_type').change(function(){
         if($(this).val() != "collection"){
@@ -128,7 +251,7 @@
           </p>
       </article>
 
-      <article class="submit-q-container">
+      <article class="submit-q-container add-answer-container">
           <p class=<%= !params[:question].nil? ? "modal-input-title" : "modal-share-input-title"%>>
             <%= !params[:question].nil? ? "Select Answer Option:" : "Select Rating Option:"%>
           </p>
@@ -159,10 +282,65 @@
               </div>
             </section>
             <input type="button" value="<%= !params[:question].nil? ? "+ Add another answer" : "+ Add another opinion" %>"
-            class="add-answer-button" id=<%= !params[:question].nil? ? "blue-button" : "orange-button" %> />
+            class="add-answer-button add-answer" id=<%= !params[:question].nil? ? "blue-button" : "orange-button" %> />
 
+            <button type='button' class="add-answer-button default-answer" id="green-button">Use Default Rating Choices</button>
+
+            <!--Default value accordion menu-->
+            <div style="float: left;">
+            <ul id="default-answer-menu">
+              <li><a href="#">Funny</a>
+                <ul>
+                  <li>Hahaha</li>
+                  <li>LOL</li>
+                  <li>LOL (not really)</li>
+                  <li>WTF</li>
+                  <li>Love it</a></li>
+                  <li>Meh</li>
+                  <button type='button' class="add-answer-button add-default funny-default" id="green-button">Use this Default</button>
+                </ul>
+              </li>
+              <li><a href="#">Educational</a>
+                <ul>
+                  <li>So True</li>
+                  <li>Very deep</li>
+                  <li>This is like my life</li>
+                  <li>NO! Not at all</li>
+                  <li>Yeah, there is maybe some truth in it.</li>
+                  <li>Nah</li>
+                  <li>TIL</li>
+                  <button type='button' class="add-answer-button add-default educational-default" id="green-button">Use this Default</button>
+                </ul>
+              </li>
+              <li><a href="#">Sports</a>
+                <ul>
+                  <li>Amazing skills</li>
+                  <li>True Legend</li>
+                  <li>Meh, who cares?</li>
+                  <li>Seriously? I can do better</li>
+                  <li>Sexy as fuck</li>
+                  <li>Respect</li>
+                  <button type='button' class="add-answer-button add-default sports-default" id="green-button">Use this Default</button>
+                </ul>
+              </li>
+              <li><a href="#">Food</a>
+                <ul>
+                  <li>This looks amazing</li>
+                  <li>I am hungry</li>
+                  <li>It's alright, not really my taste</li>
+                  <li>Ewwwwww</li>
+                  <li>WTF??</li>
+                  <button type='button' class="add-answer-button add-default food-default" id="green-button">Use this Default</button>
+                </ul>
+              </li>
+            </ul>
+          </div>
+            <!--Accordion End-->
           </section>
       </article>
+
+      <div style="clear: both;"></div>
+      
       <span class="modal-finished-container">
         <%= f.submit "Submit", class: "modal-finished-button", id: !params[:question].nil? ? "blue-button" : "orange-button" %>
       </span>
