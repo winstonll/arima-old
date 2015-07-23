@@ -39,7 +39,7 @@ $(document).ready(function() {
             <%= f.input(:value, label: false, pattern: "\d*", placeholder: @user_units["small_unit"]) %>
           </section>
         <% elsif @question.input_type == "collection" %>
-            <%if @question.options_array.count <= 5 && !@user_submitted_answer%>
+            <%if @question.options_array.count <= 7 && !@user_submitted_answer%>
               <%@multiple_choice = Array.new()
               @question.options_array.each do |value|
                 @multiple_choice << [value, value]
@@ -47,7 +47,7 @@ $(document).ready(function() {
               <%= f.collection_radio_buttons :value, @multiple_choice, :first, :last,item_wrapper_class: :block_radio_button_collection%>
             <%else%>
             <section id="input-dropdown">
-              <%= f.input(:value, label: false, prompt: "Select an Answer", collection: @question.options_array, input_html: { class: "answer-dropdown-input"}) %>
+              <%= f.input(:value, label: false, prompt: "Select an Opinion", collection: @question.options_array, input_html: { class: "answer-dropdown-input"}) %>
             </section>
             <%end%>
           <% if !@user_submitted_answer %>
