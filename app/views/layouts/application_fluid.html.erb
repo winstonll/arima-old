@@ -20,12 +20,11 @@
   you will have the opportunity to answer questions ranging from a variety of topics,
   and compare yourself against other users from your area, country and worldwide.">
   <% @thumbnail = "http://i.imgur.com/1HNbKvE.jpg" %>
-  <%if !@question.nil?
-      if !@question.image_link.nil?
-        @thumbnail = @question.image_link
-      end
-    end
-  %>
+  <%if !@question.nil? %>
+    <%if !@question.image_link.nil?%>
+      <%@thumbnail = @question.image_link%>
+    <%end%>
+  <%end%>
   <!-- Open Graphs Metadata -->
   <meta property="fb:app_id" content="294175180758323" />
   <meta property="og:url" content="<%= request.original_url %>" />

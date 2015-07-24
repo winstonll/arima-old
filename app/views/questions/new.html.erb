@@ -46,13 +46,11 @@
 
      $(".default-answer").click(function() {
        $("#default-answer-menu").css("display", "inline-block");
-       $(".add-answer-container").css("height", "520px");
        return false;
      });
 
      $('#default-answer-menu > li > a').click(function(){
         if ($(this).attr('class') != 'active'){
-          $(".add-answer-container").css("height", "700px");
           $('#default-answer-menu li ul').slideUp();
           $(this).next().slideToggle();
           $('#default-answer-menu li a').removeClass('active');
@@ -316,6 +314,7 @@
 
                 <button type='button' class="add-answer-button default-answer" id="green-button">Use Default Rating Choices</button>
 
+                <div style="clear: both;"></div>
                 <!--Default value accordion menu-->
                 <div style="float: left;">
                 <ul id="default-answer-menu">
