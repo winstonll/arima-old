@@ -84,7 +84,7 @@ $(document).ready(function() {
           <div class="answer-counter"><%= @question.answers.count %><%= @question.answers.count == 1 ? ' Person' : ' People' %> Answered</div>
           <%= simple_form_for @answer, url: question_answers_path(@question, @answer), class: "form-inline", role: "form", html: {novalidate: false} do |f| %>
           <section id="input-dropdown">
-            <%= f.input(:value, label: false, prompt: "Select an Answer", collection: @question.options_array, input_html: { class: "answer-dropdown-input"}) %>
+            <%= f.input(:value, label: false, prompt: "Select an Opinion", collection: @question.options_array, input_html: { class: "answer-dropdown-input"}) %>
           </section>
           <%end%>
         </div>
