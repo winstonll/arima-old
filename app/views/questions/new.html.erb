@@ -30,6 +30,11 @@
       $('.multiple-choice-container').removeClass("field-hidden");
     });
 
+    $(".slide").change(function () {
+       var newValue = $('.slide').val();
+       $("#numeric-value").html(newValue);
+    });
+
     $(".add-answer").click(function() {
       // add another answer text box when clicked under existing text box.
       var newBoxNumber = answerBoxCounter + 1;
@@ -299,6 +304,7 @@
 
             <div class="numeric-slider-container field-hidden">
               <%= f.range_field :label, :min=>0, :max=>10, :class=>"slide"%>
+              <text id="numeric-value">5</text>
             </div>
 
               <div class="multiple-choice-container">
