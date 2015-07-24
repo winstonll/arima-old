@@ -19,13 +19,9 @@
   content="Arima is a crowdsourced open-data knowledge base. As a contributor,
   you will have the opportunity to answer questions ranging from a variety of topics,
   and compare yourself against other users from your area, country and worldwide.">
-  <% @thumbnail = nil %>
-  <%if @question.nil?
-      @thumbnail = "http://i.imgur.com/1HNbKvE.jpg"
-    else
-      if @question.image_link.nil?
-        @thumbnail = "http://i.imgur.com/1HNbKvE.jpg"
-      else
+  <% @thumbnail = "http://i.imgur.com/1HNbKvE.jpg" %>
+  <%if !@question.nil?
+      if !@question.image_link.nil?
         @thumbnail = @question.image_link
       end
     end
