@@ -1,3 +1,10 @@
+
+<script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css">
+<%= javascript_include_tag "jquery-ui-slider-pips" %>
+<%= stylesheet_link_tag "jquery-ui-slider-pips" %>
+
+
 <script>
   $(document).ready(function() {
     // Make sure the add answer button is showing
@@ -30,10 +37,7 @@
       $('.multiple-choice-container').removeClass("field-hidden");
     });
 
-    $(".slide").change(function () {
-       var newValue = $('.slide').val();
-       $("#numeric-value").html(newValue);
-    });
+    $(".slider").slider({max: 10}).slider("pips", {rest: "label"});
 
     $(".add-answer").click(function() {
       // add another answer text box when clicked under existing text box.
@@ -303,8 +307,7 @@
             <p style="margin-left:2.6em;">Maximum of 12 <%= !params[:question].nil? ? "answers" : "opinions"%>, empty boxes will not be added.</p>
 
             <div class="numeric-slider-container field-hidden">
-              <%= f.range_field :label, :min=>0, :max=>10, :class=>"slide"%>
-              <text id="numeric-value">5</text>
+              <div class="slider"></div>
             </div>
 
               <div class="multiple-choice-container">
