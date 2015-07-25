@@ -37,7 +37,7 @@
       $('.multiple-choice-container').removeClass("field-hidden");
     });
 
-    $(".slider").slider({max: 10}).slider("pips", {rest: "label"});
+    $(".slider").slider({max: 10, step: 1}).slider("pips", {rest: "label", step: 1}).slider("float");
 
     $(".add-answer").click(function() {
       // add another answer text box when clicked under existing text box.
