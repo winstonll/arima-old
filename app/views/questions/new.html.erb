@@ -4,11 +4,11 @@
 <%= javascript_include_tag "jquery-ui-slider-pips" %>
 <%= stylesheet_link_tag "jquery-ui-slider-pips" %>
 
-
 <script>
   $(document).ready(function() {
     // Make sure the add answer button is showing
     $("#add-answer-button").css("display", "block");
+    document.getElementById('numeric_value').value = false;
 
     var answerBoxCounter = 2;
     var MAX_BOX_COUNT = 12;
@@ -27,6 +27,7 @@
       $(".numeric-slider-toggle").addClass("ask-question-toggle-active");
       $(".multiple-choice-toggle").removeClass("ask-question-toggle-active");
       $('.numeric-slider-container').removeClass("field-hidden");
+      document.getElementById('numeric_value').value = true;
     });
 
     $('.multiple-choice').click(function(){
@@ -35,6 +36,7 @@
       $(".multiple-choice-toggle").addClass("ask-question-toggle-active");
       $(".numeric-slider-toggle").removeClass("ask-question-toggle-active");
       $('.multiple-choice-container').removeClass("field-hidden");
+      document.getElementById('numeric_value').value = false;
     });
 
     $(".slider").slider({max: 10, step: 1}).slider("pips", {rest: "label", step: 1}).slider("float");
@@ -309,6 +311,8 @@
             <div class="numeric-slider-container field-hidden" style="height:50px; margin-top: 20px;">
               <div class="slider"></div>
             </div>
+
+            <%= hidden_field_tag 'numeric_value'%>
 
               <div class="multiple-choice-container">
                 <section class="submit-input-container" style="margin-left: 2.5em;">

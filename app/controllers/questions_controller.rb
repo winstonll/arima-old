@@ -202,7 +202,7 @@ class QuestionsController < ApplicationController
       @answerboxes = @answerboxes[0...-1]
     end
 
-    if @answerboxes.nil? || @answerboxes.empty? || @answerboxes.size < 2
+    if (@answerboxes.nil? || @answerboxes.empty? || @answerboxes.size < 2) && params[:numeric_value] == "false"
       redirect_to :back
       flash[:notice] = "Please fill in at least two answer choices"
       return
@@ -235,7 +235,7 @@ class QuestionsController < ApplicationController
         :label => params[:submit_question_name].slice(0,1).capitalize + params[:submit_question_name].slice(1..-1),
         :group_id => params[:group_id],
         :user_id => current_user.id,
-        :value_type => "collection",
+        :value_type => params[:numeric_value] == "false" ? "collection" : "quantity",
         :options_for_collection => @answerboxes,
         :answer_plus => true,
         :image_link => @question_image ? params[:image_link] : nil)
@@ -247,7 +247,7 @@ class QuestionsController < ApplicationController
         :label => params[:submit_question_name].capitalize,
         :group_id => params[:group_id],
         :user_id => current_user.id,
-        :value_type => "collection",
+        :value_type => params[:numeric_value] == "false" ? "collection" : "quantity",
         :options_for_collection => @answerboxes,
         :answer_plus => false,
         :image_link => @question_image ? params[:image_link] : nil)

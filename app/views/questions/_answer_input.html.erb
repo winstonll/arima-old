@@ -1,9 +1,20 @@
+<script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css">
+<%= javascript_include_tag "jquery-ui-slider-pips" %>
+<%= stylesheet_link_tag "jquery-ui-slider-pips" %>
+
 <% if @question == nil %>
 <% @question = Question.where(slug: params[:id])[0] %>
 <% end %>
 
 <script type="text/javascript">
 $(document).ready(function() {
+  $(".slider").slider({max: 10, step: 1}).slider("pips", {rest: "label", step: 1}).slider("float");
+
+  $(".modal-button").click(function(){
+    document.getElementById('numeric_value').value = $(".ui-slider-tip")[0].innerHTML;
+  });
+
   $('#other').keyup(function() {
     if($(this).val() != '') {
        $('.modal-button').removeAttr('disabled');
@@ -16,6 +27,10 @@ $(document).ready(function() {
           return false;
       }
   });
+
+  <% if @question.input_type == "integer"%>
+    $('.modal-button').removeAttr('disabled');
+  <%end%>
 
   $('input').click(function() {
     if ($('input').is(':checked')){
@@ -38,6 +53,9 @@ $(document).ready(function() {
             <%= f.input(:value, label: false, pattern: "\d*", placeholder: @user_units["large_unit"]) %>
             <%= f.input(:value, label: false, pattern: "\d*", placeholder: @user_units["small_unit"]) %>
           </section>
+        <% elsif @question.input_type == "integer" %>
+          <div class="slider" style="width: 300px;"></div>
+          <%= hidden_field_tag 'numeric_value' %>
         <% elsif @question.input_type == "collection" %>
             <%if @question.options_array.count <= 7 && !@user_submitted_answer%>
               <%@multiple_choice = Array.new()

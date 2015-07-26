@@ -56,7 +56,7 @@ class AnswersController < ApplicationController
     @question = Question.friendly.find(params[:question_id])
 
     #add new answer
-    if params[:answer][:options_for_collection] != ""
+    if !params[:answer].nil? && params[:answer][:options_for_collection] != ""
       if (!user_signed_in?)
         cookies[:signup] = 1
         cookies[:q] = @question.id
@@ -88,10 +88,14 @@ class AnswersController < ApplicationController
       end
     end
 
+    if(!params[:numeric_value].nil?)
+
+    end
+
     #create answer if user hasn't already submitted one for this question
     if (!cookies[:guest].nil? && @answer = @question.answers.where(user: User.where(id: cookies[:guest])).first).nil?
       if(user_signed_in?)
-        @answer = @question.answers.build(params[:answer].permit(:value))
+        @answer = params[:numeric_value].nil? ? @question.answers.build(params[:answer].permit(:value)) : @question.answers.build({"value" => params[:numeric_value].to_i})
         @answer.user = current_user
 
         if @answer.save
@@ -117,7 +121,7 @@ class AnswersController < ApplicationController
           end
         end
       else
-        @answer = @question.answers.build(params[:answer].permit(:value))
+        @answer = params[:numeric_value].nil? ? @question.answers.build(params[:answer].permit(:value)) : @question.answers.build({"value" => params[:numeric_value].to_i})
         @guest = User.where(id: cookies[:guest]).first
         @answer.user = @guest
 
