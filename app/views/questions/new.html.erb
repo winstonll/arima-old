@@ -23,6 +23,7 @@
 
     $('.numeric-slider').click(function(){
       console.log("numeric slider");
+      $('.check-box-container').addClass("field-hidden");
       $('.multiple-choice-container').addClass("field-hidden");
       $('.multiple-choice-description').addClass("field-hidden");
       $(".numeric-slider-toggle").addClass("ask-question-toggle-active");
@@ -40,6 +41,7 @@
       $(".numeric-slider-toggle").removeClass("ask-question-toggle-active");
       $('.multiple-choice-container').removeClass("field-hidden");
       $('.multiple-choice-description').removeClass("field-hidden");
+      $('.check-box-container').removeClass("field-hidden");
       document.getElementById('numeric_value').value = false;
     });
 
