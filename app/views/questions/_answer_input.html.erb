@@ -9,7 +9,7 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-  $(".slider").slider({max: 10, step: 1}).slider("pips", {rest: "label", step: 1}).slider("float");
+  $(".slider").slider({max: 10, min: 1, step: 1}).slider("pips", {rest: "label", step: 1}).slider("float");
 
   $(".modal-button").click(function(){
     document.getElementById('numeric_value').value = $(".ui-slider-tip")[0].innerHTML;
