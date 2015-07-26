@@ -84,7 +84,7 @@ $(document).ready(function() {
           <div class="answer-counter"><%= @question.answers.count %><%= @question.answers.count == 1 ? ' Person' : ' People' %> Answered</div>
           <%= simple_form_for @answer, url: question_answers_path(@question, @answer), class: "form-inline", role: "form", html: {novalidate: false} do |f| %>
           <section id="input-dropdown">
-            <%= f.input(:value, label: false, prompt: "Select an Answer", collection: @question.options_array, input_html: { class: "answer-dropdown-input"}) %>
+            <%= f.input(:value, label: false, prompt: "Select an Opinion", collection: @question.options_array, input_html: { class: "answer-dropdown-input"}) %>
           </section>
           <%end%>
         </div>
@@ -138,7 +138,11 @@ $(document).ready(function() {
   <center>  <%= @question.image_link.nil? ? "" : image_tag(@question.image_link, height: "340", alt:"image")%> </center>
   <center style="color: #4A90E2; font-weight: bold; font-size: 24px; padding-top: 10px;"><%=@question.label %></center>
   <center class="meta-title"><%= @question.answers.count%><%= @question.answers.count == 1 ? ' Person' : ' People' %> Answered</center>
-  <div class = "slogan"> Did you enjoy this? Share your opinion below!</div>
+  <%if @question.options_for_collection.nil?%>
+    <div class="slogan"> What do you think? Give a rating below! </div>
+  <%else%>
+    <div class = "slogan"> Did you enjoy this? Share your opinion below!</div>
+  <%end%>
   <center>
       <%= render partial: 'questions/answer_input', locals: { question: @question, answer: @answer} %>
   </div>

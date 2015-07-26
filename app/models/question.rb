@@ -180,7 +180,7 @@ class Question < ActiveRecord::Base
     end
     country_values.reduce({}){|m, (k,v)| m[k] = v.to_a; m}
   end
-  
+
   def collection_data(value)
     arr = Array.new
     value.map do |key, val|
@@ -226,7 +226,7 @@ class Question < ActiveRecord::Base
   end
 
   def option_count
-    if options_array.count > 10
+    if !options_array.nil? && (options_array.count > 10)
       return true
     end
   end

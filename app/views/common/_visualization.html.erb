@@ -163,7 +163,7 @@
   });
 
 <% if !question.option_count %>
-  
+
   jQuery(document).ready(function() {
     jQuery('.tabs .tab-links a').on('click', function(e)  {
         var currentAttrValue = jQuery(this).attr('href');
@@ -211,7 +211,7 @@
     //Manually toggle the map twice to refresh the map
     heatmap.setMap(heatmap.getMap() ? null : map);
     heatmap.setMap(heatmap.getMap() ? null : map);
-  });  
+  });
 
   var data_answer = {};
   <% if answer.question.value_type == "collection" %>
@@ -230,7 +230,7 @@
   data_answer.world = <%= answer.data_array('world').html_safe %>;
   //data_answer.pstm = <%#= answer.data_array('pstm').html_safe %>;
   data_answer.selected = 'world';
-
+  data_answer.collection = true;
   var chart_answer = c3.generate({
     size: { width: document.getElementsByClassName('tab-content').clientWidth,
             height: 450 },
@@ -385,7 +385,7 @@
   });
 
   var data_answer = {};
-  
+
   data_answer.country = <%= answer.percent_country.to_json.html_safe %>;
   data_answer.world = <%= answer.data_array('world').html_safe %>;
   // data_answer.pstm = <%#= answer.data_array('pstm').html_safe %>;
