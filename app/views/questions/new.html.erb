@@ -45,7 +45,7 @@
       document.getElementById('numeric_value').value = false;
     });
 
-    $(".slider").slider({max: 10, step: 1}).slider("pips", {rest: "label", step: 1}).slider("float");
+    $(".slider").slider({max: 10, min: 1, step: 1}).slider("pips", {rest: "label", step: 1}).slider("float");
 
     $(".add-answer").click(function() {
       // add another answer text box when clicked under existing text box.
