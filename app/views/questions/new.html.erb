@@ -22,7 +22,11 @@
     "Ewwwwwww", "WTF??"];
 
     $('.numeric-slider').click(function(){
-      console.log("numeric slider");
+      <%if params[:question].nil?%>
+        $('.modal-share-input-title').addClass("field-hidden");
+      <%else%>
+        $('.modal-input-title').addClass("field-hidden");
+      <%end%>
       $('.check-box-container').addClass("field-hidden");
       $('.multiple-choice-container').addClass("field-hidden");
       $('.multiple-choice-description').addClass("field-hidden");
@@ -34,7 +38,11 @@
     });
 
     $('.multiple-choice').click(function(){
-      console.log("multiple choice");
+      <%if params[:question].nil?%>
+        $('.modal-share-input-title').removeClass("field-hidden");
+      <%else%>
+        $('.modal-input-title').removeClass("field-hidden");
+      <%end%>
       $('.numeric-slider-container').addClass("field-hidden");
       $('.numeric-slider-description').addClass("field-hidden");
       $(".multiple-choice-toggle").addClass("ask-question-toggle-active");
