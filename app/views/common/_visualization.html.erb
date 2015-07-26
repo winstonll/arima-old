@@ -230,7 +230,7 @@
   data_answer.world = <%= answer.data_array('world').html_safe %>;
   //data_answer.pstm = <%#= answer.data_array('pstm').html_safe %>;
   data_answer.selected = 'world';
-
+  data_answer.collection = true;
   var chart_answer = c3.generate({
     size: { width: document.getElementsByClassName('tab-content').clientWidth,
             height: 450 },
