@@ -27,7 +27,6 @@
 //= require users
 //= require profile
 //= require sidebar
-//= require jquery-ui-slider-pips
 
 $(document).ready(function() {
 
