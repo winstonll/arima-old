@@ -21,8 +21,10 @@
   and compare yourself against other users from your area, country and worldwide.">
   <% @thumbnail = "http://i.imgur.com/1HNbKvE.jpg" %>
   <%if !@question.nil? %>
-    <%if !@question.image_link.nil?%>
-      <%@thumbnail = @question.image_link%>
+    <%if params[:controller] != "categories"%>
+      <%if !@question.image_link.nil?%>
+        <%@thumbnail = @question.image_link%>
+      <%end%>
     <%end%>
   <%end%>
   <!-- Open Graphs Metadata -->
