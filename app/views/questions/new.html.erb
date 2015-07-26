@@ -310,9 +310,10 @@
             <p class=<%= !params[:question].nil? ? "modal-input-title" : "modal-share-input-title"%>>
               <%= !params[:question].nil? ? "Add your Answer Choices:" : "Add Rating Opinions:"%>
             </p>
-            <p class="multiple-choice-description" style="margin-left:2.6em;">Maximum of 12 <%= !params[:question].nil? ? "answers" : "opinions"%>, empty boxes will not be added.</p>
-            <p class="numeric-slider-description field-hidden" style="margin-left:2.6em;">Other users will use the slider below to give your submission a rating between 1 and 10.</p>
-            <div class="numeric-slider-container field-hidden" style="height:50px; margin-top: 20px;">
+            <p style="margin-left:2.6em;">Maximum of 12 <%= !params[:question].nil? ? "answers" : "opinions"%>, empty boxes will not be added.</p>
+
+            <div class="numeric-slider-container field-hidden" style="height:50px; margin-top: 20px; width: 80%; margin-left: 3.5em; ">
+
               <div class="slider"></div>
             </div>
 
