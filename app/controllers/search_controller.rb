@@ -8,7 +8,7 @@ class SearchController < ApplicationController
       check_guest()
     end
 
-    data = params[:search_text].downcase
+    data = params[:search_text].nil? ? "" : params[:search_text].downcase
 
     stripped= data.split(" ")
     stripped -= %w{for and nor but or yet so either not only may neither both whether just as much rather why the is a this then than them their}
