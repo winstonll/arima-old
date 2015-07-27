@@ -1,7 +1,9 @@
+<head>
 <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css">
-<%= javascript_include_tag "jquery-ui-slider-pips" %>
-<%= stylesheet_link_tag "jquery-ui-slider-pips" %>
+<link rel="stylesheet" href="/assets/jquery-ui-slider-pips.css">
+<script src="/assets/jquery-ui-slider-pips.js"></script>
+</head>
 
 <% if @question == nil %>
 <% @question = Question.where(slug: params[:id])[0] %>
