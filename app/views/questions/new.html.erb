@@ -10,7 +10,11 @@
   $(document).ready(function() {
     // Make sure the add answer button is showing
     $("#add-answer-button").css("display", "block");
-    document.getElementById('numeric_value').value = false;
+    <%if params[:question].nil?%>
+      document.getElementById('numeric_value').value = true;
+    <%else%>
+      document.getElementById('numeric_value').value = false;
+    <%end%>
 
     var answerBoxCounter = 2;
     var MAX_BOX_COUNT = 12;
@@ -32,10 +36,12 @@
       $(".multiple-choice-toggle").removeClass("ask-question-toggle-active");
       $('.numeric-slider-container').removeClass("field-hidden");
       $('.numeric-slider-description').removeClass("field-hidden");
+      $('.check-box-container').removeClass("field-hidden");
       document.getElementById('numeric_value').value = true;
     });
 
     $('.multiple-choice').click(function(){
+      $('.check-box-container').addClass("field-hidden");
       $('#select-title').removeClass("field-hidden");
       $('.numeric-slider-container').addClass("field-hidden");
       $('.numeric-slider-description').addClass("field-hidden");
@@ -293,13 +299,13 @@
             <div class="ask-questions-toggle-container" style="text-align:center;">
 
               <a class="multiple-choice" data-toggle="pill">
-                <div class="multiple-choice-toggle <%= !params[:question].nil? ? "ask-question-toggle-active" : ""%>">
+                <div class="multiple-choice-toggle <%= "ask-question-toggle-active" if !params[:question].nil? %>">
                   <p id="multiple-choice-label" data-toggle="pill">Multiple Choice</p>
                 </div>
               </a>
 
               <a class="numeric-slider" data-toggle="pill">
-                <div class="numeric-slider-toggle <%= !params[:question].nil? ? "" : "ask-question-toggle-active"%>">
+                <div class="numeric-slider-toggle <%= "ask-question-toggle-active" if params[:question].nil? %>">
                   <p id="numeric-slider-label" data-toggle="pill">Numeric Slider</p>
                 </div>
               </a>
@@ -311,20 +317,20 @@
           </p>
 
           <section class="selected-multiple-choices" id="answer-types">
-            <p id="select-title" class="<%= !params[:question].nil? ? "modal-input-title " : "modal-share-input-title "%> <%= params[:question].nil? ? "field-hidden" : ""%>">
+            <p id="select-title" class="<%= !params[:question].nil? ? "modal-input-title " : "modal-share-input-title "%> <%= "field-hidden" if params[:question].nil? %>">
               <%= !params[:question].nil? ? "Add your Answer Choices:" : "Add Rating Opinions:"%>
             </p>
-            <p class="multiple-choice-description <%= params[:question].nil? ? "field-hidden" : ""%>" style="margin-left:2.6em;">Maximum of 12 <%= !params[:question].nil? ? "answers" : "opinions"%>, empty boxes will not be added.</p>
-            <p class="numeric-slider-description <%= params[:question].nil? ? "" : "field-hidden"%>" style="margin-left:2.6em; padding-top: 15px;">Other users will use the slider below to give your submission a rating between 1 and 10.</p>
+            <p class="multiple-choice-description <%= "field-hidden" if params[:question].nil?%>" style="margin-left:2.6em;">Maximum of 12 <%= !params[:question].nil? ? "answers" : "opinions"%>, empty boxes will not be added.</p>
+            <p class="numeric-slider-description <%= "field-hidden" if !params[:question].nil?%>" style="margin-left:2.6em; padding-top: 15px;">Other users will use the slider below to give your submission a rating between 1 and 10.</p>
 
-            <div class="numeric-slider-container <%= !params[:question].nil? ? "field-hidden" : ""%>" style="height:50px; margin-top: 20px; width: 80%; margin-left: 3.2em; ">
+            <div class="numeric-slider-container <%= "field-hidden" if !params[:question].nil?%>" style="height:50px; margin-top: 20px; width: 80%; margin-left: 3.2em; ">
 
               <div class="slider"></div>
             </div>
 
             <%= hidden_field_tag 'numeric_value'%>
 
-              <div class="multiple-choice-container <%= !params[:question].nil? ? "" : "field-hidden"%>">
+              <div class="multiple-choice-container <%= "field-hidden" if params[:question].nil? %>">
                 <section class="submit-input-container" style="margin-left: 2.5em;">
 
                   <div class="answer-type-input-box">
@@ -400,7 +406,7 @@
       </span>
 
       <% if user_signed_in? && current_user.username.present? %>
-      <div class="check-box-container">
+      <div class="check-box-container <%= "field-hidden" if params[:question].nil?%>">
         <p class="check-box"><%= check_box_tag "checked[#{current_user.id}]","true", true %></p>
         <p>Allow other users to add answers</p>
       </div>
