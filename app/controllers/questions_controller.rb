@@ -218,12 +218,7 @@ class QuestionsController < ApplicationController
           image_array[2] = "i.imgur.com"
           image_array[-1] = image_array.last + ".jpg"
         end
-        if image_array.include? "gallery"
-          image_array.delete("gallery")
-          params[:image_link] = image_array.join("/")
-        else
-          params[:image_link] = image_array.join("/")
-        end
+        params[:image_link] = [image_array[0], image_array[1], image_array[2], image_array[-1]].join("/")
         @question_image = true
       else
         @question_image = false
