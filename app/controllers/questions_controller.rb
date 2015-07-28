@@ -1,5 +1,7 @@
 class QuestionsController < ApplicationController
   include DetermineUserAndUnits
+
+  require 'open-uri'
   layout "application_fluid"
 
   skip_before_filter :verify_authenticity_token, :only => :create
@@ -219,6 +221,12 @@ class QuestionsController < ApplicationController
           image_array[-1] = image_array.last + ".jpg"
         end
         params[:image_link] = [image_array[0], image_array[1], image_array[2], image_array[-1]].join("/")
+
+        uploaded_io = params[:image_link]
+        File.open(Rails.root.join('app', 'assets', 'images', 'question_images', image_array[-1]), 'wb') do |file|
+          file.write(open(uploaded_io).read)
+        end
+
         @question_image = true
       else
         @question_image = false
@@ -233,7 +241,7 @@ class QuestionsController < ApplicationController
         :value_type => params[:numeric_value] == "false" ? "collection" : "quantity", #params[:numeric_value] == "false" ? "collection" : "quantity"
         :options_for_collection => @answerboxes,
         :answer_plus => true,
-        :image_link => @question_image ? params[:image_link] : nil)
+        :image_link => @question_image ? image_array[-1] : nil)
 
       GroupsQuestion.create(group_id: params[:group_id], question_id: @subquestion.id)
 
