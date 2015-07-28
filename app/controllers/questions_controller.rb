@@ -223,7 +223,8 @@ class QuestionsController < ApplicationController
         params[:image_link] = [image_array[0], image_array[1], image_array[2], image_array[-1]].join("/")
 
         uploaded_io = params[:image_link]
-        File.open(Rails.root.join('app', 'assets', 'images', 'question_images', image_array[-1]), 'wb') do |file|
+        
+        File.open(Rails.root.join('public', 'assets', 'question_images', image_array[-1]), 'wb') do |file|
           file.write(open(uploaded_io).read)
         end
 
