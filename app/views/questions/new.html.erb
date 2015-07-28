@@ -299,13 +299,13 @@
             <div class="ask-questions-toggle-container" style="text-align:center;">
 
               <a class="multiple-choice" data-toggle="pill">
-                <div class="multiple-choice-toggle <%= "ask-question-toggle-active" if !params[:question].nil? %>">
-                  <p id="multiple-choice-label" data-toggle="pill">Multiple Choice</p>
+                <div class="multiple-choice-toggle ask-question-toggle-active">
+                  <p id="multiple-choice-label" data-toggle="pill"><%= params[:question].nil? ? "Image Tag" : "Multiple Choice" %></p>
                 </div>
               </a>
 
               <a class="numeric-slider" data-toggle="pill">
-                <div class="numeric-slider-toggle <%= "ask-question-toggle-active" if params[:question].nil? %>">
+                <div class="numeric-slider-toggle">
                   <p id="numeric-slider-label" data-toggle="pill">Numeric Slider</p>
                 </div>
               </a>
@@ -317,28 +317,28 @@
           </p>
 
           <section class="selected-multiple-choices" id="answer-types">
-            <p id="select-title" class="<%= !params[:question].nil? ? "modal-input-title " : "modal-share-input-title "%> <%= "field-hidden" if params[:question].nil? %>">
-              <%= !params[:question].nil? ? "Add your Answer Choices:" : "Add Rating Opinions:"%>
+            <p id="select-title" class="<%= !params[:question].nil? ? "modal-input-title " : "modal-share-input-title "%>">
+              <%= !params[:question].nil? ? "Add your Answer Choices:" : "Add your Image Tags:"%>
             </p>
-            <p class="multiple-choice-description <%= "field-hidden" if params[:question].nil?%>" style="margin-left:2.6em;">Maximum of 12 <%= !params[:question].nil? ? "answers" : "opinions"%>, empty boxes will not be added.</p>
-            <p class="numeric-slider-description <%= "field-hidden" if !params[:question].nil?%>" style="margin-left:2.6em; padding-top: 15px;">Other users will use the slider below to give your submission a rating between 1 and 10.</p>
+            <p class="multiple-choice-description" style="margin-left:2.6em;">Maximum of 12 <%= !params[:question].nil? ? "answers" : "tags"%>, empty boxes will not be added.</p>
+            <p class="numeric-slider-description <%= "field-hidden" if (!params[:question].nil? || params[:question].nil?)%>" style="margin-left:2.6em; padding-top: 15px;">Other users will use the slider below to give your submission a rating between 1 and 10.</p>
 
-            <div class="numeric-slider-container <%= "field-hidden" if !params[:question].nil?%>" style="height:50px; margin-top: 20px; width: 80%; margin-left: 3.2em; ">
+            <div class="numeric-slider-container <%= "field-hidden" if (!params[:question].nil? || params[:question].nil?)%>" style="height:50px; margin-top: 20px; width: 80%; margin-left: 3.2em; ">
 
               <div class="slider"></div>
             </div>
 
             <%= hidden_field_tag 'numeric_value'%>
 
-              <div class="multiple-choice-container <%= "field-hidden" if params[:question].nil? %>">
+              <div class="multiple-choice-container">
                 <section class="submit-input-container" style="margin-left: 2.5em;">
 
                   <div class="answer-type-input-box">
-                    <input type="text" name="answer_box_1" id="answer-box-1" class="answer-box" placeholder="Answer here">
-                    <input type="text" name="answer_box_2" id="answer-box-2" class="answer-box" placeholder="Answer here">
+                    <input type="text" name="answer_box_1" id="answer-box-1" class="answer-box" placeholder="<%= !params[:question].nil? ? "Answer here" : "Image tag here"%>">
+                    <input type="text" name="answer_box_2" id="answer-box-2" class="answer-box" placeholder="<%= !params[:question].nil? ? "Answer here" : "Image tag here"%>">
                   </div>
                 </section>
-                <input type="button" value="<%= !params[:question].nil? ? "+ Add another answer" : "+ Add another opinion" %>"
+                <input type="button" value="<%= !params[:question].nil? ? "+ Add another answer" : "+ Add another tag" %>"
                 class="add-answer-button add-answer" id=<%= !params[:question].nil? ? "blue-button" : "orange-button" %> />
 
                 <button type='button' class="add-answer-button default-answer" id="green-button">Use Default Rating Choices</button>
