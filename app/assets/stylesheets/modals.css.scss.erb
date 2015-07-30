@@ -509,12 +509,22 @@ input[name="submit_question_type"] {
 }
 
 .answer-box {
-  height: 65px;
   padding: 15px;
-  background-color: #EFEFEF;
   border: none;
+  border-radius: 50px;
+  width: 47%;
+  display: inline-block;
+  margin: 10px 25px 10px 0px;
+  height: 65px !important;
+  background-color: #e7e7e7 !important;
   font-size: 20px;
-  border-radius: 5px;
+  text-align: center;
+  outline: none;
+
+}
+
+.answer-box:focus {
+  box-shadow: 0 0 10px #419BF9;
 }
 
 select[name="submit_question_category"],
@@ -540,17 +550,6 @@ select[name="submit_question_answer_type"] {
 
 .modal-footer-pushed {
   margin-top: -40px !important;
-}
-
-.answer-box {
-  width: 47%;
-  display: inline-block;
-  margin: 10px 25px 10px 0px;
-  height: 65px !important;
-  background-color: #e7e7e7 !important;
-  border: none;
-  font-size: 20px;
-  text-align: center;
 }
 
 .answer-box:nth-child(even) {
