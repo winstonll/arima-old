@@ -173,6 +173,7 @@ class QuestionsController < ApplicationController
 
   # Method that is called when a question is created
   def create
+
     if(!user_signed_in?)
       redirect_to "/users/sign_up"
       return
@@ -242,7 +243,10 @@ class QuestionsController < ApplicationController
         :value_type => params[:numeric_value] == "false" ? "collection" : "quantity", #params[:numeric_value] == "false" ? "collection" : "quantity"
         :options_for_collection => @answerboxes,
         :answer_plus => true,
-        :image_link => @question_image ? image_array[-1] : nil)
+        :image_link => @question_image ? image_array[-1] : nil,
+        :shared_image => cookies[:shared_image].nil? ? nil : true)
+
+        params[:shared_image] = nil
 
       GroupsQuestion.create(group_id: params[:group_id], question_id: @subquestion.id)
 
@@ -253,8 +257,11 @@ class QuestionsController < ApplicationController
         :user_id => current_user.id,
         :value_type => params[:numeric_value] == "false" ? "collection" : "quantity", #params[:numeric_value] == "false" ? "collection" : "quantity"
         :options_for_collection => @answerboxes,
-        :answer_plus => false,
-        :image_link => @question_image ? params[:image_link] : nil)
+        :answer_plus => params[:shared_image].nil? ? false : true,
+        :image_link => @question_image ? params[:image_link] : nil,
+        :shared_image => cookies[:shared_image].nil? ? nil : true)
+
+        params[:shared_image] = nil
 
       GroupsQuestion.create(group_id: params[:group_id], question_id: @subquestion.id)
     else
