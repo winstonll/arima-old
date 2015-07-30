@@ -9,6 +9,12 @@ class QuestionsController < ApplicationController
   # Show method - called when question page is rendered
   def show
     @question = Question.where(slug: params[:id])[0]
+    
+    if @question.nil?
+      redirect_to feed_path
+      return
+    end
+
     cookies[:group_id] = @question.group_id
     @answers = Answer.where(question: @question).count
 
