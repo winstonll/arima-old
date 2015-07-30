@@ -173,7 +173,6 @@ class QuestionsController < ApplicationController
 
   # Method that is called when a question is created
   def create
-
     if(!user_signed_in?)
       redirect_to "/users/sign_up"
       return
@@ -244,9 +243,9 @@ class QuestionsController < ApplicationController
         :options_for_collection => @answerboxes,
         :answer_plus => true,
         :image_link => @question_image ? image_array[-1] : nil,
-        :shared_image => cookies[:shared_image].nil? ? nil : true)
+        :shared_image => cookies[:shared_image].empty? ? false : true)
 
-        params[:shared_image] = nil
+        cookies[:shared_image] = nil
 
       GroupsQuestion.create(group_id: params[:group_id], question_id: @subquestion.id)
 
@@ -259,9 +258,9 @@ class QuestionsController < ApplicationController
         :options_for_collection => @answerboxes,
         :answer_plus => params[:shared_image].nil? ? false : true,
         :image_link => @question_image ? params[:image_link] : nil,
-        :shared_image => cookies[:shared_image].nil? ? nil : true)
+        :shared_image => cookies[:shared_image].empty? ? false : true)
 
-        params[:shared_image] = nil
+        cookies[:shared_image] = nil
 
       GroupsQuestion.create(group_id: params[:group_id], question_id: @subquestion.id)
     else
