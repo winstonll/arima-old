@@ -455,7 +455,7 @@
     })
     //vertical align middle
     .text(function(d) {
-      return d[0].substring(0,5);
+      return d[0].substring(0,5) + "...";
     }).each(function() {
       labelWidth = Math.ceil(Math.max(labelWidth, this.getBBox().width));
     });
