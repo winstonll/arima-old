@@ -11,6 +11,7 @@
     // Make sure the add answer button is showing
     $("#add-answer-button").css("display", "block");
     <%if params[:question].nil?%>
+      <%cookies[:shared_image]=1%>
       document.getElementById('numeric_value').value = true;
     <%else%>
       document.getElementById('numeric_value').value = false;
@@ -36,7 +37,9 @@
       $(".multiple-choice-toggle").removeClass("ask-question-toggle-active");
       $('.numeric-slider-container').removeClass("field-hidden");
       $('.numeric-slider-description').removeClass("field-hidden");
-      $('.check-box-container').removeClass("field-hidden");
+      <% if !params[:question].nil? %>
+      $('.check-box-container').addClass("field-hidden");
+      <% end %>
       document.getElementById('numeric_value').value = true;
     });
 
@@ -49,7 +52,9 @@
       $(".numeric-slider-toggle").removeClass("ask-question-toggle-active");
       $('.multiple-choice-container').removeClass("field-hidden");
       $('.multiple-choice-description').removeClass("field-hidden");
+      <% if !params[:question].nil? %>
       $('.check-box-container').removeClass("field-hidden");
+      <%end%>
       document.getElementById('numeric_value').value = false;
     });
 
