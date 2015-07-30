@@ -63,9 +63,11 @@ $(document).ready(function() {
               <%= link_to image_tag('upvote_grey.png', id: "upvote-image-#{@question.id}", class: "question-vote-image"), upvote_question_path(:id => @question.id), :method => :put, :remote => true %>
             <% end %>
           </div>
+
           <div id="votecount-<%= @question.id %>" class="question-vote-counter">
             <%= "#{@question.votecount}" %>
           </div>
+
           <div class="question-downvote">
             <% if Vote.where(:user_id => cookies[:guest]).where(:question_id => @question.id).pluck(:vote_type)[0] == "downvote" %>
               <%= link_to image_tag('downvote_orange.png', id: "downvote-image-#{@question.id}", class: "question-vote-image"), downvote_question_path(:id => @question.id), :method => :put, :remote => true %>
@@ -73,6 +75,7 @@ $(document).ready(function() {
               <%= link_to image_tag('downvote_grey.png', id: "downvote-image-#{@question.id}", class: "question-vote-image"), downvote_question_path(:id => @question.id), :method => :put, :remote => true %>
             <% end %>
           </div>
+          <!-- Should probably refactor this and use _question_normal -->
         </div>
 
         <%if !@question.image_link.nil? %>
@@ -82,12 +85,13 @@ $(document).ready(function() {
         <div class="question-title-container">
           <h1 class="question-title"><%= @question.label %></h1>
           <div class="answer-counter"><%= @question.answers.count %><%= @question.answers.count == 1 ? ' Person' : ' People' %> Answered</div>
-          <%= simple_form_for @answer, url: question_answers_path(@question, @answer), class: "form-inline", role: "form", html: {novalidate: false} do |f| %>
+            <%= simple_form_for @answer, url: question_answers_path(@question, @answer), class: "form-inline", role: "form", html: {novalidate: false} do |f| %>
           <section id="input-dropdown">
             <%= f.input(:value, label: false, prompt: "Select an Opinion", collection: @question.options_array, input_html: { class: "answer-dropdown-input"}) %>
           </section>
-          <%end%>
+            <%end%>
         </div>
+
       </div>
 
     <div id="Social-like-button">
@@ -99,13 +103,11 @@ $(document).ready(function() {
         <a class="twitter-follow-button twitter-count" data-show-screen-name="false"
         href="https://twitter.com/arima_io">
         Follow @TwitterDev</a>
-      </div>
+    </div>
 
     <!-- Counter + Share Section -->
     <div id="question-meta-container">
       <div class="question-share-container">
-
-
           <%= render partial: "questions/share", locals: {
               id: @question.id,
               url: "#{request.protocol}#{request.host_with_port}" + question_path(@question),
@@ -131,21 +133,24 @@ $(document).ready(function() {
         <a href="<%= feed_path %>"><div id="view-feed-button">View More</div></a>
       </div>
     </div>
+  </div>
 
-  </div>
 <%else%>
-<div style="position: relative; top:30px;">
-  <center>  <%= @question.image_link.nil? ? "" : image_tag(@question.image_link, height: "340", alt:"image")%> </center>
-  <center style="color: #4A90E2; font-weight: bold; font-size: 24px; padding-top: 10px;"><%=@question.label %></center>
-  <center class="meta-title"><%= @question.answers.count%><%= @question.answers.count == 1 ? ' Person' : ' People' %> Answered</center>
-  <%if @question.options_for_collection.nil?%>
-    <div class="slogan"> What do you think? Give a rating below! </div>
-  <%else%>
-    <div class = "slogan"> Did you enjoy this? Share your opinion below!</div>
-  <%end%>
-  <center>
-      <%= render partial: 'questions/answer_input', locals: { question: @question, answer: @answer} %>
+  <div style="position: relative; top:30px;">
+    <center>  <%= @question.image_link.nil? ? "" : image_tag(@question.image_link, height: "340", alt:"image")%> </center>
+    <center style="color: #4A90E2; font-weight: bold; font-size: 24px; padding-top: 10px;"><%=@question.label %></center>
+    <center class="meta-title"><%= @question.answers.count%><%= @question.answers.count == 1 ? ' Person' : ' People' %> Answered</center>
+    <%if @question.options_for_collection.nil?%>
+      <div class="slogan"> What do you think? Give a rating below! </div>
+    <%else%>
+      <div class = "slogan"> Did you enjoy this? Share your opinion below!</div>
+    <%end%>
+    <center>
+      <%if !params[:question].nil?%>
+        <%= render partial: 'questions/tag_input', locals: { question: @question, answer: @answer} %>
+      <%else%>
+        <%= render partial: 'questions/answer_input', locals: { question: @question, answer: @answer} %>
+      <%end%>
+    </center>
   </div>
-  </center>
-</div>
 <%end%>
