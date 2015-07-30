@@ -9,6 +9,12 @@ class QuestionsController < ApplicationController
   # Show method - called when question page is rendered
   def show
     @question = Question.where(slug: params[:id])[0]
+    
+    if @question.nil?
+      redirect_to feed_path
+      return
+    end
+
     cookies[:group_id] = @question.group_id
     @answers = Answer.where(question: @question).count
 
@@ -242,7 +248,10 @@ class QuestionsController < ApplicationController
         :value_type => params[:numeric_value] == "false" ? "collection" : "quantity", #params[:numeric_value] == "false" ? "collection" : "quantity"
         :options_for_collection => @answerboxes,
         :answer_plus => true,
-        :image_link => @question_image ? image_array[-1] : nil)
+        :image_link => @question_image ? image_array[-1] : nil,
+        :shared_image => cookies[:shared_image].empty? ? false : true)
+
+        cookies[:shared_image] = nil
 
       GroupsQuestion.create(group_id: params[:group_id], question_id: @subquestion.id)
 
@@ -253,8 +262,11 @@ class QuestionsController < ApplicationController
         :user_id => current_user.id,
         :value_type => params[:numeric_value] == "false" ? "collection" : "quantity", #params[:numeric_value] == "false" ? "collection" : "quantity"
         :options_for_collection => @answerboxes,
-        :answer_plus => false,
-        :image_link => @question_image ? params[:image_link] : nil)
+        :answer_plus => params[:shared_image].nil? ? false : true,
+        :image_link => @question_image ? params[:image_link] : nil,
+        :shared_image => cookies[:shared_image].empty? ? false : true)
+
+        cookies[:shared_image] = nil
 
       GroupsQuestion.create(group_id: params[:group_id], question_id: @subquestion.id)
     else

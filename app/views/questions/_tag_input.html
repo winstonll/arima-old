@@ -1,0 +1,90 @@
+<head>
+<script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css">
+<%= stylesheet_link_tag "jquery-ui-slider-pips" %>
+<%= javascript_include_tag "jquery-ui-slider-pips" %>
+</head>
+
+<% if @question == nil %>
+<% @question = Question.where(slug: params[:id])[0] %>
+<% end %>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $(".slider").slider({max: 10, min: 1, step: 1}).slider("pips", {rest: "label", step: 1}).slider("float");
+
+  $(".modal-button").click(function(){
+    document.getElementById('numeric_value').value = $(".ui-slider-tip")[0].innerHTML;
+  });
+
+  $('#other').keyup(function() {
+    if($(this).val() != '') {
+       $('.modal-button').removeAttr('disabled');
+       $("input").prop("checked", false)
+    }
+  });
+
+  $("form").bind("keypress", function (e) {
+      if (e.keyCode == 13) {
+          return false;
+      }
+  });
+
+  <% if @question.input_type == "integer"%>
+    $('.modal-button').removeAttr('disabled');
+  <%end%>
+
+  $('input').click(function() {
+    if ($('input').is(':checked')){
+       $('.modal-button').removeAttr('disabled');
+       $('#other').val('');
+    }
+  });
+});
+</script>
+
+<% if @answer == nil %>
+<% @answer = user_signed_in? ? @question.answers.build(user_id: current_user.id) : @question.answers.build(user_id: cookies[:guest]) %>
+<% end %>
+<div class="answer-prompt">
+  <% if cookies[:guest] != nil %>
+    <%= simple_form_for @answer, url: question_answers_path(@question, @answer), class: "form-inline", role: "form", html: {novalidate: true} do |f| %>
+      <div class="form-group">
+        <% if !@user_submitted_answer %>
+        <div id="otherInput">
+          <div id="otherInputBox">
+              <%= f.input(:options_for_collection, label: false,input_html:{ value: nil, placeholder: "Add your own opinion to the list...", class: "other-input-text", id:"other"}) %>
+          </div>
+        </div>
+        <% end %>
+        <% if @question.input_type == "measurement" %>
+          <section class="question-dual-input">
+            <%= f.input(:value, label: false, pattern: "\d*", placeholder: @user_units["large_unit"]) %>
+            <%= f.input(:value, label: false, pattern: "\d*", placeholder: @user_units["small_unit"]) %>
+          </section>
+        <% elsif @question.input_type == "integer" %>
+          <div class="slider" style="width: 300px;"></div>
+          <%= hidden_field_tag 'numeric_value' %>
+        <% elsif @question.input_type == "collection" %>
+          <%if !@question.options_array.nil? && (@question.options_array.count <= 7) && !@user_submitted_answer%>
+            <% @multiple_choice = Array.new()
+                @question.options_array.each do |value|
+                  @multiple_choice << [value, value]
+              end%>
+              <%= f.collection_radio_buttons :value, @multiple_choice, :first, :last,item_wrapper_class: :block_radio_button_collection%>
+            <%else%>
+            <section id="input-dropdown">
+              <%= f.input(:value, label: false, prompt: "Select an Opinion", collection: @question.options_array, input_html: { class: "answer-dropdown-input"}) %>
+            </section>
+            <%end%>
+        <% end %>
+        <div id="answer-button">
+          <% if !@user_submitted_answer %>
+            <%= f.submit "View Results", class: "modal-button", disabled: true, data: {disable_with: "Submitting..."} %>
+            <%= link_to "TL;DR", report_question_path, class:"no-answer-prompt" %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

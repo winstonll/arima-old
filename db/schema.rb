@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150718183359) do
+ActiveRecord::Schema.define(version: 20150730154046) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,6 +107,7 @@ ActiveRecord::Schema.define(version: 20150718183359) do
     t.integer  "votecount",              default: 0
     t.boolean  "answer_plus"
     t.string   "image_link"
+    t.boolean  "shared_image"
   end
 
   create_table "sessions", force: true do |t|
