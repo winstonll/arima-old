@@ -137,7 +137,7 @@ $(document).ready(function() {
 
 <%else%>
   <div style="position: relative; top:30px;">
-    <center>  <%= @question.image_link.nil? ? "" : image_tag(@question.image_link, height: "340", alt:"image")%> </center>
+    <center>  <%= @question.image_link.nil? ? "" : image_tag("question_images/" + @question.image_link, height: "340", alt:"image")%> </center>
     <center style="color: #4A90E2; font-weight: bold; font-size: 24px; padding-top: 10px;"><%=@question.label %></center>
     <center class="meta-title"><%= @question.answers.count%><%= @question.answers.count == 1 ? ' Person' : ' People' %> Answered</center>
     <%if @question.options_for_collection.nil?%>
