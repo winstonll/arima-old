@@ -146,9 +146,9 @@ $(document).ready(function() {
       <div class = "slogan"> Did you enjoy this? Share your opinion below!</div>
     <%end%>
     <center>
-      <%if !params[:question].nil?%>
+      <%if !@question.shared_image.nil? && @question.shared_image %>
         <%= render partial: 'questions/tag_input', locals: { question: @question, answer: @answer} %>
-      <%else%>
+      <%elsif !@question.shared_image.nil? && !@question.shared_image%>
         <%= render partial: 'questions/answer_input', locals: { question: @question, answer: @answer} %>
       <%end%>
     </center>
