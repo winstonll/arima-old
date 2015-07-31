@@ -59,10 +59,10 @@ $(document).ready(function() {
           <div class="slider" style="width: 300px;"></div>
           <%= hidden_field_tag 'numeric_value' %>
         <% elsif @question.input_type == "collection" %>
-            <%if !@question.options_array.nil? && (@question.options_array.count <= 7) && !@user_submitted_answer%>
-              <%@multiple_choice = Array.new()
-              @question.options_array.each do |value|
-                @multiple_choice << [value, value]
+          <%if !@question.options_array.nil? && (@question.options_array.count <= 7) && !@user_submitted_answer%>
+            <% @multiple_choice = Array.new()
+                @question.options_array.each do |value|
+                  @multiple_choice << [value, value]
               end%>
               <%= f.collection_radio_buttons :value, @multiple_choice, :first, :last,item_wrapper_class: :block_radio_button_collection%>
             <%else%>
@@ -70,7 +70,7 @@ $(document).ready(function() {
               <%= f.input(:value, label: false, prompt: "Select an Opinion", collection: @question.options_array, input_html: { class: "answer-dropdown-input"}) %>
             </section>
             <%end%>
-          <% if !@user_submitted_answer %>
+          <% if (!@user_submitted_answer && @question.answer_plus)%>
           <div id="otherInput">
             <div id="otherInputBox">
                 <%= f.input(:options_for_collection, label: false,input_html:{ value: nil, placeholder: "Add your own opinion to the list...", class: "other-input-text", id:"other"}) %>
