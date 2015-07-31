@@ -54,6 +54,7 @@ $(document).ready(function() {
   <% if cookies[:guest] != nil %>
     <%= form_tag('/add_tag', remote: true) do |f|%>
       <% @question.options_array.each do |tag| %>
+        <%= hidden_field_tag "q_id", "#{params[:id]}"%>
         <%= radio_button_tag "value", tag, checked = false%>
         <%= label_tag "value", tag, checked = false%>
       <%end%>
