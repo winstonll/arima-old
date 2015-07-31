@@ -143,7 +143,9 @@ class AnswersController < ApplicationController
   end
 
   def add_tag
-    @question = Question.where(label: params[:q_id]).first
+
+    binding.pry
+    @question = Question.friendly.find(params[:question_id])
 
     if @question.options_for_collection.include? params[:answer][:options_for_collection]
       redirect_to @question
