@@ -44,6 +44,8 @@ $(document).ready(function() {
   $('input[type=radio]').on('change', function() {
     $(this).closest("form").submit();
   });
+
+
 });
 </script>
 
@@ -51,15 +53,39 @@ $(document).ready(function() {
 <% @answer = user_signed_in? ? @question.answers.build(user_id: current_user.id) : @question.answers.build(user_id: cookies[:guest]) %>
 <% end %>
 <div class="tag-prompt">
-  <% if cookies[:guest] != nil %>
-    <%= form_tag('/add_tag', remote: true) do |f|%>
-      <% @question.options_array.each do |tag| %>
-        <%= hidden_field_tag "q_id", "#{params[:id]}"%>
-        <%= radio_button_tag "value", tag, checked = false%>
-        <%= label_tag "value", tag, checked = false%>
-      <%end%>
-    <%end%>
-  <%end%>
+  <%= simple_form_for @answer, url: question_answers_path(@question, @answer), class: "form-inline", role: "form", html: {novalidate: true} do |f| %>
+    <div id="otherInput">
+      <div id="otherInputBox">
+        <%= f.label "New Tag", class: "new-tag" %>
+        <%= f.input(:options_for_collection, label: false,input_html:{ value: nil, placeholder: "Add a tag or tags to concisely share your thoughts", class: "other-input-text", id:"other"}) %>
+        <%= f.submit "", class: "new-tag-submit" %>
+      </div>
+    </div>
+    <br>
+    <div class="options">
+        <%if !@question.options_array.nil? && (@question.options_array.count <= 7) %>
+          <% @multiple_choice = Array.new()
+              @question.options_array.each do |value|
+                @multiple_choice << [value, value]
+            end%>
 
+            <% @multiple_choice.each do |tag|%>
+            <label class= "block_radio_button_collection">
+              <%= f.radio_button :value, tag.first%>
+              <%="#{tag.last}"%>
+              <% @tag_count = Answer.where(value: tag.first).count %>
+              <% if @tag_count < 1 %>
+                <%= image_tag("grey_heart.png", id:"heart")%>
+              <%else%>
+                <%= image_tag("blue_heart.png", id:"heart")%>
+              <%end%>
+              <span class="tag-count">
+                <%= @tag_count %>
+              </span>
+            </label>
+            <%end%>
 
+      <% end %>
+    </div>
+  <% end %>
 </div>
