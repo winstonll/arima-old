@@ -88,10 +88,6 @@ class AnswersController < ApplicationController
       end
     end
 
-    if(!params[:numeric_value].nil?)
-
-    end
-
     #create answer if user hasn't already submitted one for this question
     if (!cookies[:guest].nil? && @answer = @question.answers.where(user: User.where(id: cookies[:guest])).first).nil?
       if(user_signed_in?)
@@ -140,6 +136,53 @@ class AnswersController < ApplicationController
     if params[:answer][:options_for_collection] == ""
       redirect_to :back
     end
+  end
+
+  def add_tag
+    @question = Question.where(id: params[:question_id]).first
+
+    if !params[:answer].nil? && params[:answer][:options_for_collection] != ""
+      if (!user_signed_in?)
+        cookies[:signup] = 1
+        cookies[:q] = @question.id
+        cookies[:answer] = params[:answer][:options_for_collection]
+
+        respond_to do |format|
+          format.js
+        end
+        return
+      end
+
+      answer_values = @question.options_for_collection
+      a = (0 ... answer_values.length).find_all { |i| answer_values[i,1] == '|' }
+
+      if @question.options_for_collection.include? params[:answer][:options_for_collection]
+        flash[:notice] = "This answer value already exists!"
+      else
+        @question.options_for_collection = @question.options_for_collection + "|" + params["answer"]["options_for_collection"].capitalize
+        @question.save
+      end
+
+      if @question.save
+        @answer = Answer.new(user_id: current_user.id, question_id: @question.id, value: params[:answer][:options_for_collection].capitalize)
+        @answer.save!
+      else
+      end
+    end
+
+
+    #@answer = @question.answers.build({"value" => params[:answer][:value].to_i})
+    #@answer.user = current_user
+    #@answer.save
+
+    puts "---------------------------------------------"
+
+    puts "---------------------------------------------"
+
+    respond_to do |format|
+      format.js
+    end
+
   end
 
   def share

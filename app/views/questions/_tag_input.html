@@ -53,9 +53,10 @@ $(document).ready(function() {
 <% @answer = user_signed_in? ? @question.answers.build(user_id: current_user.id) : @question.answers.build(user_id: cookies[:guest]) %>
 <% end %>
 <div class="tag-prompt">
-  <%= simple_form_for @answer, url: question_answers_path(@question, @answer), class: "form-inline", role: "form", html: {novalidate: true} do |f| %>
+  <%= simple_form_for @answer,:url => {:action => "add_tag", :controller => "answers"}, class: "form-inline", role: "form", html: {novalidate: true}, :remote => true do |f| %>
     <div id="otherInput">
       <div id="otherInputBox">
+        <%= hidden_field_tag 'question_id', @question.id %>
         <%= f.label "New Tag", class: "new-tag" %>
         <%= f.input(:options_for_collection, label: false,input_html:{ value: nil, placeholder: "Add a tag or tags to concisely share your thoughts", class: "other-input-text", id:"other"}) %>
         <%= f.submit "", class: "new-tag-submit" %>
