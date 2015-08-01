@@ -160,7 +160,7 @@
       margin-left: 40px;
       margin-top: 20px;
       background-color: #e7e7e7;
-      padding: 9px 60px 4px 60px;
+      padding: 8px 60px 8px 60px;
       border-radius: 50px;
       position:relative;
       z-index: 1;
@@ -174,9 +174,8 @@
 
       .tag-count{
         position: relative;
-        float: right;
-        left: 47px;
-        top: 4px;
+        bottom: 3px;
+        margin-left:95px;
         z-index: 2;
         color: black !important;
         font-size: 10px;
@@ -184,11 +183,11 @@
       }
 
       #heart{
-        position: relative;
-        float: right;
-        left: 20px;
-        height: 2em;
-        width: 2em;
+        position: fixed;
+        margin-left:6em;
+        margin-top: 23px;
+        height: 2.5em;
+        width: 2.5em;
         z-index: 1;
       }
     }
