@@ -174,16 +174,20 @@
 
       .tag-count{
         position: relative;
-        left: 34px;
+        bottom: 3px;
+        margin-left:95px;
         z-index: 2;
         color: black !important;
+        font-size: 10px;
+        font-weight: 700;
       }
 
       #heart{
-        position: relative;
-        left: 4em;
-        height: 2em;
-        width: 2em;
+        position: fixed;
+        margin-left:6em;
+        margin-top: 23px;
+        height: 2.5em;
+        width: 2.5em;
         z-index: 1;
       }
     }
