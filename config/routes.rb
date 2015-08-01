@@ -6,7 +6,6 @@ Arima::Application.routes.draw do
 
   post 'category' => 'feed#category'
   post 'badge' => 'profiles#badge'
-  post 'add_tag' => 'answers#add_tag'
 
   # custom registration route
   devise_for :users, controllers: { registrations: "users/registrations" }
