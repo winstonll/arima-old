@@ -9,7 +9,7 @@ class QuestionsController < ApplicationController
   # Show method - called when question page is rendered
   def show
     @question = Question.where(slug: params[:id])[0]
-    
+
     if @question.nil?
       redirect_to feed_path
       return
@@ -249,9 +249,7 @@ class QuestionsController < ApplicationController
         :options_for_collection => @answerboxes,
         :answer_plus => true,
         :image_link => @question_image ? image_array[-1] : nil,
-        :shared_image => cookies[:shared_image].empty? ? false : true)
-
-        cookies[:shared_image] = nil
+        :shared_image => params[:shared_image])
 
       GroupsQuestion.create(group_id: params[:group_id], question_id: @subquestion.id)
 
@@ -264,9 +262,7 @@ class QuestionsController < ApplicationController
         :options_for_collection => @answerboxes,
         :answer_plus => params[:shared_image].nil? ? false : true,
         :image_link => @question_image ? params[:image_link] : nil,
-        :shared_image => cookies[:shared_image].empty? ? false : true)
-
-        cookies[:shared_image] = nil
+        :shared_image => params[:shared_image])
 
       GroupsQuestion.create(group_id: params[:group_id], question_id: @subquestion.id)
     else
