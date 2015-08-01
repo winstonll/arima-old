@@ -30,8 +30,8 @@ $(document).ready(function() {
       }
   });
 
-  <% if @question.input_type == "integer"%>
-    $('.modal-button').removeAttr('disabled');
+  <% if @user_submitted_answer%>
+    $('.block_radio_button_collection').addAttr('disabled');
   <%end%>
 
   $('input').click(function() {
