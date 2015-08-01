@@ -40,51 +40,52 @@ $(document).ready(function() {
        $('#other').val('');
     }
   });
+
+  $('input[type=radio]').on('change', function() {
+    $(this).closest("form").submit();
+  });
+
+
 });
 </script>
 
 <% if @answer == nil %>
 <% @answer = user_signed_in? ? @question.answers.build(user_id: current_user.id) : @question.answers.build(user_id: cookies[:guest]) %>
 <% end %>
-<div class="answer-prompt">
-  <% if cookies[:guest] != nil %>
-    <%= simple_form_for @answer, url: question_answers_path(@question, @answer), class: "form-inline", role: "form", html: {novalidate: true} do |f| %>
-      <div class="form-group">
-        <% if !@user_submitted_answer %>
-        <div id="otherInput">
-          <div id="otherInputBox">
-              <%= f.input(:options_for_collection, label: false,input_html:{ value: nil, placeholder: "Add your own opinion to the list...", class: "other-input-text", id:"other"}) %>
-          </div>
-        </div>
-        <% end %>
-        <% if @question.input_type == "measurement" %>
-          <section class="question-dual-input">
-            <%= f.input(:value, label: false, pattern: "\d*", placeholder: @user_units["large_unit"]) %>
-            <%= f.input(:value, label: false, pattern: "\d*", placeholder: @user_units["small_unit"]) %>
-          </section>
-        <% elsif @question.input_type == "integer" %>
-          <div class="slider" style="width: 300px;"></div>
-          <%= hidden_field_tag 'numeric_value' %>
-        <% elsif @question.input_type == "collection" %>
-          <%if !@question.options_array.nil? && (@question.options_array.count <= 7) && !@user_submitted_answer%>
-            <% @multiple_choice = Array.new()
-                @question.options_array.each do |value|
-                  @multiple_choice << [value, value]
-              end%>
-              <%= f.collection_radio_buttons :value, @multiple_choice, :first, :last,item_wrapper_class: :block_radio_button_collection%>
-            <%else%>
-            <section id="input-dropdown">
-              <%= f.input(:value, label: false, prompt: "Select an Opinion", collection: @question.options_array, input_html: { class: "answer-dropdown-input"}) %>
-            </section>
-            <%end%>
-        <% end %>
-        <div id="answer-button">
-          <% if !@user_submitted_answer %>
-            <%= f.submit "View Results", class: "modal-button", disabled: true, data: {disable_with: "Submitting..."} %>
-            <%= link_to "TL;DR", report_question_path, class:"no-answer-prompt" %>
-          <% end %>
-        </div>
+<div class="tag-prompt">
+  <%= simple_form_for @answer, url: question_answers_path(@question, @answer), class: "form-inline", role: "form", html: {novalidate: true} do |f| %>
+    <div id="otherInput">
+      <div id="otherInputBox">
+        <%= f.label "New Tag", class: "new-tag" %>
+        <%= f.input(:options_for_collection, label: false,input_html:{ value: nil, placeholder: "Add a tag or tags to concisely share your thoughts", class: "other-input-text", id:"other"}) %>
+        <%= f.submit "", class: "new-tag-submit" %>
       </div>
-    <% end %>
+    </div>
+    <br>
+    <div class="options">
+        <%if !@question.options_array.nil? && (@question.options_array.count <= 7) %>
+          <% @multiple_choice = Array.new()
+              @question.options_array.each do |value|
+                @multiple_choice << [value, value]
+            end%>
+
+            <% @multiple_choice.each do |tag|%>
+            <label class= "block_radio_button_collection">
+              <%= f.radio_button :value, tag.first%>
+              <%="#{tag.last}"%>
+              <% @tag_count = Answer.where(value: tag.first).count %>
+              <% if @tag_count < 1 %>
+                <%= image_tag("grey_heart.png", id:"heart")%>
+              <%else%>
+                <%= image_tag("blue_heart.png", id:"heart")%>
+              <%end%>
+              <span class="tag-count">
+                <%= @tag_count %>
+              </span>
+            </label>
+            <%end%>
+
+      <% end %>
+    </div>
   <% end %>
 </div>
