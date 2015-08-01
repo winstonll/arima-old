@@ -148,19 +148,17 @@
 // *Tag input style*
 .tag-prompt {
   margin-top: 0em;
-  display: inline-block;
-  width: 60em;
 
   .options {
     margin-top: 2em;
-    margin-right: 4em;
 
     .block_radio_button_collection {
       input{
         visibility: hidden;
       }
-      display: inline;
-      margin-left: 57px;
+      display: grid;
+      margin-left: 40px;
+      margin-top: 20px;
       background-color: #e7e7e7;
       padding: 8px 60px 8px 60px;
       border-radius: 50px;
