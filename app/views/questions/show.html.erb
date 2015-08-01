@@ -138,13 +138,12 @@ $(document).ready(function() {
   <div style="position: relative; top:30px;">
     <center>  <%= @question.image_link.nil? ? "" : image_tag("question_images/" + @question.image_link, height: "340", alt:"image")%> </center>
     <center style="color: #4A90E2; font-weight: bold; font-size: 24px; padding-top: 10px;"><%=@question.label %></center>
-    <center class="meta-title"><%= @question.answers.count%><%= @question.answers.count == 1 ? ' Person' : ' People' %> Answered</center>
     <%if @question.options_for_collection.nil?%>
       <div class="slogan"> What do you think? Give a rating below! </div>
     <%else%>
       <div class = "slogan"> Did you enjoy this? Share your opinion below!</div>
     <%end%>
-    <center>
+    <center id="tag_show">
       <%if !@question.shared_image.nil? && @question.shared_image %>
         <%= render partial: 'questions/tag_input', locals: { question: @question, answer: @answer} %>
       <%elsif !@question.shared_image.nil? && !@question.shared_image%>
