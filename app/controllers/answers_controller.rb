@@ -142,30 +142,6 @@ class AnswersController < ApplicationController
     end
   end
 
-  def add_tag
-
-    @question = Question.where(label: params[:q_id]).first
-
-    if @question.options_for_collection.include? params[:answer][:options_for_collection]
-      redirect_to @question
-      flash[:notice] = "This answer value already exists!"
-      return
-    else
-      @question.options_for_collection = @question.options_for_collection + "|" + params["answer"]["options_for_collection"].capitalize
-      @question.save
-    end
-
-    if @question.save
-      @answer = Answer.new(user_id: current_user.id, question_id: @question.id, value: params[:answer][:options_for_collection].capitalize)
-      @answer.save!
-      redirect_to @question
-      return
-    else
-      redirect_to :back
-      return
-    end
-  end
-
   def share
     answer = Answer.where(id: params[:ans_id]).first
     ans_user = answer.user
