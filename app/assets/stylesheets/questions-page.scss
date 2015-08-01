@@ -12,7 +12,7 @@
   font-weight: 500;
   font-size: 15px;
 }
-
+// *Answer input style*
 .answer-prompt {
   margin-top: 0em;
   display: inline-block;
@@ -73,7 +73,7 @@
         height: 36px;
         width: 10em;
         padding: 9px 30px 9px 30px;
-        background-color: #56A1F8;
+        background-color: #4A90E2;
         border-radius: 5px;
         color: #fff;
       }
@@ -145,6 +145,132 @@
   }
 }
 
+// *Tag input style*
+.tag-prompt {
+  margin-top: 0em;
+
+  .options {
+    margin-top: 2em;
+
+    .block_radio_button_collection {
+      input{
+        visibility: hidden;
+      }
+      display: grid;
+      margin-left: 40px;
+      margin-top: 20px;
+      background-color: #e7e7e7;
+      padding: 8px 60px 8px 60px;
+      border-radius: 50px;
+      position:relative;
+      z-index: 1;
+
+      &:hover{
+        border: solid;
+        border-width: 3px;
+        border-color: #4A90E2;
+        color: #4A90E2;
+      }
+
+      .tag-count{
+        position: relative;
+        left: 34px;
+        z-index: 2;
+        color: black !important;
+      }
+
+      #heart{
+        position: relative;
+        left: 4em;
+        height: 2em;
+        width: 2em;
+        z-index: 1;
+      }
+    }
+
+  }
+
+  #otherInput {
+    position: relative;
+    top:20px;
+    background-color: #4A90E2;
+    border-radius: 50px;
+    width: 29em;
+
+    #otherInputBox {
+      input:focus {
+        outline: none;
+      }
+      input[type="submit"]
+      {
+        width: 2em;
+        height: 2em;
+        border: none;
+        background: url(image_path('add_tag_inactive.png'));
+        background-size: 28px 28px;
+        position: relative;
+        display: inline;
+        float: right;
+        bottom: 32px;
+
+        &:hover {
+          background: url(image_path('add_tag_hover.png'));
+          background-size: 28px 28px;
+        }
+      }
+
+      .answer_options_for_collection{
+        height:36px;
+      }
+      .question_options_for_collection {
+        width: 240px;
+      }
+      .new-tag {
+        float: left;
+        color: white;
+        font-weight: normal;
+        padding-top: 10px;
+        padding-left: 10px;
+      }
+      .other-input-text {
+        height: 36px;
+        width: 340px;
+        font-size: 12px;
+        background-color: #f7f7f7;
+        resize: none;
+        padding: 10px 20px 0px 20px;
+        border: 5px solid;
+        border-radius: 50px;
+        padding-left: 10px;
+        padding-bottom: 10px;
+        border-color: #4A90E2;
+
+      }
+
+      ::-webkit-input-placeholder {
+         position:relative;
+         bottom: 1px;
+      }
+
+      :-moz-placeholder { /* Firefox 18- */
+        position:relative;
+        bottom: 1px;
+      }
+
+      ::-moz-placeholder {  /* Firefox 19+ */
+         position:relative;
+         bottom: 1px;
+      }
+
+      :-ms-input-placeholder {
+         position:relative;
+         bottom: 1px;
+      }
+    }
+  }
+}
+
+//Questions show page
 #question-page-container {
   height: 100%;
   min-height: 100%;
