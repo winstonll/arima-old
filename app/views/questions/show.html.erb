@@ -147,6 +147,8 @@ $(document).ready(function() {
     <center>
       <%if !@question.shared_image.nil? && @question.shared_image %>
         <%= render partial: 'questions/tag_input', locals: { question: @question, answer: @answer} %>
+      <%elsif !@question.shared_image.nil? && !@question.shared_image%>
+        <%= render partial: 'questions/answer_input', locals: { question: @question, answer: @answer} %>
       <%end%>
     </center>
   </div>
@@ -161,8 +163,6 @@ $(document).ready(function() {
       <div class = "slogan"> Did you enjoy this? Share your opinion below!</div>
     <%end%>
     <center>
-      <%#if !@question.shared_image.nil? && @question.shared_image %>
-        <%#= render partial: 'questions/tag_input', locals: { question: @question, answer: @answer} %>
       <%if !@question.shared_image.nil? && !@question.shared_image%>
         <%= render partial: 'questions/answer_input', locals: { question: @question, answer: @answer} %>
       <%end%>
