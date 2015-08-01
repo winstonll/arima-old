@@ -170,10 +170,18 @@ class AnswersController < ApplicationController
       end
     end
 
-
-    #@answer = @question.answers.build({"value" => params[:answer][:value].to_i})
-    #@answer.user = current_user
-    #@answer.save
+    if (!cookies[:guest].nil? && @answer = @question.answers.where(user: User.where(id: cookies[:guest])).first).nil?
+      if(user_signed_in?)
+        @answer = @question.answers.build({"value" => params[:answer][:value].to_i})
+        @answer.user = current_user
+        @answer.save
+      else
+        @answer = @question.answers.build({"value" => params[:answer][:value].to_i})
+        @guest = User.where(id: cookies[:guest]).first
+        @answer.user = @guest
+        @answer.save
+      end
+    end
 
     puts "---------------------------------------------"
 
