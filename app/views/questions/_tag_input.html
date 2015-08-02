@@ -74,8 +74,8 @@ $(document).ready(function() {
             <label class= "block_radio_button_collection">
               <%= f.radio_button :value, tag.first%>
               <%="#{tag.last}"%>
-              <% @tag_count = Answer.where(value: tag.first).count %>
-              <% if @tag_count < 1 %>
+              <% @tag_count = Answer.where(value: tag.first).count + 1 %>
+              <% if @tag_count < 2 %>
                 <%= image_tag("grey_heart.png", id:"heart")%>
               <%else%>
                 <%= image_tag("blue_heart.png", id:"heart")%>
