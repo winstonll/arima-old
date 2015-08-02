@@ -142,16 +142,6 @@ class AnswersController < ApplicationController
     @question = Question.where(id: params[:question_id]).first
 
     if !params[:answer].nil? && params[:answer][:options_for_collection] != ""
-      if (!user_signed_in?)
-        cookies[:signup] = 1
-        cookies[:q] = @question.id
-        cookies[:answer] = params[:answer][:options_for_collection]
-
-        respond_to do |format|
-          format.js
-        end
-        return
-      end
 
       answer_values = @question.options_for_collection
       a = (0 ... answer_values.length).find_all { |i| answer_values[i,1] == '|' }
@@ -163,8 +153,10 @@ class AnswersController < ApplicationController
         @question.save
       end
 
+      answer_user_id = user_signed_in? ? current_user.id : cookies[:guest]
+
       if @question.save
-        @answer = Answer.new(user_id: current_user.id, question_id: @question.id, value: params[:answer][:options_for_collection].capitalize)
+        @answer = Answer.new(user_id: answer_user_id, question_id: @question.id, value: params[:answer][:options_for_collection].capitalize)
         @answer.save!
       else
       end
