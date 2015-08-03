@@ -25,10 +25,11 @@ $(document).ready(function() {
 
   var checkbox = $('.form-radio');
 
-  if( checkbox.prop("checked") ){
+  if( !checkbox.prop("checked") ){
     $('input:radio').filter(':checked').parent().addClass('checked').css("border","1px solid #419BF9").css("color", "#419BF9");
     $('input:radio').filter(':checked').siblings().addClass('checked').css("color", "white");
     $('input:radio').not(':checked').parent().removeClass('checked'); //Remove checked class from all other radios that are not checked
+    $('input:radio').not(':checked').siblings().removeClass('checked').css("color", "#6a6a6a");
 } else {
     checkbox.prop("checked",false);
     checkbox.parent().removeClass('checked'); //remove checked class when clicked twice
