@@ -153,6 +153,7 @@
 
     .tag_button_collection {
       top:-20px;
+      cursor: pointer;
       input{
         visibility: hidden;
         margin-left: -22px;
@@ -181,8 +182,10 @@
         left: 19.5px;
         top: 1px;
         z-index: 2;
+        color: #6a6a6a;
         font-size: 12px;
         font-weight: 700;
+
       }
 
       .grey-heart{
