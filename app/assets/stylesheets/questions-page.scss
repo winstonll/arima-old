@@ -151,13 +151,13 @@
   .options {
     margin-top: 1em;
 
-    .block_radio_button_collection {
+    .tag_button_collection {
       top:-20px;
       input{
         visibility: hidden;
         margin-left: -22px;
       }
-      display: grid;
+
       margin-left: 10px;
       margin-top: 1px;
       background-color: #ececec;
@@ -175,28 +175,27 @@
         color: #419BF9;
       }
 
-      &:active{
-        border: solid;
-        border-width: 1px;
-        border-color: #419BF9;
-        color: #419BF9;
-      }
-
-
-
       .tag-count{
         position: relative;
         float: right;
         left: 19.5px;
         top: 1px;
         z-index: 2;
-        color: white !important;
         font-size: 12px;
         font-weight: 700;
-
       }
 
-      #heart{
+      .grey-heart{
+        position: relative;
+        float: right;
+        left: 21px;
+        margin-left:-20px;
+        top:-2px;
+        width: 2.2em;
+        z-index: 1;
+
+      }
+      .blue-heart{
         position: relative;
         float: right;
         left: 21px;
