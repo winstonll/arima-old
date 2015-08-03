@@ -58,7 +58,7 @@ $(document).ready(function() {
       <div id="otherInputBox">
         <%= hidden_field_tag 'question_id', @question.id %>
         <%= f.label "New Tag", class: "new-tag" %>
-        <%= f.input(:options_for_collection, label: false,input_html:{ value: nil, placeholder: "Add a tag or tags to concisely share your thoughts", class: "other-input-text", id:"other"}) %>
+        <%= f.input(:options_for_collection, label: false,input_html:{ value: nil, placeholder: "Add a tag or tags to concisely share your thoughts...", class: "other-input-text", id:"other"}) %>
         <%= f.submit "", class: "new-tag-submit" %>
       </div>
     </div>
@@ -76,7 +76,7 @@ $(document).ready(function() {
               <%="#{tag.last}"%>
               <% @tag_count = Answer.where(value: tag.first).count + 1 %>
               <% if @tag_count < 2 %>
-                <%= image_tag("grey_heart.png", id:"heart")%>
+                <%= image_tag("grey_heart.png", id:"heart", color: "gray")%>
               <%else%>
                 <%= image_tag("blue_heart.png", id:"heart")%>
               <%end%>
