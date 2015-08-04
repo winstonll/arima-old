@@ -12,7 +12,7 @@
     $("#add-answer-button").css("display", "block");
     <%if params[:question].nil?%>
       document.getElementById('shared_image').value = true;
-      document.getElementById('numeric_value').value = true;
+      document.getElementById('numeric_value').value = false;
     <%else%>
       document.getElementById('shared_image').value = false;
       document.getElementById('numeric_value').value = false;

@@ -51,7 +51,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
           UserMailer.signup_admin(@winston, @user).deliver!
           sign_in(:user, @user)
 
-          if(Badge.where(user_id: current_user.id).nil?)
+          if(Badge.where(user_id: current_user.id).first.nil?)
             badge = Badge.new(user_id: current_user.id, badge_id: 1, date: Date.today.to_s, label: "Starter Badge")
             badge.save!
           end

@@ -147,49 +147,66 @@
 
 // *Tag input style*
 .tag-prompt {
-  margin-top: 0em;
 
   .options {
-    margin-top: 2em;
+    margin-top: 1em;
 
-    .block_radio_button_collection {
+    .tag_button_collection {
+      top:-20px;
+      cursor: pointer;
       input{
         visibility: hidden;
+        margin-left: -22px;
       }
-      display: grid;
-      margin-left: 40px;
-      margin-top: 20px;
-      background-color: #e7e7e7;
-      padding: 9px 60px 4px 60px;
+
+      margin-left: 10px;
+      margin-top: 1px;
+      background-color: #ececec;
+      padding: 9px 27px 4px 27px;
       border-radius: 50px;
       position:relative;
       z-index: 1;
+      color: #6a6a6a;
+      font-weight:500;
 
       &:hover{
         border: solid;
-        border-width: 3px;
-        border-color: #4A90E2;
-        color: #4A90E2;
+        border-width: 1px;
+        border-color: #419BF9;
+        color: #419BF9;
       }
 
       .tag-count{
         position: relative;
         float: right;
-        left: 44px;
-        top: 5px;
+        left: 19.5px;
+        top: 1px;
         z-index: 2;
-        color: black !important;
-        font-size: 10px;
+        color: #6a6a6a;
+        font-size: 12px;
         font-weight: 700;
+
       }
 
-      #heart{
+      .grey-heart{
         position: relative;
         float: right;
-        left: 18px;
-        height: 2.3em;
-        width: 2.9em;
+        left: 21px;
+        margin-left:-20px;
+        top:-2px;
+        width: 2.2em;
         z-index: 1;
+
+      }
+      .blue-heart{
+        position: relative;
+        float: right;
+        left: 21px;
+        margin-left:-20px;
+        top:-2px;
+        width: 2.2em;
+        z-index: 1;
+
       }
     }
 
@@ -197,10 +214,10 @@
 
   #otherInput {
     position: relative;
-    top:20px;
-    background-color: #4A90E2;
+    top:5px;
+    background-color: #419BF9;
     border-radius: 50px;
-    width: 29em;
+    width: 35em;
 
     #otherInputBox {
       input:focus {
@@ -217,6 +234,7 @@
         display: inline;
         float: right;
         bottom: 32px;
+        right: 4px;
 
         &:hover {
           background: url(image_path('add_tag_hover.png'));
@@ -234,21 +252,23 @@
         float: left;
         color: white;
         font-weight: normal;
-        padding-top: 10px;
+        padding-top: 8px;
         padding-left: 10px;
+        padding-right: 5px;
       }
       .other-input-text {
-        height: 36px;
-        width: 340px;
+        height: 32px;
+        width: 417px;
         font-size: 12px;
-        background-color: #f7f7f7;
+        background-color: #fff;
         resize: none;
+        border: none;
         padding: 10px 20px 0px 20px;
-        border: 5px solid;
-        border-radius: 50px;
-        padding-left: 10px;
-        padding-bottom: 10px;
+        border-radius: 70px;
+        padding-left: 13px;
+        padding-bottom: 7px;
         border-color: #4A90E2;
+        margin-top:2px;
 
       }
 

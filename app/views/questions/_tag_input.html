@@ -17,34 +17,27 @@ $(document).ready(function() {
     document.getElementById('numeric_value').value = $(".ui-slider-tip")[0].innerHTML;
   });
 
-  $('#other').keyup(function() {
-    if($(this).val() != '') {
-       $('.modal-button').removeAttr('disabled');
-       $("input").prop("checked", false)
-    }
-  });
-
   $("form").bind("keypress", function (e) {
       if (e.keyCode == 13) {
           return false;
       }
   });
 
-  <% if @user_submitted_answer%>
-    $('.block_radio_button_collection').addAttr('disabled');
-  <%end%>
+  var checkbox = $('.form-radio');
 
-  $('input').click(function() {
-    if ($('input').is(':checked')){
-       $('.modal-button').removeAttr('disabled');
-       $('#other').val('');
-    }
-  });
+  if( !checkbox.prop("checked") ){
+    $('input:radio').filter(':checked').parent().addClass('checked').css("border","1px solid #419BF9").css("color", "#419BF9");
+    $('input:radio').filter(':checked').siblings().addClass('checked').css("color", "white");
+    $('input:radio').not(':checked').parent().removeClass('checked'); //Remove checked class from all other radios that are not checked
+    $('input:radio').not(':checked').siblings().removeClass('checked').css("color", "#6a6a6a");
+} else {
+    checkbox.prop("checked",false);
+    checkbox.parent().removeClass('checked'); //remove checked class when clicked twice
+};
 
   $('input[type=radio]').on('change', function() {
     $(this).closest("form").submit();
   });
-
 
 });
 </script>
@@ -58,7 +51,7 @@ $(document).ready(function() {
       <div id="otherInputBox">
         <%= hidden_field_tag 'question_id', @question.id %>
         <%= f.label "New Tag", class: "new-tag" %>
-        <%= f.input(:options_for_collection, label: false,input_html:{ value: nil, placeholder: "Add a tag or tags to concisely share your thoughts", class: "other-input-text", id:"other"}) %>
+        <%= f.input(:options_for_collection, label: false,input_html:{ value: nil, placeholder: "Add a tag or tags to concisely share your thoughts...", class: "other-input-text", id:"other"}) %>
         <%= f.submit "", class: "new-tag-submit" %>
       </div>
     </div>
@@ -71,14 +64,14 @@ $(document).ready(function() {
             end%>
 
             <% @multiple_choice.each do |tag|%>
-            <label class= "block_radio_button_collection">
-              <%= f.radio_button :value, tag.first%>
+            <label class= "tag_button_collection">
+              <%= f.radio_button :value, tag.first, :class=>"form-radio"%>
               <%="#{tag.last}"%>
-              <% @tag_count = Answer.where(value: tag.first).count %>
-              <% if @tag_count < 1 %>
-                <%= image_tag("grey_heart.png", id:"heart")%>
+              <% @tag_count = Answer.where(question_id: @question.id, value: tag.first).count + 1 %>
+              <% if @tag_count < 2 %>
+                <%= image_tag("grey_heart.png", class:"grey-heart", :onMouseover=> "this.src='/assets/blue_heart.png'",:onMouseout=> "this.src='/assets/grey_heart.png'")%>
               <%else%>
-                <%= image_tag("blue_heart.png", id:"heart")%>
+                <%= image_tag("blue_heart.png", class:"blue-heart")%>
               <%end%>
               <span class="tag-count">
                 <%= @tag_count %>

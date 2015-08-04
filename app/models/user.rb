@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   has_one :location, :dependent => :destroy
   has_many :answers, :dependent => :destroy
+  has_many :badges, dependent: :destroy
   has_many :questions, through: :answers
   has_many :submit_questions
 
