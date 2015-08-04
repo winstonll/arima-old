@@ -260,7 +260,7 @@ class QuestionsController < ApplicationController
         :user_id => current_user.id,
         :value_type => params[:numeric_value] == "false" ? "collection" : "quantity", #params[:numeric_value] == "false" ? "collection" : "quantity"
         :options_for_collection => @answerboxes,
-        :answer_plus => params[:shared_image].nil? ? false : true,
+        :answer_plus => false,
         :image_link => @question_image ? params[:image_link] : nil,
         :shared_image => params[:shared_image])
 
