@@ -134,7 +134,7 @@ $(document).ready(function() {
       </div>
     </div>
   </div>
-<%elsif !@user_submitted_answer && @question.shared_image %>
+<%elsif !@user_submitted_answer && @question.shared_image && @question.value_type == "collection"%>
   <div style="position: relative; top:30px;">
     <center>  <%= @question.image_link.nil? ? "" : image_tag("question_images/" + @question.image_link, height: "340", alt:"image")%> </center>
     <center style="color: #4A90E2; font-weight: bold; font-size: 24px; padding-top: 10px;"><%=@question.label %></center>
