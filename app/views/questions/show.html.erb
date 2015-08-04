@@ -151,7 +151,7 @@ $(document).ready(function() {
       <%end%>
     </center>
   </div>
-<%elsif !@user_submitted_answer && !@question.shared_image %>
+<%else %>
   <div style="position: relative; top:30px;">
     <center>  <%= @question.image_link.nil? ? "" : image_tag("question_images/" + @question.image_link, height: "340", alt:"image")%> </center>
     <center style="color: #4A90E2; font-weight: bold; font-size: 24px; padding-top: 10px;"><%=@question.label %></center>
@@ -162,9 +162,7 @@ $(document).ready(function() {
       <div class = "slogan"> Did you enjoy this? Share your opinion below!</div>
     <%end%>
     <center>
-      <%if !@question.shared_image.nil? && !@question.shared_image%>
-        <%= render partial: 'questions/answer_input', locals: { question: @question, answer: @answer} %>
-      <%end%>
+      <%= render partial: 'questions/answer_input', locals: { question: @question, answer: @answer} %>
     </center>
   </div>
 <%end%>
