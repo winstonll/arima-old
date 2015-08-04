@@ -14,7 +14,7 @@ class Question < ActiveRecord::Base
   ALLOWED_TYPES = [
     "currency", "quantity", "length",
     "weight", "text", "hours", "years",
-    "minutes", "collection", "measurement"
+    "minutes", "collection", "measurement", "tag"
   ]
 
   validates :label, presence: true

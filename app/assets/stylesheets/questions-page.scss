@@ -147,6 +147,10 @@
 
 // *Tag input style*
 .tag-prompt {
+  .checked {
+    border: 1px solid #419BF9;
+    color: #419BF9;
+  }
 
   .options {
     margin-top: 1em;
@@ -154,9 +158,16 @@
     .tag_button_collection {
       top:-20px;
       cursor: pointer;
+
       input{
         visibility: hidden;
         margin-left: -22px;
+      }
+
+
+
+      .checked_text {
+        color: #6a6a6a;
       }
 
       margin-left: 10px;

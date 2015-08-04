@@ -9,6 +9,8 @@
 <% @question = Question.where(slug: params[:id])[0] %>
 <% end %>
 
+<%@tag_array = Tag.where(question_id: @question.id)%>
+
 <script type="text/javascript">
 $(document).ready(function() {
   $(".slider").slider({max: 10, min: 1, step: 1}).slider("pips", {rest: "label", step: 1}).slider("float");
@@ -25,15 +27,27 @@ $(document).ready(function() {
 
   var checkbox = $('.form-radio');
 
-  if( !checkbox.prop("checked") ){
-    $('input:radio').filter(':checked').parent().addClass('checked').css("border","1px solid #419BF9").css("color", "#419BF9");
-    $('input:radio').filter(':checked').siblings().addClass('checked').css("color", "white");
-    $('input:radio').not(':checked').parent().removeClass('checked'); //Remove checked class from all other radios that are not checked
-    $('input:radio').not(':checked').siblings().removeClass('checked').css("color", "#6a6a6a");
-} else {
-    checkbox.prop("checked",false);
-    checkbox.parent().removeClass('checked'); //remove checked class when clicked twice
-};
+  <%if user_signed_in?
+      @liked_tag = Opinion.where(user_id: current_user.id, question_id: @question.id)
+      @liked_tag_array = Array.new()
+      @liked_tag.each do |tagId|
+        @liked_tag_array << Tag.where(question_id: @question.id, id: tagId.tag_id).first.label
+      end
+    end
+  %>
+
+  $('input[type=radio]').not(':checked').parent().removeClass('checked'); //Remove checked class from all other radios that are not checked
+  $('input[type=radio]').not(':checked').siblings().removeClass('checked').css("color", "#6a6a6a");
+  <%@liked_tag_array.each do |tag|%>
+    index = 0
+    for(index; index <= <%= @tag_array.length - 1%>; index++){
+      if ($('input[type=radio]')[index].value == "<%= tag %>"){
+        $('input[type=radio]')[index].offsetParent.setAttribute("class", "checked tag_button_collection");
+        $('input[type=radio]')[index].nextElementSibling.nextElementSibling.setAttribute("style", "color: white");
+      }
+    }
+  <%end%>
+
 
   $('input[type=radio]').on('change', function() {
     $(this).closest("form").submit();
@@ -57,17 +71,14 @@ $(document).ready(function() {
     </div>
     <br>
     <div class="options">
-        <%if !@question.options_array.nil? && (@question.options_array.count <= 7) %>
-          <% @multiple_choice = Array.new()
-              @question.options_array.each do |value|
-                @multiple_choice << [value, value]
-            end%>
 
-            <% @multiple_choice.each do |tag|%>
+        <%if !@tag_array.nil?  %>
+
+            <% @tag_array.each do |tag|%>
             <label class= "tag_button_collection">
-              <%= f.radio_button :value, tag.first, :class=>"form-radio"%>
-              <%="#{tag.last}"%>
-              <% @tag_count = Answer.where(question_id: @question.id, value: tag.first).count + 1 %>
+              <%= f.radio_button :value, tag.label, :class=>"form-radio"%>
+              <%="#{tag.label}"%>
+              <% @tag_count = tag.counter %>
               <% if @tag_count < 2 %>
                 <%= image_tag("grey_heart.png", class:"grey-heart", :onMouseover=> "this.src='/assets/blue_heart.png'",:onMouseout=> "this.src='/assets/grey_heart.png'")%>
               <%else%>
