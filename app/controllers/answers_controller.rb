@@ -178,9 +178,9 @@ class AnswersController < ApplicationController
         end
       else
         @tag = Tag.where(question_id: @question.id, label: params[:answer][:value]).first
-        @opinion = Opinion.where(question_id: @question.id, tag_id: @tag.id, user_id: cookies[:guest].id).first
+        @opinion = Opinion.where(question_id: @question.id, tag_id: @tag.id, user_id: cookies[:guest]).first
         if @opinion.nil?
-          @opinion = Opinion.new(question_id: @question.id, tag_id: @tag.id, user_id: cookies[:guest].id)
+          @opinion = Opinion.new(question_id: @question.id, tag_id: @tag.id, user_id: cookies[:guest])
           @opinion.save!
           @tag.counter = @tag.counter + 1
           @tag.save!
