@@ -38,10 +38,22 @@ role :web, domain                          # Your HTTP server, Apache/etc
 role :app, domain                          # This may be the same as your `Web` server
 role :db,  domain, :primary => true # This is where Rails migrations will run
 
+# before "deploy:assets:precompile", "bundle:install"
+after "deploy:restart", "deploy:cleanup"
+
 # ==============================
 # Uploads Images
 # ==============================
 namespace :uploads do
+
+  desc <<-EOD
+    Creates the upload folders unless they exist
+    and sets the proper upload permissions.
+  EOD
+  task :setup, :except => { :no_release => true } do
+    dirs = uploads_dirs.map { |d| File.join(shared_path, d) }
+    run "#{try_sudo} mkdir -p #{dirs.join(' ')} && #{try_sudo} chmod g+w #{dirs.join(' ')}"
+  end
 
   desc <<-EOD
     [internal] Creates the symlink to uploads shared folder
@@ -65,10 +77,6 @@ namespace :uploads do
   on :start,  "uploads:register_dirs"
 
 end
-
-
-# before "deploy:assets:precompile", "bundle:install"
-after "deploy:restart", "deploy:cleanup"
 
 namespace :rvm do
   task :trust_rvmrc do
