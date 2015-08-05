@@ -1,7 +1,7 @@
 /* Normal Question Style (Category pages) */
 .question-with-category-wrapper {
   border: 1px solid #E5E5E5;
-  border-radius: 5px;
+  border-radius: 7px;
   padding: 5px 25px 5px 25px;
   margin: 10px 10px 10px 10px;
 
@@ -37,6 +37,7 @@
     width: 250px;
     height: 250px;
 
+
     .question-link {
       text-decoration: none !important;
       color: #555;
@@ -59,6 +60,7 @@
           padding-left: 1em;
           width: 15em;
           height: 5em;
+          color: white;
           // white-space: nowrap;
           // overflow: hidden;
           // text-overflow: ellipsis;
@@ -69,6 +71,7 @@
           font-weight: 500;
           font-size: 14px;
           padding-top: 4em;
+          color: white;
 
           div {
             display: inline-block;
