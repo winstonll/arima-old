@@ -38,11 +38,43 @@ role :web, domain                          # Your HTTP server, Apache/etc
 role :app, domain                          # This may be the same as your `Web` server
 role :db,  domain, :primary => true # This is where Rails migrations will run
 
+# ==============================
+# Uploads Images
+# ==============================
+namespace :uploads do
 
-before "deploy:restart", :symlink_directories
-task :symlink_directories do
-  run "ln -nfs /srv/www/arima/shared/assets/question_images /srv/www/arima/current/public/images/question_images"
+  desc <<-EOD
+    Creates the upload folders unless they exist
+    and sets the proper upload permissions.
+  EOD
+  task :setup, :except => { :no_release => true } do
+    dirs = uploads_dirs.map { |d| File.join(shared_path, d) }
+    run "#{try_sudo} mkdir -p #{dirs.join(' ')} && #{try_sudo} chmod g+w #{dirs.join(' ')}"
+  end
+
+  desc <<-EOD
+    [internal] Creates the symlink to uploads shared folder
+    for the most recently deployed version.
+  EOD
+  task :symlink, :except => { :no_release => true } do
+    run "rm -rf #{release_path}/public/uploads"
+    run "ln -nfs #{shared_path}/uploads #{release_path}/public/uploads"
+  end
+
+  desc <<-EOD
+    [internal] Computes uploads directory paths
+    and registers them in Capistrano environment.
+  EOD
+  task :register_dirs do
+    set :uploads_dirs,    %w(uploads uploads/partners)
+    set :shared_children, fetch(:shared_children) + fetch(:uploads_dirs)
+  end
+
+  after       "deploy:finalize_update", "uploads:symlink"
+  on :start,  "uploads:register_dirs"
+
 end
+
 
 # before "deploy:assets:precompile", "bundle:install"
 after "deploy:restart", "deploy:cleanup"
