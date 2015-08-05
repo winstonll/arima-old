@@ -41,7 +41,7 @@ role :db,  domain, :primary => true # This is where Rails migrations will run
 
 before "deploy:restart", :symlink_directories
 task :symlink_directories do
-  run "ln -nfs /public/images/question_images /srv/www/arima/shared/assets/question_images"
+  run "ln -nfs /public/images/question_images /srv/www/arima/current/public/images/question_images"
 end
 
 # before "deploy:assets:precompile", "bundle:install"
