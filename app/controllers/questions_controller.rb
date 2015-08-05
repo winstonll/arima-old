@@ -216,7 +216,6 @@ class QuestionsController < ApplicationController
       return
     end
 
-
     @question_image = !params[:image_link].empty?
 
     if(@question_image)
@@ -240,7 +239,28 @@ class QuestionsController < ApplicationController
       end
     end
 
-    if params["checked"] != nil && (params[:submit_question_name].length < 256)
+    if params[:shared_image] && (params[:submit_question_name].length < 256) && params[:numeric_value] == "false"
+
+      @subquestion = Question.create(
+        :label => params[:submit_question_name].slice(0,1).capitalize + params[:submit_question_name].slice(1..-1),
+        :group_id => params[:group_id],
+        :user_id => current_user.id,
+        :value_type => "tag", #params[:numeric_value] == "false" ? "collection" : "quantity"
+        :options_for_collection => nil,
+        :answer_plus => true,
+        :image_link => @question_image ? image_array[-1] : nil,
+        :shared_image => params[:shared_image])
+
+      GroupsQuestion.create(group_id: params[:group_id], question_id: @subquestion.id)
+
+      @tags = @answerboxes.split("|")
+
+      @tags.each do |tag|
+        submission = Tag.new(label: tag, question_id: @subquestion.id, counter: 1)
+        submission.save!
+      end
+
+    elsif params["checked"] != nil && (params[:submit_question_name].length < 256)
       @subquestion = Question.create(
         :label => params[:submit_question_name].slice(0,1).capitalize + params[:submit_question_name].slice(1..-1),
         :group_id => params[:group_id],

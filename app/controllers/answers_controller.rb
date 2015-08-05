@@ -164,14 +164,31 @@ class AnswersController < ApplicationController
 
     if (!cookies[:guest].nil? && @answer = @question.answers.where(user: User.where(id: cookies[:guest])).first).nil?
       if(user_signed_in?)
-        @answer = @question.answers.build({"value" => params[:answer][:value]})
-        @answer.user = current_user
-        @answer.save
+        @tag = Tag.where(question_id: @question.id, label: params[:answer][:value]).first
+        @opinion = Opinion.where(question_id: @question.id, tag_id: @tag.id, user_id: current_user.id).first
+        if @opinion.nil?
+          @opinion = Opinion.new(question_id: @question.id, tag_id: @tag.id, user_id: current_user.id)
+          @opinion.save!
+          @tag.counter = @tag.counter + 1
+          @tag.save!
+        else
+          @opinion.destroy!
+          @tag.counter = @tag.counter - 1
+          @tag.save!
+        end
       else
-        @answer = @question.answers.build({"value" => params[:answer][:value]})
-        @guest = User.where(id: cookies[:guest]).first
-        @answer.user = @guest
-        @answer.save
+        @tag = Tag.where(question_id: @question.id, label: params[:answer][:value]).first
+        @opinion = Opinion.where(question_id: @question.id, tag_id: @tag.id, user_id: cookies[:guest]).first
+        if @opinion.nil?
+          @opinion = Opinion.new(question_id: @question.id, tag_id: @tag.id, user_id: cookies[:guest])
+          @opinion.save!
+          @tag.counter = @tag.counter + 1
+          @tag.save!
+        else
+          @opinion.destroy!
+          @tag.counter = @tag.counter - 1
+          @tag.save!
+        end
       end
     end
 
