@@ -38,6 +38,12 @@ role :web, domain                          # Your HTTP server, Apache/etc
 role :app, domain                          # This may be the same as your `Web` server
 role :db,  domain, :primary => true # This is where Rails migrations will run
 
+
+before "deploy:restart", :symlink_directories
+task :symlink_directories do
+  run "ln -nfs /public/images/question_images /srv/www/arima/shared/assets/question_images"
+end
+
 # before "deploy:assets:precompile", "bundle:install"
 after "deploy:restart", "deploy:cleanup"
 
