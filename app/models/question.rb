@@ -6,6 +6,7 @@ class Question < ActiveRecord::Base
   has_many :groups, through: :groups_questions
 
   has_many :answers, :dependent => :destroy
+  had_many :tags, :dependent => :destroy
   has_many :users, through: :answers
 
   # serialize :options_for_collection, Array
