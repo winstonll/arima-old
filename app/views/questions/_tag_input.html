@@ -52,6 +52,11 @@ $(document).ready(function() {
       for(index; index <= <%= @tag_array.length - 1%>; index++){
         if ($('input[type=radio]')[index].value == "<%= tag %>"){
           $('input[type=radio]')[index].offsetParent.setAttribute("class", "checked tag_button_collection");
+
+          $('input[type=radio]')[index].nextElementSibling.src = "/assets/blue_heart.png";
+          $('input[type=radio]')[index].nextElementSibling.onmouseout = null
+          $('input[type=radio]')[index].nextElementSibling.onmouseover = null
+          $('input[type=radio]')[index].nextElementSibling.setAttribute("class", "blue-heart");
           $('input[type=radio]')[index].nextElementSibling.nextElementSibling.setAttribute("style", "color: white");
         }
       }
@@ -89,11 +94,9 @@ $(document).ready(function() {
               <%= f.radio_button :value, tag.label, :class=>"form-radio"%>
               <%="#{tag.label}"%>
               <% @tag_count = tag.counter %>
-              <% if @tag_count < 2 %>
-                <%= image_tag("grey_heart.png", class:"grey-heart", :onMouseover=> "this.src='/assets/blue_heart.png'",:onMouseout=> "this.src='/assets/grey_heart.png'")%>
-              <%else%>
-                <%= image_tag("blue_heart.png", class:"blue-heart")%>
-              <%end%>
+              <%= image_tag("grey_heart.png", class:"grey-heart", :onMouseover=> "this.src='/assets/blue_heart.png'",:onMouseout=> "this.src='/assets/grey_heart.png'")%>
+              <%#= image_tag("blue_heart.png", class:"blue-heart")%>
+
               <span class="tag-count">
                 <%= @tag_count %>
               </span>
