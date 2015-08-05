@@ -79,7 +79,7 @@ $(document).ready(function() {
         </div>
 
         <%if !@question.image_link.nil? %>
-          <div style="float:left; margin-top:20px; margin-right:10px;"><%= image_tag("/uploads/" + @question.image_link, size: "100x100", alt:"image",class: "question_image")%></div>
+          <div style="float:left; margin-top:20px; margin-right:10px;"><%= image_tag("/system/uploads/" + @question.image_link, size: "100x100", alt:"image",class: "question_image")%></div>
         <%end%>
         <!-- Question Title and Answer Box -->
         <div class="question-title-container">
@@ -136,7 +136,7 @@ $(document).ready(function() {
   </div>
 <%elsif @question.shared_image && @question.value_type == "tag"%>
   <div style="position: relative; top:30px;">
-    <center>  <%= @question.image_link.nil? ? "" : image_tag("/uploads/" + @question.image_link, height: "340", alt:"image")%> </center>
+    <center>  <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "340", alt:"image")%> </center>
     <center style="color: #4A90E2; font-weight: bold; font-size: 24px; padding-top: 10px;"><%=@question.label %></center>
     <%if @question.options_for_collection.nil?%>
       <!--<div class="slogan"> What do you think? Give a rating below! </div>-->
@@ -153,7 +153,7 @@ $(document).ready(function() {
   </div>
 <%else %>
   <div style="position: relative; top:30px;">
-    <center>  <%= @question.image_link.nil? ? "" : image_tag("/uploads/" + @question.image_link, height: "340", alt:"image")%> </center>
+    <center>  <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "340", alt:"image")%> </center>
     <center style="color: #4A90E2; font-weight: bold; font-size: 24px; padding-top: 10px;"><%=@question.label %></center>
     <center class="meta-title"><%= @question.answers.count%><%= @question.answers.count == 1 ? ' Person' : ' People' %> Answered</center>
     <%if @question.options_for_collection.nil?%>
