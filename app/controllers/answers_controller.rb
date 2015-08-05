@@ -143,26 +143,20 @@ class AnswersController < ApplicationController
 
     if !params[:answer].nil? && params[:answer][:options_for_collection] != ""
 
-      answer_values = @question.options_for_collection
-      a = (0 ... answer_values.length).find_all { |i| answer_values[i,1] == '|' }
+      if Tag.where(label: params[:answer][:options_for_collection], question_id: @question.id).first.nil?
+        answer_user_id = user_signed_in? ? current_user.id : cookies[:guest]
 
-      if @question.options_for_collection.include? params[:answer][:options_for_collection]
-        flash[:notice] = "This answer value already exists!"
+        @tag = Tag.new(label: params[:answer][:options_for_collection], question_id: @question.id, counter: 1)
+        @tag.save!
+
+        @opinion = Opinion.new(question_id: @question.id, tag_id: @tag.id, user_id: answer_user_id)
+        @opinion.save!
       else
-        @question.options_for_collection = @question.options_for_collection + "|" + params["answer"]["options_for_collection"].capitalize
-        @question.save
-      end
-
-      answer_user_id = user_signed_in? ? current_user.id : cookies[:guest]
-
-      if @question.save
-        @answer = Answer.new(user_id: answer_user_id, question_id: @question.id, value: params[:answer][:options_for_collection].capitalize)
-        @answer.save!
-      else
+        flash[:notice] = "This tag already exists!"
       end
     end
 
-    if (!cookies[:guest].nil? && @answer = @question.answers.where(user: User.where(id: cookies[:guest])).first).nil?
+    if (!cookies[:guest].nil? && !params[:answer][:value].nil?)
       if(user_signed_in?)
         @tag = Tag.where(question_id: @question.id, label: params[:answer][:value]).first
         @opinion = Opinion.where(question_id: @question.id, tag_id: @tag.id, user_id: current_user.id).first
