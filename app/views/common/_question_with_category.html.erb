@@ -111,8 +111,8 @@ $(document).ready(function() {
 </script>
 
 <div class="<%= question.group_id.to_s + "-question-with-category-wrapper" %> question-with-category-wrapper <%= question.id.to_s + "-question-with-category-wrapper" %>">
-    <%= image_tag("category-icons/#{question.group_id} White.png", class: "question-with-category-icon" ) %>
-  <div class="votes">
+    <%= image_tag("category-icons/#{question.group_id} White.png", class: question.shared_image ? "hidden-field" : "question-with-category-icon"  ) %>
+  <div class="votes <%= "hidden-field" if question.shared_image == true %>">
     <div class="upvote">
       <% if cookies[:guest] == nil %>
         <%= link_to image_tag('upvote_grey.png', id: "upvote-image-#{question.id}", class: "vote-image"), upvote_question_path(:id => question.id), :method => :put, :remote => true %>
@@ -144,11 +144,11 @@ $(document).ready(function() {
     <% end -%>
 
 
-      <div class="question-info">
+      <div class="question-info <%= "invisible" if question.shared_image == true %>">
         <p class="question-title"><%= question.label %></p>
       </div>
 
-        <div class="question-dates">
+        <div class="question-dates <%= "invisible" if question.shared_image %>">
           <% if !answered %>
             <div class="num-answers">
               <%= "#{question.answers.count} #{question.answers.count == 1 ? 'person answered' : 'people answered'}" %>
