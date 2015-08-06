@@ -23,7 +23,7 @@
   <%if !@question.nil? %>
     <%if params[:controller] != "categories"%>
       <%if !@question.image_link.nil?%>
-        <%@thumbnail = @question.image_link%>
+        <%@thumbnail = "http://thearima.com/system/uploads/" + @question.image_link%>
       <%end%>
     <%end%>
   <%end%>
