@@ -12,7 +12,7 @@
     margin-right: 20px;
     margin-top: 28px;
     margin-left: 5px;
-    margin-bottom: 45px;
+    margin-bottom: 30px;
 
     &:hover{
      transform: scale(1.2);
@@ -58,8 +58,8 @@
   #feed-stats-container {
     width: 50%;
     margin: auto;
-    margin-top: 5em;
-    margin-bottom: 2em;
+    margin-top: -2em;
+    margin-bottom: 1em;
     text-align: center;
 
     .feed-stats {
@@ -70,16 +70,16 @@
       }
 
       .feed-stats-data {
-        font-size: 45px;
+        font-size: 35px;
         font-weight: 600;
         color: #00c39c;
-        margin-bottom: 5px;
+        margin-bottom: 2px;
       }
 
       .feed-stats-title {
-        font-size: 19px;
+        font-size: 16px;
         color: #00c39c;
-        margin-top: 5px;
+        margin-top: 2px;
       }
     }
   }
