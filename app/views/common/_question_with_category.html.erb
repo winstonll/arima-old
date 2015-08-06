@@ -1,4 +1,39 @@
-<div class="question-with-category-wrapper">
+<script type="text/javascript">
+$(document).ready(function() {
+  var question = "<%= question.group_id %>";
+  console.log(question);
+  if (question == "1") {
+    $(".1-question-with-category-wrapper").css("background-color", "#8ad321");
+  } else if (question == "2") {
+    $(".2-question-with-category-wrapper").css("background-color", "#70e25b");
+  } else if (question == "3") {
+    $(".3-question-with-category-wrapper").css("background-color", "#4aaae2");
+  } else if (question == "4") {
+    $(".4-question-with-category-wrapper").css("background-color", "#5d98de");
+  } else if (question == "5") {
+    $(".5-question-with-category-wrapper").css("background-color", "#e96c4e");
+  } else if (question == "6") {
+    $(".6-question-with-category-wrapper").css("background-color", "#f3a82d");
+  } else if (question == "7") {
+    $(".7-question-with-category-wrapper").css("background-color", "#966dba");
+  } else if (question == "8") {
+    $(".8-question-with-category-wrapper").css("background-color", "#46cede");
+  } else if (question == "9") {
+    $(".9-question-with-category-wrapper").css("background-color", "#eac57b");
+  } else if (question == "10") {
+    $(".10-question-with-category-wrapper").css("background-color", "#50e3c2");
+  } else if (question == "12") {
+    $(".12-question-with-category-wrapper").css("background-color", "#95c6e4");
+  } else if (question == "13") {
+    $(".13-question-with-category-wrapper").css("background-color", "#004faa");
+  } else if (question == "14") {
+    $(".14-question-with-category-wrapper").css("background-color", "#8933d5");
+  }
+});
+
+</script>
+
+<div class="<%= question.group_id.to_s + "-question-with-category-wrapper" %> question-with-category-wrapper">
   <div class="votes">
     <div class="upvote">
       <% if cookies[:guest] == nil %>
@@ -31,7 +66,7 @@
     <% end -%>
 
       <div class="question-icon-container">
-        <%= image_tag("category-icons/#{question.group_id}.png", class: "question-with-category-icon" ) %>
+        <%= image_tag("category-icons/#{question.group_id} White.png", class: "question-with-category-icon" ) %>
       </div>
 
       <div class="question-info">

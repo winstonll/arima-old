@@ -50,6 +50,7 @@ $(document).ready(function() {
       index = 0
       for(index; index <= <%= @tag_array.length - 1%>; index++){
         if ($('input[type=radio]')[index].value == "<%= tag %>"){
+          $('input[type=radio]')[index].offsetParent.setAttribute("style", "color: #419BF9");
           $('input[type=radio]')[index].offsetParent.setAttribute("class", "checked tag_button_collection");
 
           $('input[type=radio]')[index].nextElementSibling.src = "/images/blue_heart.png";
