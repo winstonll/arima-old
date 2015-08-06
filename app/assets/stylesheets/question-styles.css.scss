@@ -1,16 +1,27 @@
 /* Normal Question Style (Category pages) */
 .question-with-category-wrapper {
-  border: 1px solid #E5E5E5;
-  border-radius: 7px;
+  border: none;
+  border-radius: 5px;
   padding: 5px 25px 5px 25px;
   margin: 10px 10px 10px 10px;
 
   display: inline-block;
   text-align: center;
 
+  .question-with-category-icon {
+    height: 30px;
+    width: auto;
+    margin-right: -1em;
+    float:right;
+
+
+
+  }
+
   .votes {
-    padding-top: 4em;
+    padding-top: 3em;
     float: left;
+    margin-left: -.5em;
     height: 100%;
     width: 5%;
     text-align: center;
@@ -27,7 +38,10 @@
     .counter {
       position: relative;
       margin-left: 7px;
-      color: #888;
+      color: #fff;
+      margin-top: -5px;
+      margin-bottom: -5px;
+
     }
   }
 
@@ -42,22 +56,15 @@
       text-decoration: none !important;
       color: #555;
 
-      .question-icon-container {
-        float: right;
 
-        .question-with-category-icon {
-          height: 25px;
-          width: auto;
-        }
-      }
 
       .question-info {
-        padding-top: 5em;
+        padding-top: 2.5em;
         .question-title {
           font-size: 15px;
           font-weight: 600;
           text-align: left;
-          padding-left: 1em;
+          padding-left: .5em;
           width: 15em;
           height: 5em;
           color: white;
@@ -72,6 +79,7 @@
           font-size: 14px;
           padding-top: 4em;
           color: white;
+          margin-left: -5.7em;
 
           div {
             display: inline-block;
@@ -87,7 +95,7 @@
           .question-title,
           .question-info,
           .num-answers {
-            color: #00C39C;
+            color: #E2E2E2;
           }
         }
     }
