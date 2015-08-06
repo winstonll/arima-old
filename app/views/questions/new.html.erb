@@ -11,6 +11,7 @@
     // Make sure the add answer button is showing
     $("#add-answer-button").css("display", "block");
     <%if params[:question].nil?%>
+      $('.numeric-slider').addClass("field-hidden");
       document.getElementById('shared_image').value = true;
       document.getElementById('numeric_value').value = false;
     <%else%>

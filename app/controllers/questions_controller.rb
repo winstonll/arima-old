@@ -239,7 +239,7 @@ class QuestionsController < ApplicationController
       end
     end
 
-    if params[:shared_image] && (params[:submit_question_name].length < 256) && params[:numeric_value] == "false"
+    if params[:shared_image] == "true" && (params[:submit_question_name].length < 256) && params[:numeric_value] == "false"
 
       @subquestion = Question.create(
         :label => params[:submit_question_name].slice(0,1).capitalize + params[:submit_question_name].slice(1..-1),
