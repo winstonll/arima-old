@@ -139,7 +139,7 @@ $(document).ready(function() {
     <center>  <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "380", alt:"image")%> </center>
     <center style="color: #4A90E2; font-weight: bold; font-size: 24px; padding-top: 10px;"><%=@question.label %></center>
     <%if @question.options_for_collection.nil?%>
-      <div class="slogan"> Did you enjoy this image? Click the tag(s) below that best represent your view, or add a new tag.</div>
+      <div class="slogan"> Did you enjoy this image? Click the tag(s) below that best represent what you think, or add a new tag.</div>
     <%else%>
       <!--<div class = "slogan"> Did you enjoy this? Share your opinion below!</div>-->
     <%end%>
