@@ -8,6 +8,16 @@
   font-size: 15px;
 }
 
+.thumbnail:hover {
+    position:relative;
+    top:-25px;
+    left:-35px;
+    width:500px;
+    height:auto;
+    display:block;
+    z-index:999;
+}
+
 .meta-title{
   font-weight: 500;
   font-size: 15px;
