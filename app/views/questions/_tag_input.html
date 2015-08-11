@@ -74,14 +74,15 @@ google.maps.event.addDomListener(window, 'load', initialize);
         index = 0
         for(index; index <= <%= @tag_array.length - 1%>; index++){
           if ($('input[type=radio]')[index].value == "<%= tag %>"){
-            $('input[type=radio]')[index].offsetParent.setAttribute("style", "color: #419BF9");
+            $('input[type=radio]')[index].offsetParent.style.color = "white";
+            $('input[type=radio]')[index].offsetParent.style.background = "#419BF9";
             $('input[type=radio]')[index].offsetParent.setAttribute("class", "checked tag_button_collection");
 
             $('input[type=radio]')[index].nextElementSibling.src = "/images/blue_heart.png";
             $('input[type=radio]')[index].nextElementSibling.onmouseout = null
             $('input[type=radio]')[index].nextElementSibling.onmouseover = null
             $('input[type=radio]')[index].nextElementSibling.setAttribute("class", "blue-heart");
-            $('input[type=radio]')[index].nextElementSibling.nextElementSibling.setAttribute("style", "color: white");
+            $('input[type=radio]')[index].nextElementSibling.nextElementSibling.style.color = "white";
           }
         }
       <%end%>
@@ -120,8 +121,6 @@ google.maps.event.addDomListener(window, 'load', initialize);
               <%="#{tag.label}"%>
               <% @tag_count = tag.counter %>
               <%= image_tag("grey_heart.png", class:"grey-heart", :onMouseover=> "this.src='/images/blue_heart.png'",:onMouseout=> "this.src='/images/grey_heart.png'")%>
-              <%#= image_tag("blue_heart.png", class:"blue-heart")%>
-
               <span class="tag-count">
                 <%= @tag_count %>
               </span>

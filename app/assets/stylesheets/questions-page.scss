@@ -171,7 +171,7 @@
       margin-left: 10px;
       margin-top: 1px;
       background-color: #ececec;
-      padding: 10px 50px 10px 50px;
+      padding: 12px 50px 12px 50px;
       border-radius: 50px;
       position:relative;
       z-index: 1;
@@ -180,7 +180,7 @@
 
       background-position: 0 -60%;
       background-repeat: repeat-x;
-      transition: background-position 1s ease;
+      transition: background-position 1s ease-out;
       background-image: url(image_path('bluewave.png'));
 
       &:hover{
@@ -200,7 +200,6 @@
         color: #6a6a6a;
         font-size: 12px;
         font-weight: 700;
-
       }
 
       .grey-heart{
