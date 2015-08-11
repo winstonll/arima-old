@@ -95,7 +95,7 @@
 
   function createHeat(select){
     heatData = [];
-    console.log(select);
+
     for(i=0; i<userLocation[select].length; i++){
       indexComma = userLocation[select][i].indexOf(",");
       latitude = Number(userLocation[select][i].substring(0, indexComma-1));
@@ -313,7 +313,7 @@
   function show_location_answer(loc) {
     previous_selected = data_answer.selected;
     data_answer.selected = loc;
-    console.log(data_answer.selected);
+
     var loc_arr = [];
 
     if(data_answer.collection){
@@ -365,7 +365,7 @@
   $('.country_dropdown').change(function (e) {
     var country = $(e.target).find(":selected").val();
     data_answer.country_stats = data_answer.country[country];
-    console.log(country);
+
     d3.select("svg").remove();
     d3.select("g").remove();
     createChart("country", country);
@@ -392,7 +392,7 @@
   data_answer.selected = 'world';
 
   function createChart(tab_selection, country_name) {
-    console.log(tab_selection);
+
     (function(d3) {
       'use strict';
       if (tab_selection == 'world'){

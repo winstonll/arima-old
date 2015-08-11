@@ -11,64 +11,89 @@
 
 <%@tag_array = Tag.where(question_id: @question.id).order(created_at: :asc)%>
 
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=visualization"></script>
 <script type="text/javascript">
-$(document).ready(function() {
-  $(".slider").slider({max: 10, min: 1, step: 1}).slider("pips", {rest: "label", step: 1}).slider("float");
 
-  $(".modal-button").click(function(){
-    document.getElementById('numeric_value').value = $(".ui-slider-tip")[0].innerHTML;
-  });
+var map, layer;
 
-  $("form").bind("keypress", function (e) {
-      if (e.keyCode == 13) {
-          return false;
-      }
-  });
+function initialize() {
+var chicago = new google.maps.LatLng(41.850033, -87.6500523);
 
-  var checkbox = $('.form-radio');
-
-  <%if user_signed_in?
-      @liked_tag = Opinion.where(user_id: current_user.id, question_id: @question.id)
-      @liked_tag_array = Array.new()
-      @liked_tag.each do |tagId|
-        @liked_tag_array << Tag.where(question_id: @question.id, id: tagId.tag_id).first.label
-      end
-    else
-      @liked_tag = Opinion.where(user_id: cookies[:guest], question_id: @question.id)
-      @liked_tag_array = Array.new()
-      @liked_tag.each do |tagId|
-        @liked_tag_array << Tag.where(question_id: @question.id, id: tagId.tag_id).first.label
-      end
-    end
-  %>
-
-  $('input[type=radio]').not(':checked').parent().removeClass('checked'); //Remove checked class from all other radios that are not checked
-  $('input[type=radio]').not(':checked').siblings().removeClass('checked').css("color", "#6a6a6a");
-
-  <%if !@liked_tag_array.nil?%>
-    <%@liked_tag_array.each do |tag|%>
-      index = 0
-      for(index; index <= <%= @tag_array.length - 1%>; index++){
-        if ($('input[type=radio]')[index].value == "<%= tag %>"){
-          $('input[type=radio]')[index].offsetParent.setAttribute("style", "color: #419BF9");
-          $('input[type=radio]')[index].offsetParent.setAttribute("class", "checked tag_button_collection");
-
-          $('input[type=radio]')[index].nextElementSibling.src = "/images/blue_heart.png";
-          $('input[type=radio]')[index].nextElementSibling.onmouseout = null
-          $('input[type=radio]')[index].nextElementSibling.onmouseover = null
-          $('input[type=radio]')[index].nextElementSibling.setAttribute("class", "blue-heart");
-          $('input[type=radio]')[index].nextElementSibling.nextElementSibling.setAttribute("style", "color: white");
-        }
-      }
-    <%end%>
-  <%end%>
-
-
-  $('input[type=radio]').on('change', function() {
-    $(this).closest("form").submit();
-  });
-
+map = new google.maps.Map(document.getElementById('map-canvas'), {
+  center: chicago,
+  zoom: 11
 });
+
+layer = new google.maps.FusionTablesLayer({
+  query: {
+    select: '\'Geocodable address\'',
+    from: '1mZ53Z70NsChnBMm-qEYmSDOvLXgrreLTkQUvvg'
+  }
+});
+layer.setMap(map);
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+  $(document).ready(function() {
+    $(".slider").slider({max: 10, min: 1, step: 1}).slider("pips", {rest: "label", step: 1}).slider("float");
+
+    $(".modal-button").click(function(){
+      document.getElementById('numeric_value').value = $(".ui-slider-tip")[0].innerHTML;
+    });
+
+    $("form").bind("keypress", function (e) {
+        if (e.keyCode == 13) {
+            return false;
+        }
+    });
+
+    var checkbox = $('.form-radio');
+
+    <%if user_signed_in?
+        @liked_tag = Opinion.where(user_id: current_user.id, question_id: @question.id)
+        @liked_tag_array = Array.new()
+        @liked_tag.each do |tagId|
+          @liked_tag_array << Tag.where(question_id: @question.id, id: tagId.tag_id).first.label
+        end
+      else
+        @liked_tag = Opinion.where(user_id: cookies[:guest], question_id: @question.id)
+        @liked_tag_array = Array.new()
+        @liked_tag.each do |tagId|
+          @liked_tag_array << Tag.where(question_id: @question.id, id: tagId.tag_id).first.label
+        end
+      end
+    %>
+
+    $('input[type=radio]').not(':checked').parent().removeClass('checked'); //Remove checked class from all other radios that are not checked
+    $('input[type=radio]').not(':checked').siblings().removeClass('checked').css("color", "#6a6a6a");
+
+    <%if !@liked_tag_array.nil?%>
+      <%@liked_tag_array.each do |tag|%>
+        index = 0
+        for(index; index <= <%= @tag_array.length - 1%>; index++){
+          if ($('input[type=radio]')[index].value == "<%= tag %>"){
+            $('input[type=radio]')[index].offsetParent.setAttribute("style", "color: #419BF9");
+            $('input[type=radio]')[index].offsetParent.setAttribute("class", "checked tag_button_collection");
+
+            $('input[type=radio]')[index].nextElementSibling.src = "/images/blue_heart.png";
+            $('input[type=radio]')[index].nextElementSibling.onmouseout = null
+            $('input[type=radio]')[index].nextElementSibling.onmouseover = null
+            $('input[type=radio]')[index].nextElementSibling.setAttribute("class", "blue-heart");
+            $('input[type=radio]')[index].nextElementSibling.nextElementSibling.setAttribute("style", "color: white");
+          }
+        }
+      <%end%>
+    <%end%>
+
+
+    $('input[type=radio]').on('change', function() {
+      $(this).closest("form").submit();
+    });
+
+  });
+
 </script>
 
 <% if @answer == nil %>
@@ -106,4 +131,7 @@ $(document).ready(function() {
       <% end %>
     </div>
   <% end %>
+
 </div>
+
+<div id="map-canvas" style="height: 500px; margin: 0; padding: 0;"></div>
