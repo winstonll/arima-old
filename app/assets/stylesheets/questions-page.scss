@@ -1,18 +1,8 @@
-.slogan{
-  color: #4a4a4a;
-  font-weight: 500;
-  display:block;
-  text-align: center;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  font-size: 15px;
-}
-
 .thumbnail:hover {
     position:relative;
     top:-25px;
     left:-35px;
-    width:500px;
+    width:700px;
     height:auto;
     display:block;
     z-index:999;
@@ -174,8 +164,6 @@
         margin-left: -22px;
       }
 
-
-
       .checked_text {
         color: #6a6a6a;
       }
@@ -183,18 +171,24 @@
       margin-left: 10px;
       margin-top: 1px;
       background-color: #ececec;
-      padding: 9px 27px 4px 27px;
+      padding: 10px 50px 10px 50px;
       border-radius: 50px;
       position:relative;
       z-index: 1;
       color: #6a6a6a;
       font-weight:500;
 
+      background-position: 0 -60%;
+      background-repeat: repeat-x;
+      transition: background-position 1s ease;
+      background-image: url(image_path('bluewave.png'));
+
       &:hover{
         border: solid;
         border-width: 1px;
         border-color: #419BF9;
-        color: #419BF9;
+        color: white;
+        background-position: 100% 50%;
       }
 
       .tag-count{
