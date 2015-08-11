@@ -1,8 +1,16 @@
 <%if cookies[:signup] == 1%>
   window.location = "http://thearima.com/users/sign_up"
 <%else%>
+var map, layer;
+google.maps.event.addDomListener(window, 'load', initialize);
   $("#tag_show").html("<%= escape_javascript(render partial: '/questions/tag_input') %>");
+  var map, layer;
+  initialize()
+
 <%end%>
+
+
+console.log(initialize);
 
 //var stateObj = { foo: "bar" };
 //history.pushState(stateObj, "page 2", "cat?group_id=<%#= cookies[:group_id]%>");
