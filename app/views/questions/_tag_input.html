@@ -16,8 +16,8 @@
 <script type="text/javascript">
 
   function initialize(check) {
-    <%if(Opinion.where(question_id: question.id).first.nil?)%>
-
+    <%if(Opinion.where(question_id: question.id, user_id: user_signed_in? ? current_user.id : cookies[:guest]).first.nil?)%>
+      console.log()
       <%  opinion = Opinion.new
           loc_arr = opinion.user_lat_long_all(question.id)
       %>
@@ -37,7 +37,7 @@
         });
       <% end %>
      <% else %>
-     
+
        <%  t_id = t_id
            opinion = Opinion.new
            loc_arr = opinion.user_lat_long_tag(question.id, t_id)
