@@ -92,7 +92,7 @@
   <% temp.each do |ans, arr| %>
     userLocation[<%= ans.to_json.html_safe %>] = <%= temp[ans].to_json.html_safe %>
   <% end %>
-
+  
   function createHeat(select){
     heatData = [];
 

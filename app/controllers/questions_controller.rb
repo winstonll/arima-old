@@ -258,6 +258,9 @@ class QuestionsController < ApplicationController
       @tags.each do |tag|
         submission = Tag.new(label: tag, question_id: @subquestion.id, counter: 1)
         submission.save!
+
+        submission_opinion = Opinion.new(question_id: @subquestion.id, user_id: current_user.id, tag_id: submission.id)
+        submission_opinion.save!
       end
 
     elsif params["checked"] != nil && (params[:submit_question_name].length < 256)
