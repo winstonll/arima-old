@@ -1,7 +1,7 @@
 <%if cookies[:signup] == 1%>
   window.location = "http://thearima.com/users/sign_up"
 <%else%>
-  $("#tag_show").html("<%= escape_javascript(render partial: '/questions/tag_input') %>");
+  $("#tag_show").html("<%= escape_javascript(render partial: '/questions/tag_input', locals: { question: @question } ) %>");
 
   var map, layer;
   initialize("<%= @tag.label %>");

@@ -19,7 +19,7 @@
     <%if(Opinion.where(question_id: question.id).first.nil?)%>
 
       <%  opinion = Opinion.new
-          loc_arr = opinion.user_lat_long_all(Question.where(slug: params[:id]).first.id)
+          loc_arr = opinion.user_lat_long_all(question.id)
       %>
 
       var mapOptions = {
@@ -37,14 +37,19 @@
         });
       <% end %>
      <% else %>
-      console.log("erata");
-
+     <%Opinion.where(question_id: question.id).first.nil?%>
       var mapOptions = {
         zoom: 4,
         center: new google.maps.LatLng(41.850033, -87.6500523)
       };
 
       var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+      new google.maps.Marker({
+          position: new google.maps.LatLng(41.850033, -87.6500523),
+          map: map,
+          title: 'Hello World!'
+      });
 
     <% end %>
   }
