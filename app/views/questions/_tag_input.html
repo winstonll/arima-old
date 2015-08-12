@@ -16,6 +16,9 @@
 <script type="text/javascript">
 
   function initialize(check) {
+    var user_lat = <%= Location.where(user_id: user_signed_in? ? current_user.id : cookies[:guest]).first.latitude %>
+    var user_long = <%= Location.where(user_id: user_signed_in? ? current_user.id : cookies[:guest]).first.longitude %>
+
     <%if(Opinion.where(question_id: question.id, user_id: user_signed_in? ? current_user.id : cookies[:guest]).first.nil?)%>
       console.log()
       <%  opinion = Opinion.new
@@ -24,7 +27,7 @@
 
       var mapOptions = {
         zoom: 4,
-        center: new google.maps.LatLng(41.850033, -87.6500523)
+        center: new google.maps.LatLng(user_lat, user_long)
       };
 
       var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
@@ -46,7 +49,7 @@
        puts t_id%>
       var mapOptions = {
         zoom: 4,
-        center: new google.maps.LatLng(41.850033, -87.6500523)
+        center: new google.maps.LatLng(user_lat, user_long)
       };
 
       var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
