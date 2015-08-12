@@ -1,10 +1,12 @@
 <%if cookies[:signup] == 1%>
   window.location = "http://thearima.com/users/sign_up"
 <%else%>
-  $("#tag_show").html("<%= escape_javascript(render partial: '/questions/tag_input', locals: { question: @question } ) %>");
+  <% @latest_tag = Opinion.where(user_id: user_signed_in? ? current_user.id : cookies[:guest], question_id: @question.id).order("created_at").last%>
+
+  $("#tag_show").html("<%= escape_javascript(render partial: '/questions/tag_input', locals: { question: @question, t_id: !@latest_tag.nil? ? @latest_tag.tag_id : 0} ) %>");
 
   var map, layer;
-  initialize("<%= @tag.label %>");
+  initialize();
 <%end%>
 
 //var stateObj = { foo: "bar" };

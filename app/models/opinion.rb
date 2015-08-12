@@ -18,6 +18,23 @@ class Opinion < ActiveRecord::Base
     return loc_arr
   end
 
+  def user_lat_long_tag(q_id, t_id)
+    loc_arr = Array.new
+
+    answer_arr = Opinion.where(question_id: q_id, tag_id: t_id).pluck('DISTINCT user_id')
+
+    answer_arr.each do |a|
+      current = Location.where(user_id: a)[0]
+
+      if((current.country != nil || current.province != nil || current.city != nil) && (decimals(current.latitude) > 1 || decimals(current.longitude) > 1))
+        value = [current.latitude, current.longitude]
+        loc_arr.push(value)
+      end
+    end
+
+    return loc_arr
+  end
+
   def decimals(a)
     num = 0
     if (a != nil)

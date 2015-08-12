@@ -37,7 +37,13 @@
         });
       <% end %>
      <% else %>
-     <%Opinion.where(question_id: question.id).first.nil?%>
+     
+       <%  t_id = t_id
+           opinion = Opinion.new
+           loc_arr = opinion.user_lat_long_tag(question.id, t_id)
+       %>
+       <% puts "--------!!!!"
+       puts t_id%>
       var mapOptions = {
         zoom: 4,
         center: new google.maps.LatLng(41.850033, -87.6500523)
@@ -45,11 +51,13 @@
 
       var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-      new google.maps.Marker({
-          position: new google.maps.LatLng(41.850033, -87.6500523),
-          map: map,
-          title: 'Hello World!'
-      });
+      <% loc_arr.each do |location| %>
+        new google.maps.Marker({
+            position: new google.maps.LatLng(<%= location[0] %>, <%= location[1] %>),
+            map: map,
+            title: 'Hello World!'
+        });
+      <% end %>
 
     <% end %>
   }
