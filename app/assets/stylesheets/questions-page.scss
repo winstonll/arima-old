@@ -147,6 +147,17 @@
 
 // *Tag input style*
 .tag-prompt {
+
+  .tag-labels {
+     color: red;
+     background-color: white;
+     font-family: "Lucida Grande", "Arial", sans-serif;
+     font-size: 10px;
+     font-weight: bold;
+     text-align: center;
+     white-space: nowrap;
+   }
+
   .checked {
     border: 1px solid #419BF9;
     color: #419BF9;
