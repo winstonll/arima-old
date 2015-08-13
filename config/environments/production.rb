@@ -67,6 +67,8 @@ Arima::Application.configure do
   config.assets.precompile += %w(home.js)
   config.assets.precompile += %w(sidebar-hide.js)
   config.assets.precompile += %w(jquery-ui-slider-pips.js)
+  config.assets.precompile += %w(markerwithlabel.js)
+
 
   config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
 
