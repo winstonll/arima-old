@@ -4,13 +4,13 @@ class Opinion < ActiveRecord::Base
   def user_lat_long_all(q_id)
     loc_arr = Array.new
 
-    answer_arr = Opinion.where(question_id: q_id).pluck('DISTINCT user_id')
+    answer_arr = Opinion.where(question_id: q_id)
 
     answer_arr.each do |a|
-      current = Location.where(user_id: a)[0]
+      current = Location.where(user_id: a.user_id)[0]
 
       if((current.country != nil || current.province != nil || current.city != nil) && (decimals(current.latitude) > 1 || decimals(current.longitude) > 1))
-        value = [current.latitude, current.longitude]
+        value = [[current.latitude, current.longitude], Tag.where(id: a.tag_id).first.label]
         loc_arr.push(value)
       end
     end

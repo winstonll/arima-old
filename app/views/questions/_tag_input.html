@@ -37,9 +37,9 @@
 
       <% loc_arr.each do |location| %>
         var marker = new MarkerWithLabel({
-            position: new google.maps.LatLng(<%= location[0] %>, <%= location[1] %>),
+            position: new google.maps.LatLng(<%= location[0][0] %>, <%= location[0][1] %>),
             map: map,
-            labelContent: "test",
+            labelContent: "<%= location[1] %>",
             labelClass: "tag-labels"
         });
       <% end %>
