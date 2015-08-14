@@ -116,8 +116,8 @@
         for(index; index <= <%= @tag_array.length - 1%>; index++){
           if ($('input[type=radio]')[index].value == "<%= tag %>"){
             $('input[type=radio]')[index].offsetParent.style.color = "white";
-            $('input[type=radio]')[index].offsetParent.style.background = "#419BF9";
-            $('input[type=radio]')[index].offsetParent.setAttribute("class", "checked tag_button_collection");
+            var str_class = "checked" + "-tag_button_collection-" + String(index) + " tag_button_collection"
+            $('input[type=radio]')[index].offsetParent.setAttribute("class", str_class);
 
             $('input[type=radio]')[index].nextElementSibling.src = "/images/blue_heart.png";
             $('input[type=radio]')[index].nextElementSibling.onmouseout = null
@@ -156,9 +156,10 @@
     <div class="options">
 
         <%if !@tag_array.nil?  %>
+            <% counter = 0 %>
 
             <% @tag_array.each do |tag|%>
-            <label class= "tag_button_collection">
+            <label class= "<%= "tag_button_collection-" + counter.to_s %> tag_button_collection ">
               <%= f.radio_button :value, tag.label, :class=>"form-radio"%>
               <%="#{tag.label}"%>
               <% @tag_count = tag.counter %>
@@ -167,8 +168,8 @@
                 <%= @tag_count %>
               </span>
             </label>
+            <% counter = counter + 1 %>
             <%end%>
-
       <% end %>
     </div>
   <% end %>
