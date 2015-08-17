@@ -1,29 +1,22 @@
 
 
 <nav class="nav" role="navigation" id="home-navbar">
-<section class="left">
-    <div id="questions-menu" class="menu-icon">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </section>
-  <section>
-    <div class="back">
-      <%= link_to "#{image_tag("back_arrow.png")} Back".html_safe, :back, {:style=>'color:#00c39c'} %>
-
-
-    </div>
-
-  </section>
-
-  <section class="right">
-    <form class="form-horizontal" role="form" action="/search">
+  <section class="left">
+     <form class="form-horizontal" role="form" action="/search">
       <div class="form-group">
         <div class="col-sm-10">
           <input type="text" name="search_text" class="form-control" id="st" placeholder="Search for questions...">
         </div>
       </div>
     </form>
+  </section>
+
+  <section class="right">
+    <%= link_to 'Sign Up', new_registration_path(resource_name), class: "nav-btn", id: "nav-signup-btn" if !user_signed_in? %>
+    <% if !(user_signed_in? && current_user.username.present?) %>
+            <%= link_to 'Login', new_user_session_path, class: "nav-btn", id: "nav-login-btn" %>
+    <%else%>
+      <%= link_to 'Log Out', destroy_user_session_path, :method => :delete, title: "#{current_user.email}", class: "nav-btn", id: "nav-logout-btn" %>
+    <% end %>
   </section>
 </nav>
