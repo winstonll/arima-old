@@ -73,11 +73,12 @@
 
 .sidebar-footer {
   position: fixed;
+  text-align: center;
   bottom: 0;
   height: 40px;
   width: 100%;
-  font-size: 17px;
-  padding: 10px 0px 10px 50px;
+  font-size: 15px;
+  padding: 10px 0 10px 0;
   color: #A09E9E;
   background-color: #E3E3E3;
 
@@ -99,7 +100,7 @@
             margin-left: 10px;
             width: 25px;
             height: auto;
-            margin-right: 5px;
+            margin-right: 0px;
           }
         }
       }
