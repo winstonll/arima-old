@@ -54,15 +54,24 @@
       <% loc_arr.each do |location| %>
         if(tag_label != -1){
           //initializing the map when the user clicks the question
-          var marker = new MarkerWithLabel({
-              position: new google.maps.LatLng(<%= location[0][0] %>, <%= location[0][1] %>),
-              map: map,
-              labelContent: "<%= location[1] %>",
-              labelClass: "tag-labels"
-          });
+          if((user_lat != <%= location[0][0] %>) && (user_long != <%= location[0][1] %>)){
+            var marker = new MarkerWithLabel({
+                position: new google.maps.LatLng(<%= location[0][0] %>, <%= location[0][1] %>),
+                map: map,
+                labelContent: "<%= location[1] %>",
+                labelClass: "tag-labels"
+            });
+          }else {
+            var marker = new MarkerWithLabel({
+                position: new google.maps.LatLng(<%= location[0][0] %>, <%= location[0][1] %>),
+                map: map,
+                labelContent: "You",
+                labelClass: "tag-labels"
+            });
+          }
         }else{
           //initializing the map because all tags were deselected by the user.
-          if(user_lat != <%= location[0][0] %>){
+          if((user_lat != <%= location[0][0] %>) && (user_long != <%= location[0][1] %>)){
             var marker = new MarkerWithLabel({
                 position: new google.maps.LatLng(<%= location[0][0] %>, <%= location[0][1] %>),
                 map: map,
@@ -75,26 +84,16 @@
     }
   }
 
-  function add_tag(tag_id){
+  function add_tag(){
 
-    map = document.getElementById("map-canvas").gMap;
+    var marker = new MarkerWithLabel({
+       position: new google.maps.LatLng(<%= Location.where(user_id: user_signed_in? ? current_user.id : cookies[:guest]).first.latitude %>, <%= Location.where(user_id: user_signed_in? ? current_user.id : cookies[:guest]).first.longitude %>),
+       map: map,
+       labelContent: "You",
+       labelClass: "tag-labels"
+    });
 
-    if(tag_id == -1){
-      console.log("TEEEEEEEEEEEEEEEEEEST");
-    }
-    else{
-        console.log("jibberish");
-
-
-        var marker = new MarkerWithLabel({
-           position: new google.maps.LatLng(<%= Location.where(user_id: user_signed_in? ? current_user.id : cookies[:guest]).first.latitude %>, <%= Location.where(user_id: user_signed_in? ? current_user.id : cookies[:guest]).first.longitude %>),
-           map: map,
-           labelContent: tag_id,
-           labelClass: "tag-labels"
-        });
-
-        map.setCenter(marker.getPosition());
-    }
+    map.setCenter(marker.getPosition());
 
   }
 

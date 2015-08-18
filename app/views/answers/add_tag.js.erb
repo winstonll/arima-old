@@ -14,7 +14,7 @@
   <%if loc_arr.size == 1 || loc_arr.size == 0 %>
     initialize("<%= @latest_tag.nil? ? -1 : Tag.where(id: @latest_tag.tag_id).first.label %>");
   <%else%>
-    add_tag("<%= @latest_tag.nil? ? -1 : Tag.where(id: @latest_tag.tag_id).first.label %>");
+    add_tag();
   <%end%>
 
 <%end%>
