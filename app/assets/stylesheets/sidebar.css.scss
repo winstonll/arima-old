@@ -1,6 +1,6 @@
 /* Categories sidebar */
 .sidebar {
-  height: 18em;
+  height: 19em;
   width: 80px;
   background-color: transparent;
   text-align: center;
@@ -43,19 +43,19 @@
     }
 
     .profile-link {
-      margin-top: 30px;
+      margin-top: 18px;
       margin-bottom: 10px;
 
       .nav-user-circle {
-        width: 65px;
-        height: 65px;
+        width: 60px;
+        height: 60px;
         border-radius: 50%;
         background-color: #00c39c;
         box-shadow: 2px 2px 1px rgba(0,0,0,0.35);
         display: inline-block;
         color: #fff;
         text-align: center;
-        font-size:50px;
+        font-size:45px;
 
       }
         &:hover {
