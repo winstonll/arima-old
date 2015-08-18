@@ -187,7 +187,7 @@ class AnswersController < ApplicationController
     end
 
     puts "---------------------------------------------"
-
+    puts "ARIMAAAAAAA"
     puts "---------------------------------------------"
 
     respond_to do |format|
