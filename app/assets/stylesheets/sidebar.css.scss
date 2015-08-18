@@ -20,7 +20,6 @@
       img {
         height: 66px;
         width: 66px;
-        margin-top: -15px;
       }
       &:hover {
          transform: scale(1.2);
@@ -29,21 +28,19 @@
     }
 
     .share-image-container{
-      margin-top: 30px;
+      margin-top: 15px;
       margin-bottom: 10px;
       img {
           height: 66px;
           width: 66px;
-          margin-top: -15px;
       }
       &:hover {
          transform: scale(1.2);
-
       }
     }
 
     .profile-link {
-      margin-top: 18px;
+      margin-top: 15px;
       margin-bottom: 10px;
 
       .nav-user-circle {
@@ -60,14 +57,13 @@
       }
         &:hover {
          transform: scale(1.2);
-
         }
 
       #nav-signup-btn {
+
         img {
           height: 66px;
           width: 66px;
-          margin-top: -15px;
         } 
       }
     }
