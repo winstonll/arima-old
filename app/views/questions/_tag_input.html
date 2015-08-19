@@ -7,14 +7,14 @@
 
 <script type="text/javascript">
 
-$(document).ready(function() {
-  <%if Opinion.where(user_id: user_signed_in? ? current_user.id : cookies[:guest], question_id: @question.id).count >= 1%>
-    document.getElementById("map-canvas").style.display = 'block';
-    document.getElementById("blurred-map").style.display = 'none';
+  $(document).ready(function() {
+    <%if Opinion.where(user_id: user_signed_in? ? current_user.id : cookies[:guest], question_id: @question.id).count >= 1%>
+      document.getElementById("map-canvas").style.display = 'block';
+      document.getElementById("blurred-map").style.display = 'none';
 
-    initialize("");
-  <%end%>
-});
+      initialize("");
+    <%end%>
+  });
 
 
   var user_lat = <%= Location.where(user_id: user_signed_in? ? current_user.id : cookies[:guest]).first.latitude %>;
