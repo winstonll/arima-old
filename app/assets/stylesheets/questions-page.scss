@@ -1,11 +1,7 @@
-.thumbnail:hover {
-    position:relative;
-    top:-25px;
-    left:-35px;
-    width:700px;
-    height:auto;
-    display:block;
-    z-index:999;
+.thumbnail {
+  max-width: 90%;
+  height: auto;
+  max-height: 80%;
 }
 
 .meta-title{
