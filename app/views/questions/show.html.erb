@@ -135,7 +135,7 @@ $(document).ready(function() {
   </div>
 <%elsif @question.shared_image && @question.value_type == "tag"%>
   <div style="position: relative;">
-    <center style="background-color: #212124; height: 70%; margin-bottom: 100px;">  <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "380", alt:"image", class: "thumbnail")%> </center>
+    <center style="background-color: #212124; height: 70%; margin-bottom: 100px; padding-top: 50px; padding-bottom: 30px;">  <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "380", alt:"image", class: "thumbnail")%> </center>
     <center style="color: #4A90E2; font-weight: bold; font-size: 18px; margin-top: -.5em;"><%=@question.label %></center>
     <center id="tag_show">
       <%if !@question.shared_image.nil? && @question.shared_image %>
