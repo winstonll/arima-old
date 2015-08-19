@@ -9,6 +9,7 @@
   top: 12em;
   left: 3em;
   z-index: 2;
+  overflow: hidden;
 
   .sidebar-wrapper {
     min-height: 100%;
@@ -64,7 +65,7 @@
         img {
           height: 66px;
           width: 66px;
-        } 
+        }
       }
     }
   }
