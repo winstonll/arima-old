@@ -1,14 +1,18 @@
 .thumbnail {
   max-width: 90%;
   height: auto;
-  max-height: 80%;
+  max-height: 60%;
 }
 
-.image-container{
+.image-frame {
   background-color: #212124;
   margin-bottom: 100px;
   padding-top: 50px;
   padding-bottom: 30px;
+
+  .image-container {
+    
+  }
 }
 
 .meta-title{
