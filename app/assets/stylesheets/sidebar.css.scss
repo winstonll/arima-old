@@ -6,7 +6,7 @@
   text-align: center;
   overflow-y: hidden;
   position: absolute;
-  top: 12em;
+  top: 8em;
   left: 3em;
   z-index: 2;
   overflow: hidden;
@@ -14,6 +14,7 @@
   .sidebar-wrapper {
     min-height: 100%;
     margin: 0 auto -155px;
+
 
     .submit-question-container {
       margin-top: 25px;
@@ -82,6 +83,7 @@
   padding: 10px 0 10px 0;
   color: #A09E9E;
   background-color: #E3E3E3;
+
 
   .sidebar-footer-sections {
     display: inline-block;
