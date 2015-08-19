@@ -186,10 +186,6 @@ class AnswersController < ApplicationController
       end
     end
 
-    puts "---------------------------------------------"
-    puts "ARIMAAAAAAA"
-    puts "---------------------------------------------"
-
     respond_to do |format|
       format.js
     end

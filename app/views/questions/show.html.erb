@@ -10,7 +10,6 @@ $(document).ready(function() {
         $('.modal-button').prop('disabled', !(this.value.length > 0));
       });
       <%if @question.image_link.nil? %>
-        console.log("hi");
         $(".question-title").css("width", "80%");
         $(".answer-counter").css("width", "80%");
       <%end%>
