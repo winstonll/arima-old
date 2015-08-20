@@ -7,19 +7,23 @@
 
   }
 
-  .nav-icons {
-    float:left;
-    margin-right: 20px;
-    margin-top: 28px;
-    margin-left: 5px;
-    margin-bottom: 30px;
-  }
-
+.nav-icons {
+  float:left;
+  margin-right: 20px;
+  margin-top: 28px;
+  margin-left: 5px;
+  margin-bottom: 30px;
+}
 
 .category-title{
   font-weight: bold;
   color: #4a4a4a;
   float: right;
+}
+
+.category-icon{
+  position: relative;
+  bottom: 4px;
 }
 
 .category-title-selected{
@@ -37,8 +41,17 @@
 
 
 #icon-container {
-    margin: 0 0 0 7%;
+    margin: 0 0 0 5%;
     width:90%;
+
+  .arima-icon{
+    position: relative;
+    float: left;
+    top: 27px;
+    margin-right: 1em;
+    color: #4a4a4a;
+    font-weight:bold;
+  }
 }
 
 #feed-container {
