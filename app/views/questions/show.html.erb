@@ -137,7 +137,7 @@ $(document).ready(function() {
   <div class="share-image-container">
     <div class="image-frame">
       <center class="image-container">
-        <center>  <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "380", alt:"image", class: "thumbnail")%> </center>
+        <center>  <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "380", alt:"image", class: "shared-photo")%> </center>
       </center>
       <a href="<%= feed_path %>" class="feed-link"><div id="back-to-feed-button"><%= image_tag("Back-Arrow.png", class: "feed-back-arrow", width: "19", height: "9")%><font class="feed-back-title">Back to Home Feed</font></div></a>
       <section class="share-image-title"><%=@question.label %></section>
