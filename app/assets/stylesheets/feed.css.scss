@@ -13,18 +13,13 @@
     margin-top: 28px;
     margin-left: 5px;
     margin-bottom: 30px;
-
-    &:hover{
-     transform: scale(1.2);
-
-    }
   }
 
 
 .category-title{
   font-weight: bold;
   color: #4a4a4a;
-  margin-top: 7px;
+  float: right;
 }
 
 .category-title-selected{

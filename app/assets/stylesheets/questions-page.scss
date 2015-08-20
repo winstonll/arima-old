@@ -1,11 +1,19 @@
-.thumbnail:hover {
-    position:relative;
-    top:-25px;
-    left:-35px;
-    width:700px;
-    height:auto;
-    display:block;
-    z-index:999;
+.thumbnail {
+
+
+
+}
+
+.image-frame {
+  background-color: #212124;
+  margin-bottom: 100px;
+  padding-top: 50px;
+  padding-bottom: 30px;
+  height: 80vh;
+
+  .image-container {
+    width: 60%;
+  }
 }
 
 .meta-title{
@@ -146,6 +154,22 @@
 }
 
 // *Tag input style*
+
+.tag-labels {
+   color: #419BF9;
+   background-color: #fff;
+   font-family: "Helvetica", sans-serif;
+   font-size: 12px;
+   font-weight: 500;
+   text-align: center;
+   white-space: nowrap;
+   padding:6px;
+   border-radius: 5px;
+   border: 1px solid #419BF9;
+   opacity: .95;
+
+ }
+
 .tag-prompt {
     .checked-tag_button_collection-0 {
         background-color: #F16252 !important;
@@ -180,21 +204,6 @@
     .checked-tag_button_collection-10 {
         background-color: #00C4D0 !important;
     }
-
-  .tag-labels {
-     color: #419BF9;
-     background-color: #fff;
-     font-family: "Helvetica", sans-serif;
-     font-size: 12px;
-     font-weight: 500;
-     text-align: center;
-     white-space: nowrap;
-     padding:6px;
-     border-radius: 5px;
-     border: 1px solid #419BF9;
-     opacity: .95;
-
-   }
 
   .checked {
     border: 1px solid #419BF9;

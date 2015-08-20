@@ -2,43 +2,46 @@
   height: 50px;
   width: 100%;
   line-height: 60px;
-  background-color: #fff;
+  background-color: #161618;
   font-weight: 600;
   padding-left: 35px;
   padding-right: 35px;
-  box-shadow: 0px 2px 4px rgba(191, 191, 191, 0.5);
+
   position: fixed;
   top: 0px;
   z-index: 2;
 
-  .menu-icon {
-    display: none;
-    cursor: pointer;
 
-    div {
-      width: 30px;
-      height: 4px;
-      border-radius: 2px;
-      background-color: #4a4a4a;
-
-      &:nth-child(2) {
-        margin-top: 4px;
-        margin-bottom: 4px;
-      }
-    }
+  .nav-btn {
+    font-size: 12px;
+    color: #fff;
+    border-radius: 4px;
+    transition: all 150ms linear;
+    -webkit-transition: all 150ms linear;
+    -ms-transition: all 150ms linear;
+    -moz-transition: all 150ms linear;
+     margin-right: 12px;
+     margin-left: 4px;
   }
 
-  .back {
-    text-align: center;
-    color: #00C39C;
-    float: left;
-    position: relative;
-    top: -6px;
-
-    img {
-    height: 30px;
-    width: auto;
+  .nav-btn:hover {
+    opacity: 0.8;
+    box-shadow: 0px 2px 2px rgba(100,100,100,0.5);
   }
+
+  #nav-signup-btn {
+    padding: 7px 16px 7px 16px;
+    background-color: #50e3c2;
+    color: #FCFCFC;
+  }
+
+  #nav-login-btn {
+
+  }
+
+  #nav-logout-btn {
+    padding: 7px 21px 7px 21px;
+    background-color: #419BF9;
   }
 
   .left {
@@ -49,15 +52,15 @@
       display: block;
       position: relative;
       top: 8px;
-      right: -30px;
+      right: 10px;
       width: 375px;
       height: 30px;
       padding:6px 15px 6px 30px;
       margin:3px;
       background: url(image_path('search.png')) no-repeat 8px 6px;
-      background-color: #FDFDFD;
+      background-color: #e1e1e1;
       border: 1px solid #D4D4D4;
-      color: #888;
+      color: #6f6f6f;
       font-weight: 400;
   }
 
@@ -80,48 +83,17 @@
   }
 
   .right {
+    position: relative;
     float: right;
-  }
+    bottom: 5px;
 
-  .nav-user-circle {
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    background-color: #00c39c;
-    display: inline-block;
-    color: #fff;
-    line-height: 35px;
-    text-align: center;
-  }
-
-  .logo-container {
-    display: none;
-
-    .nav-logo {
-      max-height: 30px;
-    }
-  }
-
-
-  .nav-links {
-    float: right;
-    margin-bottom: 0px;
-
-    li {
-      list-style-type: none;
-      display: inline-block;
-      margin-right: 10px;
-      z-index: 1000;
-
-      .nav-link {
-        color: #4a4a4a;
-        font-weight: 600;
-        font-size: 15px;
-      }
-
-      .nav-link:hover {
-        opacity: 0.8;
+    #arima-icon {
+      padding-right: 1em;
+      img{
+        width: 35px;
+        height: 35px;
       }
     }
   }
+
 }

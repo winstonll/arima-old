@@ -1,204 +1,19 @@
-<script>
-  $(document).ready(function() {
-    if (window.location.href.indexOf("/feed") != -1) {
-      $('#feed-category-container').addClass('category-inner-container-active');
-    }
-
-    //$("#drop").off("click");
-    $("#down").off("click");
-
-    /**$("#drop").hover(function(){
-        $("#down").css("margin-bottom", "150px");
-        },function(){
-        $("#down").css("margin-bottom", "60px");
-    });**/
-
-    var clicked = false;
-
-    $("#drop").click(function(){
-      if(clicked){
-        clicked = false;
-        $("#down").css("margin-bottom", "60px");
-      }
-      else{
-        clicked = true;
-        $("#down").css("margin-bottom", "150px");
-      }
-    });
-  });
-</script>
-
-<div id="questions-sidebar" class="sidebar expanded">
-  <div class="tse-scrollable">
-    <div class="tse-content">
-      <div class="sidebar-wrapper">
-        <div id="sidebar-mobile-close-toggle">Close sidebar</div>
-        <div class="sidebar-title">
-          <%= link_to image_tag("logo-icon-large.png"), categories_path %>
-        </div>
-
-        <div class="submit-question-container">
-          <%= link_to "Ask Question", new_question_path(:question => true), class: "submit-question-link"%>
-        </div>
-        <div class="share-question-container">
-          <%= link_to "Share Image", new_question_path, class: "share-post-link"%>
-          <hr>
-        </div>
-
-        <!-- Categories -->
-        <div class="sidebar-categories">
-          <!-- Feed Link -->
-          <a href="<%= feed_path %>" class="sidebar-category">
-            <div class="category-container">
-              <div id="feed-category-container" class="category-inner-container">
-                <%= image_tag("feed-icon.png", class: "category-icon" ) %>
-                <span class="category-title">Home Feed</span>
-              </div>
-            </div>
-          </a>
-          <% if cookies[:group_id] != nil && cookies[:group_id] != ""%>
-          <!-- Return to category feed button -->
-            <%= link_to "/cat?group_id=#{cookies[:group_id]}", {:controller => "feed", :action => "category_non_feed", :blah => true}  do %>
-            <%if params[:controller] != "feed"%>
-              <div id="category-return">
-                  <%= image_tag("category-icons/#{cookies[:group_id]}.png", size: "25x25", class: "category-feed-icon" ) %>
-                  <span id="category-title-selected"><%= "Back to Category" %></span>
-              </div>
-            <%end%>
-            <% end %>
-          <% end %>
-          <!-- Profile container -->
-          <div style="position: relative; left: 11px; top: 60px; height: 255px; width: 215px; background-color: #e8e8e8; border: 1px; border-radius: 10px;">
-            <div style="height: 200px; position:absolute; top:20px;">
-              <% if user_signed_in? && current_user.username.present? %>
-              <div style="position: absolute; width:200px; top: 15px;">
-                <ul class="nav-link" style="position: relative; bottom:20px;">
-                  <li class="dropdown sidebar-list">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#" class="nav-link">
-                      <div class="nav-user-circle"><%= current_user.username[0].capitalize %></div>
-                        <span style="font-size: 12px;"> <%= current_user.username %> </span>
-                        <i class="chevron-down"></i>
-                    </a>
-                    <ul class="menu dropdown-menu">
-                      <li class="sidebar-list">
-                        <%= link_to 'Profile', custom_show_path(:username => current_user.username), class: "nav-link" %>
-                      </li>
-                      <li class="sidebar-list">
-                        <%= link_to 'Leaderboard'.html_safe, leaderboard_path, class: "nav-link" %>
-                      </li>
-                      <li class="sidebar-list">
-                        <%= link_to 'Log Out', destroy_user_session_path, :method => :delete, title: "#{current_user.email}", class: "nav-link" %>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-              <span style="color: #e8e8e8;">i</span>
-              <% else %>
-                <!-- Guest label -->
-                <span style="position: absolute; width:210px; bottom:195px; right: 4px; color: #4A90E2; font-weight: 700; font-size: 12px;">Sign Up & View Your Profile:</span>
-              <% end %>
-              <!-- Guest/User Profile information -->
-              <hr style="border-color: #e8e8e8; margin-top: -0.5em;">
-              <span style="position:relative;">
-                <div>
-                  <p style="float: left; position:relative; width:200px; right: 59px; color: #4A90E2; font-weight: 600; font-size: 13px;">Rank:</p>
-                  <p style="float: right; position:relative; right: 26px; color: #4A90E2; font-weight: 600;">
-                  <%if user_signed_in?%>
-                    <%= User.where(id: current_user.id)[0].rank %>
-                  <%else%>
-                    ?
-                  <%end%>
-                  </p>
-                </div>
-                <div style="clear: both;"></div>
-                <div id="textbox">
-                  <p style="float: left; position:relative; left: 24px; color: #4A90E2; font-weight: 600; font-size: 13px;">Points:</p>
-                  <p style="float: right; position:relative; right: 26px; color: #4A90E2; font-weight: 600;">
-                    <%if user_signed_in?%>
-                    <%= User.where(id: current_user.id)[0].points %>
-                    <%else%>
-                    0
-                    <%end%>
-                  </p>
-                </div>
-                <div style="clear: both;"></div>
-                <div id="textbox">
-                  <p style="float: left; position:relative; left: 24px; color: #4A90E2; font-weight: 600; font-size: 13px;">Badges:</p>
-                  <p style="float: right; position:relative; right: 26px; color: #4A90E2; font-weight: 600;">
-                    <%if user_signed_in?%>
-                    <%= Badge.where(user_id: current_user.id).count %>
-                    <%else%>
-                    0
-                    <%end%>
-                  </p>
-                </div>
-                <div style="clear: both;"></div>
-              </span>
-              <% if !(user_signed_in? && current_user.username.present?) %>
-                <!-- Guest progress bar -->
-                <span style="color: #4A90E2; font-size: 14px;">Your first unlock is close!</span>
-                <%= image_tag("guest_progress_bar.png", size: "160x9") %>
-                <div>
-                  <ul class="nav-links">
-                    <div class="button-container">
-                    <li class="sidebar-list" style="position: relative; right: 17px; top: 10px;">
-                      <%= link_to 'Sign Up', new_registration_path(resource_name), class: "nav-btn", id: "nav-signup-btn" if !user_signed_in? %>
-                    </li>
-
-                    <li class="sidebar-list" style="position: relative; left: 71px; bottom: 10px;">
-                      <%= link_to 'Login', new_user_session_path, class: "nav-btn", id: "nav-login-btn" %>
-                    </li>
-                  </ul>
-                </div>
-              <% end %>
-            </div>
-          </div>
-
-
-          <!-- Global Leaderboard -->
-          <div id="leaderboard-container">
-            <div id="leaderboard-content">
-              <div id="leaderboard-title">
-                <%= link_to 'Global Leaderboard Top 5'.html_safe, leaderboard_path %><br>
-              </div>
-              <div id="leaderboard-subtitle">
-                Rank & Username
-                <div id="leaderboard-point-subtitle">
-                  Points
-                </div>
-              </div>
-              <hr id="leaderboard-divider">
-              <% @ranked_registered_users = User.order("points DESC").limit(5) %>
-              <% @counter=1%>
-              <%  @ranked_registered_users.each do |user| %>
-              <tr>
-                <div id="leaderboard-username-counter">
-                  <td ><span style="font-weight: 800; color: #9B9B9B; font-size: 11px;"> <%= @counter%> </span></td>
-                  <% @counter= @counter+1%>
-
-                  <td><span style="color: #4A4A4A; font-size: 13px;">
-                    <% if user.username %>
-                      <%= "#{user.username}" %>
-                    <% else %>
-                      <%= "Unknown User " %>
-                    <% end %>
-                  </span></td>
-                </div>
-                <div id="leaderboard-point" style="color: #4A90E2">
-                  <td >
-                      <%= user.points %>
-                  </td>
-                </div>
-              </tr>
-              <br>
-              <% end %>
-            </div>
-          </div>
-
-          <div class="sidebar-footer-push"></div>
-        </div>
-      </div>
+<div class="sidebar">
+	<div class="sidebar-wrapper">
+	    <div class="submit-question-container">
+	      <%= link_to image_tag("askquestion.png"), new_question_path(:question => true) %>
+	    </div>
+	    <div class="share-image-container">
+	      <%= link_to image_tag("shareimage.png"), new_question_path %>
+		</div>
+	    <div class="profile-link">
+			<% if user_signed_in? && current_user.username.present? %>
+	        	<%= link_to "#{current_user.username[0].capitalize}", custom_show_path(:username => current_user.username), class: "nav-user-circle" %>
+	      <% end %>
+	      <%= link_to image_tag("anonprofile.png"), new_registration_path(resource_name), id: "nav-signup-btn" if !user_signed_in? %>
+		</div>
+	</div>
+  </div>
 
       <!-- Footer -->
       <div class="sidebar-footer">
@@ -212,7 +27,7 @@
         </div>
         <div class="sidebar-footer-sections">
           <ul class="sidebar-footer-list">
-            <li><a href="/terms">Terms &amp; Conditions</a>&sdot;</li>
+            <li><a href="/terms">Terms &amp; Conditions</a> &sdot;</li>
             <li><a href="/privacy">Privacy Policy</a></li>
           </ul>
         </div>
@@ -226,6 +41,3 @@
         </div>
 
       </div>
-    </div>
-  </div>
-</div>
