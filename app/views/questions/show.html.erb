@@ -139,6 +139,7 @@ $(document).ready(function() {
       <center class="image-container" style="margin: 0 auto;">
         <center>  <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "380", alt:"image", class: "thumbnail")%> </center>
       </center>
+      <div id="animated-example" class="animated bounce"><%= image_tag("Scroll-for-More.png")%></div>
     </div>
     <center style="color: #4A90E2; font-weight: bold; font-size: 18px; margin-top: -.5em;"><%=@question.label %></center>
     <center id="tag_show">
