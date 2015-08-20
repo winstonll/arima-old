@@ -141,6 +141,14 @@ $(document).ready(function() {
       </center>
       <a href="<%= feed_path %>" class="feed-link hidden-xs"><div id="back-to-feed-button"><%= image_tag("Back-Arrow.png", class: "feed-back-arrow", width: "19", height: "9")%><font class="feed-back-title">Back to Home Feed</font></div></a>
       <section class="share-image-title"><%=@question.label %></section>
+      <section class="share-icon-container" style="float: right;">
+        <%= render partial: "questions/share", locals: {
+            id: @question.id,
+            url: "#{request.protocol}#{request.host_with_port}" + question_path(@question),
+            title: "#{@question.label[0..70]}...",
+            image: "#{request.protocol}#{request.host_with_port}" + question_path(@question)
+          }%>
+      </section>
       <div id="animated-example" class="animated bounce hidden-xs"><%= image_tag("Scroll-for-More.png", height: "27", width: "83")%></div>
     </div>
     <center id="tag_show">

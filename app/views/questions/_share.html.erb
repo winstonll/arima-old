@@ -6,7 +6,11 @@
    data-media="<%= image %>"
    id="fb-share-<%= id %>"
    class='share-link'>
-  <img class="share-image" src="<%= image_path 'fb-logo.png' %>">
+  <%if Question.where(id: id).first.shared_image %>
+  <img class="share-image" src="<%= image_path 'image-share-facebook.png' %>" height="30" width="30">
+  <%else%>
+  <img class="share-image" src="<%= image_path 'fb-logo.png' %>" height="30" width="30">
+  <%end%>
 </a>
 
 <a href="https://twitter.com/home?status=<%= title %> <%= url %>"
@@ -16,11 +20,19 @@
    data-via="arima_io"
    id="twitter-share-<%= id %>"
    class="share-link">
-  <img class="share-image" src="<%= image_path 'twitter-logo.png' %>">
+  <%if Question.where(id: id).first.shared_image %>
+  <img class="share-image" src="<%= image_path 'image-share-twitter.png' %>" height="30" width="30">
+  <%else%>
+  <img class="share-image" src="<%= image_path 'twitter-logo.png' %>" height="30" width="30">
+  <%end%>
 </a>
 
 <a href="//www.reddit.com/submit"
    onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent(window.location); return false"
    class="share-link">
-   <img class="share-image" src="<%= image_path 'reddit-logo.png' %>">
+   <%if Question.where(id: id).first.shared_image %>
+   <img class="share-image" src="<%= image_path 'image-share-reddit.png' %>" height="30" width="30">
+   <%else%>
+   <img class="share-image" src="<%= image_path 'reddit-logo.png' %>" height="30" width="30">
+   <%end%>
 </a>
