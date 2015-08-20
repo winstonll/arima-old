@@ -141,7 +141,7 @@ $(document).ready(function() {
       </center>
       <a href="<%= feed_path %>" class="feed-link"><div id="back-to-feed-button"><%= image_tag("Back-Arrow.png", class: "feed-back-arrow", width: "19", height: "9")%><font class="feed-back-title">Back to Home Feed</font></div></a>
       <section class="share-image-title"><%=@question.label %></section>
-      <div id="animated-example" class="animated bounce hidden-xs"><%= image_tag("Scroll-for-More.png", height: "38", width: "83")%></div>
+      <div id="animated-example" class="animated bounce hidden-xs"><%= image_tag("Scroll-for-More.png", height: "27", width: "83")%></div>
     </div>
     <center id="tag_show">
       <%if !@question.shared_image.nil? && @question.shared_image %>
