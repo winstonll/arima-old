@@ -245,39 +245,6 @@
  }
 
 .tag-prompt {
-    .checked-tag_button_collection-0 {
-        background-color: #F16252 !important;
-    }
-    .checked-tag_button_collection-1 {
-        background-color: #B5D005 !important;
-    }
-    .checked-tag_button_collection-2 {
-        background-color: #D556D5 !important;
-    }
-    .checked-tag_button_collection-3 {
-        background-color: #2DD29D !important;
-    }
-    .checked-tag_button_collection-4 {
-        background-color: #C086FF !important;
-    }
-    .checked-tag_button_collection-5 {
-        background-color: #F8E650 !important;
-    }
-    .checked-tag_button_collection-6 {
-        background-color: #419BF9 !important;
-    }
-    .checked-tag_button_collection-7 {
-        background-color: #7ACF42 !important;
-    }
-    .checked-tag_button_collection-8 {
-        background-color: #51C3EC !important;
-    }
-    .checked-tag_button_collection-9 {
-        background-color: #F2AC19 !important;
-    }
-    .checked-tag_button_collection-10 {
-        background-color: #00C4D0 !important;
-    }
 
   .checked {
     border: 1px solid #419BF9;
@@ -286,72 +253,7 @@
 
   .options {
     margin-top: 1em;
-
-    .tag_button_collection-0 {
-      background-image: url(image_path('redwave.png'));
-      &:hover {
-        background-position: 100% 50%;
-      }
-    }
-    .tag_button_collection-1 {
-      background-image: url(image_path('yellowgreen.png'));
-      &:hover {
-        background-position: 100% 50%;
-      }
-    }
-    .tag_button_collection-2 {
-      background-image: url(image_path('pinkwave.png'));
-      &:hover {
-        background-position: 100% 50%;
-      }
-    }
-    .tag_button_collection-3 {
-      background-image: url(image_path('aquawave.png'));
-      &:hover {
-        background-position: 100% 50%;
-      }
-    }.tag_button_collection-4 {
-      background-image: url(image_path('purplewave.png'));
-      &:hover {
-        background-position: 100% 50%;
-      }
-    }
-    .tag_button_collection-5 {
-      background-image: url(image_path('yellowave.png'));
-      &:hover {
-        background-position: 100% 50%;
-      }
-    }.tag_button_collection-6 {
-      background-image: url(image_path('bluewave.png'));
-      &:hover {
-        background-position: 100% 50%;
-      }
-    }
-    .tag_button_collection-7 {
-      background-image: url(image_path('greenwave.png'));
-      &:hover {
-        background-position: 100% 50%;
-      }
-    }.tag_button_collection-8 {
-      background-image: url(image_path('lightbluewave.png'));
-      &:hover {
-        background-position: 100% 50%;
-      }
-    }
-    .tag_button_collection-9 {
-      background-image: url(image_path('orangewave.png'));
-      &:hover {
-        background-position: 100% 50%;
-      }
-    }
-    .tag_button_collection-10 {
-      background-image: url(image_path('tealwave.png'));
-      &:hover {
-        background-position: 100% 50%;
-      }
-    }
-
-
+    
     .tag_button_collection {
       top:-20px;
       cursor: pointer;
