@@ -2,6 +2,17 @@
   height: 75vh;
 }
 
+.feed-back-arrow{
+  position:relative;
+  bottom: 2px;
+  margin-right: 7px;
+}
+
+#back-to-feed-button{
+  position:relative;
+  left:50px;
+}
+
 //bounce animation
 .animated {
   -webkit-animation-duration: 1.5s;
@@ -26,7 +37,7 @@
 
 .bounce {
     position:absolute;
-    top: 42%;
+    top: 40%;
     left: 47.5%;
     -webkit-animation-name: bounce;
     animation-name: bounce;

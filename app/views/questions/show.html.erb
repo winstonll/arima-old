@@ -139,7 +139,8 @@ $(document).ready(function() {
       <center class="image-container" style="margin: 0 auto;">
         <center>  <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "380", alt:"image", class: "thumbnail")%> </center>
       </center>
-      <div id="animated-example" class="animated bounce"><%= image_tag("Scroll-for-More.png")%></div>
+      <a href="<%= feed_path %>"><div id="back-to-feed-button"><%= image_tag("Back-Arrow.png", class: "feed-back-arrow")%><font color="white">Back to Home Feed</font></div></a>
+      <div id="animated-example" class="animated bounce"><%= image_tag("Scroll-for-More.png", height: "38", width: "83")%></div>
     </div>
     <center style="color: #4A90E2; font-weight: bold; font-size: 18px; margin-top: -.5em;"><%=@question.label %></center>
     <center id="tag_show">
