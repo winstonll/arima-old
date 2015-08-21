@@ -4112,7 +4112,8 @@ button.close {
     max-width: 276px;
     padding: 1px;
     text-align: left;
-    background-color: #fff;
+    background-color: #419BF9;
+    color:#fff;
     background-clip: padding-box;
     border: 1px solid #ccc;
     border: 1px solid rgba(0, 0, 0, 0.2);
