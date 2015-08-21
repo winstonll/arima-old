@@ -13,6 +13,12 @@
   margin-bottom: 22px;
 }
 
+.shared-photo-mobile {
+  width: 100%;
+  height: auto;
+  margin-bottom: 22px;
+}
+
 .share-image-title {
   color: #fff;
   font-weight: 300;
@@ -61,7 +67,7 @@
 
 .bounce {
     position:absolute;
-    padding-top: 40px;
+    bottom:0;
     left: 47.5%;
     -webkit-animation-name: bounce;
     animation-name: bounce;
@@ -69,6 +75,7 @@
 //end animation
 
 .image-frame {
+  position: relative;
   width: 100%;
   background-color: #212124;
   margin-bottom: 50px;
@@ -76,8 +83,18 @@
   height: 93vh;
 
   .image-container {
+    position:relative;
     margin: 0 auto;
-    width: 60%;
+    width: 70%;
+  }
+
+  .share-icon-container {
+    color: #878686;
+    text-align: center;
+    display: inline-block;
+    margin-bottom: -5em;
+    margin-right: 4em;
+    height: 100px;
   }
 }
 
@@ -236,39 +253,6 @@
  }
 
 .tag-prompt {
-    .checked-tag_button_collection-0 {
-        background-color: #F16252 !important;
-    }
-    .checked-tag_button_collection-1 {
-        background-color: #B5D005 !important;
-    }
-    .checked-tag_button_collection-2 {
-        background-color: #D556D5 !important;
-    }
-    .checked-tag_button_collection-3 {
-        background-color: #2DD29D !important;
-    }
-    .checked-tag_button_collection-4 {
-        background-color: #C086FF !important;
-    }
-    .checked-tag_button_collection-5 {
-        background-color: #F8E650 !important;
-    }
-    .checked-tag_button_collection-6 {
-        background-color: #419BF9 !important;
-    }
-    .checked-tag_button_collection-7 {
-        background-color: #7ACF42 !important;
-    }
-    .checked-tag_button_collection-8 {
-        background-color: #51C3EC !important;
-    }
-    .checked-tag_button_collection-9 {
-        background-color: #F2AC19 !important;
-    }
-    .checked-tag_button_collection-10 {
-        background-color: #00C4D0 !important;
-    }
 
   .checked {
     border: 1px solid #419BF9;
@@ -276,76 +260,17 @@
   }
 
   .options {
-    margin-top: 1em;
-
-    .tag_button_collection-0 {
-      background-image: url(image_path('redwave.png'));
-      &:hover {
-        background-position: 100% 50%;
-      }
-    }
-    .tag_button_collection-1 {
-      background-image: url(image_path('yellowgreen.png'));
-      &:hover {
-        background-position: 100% 50%;
-      }
-    }
-    .tag_button_collection-2 {
-      background-image: url(image_path('pinkwave.png'));
-      &:hover {
-        background-position: 100% 50%;
-      }
-    }
-    .tag_button_collection-3 {
-      background-image: url(image_path('aquawave.png'));
-      &:hover {
-        background-position: 100% 50%;
-      }
-    }.tag_button_collection-4 {
-      background-image: url(image_path('purplewave.png'));
-      &:hover {
-        background-position: 100% 50%;
-      }
-    }
-    .tag_button_collection-5 {
-      background-image: url(image_path('yellowave.png'));
-      &:hover {
-        background-position: 100% 50%;
-      }
-    }.tag_button_collection-6 {
-      background-image: url(image_path('bluewave.png'));
-      &:hover {
-        background-position: 100% 50%;
-      }
-    }
-    .tag_button_collection-7 {
-      background-image: url(image_path('greenwave.png'));
-      &:hover {
-        background-position: 100% 50%;
-      }
-    }.tag_button_collection-8 {
-      background-image: url(image_path('lightbluewave.png'));
-      &:hover {
-        background-position: 100% 50%;
-      }
-    }
-    .tag_button_collection-9 {
-      background-image: url(image_path('orangewave.png'));
-      &:hover {
-        background-position: 100% 50%;
-      }
-    }
-    .tag_button_collection-10 {
-      background-image: url(image_path('tealwave.png'));
-      &:hover {
-        background-position: 100% 50%;
-      }
-    }
+    margin-top: 2em;
+    width: 50em;
+    height: 20em;
+    -webkit-column-count: 2;
 
 
     .tag_button_collection {
-      top:-20px;
+      float: left;
+      display: inline-block;
       cursor: pointer;
+      white-space: nowrap;
 
       input{
         visibility: hidden;
@@ -357,68 +282,53 @@
       }
 
       margin-left: 10px;
-      margin-top: 1px;
-      background-color: #ececec;
-      padding: 8px 30px 5px 30px;
+
+      width: auto;
+      height: 3em;
+      margin-top: 12px;
+      margin-left: 80px;
+      background-color: #fff;
+      padding: 10px 30px 5px 30px;
+      border-color: #ececec;
+      border: solid;
+      border-width: 1px;
       border-radius: 50px;
       position:relative;
       z-index: 1;
       color: #6a6a6a;
       font-weight:500;
 
-      background-position: 0 -60%;
-      background-repeat: repeat-x;
-      transition: background-position 1s ease-out;
-
-      &:hover {
-        border: solid;
-        border-width: 1px;
-        border-color: #419BF9;
-        color: white;
-      }
-
 
       .tag-count{
         position: relative;
-        float: right;
-        left: 19.5px;
-        top: 1px;
-        z-index: 2;
+        float: left;
+        right: 2em;
+        top: 4px;
         color: #6a6a6a;
-        font-size: 12px;
+        font-size: 15px;
         font-weight: 700;
-      }
-
-      .grey-heart{
-        position: relative;
-        float: right;
-        left: 21px;
-        margin-left:-20px;
-        top:-2px;
-        width: 2.2em;
-        z-index: 1;
 
       }
-      .blue-heart{
+
+      .grey-up{
         position: relative;
-        float: right;
-        left: 21px;
-        margin-left:-20px;
-        top:-2px;
-        width: 2.2em;
-        z-index: 1;
+        float: left;
+        right: 17px;
+        bottom: 4px;
+        width: 15px;
+
+      }
+      .blue-up{
+        position: relative;
+        float: left;
+        right: 17px;
+        bottom: 4px;
+        width: 15px;
 
       }
     }
 
   }
-
-  #otherInput {
-    position: relative;
-    top:5px;
-    background-color: #419BF9;
-    border-radius: 50px;
-    width: 35em;
 
     #otherInputBox {
       input:focus {
@@ -432,10 +342,9 @@
         background: url(image_path('add_tag_inactive.png'));
         background-size: 28px 28px;
         position: relative;
+        left: 145px;
         display: inline;
-        float: right;
         bottom: 32px;
-        right: 4px;
 
         &:hover {
           background: url(image_path('add_tag_hover.png'));
@@ -450,25 +359,24 @@
         width: 240px;
       }
       .new-tag {
-        float: left;
-        color: white;
-        font-weight: normal;
-        padding-top: 8px;
-        padding-left: 10px;
-        padding-right: 5px;
+        color: #7ed321;
+        font-weight: bold;
+        font-size: 18px;
       }
       .other-input-text {
         height: 32px;
-        width: 417px;
+        width: 317px;
         font-size: 12px;
         background-color: #fff;
         resize: none;
-        border: none;
+        border: solid;
+        border-color: #ececec;
+        border: solid;
+        border-width: 1px;
         padding: 10px 20px 0px 20px;
-        border-radius: 70px;
+        border-radius: 50px;
         padding-left: 13px;
         padding-bottom: 7px;
-        border-color: #4A90E2;
         margin-top:2px;
 
       }
@@ -493,7 +401,7 @@
          bottom: 1px;
       }
     }
-  }
+
 }
 
 //Questions show page
