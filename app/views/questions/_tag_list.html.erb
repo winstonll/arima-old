@@ -26,7 +26,7 @@ $(document).ready(function() {
   %>
 
   $('input[type=radio]').not(':checked').parent().removeClass('checked'); //Remove checked class from all other radios that are not checked
-  $('input[type=radio]').not(':checked').siblings().removeClass('checked').css("color", "#6a6a6a");
+  $('input[type=radio]').not(':checked').siblings().removeClass('checked').css("color", "#4a4a4a");
 
   <%if !@liked_tag_array.nil?%>
     <%@liked_tag_array.each do |tag|%>
@@ -49,8 +49,26 @@ $(document).ready(function() {
 
   $('input[type=radio]').on('change', function() {
     $(this).closest("form").submit();
-
   });
+
+  $('.new-tag-submit').prop('disabled', true);
+  $('#other').keyup(function() {
+   inspectAllInputFields();
+  });
+  function inspectAllInputFields(){
+     var count = 0;
+     $('#other').each(function(i){
+       if( $(this).val() === '') {
+           count++;
+        }
+        if(count == 0){
+          $('.new-tag-submit').prop('disabled', false);
+        }else {
+          $('.new-tag-submit').prop('disabled', true);
+        }
+
+    });
+  }
 
 });
 
@@ -68,7 +86,7 @@ $(document).ready(function() {
         <%if !@tag_array.nil?  %>
 
             <% @tag_array.each do |tag|%>
-            <label class= "tag_button_collection ">
+            <label class= "tag_button_collection" >
               <%= f.radio_button :value, tag.label, :class=>"form-radio"%>
               <%="#{tag.label}"%>
               <% @tag_count = tag.counter %>

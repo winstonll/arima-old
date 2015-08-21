@@ -252,17 +252,30 @@
   }
 
   .options {
-    margin-top: 2em;
-    width: 50em;
+    position: relative;
+    width: 60em;
     height: 20em;
-    -webkit-column-count: 2;
-    
+    display: inline-block;
+    vertical-align: top;
+    right: 8em;
 
     .tag_button_collection {
+      position: relative;
       float: left;
-      display: inline-block;
       cursor: pointer;
       white-space: nowrap;
+      margin-left: 15em;
+      margin-right: 5em;
+      margin-top: 5px;
+      height: 20px;
+      background-color: #fff;
+      padding: 12px 30px 25px 30px;
+      color: #4a4a4a;
+      font-weight:500;
+      border: solid;
+      border-width: 1px;
+      border-radius: 50px;
+      border-color: #979797;
 
       input{
         visibility: hidden;
@@ -273,29 +286,11 @@
         color: #6a6a6a;
       }
 
-      margin-left: 10px;
-      
-      width: auto;
-      height: 3em;
-      margin-top: 12px;
-      margin-left: 80px;
-      background-color: #fff;
-      padding: 10px 30px 5px 30px;
-      border-color: #ececec;
-      border: solid;
-      border-width: 1px;
-      border-radius: 50px;
-      position:relative;
-      z-index: 1;
-      color: #6a6a6a;
-      font-weight:500;
-
 
       .tag-count{
         position: relative;
         float: left;
-        right: 2em;
-        top: 4px;
+        right: 16px;
         color: #6a6a6a;
         font-size: 15px;
         font-weight: 700;
@@ -305,17 +300,17 @@
       .grey-up{
         position: relative;
         float: left;
-        right: 17px;
-        bottom: 4px;
-        width: 15px;
+        right: 5px;
+        bottom: 6px;
+        width: 13px;
 
       }
       .blue-up{
         position: relative;
         float: left;
-        right: 17px;
-        bottom: 4px;
-        width: 15px;
+        right: 5px;
+        bottom: 6px;
+        width: 13px;
 
       }
     }
@@ -334,11 +329,11 @@
         background: url(image_path('add_tag_inactive.png'));
         background-size: 28px 28px;
         position: relative;
-        left: 145px;
+        left: 240px;
         display: inline;
         bottom: 32px;
 
-        &:hover {
+        &:disabled {
           background: url(image_path('add_tag_hover.png'));
           background-size: 28px 28px;
         }
@@ -362,7 +357,7 @@
         background-color: #fff;
         resize: none;
         border: solid;
-        border-color: #ececec;
+        border-color: #c4c4c4!important;
         border: solid;
         border-width: 1px;
         padding: 10px 20px 0px 20px;
@@ -370,6 +365,7 @@
         padding-left: 13px;
         padding-bottom: 7px;
         margin-top:2px;
+        margin-left: 14em;
 
       }
 

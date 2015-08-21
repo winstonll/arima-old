@@ -143,7 +143,7 @@ $(document).ready(function() {
       <section class="share-image-title"><%=@question.label %></section>
       <div id="animated-example" class="animated bounce hidden-xs"><%= image_tag("Scroll-for-More.png", height: "27", width: "83")%></div>
     </div>
-    <div style="color: #7ed321; font-weight: bold; font-size: 18px; text-align: center;">Why people like this image</div>
+    <div style="color: #7ed321; font-weight: bold; font-size: 18px; text-align: center; margin-right: 25em;">Why people like this image</div>
     <center id="tag_show">
       <%if !@question.shared_image.nil? && @question.shared_image %>
         <%= render partial: 'questions/tag_input', locals: { question: @question, answer: @answer} %>
