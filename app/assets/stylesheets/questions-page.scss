@@ -252,11 +252,17 @@
   }
 
   .options {
-    margin-top: 1em;
+    margin-top: 2em;
+    width: 50em;
+    height: 20em;
+    -webkit-column-count: 2;
+    
 
     .tag_button_collection {
-      top:-20px;
+      float: left;
+      display: inline-block;
       cursor: pointer;
+      white-space: nowrap;
 
       input{
         visibility: hidden;
@@ -268,9 +274,13 @@
       }
 
       margin-left: 10px;
-      margin-top: 1px;
-      background-color: white;
-      padding: 8px 30px 5px 30px;
+      
+      width: auto;
+      height: 3em;
+      margin-top: 12px;
+      margin-left: 80px;
+      background-color: #fff;
+      padding: 10px 30px 5px 30px;
       border-color: #ececec;
       border: solid;
       border-width: 1px;
@@ -283,33 +293,29 @@
 
       .tag-count{
         position: relative;
-        float: right;
-        left: 19.5px;
-        top: 1px;
-        z-index: 2;
+        float: left;
+        right: 2em;
+        top: 4px;
         color: #6a6a6a;
-        font-size: 12px;
+        font-size: 15px;
         font-weight: 700;
+
       }
 
       .grey-up{
         position: relative;
-        float: right;
-        left: 21px;
-        margin-left:-20px;
-        top:-2px;
-        width: 2.2em;
-        z-index: 1;
+        float: left;
+        right: 17px;
+        bottom: 4px;
+        width: 15px;
 
       }
       .blue-up{
         position: relative;
-        float: right;
-        left: 21px;
-        margin-left:-20px;
-        top:-2px;
-        width: 2.2em;
-        z-index: 1;
+        float: left;
+        right: 17px;
+        bottom: 4px;
+        width: 15px;
 
       }
     }
@@ -328,7 +334,7 @@
         background: url(image_path('add_tag_inactive.png'));
         background-size: 28px 28px;
         position: relative;
-        left: 142px;
+        left: 145px;
         display: inline;
         bottom: 32px;
 

@@ -62,17 +62,9 @@ $(document).ready(function() {
 
 <div class="tag-prompt">
   <%= simple_form_for @answer,:url => {:action => "add_tag", :controller => "answers"}, class: "form-inline", role: "form", html: {novalidate: true}, :remote => true do |f| %>
-    
-      <div id="otherInputBox">
-        <%= hidden_field_tag 'question_id', @question.id %>
-        <%= f.label "Add a one liner", class: "new-tag" %>
-        <%= f.input(:options_for_collection, label: false,input_html:{ value: nil, placeholder: "What do you think of this image?", class: "other-input-text", id:"other"}) %>
-        <%= f.submit "", class: "new-tag-submit" %>
-      </div>
-    
+   
     <br>
     <div class="options">
-
         <%if !@tag_array.nil?  %>
 
             <% @tag_array.each do |tag|%>
@@ -88,6 +80,14 @@ $(document).ready(function() {
             <%end%>
       <% end %>
     </div>
+    <br>
+    <div id="otherInputBox">
+        <%= hidden_field_tag 'question_id', @question.id %>
+        <%= f.label "Add a one liner", class: "new-tag" %>
+        <%= f.input(:options_for_collection, label: false,input_html:{ value: nil, placeholder: "What do you think of this image?", class: "other-input-text", id:"other"}) %>
+        <%= f.submit "", class: "new-tag-submit" %>
+    </div>
+    <br>
   <% end %>
 
 </div>
