@@ -256,18 +256,16 @@
   .options {
     position: relative;
     width: 60em;
-    height: 20em;
     display: inline-block;
-    vertical-align: top;
     right: 8em;
 
     .tag_button_collection {
       position: relative;
       float: left;
+      clear: right;
       cursor: pointer;
       white-space: nowrap;
       margin-left: 15em;
-      margin-right: 5em;
       margin-top: 5px;
       height: 20px;
       background-color: #fff;
@@ -320,6 +318,9 @@
   }
 
     #otherInputBox {
+      display: inline-block;
+      position: relative;
+      right: 270px;
       input:focus {
         outline: none;
       }
