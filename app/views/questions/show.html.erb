@@ -1,5 +1,9 @@
 <% content_for :title, @question.label %>
 
+<%= javascript_include_tag "lightbox2-master/dist/js/lightbox" %>
+<%= stylesheet_link_tag "lightbox2-master/dist/css/lightbox" %>
+
+
 <script>
 $(document).ready(function() {
       $('#answer_value').on('change', function() {
@@ -137,8 +141,12 @@ $(document).ready(function() {
   <div class="share-image-container">
     <div class="image-frame">
       <center class="image-container">
-        <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "380", alt:"image", class: "shared-photo hidden-xs")%>
-        <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "380", alt:"image", class: "shared-photo-mobile visible-xs")%>
+        <%if !@question.image_link.nil?%>
+          <a href="<%= image_path("/system/uploads/" + @question.image_link)%>" data-lightbox="<%= @question.image_link%>" data-title="<%=@question.label%>">
+          </a>
+            <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "380", alt:"image", class: "shared-photo hidden-xs")%>
+            <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "380", alt:"image", class: "shared-photo-mobile visible-xs")%>
+        <%end%>
       </center>
       <a href="<%= feed_path %>" class="feed-link hidden-xs"><div id="back-to-feed-button"><%= image_tag("Back-Arrow.png", class: "feed-back-arrow", width: "19", height: "9")%><font class="feed-back-title">Back to Home Feed</font></div></a>
       <section class="share-image-title"><%=@question.label %></section>
