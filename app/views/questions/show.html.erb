@@ -137,7 +137,8 @@ $(document).ready(function() {
   <div class="share-image-container">
     <div class="image-frame">
       <center class="image-container">
-        <center>  <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "380", alt:"image", class: "shared-photo")%> </center>
+        <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "380", alt:"image", class: "shared-photo hidden-xs")%>
+        <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "380", alt:"image", class: "shared-photo-mobile visible-xs")%>
       </center>
       <a href="<%= feed_path %>" class="feed-link hidden-xs"><div id="back-to-feed-button"><%= image_tag("Back-Arrow.png", class: "feed-back-arrow", width: "19", height: "9")%><font class="feed-back-title">Back to Home Feed</font></div></a>
       <section class="share-image-title"><%=@question.label %></section>
@@ -149,7 +150,7 @@ $(document).ready(function() {
             image: "#{request.protocol}#{request.host_with_port}" + question_path(@question)
           }%>
       </section>
-      <div id="animated-example" class="animated bounce hidden-xs"><%= image_tag("Scroll-for-More.png", height: "27", width: "83")%></div>
+      <div id="animated-example" class="animated bounce"><%= image_tag("Scroll-for-More.png", height: "27", width: "83")%></div>
     </div>
     <div style="color: #7ed321; font-weight: bold; font-size: 18px; text-align: center;">Why people like this image</div>
     <center id="tag_show">
