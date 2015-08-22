@@ -318,6 +318,12 @@ class QuestionsController < ApplicationController
           elsif counter == 3
             submission = Tag.new(label: tag, question_id: @subquestion.id, counter: 2)
             submission.save!
+
+            submission_opinion = Opinion.new(question_id: @subquestion.id, user_id: 515, tag_id: submission.id)
+            submission_opinion.save!
+
+            submission_opinion = Opinion.new(question_id: @subquestion.id, user_id: 2061, tag_id: submission.id)
+            submission_opinion.save!
           end
           counter = counter + 1;
         end
@@ -327,12 +333,6 @@ class QuestionsController < ApplicationController
             submission.save!
 
             submission_opinion = Opinion.new(question_id: @subquestion.id, user_id: current_user.id, tag_id: submission.id)
-            submission_opinion.save!
-
-            submission_opinion = Opinion.new(question_id: @subquestion.id, user_id: 515, tag_id: submission.id)
-            submission_opinion.save!
-
-            submission_opinion = Opinion.new(question_id: @subquestion.id, user_id: 2061, tag_id: submission.id)
             submission_opinion.save!
         end
       end
