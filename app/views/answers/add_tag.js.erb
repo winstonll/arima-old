@@ -10,13 +10,22 @@
     opinion = Opinion.new
     loc_arr = opinion.user_lat_long_all(@question.id)
   %>
-
-  <%if loc_arr.size == 1 || loc_arr.size == 0 %>
+  <% @voted = Opinion.where(user_id: user_signed_in? ? current_user.id : cookies[:guest], question_id: @question.id).count == 1%>
+  <% @clean = Opinion.where(user_id: user_signed_in? ? current_user.id : cookies[:guest], question_id: @question.id).count == 0%>
+  <% puts @voted%>
+  <% puts @clean%>
+  <%if @voted %>
+    <%puts "test"%>
     document.getElementById("map-canvas").style.display = 'block';
     document.getElementById("blurred-map").style.display = 'none';
 
-    initialize("<%= @latest_tag.nil? ? -1 : Tag.where(id: @latest_tag.tag_id).first.label %>");
+    //initialize("<%= @latest_tag.nil? ? -1 : Tag.where(id: @latest_tag.tag_id).first.label %>");
+    initialize("");
+    add_tag();
+  <%elsif @clean%>
+    initialize(-1);
   <%else%>
+  <%puts "test1"%>
     add_tag();
   <%end%>
 
