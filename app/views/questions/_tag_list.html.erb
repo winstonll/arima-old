@@ -105,7 +105,7 @@ $(document).ready(function() {
     <div id="otherInputBox">
         <%= hidden_field_tag 'question_id', @question.id %>
         <%= f.label "Add a one liner:", class: "new-tag" %>
-        <%= f.input(:options_for_collection, label: false,input_html:{ 'data-toggle'=>"popover", 'data-trigger'=>"hover", 'data-placement'=>"top", 'data-content'=>"ex. Love it, Meh, or Awesome picture", value: nil, placeholder: "What do you think of this image?", class: "other-input-text", id:"other"}) %>
+        <%= f.input(:options_for_collection, label: false,input_html:{ 'data-toggle'=>"popover", 'data-trigger'=>"hover", 'data-placement'=>"top", 'data-content'=>"ex. Great composition, or Fantastic scenery", value: nil, placeholder: "What do you think of this image?", class: "other-input-text", id:"other"}) %>
         <%= f.submit "", class: "new-tag-submit" %>
     </div>
     <br>
