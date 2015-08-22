@@ -10,6 +10,6 @@ every :day, at: '12pm' do
 	rake "arima:email_inactive_users"
 end
 
-every 1.day, :at => '12:00 pm' do
-  rake "arima:calculate_rank"
-end
+#every 1.day, :at => '12:00 pm' do
+#  rake "arima:calculate_rank"
+#end
