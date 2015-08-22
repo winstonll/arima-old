@@ -11,6 +11,10 @@
 .shared-photo {
   height: 75vh;
   margin-bottom: 22px;
+
+  cursor: -moz-zoom-in;
+  cursor: -webkit-zoom-in;
+  cursor: zoom-in;
 }
 
 .shared-photo-mobile {

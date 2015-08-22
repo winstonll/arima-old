@@ -2,12 +2,6 @@
 
 
 <script>
-lightbox.option({
-  'resizeDuration': 200,
-  'wrapAround': true,
-  'fitImagesInViewport': true,
-})
-
 $(document).ready(function() {
       $('#answer_value').on('change', function() {
         $('.modal-button').prop('disabled', !(this.value.length > 0));
