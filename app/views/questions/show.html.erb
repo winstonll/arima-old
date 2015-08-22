@@ -1,20 +1,26 @@
 <% content_for :title, @question.label %>
 
+<%= stylesheet_link_tag "featherlight.min.css" %>
+<%= javascript_include_tag "featherlight" %>
 
 <script>
 $(document).ready(function() {
-      $('#answer_value').on('change', function() {
-        $('.modal-button').prop('disabled', !(this.value.length > 0));
-      });
+  $(window).scroll(function() {
+    document.getElementById("animated-example").style.display = 'none';
+  });
 
-      $('#answer_value').on('input', function() {
-        $('.modal-button').prop('disabled', !(this.value.length > 0));
-      });
-      <%if @question.image_link.nil? %>
-        $(".question-title").css("width", "80%");
-        $(".answer-counter").css("width", "80%");
-      <%end%>
-    });
+  $('#answer_value').on('change', function() {
+    $('.modal-button').prop('disabled', !(this.value.length > 0));
+  });
+
+  $('#answer_value').on('input', function() {
+    $('.modal-button').prop('disabled', !(this.value.length > 0));
+  });
+  <%if @question.image_link.nil? %>
+    $(".question-title").css("width", "80%");
+    $(".answer-counter").css("width", "80%");
+  <%end%>
+});
 </script>
 
 <div id="fb-root"></div>
@@ -139,8 +145,8 @@ $(document).ready(function() {
     <div class="image-frame">
       <center class="image-container">
         <%if !@question.image_link.nil?%>
-          <a href="<%= image_path("/system/uploads/" + @question.image_link)%>" data-featherlight="#mylightbox"  data-title="<%=@question.label%>">
-            <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "380", alt:"image", class: "shared-photo hidden-xs")%>
+          <a href="#" data-featherlight="#lightbox">
+            <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "380", alt:"image", class: "shared-photo hidden-xs", id: "lightbox") %>
             <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "380", alt:"image", class: "shared-photo-mobile visible-xs")%>
           </a>
         <%end%>

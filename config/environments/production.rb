@@ -61,6 +61,7 @@ Arima::Application.configure do
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
   config.assets.precompile += %w(about.css)
   config.assets.precompile += %w(jquery-ui-slider-pips.css)
+  config.assets.precompile += %w(featherlight.min.css)
 
   config.assets.precompile += %w(home.js)
 
@@ -68,6 +69,7 @@ Arima::Application.configure do
   config.assets.precompile += %w(sidebar-hide.js)
   config.assets.precompile += %w(jquery-ui-slider-pips.js)
   config.assets.precompile += %w(markerwithlabel.js)
+  config.assets.precompile += %w(featherlight.js)
 
 
   config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
