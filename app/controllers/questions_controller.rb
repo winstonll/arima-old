@@ -254,7 +254,7 @@ class QuestionsController < ApplicationController
       GroupsQuestion.create(group_id: params[:group_id], question_id: @subquestion.id)
 
       @tags = @answerboxes.split("|")
-      asd
+
       if current_user.id == 9892 || current_user.id == 2506
         counter = 1
         @tags.each do |tag|
