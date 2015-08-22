@@ -56,6 +56,8 @@ gem 'twitter-typeahead-rails'
 gem 'whenever', require: false
 gem 'friendly_id', '~> 5.0.4'
 
+gem 'featherlight'
+
 group :production do
   # because capistrano fails otherwise
   # http://stackoverflow.com/questions/21560297/capistrano-sshauthenticationfailed-not-prompting-for-password
