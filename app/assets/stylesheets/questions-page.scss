@@ -283,9 +283,8 @@
       cursor: pointer;
       margin-left: 15em;
       margin-top: 5px;
-      height: 20px;
       background-color: #fff;
-      padding: 12px 22px 25px 22px;
+      padding: 8px 22px 8px 22px;
       color: #4a4a4a;
       font-weight:500;
       border: solid;
@@ -307,26 +306,27 @@
         position: relative;
         float: left;
         right: 16px;
+        top: 5px;
         color: #6a6a6a;
-        font-size: 15px;
-        font-weight: 700;
+        font-size: 13px;
+        font-weight: 600;
 
       }
 
       .grey-up{
         position: relative;
         float: left;
-        right: 5px;
-        bottom: 6px;
-        width: 13px;
+        right: 6px;
+        bottom: 1px;
+        width: 12px;
 
       }
       .blue-up{
         position: relative;
         float: left;
-        right: 5px;
-        bottom: 6px;
-        width: 13px;
+        right: 6px;
+        bottom: 1px;
+        width: 12px;
 
       }
     }
@@ -349,9 +349,9 @@
         background: url(image_path('add_tag_inactive.png'));
         background-size: 28px 28px;
         position: relative;
-        left: 228px;
+        left: 233px;
         display: inline;
-        bottom: 32px;
+        bottom: 31px;
 
         &:disabled {
           background: url(image_path('add_tag_hover.png'));
@@ -375,9 +375,9 @@
         font-size: 18px;
       }
       .other-input-text {
-        height: 32px;
+        height: 35px;
         width: 317px;
-        font-size: 12px;
+        font-size: 14px;
         background-color: #fff;
         resize: none;
         border: solid;
@@ -386,10 +386,10 @@
         border-width: 1px;
         padding: 10px 20px 0px 20px;
         border-radius: 50px;
-        padding-left: 13px;
+        padding-left: 15px;
         padding-bottom: 7px;
         margin-top:2px;
-        margin-left: 14em;
+        margin-left: 13em;
 
         .popover{
           width:200px;
