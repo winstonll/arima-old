@@ -5,6 +5,10 @@
 
 <script>
 $(document).ready(function() {
+  if(screen.width <= 800) {
+    window.location = "http://thearima.com/system/uploads/<%= @question.image_link%>";
+  }
+
   $(window).scroll(function() {
     document.getElementById("animated-example").style.display = 'none';
   });
@@ -147,9 +151,11 @@ $(document).ready(function() {
         <%if !@question.image_link.nil?%>
           <a href="#" data-featherlight="#lightbox">
             <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "380", alt:"image", class: "shared-photo hidden-xs", id: "lightbox") %>
-            <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "380", alt:"image", class: "shared-photo-mobile visible-xs")%>
           </a>
         <%end%>
+      </center>
+      <center class="mobile-image-container">
+        <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "380", alt:"image", class: "shared-photo-mobile visible-xs")%>
       </center>
       <a href="<%= feed_path %>" class="feed-link hidden-xs"><div id="back-to-feed-button"><%= image_tag("Back-Arrow.png", class: "feed-back-arrow", width: "19", height: "9")%><font class="feed-back-title">Back to Home Feed</font></div></a>
       <section class="share-image-title"><%=@question.label %></section>
@@ -162,9 +168,9 @@ $(document).ready(function() {
           }%>
       </section>
       <div id="animated-example" class="animated bounce bounce-center hidden-xs"><%= image_tag("Scroll-for-More.png", height: "27", width: "83")%></div>
-      <div id="animated-example" class="animated bounce bounce-center-mobile visible-xs"><%= image_tag("Scroll-for-More.png", height: "27", width: "83")%></div>
+      <!--<div id="animated-example" class="animated bounce bounce-center-mobile visible-xs"><%#= image_tag("Scroll-for-More.png", height: "27", width: "83")%></div>-->
     </div>
-    <div style="color: #7ed321; font-weight: 500; font-size: 18px; text-align: center; margin-right: 21.5em; margin-bottom: -.7em;">What people say about this image:</div>
+    <div style="color: #7ed321; font-weight: 500; font-size: 18px; text-align: center; margin-right: 21.5em; margin-bottom: -.7em;" class="hidden-xs">What people say about this image:</div>
     <center id="tag_show">
       <%if !@question.shared_image.nil? && @question.shared_image %>
         <%= render partial: 'questions/tag_input', locals: { question: @question, answer: @answer} %>

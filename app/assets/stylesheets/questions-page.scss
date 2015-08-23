@@ -18,10 +18,11 @@
 }
 
 .shared-photo-mobile {
-  width: 100%;
+  width: 95%;
   height: auto;
   margin-bottom: 22px;
 }
+
 
 .share-image-title {
   color: #fff;
@@ -97,6 +98,10 @@
     position: relative;
     margin: 0 auto;
     width: 60%;
+  }
+
+  .mobile-image-container {
+    width: 100%;
   }
 
   .share-icon-container {
