@@ -282,7 +282,7 @@
       position: relative;
       cursor: pointer;
       margin-left: 15em;
-      margin-top: -4px;
+      margin-top: 6px;
       height: 20px;
       background-color: #fff;
       padding: 12px 22px 25px 22px;
@@ -349,7 +349,7 @@
         background: url(image_path('add_tag_inactive.png'));
         background-size: 28px 28px;
         position: relative;
-        left: 225px;
+        left: 232px;
         display: inline;
         bottom: 31px;
 
@@ -377,7 +377,7 @@
       .other-input-text {
         height: 35px;
         width: 317px;
-        font-size: 12px;
+        font-size: 14px;
         background-color: #fff;
         resize: none;
         border: solid;
@@ -386,10 +386,10 @@
         border-width: 1px;
         padding: 10px 20px 0px 20px;
         border-radius: 50px;
-        padding-left: 13px;
+        padding-left: 15px;
         padding-bottom: 7px;
         margin-top:2px;
-        margin-left: 14em;
+        margin-left: 13em;
 
         .popover{
           width:200px;
