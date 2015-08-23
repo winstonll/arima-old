@@ -356,6 +356,10 @@
         &:disabled {
           background: url(image_path('add_tag_hover.png'));
           background-size: 28px 28px;
+          &:hover {
+            background: url(image_path('add_tag_inactive.png'));
+            background-size: 28px 28px;
+          }
         }
       }
 

@@ -64,6 +64,7 @@ $(document).ready(function() {
         }
         if(count == 0){
           $('.new-tag-submit').prop('disabled', false);
+          $('#other').popover('hide');
         }else {
           $('.new-tag-submit').prop('disabled', true);
         }
@@ -71,7 +72,7 @@ $(document).ready(function() {
     });
   }
 
-  $('#other').popover();
+  $('#other').popover('show');
 
 });
 

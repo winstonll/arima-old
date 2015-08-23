@@ -4109,7 +4109,7 @@ button.close {
     left: 0;
     z-index: 1010;
     display: none;
-    max-width: 276px;
+    max-width: 330px;
     padding: 1px;
     text-align: left;
     background-color: #419BF9;
@@ -4121,6 +4121,7 @@ button.close {
     -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     white-space: normal;
+    height: 40px;
 }
 .popover.top {
     margin-top: -10px;
@@ -4162,7 +4163,7 @@ button.close {
     border-width: 10px;
     content: ""}
 .popover.top>.arrow {
-    left: 50%;
+    left: 10%;
     margin-left: -11px;
     border-bottom-width: 0;
     border-top-color: #999;
@@ -4174,7 +4175,7 @@ button.close {
     bottom: 1px;
     margin-left: -10px;
     border-bottom-width: 0;
-    border-top-color: #fff;
+    border-top-color: #419BF9;
 }
 .popover.right>.arrow {
     top: 50%;
