@@ -283,9 +283,8 @@
       cursor: pointer;
       margin-left: 15em;
       margin-top: 5px;
-      height: 20px;
       background-color: #fff;
-      padding: 12px 22px 25px 22px;
+      padding: 8px 22px 8px 22px;
       color: #4a4a4a;
       font-weight:500;
       border: solid;
@@ -307,26 +306,27 @@
         position: relative;
         float: left;
         right: 16px;
+        top: 5px;
         color: #6a6a6a;
-        font-size: 15px;
-        font-weight: 700;
+        font-size: 14px;
+        font-weight: 600;
 
       }
 
       .grey-up{
         position: relative;
         float: left;
-        right: 5px;
-        bottom: 6px;
-        width: 13px;
+        right: 6px;
+        bottom: 1px;
+        width: 12px;
 
       }
       .blue-up{
         position: relative;
         float: left;
-        right: 5px;
-        bottom: 6px;
-        width: 13px;
+        right: 6px;
+        bottom: 1px;
+        width: 12px;
 
       }
     }
