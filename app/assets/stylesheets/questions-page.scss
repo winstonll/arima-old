@@ -282,7 +282,7 @@
       position: relative;
       cursor: pointer;
       margin-left: 15em;
-      margin-top: 5px;
+      margin-top: -4px;
       height: 20px;
       background-color: #fff;
       padding: 12px 22px 25px 22px;
@@ -349,9 +349,9 @@
         background: url(image_path('add_tag_inactive.png'));
         background-size: 28px 28px;
         position: relative;
-        left: 228px;
+        left: 225px;
         display: inline;
-        bottom: 32px;
+        bottom: 31px;
 
         &:disabled {
           background: url(image_path('add_tag_hover.png'));
@@ -375,7 +375,7 @@
         font-size: 18px;
       }
       .other-input-text {
-        height: 32px;
+        height: 35px;
         width: 317px;
         font-size: 12px;
         background-color: #fff;
