@@ -179,6 +179,7 @@ class QuestionsController < ApplicationController
 
   # Method that is called when a question is created
   def create
+
     if(!user_signed_in?)
       redirect_to "/users/sign_up"
       return
@@ -217,7 +218,7 @@ class QuestionsController < ApplicationController
     end
 
     @question_image = !params[:image_link].empty?
-
+    @uploaded_image = false
     if(@question_image)
       image_array = params[:image_link].split("/")
       if ((params[:image_link].include? "imgur.com") && image_array.size >= 4)
@@ -239,6 +240,22 @@ class QuestionsController < ApplicationController
       end
     end
 
+    if !params[:question].nil?
+      @question_image = true
+      @uploaded_image = true
+      uploaded_io = params[:question][:image_link]
+      @file_name = "#{SecureRandom.hex[0,5]}.png"
+      File.open(Rails.root.join('public', 'system', 'uploads', @file_name), 'wb') do |file|
+        file.write(uploaded_io.read)
+      end
+    end
+
+    if (params[:shared_image] == "true") && !@question_image
+      redirect_to :back
+      flash[:notice] = "Please upload an image"
+      returni
+    end
+
     if params[:shared_image] == "true" && (params[:submit_question_name].length < 256) && params[:numeric_value] == "false"
 
       @subquestion = Question.create(
@@ -248,7 +265,7 @@ class QuestionsController < ApplicationController
         :value_type => "tag", #params[:numeric_value] == "false" ? "collection" : "quantity"
         :options_for_collection => nil,
         :answer_plus => true,
-        :image_link => @question_image ? image_array[-1] : nil,
+        :image_link => @uploaded_image ? @file_name : image_array[-1],
         :shared_image => params[:shared_image])
 
       GroupsQuestion.create(group_id: params[:group_id], question_id: @subquestion.id)
