@@ -8,21 +8,27 @@
   var rating1;
   var rating2;
   var rating3;
+
   $(function() {
     $('.dial').knob();
   });
-
-  $('#total_button').onclick= function(){
-    console.log('here');
-  };
-
-    var total = (parseInt(rating1) + parseInt(rating2) + parseInt(rating3))/3;
-    total = total.toFixed(1);
 
 </script>
 
 <script>
 $(document).ready(function() {
+
+  document.getElementById("total_button").onclick = calculateTotal;
+
+  function calculateTotal() {
+    rating1 = $('.dial')[0].value;
+    rating2 = $('.dial')[1].value;
+    rating3 = $('.dial')[2].value;
+
+    var total = (parseInt(rating1) + parseInt(rating2) + parseInt(rating3))/3;
+    total = total.toFixed(1);
+  };
+
   if(screen.width <= 800) {
     window.location = "http://thearima.com/system/uploads/<%= @question.image_link%>";
   }
@@ -177,9 +183,9 @@ $(document).ready(function() {
           <input type="text" value="1" class="dial" data-max="10" data-fgColor="#bdec8d" data-width="110" data-height="110">
           <h5 style="color: #bdec8d"> Creativity </h5>
           <input type="text" value="6" class="dial" data-max="10" data-fgColor="#fff255" data-width="110" data-height="110">
-          <h5 style="color: #fff255"> Composition </h5>         
+          <h5 style="color: #fff255"> Composition </h5>
           <%= button_to "Rate this pic!", upvote_question_path(:id => @question.id), :method => :put, :remote => true, :id => "total_button", :style=> "padding: 1em;"%>
-          
+
         </div>
       </center>
       <center class="mobile-image-container">
