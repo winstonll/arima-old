@@ -298,7 +298,6 @@
  }
 
 .tag-prompt {
-  height: 27em;
 
   .checked {
     color: #419BF9;
@@ -308,7 +307,7 @@
     position: relative;
     width: 40em;
     display: inline-block;
-    left:2em;
+    left:5em;
     text-align: justify;
     -webkit-column-count: 2;
 
@@ -362,9 +361,8 @@
 
     #otherInputBox {
       display: inline-block;
-      bottom: 11em;
       position: relative;
-      right: 170px;
+      right: 270px;
       input:focus {
         outline: none;
       }
