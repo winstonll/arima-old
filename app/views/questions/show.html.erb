@@ -178,13 +178,13 @@ $(document).ready(function() {
           </a>
         <%end%>
         <div class="a-dial">
-          <input type="text" value="4" class="dial" data-max="10" data-fgColor="#4A90E2" data-width="110" data-height="110">
+          <input type="text" value="0" class="dial" data-max="10" data-fgColor="#4A90E2" data-width="110" data-height="110">
           <h5 style="color: #4A90E2"> Content </h5>
-          <input type="text" value="1" class="dial" data-max="10" data-fgColor="#bdec8d" data-width="110" data-height="110">
+          <input type="text" value="0" class="dial" data-max="10" data-fgColor="#bdec8d" data-width="110" data-height="110">
           <h5 style="color: #bdec8d"> Creativity </h5>
-          <input type="text" value="6" class="dial" data-max="10" data-fgColor="#fff255" data-width="110" data-height="110">
+          <input type="text" value="0" class="dial" data-max="10" data-fgColor="#fff255" data-width="110" data-height="110">
           <h5 style="color: #fff255"> Composition </h5>
-          <%= button_to "Rate this pic!", upvote_question_path(:id => @question.id), :method => :put, :remote => true, :id => "total_button", :style=> "padding: 1em;"%>
+          <%= button_to "Rate this pic!", upvote_question_path(:id => @question.id), :method => :put, :remote => true, :id => "total_button"%>
 
         </div>
       </center>

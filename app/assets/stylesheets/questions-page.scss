@@ -126,6 +126,11 @@
         bottom: 70px !important;
         font-size: 30px !important;
       }
+
+      #total_button {
+        width: 7em !important;
+        font-size: 13px !important;
+      }
     }
   }
 
@@ -307,7 +312,7 @@
     position: relative;
     width: 40em;
     display: inline-block;
-    left:5em;
+    left:2em;
     text-align: justify;
     -webkit-column-count: 2;
 
@@ -362,7 +367,7 @@
     #otherInputBox {
       display: inline-block;
       position: relative;
-      right: 270px;
+      right: 180px;
       input:focus {
         outline: none;
       }
