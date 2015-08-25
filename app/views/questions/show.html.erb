@@ -3,6 +3,14 @@
 <%= stylesheet_link_tag "featherlight.min.css" %>
 <%= javascript_include_tag "featherlight" %>
 
+<script src="https://cdn.rawgit.com/aterrien/jQuery-Knob/master/dist/jquery.knob.min.js"></script>
+<script type="text/javascript">
+  $(function() {
+    $(".dial").knob();
+  });
+
+</script>
+
 <script>
 $(document).ready(function() {
   if(screen.width <= 800) {
@@ -153,6 +161,14 @@ $(document).ready(function() {
             <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "380", alt:"image", class: "shared-photo hidden-xs", id: "lightbox") %>
           </a>
         <%end%>
+        <div class="a-dial">
+          <input type="text" value="4" class="dial" data-max="10" data-fgColor="#4A90E2" data-width="110" data-height="110">
+          <h5 style="color: #4A90E2"> Content </h5>
+          <input type="text" value="1" class="dial" data-max="10" data-fgColor="#bdec8d" data-width="110" data-height="110">
+          <h5 style="color: #bdec8d"> Creativity </h5>
+          <input type="text" value="6" class="dial" data-max="10" data-fgColor="#fff255" data-width="110" data-height="110">
+          <h5 style="color: #fff255"> Composition </h5>
+        </div>
       </center>
       <center class="mobile-image-container">
         <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "380", alt:"image", class: "shared-photo-mobile visible-xs")%>
