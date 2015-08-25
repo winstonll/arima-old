@@ -94,11 +94,57 @@
   height: 93vh;
   position: relative;
 
+
   .image-container {
     position: relative;
     margin: 0 auto;
     width: 60%;
+    margin-left: 150px;
+
   }
+
+  h5 {
+    padding: 0 0 0 0;
+    color: #fff;
+  }
+
+  .a-dial {
+  position: absolute;
+  width: 25em;
+  float: right;
+  display: inline-block;
+  padding-left: 12em;
+  padding-top: 20px;
+
+  div {
+    display: block !important;
+  }
+
+  input {
+    width: 35px !important;
+    height: 35px !important;
+    position: relative !important;
+    margin-top: 0px !important;
+    margin-left: 0px !important;
+    bottom: 70px !important;
+    font-size: 30px !important;
+    left: 35px;
+  }
+
+
+  #total_button {
+    padding: 5px 10px 5px 10px;
+    font-size: 14px !important;
+    top: 1em;
+    border-radius: 20px;
+    background-color: #419BF9;
+    border: none;
+    color: #fff;
+    position: relative;
+    left: 25px;
+  }
+
+}
 
   .mobile-image-container {
     width: 100%;
@@ -179,7 +225,7 @@
         height: 36px;
         width: 10em;
         padding: 9px 30px 9px 30px;
-        background-color: #4A90E2;
+        background-color: #419BF9;
         border-radius: 5px;
         color: #fff;
       }
@@ -271,40 +317,32 @@
 .tag-prompt {
 
   .checked {
-    border: 1px solid #419BF9;
     color: #419BF9;
   }
 
   .options {
     position: relative;
-    width: 60em;
+    width: 40em;
     display: inline-block;
-    right:9em;
+    left:2em;
     text-align: justify;
-
+    -webkit-column-count: 2;
 
     .tag_button_collection {
       position: relative;
+      margin-left: 10px;
       cursor: pointer;
-      margin-left: 15em;
       margin-top: 5px;
       background-color: #fff;
       padding: 8px 22px 8px 22px;
       color: #4a4a4a;
       font-weight:500;
-      border: solid;
-      border-width: 1px;
-      border-radius: 50px;
-      border-color: #979797;
+      display: block;
+
 
       input{
         visibility: hidden;
         margin-left: -22px;
-      }
-
-      .checked_text {
-        color: #6a6a6a;
-
       }
 
       .tag-count{
@@ -341,8 +379,7 @@
     #otherInputBox {
       display: inline-block;
       position: relative;
-      top: 1em;
-      right: 270px;
+      right: 180px;
       input:focus {
         outline: none;
       }
@@ -479,14 +516,14 @@
   }
 
   .tab-links a:hover {
-    color:#4A90E2;
+    color:#419BF9;
     background:#FCFCFC;
     text-decoration:none;
     border-color: #5AA3E8;
   }
 
   li.active a, li.active a:hover {
-    color:#4A90E2;
+    color:#419BF9;
     background:#FCFCFC;
     border-color: #5AA3E8;
   }
@@ -500,7 +537,7 @@
     left: -30px;
     padding:15px;
     border-radius:5px;
-    color:#4a90e2;
+    color:#419BF9;
     font-weight: 600;
     border: 1px solid #5AA3E8;
     //border-right: 1px solid #5AA3E8;
@@ -634,7 +671,7 @@
           font-weight: 600;
           font-size: 20px;
           line-height: 23px;
-          color: #4A90E2;
+          color: #419BF9;
           float:left;
           width:60%;
 
@@ -789,7 +826,7 @@
     text-align: center;
 
     .country_dropdown {
-      color: #4a90e2;
+      color: #419BF9;
       text-align: right;
       background: transparent;
       font-size: 14px;
@@ -803,7 +840,7 @@
     }
 
     #heat_position{
-      color: #4a90e2;
+      color: #419BF9;
       text-align: right;
       background: transparent;
       font-size: 14px;

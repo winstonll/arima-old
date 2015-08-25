@@ -3,8 +3,51 @@
 <%= stylesheet_link_tag "featherlight.min.css" %>
 <%= javascript_include_tag "featherlight" %>
 
+<script src="https://cdn.rawgit.com/aterrien/jQuery-Knob/master/dist/jquery.knob.min.js"></script>
+<script type="text/javascript">
+  var rating1;
+  var rating2;
+  var rating3;
+
+  $(function() {
+    $('.dial').knob();
+  });
+
+</script>
+
 <script>
 $(document).ready(function() {
+
+  document.getElementById("total_button").onclick = calculateTotal;
+
+  function calculateTotal() {
+    rating1 = $('.dial')[0].value;
+    rating2 = $('.dial')[1].value;
+    rating3 = $('.dial')[2].value;
+
+    var total = (parseInt(rating1) + parseInt(rating2) + parseInt(rating3))/3;
+    total = total.toFixed(1);
+
+    var average = Math.random() * (10 - 7) + 7;
+
+    average = average.toFixed(1);
+
+    document.getElementById("your-score").innerHTML = total;
+    document.getElementById("average-score").innerHTML = average;
+    document.getElementById("plus-minus").innerHTML = (total - average).toFixed(1);
+
+    //document.getElementById('score-board').scrollIntoView();
+
+
+	    var $target = $('#score-board');
+
+	    $('html, body').stop().animate({
+	        'scrollTop': $target.offset().top
+	    }, 900, 'swing', function () {
+	        window.location.hash = '#score-board';
+	    });
+  };
+
   if(screen.width <= 800) {
     window.location = "http://thearima.com/system/uploads/<%= @question.image_link%>";
   }
@@ -147,13 +190,26 @@ $(document).ready(function() {
 <%elsif @question.shared_image && @question.value_type == "tag"%>
   <div class="share-image-container">
     <div class="image-frame">
-      <center class="image-container">
+      <center class="image-container" style="float:left;">
         <%if !@question.image_link.nil?%>
           <a href="#" data-featherlight="#lightbox">
             <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "380", alt:"image", class: "shared-photo hidden-xs", id: "lightbox") %>
           </a>
         <%end%>
       </center>
+
+      <div class="a-dial" style="float:right;">
+        <input type="text" value="1" class="dial" data-max="10" data-fgColor="#419BF9" data-width="110" data-height="110">
+        <h5 style="color: #4A90E2; position: relative; left: 25px;"> Content </h5>
+        <input type="text" value="2" class="dial" data-max="10" data-fgColor="#bdec8d" data-width="110" data-height="110">
+        <h5 style="color: #bdec8d; position: relative; left: 25px;"> Creativity </h5>
+        <input type="text" value="3" class="dial" data-max="10" data-fgColor="#fff255" data-width="110" data-height="110">
+        <h5 style="color: #fff255; position: relative; left: 15px;"> Composition </h5>
+        <%= link_to "Rate!", upvote_question_path(:id => @question.id), :method => :put, :remote => true, :id => "total_button"%>
+      </div>
+
+      <div style="clear:both;">
+
       <center class="mobile-image-container">
         <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "380", alt:"image", class: "shared-photo-mobile visible-xs")%>
       </center>
@@ -170,7 +226,31 @@ $(document).ready(function() {
       <div id="animated-example" class="animated bounce bounce-center hidden-xs"><%= image_tag("Scroll-for-More.png", height: "27", width: "83")%></div>
       <!--<div id="animated-example" class="animated bounce bounce-center-mobile visible-xs"><%#= image_tag("Scroll-for-More.png", height: "27", width: "83")%></div>-->
     </div>
-    <div style="color: #7ed321; font-weight: 500; font-size: 18px; text-align: center; margin-right: 21.5em; margin-bottom: -.7em;" class="hidden-xs">What people say about this image:</div>
+
+
+    <div id="score-board" style="margin: 0 auto; width: 500px; height: 100px; padding-top: 150px;">
+      <div style="display: inline; float: left;">
+        <span style="color: #4A90E2; font-size: 1.5em; font-weight: bold;">Your Score</span>
+
+        <span id="your-score" style="color: #4A90E2; display: block; font-size: 2em; text-align: center; font-weight: bold;">1</span>
+      </div>
+
+      <div style="display: inline; float:left; padding-left: 2.8em; padding-right: 3em;">
+        <span style="color: #7ed321; font-size: 1.5em; font-weight: bold;">Average Score</span>
+
+        <span id="average-score" style="color: #7ed321; display: block; font-size: 2em; text-align: center; font-weight: bold;">1</span>
+      </div>
+
+      <div style="display: inline; float:left;">
+        <span style="color: #FF808F; font-size: 1.5em; font-weight: bold;">+/-</span>
+
+        <span id="plus-minus" style="color: #FF808F; display: block; font-size: 2em; text-align: center; font-weight: bold;">1</span>
+      </div>
+    </div>
+
+    <div style="clear: both; padding-bottom: 15px;"></div>
+
+    <div style="color: #7ed321; font-weight: 500; font-size: 18px; text-align: center; margin-right: 12em; margin-bottom: -.7em;" class="hidden-xs">What people say about this image:</div>
     <center id="tag_show">
       <%if !@question.shared_image.nil? && @question.shared_image %>
         <%= render partial: 'questions/tag_input', locals: { question: @question, answer: @answer} %>

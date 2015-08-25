@@ -10,15 +10,17 @@
 .nav-icons {
   float:left;
   margin-right: 20px;
-  margin-top: 28px;
+  margin-top: 10px;
   margin-left: 5px;
-  margin-bottom: 30px;
+  margin-bottom: 5px;
 }
 
 .category-title{
-  font-weight: bold;
+  font-weight: 500;
   color: #4a4a4a;
   float: right;
+  margin-left:5px;
+  font-size: 12px;
 }
 
 .category-icon{
@@ -27,30 +29,40 @@
 }
 
 .category-title-selected{
-  font-weight: bold;
+  font-weight: 500;
   color: #4a4a4a;
-  margin-top: 7px;
+  float:right;
+  font-size: 12px;
 }
 
 .category-title-not-selected{
-  font-weight: bold;
+  font-weight: 500;
   color: #c8c8c8;
-  margin-top: 7px;
+  float:right;
+  font-size: 12px;
 
 }
 
 
 #icon-container {
-    margin: 0 0 0 5%;
-    width:90%;
+    margin: 0% 0 0 0%;
+    width:100%;
+    background-color: #fff;
+    position: fixed;
+    margin-top: -1px;
+    opacity: .9;
+    border-bottom: 1px solid #ececec;
+
 
   .arima-icon{
     position: relative;
     float: left;
-    top: 27px;
+    top: 10px;
     margin-right: 1em;
+    margin-left:3em;
     color: #4a4a4a;
-    font-weight:bold;
+    font-weight:500;
+    font-size:12px;
   }
 }
 
@@ -92,15 +104,16 @@
     }
   }
 
-  hr {
+  /*hr {
     width: 25%;
     text-align: center;
-  }
+  }*/
 
   #feed {
+    margin-top: 5em;
     text-align: center;
-    margin-left: 10px;
+    margin-left: 75px;
     margin-right: 10px;
-    width: 100%;
+    width: 90%;
   }
 }
