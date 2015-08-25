@@ -12,52 +12,25 @@
 
 <% content_for :title, "Feed"%>
 
-<center>
 <div onresize="centerIcons()" id="icon-container">
-  <%= link_to image_tag("homefeedicon.png", size: "15x15") + "  Home", categories_path, class: "arima-icon" %>
-  <% Group.all.each do |group| %>
-    <a href="<%= category_path(group) %>" data-group-id="<%= group.id %>" class="sidebar-category <%= group.page_class %>">
-      <div class="category-container">
-        <% if ((group.id == @question.try(:id)) || (group.id == @question.try(:group_id))) %>
-        <div class="category-inner-container category-inner-container-active">
-        <% else %>
-        <div class="category-inner-container nav-icons">
-        <% end %>
-          <!-- if selected -->
-        <% unless cookies[:group_id] != nil && !cookies[:group_id].empty? %>
-          <center style="float: left;"><%= link_to image_tag("category-icons/#{group.id}.png", size: "20x20", :border => 0), category_path(group_id: group.id), method: :post, remote: true, :class => 'category-icon', :id => "category-#{group.id}"%> </center>
-          <center class="category-title">
-        <!-- if not selected load greyed out icon here-->
-        <% else %>
-          <% if cookies[:group_id].to_i == group.id %>
-            <center><%= link_to image_tag("category-icons/#{group.id}.png", size: "20x20", :border => 0), category_path(group_id: group.id), method: :post, remote: true, :class => 'category-icon', :id => "category-#{group.id}"%> </center>
-            <center class="category-title-selected">
-          <% else %>
-            <center><%= link_to image_tag("category-icons/#{group.id}.png", size: "20x20", :border => 0), category_path(group_id: group.id), method: :post, remote: true, :class => 'category-icon', :id => "category-#{group.id}"%> </center>
-            <center class="category-title-not-selected">
-          <% end %>
-        <% end %>
+  <div class="category-container">
+    <%= link_to image_tag("homefeedicon.png", size: "15x15") + "  Home", categories_path, class: "arima-icon category-icon" %>
+    <%= link_to image_tag("category-icons/1.png", size: "20x20")+ "  Money", category_path(group_id: 1), method: :post, remote: true, :class => 'arima-icon category-icon', :id => "category-1"%>
+    <%= link_to image_tag("category-icons/2.png", size: "20x20")+ "  Health", category_path(group_id: 2), method: :post, remote: true, :class => 'arima-icon category-icon', :id => "category-2"%>
+    <%= link_to image_tag("category-icons/3.png", size: "20x20")+ "  Education", category_path(group_id: 3), method: :post, remote: true, :class => 'arima-icon category-icon', :id => "category-3"%>
+    <%= link_to image_tag("category-icons/4.png", size: "20x20")+ "  Electronics", category_path(group_id: 4), method: :post, remote: true, :class => 'arima-icon category-icon', :id => "category-4"%>
+    <%= link_to image_tag("category-icons/5.png", size: "20x20")+ "  Business", category_path(group_id: 5), method: :post, remote: true, :class => 'arima-icon category-icon', :id => "category-5"%>
+    <%= link_to image_tag("category-icons/6.png", size: "20x20")+ "  Sports", category_path(group_id: 6), method: :post, remote: true, :class => 'arima-icon category-icon', :id => "category-6"%>
+    <%= link_to image_tag("category-icons/7.png", size: "20x20")+ "  Entertainment", category_path(group_id: 7), method: :post, remote: true, :class => 'arima-icon category-icon', :id => "category-7"%>
+    <%= link_to image_tag("category-icons/8.png", size: "20x20")+ "  Travel", category_path(group_id: 8), method: :post, remote: true, :class => 'arima-icon category-icon', :id => "category-8"%>
+    <%= link_to image_tag("category-icons/9.png", size: "20x20")+ "  Lifestyle", category_path(group_id: 9), method: :post, remote: true, :class => 'arima-icon category-icon', :id => "category-9"%>
+    <%= link_to image_tag("category-icons/10.png", size: "20x20")+ "  Food", category_path(group_id: 10), method: :post, remote: true, :class => 'arima-icon category-icon', :id => "category-10"%>
+    <%= link_to image_tag("category-icons/11.png", size: "20x20")+ "  Current", category_path(group_id: 11), method: :post, remote: true, :class => 'arima-icon category-icon', :id => "category-11"%>
+    <%= link_to image_tag("category-icons/12.png", size: "20x20")+ "  Politics", category_path(group_id: 12), method: :post, remote: true, :class => 'arima-icon category-icon', :id => "category-12"%>
+    <%= link_to image_tag("category-icons/13.png", size: "20x20")+ "  Gaming", category_path(group_id: 13), method: :post, remote: true, :class => 'arima-icon category-icon', :id => "category-13"%>
 
-        <% if group.label == "Money Matters" %>
-          Money
-        <% elsif group.label == "Health & Fitness"%>
-          Health
-        <% elsif group.label == "Education & Knowledge"%>
-          Education
-        <% elsif group.label == "Electronics & Gadgets"%>
-          Electronics
-        <% elsif group.label == "Business & Career"%>
-          Business
-        <% else %>
-        <%= group.label.sub("<br>", " ").html_safe %>
-        <% end %>
-        </center>
-      </div>
-    </div>
-  </a>
-<% end %>
+  </div>
 </div>
-</center>
 
 
 <%= render partial: "feed/feed"%>
