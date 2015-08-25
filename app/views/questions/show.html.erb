@@ -204,6 +204,28 @@ $(document).ready(function() {
       <div id="animated-example" class="animated bounce bounce-center hidden-xs"><%= image_tag("Scroll-for-More.png", height: "27", width: "83")%></div>
       <!--<div id="animated-example" class="animated bounce bounce-center-mobile visible-xs"><%#= image_tag("Scroll-for-More.png", height: "27", width: "83")%></div>-->
     </div>
+    <div style="margin: 0 auto; width: 500px; height: 100px;">
+      <div style="display: inline; float: left;">
+        <span style="color: #4A90E2; font-size: 2em;">Your Score</span>
+
+        <span style="display: block; text-align: center;">1</span>
+      </div>
+
+      <div style="display: inline; float:left; padding-left: 2.8em; padding-right: 3em;">
+        <span style="color: #7ed321; font-size: 2em;">Average Score</span>
+
+        <span style="display: block; text-align: center;">1</span>
+      </div>
+
+      <div style="display: inline; float:left;">
+        <span style="color: #FF808F; font-size: 2em;">+/-</span>
+
+        <span style="display: block; text-align: center;">1</span>
+      </div>
+    </div>
+
+    <div style="clear: both;">
+
     <div style="color: #7ed321; font-weight: 500; font-size: 18px; text-align: center; margin-right: 21.5em; margin-bottom: -.7em;" class="hidden-xs">What people say about this image:</div>
     <center id="tag_show">
       <%if !@question.shared_image.nil? && @question.shared_image %>
