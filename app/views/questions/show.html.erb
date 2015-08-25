@@ -2,8 +2,8 @@
 
 <%= stylesheet_link_tag "featherlight.min.css" %>
 <%= javascript_include_tag "featherlight" %>
+<%= javascript_include_tag "jquery.knob" %>
 
-<script src="https://cdn.rawgit.com/aterrien/jQuery-Knob/master/dist/jquery.knob.min.js"></script>
 <script type="text/javascript">
   var rating1;
   var rating2;
@@ -18,7 +18,7 @@
 <script>
 $(document).ready(function() {
 
-  document.getElementById("total_button").onclick = calculateTotal;
+  document.getElementById("animated-example").onclick = calculateTotal;
 
   function calculateTotal() {
     rating1 = $('.dial')[0].value;

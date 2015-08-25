@@ -70,6 +70,7 @@ Arima::Application.configure do
   config.assets.precompile += %w(jquery-ui-slider-pips.js)
   config.assets.precompile += %w(markerwithlabel.js)
   config.assets.precompile += %w(featherlight.js)
+  config.assets.precompile += %w(jquery.knob.js)
 
 
   config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
