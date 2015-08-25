@@ -199,12 +199,12 @@ $(document).ready(function() {
       </center>
 
       <div class="a-dial" style="float:right;">
-        <input type="text" value="1" class="dial" data-max="10" data-fgColor="#419BF9" data-width="110" data-height="110">
-        <h5 style="color: #419BF9; position: relative; left: 25px; margin-bottom: 1.5em;"> Content </h5>
-        <input type="text" value="2" class="dial" data-max="10" data-fgColor="#bdec8d" data-width="110" data-height="110">
-        <h5 style="color: #bdec8d; position: relative; left: 25px;  margin-bottom: 1.5em;"> Creativity </h5>
-        <input type="text" value="3" class="dial" data-max="10" data-fgColor="#fff255" data-width="110" data-height="110">
-        <h5 style="color: #fff255; position: relative; left: 15px;  margin-bottom: 1.5em;"> Composition </h5>
+        <input type="text" value="1" class="dial" data-max="10" data-angleOffset=-125 data-angleArc=250 data-fgColor="#419BF9" data-width="110" data-height="110">
+        <h5 style="color: #419BF9; position: relative; left: 28px; bottom: 2em;"> Content </h5>
+        <input type="text" value="2" class="dial" data-max="10" data-angleOffset=-125 data-angleArc=250 data-fgColor="#bdec8d" data-width="110" data-height="110">
+        <h5 style="color: #bdec8d; position: relative; left: 27px; bottom: 2em;"> Creativity </h5>
+        <input type="text" value="3" class="dial" data-max="10" data-angleOffset=-125 data-angleArc=250 data-fgColor="#fff255" data-width="110" data-height="110">
+        <h5 style="color: #fff255; position: relative; left: 16px; bottom: 2em;"> Composition </h5>
         <%= link_to "Rate!", upvote_question_path(:id => @question.id), :method => :put, :remote => true, :id => "total_button"%>
       </div>
 
