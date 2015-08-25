@@ -99,7 +99,8 @@
     position: relative;
     margin: 0 auto;
     width: 60%;
-    margin-left: 150px;
+    margin-left: 220px;
+    margin-right:-3em;
 
   }
 
@@ -323,7 +324,6 @@
   .options {
     position: relative;
     width: 40em;
-    display: inline-block;
     left:2em;
     text-align: justify;
     -webkit-column-count: 2;
@@ -361,7 +361,7 @@
         float: left;
         right: 6px;
         bottom: 1px;
-        width: 12px;
+        width: 14px;
 
       }
       .blue-up{
@@ -369,7 +369,7 @@
         float: left;
         right: 6px;
         bottom: 1px;
-        width: 12px;
+        width: 14px;
 
       }
     }
