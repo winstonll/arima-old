@@ -52,10 +52,6 @@ $(document).ready(function() {
     window.location = "http://thearima.com/system/uploads/<%= @question.image_link%>";
   }
 
-  $(window).scroll(function() {
-    document.getElementById("animated-example").style.display = 'none';
-  });
-
   $('#answer_value').on('change', function() {
     $('.modal-button').prop('disabled', !(this.value.length > 0));
   });
