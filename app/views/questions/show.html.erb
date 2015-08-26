@@ -2,8 +2,8 @@
 
 <%= stylesheet_link_tag "featherlight.min.css" %>
 <%= javascript_include_tag "featherlight" %>
+<%= javascript_include_tag "jquery.knob" %>
 
-<script src="https://cdn.rawgit.com/aterrien/jQuery-Knob/master/dist/jquery.knob.min.js"></script>
 <script type="text/javascript">
   var rating1;
   var rating2;
@@ -18,7 +18,7 @@
 <script>
 $(document).ready(function() {
 
-  document.getElementById("total_button").onclick = calculateTotal;
+  document.getElementById("animated-example").onclick = calculateTotal;
 
   function calculateTotal() {
     rating1 = $('.dial')[0].value;
@@ -204,8 +204,8 @@ $(document).ready(function() {
         <input type="text" value="5" class="dial" data-max="10" data-angleOffset=-125 data-angleArc=250 data-fgColor="#bdec8d" data-width="110" data-height="110">
         <h5 style="color: #bdec8d; position: relative; left: 27px; bottom: 2em;"> Quality </h5>
         <input type="text" value="5" class="dial" data-max="10" data-angleOffset=-125 data-angleArc=250 data-fgColor="#fff255" data-width="110" data-height="110">
-        <h5 style="color: #fff255; position: relative; left: 16px; bottom: 2em;"> Composition </h5>
-        <%= link_to "Rate!", upvote_question_path(:id => @question.id), :method => :put, :remote => true, :id => "total_button"%>
+        <h5 style="color: #fff255; position: relative; left: 16px; bottom: 2em; margin-bottom: 30px;"> Composition </h5>
+        <%= link_to "Give a Rating", upvote_question_path(:id => @question.id), :method => :put, :remote => true, :id => "animated-example", :class => "animated bounce bounce-center"%>
       </div>
 
       <div style="clear:both;">
@@ -223,8 +223,7 @@ $(document).ready(function() {
             image: "#{request.protocol}#{request.host_with_port}" + question_path(@question)
           }%>
       </section>
-      <div id="animated-example" class="animated bounce bounce-center hidden-xs"><%= image_tag("Scroll-for-More.png", height: "27", width: "83")%></div>
-      <!--<div id="animated-example" class="animated bounce bounce-center-mobile visible-xs"><%#= image_tag("Scroll-for-More.png", height: "27", width: "83")%></div>-->
+      <!--<div id="animated-example" class="animated bounce bounce-center hidden-xs"><%= image_tag("Scroll-for-More.png", height: "27", width: "83")%></div>-->
     </div>
 
 
