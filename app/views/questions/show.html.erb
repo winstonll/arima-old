@@ -153,7 +153,7 @@ $(document).ready(function() {
         <%end%>
       </center>
 
-      <div style="clear:both;">
+      <div style="clear:both;"></div>
 
       <center class="mobile-image-container">
         <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "380", alt:"image", class: "shared-photo-mobile visible-xs")%>
