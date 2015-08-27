@@ -196,7 +196,7 @@ $(document).ready(function() {
       <!--<div id="animated-example" class="animated bounce bounce-center hidden-xs"><%= image_tag("Scroll-for-More.png", height: "27", width: "83")%></div>-->
     </div>
 
-    <div style="background-color: #FCFCFC; color: #7ed321; font-weight: 500; font-size: 18px; text-align: center; margin-right: 12em; margin-bottom: -.7em;" class="hidden-xs">What people say about this image:</div>
+    <div style="background-color: #FCFCFC; color: #7ed321; font-weight: 500; font-size: 18px; text-align: center; margin-right: 12em; margin-bottom: -.7em; margin-top: 1.5em;" class="hidden-xs">What people say about this image:</div>
     <center id="tag_show">
       <%if !@question.shared_image.nil? && @question.shared_image %>
         <%= render partial: 'questions/tag_input', locals: { question: @question, answer: @answer} %>
