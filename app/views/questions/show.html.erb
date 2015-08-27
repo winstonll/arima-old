@@ -222,34 +222,8 @@ $(document).ready(function() {
       <!--<div id="animated-example" class="animated bounce bounce-center hidden-xs"><%= image_tag("Scroll-for-More.png", height: "27", width: "83")%></div>-->
     </div>
 
-
-    <div id="score-board" style="margin: 0 auto; width: 500px; height: 100px;padding-top: 110px; padding-bottom:30px;">
-      <div style="display: inline; float: left;">
-        <span style="color: #419BF9; font-size: 1.5em; font-weight: bold;">Your Score</span>
-
-        <span id="your-score" style="color:#419BF9; display: block; font-size: 2em; text-align: center; font-weight: bold;">1</span>
-      </div>
-
-      <div style="display: inline; float:left; padding-left: 2.8em; padding-right: 3em;">
-        <span style="color: #7ed321; font-size: 1.5em; font-weight: bold;">Average Score</span>
-
-        <span id="average-score" style="color: #7ed321; display: block; font-size: 2em; text-align: center; font-weight: bold;">1</span>
-      </div>
-
-      <div style="display: inline; float:left;">
-        <span style="color: #FF808F; font-size: 1.5em; font-weight: bold;">+/-</span>
-
-        <span id="plus-minus" style="color: #FF808F; display: block; font-size: 2em; text-align: center; font-weight: bold;">1</span>
-      </div>
-    </div>
-
-    <div style="clear: both; padding-bottom: 15px;"></div>
-
-    <div style="color: #7ed321; font-weight: 500; font-size: 18px; text-align: center; margin-right: 12em; margin-bottom: -.7em;" class="hidden-xs">What people say about this image:</div>
     <center id="tag_show">
-      <%if !@question.shared_image.nil? && @question.shared_image %>
-        <%= render partial: 'questions/tag_input', locals: { question: @question, answer: @answer} %>
-      <%elsif !@question.shared_image.nil? && !@question.shared_image%>
+      <%if !@question.shared_image.nil? && !@question.shared_image%>
         <%= render partial: 'questions/answer_input', locals: { question: @question, answer: @answer} %>
       <%end%>
     </center>
