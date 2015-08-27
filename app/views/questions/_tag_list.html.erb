@@ -25,9 +25,6 @@ $(document).ready(function() {
     end
   %>
 
-  $('input[type=radio]').not(':checked').parent().removeClass('checked'); //Remove checked class from all other radios that are not checked
-  $('input[type=radio]').not(':checked').siblings().removeClass('checked').css("color", "#4a4a4a");
-
   <%if !@liked_tag_array.nil?%>
     <%@liked_tag_array.each do |tag|%>
       index = 0
