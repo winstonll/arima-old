@@ -5,6 +5,7 @@
 
 <%= stylesheet_link_tag "toastr.css" %>
 <%= javascript_include_tag "toastr" %>
+<%= javascript_include_tag "jquery.screwdefaultbuttonsV2.js"  %>
 
 <% if @question == nil %>
 <% @question = Question.where(slug: params[:id])[0] %>
@@ -13,7 +14,6 @@
 <%@checkbox_array = Tag.where(question_id: @question.id).order(created_at: :asc)%>
 
 <script>
-
 $(document).ready(function() {
   <%if user_signed_in?
       @liked_checkbox = Opinion.where(user_id: current_user.id, question_id: @question.id)
@@ -51,12 +51,10 @@ $(document).ready(function() {
   }
   $('#otherone').popover();
 });
-
 </script>
 
 
 <script>
-
 $(document).ready(function() {
 
   toastr.options = {
@@ -122,6 +120,13 @@ $(document).ready(function() {
     });
   </script>
 <% end %>
+<script>
+  $('.boolean').screwDefaultButtons({
+      image: 'url("images/check-on.png")',
+      width: 85,
+      height: 85
+  });
+</script>
 
 <%= render '/common/share_new_question_modal' %>
 <%#= render '/common/signup_modal' %>
@@ -224,7 +229,6 @@ $(document).ready(function() {
             <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "380", alt:"image", class: "shared-photo hidden-xs", id: "lightbox") %>
           </a>
         <%end%>
-      </center>
 
       <% if @answer == nil %>
         <% @answer = user_signed_in? ? @question.answers.build(user_id: current_user.id) : @question.answers.build(user_id: cookies[:guest]) %>
@@ -236,9 +240,9 @@ $(document).ready(function() {
           <div class="checkbox">
               <%if !@checkbox_array.nil?  %>
                   <% @checkbox_array.each do |checkbox|%>
-                    <%#= f.radio_button :value, "test" %>
-                    <%#="#{checkbox.label}"%>
+                    <%= f.input :custom_field, :label => "#{checkbox.label}", :as => :boolean, :input_html => { :checked => "false" }, class: "checkboxxx"%>
                   <%end%>
+                    <%= f.submit "", :style=> "display: none;" %>
             <% end %>
           </div>
           <div id="otherInputBoxone">
@@ -249,6 +253,7 @@ $(document).ready(function() {
           </div>
         <% end %>
       </div>
+      </center>
 
       <div style="clear:both;"></div>
 
