@@ -3,8 +3,6 @@ Arima::Application.routes.draw do
   get 'feed' => 'feed#index'
   get 'category' => 'feed#category'
   get 'cat' => 'feed#category_non_feed'
-  get 'testing123' => 'answers#submit_tag'
-
   post 'add_tag' => 'answers#add_tag'
 
   post 'category' => 'feed#category'

@@ -152,9 +152,7 @@ $(document).ready(function() {
         <%end%>
       </center>
 
-      <%= link_to "Give a Rating", controller: "answers", action: "submit_tag", :method => :get, :id => @question.id%>
-
-
+      <%= link_to "Give a Rating", upvote_question_path(:id => @question.id), :method => :put, :remote => true, :id => "animated-example", :class => "animated bounce bounce-center"%>
 
       <div style="clear:both;">
 
