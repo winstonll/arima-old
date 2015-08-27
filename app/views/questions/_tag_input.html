@@ -7,6 +7,7 @@
 <%= javascript_include_tag "jquery.knob" %>
 
 <script type="text/javascript">
+
   var rating1;
   var rating2;
   var rating3;
@@ -155,12 +156,9 @@
 <div class="a-dial">
   <input type="text" value="5" class="dial" data-max="10" data-angleOffset=-125 data-angleArc=250 data-fgColor="#419BF9" data-width="300" data-height="300">
   <%= link_to "Give a Rating", upvote_question_path(:id => @question.id), :method => :put, :remote => true, :id => "animated-example", :class => "animated bounce bounce-center"%>
-
 </div>
 
-
-
-<div id="score-board" style="margin: 0 auto; width: 500px; height: 100px; padding-top: 350px; padding-bottom:30px;">
+<div id="score-board" style="float: left; margin: 0 auto; width: 500px; height: 50px; margin-top: 350px; padding-bottom:30px; position: relative; left: 38%;">
   <div style="display: inline; float: left;">
     <span style="color: #419BF9; font-size: 1.5em; font-weight: bold;">Your Score</span>
 
@@ -186,4 +184,4 @@
 <%#= image_tag("map_blur.png", height: '300', width: '100%', id: "blurred-map", class: "visible-xs") %>
 
 <div id="map-canvas" style="height: 600px; width: 900px; margin: 0; padding-bottom: 50px; display: none;" class="hidden"></div>
-<div style="height: 30px;" class="hidden-xs"></div>
+<div style="height: 50px;" class="hidden-xs"></div>
