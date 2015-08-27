@@ -86,6 +86,40 @@
 }
 //end animation
 
+.a-dial {
+  position: absolute;
+  width: 25em;
+  left: 40%;
+
+  div {
+    display: block !important;
+  }
+
+  input {
+    width: 70px !important;
+    height: 80px !important;
+    position: relative !important;
+    margin-top: 0px !important;
+    margin-left: 0px !important;
+    bottom: 200px !important;
+    font-size: 85px !important;
+    left: 10px;
+  }
+
+  #animated-example {
+    padding: 10px 25px 10px 25px;
+    width: 135px;
+    font-size: 14px !important;
+    border-radius: 20px;
+    background-color: #419BF9;
+    border: none;
+    color: #fff;
+    position: absolute;
+    left: 115px;
+  }
+}
+
+
 .image-frame {
   width: 100%;
   background-color: #212124;
@@ -103,49 +137,6 @@
     margin-right:-1em;
 
   }
-
-  h5 {
-    padding: 0 0 0 0;
-    color: #fff;
-  }
-
-  .a-dial {
-  position: absolute;
-  width: 25em;
-  float: right;
-  display: inline-block;
-  padding-left: 12em;
-  padding-top: 20px;
-
-  div {
-    display: block !important;
-  }
-
-  input {
-    width: 35px !important;
-    height: 35px !important;
-    position: relative !important;
-    margin-top: 0px !important;
-    margin-left: 0px !important;
-    bottom: 70px !important;
-    font-size: 30px !important;
-    left: 35px;
-  }
-
-
-  #animated-example {
-    padding: 10px 25px 10px 25px;
-    width: 135px;
-    font-size: 14px !important;
-    border-radius: 20px;
-    background-color: #419BF9;
-    border: none;
-    color: #fff;
-    position: absolute;
-    left: 160px;
-  }
-
-}
 
   .mobile-image-container {
     width: 100%;

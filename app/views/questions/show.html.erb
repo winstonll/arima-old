@@ -18,36 +18,6 @@
 <script>
 $(document).ready(function() {
 
-  document.getElementById("animated-example").onclick = calculateTotal;
-
-  function calculateTotal() {
-    rating1 = $('.dial')[0].value;
-    rating2 = $('.dial')[1].value;
-    rating3 = $('.dial')[2].value;
-
-    var total = (parseInt(rating1) + parseInt(rating2) + parseInt(rating3))/3;
-    total = total.toFixed(1);
-
-    var average = Math.random() * (10 - 7) + 7;
-
-    average = average.toFixed(1);
-
-    document.getElementById("your-score").innerHTML = total;
-    document.getElementById("average-score").innerHTML = average;
-    document.getElementById("plus-minus").innerHTML = (total - average).toFixed(1);
-
-    //document.getElementById('score-board').scrollIntoView();
-
-
-	    var $target = $('#score-board');
-
-	    $('html, body').stop().animate({
-	        'scrollTop': $target.offset().top
-	    }, 900, 'swing', function () {
-	        window.location.hash = '#score-board';
-	    });
-  };
-
   if(screen.width <= 800) {
     window.location = "http://thearima.com/system/uploads/<%= @question.image_link%>";
   }
@@ -194,16 +164,6 @@ $(document).ready(function() {
         <%end%>
       </center>
 
-      <div class="a-dial" style="float:right;">
-        <input type="text" value="5" class="dial" data-max="10" data-angleOffset=-125 data-angleArc=250 data-fgColor="#419BF9" data-width="110" data-height="110">
-        <h5 style="color: #419BF9; position: relative; left: 28px; bottom: 2em;"> Content </h5>
-        <input type="text" value="5" class="dial" data-max="10" data-angleOffset=-125 data-angleArc=250 data-fgColor="#bdec8d" data-width="110" data-height="110">
-        <h5 style="color: #bdec8d; position: relative; left: 27px; bottom: 2em;"> Quality </h5>
-        <input type="text" value="5" class="dial" data-max="10" data-angleOffset=-125 data-angleArc=250 data-fgColor="#fff255" data-width="110" data-height="110">
-        <h5 style="color: #fff255; position: relative; left: 16px; bottom: 2em; margin-bottom: 30px;"> Composition </h5>
-        <%= link_to "Give a Rating", upvote_question_path(:id => @question.id), :method => :put, :remote => true, :id => "animated-example", :class => "animated bounce bounce-center"%>
-      </div>
-
       <div style="clear:both;">
 
       <center class="mobile-image-container">
@@ -232,26 +192,6 @@ $(document).ready(function() {
         <%= render partial: 'questions/answer_input', locals: { question: @question, answer: @answer} %>
       <%end%>
     </center>
-
-    <div id="score-board" style="margin: 0 auto; width: 500px; height: 100px;padding-top: 50px; padding-bottom:30px;">
-      <div style="display: inline; float: left;">
-        <span style="color: #419BF9; font-size: 1.5em; font-weight: bold;">Your Score</span>
-
-        <span id="your-score" style="color:#419BF9; display: block; font-size: 2em; text-align: center; font-weight: bold;">1</span>
-      </div>
-
-      <div style="display: inline; float:left; padding-left: 2.8em; padding-right: 3em;">
-        <span style="color: #7ed321; font-size: 1.5em; font-weight: bold;">Average Score</span>
-
-        <span id="average-score" style="color: #7ed321; display: block; font-size: 2em; text-align: center; font-weight: bold;">1</span>
-      </div>
-
-      <div style="display: inline; float:left;">
-        <span style="color: #FF808F; font-size: 1.5em; font-weight: bold;">+/-</span>
-
-        <span id="plus-minus" style="color: #FF808F; display: block; font-size: 2em; text-align: center; font-weight: bold;">1</span>
-      </div>
-    </div>
 
   </div>
 <%else %>
