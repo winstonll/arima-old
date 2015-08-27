@@ -4,8 +4,16 @@
 
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=visualization"></script>
 <%= javascript_include_tag "markerwithlabel" %>
+<%= javascript_include_tag "jquery.knob" %>
 
 <script type="text/javascript">
+  var rating1;
+  var rating2;
+  var rating3;
+
+  $(function() {
+    $('.dial').knob();
+  });
 
   $(document).ready(function() {
 
@@ -38,8 +46,8 @@
     };
 
     <%if Opinion.where(user_id: user_signed_in? ? current_user.id : cookies[:guest], question_id: @question.id).count >= 1%>
-      document.getElementById("map-canvas").style.display = 'block';
-      document.getElementById("blurred-map").style.display = 'none';
+      //document.getElementById("map-canvas").style.display = 'block';
+      //document.getElementById("blurred-map").style.display = 'none';
 
       initialize("");
     <%end%>
@@ -152,7 +160,7 @@
 
 
 
-<div class="hidden" id="score-board" style="margin: 0 auto; width: 500px; height: 100px;padding-top: 50px; padding-bottom:30px;">
+<div id="score-board" style="margin: 0 auto; width: 500px; height: 100px; padding-top: 350px; padding-bottom:30px;">
   <div style="display: inline; float: left;">
     <span style="color: #419BF9; font-size: 1.5em; font-weight: bold;">Your Score</span>
 
