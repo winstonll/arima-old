@@ -2,9 +2,51 @@
 
 <%= stylesheet_link_tag "featherlight.min.css" %>
 <%= javascript_include_tag "featherlight" %>
+<%= javascript_include_tag "jquery.knob" %>
+
+<script type="text/javascript">
+  var rating1;
+  var rating2;
+  var rating3;
+
+  $(function() {
+    $('.dial').knob();
+  });
+
+</script>
 
 <script>
 $(document).ready(function() {
+
+  document.getElementById("animated-example").onclick = calculateTotal;
+
+  function calculateTotal() {
+    rating1 = $('.dial')[0].value;
+    rating2 = $('.dial')[1].value;
+    rating3 = $('.dial')[2].value;
+
+    var total = (parseInt(rating1) + parseInt(rating2) + parseInt(rating3))/3;
+    total = total.toFixed(1);
+
+    var average = Math.random() * (10 - 7) + 7;
+
+    average = average.toFixed(1);
+
+    document.getElementById("your-score").innerHTML = total;
+    document.getElementById("average-score").innerHTML = average;
+    document.getElementById("plus-minus").innerHTML = (total - average).toFixed(1);
+
+    //document.getElementById('score-board').scrollIntoView();
+
+
+	    var $target = $('#score-board');
+
+	    $('html, body').stop().animate({
+	        'scrollTop': $target.offset().top
+	    }, 900, 'swing', function () {
+	        window.location.hash = '#score-board';
+	    });
+  };
 
   if(screen.width <= 800) {
     window.location = "http://thearima.com/system/uploads/<%= @question.image_link%>";
@@ -152,7 +194,15 @@ $(document).ready(function() {
         <%end%>
       </center>
 
-      <%= link_to "Give a Rating", upvote_question_path(:id => @question.id), :method => :put, :remote => true, :id => "animated-example", :class => "animated bounce bounce-center"%>
+      <div class="a-dial" style="float:right;">
+        <input type="text" value="5" class="dial" data-max="10" data-angleOffset=-125 data-angleArc=250 data-fgColor="#419BF9" data-width="110" data-height="110">
+        <h5 style="color: #419BF9; position: relative; left: 28px; bottom: 2em;"> Content </h5>
+        <input type="text" value="5" class="dial" data-max="10" data-angleOffset=-125 data-angleArc=250 data-fgColor="#bdec8d" data-width="110" data-height="110">
+        <h5 style="color: #bdec8d; position: relative; left: 27px; bottom: 2em;"> Quality </h5>
+        <input type="text" value="5" class="dial" data-max="10" data-angleOffset=-125 data-angleArc=250 data-fgColor="#fff255" data-width="110" data-height="110">
+        <h5 style="color: #fff255; position: relative; left: 16px; bottom: 2em; margin-bottom: 30px;"> Composition </h5>
+        <%= link_to "Give a Rating", upvote_question_path(:id => @question.id), :method => :put, :remote => true, :id => "animated-example", :class => "animated bounce bounce-center"%>
+      </div>
 
       <div style="clear:both;">
 

@@ -4,52 +4,10 @@
 
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=visualization"></script>
 <%= javascript_include_tag "markerwithlabel" %>
-<%= javascript_include_tag "jquery.knob" %>
 
 <script type="text/javascript">
 
-  var rating1;
-  var rating2;
-  var rating3;
-
-  $(function() {
-    $('.dial').knob();
-  });
-
-
   $(document).ready(function() {
-
-    /**document.getElementById("animated-example").onclick = calculateTotal;
-
-    function calculateTotal() {
-      rating1 = $('.dial')[0].value;
-      rating2 = $('.dial')[1].value;
-      rating3 = $('.dial')[2].value;
-
-      var total = (parseInt(rating1) + parseInt(rating2) + parseInt(rating3))/3;
-      total = total.toFixed(1);
-
-      var average = Math.random() * (10 - 7) + 7;
-
-      average = average.toFixed(1);
-
-      document.getElementById("your-score").innerHTML = total;
-      document.getElementById("average-score").innerHTML = average;
-      document.getElementById("plus-minus").innerHTML = (total - average).toFixed(1);
-
-      //document.getElementById('score-board').scrollIntoView();
-
-
-  	    var $target = $('#score-board');
-
-  	    $('html, body').stop().animate({
-  	        'scrollTop': $target.offset().top
-  	    }, 900, 'swing', function () {
-  	        window.location.hash = '#score-board';
-  	    });
-    };**/
-
-
     <%if Opinion.where(user_id: user_signed_in? ? current_user.id : cookies[:guest], question_id: @question.id).count >= 1%>
       document.getElementById("map-canvas").style.display = 'block';
       document.getElementById("blurred-map").style.display = 'none';
@@ -152,17 +110,6 @@
   }
 
 </script>
-
-<div class="a-dial" style="float:right;">
-  <input type="text" value="5" class="dial" data-max="10" data-angleOffset=-125 data-angleArc=250 data-fgColor="#419BF9" data-width="110" data-height="110">
-  <h5 style="color: #419BF9; position: relative; left: 28px; bottom: 2em;"> Content </h5>
-  <input type="text" value="5" class="dial" data-max="10" data-angleOffset=-125 data-angleArc=250 data-fgColor="#bdec8d" data-width="110" data-height="110">
-  <h5 style="color: #bdec8d; position: relative; left: 27px; bottom: 2em;"> Quality </h5>
-  <input type="text" value="5" class="dial" data-max="10" data-angleOffset=-125 data-angleArc=250 data-fgColor="#fff255" data-width="110" data-height="110">
-  <h5 style="color: #fff255; position: relative; left: 16px; bottom: 2em; margin-bottom: 30px;"> Composition </h5>
-  
-</div>
-
 
 <div id="score-board" style="margin: 0 auto; width: 500px; height: 100px;padding-top: 110px; padding-bottom:30px;">
   <div style="display: inline; float: left;">
