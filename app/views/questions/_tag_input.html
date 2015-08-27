@@ -89,7 +89,7 @@
     }else {
       //When someone clicks a question it first displays all of the tags on the map (if there are any) AND creates the google map object
       <%  opinion = Opinion.new
-          loc_arr = opinion.user_lat_long_all(question.id)
+          loc_arr = opinion.user_lat_long_all(@question.id)
       %>
 
       mapOptions = {
@@ -160,7 +160,7 @@
   <h5 style="color: #bdec8d; position: relative; left: 27px; bottom: 2em;"> Quality </h5>
   <input type="text" value="5" class="dial" data-max="10" data-angleOffset=-125 data-angleArc=250 data-fgColor="#fff255" data-width="110" data-height="110">
   <h5 style="color: #fff255; position: relative; left: 16px; bottom: 2em; margin-bottom: 30px;"> Composition </h5>
-  
+
 </div>
 
 
@@ -190,7 +190,7 @@
 
 
 <div id="tag_list_container" class="hidden-xs">
-  <%= render partial: "tag_list"%>
+  <%= render partial: "questions/tag_list"%>
 </div>
 
 <center style="color: #7ed321; font-weight: 500; font-size: 18px; margin-bottom: 1em;" class="hidden-xs">Where voters are from</center>

@@ -192,6 +192,14 @@ class AnswersController < ApplicationController
 
   end
 
+  def submit_tag
+    @question = Question.friendly.find(params[:id])
+
+    respond_to do |format|
+      format.html { render :template => "questions/_tag_input" }
+    end
+  end
+
   def share
     answer = Answer.where(id: params[:ans_id]).first
     ans_user = answer.user
