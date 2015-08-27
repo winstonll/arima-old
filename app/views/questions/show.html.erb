@@ -6,6 +6,54 @@
 <%= stylesheet_link_tag "toastr.css" %>
 <%= javascript_include_tag "toastr" %>
 
+<% if @question == nil %>
+<% @question = Question.where(slug: params[:id])[0] %>
+<% end %>
+
+<%@checkbox_array = Tag.where(question_id: @question.id).order(created_at: :asc)%>
+
+<script>
+
+$(document).ready(function() {
+  <%if user_signed_in?
+      @liked_checkbox = Opinion.where(user_id: current_user.id, question_id: @question.id)
+      @liked_checkbox_array = Array.new()
+      @liked_checkbox.each do |tagId|
+        @liked_checkbox_array << Tag.where(question_id: @question.id, id: tagId.tag_id).first.label
+      end
+    else
+      @liked_checkbox = Opinion.where(user_id: cookies[:guest], question_id: @question.id)
+      @liked_checkbox_array = Array.new()
+      @liked_checkbox.each do |tagId|
+        @liked_checkbox_array << Tag.where(question_id: @question.id, id: tagId.tag_id).first.label
+      end
+    end
+  %>
+
+  $('.new-tag-submitone').prop('disabled', true);
+  $('#otherone').keyup(function() {
+   inspectAllInputFields();
+  });
+
+  function inspectAllInputFields(){
+     var count = 0;
+     $('#otherone').each(function(i){
+       if( $(this).val() === '') {
+           count++;
+        }
+        if(count == 0){
+          $('.new-tag-submitone').prop('disabled', false);
+          $('#otherone').popover('hide');
+        }else {
+          $('.new-tag-submitone').prop('disabled', true);
+        }
+    });
+  }
+  $('#otherone').popover();
+});
+
+</script>
+
 
 <script>
 
@@ -177,6 +225,30 @@ $(document).ready(function() {
           </a>
         <%end%>
       </center>
+
+      <% if @answer == nil %>
+        <% @answer = user_signed_in? ? @question.answers.build(user_id: current_user.id) : @question.answers.build(user_id: cookies[:guest]) %>
+      <% end %>
+
+      <div class="check-prompt">
+        <%= simple_form_for @answer,:url => {:action => "add_tag", :controller => "answers"}, role: "form", html: {novalidate: true}, :remote => true do |f| %>
+
+          <div class="checkbox">
+              <%if !@checkbox_array.nil?  %>
+                  <% @checkbox_array.each do |checkbox|%>
+                    <%#= f.radio_button :value, "test" %>
+                    <%#="#{checkbox.label}"%>
+                  <%end%>
+            <% end %>
+          </div>
+          <div id="otherInputBoxone">
+              <%= hidden_field_tag 'question_id', @question.id %>
+              <%= f.label "Add a one liner:", class: "new-tag" %>
+              <%= f.input(:options_for_collection, label: false,input_html:{ 'data-toggle'=>"popover", 'data-trigger'=>"hover", 'data-placement'=>"top", 'data-content'=>"ex. Great composition, or Fantastic scenery", value: nil, placeholder: "What do you think of this image?", class: "other-input-text", id:"otherone"}) %>
+              <%= f.submit "", class: "new-tag-submitone" %>
+          </div>
+        <% end %>
+      </div>
 
       <div style="clear:both;"></div>
 
