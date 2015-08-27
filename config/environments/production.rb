@@ -62,6 +62,7 @@ Arima::Application.configure do
   config.assets.precompile += %w(about.css)
   config.assets.precompile += %w(jquery-ui-slider-pips.css)
   config.assets.precompile += %w(featherlight.min.css)
+  config.assets.precompile += %w(toastr.css)
 
   config.assets.precompile += %w(home.js)
 
@@ -71,6 +72,7 @@ Arima::Application.configure do
   config.assets.precompile += %w(markerwithlabel.js)
   config.assets.precompile += %w(featherlight.js)
   config.assets.precompile += %w(jquery.knob.js)
+  config.assets.precompile += %w(toastr.js)
 
 
   config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
