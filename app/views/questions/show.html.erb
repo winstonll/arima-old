@@ -223,7 +223,7 @@ $(document).ready(function() {
       <div class="image-container">
         <%if !@question.image_link.nil?%>
           <a href="#" data-featherlight="#lightbox">
-            <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "380", alt:"image", class: "shared-photo hidden-xs", id: "lightbox") %>
+            <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "380", alt:"image", class: "shared-photo", id: "lightbox") %>
           </a>
         <%end%>
       </div>
@@ -255,9 +255,9 @@ $(document).ready(function() {
 
       <div style="clear:both;"></div>
 
-      <center class="mobile-image-container">
-        <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "380", alt:"image", class: "shared-photo-mobile visible-xs")%>
-      </center>
+      <!--<center class="mobile-image-container">
+        <%#= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "380", alt:"image", class: "shared-photo-mobile visible-xs")%>
+      </center>-->
       <a href="<%= feed_path %>" class="feed-link hidden-xs"><div id="back-to-feed-button"><%= image_tag("Back-Arrow.png", class: "feed-back-arrow", width: "19", height: "9")%><font class="feed-back-title">Back to Home Feed</font></div></a>
       <section class="share-image-title"><%=@question.label %></section>
       <section class="share-icon-container" style="float: right; display: none;">

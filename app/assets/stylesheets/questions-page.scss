@@ -120,9 +120,9 @@
 }
 
 .toast {
-    opacity: .95 !important;
-    background-color: #419BF9 !important;
-    -moz-box-shadow: 0 0 12px #4A4A4A !important;
+  opacity: .95 !important;
+  background-color: #419BF9 !important;
+  -moz-box-shadow: 0 0 12px #4A4A4A !important;
   -webkit-box-shadow: 0 0 12px #4A4A4A !important;
   box-shadow: 0 0 12px #4A4A4A !important;
 }
@@ -249,6 +249,27 @@
     margin-bottom: -5em;
     margin-right: 4em;
     height: 100px;
+  }
+}
+
+/**@media screen and (max-width: 768px) {
+  .image-frame {
+    background-color: red;
+  }
+  .image-container {
+    width: 100px;
+  }
+  .shared-photo {
+    width: 100px;
+  }
+}**/
+
+@media screen and (min-width: 1400px) {
+  .image-container {
+    width: 70%;
+  }
+  .shared-photo {
+    height: 70vh;
   }
 }
 
