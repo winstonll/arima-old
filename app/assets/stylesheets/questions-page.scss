@@ -9,7 +9,7 @@
 }
 
 .shared-photo {
-  height: 65vh;
+  height: 60vh;
   margin-bottom: 22px;
 
   cursor: -moz-zoom-in;
@@ -50,8 +50,8 @@
 
 //bounce animation
 .animated {
-  -webkit-animation-duration: 5s;
-  animation-duration: 5s;
+  -webkit-animation-duration: 30s;
+  animation-duration: 30s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
   animation-iteration-count:infinite;
@@ -59,15 +59,27 @@
 }
 
 @-webkit-keyframes bounce {
-  0%, 15%, 25%, 40%, 50%, 60%, 70%, 80%, 100% {-webkit-transform: translateY(0);}
-  65% {-webkit-transform: translateY(-10px);}
-  75% {-webkit-transform: translateY(-10px);}
+  0%, 10%, 15%, 17%, 20%, 25%, 40%, 50%, 60%, 70%, 80%, 100% {-webkit-transform: translateY(0);}
+  16% {-webkit-transform: translateY(-10px);}
+  18% {-webkit-transform: translateY(-10px);}
 }
 
 @keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-    40% {transform: translateY(-10px);}
-    60% {transform: translateY(-10px);}
+  0%, 11%, 25%, 40%, 50%, 60%, 70%, 80%, 100% {transform: translateY(0);}
+  10% {transform: translateY(-10px);}
+  12% {transform: translateY(-10px);}
+}
+
+#knob-submit {
+  padding: 10px 25px 10px 25px;
+  width: 135px;
+  font-size: 14px !important;
+  border-radius: 20px;
+  background-color: #419BF9;
+  border: none;
+  color: #fff;
+  position: absolute;
+  left: 115px;
 }
 
 .bounce {
@@ -86,52 +98,25 @@
 }
 //end animation
 
-.image-frame {
-  width: 100%;
-  background-color: #212124;
-  margin-bottom: 50px;
-  padding-top: 20px;
-  height: 80vh;
-  position: relative;
-
-
-  .image-container {
-    position: relative;
-    margin: 0 auto;
-    width: 60%;
-    margin-left: 220px;
-    margin-right:-1em;
-
-  }
-
-  h5 {
-    padding: 0 0 0 0;
-    color: #fff;
-  }
-
-  .a-dial {
+.a-dial {
   position: absolute;
   width: 25em;
-  float: right;
-  display: inline-block;
-  padding-left: 12em;
-  padding-top: 20px;
+  left: 40%;
+  margin-top: 5em;
 
   div {
     display: block !important;
   }
 
   input {
-    width: 35px !important;
-    height: 35px !important;
+    width: 90px !important;
+    height: 80px !important;
     position: relative !important;
     margin-top: 0px !important;
     margin-left: 0px !important;
-    bottom: 70px !important;
-    font-size: 30px !important;
-    left: 35px;
+    bottom: 200px !important;
+    font-size: 85px !important;
   }
-
 
   #animated-example {
     padding: 10px 25px 10px 25px;
@@ -142,10 +127,139 @@
     border: none;
     color: #fff;
     position: absolute;
-    left: 160px;
+    left: 115px;
+  }
+}
+
+.toast {
+  opacity: .95 !important;
+  background-color: #419BF9 !important;
+  -moz-box-shadow: 0 0 12px #4A4A4A !important;
+  -webkit-box-shadow: 0 0 12px #4A4A4A !important;
+  box-shadow: 0 0 12px #4A4A4A !important;
+}
+
+.image-frame {
+  width: 100%;
+  background-color: #212124;
+  padding-top: 20px;
+  height: 90vh;
+  position: relative;
+
+
+  .image-container {
+    float: left;
+    position: relative;
+    margin: 0 auto;
+    width: 50%;
+    margin-left: 220px;
+    margin-right:-1em;
   }
 
-}
+  .submit-animate {
+    -webkit-animation-duration: 30s;
+    animation-duration: 30s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    animation-iteration-count:infinite;
+    -webkit-animation-iteration-count:infinite;
+  }
+
+   #check-box-title {
+    padding: 7px 15px 7px 15px;
+    color: #fff;
+    position: relative;
+    right: 1em;
+    top: 1em;
+  }
+
+  #animated-example {
+    padding: 7px 15px 7px 15px;
+    font-size: 14px !important;
+    border-radius: 20px;
+    background-color: #419BF9;
+    border: none;
+    color: #fff;
+    position: relative;
+    left: 8px;
+    right: 1em;
+    top: 1em;
+  }
+
+    .check-prompt {
+      position: relative;
+      float: right;
+      color: #fff;
+      top: 7em;
+
+      input {
+        color: #88FFF4;
+      }
+
+      .checkboxes {
+        color: #88FFF4;
+        position: relative;
+        top: 1em;
+
+      }
+
+        #otherInputBoxone {
+          display: inline-block;
+          position: relative;
+          right: 105px;
+          top: 1em;
+          input:focus {
+            outline: none;
+          }
+          input[type="submit"]
+          {
+            width: 20px;
+            height: 20px;
+            border: none;
+            background: url(image_path('add_tag_inactive.png'));
+            background-size: 19px 19px;
+            position: relative;
+            left: 290px;
+            display: inline;
+            bottom: 31px;
+
+            &:disabled {
+              background: url(image_path('add_tag_hover.png'));
+              background-size: 20px 20px;
+              &:hover {
+                background: url(image_path('add_tag_inactive.png'));
+                background-size: 20px 20px;
+              }
+            }
+          }
+
+          .answer_options_for_collection{
+            height:36px;
+          }
+          .question_options_for_collection {
+            width: 240px;
+          }
+
+          .other-input-textone {
+            height: 25px;
+            width: 203px;
+            font-size: 11px;
+            background-color: #fff;
+            resize: none;
+            border: solid;
+            border-color: #c4c4c4!important;
+            border: solid;
+            border-width: 1px;
+            padding: 10px 20px 0px 20px;
+            border-radius: 50px;
+            padding-left: 15px;
+            padding-bottom: 10px;
+            margin-top:2px;
+            margin-left: 10em;
+            color: #4a4a4a;
+          }
+        }
+    }
 
   .mobile-image-container {
     width: 100%;
@@ -158,6 +272,36 @@
     margin-bottom: -5em;
     margin-right: 4em;
     height: 100px;
+  }
+}
+
+/**@media screen and (max-width: 768px) {
+  .image-frame {
+    background-color: red;
+  }
+  .image-container {
+    width: 100px;
+  }
+  .shared-photo {
+    width: 100px;
+  }
+}**/
+
+@media screen and (min-width: 1400px) {
+  .image-container {
+    width: 65%;
+  }
+  .shared-photo {
+    height: 65vh;
+  }
+}
+
+@media screen and (min-width: 1700px) {
+  .image-container {
+    width: 75%;
+  }
+  .shared-photo {
+    height: 75vh;
   }
 }
 
@@ -316,7 +460,7 @@
  }
 
 .tag-prompt {
-
+  background-color: #FCFCFC;
   .checked {
     color: #419BF9;
   }
@@ -391,7 +535,7 @@
         background: url(image_path('add_tag_inactive.png'));
         background-size: 28px 28px;
         position: relative;
-        left: 233px;
+        left: 232px;
         display: inline;
         bottom: 31px;
 

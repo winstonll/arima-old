@@ -2,51 +2,135 @@
 
 <%= stylesheet_link_tag "featherlight.min.css" %>
 <%= javascript_include_tag "featherlight" %>
-<%= javascript_include_tag "jquery.knob" %>
 
-<script type="text/javascript">
-  var rating1;
-  var rating2;
-  var rating3;
+<%= stylesheet_link_tag "toastr.css" %>
+<%= javascript_include_tag "toastr" %>
 
-  $(function() {
-    $('.dial').knob();
+<% if @question == nil %>
+<% @question = Question.where(slug: params[:id])[0] %>
+<% end %>
+
+<%@checkbox_array = Tag.where(question_id: @question.id).order(created_at: :asc)%>
+<%@tag_array = Tag.where(question_id: @question.id).order(created_at: :asc)%>
+<script>
+$(document).ready(function() {
+
+  document.getElementById("animated-example").onclick = reveal;
+
+  function reveal() {
+    document.getElementById("liner-title").style.display = "block";
+    document.getElementById("tag_show").style.display = "block";
+
+    var $target = $('#liner-title');
+
+    $('html, body').stop().animate({
+        'scrollTop': $target.offset().top
+    }, 900, 'swing', function () {
+        window.location.hash = '#score-board';
+    });
+
+    var checkbox = $('.form-radio');
+
+    <%if user_signed_in?
+        @liked_tag = Opinion.where(user_id: current_user.id, question_id: @question.id)
+        @liked_tag_array = Array.new()
+        @liked_tag.each do |tagId|
+          @liked_tag_array << Tag.where(question_id: @question.id, id: tagId.tag_id).first.label
+        end
+      else
+        @liked_tag = Opinion.where(user_id: cookies[:guest], question_id: @question.id)
+        @liked_tag_array = Array.new()
+        @liked_tag.each do |tagId|
+          @liked_tag_array << Tag.where(question_id: @question.id, id: tagId.tag_id).first.label
+        end
+      end
+    %>
+
+    <%if !@liked_tag_array.nil?%>
+      <%@liked_tag_array.each do |tag|%>
+        index = 0
+        for(index; index <= <%= @tag_array.length - 1%>; index++){
+          if ($('input[type=radio]')[index].value == "<%= tag %>"){
+            $('input[type=radio]')[index].offsetParent.style.color = "#419BF9";
+            $('input[type=radio]')[index].nextElementSibling.src = "/images/blue_up.png";
+            $('input[type=radio]')[index].nextElementSibling.onmouseout = null
+            $('input[type=radio]')[index].nextElementSibling.onmouseover = null
+            $('input[type=radio]')[index].nextElementSibling.setAttribute("class", "blue-up");
+            $('input[type=radio]')[index].nextElementSibling.nextElementSibling.style.color = "#419BF9";
+          }
+        }
+      <%end%>
+    <%end%>
+
+  };
+
+  <%if user_signed_in?
+      @liked_checkbox = Opinion.where(user_id: current_user.id, question_id: @question.id)
+      @liked_checkbox_array = Array.new()
+      @liked_checkbox.each do |tagId|
+        @liked_checkbox_array << Tag.where(question_id: @question.id, id: tagId.tag_id).first.label
+      end
+    else
+      @liked_checkbox = Opinion.where(user_id: cookies[:guest], question_id: @question.id)
+      @liked_checkbox_array = Array.new()
+      @liked_checkbox.each do |tagId|
+        @liked_checkbox_array << Tag.where(question_id: @question.id, id: tagId.tag_id).first.label
+      end
+    end
+  %>
+
+  $('input[type=checkbox]').on('change', function() {
+    $(this.form).submit();
   });
 
+  $('.new-tag-submitone').prop('disabled', true);
+  $('#otherone').keyup(function() {
+   inspectAllInputFields();
+  });
+
+  function inspectAllInputFields(){
+     var count = 0;
+     $('#otherone').each(function(i){
+       if( $(this).val() === '') {
+           count++;
+        }
+        if(count == 0){
+          $('.new-tag-submitone').prop('disabled', false);
+          $('#otherone').popover('hide');
+        }else {
+          $('.new-tag-submitone').prop('disabled', true);
+        }
+    });
+  }
+  $('#otherone').popover({placement:'bottom'});
+});
+
 </script>
+
 
 <script>
 $(document).ready(function() {
 
-  document.getElementById("animated-example").onclick = calculateTotal;
+  toastr.options = {
+    "closeButton": true,
+    "debug": false,
+    "newestOnTop": false,
+    "progressBar": false,
+    "positionClass": "toast-top-right",
+    "preventDuplicates": false,
+    "onclick": null,
+    "showDuration": "0",
+    "hideDuration": "0",
+    "timeOut": "0",
+    "extendedTimeOut": "0",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "slideDown",
+    "hideMethod": "slideUp"
+  }
 
-  function calculateTotal() {
-    rating1 = $('.dial')[0].value;
-    rating2 = $('.dial')[1].value;
-    rating3 = $('.dial')[2].value;
+  setTimeout(function(){   toastr["info"]( "Arima helps you to visualize comments thru simple clicks. <strong>Choose the best 1-liners below!</strong>"); }, 3000);
 
-    var total = (parseInt(rating1) + parseInt(rating2) + parseInt(rating3))/3;
-    total = total.toFixed(1);
-
-    var average = Math.random() * (10 - 7) + 7;
-
-    average = average.toFixed(1);
-
-    document.getElementById("your-score").innerHTML = total;
-    document.getElementById("average-score").innerHTML = average;
-    document.getElementById("plus-minus").innerHTML = (total - average).toFixed(1);
-
-    //document.getElementById('score-board').scrollIntoView();
-
-
-	    var $target = $('#score-board');
-
-	    $('html, body').stop().animate({
-	        'scrollTop': $target.offset().top
-	    }, 900, 'swing', function () {
-	        window.location.hash = '#score-board';
-	    });
-  };
 
   if(screen.width <= 800) {
     window.location = "http://thearima.com/system/uploads/<%= @question.image_link%>";
@@ -186,29 +270,44 @@ $(document).ready(function() {
 <%elsif @question.shared_image && @question.value_type == "tag"%>
   <div class="share-image-container">
     <div class="image-frame">
-      <center class="image-container" style="float:left;">
+      <center class="image-container">
         <%if !@question.image_link.nil?%>
           <a href="#" data-featherlight="#lightbox">
-            <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "380", alt:"image", class: "shared-photo hidden-xs", id: "lightbox") %>
+            <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "380", alt:"image", class: "shared-photo", id: "lightbox") %>
           </a>
         <%end%>
       </center>
 
-      <div class="a-dial" style="float:right;">
-        <input type="text" value="5" class="dial" data-max="10" data-angleOffset=-125 data-angleArc=250 data-fgColor="#419BF9" data-width="110" data-height="110">
-        <h5 style="color: #419BF9; position: relative; left: 28px; bottom: 2em;"> Content </h5>
-        <input type="text" value="5" class="dial" data-max="10" data-angleOffset=-125 data-angleArc=250 data-fgColor="#bdec8d" data-width="110" data-height="110">
-        <h5 style="color: #bdec8d; position: relative; left: 27px; bottom: 2em;"> Quality </h5>
-        <input type="text" value="5" class="dial" data-max="10" data-angleOffset=-125 data-angleArc=250 data-fgColor="#fff255" data-width="110" data-height="110">
-        <h5 style="color: #fff255; position: relative; left: 16px; bottom: 2em; margin-bottom: 30px;"> Composition </h5>
-        <%= link_to "Give a Rating", upvote_question_path(:id => @question.id), :method => :put, :remote => true, :id => "animated-example", :class => "animated bounce bounce-center"%>
+      <% if @answer == nil %>
+        <% @answer = user_signed_in? ? @question.answers.build(user_id: current_user.id) : @question.answers.build(user_id: cookies[:guest]) %>
+      <% end %>
+
+      <div class="check-prompt">
+      <h4 id="check-box-title" class="animated bounce"> Say something about this image</h4>
+        <%= simple_form_for @answer,:url => {:action => "add_tag", :controller => "answers"}, role: "form", html: {novalidate: true}, :remote => true do |f| %>
+
+          <div class="checkboxes">
+              <%if !@checkbox_array.nil?  %>
+                  <% @checkbox_array.each do |checkbox|%>
+                    <%= f.input :custom_field, :label => "#{checkbox.label}", :as => :boolean, :input_html => { :checked => "false" }%>
+                  <%end%>
+                    <%= f.submit "", :style=> "display: none;" %>
+            <% end %>
+          </div>
+          <div id="otherInputBoxone">
+              <%= hidden_field_tag 'question_id', @question.id %>
+              <%= f.input(:options_for_collection, label: false,input_html:{ 'data-toggle'=>"popover", 'data-trigger'=>"hover", 'data-placement'=>"top", 'data-content'=>"ex. Love it! or I've been there!", value: nil, placeholder: "Or... Add your own opinion!", class: "other-input-textone", id:"otherone"}) %>
+              <%= f.submit "", class: "new-tag-submitone" %>
+          </div>
+        <% end %>
+        <%= link_to "Submit", upvote_question_path(:id => @question.id), :method => :put, :remote => true, :id => "animated-example", :class => "submit-animate"%>
       </div>
 
-      <div style="clear:both;">
+      <div style="clear:both;"></div>
 
-      <center class="mobile-image-container">
-        <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "380", alt:"image", class: "shared-photo-mobile visible-xs")%>
-      </center>
+      <!--<center class="mobile-image-container">
+        <%#= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "380", alt:"image", class: "shared-photo-mobile visible-xs")%>
+      </center>-->
       <a href="<%= feed_path %>" class="feed-link hidden-xs"><div id="back-to-feed-button"><%= image_tag("Back-Arrow.png", class: "feed-back-arrow", width: "19", height: "9")%><font class="feed-back-title">Back to Home Feed</font></div></a>
       <section class="share-image-title"><%=@question.label %></section>
       <section class="share-icon-container" style="float: right; display: none;">
@@ -222,37 +321,15 @@ $(document).ready(function() {
       <!--<div id="animated-example" class="animated bounce bounce-center hidden-xs"><%= image_tag("Scroll-for-More.png", height: "27", width: "83")%></div>-->
     </div>
 
-
-    <div id="score-board" style="margin: 0 auto; width: 500px; height: 100px;padding-top: 110px; padding-bottom:30px;">
-      <div style="display: inline; float: left;">
-        <span style="color: #419BF9; font-size: 1.5em; font-weight: bold;">Your Score</span>
-
-        <span id="your-score" style="color:#419BF9; display: block; font-size: 2em; text-align: center; font-weight: bold;">1</span>
-      </div>
-
-      <div style="display: inline; float:left; padding-left: 2.8em; padding-right: 3em;">
-        <span style="color: #7ed321; font-size: 1.5em; font-weight: bold;">Average Score</span>
-
-        <span id="average-score" style="color: #7ed321; display: block; font-size: 2em; text-align: center; font-weight: bold;">1</span>
-      </div>
-
-      <div style="display: inline; float:left;">
-        <span style="color: #FF808F; font-size: 1.5em; font-weight: bold;">+/-</span>
-
-        <span id="plus-minus" style="color: #FF808F; display: block; font-size: 2em; text-align: center; font-weight: bold;">1</span>
-      </div>
-    </div>
-
-    <div style="clear: both; padding-bottom: 15px;"></div>
-
-    <div style="color: #7ed321; font-weight: 500; font-size: 18px; text-align: center; margin-right: 12em; margin-bottom: -.7em;" class="hidden-xs">What people say about this image:</div>
-    <center id="tag_show">
+    <div id="liner-title" style="display: none; background-color: #FCFCFC; color: #7ed321; font-weight: 500; font-size: 18px; text-align: center; margin-right: 12em; margin-bottom: -.7em; margin-top: 1.5em;">What people say about this image:</div>
+    <center id="tag_show" style="display: none;">
       <%if !@question.shared_image.nil? && @question.shared_image %>
         <%= render partial: 'questions/tag_input', locals: { question: @question, answer: @answer} %>
       <%elsif !@question.shared_image.nil? && !@question.shared_image%>
         <%= render partial: 'questions/answer_input', locals: { question: @question, answer: @answer} %>
       <%end%>
     </center>
+
   </div>
 <%else %>
   <div style="position: relative; top:30px;">

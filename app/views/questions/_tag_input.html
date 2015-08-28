@@ -4,13 +4,49 @@
 
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=visualization"></script>
 <%= javascript_include_tag "markerwithlabel" %>
+<%= javascript_include_tag "jquery.knob" %>
 
 <script type="text/javascript">
 
+  var rating1;
+  var rating2;
+  var rating3;
+
+  $(function() {
+    $('.dial').knob();
+  });
+
   $(document).ready(function() {
+
+    document.getElementById("knob-submit").onclick = calculateTotal;
+
+    function calculateTotal() {
+      document.getElementById("score-board").style.display = "block";
+
+      rating1 = $('.dial')[0].value;
+
+      var total = parseInt(rating1);
+
+      var average = Math.random() * (10 - 7) + 7;
+
+      average = average.toFixed(1);
+
+      document.getElementById("your-score").innerHTML = total;
+      document.getElementById("average-score").innerHTML = average;
+      document.getElementById("plus-minus").innerHTML = (total - average).toFixed(1);
+
+	    var $target = $('#score-board');
+
+	    $('html, body').stop().animate({
+	        'scrollTop': $target.offset().top
+	    }, 900, 'swing', function () {
+	        window.location.hash = '#score-board';
+	    });
+    };
+
     <%if Opinion.where(user_id: user_signed_in? ? current_user.id : cookies[:guest], question_id: @question.id).count >= 1%>
-      document.getElementById("map-canvas").style.display = 'block';
-      document.getElementById("blurred-map").style.display = 'none';
+      //document.getElementById("map-canvas").style.display = 'block';
+      //document.getElementById("blurred-map").style.display = 'none';
 
       initialize("");
     <%end%>
@@ -115,10 +151,34 @@
   <%= render partial: "tag_list"%>
 </div>
 
-<center style="color: #7ed321; font-weight: 500; font-size: 18px; margin-bottom: 1em;" class="hidden-xs">Where voters are from</center>
+<div class="a-dial">
+  <input type="text" value="5" class="dial" data-max="10" data-angleOffset=-125 data-angleArc=250 data-fgColor="#419BF9" data-width="300" data-height="300">
+  <%= link_to "Give a Rating", upvote_question_path(:id => @question.id), :method => :put, :remote => true, :id => "knob-submit", :class => "animated bounce bounce-center"%>
+</div>
 
-<%= image_tag("map_blur.png", height: '600', width: '900', id: "blurred-map", class: "hidden-xs") %>
+<div id="score-board" style=" display: none; float: left; margin: 0 auto; width: 500px; height: 50px; margin-top: 450px; padding-bottom:200px; position: relative; left: 38%;">
+  <div style="display: inline; float: left;">
+    <span style="color: #419BF9; font-size: 1.5em; font-weight: bold;">Your Score</span>
+
+    <span id="your-score" style="color:#419BF9; display: block; font-size: 2em; text-align: center; font-weight: bold;">1</span>
+  </div>
+
+  <div style="display: inline; float:left; padding-left: 2.8em; padding-right: 3em;">
+    <span style="color: #7ed321; font-size: 1.5em; font-weight: bold;">Average Score</span>
+
+    <span id="average-score" style="color: #7ed321; display: block; font-size: 2em; text-align: center; font-weight: bold;">1</span>
+  </div>
+
+  <div style="display: inline; float:left;">
+    <span style="color: #FF808F; font-size: 1.5em; font-weight: bold;">+/-</span>
+
+    <span id="plus-minus" style="color: #FF808F; display: block; font-size: 2em; text-align: center; font-weight: bold;">1</span>
+  </div>
+</div>
+
+<center style="color: #7ed321; font-weight: 500; font-size: 18px; margin-bottom: 1em;" class="hidden">Where voters are from</center>
+
+<%#= image_tag("map_blur.png", height: '600', width: '900', id: "blurred-map", class: "hidden-xs") %>
 <%#= image_tag("map_blur.png", height: '300', width: '100%', id: "blurred-map", class: "visible-xs") %>
 
-<div id="map-canvas" style="height: 600px; width: 900px; margin: 0; padding-bottom: 50px; display: none;" class="hidden-xs"></div>
-<div style="height: 30px;" class="hidden-xs"></div>
+<div id="map-canvas" style="height: 600px; width: 900px; margin: 0; padding-bottom: 50px; display: none;" class="hidden"></div>
