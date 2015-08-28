@@ -294,12 +294,13 @@ $(document).ready(function() {
                     <%= f.submit "", :style=> "display: none;" %>
             <% end %>
           </div>
-          <div id="otherInputBoxone">
+          <div id="otherInputBoxone" style="display: none;">
               <%= hidden_field_tag 'question_id', @question.id %>
               <%= f.input(:options_for_collection, label: false,input_html:{ 'data-toggle'=>"popover", 'data-trigger'=>"hover", 'data-placement'=>"top", 'data-content'=>"ex. Love it! or I've been there!", value: nil, placeholder: "Or... Add your own opinion!", class: "other-input-textone", id:"otherone"}) %>
-              <%= f.submit "", class: "new-tag-submitone" %>
+              <%#= f.submit "", class: "new-tag-submitone" %>
           </div>
         <% end %>
+        <div style="padding: 10px;"></div>
         <%= link_to "Submit", upvote_question_path(:id => @question.id), :method => :put, :remote => true, :id => "animated-example", :class => "submit-animate"%>
       </div>
 
