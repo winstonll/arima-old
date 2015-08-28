@@ -4131,6 +4131,8 @@ button.close {
 }
 .popover.bottom {
     margin-top: 10px;
+    font-size: 11px;
+    height: 3em;
 }
 .popover.left {
     margin-left: -10px;
@@ -4190,7 +4192,7 @@ button.close {
     left: 1px;
     bottom: -10px;
     border-left-width: 0;
-    border-right-color: #fff;
+    border-right-color: #419BF9;
 }
 .popover.bottom>.arrow {
     left: 50%;
@@ -4205,7 +4207,7 @@ button.close {
     top: 1px;
     margin-left: -10px;
     border-top-width: 0;
-    border-bottom-color: #fff;
+    border-bottom-color: #419BF9;
 }
 .popover.left>.arrow {
     top: 50%;
