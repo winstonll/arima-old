@@ -11,9 +11,51 @@
 <% end %>
 
 <%@checkbox_array = Tag.where(question_id: @question.id).order(created_at: :asc)%>
-
+<%@tag_array = Tag.where(question_id: @question.id).order(created_at: :asc)%>
 <script>
 $(document).ready(function() {
+
+  document.getElementById("animated-example").onclick = reveal;
+
+  function reveal() {
+    document.getElementById("liner-title").style.display = "block";
+    document.getElementById("tag_show").style.display = "block";
+
+    var checkbox = $('.form-radio');
+
+    <%if user_signed_in?
+        @liked_tag = Opinion.where(user_id: current_user.id, question_id: @question.id)
+        @liked_tag_array = Array.new()
+        @liked_tag.each do |tagId|
+          @liked_tag_array << Tag.where(question_id: @question.id, id: tagId.tag_id).first.label
+        end
+      else
+        @liked_tag = Opinion.where(user_id: cookies[:guest], question_id: @question.id)
+        @liked_tag_array = Array.new()
+        @liked_tag.each do |tagId|
+          @liked_tag_array << Tag.where(question_id: @question.id, id: tagId.tag_id).first.label
+        end
+      end
+    %>
+
+    <%if !@liked_tag_array.nil?%>
+      <%@liked_tag_array.each do |tag|%>
+        index = 0
+        for(index; index <= <%= @tag_array.length - 1%>; index++){
+          if ($('input[type=radio]')[index].value == "<%= tag %>"){
+            $('input[type=radio]')[index].offsetParent.style.color = "#419BF9";
+            $('input[type=radio]')[index].nextElementSibling.src = "/images/blue_up.png";
+            $('input[type=radio]')[index].nextElementSibling.onmouseout = null
+            $('input[type=radio]')[index].nextElementSibling.onmouseover = null
+            $('input[type=radio]')[index].nextElementSibling.setAttribute("class", "blue-up");
+            $('input[type=radio]')[index].nextElementSibling.nextElementSibling.style.color = "#419BF9";
+          }
+        }
+      <%end%>
+    <%end%>
+
+  };
+
   <%if user_signed_in?
       @liked_checkbox = Opinion.where(user_id: current_user.id, question_id: @question.id)
       @liked_checkbox_array = Array.new()
@@ -271,8 +313,8 @@ $(document).ready(function() {
       <!--<div id="animated-example" class="animated bounce bounce-center hidden-xs"><%= image_tag("Scroll-for-More.png", height: "27", width: "83")%></div>-->
     </div>
 
-    <div style="background-color: #FCFCFC; color: #7ed321; font-weight: 500; font-size: 18px; text-align: center; margin-right: 12em; margin-bottom: -.7em; margin-top: 1.5em;" class="hidden-xs">What people say about this image:</div>
-    <center id="tag_show">
+    <div id="liner-title" style="display: none; background-color: #FCFCFC; color: #7ed321; font-weight: 500; font-size: 18px; text-align: center; margin-right: 12em; margin-bottom: -.7em; margin-top: 1.5em;">What people say about this image:</div>
+    <center id="tag_show" style="display: none;">
       <%if !@question.shared_image.nil? && @question.shared_image %>
         <%= render partial: 'questions/tag_input', locals: { question: @question, answer: @answer} %>
       <%elsif !@question.shared_image.nil? && !@question.shared_image%>

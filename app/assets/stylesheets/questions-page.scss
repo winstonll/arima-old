@@ -70,6 +70,18 @@
   12% {transform: translateY(-10px);}
 }
 
+#knob-submit {
+  padding: 10px 25px 10px 25px;
+  width: 135px;
+  font-size: 14px !important;
+  border-radius: 20px;
+  background-color: #419BF9;
+  border: none;
+  color: #fff;
+  position: absolute;
+  left: 115px;
+}
+
 .bounce {
     position:absolute;
     bottom: 0;
