@@ -21,6 +21,14 @@ $(document).ready(function() {
     document.getElementById("liner-title").style.display = "block";
     document.getElementById("tag_show").style.display = "block";
 
+    var $target = $('#liner-title');
+
+    $('html, body').stop().animate({
+        'scrollTop': $target.offset().top
+    }, 900, 'swing', function () {
+        window.location.hash = '#score-board';
+    });
+
     var checkbox = $('.form-radio');
 
     <%if user_signed_in?
