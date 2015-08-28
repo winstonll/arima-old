@@ -232,7 +232,7 @@ $(document).ready(function() {
       <% end %>
 
       <div class="check-prompt">
-      <h4> What do you think about this image?</h4>
+      <h4> Say something about this image</h4>
         <%= simple_form_for @answer,:url => {:action => "add_tag", :controller => "answers"}, role: "form", html: {novalidate: true}, :remote => true do |f| %>
 
           <div class="checkboxes">
