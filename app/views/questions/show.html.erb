@@ -219,13 +219,13 @@ $(document).ready(function() {
 <%elsif @question.shared_image && @question.value_type == "tag"%>
   <div class="share-image-container">
     <div class="image-frame">
-      <center class="image-container" style="float:left;">
+      <div class="image-container">
         <%if !@question.image_link.nil?%>
           <a href="#" data-featherlight="#lightbox">
             <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "380", alt:"image", class: "shared-photo hidden-xs", id: "lightbox") %>
           </a>
         <%end%>
-      </center>
+      </div>
 
       <% if @answer == nil %>
         <% @answer = user_signed_in? ? @question.answers.build(user_id: current_user.id) : @question.answers.build(user_id: cookies[:guest]) %>
