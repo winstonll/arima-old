@@ -29,6 +29,10 @@ $(document).ready(function() {
     end
   %>
 
+  $('input[type=checkbox]').on('change', function() {
+    $(this.form).submit();
+  });
+
   $('.new-tag-submitone').prop('disabled', true);
   $('#otherone').keyup(function() {
    inspectAllInputFields();
@@ -245,6 +249,7 @@ $(document).ready(function() {
               <%= f.submit "", class: "new-tag-submitone" %>
           </div>
         <% end %>
+        <%= link_to "Submit", upvote_question_path(:id => @question.id), :method => :put, :remote => true, :id => "animated-example", :class => "submit-animate"%>
       </div>
 
       <div style="clear:both;"></div>

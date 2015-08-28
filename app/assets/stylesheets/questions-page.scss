@@ -143,17 +143,39 @@
     margin-right:-1em;
   }
 
+  .submit-animate {
+    -webkit-animation-duration: 5s;
+    animation-duration: 5s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    animation-iteration-count:infinite;
+    -webkit-animation-iteration-count:infinite;
+  }
+
+   #animated-example {
+    padding: 7px 15px 7px 15px;
+    font-size: 14px !important;
+    border-radius: 20px;
+    background-color: #419BF9;
+    border: none;
+    color: #fff;
+    position: relative;
+    left: 14px;
+    top: 3em;
+  }
+
     .check-prompt {
       position: relative;
       bottom: 30em;
-      #color: #88FFF4;
       float: right;
+      color: #fff;
 
       input {
         color: #88FFF4;
       }
 
       .checkboxes {
+        color: #88FFF4;
         position: relative;
         top: 1em;
       }
