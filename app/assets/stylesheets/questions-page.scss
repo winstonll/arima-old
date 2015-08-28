@@ -190,8 +190,8 @@
           }
           input[type="submit"]
           {
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
             border: none;
             background: url(image_path('add_tag_inactive.png'));
             background-size: 19px 19px;
@@ -202,10 +202,10 @@
 
             &:disabled {
               background: url(image_path('add_tag_hover.png'));
-              background-size: 19px 19px;
+              background-size: 20px 20px;
               &:hover {
                 background: url(image_path('add_tag_inactive.png'));
-                background-size: 19px 19px;
+                background-size: 20px 20px;
               }
             }
           }
@@ -217,7 +217,7 @@
             width: 240px;
           }
 
-          .other-input-text {
+          .other-input-textone {
             height: 25px;
             width: 200px;
             font-size: 10px;

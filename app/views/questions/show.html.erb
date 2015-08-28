@@ -54,6 +54,7 @@ $(document).ready(function() {
   }
   $('#otherone').popover({placement:'bottom'});
 });
+
 </script>
 
 
@@ -245,7 +246,7 @@ $(document).ready(function() {
           </div>
           <div id="otherInputBoxone">
               <%= hidden_field_tag 'question_id', @question.id %>
-              <%= f.input(:options_for_collection, label: false,input_html:{ 'data-toggle'=>"popover", 'data-trigger'=>"hover", 'data-placement'=>"top", 'data-content'=>"ex. Love it! or I've been there!", value: nil, placeholder: "Or... Add your own opinion!", class: "other-input-text", id:"otherone"}) %>
+              <%= f.input(:options_for_collection, label: false,input_html:{ 'data-toggle'=>"popover", 'data-trigger'=>"hover", 'data-placement'=>"top", 'data-content'=>"ex. Love it! or I've been there!", value: nil, placeholder: "Or... Add your own opinion!", class: "other-input-textone", id:"otherone"}) %>
               <%= f.submit "", class: "new-tag-submitone" %>
           </div>
         <% end %>
