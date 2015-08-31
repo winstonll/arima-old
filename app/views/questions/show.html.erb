@@ -292,33 +292,8 @@ $(document).ready(function() {
         <% @answer = user_signed_in? ? @question.answers.build(user_id: current_user.id) : @question.answers.build(user_id: cookies[:guest]) %>
       <% end %>
 
-      <div class="check-prompt">
-      <h4 id="check-box-title" class="animated bounce"> Say something about this image</h4>
-        <%= simple_form_for @answer,:url => {:action => "add_tag", :controller => "answers"}, role: "form", html: {novalidate: true}, :remote => true do |f| %>
-
-          <div class="checkboxes">
-              <%if !@checkbox_array.nil?  %>
-                  <% @checkbox_array.each do |checkbox|%>
-                    <%= f.input :custom_field, :label => "#{checkbox.label}", :as => :boolean, :input_html => { :checked => "false" }%>
-                  <%end%>
-                    <%= f.submit "", :style=> "display: none;" %>
-            <% end %>
-          </div>
-          <div id="otherInputBoxone" style="display: none;">
-              <%= hidden_field_tag 'question_id', @question.id %>
-              <%= f.input(:options_for_collection, label: false,input_html:{ 'data-toggle'=>"popover", 'data-trigger'=>"hover", 'data-placement'=>"top", 'data-content'=>"ex. Love it! or I've been there!", value: nil, placeholder: "Or... Add your own opinion!", class: "other-input-textone", id:"otherone"}) %>
-              <%#= f.submit "", class: "new-tag-submitone" %>
-          </div>
-        <% end %>
-        <div style="padding: 10px;"></div>
-        <%= link_to "Submit", upvote_question_path(:id => @question.id), :method => :put, :remote => true, :id => "animated-example", :class => "submit-animate"%>
-      </div>
-
       <div style="clear:both;"></div>
 
-      <!--<center class="mobile-image-container">
-        <%#= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "380", alt:"image", class: "shared-photo-mobile visible-xs")%>
-      </center>-->
       <a href="<%= feed_path %>" class="feed-link hidden-xs"><div id="back-to-feed-button"><%= image_tag("Back-Arrow.png", class: "feed-back-arrow", width: "19", height: "9")%><font class="feed-back-title">Back to Home Feed</font></div></a>
       <section class="share-image-title"><%=@question.label %></section>
       <section class="share-icon-container" style="float: right; display: none;">
