@@ -52,12 +52,12 @@ $(document).ready(function() {
         index = 0
         for(index; index <= <%= @tag_array.length - 1%>; index++){
           if ($('input[type=radio]')[index].value == "<%= tag %>"){
-            $('input[type=radio]')[index].offsetParent.style.color = "#419BF9";
-            $('input[type=radio]')[index].nextElementSibling.src = "/images/blue_up.png";
+            $('input[type=radio]')[index].offsetParent.style.color = "#88FFF4";
+            $('input[type=radio]')[index].nextElementSibling.src = "/images/teal_up.png";
             $('input[type=radio]')[index].nextElementSibling.onmouseout = null
             $('input[type=radio]')[index].nextElementSibling.onmouseover = null
             $('input[type=radio]')[index].nextElementSibling.setAttribute("class", "blue-up");
-            $('input[type=radio]')[index].nextElementSibling.nextElementSibling.style.color = "#419BF9";
+            $('input[type=radio]')[index].nextElementSibling.nextElementSibling.style.color = "#88FFF4";
           }
         }
       <%end%>
@@ -309,7 +309,6 @@ $(document).ready(function() {
       <!--<div id="animated-example" class="animated bounce bounce-center hidden-xs"><%= image_tag("Scroll-for-More.png", height: "27", width: "83")%></div>-->
     </div>
 
-    <div id="liner-title" style="display: none; background-color: #FCFCFC; color: #7ed321; font-weight: 500; font-size: 18px; text-align: center; margin-right: 12em; margin-bottom: -.7em; margin-top: 1.5em;">What people say about this image:</div>
     <center id="tag_show" style="display: none;">
       <%if !@question.shared_image.nil? && @question.shared_image %>
         <%= render partial: 'questions/tag_input', locals: { question: @question, answer: @answer} %>

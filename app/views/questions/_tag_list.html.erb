@@ -45,7 +45,9 @@ $(document).ready(function() {
 <% @answer = user_signed_in? ? @question.answers.build(user_id: current_user.id) : @question.answers.build(user_id: cookies[:guest]) %>
 <% end %>
 
-<div class="tag-prompt">
+<div class="tag-prompt" style="background-color: #212124;">
+  <div id="liner-title" style="color: #7ed321; font-weight: 500; font-size: 18px; text-align: center; margin-right: 12em; margin-bottom: -.7em; margin-top: 1.5em;">What people say about this image:</div>
+
   <%= simple_form_for @answer,:url => {:action => "add_tag", :controller => "answers"}, class: "form-inline", role: "form", html: {novalidate: true}, :remote => true do |f| %>
 
     <br>
@@ -57,7 +59,7 @@ $(document).ready(function() {
               <%= f.radio_button :value, tag.label, :class=>"form-radio"%>
               <%="#{tag.label}"%>
               <% @tag_count = tag.counter %>
-              <%= image_tag("grey_up.png", class:"grey-up", :onMouseover=> "this.src='/images/blue_up.png'",:onMouseout=> "this.src='/images/grey_up.png'")%>
+              <%= image_tag("white_up.png", class:"grey-up", :onMouseover=> "this.src='/images/teal_up.png'",:onMouseout=> "this.src='/images/white_up.png'")%>
               <span class="tag-count">
                 <%= @tag_count %>
               </span>
