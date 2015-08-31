@@ -10,9 +10,11 @@ $(document).ready(function() {
 
   $('input[type=radio]').on('change', function() {
     $(this).closest("form").submit();
+
   });
 
   $('.new-tag-submit').prop('disabled', true);
+
   $('#other').keyup(function() {
    inspectAllInputFields();
   });

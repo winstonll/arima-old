@@ -139,7 +139,7 @@ $(document).ready(function() {
     "hideMethod": "slideUp"
   }
 
-  setTimeout(function(){   toastr["info"]( "Arima helps you to visualize comments thru simple clicks. <strong>Choose the best 1-liners below!</strong>"); }, 3000);
+  setTimeout(function(){   toastr["info"]( "Arima helps you to visualize opinions thru simple clicks."); }, 3000);
 
 
   if(screen.width <= 800) {
@@ -293,7 +293,7 @@ $(document).ready(function() {
       <% end %>
 
       <div style="clear:both;"></div>
-
+      
       <a href="<%= feed_path %>" class="feed-link hidden-xs"><div id="back-to-feed-button"><%= image_tag("Back-Arrow.png", class: "feed-back-arrow", width: "19", height: "9")%><font class="feed-back-title">Back to Home Feed</font></div></a>
       <section class="share-image-title"><%=@question.label %></section>
       <section class="share-icon-container" style="float: right; display: none;">

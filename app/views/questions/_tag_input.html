@@ -43,16 +43,17 @@
 	        window.location.hash = '#score-board';
 	    });
     };
-
+/**
     <%if Opinion.where(user_id: user_signed_in? ? current_user.id : cookies[:guest], question_id: @question.id).count >= 1%>
       //document.getElementById("map-canvas").style.display = 'block';
       //document.getElementById("blurred-map").style.display = 'none';
 
       initialize("");
     <%end%>
+**/
   });
 
-
+/**
   var user_lat = <%= Location.where(user_id: user_signed_in? ? current_user.id : cookies[:guest]).first.latitude %>;
   var user_long = <%= Location.where(user_id: user_signed_in? ? current_user.id : cookies[:guest]).first.longitude %>;
 
@@ -144,7 +145,7 @@
     map.setCenter(marker.getPosition());
 
   }
-
+**/
 </script>
 
 <div id="tag_list_container" class="hidden-xs">
