@@ -101,16 +101,16 @@
       <%# loc_arr.each do |location| %>
         if(tag_label != -1){
           //initializing the map when the user clicks the question
-          if((user_lat != <%= location[0][0] %>) && (user_long != <%= location[0][1] %>)){
+          if((user_lat != <%#= location[0][0] %>) && (user_long != <%#= location[0][1] %>)){
             var marker = new MarkerWithLabel({
-                position: new google.maps.LatLng(<%= location[0][0] %>, <%= location[0][1] %>),
+                position: new google.maps.LatLng(<%#= location[0][0] %>, <%#= location[0][1] %>),
                 map: map,
-                labelContent: "<%= location[1] %>",
+                labelContent: "<%#= location[1] %>",
                 labelClass: "tag-labels"
             });
           }else {
             var marker = new MarkerWithLabel({
-                position: new google.maps.LatLng(<%= location[0][0] %>, <%= location[0][1] %>),
+                position: new google.maps.LatLng(<%#= location[0][0] %>, <%#= location[0][1] %>),
                 map: map,
                 labelContent: "You",
                 labelClass: "tag-labels"
@@ -118,11 +118,11 @@
           }
         }else{
           //initializing the map because all tags were deselected by the user.
-          if((user_lat != <%= location[0][0] %>) && (user_long != <%= location[0][1] %>)){
+          if((user_lat != <%#= location[0][0] %>) && (user_long != <%#= location[0][1] %>)){
             var marker = new MarkerWithLabel({
-                position: new google.maps.LatLng(<%= location[0][0] %>, <%= location[0][1] %>),
+                position: new google.maps.LatLng(<%#= location[0][0] %>, <%#= location[0][1] %>),
                 map: map,
-                labelContent: "<%= location[1] %>",
+                labelContent: "<%#= location[1] %>",
                 labelClass: "tag-labels"
             });
           }
