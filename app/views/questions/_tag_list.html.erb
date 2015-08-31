@@ -45,8 +45,8 @@ $(document).ready(function() {
 <% @answer = user_signed_in? ? @question.answers.build(user_id: current_user.id) : @question.answers.build(user_id: cookies[:guest]) %>
 <% end %>
 
-<div class="tag-prompt" style="background-color: #212124;">
-  <div id="liner-title" style="color: #7ed321; font-weight: 500; font-size: 18px; text-align: center; margin-right: 12em; margin-bottom: -.7em; margin-top: 1.5em;">What people say about this image:</div>
+<div class="tag-prompt" style="background-color: #212124; float: right;">
+  <div id="liner-title" style="color: #7ed321; font-weight: 500; font-size: 18px; text-align: center; margin-right: 12em; margin-bottom: -.7em;">What people say about this image:</div>
 
   <%= simple_form_for @answer,:url => {:action => "add_tag", :controller => "answers"}, class: "form-inline", role: "form", html: {novalidate: true}, :remote => true do |f| %>
 
