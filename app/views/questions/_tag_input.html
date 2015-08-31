@@ -7,7 +7,7 @@
 <%= javascript_include_tag "jquery.knob" %>
 
 <script type="text/javascript">
-
+/**
   var rating1;
   var rating2;
   var rating3;
@@ -15,9 +15,10 @@
   $(function() {
     $('.dial').knob();
   });
+**/
 
   $(document).ready(function() {
-
+    /**
     document.getElementById("knob-submit").onclick = calculateTotal;
 
     function calculateTotal() {
@@ -43,6 +44,7 @@
 	        window.location.hash = '#score-board';
 	    });
     };
+    **/
 /**
     <%#if Opinion.where(user_id: user_signed_in? ? current_user.id : cookies[:guest], question_id: @question.id).count >= 1%>
       //document.getElementById("map-canvas").style.display = 'block';
@@ -152,9 +154,10 @@
   <%= render partial: "tag_list"%>
 </div>
 
+<!--
 <div class="a-dial">
   <input type="text" value="7" class="dial" data-max="10" data-angleOffset=-125 data-angleArc=250 data-fgColor="#419BF9" data-width="300" data-height="300">
-  <%= link_to "Give a Rating", upvote_question_path(:id => @question.id), :method => :put, :remote => true, :id => "knob-submit", :class => "animated bounce bounce-center"%>
+  <%#= link_to "Give a Rating", upvote_question_path(:id => @question.id), :method => :put, :remote => true, :id => "knob-submit", :class => "animated bounce bounce-center"%>
 </div>
 
 <div id="score-board" style=" display: none; float: left; margin: 0 auto; width: 500px; height: 50px; margin-top: 450px; padding-bottom:200px; position: relative; left: 38%;">
@@ -178,7 +181,7 @@
 </div>
 
 <center style="color: #7ed321; font-weight: 500; font-size: 18px; margin-bottom: 1em;" class="hidden">Where voters are from</center>
-
+-->
 <%#= image_tag("map_blur.png", height: '600', width: '900', id: "blurred-map", class: "hidden-xs") %>
 <%#= image_tag("map_blur.png", height: '300', width: '100%', id: "blurred-map", class: "visible-xs") %>
 
