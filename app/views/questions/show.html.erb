@@ -12,6 +12,7 @@
 
 <%@checkbox_array = Tag.where(question_id: @question.id).order(created_at: :asc)%>
 <%@tag_array = Tag.where(question_id: @question.id).order(created_at: :asc)%>
+
 <script>
 $(document).ready(function() {
 
@@ -293,7 +294,8 @@ $(document).ready(function() {
       <% end %>
 
       <div style="clear:both;"></div>
-      
+      <%= link_to "Submit", upvote_question_path(:id => @question.id), :method => :put, :remote => true, :id => "animated-example", :class => "submit-animate"%>
+
       <a href="<%= feed_path %>" class="feed-link hidden-xs"><div id="back-to-feed-button"><%= image_tag("Back-Arrow.png", class: "feed-back-arrow", width: "19", height: "9")%><font class="feed-back-title">Back to Home Feed</font></div></a>
       <section class="share-image-title"><%=@question.label %></section>
       <section class="share-icon-container" style="float: right; display: none;">

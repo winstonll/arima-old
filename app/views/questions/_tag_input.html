@@ -44,18 +44,18 @@
 	    });
     };
 /**
-    <%if Opinion.where(user_id: user_signed_in? ? current_user.id : cookies[:guest], question_id: @question.id).count >= 1%>
+    <%#if Opinion.where(user_id: user_signed_in? ? current_user.id : cookies[:guest], question_id: @question.id).count >= 1%>
       //document.getElementById("map-canvas").style.display = 'block';
       //document.getElementById("blurred-map").style.display = 'none';
 
       initialize("");
-    <%end%>
+    <%#end%>
 **/
   });
 
 /**
-  var user_lat = <%= Location.where(user_id: user_signed_in? ? current_user.id : cookies[:guest]).first.latitude %>;
-  var user_long = <%= Location.where(user_id: user_signed_in? ? current_user.id : cookies[:guest]).first.longitude %>;
+  var user_lat = <%#= Location.where(user_id: user_signed_in? ? current_user.id : cookies[:guest]).first.latitude %>;
+  var user_long = <%#= Location.where(user_id: user_signed_in? ? current_user.id : cookies[:guest]).first.longitude %>;
 
   var mapOptions;
 
@@ -83,7 +83,7 @@
 
     }else {
       //When someone clicks a question it first displays all of the tags on the map (if there are any) AND creates the google map object
-      <%  opinion = Opinion.new
+      <%#  opinion = Opinion.new
           loc_arr = opinion.user_lat_long_all(question.id)
       %>
 
@@ -98,7 +98,7 @@
 
       element.gMap = map;
 
-      <% loc_arr.each do |location| %>
+      <%# loc_arr.each do |location| %>
         if(tag_label != -1){
           //initializing the map when the user clicks the question
           if((user_lat != <%= location[0][0] %>) && (user_long != <%= location[0][1] %>)){
@@ -127,7 +127,7 @@
             });
           }
         }
-      <% end %>
+      <%# end %>
     }
     google.maps.event.addDomListener(window, 'load', initialize);
 
