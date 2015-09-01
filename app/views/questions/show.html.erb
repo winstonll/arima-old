@@ -279,7 +279,7 @@ $(document).ready(function() {
 
   </div>
 <%else %>
-  <div style="height: 93vh; background-color: black;">
+  <div style="height: 100vh; background-color: black;">
     <center>  <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "340", alt:"image")%> </center>
     <center style="color: #4A90E2; font-weight: bold; font-size: 24px; padding-top: 10px;"><%=@question.label %></center>
     <center class="meta-title"><%= @question.answers.count%><%= @question.answers.count == 1 ? ' Person' : ' People' %> Answered</center>
