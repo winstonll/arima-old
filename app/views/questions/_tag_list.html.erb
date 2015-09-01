@@ -47,15 +47,12 @@ $(document).ready(function() {
 <% end %>
 
 <div class="tag-prompt" style="background-color: #212124; width: 100%;float: right;">
-  <div id="liner-title" style="float: right; color: #419BF9; font-weight: 600; font-size: 18px; margin-right: 230px; margin-bottom: -.7em; margin-top: 1.5em;">What people say about this image:</div>
-
-  <%= image_tag("/system/uploads/" + @question.image_link, alt:"image",class: "image_thumb")%>
-
 
   <%= simple_form_for @answer,:url => {:action => "add_tag", :controller => "answers"}, class: "form-inline", role: "form", html: {novalidate: true}, :remote => true do |f| %>
-
-    <br style="clear: right;">
+<!--margin-right: 230px; margin-bottom: -.7em; margin-top: 1.5em;-->
     <div style="margin-top: 50px; float: right; background-color: #212124;">
+    <div id="liner-title" style="color: #419BF9; font-weight: 600; font-size: 18px;">What people say about this image:</div>
+
     <div class="options">
         <%if !@tag_array.nil?  %>
 
@@ -82,5 +79,7 @@ $(document).ready(function() {
   </div>
     <br>
   <% end %>
+
+  <%= image_tag("/system/uploads/" + @question.image_link, alt:"image",class: "image_thumb")%>
 
 </div>

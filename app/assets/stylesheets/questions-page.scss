@@ -274,8 +274,10 @@
 }
 
 .image_thumb {
+  margin-left: 100px;
+  margin-top: 30px;
   width: 30%;
-  float: left;
+  float: right;
 }
 
 /**@media screen and (max-width: 768px) {
@@ -472,7 +474,6 @@
   .options {
     position: relative;
     width: 40em;
-    left:2em;
     text-align: justify;
     -webkit-column-count: 2;
 
