@@ -467,7 +467,22 @@
  }
 
 .tag-prompt {
-  background-color: #FCFCFC;
+  background-color: #212124;
+  width: 100%;
+  float: right;
+
+  #comment-section-padding {
+    margin-top: 50px;
+    float: right;
+    background-color: #212124;
+  }
+
+  #liner-title {
+    color: #419BF9;
+    font-weight: 600;
+    font-size: 18px;
+  }
+
   .checked {
     color: #419BF9;
   }
