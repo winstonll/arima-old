@@ -45,7 +45,9 @@ $(document).ready(function() {
 <% if @answer == nil %>
 <% @answer = user_signed_in? ? @question.answers.build(user_id: current_user.id) : @question.answers.build(user_id: cookies[:guest]) %>
 <% end %>
-
+<div>
+  DONUT CHART GOES HERE
+</div>
 <div class="tag-prompt" style="background-color: #212124; width: 100%;float: right;">
 
   <%= simple_form_for @answer,:url => {:action => "add_tag", :controller => "answers"}, class: "form-inline", role: "form", html: {novalidate: true}, :remote => true do |f| %>
