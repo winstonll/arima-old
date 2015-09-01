@@ -273,16 +273,6 @@
   }
 }
 
-.image_thumb {
-  margin-right: 50px;
-  width: 410px;
-  float: left;
-  background-color: #212124;
-}
-.wrapper  {
-  display: inline-block;
-}
-
 /**@media screen and (max-width: 768px) {
   .image-frame {
     background-color: red;
@@ -468,171 +458,195 @@
 
  }
 
-.tag-prompt {
+.wrapper  {
+  display: inline-block;
+}
+
+.image_thumb {
+  margin-top: 30px;
+  margin-right: 50px;
+  width: 410px;
+  float: left;
   background-color: #212124;
-  width: 500px;
+}
 
-  #comment-section-padding {
-    margin-top: 50px;
-    float: right;
-    background-color: #212124;
-  }
 
-  #liner-title {
-    position: relative;
-    width: 400px;
-    right: 3em;
-    color: #419BF9;
-    font-weight: 600;
-    font-size: 18px;
-  }
+.background-container {
+  width: 100%;
+  background-color: #212124;
 
-  .checked {
-    color: #419BF9;
-  }
+  .center-container {
+    margin: 0px auto;
+    width: 1000px;
 
-  .options {
-    position: relative;
-    width: 40em;
-    text-align: justify;
-    -webkit-column-count: 2;
-
-    .tag_button_collection {
-      position: relative;
-      margin-left: 10px;
-      cursor: pointer;
-      margin-top: 5px;
+    .tag-prompt {
       background-color: #212124;
-      padding: 8px 22px 8px 22px;
-      color: #FFF;
-      font-weight:300;
-      display: block;
-      font-size:15px;
+      width: 500px;
 
-
-      input{
-        visibility: hidden;
-        margin-left: -22px;
+      #comment-section-padding {
+        margin-top: 50px;
+        float: right;
+        background-color: #212124;
       }
 
-      .tag-count{
+      #liner-title {
+        margin-top: 30px;
         position: relative;
-        float: left;
-        right: 16px;
-        top: 5px;
-        color: #FFF;
-        font-size: 13px;
-        font-weight: 600;
-
-      }
-
-      .grey-up{
-        position: relative;
-        float: left;
-        right: 6px;
-        bottom: 5px;
-        width: 14px;
-
-      }
-      .blue-up{
-        position: relative;
-        float: left;
-        right: 6px;
-        bottom: 5px;
-        width: 14px;
-
-      }
-    }
-
-  }
-
-    #otherInputBox {
-      display: inline-block;
-      position: relative;
-      right: 180px;
-      input:focus {
-        outline: none;
-      }
-      input[type="submit"]
-      {
-        width: 2em;
-        height: 2em;
-        border: none;
-        background: url(image_path('add_tag_inactive.png'));
-        background-size: 28px 28px;
-        position: relative;
-        left: 232px;
-        display: inline;
-        bottom: 31px;
-
-        &:disabled {
-          background: url(image_path('add_tag_hover.png'));
-          background-size: 28px 28px;
-          &:hover {
-            background: url(image_path('add_tag_inactive.png'));
-            background-size: 28px 28px;
-          }
-        }
-      }
-
-      .answer_options_for_collection{
-        height:36px;
-      }
-      .question_options_for_collection {
-        width: 240px;
-      }
-      .new-tag {
+        width: 400px;
+        right: 5.3em;
         color: #419BF9;
         font-weight: 600;
         font-size: 18px;
       }
-      .other-input-text {
-        height: 35px;
-        width: 317px;
-        font-size: 14px;
-        background-color: #fff;
-        resize: none;
-        border: solid;
-        border-color: #c4c4c4!important;
-        border: solid;
-        border-width: 1px;
-        padding: 10px 20px 0px 20px;
-        border-radius: 50px;
-        padding-left: 15px;
-        padding-bottom: 7px;
-        margin-top:2px;
-        margin-left: 13em;
 
-        .popover{
-          width:200px;
-          height:250px;
-          background-color:#419BF9;
-          color:#fff;
+      .checked {
+        color: #419BF9;
+      }
+
+      .options {
+        position: relative;
+        width: 40em;
+        text-align: justify;
+        -webkit-column-count: 2;
+
+        .tag_button_collection {
+          position: relative;
+          margin-left: 10px;
+          cursor: pointer;
+          margin-top: 5px;
+          background-color: #212124;
+          padding: 8px 22px 8px 22px;
+          color: #FFF;
+          font-weight:300;
+          display: block;
+          font-size:15px;
+
+
+          input{
+            visibility: hidden;
+            margin-left: -22px;
+          }
+
+          .tag-count{
+            position: relative;
+            float: left;
+            right: 16px;
+            top: 5px;
+            color: #FFF;
+            font-size: 13px;
+            font-weight: 600;
+
+          }
+
+          .grey-up{
+            position: relative;
+            float: left;
+            right: 6px;
+            bottom: 5px;
+            width: 14px;
+
+          }
+          .blue-up{
+            position: relative;
+            float: left;
+            right: 6px;
+            bottom: 5px;
+            width: 14px;
+
+          }
         }
 
       }
 
-      ::-webkit-input-placeholder {
-         position:relative;
-         bottom: 1px;
-      }
+        #otherInputBox {
+          display: inline-block;
+          position: relative;
+          right: 180px;
+          input:focus {
+            outline: none;
+          }
+          input[type="submit"]
+          {
+            width: 2em;
+            height: 2em;
+            border: none;
+            background: url(image_path('add_tag_inactive.png'));
+            background-size: 28px 28px;
+            position: relative;
+            left: 232px;
+            display: inline;
+            bottom: 31px;
 
-      :-moz-placeholder { /* Firefox 18- */
-        position:relative;
-        bottom: 1px;
-      }
+            &:disabled {
+              background: url(image_path('add_tag_hover.png'));
+              background-size: 28px 28px;
+              &:hover {
+                background: url(image_path('add_tag_inactive.png'));
+                background-size: 28px 28px;
+              }
+            }
+          }
 
-      ::-moz-placeholder {  /* Firefox 19+ */
-         position:relative;
-         bottom: 1px;
-      }
+          .answer_options_for_collection{
+            height:36px;
+          }
+          .question_options_for_collection {
+            width: 240px;
+          }
+          .new-tag {
+            color: #419BF9;
+            font-weight: 600;
+            font-size: 18px;
+          }
+          .other-input-text {
+            height: 35px;
+            width: 317px;
+            font-size: 14px;
+            background-color: #fff;
+            resize: none;
+            border: solid;
+            border-color: #c4c4c4!important;
+            border: solid;
+            border-width: 1px;
+            padding: 10px 20px 0px 20px;
+            border-radius: 50px;
+            padding-left: 15px;
+            padding-bottom: 7px;
+            margin-top:2px;
+            margin-left: 13em;
 
-      :-ms-input-placeholder {
-         position:relative;
-         bottom: 1px;
-      }
+            .popover{
+              width:200px;
+              height:250px;
+              background-color:#419BF9;
+              color:#fff;
+            }
+
+          }
+
+          ::-webkit-input-placeholder {
+             position:relative;
+             bottom: 1px;
+          }
+
+          :-moz-placeholder { /* Firefox 18- */
+            position:relative;
+            bottom: 1px;
+          }
+
+          ::-moz-placeholder {  /* Firefox 19+ */
+             position:relative;
+             bottom: 1px;
+          }
+
+          :-ms-input-placeholder {
+             position:relative;
+             bottom: 1px;
+          }
+        }
+
     }
-
+  }
 }
 
 //Questions show page
