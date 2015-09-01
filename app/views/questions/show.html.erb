@@ -74,46 +74,6 @@ $(document).ready(function() {
     }
 
   };
-
-  <%if user_signed_in?
-      @liked_checkbox = Opinion.where(user_id: current_user.id, question_id: @question.id)
-      @liked_checkbox_array = Array.new()
-      @liked_checkbox.each do |tagId|
-        @liked_checkbox_array << Tag.where(question_id: @question.id, id: tagId.tag_id).first.label
-      end
-    else
-      @liked_checkbox = Opinion.where(user_id: cookies[:guest], question_id: @question.id)
-      @liked_checkbox_array = Array.new()
-      @liked_checkbox.each do |tagId|
-        @liked_checkbox_array << Tag.where(question_id: @question.id, id: tagId.tag_id).first.label
-      end
-    end
-  %>
-
-  $('input[type=checkbox]').on('change', function() {
-    $(this.form).submit();
-  });
-
-  $('.new-tag-submitone').prop('disabled', true);
-  $('#otherone').keyup(function() {
-   inspectAllInputFields();
-  });
-
-  function inspectAllInputFields(){
-     var count = 0;
-     $('#otherone').each(function(i){
-       if( $(this).val() === '') {
-           count++;
-        }
-        if(count == 0){
-          $('.new-tag-submitone').prop('disabled', false);
-          $('#otherone').popover('hide');
-        }else {
-          $('.new-tag-submitone').prop('disabled', true);
-        }
-    });
-  }
-  $('#otherone').popover({placement:'bottom'});
 });
 
 </script>
