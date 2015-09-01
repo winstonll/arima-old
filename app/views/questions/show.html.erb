@@ -15,9 +15,9 @@
 
 <script>
 $(document).ready(function() {
-
-  document.getElementById("animated-example").onclick = reveal;
-
+  <%if @question.shared_image %>
+    document.getElementById("animated-example").onclick = reveal;
+  <%end%>
   function reveal() {
     document.getElementById("liner-title").style.display = "block";
     document.getElementById("tag_show").style.display = "block";
