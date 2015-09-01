@@ -8,6 +8,7 @@
 
 $(document).ready(function() {
 
+
   $('input[type=radio]').on('change', function() {
     $(this).closest("form").submit();
 
@@ -45,13 +46,16 @@ $(document).ready(function() {
 <% @answer = user_signed_in? ? @question.answers.build(user_id: current_user.id) : @question.answers.build(user_id: cookies[:guest]) %>
 <% end %>
 
+<div class="tag-prompt" style="background-color: #212124; width: 100%;float: right;">
+  <div id="liner-title" style="float: right; color: #419BF9; font-weight: 600; font-size: 18px; margin-right: 230px; margin-bottom: -.7em; margin-top: 1.5em;">What people say about this image:</div>
 
-<div class="tag-prompt" style="background-color: #212124; float: right;">
-  <div id="liner-title" style="color: #419BF9; font-weight: 600; font-size: 18px; text-align: center; margin-right: 12em; margin-bottom: -.7em; margin-top: 1.5em;">What people say about this image:</div>
+  <%= image_tag("/system/uploads/" + @question.image_link, alt:"image",class: "image_thumb")%>
+
 
   <%= simple_form_for @answer,:url => {:action => "add_tag", :controller => "answers"}, class: "form-inline", role: "form", html: {novalidate: true}, :remote => true do |f| %>
 
-    <br>
+    <br style="clear: right;">
+    <div style="margin-top: 50px; float: right; background-color: #212124;">
     <div class="options">
         <%if !@tag_array.nil?  %>
 
@@ -75,6 +79,7 @@ $(document).ready(function() {
         <%= f.input(:options_for_collection, label: false,input_html:{ 'data-toggle'=>"popover", 'data-trigger'=>"hover", 'data-placement'=>"top", 'data-content'=>"ex. Great composition, or Fantastic scenery", value: nil, placeholder: "What do you think of this image?", class: "other-input-text", id:"other"}) %>
         <%= f.submit "", class: "new-tag-submit" %>
     </div>
+  </div>
     <br>
   <% end %>
 
