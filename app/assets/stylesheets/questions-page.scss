@@ -275,10 +275,12 @@
 
 .image_thumb {
   margin-right: 50px;
-  margin-top: 30px;
-  margin-bottom: 20px;
-  width: 30%;
-  float: right;
+  width: 410px;
+  float: left;
+  background-color: #212124;
+}
+.wrapper  {
+  display: inline-block;
 }
 
 /**@media screen and (max-width: 768px) {
@@ -468,8 +470,7 @@
 
 .tag-prompt {
   background-color: #212124;
-  width: 100%;
-  float: right;
+  width: 560px;
 
   #comment-section-padding {
     margin-top: 50px;
@@ -478,6 +479,8 @@
   }
 
   #liner-title {
+    position: relative;
+    right: 5.5em;
     color: #419BF9;
     font-weight: 600;
     font-size: 18px;
