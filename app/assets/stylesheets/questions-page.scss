@@ -505,21 +505,20 @@
 
       .options {
         position: relative;
-        width: 40em;
         text-align: justify;
+        width: 35em;
 
         .tag_button_collection {
-          position: relative;
-          margin-left: 10px;
-          cursor: pointer;
-          margin-top: 5px;
           background-color: #212124;
-          padding: 8px 22px 8px 22px;
           color: #FFF;
-          font-weight:300;
+          cursor: pointer;
           display: block;
           font-size:15px;
-
+          font-weight:300;
+          margin-left: 10px;
+          margin-top: 5px;
+          padding: 8px 22px 8px 22px;
+          position: relative;
 
           input{
             visibility: hidden;
