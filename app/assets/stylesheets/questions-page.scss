@@ -361,6 +361,10 @@
         border-radius: 5px;
         border: none;
 
+        &:hover{
+          opacity: .8;
+        }
+
       }
       .modal-button:disabled {
         background-color: #9a9a9a;
@@ -374,6 +378,10 @@
         background-color: #419BF9;
         border-radius: 5px;
         color: #fff;
+
+        &:hover{
+          opacity: .8;
+        }
       }
     }
   }
