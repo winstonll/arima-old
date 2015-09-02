@@ -243,8 +243,9 @@ $(document).ready(function() {
     <div class="image-frame">
       <center class="image-container">
         <%if !@question.image_link.nil?%>
-          <a href="#" data-featherlight="#lightbox">
-            <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "380", alt:"image", class: "shared-photo", id: "lightbox") %>
+        <%@img = image_tag("/system/uploads/" + @question.image_link, alt:"image")%>
+          <a href="<%="/system/uploads/" + @question.image_link%>" data-featherlight="image">
+            <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, alt:"image", class: "shared-photo", id: "lightbox") %>
           </a>
         <%end%>
       </center>

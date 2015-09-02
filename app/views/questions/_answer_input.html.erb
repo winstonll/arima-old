@@ -11,9 +11,10 @@
 <% end %>
 
 <script type="text/javascript">
-document.getElementById('home-navbar').style.backgroundColor = "#4A90E2";
 
 $(document).ready(function() {
+  document.getElementById('home-navbar').style.backgroundColor = "#4A90E2";
+
   $(".slider").slider({max: 10, min: 1, step: 1}).slider("pips", {rest: "label", step: 1}).slider("float");
 
   $(".modal-button").click(function(){
