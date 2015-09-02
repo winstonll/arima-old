@@ -10,14 +10,13 @@
 <% @question = Question.where(slug: params[:id])[0] %>
 <% end %>
 
-<%@checkbox_array = Tag.where(question_id: @question.id).order(created_at: :asc)%>
 <%@tag_array = Tag.where(question_id: @question.id).order(created_at: :asc)%>
 
 <script>
 $(document).ready(function() {
-  <%if @question.shared_image %>
-    document.getElementById("animated-example").onclick = reveal;
-  <%end%>
+  // <%if @question.shared_image %>
+  //   document.getElementById("animated-example").onclick = reveal;
+  // <%end%>
   function reveal() {
     document.getElementById("liner-title").style.display = "block";
     document.getElementById("tag_show").style.display = "block";
@@ -77,7 +76,6 @@ $(document).ready(function() {
 });
 
 </script>
-
 
 <script>
 $(document).ready(function() {
@@ -249,12 +247,7 @@ $(document).ready(function() {
         <%end%>
       </center>
 
-      <% if @answer == nil %>
-        <% @answer = user_signed_in? ? @question.answers.build(user_id: current_user.id) : @question.answers.build(user_id: cookies[:guest]) %>
-      <% end %>
-
       <div style="clear:both;"></div>
-      <%= link_to "Submit", upvote_question_path(:id => @question.id), :method => :put, :remote => true, :id => "animated-example", :class => "submit-animate"%>
 
       <a href="<%= feed_path %>" class="feed-link hidden-xs"><div id="back-to-feed-button"><%= image_tag("Back-Arrow.png", class: "feed-back-arrow", width: "19", height: "9")%><font class="feed-back-title">Back to Home Feed</font></div></a>
       <section class="share-image-title"><%=@question.label %></section>
@@ -266,9 +259,44 @@ $(document).ready(function() {
             image: "#{request.protocol}#{request.host_with_port}" + question_path(@question)
           }%>
       </section>
-      <!--<div id="animated-example" class="animated bounce bounce-center hidden-xs"><%= image_tag("Scroll-for-More.png", height: "27", width: "83")%></div>-->
-    </div>
+      <!--<div id="animated-example" class="animated bounce bounce-center hidden-xs"><%#= image_tag("Scroll-for-More.png", height: "27", width: "83")%></div>-->        
+        <div class="square">
+        <h4 style= "color: #fff; visibility: hidden;">  See what everyone says about this image. Give an opinion below! :)</h4>
+          <div class="rating-prompt">
+            <% if @answer == nil %>
+              <% @answer = user_signed_in? ? @question.answers.build(user_id: current_user.id) : @question.answers.build(user_id: cookies[:guest]) %>
+            <% end %>
 
+            <% if cookies[:guest] != nil %>
+              <%= simple_form_for @answer, url: question_answers_path(@question, @answer), class: "form-inline", role: "form", html: {novalidate: true} do |f| %>
+                <div class="rating-options">
+                  <% @multiple_choice = Array.new()
+                      @question.options_array.each do |value|
+                        @multiple_choice << [value, value]
+                    end%>
+                  <%= f.collection_radio_buttons :value, @multiple_choice, :first, :last,item_wrapper_class: :rating_collection%>
+                </div>
+                <div id="otherInputBoxone">
+                  <%= hidden_field_tag 'question_id', @question.id %>
+                  <%= f.input(:options_for_collection, label: false,input_html:{ value: nil, class: "other-input-textone", id:"otherone"}) %>
+                  <%= f.submit "" %>
+                </div>
+                <div style="position: relative; top: 2em;">
+                  <% if !@user_submitted_answer %>
+                    <%= f.submit "Submit", disabled: true, data: {disable_with: "Submitting..."}, class: "rating-submit" %>
+                    <%#= link_to "TL;DR", report_question_path, class:"no-answer-prompt" %>
+                    <%= link_to "No Thanks", upvote_question_path(:id => @question.id), :method => :put, :remote => true, :class => "nothx-submit" %>
+                  <% end %>
+                </div>
+              <% end %>
+            <% end %>
+        </div>
+          <div class= "border-top"></div>
+          <div class= "border-right"></div>
+          <div class= "border-bottom"></div>
+          <div class= "border-left"></div>
+        </div>
+  </div>
     <center id="tag_show" style="display: none;">
       <%if !@question.shared_image.nil? && @question.shared_image %>
         <%= render partial: 'questions/tag_input', locals: { question: @question, answer: @answer} %>
@@ -277,7 +305,6 @@ $(document).ready(function() {
       <%end%>
     </center>
 
-  </div>
 <%else %>
   <div style="height: 100vh; background-color: #BBDAFF;">
     <center>  <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "340", alt:"image")%> </center>
