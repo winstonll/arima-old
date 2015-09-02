@@ -243,9 +243,8 @@ $(document).ready(function() {
     <div class="image-frame">
       <center class="image-container">
         <%if !@question.image_link.nil?%>
-        <%@img = image_tag("/system/uploads/" + @question.image_link, alt:"image")%>
-          <a href="<%="/system/uploads/" + @question.image_link%>" data-featherlight="image">
-            <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, alt:"image", class: "shared-photo", id: "lightbox") %>
+          <a href="#" data-featherlight="#lightbox">
+            <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "380", alt:"image", class: "shared-photo", id: "lightbox") %>
           </a>
         <%end%>
       </center>
@@ -282,11 +281,12 @@ $(document).ready(function() {
 <%else %>
   <div style="height: 100vh; background-color: #BBDAFF;">
     <center>  <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "340", alt:"image")%> </center>
-    <center style="color: #4a4a4a; font-weight: bold; font-family: Roboto; font-size: 26px; padding-top: 130px;"><%=@question.label %></center>
+    <center style="color: #4a4a4a; font-weight: bold; font-family: Roboto; font-size: 26px; padding-top: 130px; margin: 0 22%;"><%=@question.label %></center>
     <center class="meta-title"><%= @question.answers.count%><%= @question.answers.count == 1 ? ' Person' : ' People' %> Answered</center>
     <br>
     <center>
       <%= render partial: 'questions/answer_input', locals: { question: @question, answer: @answer} %>
     </center>
+
   </div>
 <%end%>
