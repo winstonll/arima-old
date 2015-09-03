@@ -12,7 +12,7 @@ $(document).ready(function() {
   data_answer = <%= answer.data_array('world').html_safe %>;
   //Donut chart
   var chart_answer = c3.generate({
-    size: { width: $(window).width(),
+    size: { width: $(window).width() - 100,
             height: 450 },
     data: {
       x: null,
