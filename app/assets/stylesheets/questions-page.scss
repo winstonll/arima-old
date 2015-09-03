@@ -96,7 +96,7 @@
   width: 100%;
   background-color: #212124;
   padding-top: 20px;
-  height: 92.5vh;
+  height: 100vh;
   position: relative;
 
   .image-container {
@@ -124,16 +124,16 @@
   .borderz.hover {
     transition: background-color 3.5s linear;
     background-color:#212124;
-    background-color:rgba(0, 0, 0, 0.6); 
+    background-color:rgba(0, 0, 0, 0.6);
   }
   //animated border
   *,*:before,*:after { box-sizing: border-box; }
   .square {
     width: 100%;
-    height: 330px;
+    height: 360px;
     position: relative;
     overflow: hidden;
-    bottom: 23em;
+    bottom: 20em;
     text-align: center;
 
     .rating-prompt {
@@ -152,9 +152,9 @@
 
           input[type="radio"]:checked+label{
             color:#88FFF4;
-          } 
+          }
         }
-        
+
         label {
           font-weight: normal;
           margin-left: 1em;
@@ -163,7 +163,7 @@
 
       #nothx-submit {
         padding: 7px 8px 7px 8px;
-        background-color: #419BF9; 
+        background-color: #419BF9;
         color: #fff;
         border-radius: 5px;
         &:hover {
@@ -252,7 +252,7 @@
     $border-color,
     $border-animation-duration,
     $border-animation-timing) {
-                              
+
     // Define duration of each border's animation
     $solo-animation: $border-animation-duration/4;
 
@@ -325,7 +325,7 @@
         -webkit-transform: translate3d(0,-100%,0);
       }
     }
-      
+
       .square:hover,
       .square.hover {
         .border-top:after,
