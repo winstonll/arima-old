@@ -1,3 +1,8 @@
+#donut-caption {
+  font-size: 18px;
+  font-weight: 400;
+}
+
 .share-image-container {
   position: relative;
 }
@@ -125,7 +130,7 @@
     &:hover{
       transition: background-color 0.6s linear;
       background-color:#212124;
-      background-color:rgba(0, 0, 0, 0.6); 
+      background-color:rgba(0, 0, 0, 0.6);
     }
 
     .rating-prompt {
@@ -145,9 +150,9 @@
 
           input[type="radio"]:checked+label{
             color:#88FFF4;
-          } 
+          }
         }
-        
+
         label {
           font-weight: normal;
           margin-left: 1em;
@@ -156,7 +161,7 @@
 
       #nothx-submit {
         padding: 7px 8px 7px 8px;
-        background-color: #419BF9; 
+        background-color: #419BF9;
         color: #fff;
         border-radius: 5px;
         &:hover {
@@ -242,7 +247,7 @@
     $border-color,
     $border-animation-duration,
     $border-animation-timing) {
-                              
+
     // Define duration of each border's animation
     $solo-animation: $border-animation-duration/4;
 
@@ -314,7 +319,7 @@
       .border-left:after {
         -webkit-transform: translate3d(0,100%,0);
       }
-      
+
       &:hover {
         .border-top:after,
         .border-bottom:after,
