@@ -113,6 +113,19 @@
     display: inline-block;
     margin-right: 4em;
   }
+
+  .rating-title {
+    visibility:hidden;
+  }
+  .rating-title.hover {
+    visibility: visible;
+  }
+  
+  .borderz.hover {
+    transition: background-color 3.5s linear;
+    background-color:#212124;
+    background-color:rgba(0, 0, 0, 0.6); 
+  }
   //animated border
   *,*:before,*:after { box-sizing: border-box; }
   .square {
@@ -122,15 +135,9 @@
     overflow: hidden;
     bottom: 23em;
     text-align: center;
-    &:hover{
-      transition: background-color 0.6s linear;
-      background-color:#212124;
-      background-color:rgba(0, 0, 0, 0.6); 
-    }
 
     .rating-prompt {
       position: relative;
-      top: 2em;
       margin: auto;
       width: 20em;
 
@@ -232,7 +239,10 @@
   .square .rating-prompt {
     display: none;
   }
-  .square:hover .rating-prompt {
+  #square:hover .rating-prompt {
+    display: block;
+  }
+  .rating-prompt.hover {
       display: block;
   }
 }
@@ -309,13 +319,15 @@
       }
       .border-right:after {
         transition-delay: $solo-animation*2;
-        -webkit-transform: translate3d(0,-100%,0);
-      }
-      .border-left:after {
         -webkit-transform: translate3d(0,100%,0);
       }
+      .border-left:after {
+        -webkit-transform: translate3d(0,-100%,0);
+      }
+    }
       
-      &:hover {
+      .square:hover,
+      .square.hover {
         .border-top:after,
         .border-bottom:after,
         .border-right:after,
@@ -323,26 +335,25 @@
           -webkit-transform: translate3d(0,0,0);
         }
         .border-top:after {
-          transition-delay: 0s;
+          transition-delay: $solo-animation*8;
         }
         .border-bottom:after {
-          transition-delay: $solo-animation*2;
+          transition-delay: $solo-animation*8;
         }
         .border-right:after {
-          transition-delay: $solo-animation;
+          transition-delay: $solo-animation*5;
         }
         .border-left:after {
-          transition-delay: $solo-animation*3;
+          transition-delay: $solo-animation*5;
         }
       }
-    }
 
   }
 
   @include animated-borders(
     $border-width: 2px,
     $border-color: #88FFF4,
-    $border-animation-duration: .8s,
+    $border-animation-duration: 1s,
     $border-animation-timing: linear
   );
 

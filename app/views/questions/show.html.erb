@@ -73,6 +73,17 @@ $(document).ready(function() {
     }
 
   };
+
+  setTimeout(function(){ $('.square').addClass('hover'); }, 5000);
+  setTimeout(function(){ $('.rating-prompt').addClass('hover'); }, 7000);
+  setTimeout(function(){ $('.rating-title').addClass('hover'); }, 7000);
+  // setTimeout(function(){ $('.square').removeClass('hover'); }, 3000);
+
+    $('.border-top').delay(7000).fadeOut(400);
+    $('.border-right').delay(7000).fadeOut(400);
+    $('.border-bottom').delay(7000).fadeOut(400);
+    $('.border-left').delay(7000).fadeOut(400);
+  
 });
 
 </script>
@@ -98,7 +109,7 @@ $(document).ready(function() {
     "hideMethod": "slideUp"
   }
 
-  setTimeout(function(){   toastr["info"]( "Arima helps you to visualize opinions thru simple clicks."); }, 3000);
+  setTimeout(function(){   toastr["info"]( "Arima helps you to visualize opinions thru simple clicks."); }, 7000);
 
 
   if(screen.width <= 800) {
@@ -260,8 +271,8 @@ $(document).ready(function() {
           }%>
       </section>
       <!--<div id="animated-example" class="animated bounce bounce-center hidden-xs"><%#= image_tag("Scroll-for-More.png", height: "27", width: "83")%></div>-->        
-        <div class="square">
-        <h4 style= "color: #fff; visibility: hidden;">  See what everyone says about this image. Give an opinion below! :)</h4>
+        <div class="square borderz">
+        <h4 class= "rating-title" style= "color: #fff;">  See what everyone says about this image. Give an opinion below! :)</h4>
           <div class="rating-prompt">
             <% if @answer == nil %>
               <% @answer = user_signed_in? ? @question.answers.build(user_id: current_user.id) : @question.answers.build(user_id: cookies[:guest]) %>
