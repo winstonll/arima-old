@@ -83,6 +83,32 @@ $(document).ready(function() {
     $('.border-right').delay(7000).fadeOut(400);
     $('.border-bottom').delay(7000).fadeOut(400);
     $('.border-left').delay(7000).fadeOut(400);
+
+    $('.new-rating-submit').prop('disabled', true);
+    $('#otherone').css('visibility', 'hidden');
+    $('.new-rating-submit').click(function() {
+      $('#otherone').css('visibility', 'visible');
+      
+    });
+
+    $('#otherone').keyup(function() {
+     inspectAllInputFields();
+    });
+
+    function inspectAllInputFields(){
+       var count = 0;
+       $('#otherone').each(function(i){
+         if( $(this).val() === '') {
+             count++;
+          }
+          if(count == 0){
+            $('.new-rating-submit').prop('disabled', false);
+          }else {
+            $('.new-rating-submit').prop('disabled', true);
+          }
+
+      });
+    }
   
 });
 
@@ -290,7 +316,7 @@ $(document).ready(function() {
                 <div id="otherInputBoxone">
                   <%= hidden_field_tag 'question_id', @question.id %>
                   <%= f.input(:options_for_collection, label: false,input_html:{ value: nil, class: "other-input-textone", id:"otherone"}) %>
-                  <%= f.submit "" %>
+                  <%= f.submit "", class: "new-rating-submit"%>
                 </div>
                 <div style="position: relative; top: 2em;">
                   <% if !@user_submitted_answer %>

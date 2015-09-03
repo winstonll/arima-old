@@ -120,7 +120,7 @@
   .rating-title.hover {
     visibility: visible;
   }
-  .borderz:hover,
+
   .borderz.hover {
     transition: background-color 3.5s linear;
     background-color:#212124;
@@ -325,8 +325,7 @@
         -webkit-transform: translate3d(0,-100%,0);
       }
     }
-      
-      .square:hover,
+
       .square.hover {
         .border-top:after,
         .border-bottom:after,
