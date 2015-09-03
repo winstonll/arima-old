@@ -261,8 +261,8 @@
         height: 100%;
         background: $border-color;
 
-        transition: transform $solo-animation $border-animation-timing;
-        will-change: transform;
+        transition: -webkit-transform $solo-animation $border-animation-timing;
+        will-change: -webkit-transform;
       }
     }
 
@@ -301,18 +301,18 @@
     .square {
       .border-top:after {
         transition-delay: $solo-animation*3;
-        transform: translate3d(-100%,0,0);
+        -webkit-transform: translate3d(-100%,0,0);
       }
       .border-bottom:after {
         transition-delay: $solo-animation;
-        transform: translate3d(100%,0,0);
+        -webkit-transform: translate3d(100%,0,0);
       }
       .border-right:after {
         transition-delay: $solo-animation*2;
-        transform: translate3d(0,-100%,0);
+        -webkit-transform: translate3d(0,-100%,0);
       }
       .border-left:after {
-        transform: translate3d(0,100%,0);
+        -webkit-transform: translate3d(0,100%,0);
       }
       
       &:hover {
@@ -320,7 +320,7 @@
         .border-bottom:after,
         .border-right:after,
         .border-left:after {
-          transform: translate3d(0,0,0);
+          -webkit-transform: translate3d(0,0,0);
         }
         .border-top:after {
           transition-delay: 0s;
