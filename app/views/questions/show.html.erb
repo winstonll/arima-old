@@ -15,8 +15,9 @@
 <script>
 $(document).ready(function() {
   <%if @question.shared_image %>
-    document.getElementsByClassName("rating-redirect").onclick = reveal;
+    document.getElementById("nothx-submit").onclick = reveal;
   <%end%>
+
   function reveal() {
     document.getElementById("liner-title").style.display = "block";
     document.getElementById("tag_show").style.display = "block";
@@ -259,7 +260,6 @@ $(document).ready(function() {
             image: "#{request.protocol}#{request.host_with_port}" + question_path(@question)
           }%>
       </section>
-      <!--<div id="animated-example" class="animated bounce bounce-center hidden-xs"><%#= image_tag("Scroll-for-More.png", height: "27", width: "83")%></div>-->        
         <div class="square">
         <h4 style= "color: #fff; visibility: hidden;">  See what everyone says about this image. Give an opinion below! :)</h4>
           <div class="rating-prompt">
