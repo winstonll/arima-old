@@ -98,8 +98,8 @@ $(document).ready(function() {
 <% @answer = user_signed_in? ? @question.answers.build(user_id: current_user.id) : @question.answers.build(user_id: cookies[:guest]) %>
 <% end %>
 
-<div style="background-color: #FAFAFA;">
-  <span id="donut-caption">This is what people think about the image:</span>
+<div style="background-color: #FAFAFA;" id="share-image-world">
+  <div id="donut-caption">This is what people think about the image:</div>
   <div id="answer-world" class='answer-chart'></div>
 </div>
 
