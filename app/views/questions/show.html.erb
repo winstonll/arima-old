@@ -14,9 +14,9 @@
 
 <script>
 $(document).ready(function() {
-  // <%if @question.shared_image %>
-  //   document.getElementById("animated-example").onclick = reveal;
-  // <%end%>
+  <%if @question.shared_image %>
+    document.getElementsByClassName("rating-redirect").onclick = reveal;
+  <%end%>
   function reveal() {
     document.getElementById("liner-title").style.display = "block";
     document.getElementById("tag_show").style.display = "block";
@@ -283,9 +283,9 @@ $(document).ready(function() {
                 </div>
                 <div style="position: relative; top: 2em;">
                   <% if !@user_submitted_answer %>
-                    <%= f.submit "Submit", disabled: true, data: {disable_with: "Submitting..."}, class: "rating-submit" %>
+                    <%= f.submit "Submit", disabled: true, data: {disable_with: "Submitting..."}, id: "rating-submit", :class => "rating-redirect" %>
                     <%#= link_to "TL;DR", report_question_path, class:"no-answer-prompt" %>
-                    <%= link_to "No Thanks", upvote_question_path(:id => @question.id), :method => :put, :remote => true, :class => "nothx-submit" %>
+                    <%= link_to "No Thanks", upvote_question_path(:id => @question.id), :method => :put, :remote => true, :id => "nothx-submit", :class => "rating-redirect" %>
                   <% end %>
                 </div>
               <% end %>
