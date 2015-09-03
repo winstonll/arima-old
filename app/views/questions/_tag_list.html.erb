@@ -45,9 +45,11 @@ $(document).ready(function() {
 <% if @answer == nil %>
 <% @answer = user_signed_in? ? @question.answers.build(user_id: current_user.id) : @question.answers.build(user_id: cookies[:guest]) %>
 <% end %>
-<div style="color: white">
-  DONUT CHART GOES HERE
+
+<div style="color: black; background-color: white;">
+  <div id="answer-world" class='answer-chart'></div>
 </div>
+
 <div class="wrapper background-container">
   <div class="wrapper center-container">
 
