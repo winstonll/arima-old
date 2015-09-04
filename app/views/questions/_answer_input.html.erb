@@ -11,7 +11,10 @@
 <% end %>
 
 <script type="text/javascript">
+
 $(document).ready(function() {
+  document.getElementById('home-navbar').style.backgroundColor = "#4A90E2";
+
   $(".slider").slider({max: 10, min: 1, step: 1}).slider("pips", {rest: "label", step: 1}).slider("float");
 
   $(".modal-button").click(function(){
@@ -81,7 +84,7 @@ $(document).ready(function() {
         <% end %>
         <div id="answer-button">
           <% if !@user_submitted_answer %>
-            <%= f.submit "View Results", class: "modal-button", disabled: true, data: {disable_with: "Submitting..."} %>
+            <%= f.submit "Submit", class: "modal-button", disabled: true, data: {disable_with: "Submitting..."} %>
             <%= link_to "TL;DR", report_question_path, class:"no-answer-prompt" %>
           <% end %>
         </div>

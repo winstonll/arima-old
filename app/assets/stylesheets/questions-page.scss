@@ -9,7 +9,7 @@
 }
 
 .shared-photo {
-  height: 60vh;
+  height: 80vh;
   margin-bottom: 22px;
 
   cursor: -moz-zoom-in;
@@ -48,56 +48,7 @@
   left:50px;
 }
 
-//bounce animation
-.animated {
-  -webkit-animation-duration: 30s;
-  animation-duration: 30s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-  animation-iteration-count:infinite;
-  -webkit-animation-iteration-count:infinite;
-}
-
-@-webkit-keyframes bounce {
-  0%, 10%, 15%, 17%, 20%, 25%, 40%, 50%, 60%, 70%, 80%, 100% {-webkit-transform: translateY(0);}
-  16% {-webkit-transform: translateY(-10px);}
-  18% {-webkit-transform: translateY(-10px);}
-}
-
-@keyframes bounce {
-  0%, 11%, 25%, 40%, 50%, 60%, 70%, 80%, 100% {transform: translateY(0);}
-  10% {transform: translateY(-10px);}
-  12% {transform: translateY(-10px);}
-}
-
-#knob-submit {
-  padding: 10px 25px 10px 25px;
-  width: 135px;
-  font-size: 14px !important;
-  border-radius: 20px;
-  background-color: #419BF9;
-  border: none;
-  color: #fff;
-  position: absolute;
-  left: 115px;
-}
-
-.bounce {
-    position:absolute;
-    bottom: 0;
-    -webkit-animation-name: bounce;
-    animation-name: bounce;
-}
-
-.bounce-center {
-  left: 47.5%;
-}
-
-.bounce-center-mobile {
-  left: 37%;
-}
-//end animation
-
+//knob
 .a-dial {
   position: absolute;
   width: 25em;
@@ -130,6 +81,8 @@
     left: 115px;
   }
 }
+//endknob
+
 
 .toast {
   opacity: .95 !important;
@@ -143,137 +96,269 @@
   width: 100%;
   background-color: #212124;
   padding-top: 20px;
-  height: 90vh;
+  height: 100vh;
   position: relative;
-
 
   .image-container {
     float: left;
     position: relative;
     margin: 0 auto;
-    width: 50%;
+    width: 70%;
     margin-left: 220px;
     margin-right:-1em;
   }
-
-  .submit-animate {
-    -webkit-animation-duration: 30s;
-    animation-duration: 30s;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
-    animation-iteration-count:infinite;
-    -webkit-animation-iteration-count:infinite;
-  }
-
-   #check-box-title {
-    padding: 7px 15px 7px 15px;
-    color: #fff;
-    position: relative;
-    right: 1em;
-    top: 1em;
-  }
-
-  #animated-example {
-    padding: 7px 15px 7px 15px;
-    font-size: 14px !important;
-    border-radius: 20px;
-    background-color: #419BF9;
-    border: none;
-    color: #fff;
-    position: relative;
-    left: 8px;
-    right: 1em;
-    top: 1em;
-  }
-
-    .check-prompt {
-      position: relative;
-      float: right;
-      color: #fff;
-      top: 7em;
-
-      input {
-        color: #88FFF4;
-      }
-
-      .checkboxes {
-        color: #88FFF4;
-        position: relative;
-        top: 1em;
-        font-weight: 500;
-      }
-
-        #otherInputBoxone {
-          display: inline-block;
-          position: relative;
-          right: 105px;
-          top: 1em;
-          input:focus {
-            outline: none;
-          }
-          input[type="submit"]
-          {
-            width: 20px;
-            height: 20px;
-            border: none;
-            background: url(image_path('add_tag_inactive.png'));
-            background-size: 19px 19px;
-            position: relative;
-            left: 290px;
-            display: inline;
-            bottom: 31px;
-
-            &:disabled {
-              background: url(image_path('add_tag_hover.png'));
-              background-size: 20px 20px;
-              &:hover {
-                background: url(image_path('add_tag_inactive.png'));
-                background-size: 20px 20px;
-              }
-            }
-          }
-
-          .answer_options_for_collection{
-            height:36px;
-          }
-          .question_options_for_collection {
-            width: 240px;
-          }
-
-          .other-input-textone {
-            height: 25px;
-            width: 203px;
-            font-size: 11px;
-            background-color: #fff;
-            resize: none;
-            border: solid;
-            border-color: #c4c4c4!important;
-            border: solid;
-            border-width: 1px;
-            padding: 10px 20px 0px 20px;
-            border-radius: 50px;
-            padding-left: 15px;
-            padding-bottom: 10px;
-            margin-top:2px;
-            margin-left: 10em;
-            color: #4a4a4a;
-          }
-        }
-    }
-
-  .mobile-image-container {
-    width: 100%;
-  }
-
-  .share-icon-container {
+   .share-icon-container {
     color: #878686;
     text-align: center;
     display: inline-block;
-    margin-bottom: -5em;
     margin-right: 4em;
-    height: 100px;
+  }
+
+  .rating-title {
+    visibility:hidden;
+  }
+  .rating-title.hover {
+    visibility: visible;
+  }
+
+  .borderz.hover {
+    transition: background-color 3.5s linear;
+    background-color:#212124;
+    background-color:rgba(0, 0, 0, 0.6);
+  }
+  //animated border
+  *,*:before,*:after { box-sizing: border-box; }
+  .square {
+    width: 100%;
+    height: 360px;
+    position: relative;
+    overflow: hidden;
+    bottom: 24em;
+    text-align: center;
+
+    .rating-prompt {
+      position: relative;
+      margin: auto;
+      width: 20em;
+
+      .rating-options {
+        position: relative;
+        color: #fff;
+        text-align: left;
+        top: 1em;
+
+        .rating_collection {
+          display: block;
+
+          input[type="radio"]:checked+label{
+            color:#88FFF4;
+          }
+        }
+
+        label {
+          font-weight: normal;
+          margin-left: 1em;
+        }
+      }
+
+      #nothx-submit {
+        padding: 7px 8px 7px 8px;
+        background-color: #419BF9;
+        color: #fff;
+        border-radius: 5px;
+        &:hover {
+          opacity: .8;
+        }
+      }
+      #rating-submit{
+        padding: 7px 16px 7px 16px;
+        background-color: #7ED321;
+        color: #fff;
+        border-radius: 5px;
+        border: none;
+
+        &:hover {
+          opacity: .8;
+        }
+
+        &:disabled {
+          background-color: #7CAD45;
+        }
+      }
+
+      #otherInputBoxone {
+        position: relative;
+        top: 1em;
+        input:focus {
+          outline: none;
+        }
+        input[type="submit"]{
+          width: 20px;
+          height: 20px;
+          border: none;
+          left: 10px;
+          float: left;
+          background: url(image_path('add_tag_inactive.png'));
+          background-size: 20px 20px;
+          position: relative;
+          display: inline;
+          bottom: 23px;
+
+          &:disabled {
+            background: url(image_path('add_tag_hover.png'));
+            background-size: 20px 20px;
+            &:hover {
+              background: url(image_path('add_tag_inactive.png'));
+              background-size: 20px 20px;
+            }
+          }
+        }
+
+        .other-input-textone {
+          height: 25px;
+          width: 203px;
+          font-size: 11px;
+          background-color: #fff;
+          resize: none;
+          border: solid;
+          border-color: #c4c4c4!important;
+          border: solid;
+          border-width: 1px;
+          padding: 10px 20px 0px 20px;
+          border-radius: 50px;
+          padding-left: 15px;
+          padding-bottom: 10px;
+          margin-top:2px;
+          margin-left: 10em;
+          color: #4a4a4a;
+        }
+      }
+    }
+  }
+
+  .square .rating-prompt {
+    display: none;
+  }
+  #square:hover .rating-prompt {
+    display: block;
+  }
+  .rating-prompt.hover {
+      display: block;
   }
 }
+
+  @mixin animated-borders(
+    $border-width,
+    $border-color,
+    $border-animation-duration,
+    $border-animation-timing) {
+
+    // Define duration of each border's animation
+    $solo-animation: $border-animation-duration/4;
+
+    .border-top,
+    .border-bottom,
+    .border-right,
+    .border-left {
+      position: absolute;
+      overflow: hidden;
+      &:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: $border-color;
+
+        transition: -webkit-transform $solo-animation $border-animation-timing;
+        will-change: -webkit-transform;
+      }
+    }
+
+    .border-top,
+    .border-bottom {
+      width:  100%;
+      height: $border-width;
+      left: 0;
+    }
+
+    .border-right,
+    .border-left {
+      width: $border-width;
+      height: 100%;
+      top: 0;
+    }
+
+    .border-top {
+      top: 0;
+    }
+
+    .border-bottom {
+      bottom: 0;
+    }
+
+    .border-right {
+      right: 0;
+    }
+
+    .border-left {
+      left: 0;
+    }
+    //
+    // States
+    ////////
+    .square {
+      .border-top:after {
+        transition-delay: $solo-animation*3;
+        -webkit-transform: translate3d(-100%,0,0);
+      }
+      .border-bottom:after {
+        transition-delay: $solo-animation;
+        -webkit-transform: translate3d(100%,0,0);
+      }
+      .border-right:after {
+        transition-delay: $solo-animation*2;
+        -webkit-transform: translate3d(0,100%,0);
+      }
+      .border-left:after {
+        -webkit-transform: translate3d(0,-100%,0);
+      }
+    }
+
+      .square.hover {
+        .border-top:after,
+        .border-bottom:after,
+        .border-right:after,
+        .border-left:after {
+          -webkit-transform: translate3d(0,0,0);
+        }
+        .border-top:after {
+          transition-delay: $solo-animation*8;
+        }
+        .border-bottom:after {
+          transition-delay: $solo-animation*8;
+        }
+        .border-right:after {
+          transition-delay: $solo-animation*5;
+        }
+        .border-left:after {
+          transition-delay: $solo-animation*5;
+        }
+      }
+
+  }
+
+  @include animated-borders(
+    $border-width: 2px,
+    $border-color: #88FFF4,
+    $border-animation-duration: 1s,
+    $border-animation-timing: linear
+  );
+
+  //end border animation
+
+
 
 /**@media screen and (max-width: 768px) {
   .image-frame {
@@ -285,7 +370,7 @@
   .shared-photo {
     width: 100px;
   }
-}**/
+}
 
 @media screen and (min-width: 1400px) {
   .image-container {
@@ -304,11 +389,14 @@
     height: 75vh;
   }
 }
+**/
 
 .meta-title{
-  font-weight: 500;
-  font-size: 15px;
+  font-weight: 300;
+  font-size: 14px;
+  color: #4a4a4a;
 }
+
 // *Answer input style*
 .answer-prompt {
   margin-top: 0em;
@@ -325,6 +413,7 @@
       line-height: 1.3;
       margin-top: .5em;
       width:60%;
+      color: #4a4a4a;
 
     }
 
@@ -360,6 +449,10 @@
         border-radius: 5px;
         border: none;
 
+        &:hover{
+          opacity: .8;
+        }
+
       }
       .modal-button:disabled {
         background-color: #9a9a9a;
@@ -368,11 +461,15 @@
         display: block;
         margin-top: .5em;
         height: 36px;
-        width: 10em;
+        width: 7.55em;
         padding: 9px 30px 9px 30px;
         background-color: #419BF9;
         border-radius: 5px;
         color: #fff;
+
+        &:hover{
+          opacity: .8;
+        }
       }
     }
   }
@@ -459,154 +556,193 @@
 
  }
 
-.tag-prompt {
-  background-color: #FCFCFC;
-  .checked {
-    color: #419BF9;
-  }
+.wrapper  {
+  display: inline-block;
+}
 
-  .options {
-    position: relative;
-    width: 40em;
-    left:2em;
-    text-align: justify;
-    -webkit-column-count: 2;
-
-    .tag_button_collection {
-      position: relative;
-      margin-left: 10px;
-      cursor: pointer;
-      margin-top: 5px;
-      background-color: #FCFCFC;
-      padding: 8px 22px 8px 22px;
-      color: #4a4a4a;
-      font-weight:500;
-      display: block;
+.image_thumb {
+  margin-top: 30px;
+  margin-right: 50px;
+  width: 410px;
+  float: left;
+  background-color: #212124;
+}
 
 
-      input{
-        visibility: hidden;
-        margin-left: -22px;
+.background-container {
+  width: 100%;
+  background-color: #212124;
+
+  .center-container {
+    margin: 0px auto;
+    width: 1000px;
+
+    .tag-prompt {
+      background-color: #212124;
+      width: 500px;
+
+      #comment-section-padding {
+        margin-top: 50px;
+        float: right;
+        background-color: #212124;
       }
 
-      .tag-count{
+      #liner-title {
+        margin-top: 30px;
         position: relative;
-        float: left;
-        right: 16px;
-        top: 5px;
-        color: #6a6a6a;
-        font-size: 13px;
+        width: 400px;
+        right: 5.3em;
+        color: #419BF9;
         font-weight: 600;
-
-      }
-
-      .grey-up{
-        position: relative;
-        float: left;
-        right: 6px;
-        bottom: 5px;
-        width: 14px;
-
-      }
-      .blue-up{
-        position: relative;
-        float: left;
-        right: 6px;
-        bottom: 5px;
-        width: 14px;
-
-      }
-    }
-
-  }
-
-    #otherInputBox {
-      display: inline-block;
-      position: relative;
-      right: 180px;
-      input:focus {
-        outline: none;
-      }
-      input[type="submit"]
-      {
-        width: 2em;
-        height: 2em;
-        border: none;
-        background: url(image_path('add_tag_inactive.png'));
-        background-size: 28px 28px;
-        position: relative;
-        left: 232px;
-        display: inline;
-        bottom: 31px;
-
-        &:disabled {
-          background: url(image_path('add_tag_hover.png'));
-          background-size: 28px 28px;
-          &:hover {
-            background: url(image_path('add_tag_inactive.png'));
-            background-size: 28px 28px;
-          }
-        }
-      }
-
-      .answer_options_for_collection{
-        height:36px;
-      }
-      .question_options_for_collection {
-        width: 240px;
-      }
-      .new-tag {
-        color: #7ed321;
-        font-weight: 500;
         font-size: 18px;
       }
-      .other-input-text {
-        height: 35px;
-        width: 317px;
-        font-size: 14px;
-        background-color: #fff;
-        resize: none;
-        border: solid;
-        border-color: #c4c4c4!important;
-        border: solid;
-        border-width: 1px;
-        padding: 10px 20px 0px 20px;
-        border-radius: 50px;
-        padding-left: 15px;
-        padding-bottom: 7px;
-        margin-top:2px;
-        margin-left: 13em;
 
-        .popover{
-          width:200px;
-          height:250px;
-          background-color:#419BF9;
-          color:#fff;
+      .checked {
+        color: #419BF9;
+      }
+
+      .options {
+        position: relative;
+        text-align: justify;
+        width: 35em;
+
+        .tag_button_collection {
+          background-color: #212124;
+          color: #FFF;
+          cursor: pointer;
+          display: block;
+          font-size:15px;
+          font-weight:300;
+          margin-left: 10px;
+          margin-top: 5px;
+          padding: 8px 22px 8px 22px;
+          position: relative;
+
+          input{
+            visibility: hidden;
+            margin-left: -22px;
+          }
+
+          .tag-count{
+            position: relative;
+            float: left;
+            right: 16px;
+            top: 5px;
+            color: #FFF;
+            font-size: 13px;
+            font-weight: 600;
+
+          }
+
+          .grey-up{
+            position: relative;
+            float: left;
+            right: 6px;
+            bottom: 5px;
+            width: 14px;
+
+          }
+          .blue-up{
+            position: relative;
+            float: left;
+            right: 6px;
+            bottom: 5px;
+            width: 14px;
+
+          }
         }
 
       }
 
-      ::-webkit-input-placeholder {
-         position:relative;
-         bottom: 1px;
-      }
+        #otherInputBox {
+          display: inline-block;
+          position: relative;
+          right: 180px;
+          input:focus {
+            outline: none;
+          }
+          input[type="submit"]
+          {
+            width: 2em;
+            height: 2em;
+            border: none;
+            background: url(image_path('add_tag_inactive.png'));
+            background-size: 28px 28px;
+            position: relative;
+            left: 232px;
+            display: inline;
+            bottom: 31px;
 
-      :-moz-placeholder { /* Firefox 18- */
-        position:relative;
-        bottom: 1px;
-      }
+            &:disabled {
+              background: url(image_path('add_tag_hover.png'));
+              background-size: 28px 28px;
+              &:hover {
+                background: url(image_path('add_tag_inactive.png'));
+                background-size: 28px 28px;
+              }
+            }
+          }
 
-      ::-moz-placeholder {  /* Firefox 19+ */
-         position:relative;
-         bottom: 1px;
-      }
+          .answer_options_for_collection{
+            height:36px;
+          }
+          .question_options_for_collection {
+            width: 240px;
+          }
+          .new-tag {
+            color: #419BF9;
+            font-weight: 600;
+            font-size: 18px;
+          }
+          .other-input-text {
+            height: 35px;
+            width: 317px;
+            font-size: 14px;
+            background-color: #fff;
+            resize: none;
+            border: solid;
+            border-color: #c4c4c4!important;
+            border: solid;
+            border-width: 1px;
+            padding: 10px 20px 0px 20px;
+            border-radius: 50px;
+            padding-left: 15px;
+            padding-bottom: 7px;
+            margin-top:2px;
+            margin-left: 13em;
 
-      :-ms-input-placeholder {
-         position:relative;
-         bottom: 1px;
-      }
+            .popover{
+              width:200px;
+              height:250px;
+              background-color:#419BF9;
+              color:#fff;
+            }
+
+          }
+
+          ::-webkit-input-placeholder {
+             position:relative;
+             bottom: 1px;
+          }
+
+          :-moz-placeholder { /* Firefox 18- */
+            position:relative;
+            bottom: 1px;
+          }
+
+          ::-moz-placeholder {  /* Firefox 19+ */
+             position:relative;
+             bottom: 1px;
+          }
+
+          :-ms-input-placeholder {
+             position:relative;
+             bottom: 1px;
+          }
+        }
+
     }
-
+  }
 }
 
 //Questions show page

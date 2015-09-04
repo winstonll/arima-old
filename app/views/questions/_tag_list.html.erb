@@ -8,11 +8,16 @@
 
 $(document).ready(function() {
 
-  $('input[type=radio]').on('change', function() {
-    $(this).closest("form").submit();
-  });
+
+
+
+   $('.form-radio').on('change', function() {
+     $(this).closest("form").submit();
+
+   });
 
   $('.new-tag-submit').prop('disabled', true);
+
   $('#other').keyup(function() {
    inspectAllInputFields();
   });
@@ -43,34 +48,46 @@ $(document).ready(function() {
 <% @answer = user_signed_in? ? @question.answers.build(user_id: current_user.id) : @question.answers.build(user_id: cookies[:guest]) %>
 <% end %>
 
-<div class="tag-prompt">
-  <%= simple_form_for @answer,:url => {:action => "add_tag", :controller => "answers"}, class: "form-inline", role: "form", html: {novalidate: true}, :remote => true do |f| %>
 
-    <br>
-    <div class="options">
-        <%if !@tag_array.nil?  %>
 
-            <% @tag_array.each do |tag|%>
-            <label class= "tag_button_collection" >
-              <%= f.radio_button :value, tag.label, :class=>"form-radio"%>
-              <%="#{tag.label}"%>
-              <% @tag_count = tag.counter %>
-              <%= image_tag("grey_up.png", class:"grey-up", :onMouseover=> "this.src='/images/blue_up.png'",:onMouseout=> "this.src='/images/grey_up.png'")%>
-              <span class="tag-count">
-                <%= @tag_count %>
-              </span>
-            </label>
-            <%end%>
+<div class="wrapper background-container">
+  <div class="wrapper center-container">
+
+    <%= image_tag("/system/uploads/" + @question.image_link, alt:"image",class: "image_thumb")%>
+
+    <div class="tag-prompt" style="float: left; background-color: #212124;">
+
+      <%= simple_form_for @answer,:url => {:action => "add_tag", :controller => "answers"}, class: "form-inline", role: "form", html: {novalidate: true}, :remote => true do |f| %>
+        <div id="liner-title">What people say about this image:</div>
+
+        <div class="options">
+            <%if !@tag_array.nil?  %>
+
+                <% @tag_array.each do |tag|%>
+                <label class= "tag_button_collection" >
+                  <%= f.radio_button :value, tag.label, :class=>"form-radio"%>
+                  <%="#{tag.label}"%>
+                  <% @tag_count = tag.counter %>
+                  <%= image_tag("white_up.png", class:"grey-up", :onMouseover=> "this.src='/images/teal_up.png'",:onMouseout=> "this.src='/images/white_up.png'")%>
+                  <span class="tag-count">
+                    <%= @tag_count %>
+                  </span>
+                </label>
+                <%end%>
+          <% end %>
+        </div>
+        <br>
+        <div id="otherInputBox" >
+            <%= hidden_field_tag 'question_id', @question.id %>
+            <%= f.label "Add a one liner:", class: "new-tag" %>
+            <%= f.input(:options_for_collection, label: false,input_html:{ 'data-toggle'=>"popover", 'data-trigger'=>"hover", 'data-placement'=>"top", 'data-content'=>"ex. Great composition, or Fantastic scenery", value: nil, placeholder: "What do you think of this image?", class: "other-input-text", id:"other"}) %>
+            <%= f.submit "", class: "new-tag-submit" %>
+        </div>
+      </div>
+        <br>
       <% end %>
-    </div>
-    <br>
-    <div id="otherInputBox">
-        <%= hidden_field_tag 'question_id', @question.id %>
-        <%= f.label "Add a one liner:", class: "new-tag" %>
-        <%= f.input(:options_for_collection, label: false,input_html:{ 'data-toggle'=>"popover", 'data-trigger'=>"hover", 'data-placement'=>"top", 'data-content'=>"ex. Great composition, or Fantastic scenery", value: nil, placeholder: "What do you think of this image?", class: "other-input-text", id:"other"}) %>
-        <%= f.submit "", class: "new-tag-submit" %>
-    </div>
-    <br>
-  <% end %>
 
+
+    </div>
+  </div>
 </div>

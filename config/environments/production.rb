@@ -63,6 +63,8 @@ Arima::Application.configure do
   config.assets.precompile += %w(jquery-ui-slider-pips.css)
   config.assets.precompile += %w(featherlight.min.css)
   config.assets.precompile += %w(toastr.css)
+  config.assets.precompile += %w(animate.css)
+
 
   config.assets.precompile += %w(home.js)
 

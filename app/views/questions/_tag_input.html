@@ -7,7 +7,7 @@
 <%= javascript_include_tag "jquery.knob" %>
 
 <script type="text/javascript">
-
+/**
   var rating1;
   var rating2;
   var rating3;
@@ -15,9 +15,10 @@
   $(function() {
     $('.dial').knob();
   });
+**/
 
   $(document).ready(function() {
-
+    /**
     document.getElementById("knob-submit").onclick = calculateTotal;
 
     function calculateTotal() {
@@ -43,18 +44,73 @@
 	        window.location.hash = '#score-board';
 	    });
     };
-
-    <%if Opinion.where(user_id: user_signed_in? ? current_user.id : cookies[:guest], question_id: @question.id).count >= 1%>
+    **/
+/**
+    <%#if Opinion.where(user_id: user_signed_in? ? current_user.id : cookies[:guest], question_id: @question.id).count >= 1%>
       //document.getElementById("map-canvas").style.display = 'block';
       //document.getElementById("blurred-map").style.display = 'none';
 
       initialize("");
-    <%end%>
+    <%#end%>
+**/
+
+<%answer = Answer.new(question_id: @question.id, user_id: current_user.id)%>
+data_answer = <%= answer.data_array('world').html_safe %>;
+//Donut chart
+var chart_answer = c3.generate({
+  size: { width: $(window).width() - 100,
+          height: 450 },
+  data: {
+    x: null,
+    columns: data_answer,
+    type: 'donut'
+  },
+  axis: {
+    x: {
+      label: {
+        text: 'Answer Distribution',
+        position: 'outer-center'
+      }
+    },
+    y: {
+      label: {
+        text: 'Number of Votes',
+        position: 'outer-middle'
+      }
+    }
+  },
+  tooltip: {
+    format: {
+      title: function (d) { return null; },
+      value: function (value, ratio, id) {
+        var sum = data_answer.reduce(function(p, c) {
+          return p + c[1];
+        }, 0);
+        return (value / sum * 100).toFixed(1) + '%';
+      }
+    },
+    contents: function (d, defaultTitleFormat, defaultValueFormat, color) {
+      d.forEach(function(el){ el.name = el.value })
+      return this.getTooltipContent ?
+        this.getTooltipContent(d, defaultTitleFormat, defaultValueFormat, color) : '';
+    }
+  }
+});
+
+$("#answer-world").append(chart_answer.element);
+
+window.addEventListener("resize", myFunction);
+
+function myFunction() {
+  chart_answer.resize({width: $(window).width() - 100});
+}
+//Donut chart END
   });
 
 
-  var user_lat = <%= Location.where(user_id: user_signed_in? ? current_user.id : cookies[:guest]).first.latitude %>;
-  var user_long = <%= Location.where(user_id: user_signed_in? ? current_user.id : cookies[:guest]).first.longitude %>;
+/**
+  var user_lat = <%#= Location.where(user_id: user_signed_in? ? current_user.id : cookies[:guest]).first.latitude %>;
+  var user_long = <%#= Location.where(user_id: user_signed_in? ? current_user.id : cookies[:guest]).first.longitude %>;
 
   var mapOptions;
 
@@ -82,7 +138,7 @@
 
     }else {
       //When someone clicks a question it first displays all of the tags on the map (if there are any) AND creates the google map object
-      <%  opinion = Opinion.new
+      <%#  opinion = Opinion.new
           loc_arr = opinion.user_lat_long_all(question.id)
       %>
 
@@ -97,19 +153,19 @@
 
       element.gMap = map;
 
-      <% loc_arr.each do |location| %>
+      <%# loc_arr.each do |location| %>
         if(tag_label != -1){
           //initializing the map when the user clicks the question
-          if((user_lat != <%= location[0][0] %>) && (user_long != <%= location[0][1] %>)){
+          if((user_lat != <%#= location[0][0] %>) && (user_long != <%#= location[0][1] %>)){
             var marker = new MarkerWithLabel({
-                position: new google.maps.LatLng(<%= location[0][0] %>, <%= location[0][1] %>),
+                position: new google.maps.LatLng(<%#= location[0][0] %>, <%#= location[0][1] %>),
                 map: map,
-                labelContent: "<%= location[1] %>",
+                labelContent: "<%#= location[1] %>",
                 labelClass: "tag-labels"
             });
           }else {
             var marker = new MarkerWithLabel({
-                position: new google.maps.LatLng(<%= location[0][0] %>, <%= location[0][1] %>),
+                position: new google.maps.LatLng(<%#= location[0][0] %>, <%#= location[0][1] %>),
                 map: map,
                 labelContent: "You",
                 labelClass: "tag-labels"
@@ -117,16 +173,16 @@
           }
         }else{
           //initializing the map because all tags were deselected by the user.
-          if((user_lat != <%= location[0][0] %>) && (user_long != <%= location[0][1] %>)){
+          if((user_lat != <%#= location[0][0] %>) && (user_long != <%#= location[0][1] %>)){
             var marker = new MarkerWithLabel({
-                position: new google.maps.LatLng(<%= location[0][0] %>, <%= location[0][1] %>),
+                position: new google.maps.LatLng(<%#= location[0][0] %>, <%#= location[0][1] %>),
                 map: map,
-                labelContent: "<%= location[1] %>",
+                labelContent: "<%#= location[1] %>",
                 labelClass: "tag-labels"
             });
           }
         }
-      <% end %>
+      <%# end %>
     }
     google.maps.event.addDomListener(window, 'load', initialize);
 
@@ -144,16 +200,18 @@
     map.setCenter(marker.getPosition());
 
   }
-
+**/
 </script>
 
-<div id="tag_list_container" class="hidden-xs">
-  <%= render partial: "tag_list"%>
+<div style="background-color: #FAFAFA;" id="share-image-world">
+  <div id="donut-caption">This is what people think about the image:</div>
+  <div id="answer-world" class='answer-chart'></div>
 </div>
 
+<!--
 <div class="a-dial">
   <input type="text" value="7" class="dial" data-max="10" data-angleOffset=-125 data-angleArc=250 data-fgColor="#419BF9" data-width="300" data-height="300">
-  <%= link_to "Give a Rating", upvote_question_path(:id => @question.id), :method => :put, :remote => true, :id => "knob-submit", :class => "animated bounce bounce-center"%>
+  <%#= link_to "Give a Rating", upvote_question_path(:id => @question.id), :method => :put, :remote => true, :id => "knob-submit", :class => "animated bounce bounce-center"%>
 </div>
 
 <div id="score-board" style=" display: none; float: left; margin: 0 auto; width: 500px; height: 50px; margin-top: 450px; padding-bottom:200px; position: relative; left: 38%;">
@@ -177,7 +235,7 @@
 </div>
 
 <center style="color: #7ed321; font-weight: 500; font-size: 18px; margin-bottom: 1em;" class="hidden">Where voters are from</center>
-
+-->
 <%#= image_tag("map_blur.png", height: '600', width: '900', id: "blurred-map", class: "hidden-xs") %>
 <%#= image_tag("map_blur.png", height: '300', width: '100%', id: "blurred-map", class: "visible-xs") %>
 

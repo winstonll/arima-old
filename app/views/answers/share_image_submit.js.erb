@@ -1,0 +1,9 @@
+<%@question = Question.where(id: params[:question_id]).first
+  @answer = Answer.new(question_id: @question.id, user_id: current_user.id)
+puts @question.id
+%>
+
+<%@data_answer = @answer.data_array('world').html_safe %>;
+
+
+$("#teeeeeee").html("<%= escape_javascript(render partial: '/questions/tag_input', locals: { data_answer: @data_answer} %>");
