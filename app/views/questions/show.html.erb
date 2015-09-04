@@ -338,7 +338,10 @@ $(document).ready(function() {
   </div>
     <center id="tag_show" style="display: none;">
       <%if !@question.shared_image.nil? && @question.shared_image %>
-        <%= render partial: 'questions/tag_input', locals: { question: @question, answer: @answer} %>
+        <%= render partial: 'questions/tag_input' %>
+        <div id="tag_list_container" class="hidden-xs" style="background-color: #212124;">
+          <%= render partial: "tag_list"%>
+        </div>
       <%elsif !@question.shared_image.nil? && !@question.shared_image%>
         <%= render partial: 'questions/answer_input', locals: { question: @question, answer: @answer} %>
       <%end%>

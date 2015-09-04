@@ -3,4 +3,7 @@
 puts @question.id
 %>
 
-$("#tag_show").html("<%= escape_javascript(render partial: 'questions/tag_input', locals: { question: @question, answer: @answer} %>");
+<%@data_answer = @answer.data_array('world').html_safe %>;
+
+
+$("#teeeeeee").html("<%= escape_javascript(render partial: '/questions/tag_input', locals: { data_answer: @data_answer} %>");
