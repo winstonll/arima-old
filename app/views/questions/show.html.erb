@@ -76,42 +76,47 @@ $(document).ready(function() {
 
   };
 
-  setTimeout(function(){ $('.square').addClass('hover'); }, 5000);
-  setTimeout(function(){ $('.rating-prompt').addClass('hover'); }, 7000);
-  setTimeout(function(){ $('.rating-title').addClass('hover'); }, 7000);
+  setTimeout(function(){ $('.square').addClass('hover'); }, 3000);
+  setTimeout(function(){ $('.rating-prompt').addClass('hover'); }, 5000);
+  setTimeout(function(){ $('.rating-title').addClass('hover'); }, 5000);
   // setTimeout(function(){ $('.square').removeClass('hover'); }, 3000);
 
-    $('.border-top').delay(7000).fadeOut(400);
-    $('.border-right').delay(7000).fadeOut(400);
-    $('.border-bottom').delay(7000).fadeOut(400);
-    $('.border-left').delay(7000).fadeOut(400);
+    $('.border-top').delay(5000).fadeOut(400);
+    $('.border-right').delay(5000).fadeOut(400);
+    $('.border-bottom').delay(5000).fadeOut(400);
+    $('.border-left').delay(5000).fadeOut(400);
 
-
-    $('.new-rating-submit').prop('disabled', true);
-    $('#otherone').css('visibility', 'hidden');
-    $('.new-rating-submit').click(function() {
-      $('#otherone').css('visibility', 'visible');
-
+    $('input[name="answer[value]"]').click(function() {
+      if ($(this).is(':checked')){
+         $('.rating-redirect').removeAttr('disabled');
+      }
     });
 
-    $('#otherone').keyup(function() {
-     inspectAllInputFields();
-    });
+    // $('.new-rating-submit').prop('disabled', true);
+    // $('#otherone').css('visibility', 'hidden');
+    // $('.new-rating-submit').click(function() {
+    //   $('#otherone').css('visibility', 'visible');
 
-    function inspectAllInputFields(){
-       var count = 0;
-       $('#otherone').each(function(i){
-         if( $(this).val() === '') {
-             count++;
-          }
-          if(count == 0){
-            $('.new-rating-submit').prop('disabled', false);
-          }else {
-            $('.new-rating-submit').prop('disabled', true);
-          }
+    // });
 
-      });
-    }
+    // // $('#otherone').keyup(function() {
+    //  inspectAllInputFields();
+    // });
+
+    // function inspectAllInputFields(){
+    //    var count = 0;
+    //    $('#otherone').each(function(i){
+    //      if( $(this).val() === '') {
+    //          count++;
+    //       }
+    //       if(count == 0){
+    //         $('.new-rating-submit').prop('disabled', false);
+    //       }else {
+    //         $('.new-rating-submit').prop('disabled', true);
+    //       }
+
+    //   });
+    // };
 });
 
 </script>
@@ -322,7 +327,7 @@ $(document).ready(function() {
                 </div>
                 <div style="position: relative; top: 2em;">
                   <% if !@user_submitted_answer %>
-                    <%= f.submit "Submit", data: {disable_with: "Submitting..."}, id: "rating-submit", :class => "rating-redirect" %>
+                    <%= f.submit "Submit", disabled: true, data: {disable_with: "Submitting..."}, id: "rating-submit", :class => "rating-redirect" %>
                     <%#= link_to "TL;DR", report_question_path, class:"no-answer-prompt" %>
                     <%= link_to "No Thanks", upvote_question_path(:id => @question.id), :method => :put, :remote => true, :id => "nothx-submit", :class => "rating-redirect" %>
                   <% end %>
