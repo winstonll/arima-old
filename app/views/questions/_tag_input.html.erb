@@ -60,6 +60,7 @@
 
 answer = Answer.new(question_id: @question.id, user_id: @u_id)%>
 data_answer = <%= answer.data_array('world').html_safe
+
 %>;
 //Donut chart
 var chart_answer = c3.generate({
@@ -208,7 +209,7 @@ function myFunction() {
 **/
 </script>
 
-<div style="background-color: #FAFAFA;" id="share-image-world">
+<div id="share-image-world">
   <div id="donut-caption">This is what people think about the image:</div>
   <div id="answer-world" class='answer-chart'></div>
 </div>
