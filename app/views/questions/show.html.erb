@@ -14,6 +14,10 @@
 
 <script>
 $(document).ready(function() {
+
+  document.getElementById("nothx-submit").onclick = reveal;
+
+
   <%if @question.shared_image %>
     document.getElementsByClassName("rating-redirect").onclick = reveal;
   <%end%>
@@ -50,13 +54,13 @@ $(document).ready(function() {
       <%@liked_tag_array.each do |tag|%>
         index = 0
         for(index; index <= <%= @tag_array.length - 1%>; index++){
-          if ($('input[type=radio]')[index].value == "<%= tag %>"){
-            $('input[type=radio]')[index].offsetParent.style.color = "#88FFF4";
-            $('input[type=radio]')[index].nextElementSibling.src = "/images/teal_up.png";
-            $('input[type=radio]')[index].nextElementSibling.onmouseout = null
-            $('input[type=radio]')[index].nextElementSibling.onmouseover = null
-            $('input[type=radio]')[index].nextElementSibling.setAttribute("class", "blue-up");
-            $('input[type=radio]')[index].nextElementSibling.nextElementSibling.style.color = "#88FFF4";
+          if ($('.form-radio')[index].value == "<%= tag %>"){
+            $('.form-radio')[index].offsetParent.style.color = "#88FFF4";
+            $('.form-radio')[index].nextElementSibling.src = "/images/teal_up.png";
+            $('.form-radio')[index].nextElementSibling.onmouseout = null
+            $('.form-radio')[index].nextElementSibling.onmouseover = null
+            $('.form-radio')[index].nextElementSibling.setAttribute("class", "blue-up");
+            $('.form-radio')[index].nextElementSibling.nextElementSibling.style.color = "#88FFF4";
           }
         }
       <%end%>
@@ -83,7 +87,7 @@ $(document).ready(function() {
     $('.border-right').delay(7000).fadeOut(400);
     $('.border-bottom').delay(7000).fadeOut(400);
     $('.border-left').delay(7000).fadeOut(400);
-  
+
 });
 
 </script>
@@ -270,7 +274,7 @@ $(document).ready(function() {
             image: "#{request.protocol}#{request.host_with_port}" + question_path(@question)
           }%>
       </section>
-      <!--<div id="animated-example" class="animated bounce bounce-center hidden-xs"><%#= image_tag("Scroll-for-More.png", height: "27", width: "83")%></div>-->        
+      <!--<div id="animated-example" class="animated bounce bounce-center hidden-xs"><%#= image_tag("Scroll-for-More.png", height: "27", width: "83")%></div>-->
         <div class="square borderz">
         <h4 class= "rating-title" style= "color: #fff;">  See what everyone says about this image. Give an opinion below! :)</h4>
           <div class="rating-prompt">

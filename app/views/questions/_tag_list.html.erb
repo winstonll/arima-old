@@ -7,7 +7,7 @@
 <script>
 
 $(document).ready(function() {
-  
+
   <%answer = Answer.new(question_id: @question.id, user_id: current_user.id)%>
   data_answer = <%= answer.data_array('world').html_safe %>;
   //Donut chart
@@ -61,10 +61,10 @@ $(document).ready(function() {
   //Donut chart END
 
 
-  // $('input[type=radio]').on('change', function() {
-  //   $(this).closest("form").submit();
+   $('.form-radio').on('change', function() {
+     $(this).closest("form").submit();
 
-  // });
+   });
 
   $('.new-tag-submit').prop('disabled', true);
 
