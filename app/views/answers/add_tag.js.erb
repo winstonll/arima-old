@@ -4,8 +4,6 @@
 
   $("#tag_list_container").html("<%= escape_javascript(render partial: '/questions/tag_list', locals: { question: @question} ) %>");
 
-  console.log("here");
-
   <%@tag_array = Tag.where(question_id: @question.id).order(created_at: :asc)%>
 
   <%if user_signed_in?
