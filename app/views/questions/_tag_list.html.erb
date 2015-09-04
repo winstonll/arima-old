@@ -8,57 +8,7 @@
 
 $(document).ready(function() {
 
-  <%answer = Answer.new(question_id: @question.id, user_id: current_user.id)%>
-  data_answer = <%= answer.data_array('world').html_safe %>;
-  //Donut chart
-  var chart_answer = c3.generate({
-    size: { width: $(window).width() - 100,
-            height: 450 },
-    data: {
-      x: null,
-      columns: data_answer,
-      type: 'donut'
-    },
-    axis: {
-      x: {
-        label: {
-          text: 'Answer Distribution',
-          position: 'outer-center'
-        }
-      },
-      y: {
-        label: {
-          text: 'Number of Votes',
-          position: 'outer-middle'
-        }
-      }
-    },
-    tooltip: {
-      format: {
-        title: function (d) { return null; },
-        value: function (value, ratio, id) {
-          var sum = data_answer[data_answer.selected].reduce(function(p, c) {
-            return p + c[1];
-          }, 0);
-          return (value / sum * 100).toFixed(1) + '%';
-        }
-      },
-      contents: function (d, defaultTitleFormat, defaultValueFormat, color) {
-        d.forEach(function(el){ el.name = el.value })
-        return this.getTooltipContent ?
-          this.getTooltipContent(d, defaultTitleFormat, defaultValueFormat, color) : '';
-      }
-    }
-  });
 
-  $("#answer-world").append(chart_answer.element);
-
-  window.addEventListener("resize", myFunction);
-
-  function myFunction() {
-    chart_answer.resize({width: document.getElementsByClassName('tab-content').clientWidth});
-  }
-  //Donut chart END
 
 
    $('.form-radio').on('change', function() {
@@ -98,10 +48,7 @@ $(document).ready(function() {
 <% @answer = user_signed_in? ? @question.answers.build(user_id: current_user.id) : @question.answers.build(user_id: cookies[:guest]) %>
 <% end %>
 
-<div style="background-color: #FAFAFA;" id="share-image-world">
-  <div id="donut-caption">This is what people think about the image:</div>
-  <div id="answer-world" class='answer-chart'></div>
-</div>
+
 
 <div class="wrapper background-container">
   <div class="wrapper center-container">

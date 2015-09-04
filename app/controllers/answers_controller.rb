@@ -31,7 +31,7 @@ class AnswersController < ApplicationController
     @answer.save
 
     respond_to do |format|
-      format.js
+      format.js { render nothing: true } 
     end
   end
 
