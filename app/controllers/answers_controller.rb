@@ -26,12 +26,12 @@ class AnswersController < ApplicationController
 
   def share_image_submit
     @question = Question.where(id: params[:question_id]).first
-
-    @answer = Answer.new(value: params[:answer][:value], user_id: current_user.id, question_id: @question.id)
+    @u_id = user_signed_in? ? current_user.id : cookies[:guest]
+    @answer = Answer.new(value: params[:answer][:value], user_id: @u_id, question_id: @question.id)
     @answer.save
 
     respond_to do |format|
-      format.js { render nothing: true } 
+      format.js { render nothing: true }
     end
   end
 

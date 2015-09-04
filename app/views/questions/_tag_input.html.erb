@@ -54,8 +54,13 @@
     <%#end%>
 **/
 
-<%answer = Answer.new(question_id: @question.id, user_id: current_user.id)%>
-data_answer = <%= answer.data_array('world').html_safe %>;
+<%
+
+@u_id = user_signed_in? ? current_user.id : cookies[:guest]
+
+answer = Answer.new(question_id: @question.id, user_id: @u_id)%>
+data_answer = <%= answer.data_array('world').html_safe
+%>;
 //Donut chart
 var chart_answer = c3.generate({
   size: { width: $(window).width() - 100,
