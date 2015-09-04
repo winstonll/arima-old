@@ -2,6 +2,12 @@
   position: relative;
 }
 
+#donut-caption {
+  font-weight: 500;
+  margin-top: 60px;
+  font-size: 18px;
+}
+
 .feed-back-title {
   color: white;
   font-weight: 300;
@@ -561,7 +567,7 @@
 }
 
 .image_thumb {
-  margin-top: 30px;
+  margin-top: 80px;
   margin-right: 50px;
   width: 410px;
   float: left;
@@ -576,6 +582,7 @@
   .center-container {
     margin: 0px auto;
     width: 1000px;
+    padding-bottom: 8em;
 
     .tag-prompt {
       background-color: #212124;
@@ -588,7 +595,7 @@
       }
 
       #liner-title {
-        margin-top: 30px;
+        margin-top: 80px;
         position: relative;
         width: 400px;
         right: 5.3em;
@@ -693,6 +700,7 @@
             color: #419BF9;
             font-weight: 600;
             font-size: 18px;
+            margin-left: 10px;
           }
           .other-input-text {
             height: 35px;
