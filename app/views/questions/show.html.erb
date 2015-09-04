@@ -15,11 +15,9 @@
 <script>
 $(document).ready(function() {
 
-  document.getElementById("nothx-submit").onclick = reveal;
-
-
   <%if @question.shared_image %>
-    document.getElementsByClassName("rating-redirect").onclick = reveal;
+    document.getElementById("nothx-submit").onclick = reveal;
+    document.getElementById("rating-submit").onclick = reveal;
   <%end%>
   function reveal() {
     document.getElementById("liner-title").style.display = "block";
@@ -114,7 +112,6 @@ $(document).ready(function() {
 
       });
     }
-  
 });
 
 </script>
@@ -310,7 +307,7 @@ $(document).ready(function() {
             <% end %>
 
             <% if cookies[:guest] != nil %>
-              <%= simple_form_for @answer, url: question_answers_path(@question, @answer), class: "form-inline", role: "form", html: {novalidate: true} do |f| %>
+              <%= simple_form_for @answer, url: question_answers_path(@question, @answer), class: "form-inline", role: "form", html: {novalidate: true}, remote: true do |f| %>
                 <div class="rating-options">
                   <% @multiple_choice = Array.new()
                       @question.options_array.each do |value|
@@ -320,12 +317,12 @@ $(document).ready(function() {
                 </div>
                 <div id="otherInputBoxone">
                   <%= hidden_field_tag 'question_id', @question.id %>
-                  <%= f.input(:options_for_collection, label: false,input_html:{ value: nil, class: "other-input-textone", id:"otherone"}) %>
-                  <%= f.submit "", class: "new-rating-submit"%>
+                  <%#= f.input(:options_for_collection, label: false,input_html:{ value: nil, class: "other-input-textone", id:"otherone"}) %>
+                  <%#= f.submit "", class: "new-rating-submit"%>
                 </div>
                 <div style="position: relative; top: 2em;">
                   <% if !@user_submitted_answer %>
-                    <%= f.submit "Submit", disabled: true, data: {disable_with: "Submitting..."}, id: "rating-submit", :class => "rating-redirect" %>
+                    <%= f.submit "Submit", data: {disable_with: "Submitting..."}, id: "rating-submit", :class => "rating-redirect" %>
                     <%#= link_to "TL;DR", report_question_path, class:"no-answer-prompt" %>
                     <%= link_to "No Thanks", upvote_question_path(:id => @question.id), :method => :put, :remote => true, :id => "nothx-submit", :class => "rating-redirect" %>
                   <% end %>
