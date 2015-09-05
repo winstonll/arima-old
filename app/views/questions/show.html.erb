@@ -77,14 +77,14 @@ $(document).ready(function() {
   };
 
   setTimeout(function(){ $('.square').addClass('hover'); }, 2000);
-  setTimeout(function(){ $('.rating-prompt').addClass('hover'); }, 4200);
-  setTimeout(function(){ $('.rating-title').addClass('hover'); }, 4200);
+  setTimeout(function(){ $('.rating-prompt').addClass('hover'); }, 4250);
+  setTimeout(function(){ $('.rating-title').addClass('hover'); }, 4250);
   // setTimeout(function(){ $('.square').removeClass('hover'); }, 3000);
 
     $('.border-top').delay(4600).fadeOut(400);
-    $('.border-right').delay(4500).fadeOut(400);
+    $('.border-right').delay(4600).fadeOut(400);
     $('.border-bottom').delay(4600).fadeOut(400);
-    $('.border-left').delay(4500).fadeOut(400);
+    $('.border-left').delay(4600).fadeOut(400);
 
     $('input[name="answer[value]"]').click(function() {
       if ($(this).is(':checked')){
@@ -142,7 +142,7 @@ $(document).ready(function() {
     "hideMethod": "slideUp"
   }
 
-  setTimeout(function(){   toastr["info"]( "Arima helps you to visualize opinions thru simple clicks."); }, 4200);
+  setTimeout(function(){   toastr["info"]( "Arima helps you to visualize opinions thru simple clicks."); }, 4250);
 
 
   if(screen.width <= 800) {
@@ -306,7 +306,45 @@ $(document).ready(function() {
       <!--<div id="animated-example" class="animated bounce bounce-center hidden-xs"><%#= image_tag("Scroll-for-More.png", height: "27", width: "83")%></div>-->
         <div class="square borderz">
         <h4 class= "rating-title" style= "color: #fff;">  See what everyone says about this image. Give an opinion below! :)</h4>
+          <%#= image_tag("donut_transparent.png", :style => "max-width: 140px; float: right; position: absolute; margin-left: 5em; margin-top: 1em;", :class=> "rating-title")%>
           <div class="rating-prompt">
+          <div id="cart" style= "height: 200px; max-width: 200px; right: 22em;"></div>
+          <script>
+            function randomColor(){
+              var color = ((Math.random().toString(16) + '000000').slice(2, 8));
+              return "#"+color;
+            }
+            function randomValor(){
+              var i = Math.random() * 200;
+              i = Math.round(i);
+              
+              return i;
+            }
+            var data = [
+              ["A", randomValor(), randomValor(), randomValor()]
+              , ["B", randomValor(), randomValor(), randomValor()]
+              , ["C", randomValor(), randomValor(), randomValor()]
+              , ["D", randomValor(), randomValor(), randomValor()]
+              , ["E", randomValor(), randomValor(), randomValor()]
+            ];
+            var colors = {
+              "A" : randomColor()
+              , "B" : randomColor()
+              , "C" : randomColor()
+              , "D" : randomColor()
+              , "E" : randomColor()
+            };
+
+            var cart = c3.generate({
+              bindto: "#cart"
+              , data: {
+                columns: data
+                , type: "donut"
+                , colors: colors
+              }
+              , legend: { show: false}
+            });
+          </script>
             <% if @answer == nil %>
               <% @answer = user_signed_in? ? @question.answers.build(user_id: current_user.id) : @question.answers.build(user_id: cookies[:guest]) %>
             <% end %>
