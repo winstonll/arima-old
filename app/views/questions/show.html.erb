@@ -77,14 +77,14 @@ $(document).ready(function() {
   };
 
   setTimeout(function(){ $('.square').addClass('hover'); }, 2000);
-  setTimeout(function(){ $('.rating-prompt').addClass('hover'); }, 4000);
-  setTimeout(function(){ $('.rating-title').addClass('hover'); }, 4000);
+  setTimeout(function(){ $('.rating-prompt').addClass('hover'); }, 4200);
+  setTimeout(function(){ $('.rating-title').addClass('hover'); }, 4200);
   // setTimeout(function(){ $('.square').removeClass('hover'); }, 3000);
 
-    $('.border-top').delay(4000).fadeOut(400);
-    $('.border-right').delay(4000).fadeOut(400);
-    $('.border-bottom').delay(4000).fadeOut(400);
-    $('.border-left').delay(4000).fadeOut(400);
+    $('.border-top').delay(4600).fadeOut(400);
+    $('.border-right').delay(4500).fadeOut(400);
+    $('.border-bottom').delay(4600).fadeOut(400);
+    $('.border-left').delay(4500).fadeOut(400);
 
     $('input[name="answer[value]"]').click(function() {
       if ($(this).is(':checked')){
@@ -142,7 +142,7 @@ $(document).ready(function() {
     "hideMethod": "slideUp"
   }
 
-  setTimeout(function(){   toastr["info"]( "Arima helps you to visualize opinions thru simple clicks."); }, 7000);
+  setTimeout(function(){   toastr["info"]( "Arima helps you to visualize opinions thru simple clicks."); }, 4200);
 
 
   if(screen.width <= 800) {
