@@ -141,10 +141,10 @@
   *,*:before,*:after { box-sizing: border-box; }
   .square {
     width: 100%;
-    height: 360px;
+    height: 260px;
     position: relative;
     overflow: hidden;
-    bottom: 24em;
+    bottom: 18em;
     text-align: center;
 
     .rating-prompt {
@@ -155,45 +155,72 @@
       .rating-options {
         position: relative;
         color: #fff;
-        text-align: left;
-        bottom: 13em;
-        left:3em;
-        width: 10em;
+        top: 4em;
 
         .rating_collection {
-          display: block;
+          position: relative;
+          display: inline;
+          margin: 1em 0 0 1em;
+          &:hover {
+              opacity: .8;
+            }
 
           input[type="radio"]:checked+label{
             color:#88FFF4;
+            opacity: .8;
+          }
+
+          input {
+            visibility: hidden;
           }
         }
 
         label {
           font-weight: normal;
-          margin-left: 1em;
-          line-height: 1.7em;
         }
+        
+        label[for="answer_value_i_like_it"] {
+          padding: 4px 12px 1px 5px;
+          border-radius: 5px;
+          background-color: #53D53C;
+        }
+        label[for="answer_value_its_ok"] {
+          padding: 4px 12px 1px 5px;
+          border-radius: 5px;
+          background-color: #FE9B62;
+        }
+        label[for="answer_value_i_dont_like_it"] {
+          padding: 4px 12px 1px 5px;
+          border-radius: 5px;
+          background-color: #FC6986;
+        }
+        label[for="answer_value_neutral"] {
+          padding: 4px 12px 1px 5px;
+          border-radius: 5px;
+          background-color: #A0A6A9;
+        }
+
       }
 
       #nothx-submit {
         position: relative;
-        padding: 7px 8px 7px 8px;
+        padding: 8px 8px 7px 8px;
         background-color: #419BF9;
+        left: 1em;
         color: #fff;
         border-radius: 5px;
-        bottom: 13em;
         &:hover {
           opacity: .8;
         }
       }
       #rating-submit {
+        display: none;
         position: relative;
         padding: 7px 16px 5px 16px;
         background-color: #7ED321;
         color: #fff;
         border-radius: 5px;
         border: none;
-        bottom: 13em;
 
         &:hover {
           opacity: .8;
@@ -201,54 +228,6 @@
 
         &:disabled {
           background-color: #7CAD45;
-        }
-      }
-
-      #otherInputBoxone {
-        position: relative;
-        top: 1em;
-        input:focus {
-          outline: none;
-        }
-        input[type="submit"]{
-          width: 20px;
-          height: 20px;
-          border: none;
-          left: 10px;
-          float: left;
-          background: url(image_path('add_tag_inactive.png'));
-          background-size: 20px 20px;
-          position: relative;
-          display: inline;
-          bottom: 23px;
-
-          &:disabled {
-            background: url(image_path('add_tag_hover.png'));
-            background-size: 20px 20px;
-            &:hover {
-              background: url(image_path('add_tag_inactive.png'));
-              background-size: 20px 20px;
-            }
-          }
-        }
-
-        .other-input-textone {
-          height: 25px;
-          width: 203px;
-          font-size: 11px;
-          background-color: #fff;
-          resize: none;
-          border: solid;
-          border-color: #c4c4c4!important;
-          border: solid;
-          border-width: 1px;
-          padding: 10px 20px 0px 20px;
-          border-radius: 50px;
-          padding-left: 15px;
-          padding-bottom: 10px;
-          margin-top:2px;
-          margin-left: 10em;
-          color: #4a4a4a;
         }
       }
     }
@@ -261,7 +240,7 @@
     display: block;
   }
   .rating-prompt.hover {
-      display: block;
+      display: inline;
   }
 }
 
