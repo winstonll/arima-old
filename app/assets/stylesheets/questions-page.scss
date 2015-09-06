@@ -126,7 +126,11 @@
   }
 
   .rating-title {
+    position: relative;
     visibility:hidden;
+    color: #fff;
+    top: 2em;
+
   }
   .rating-title.hover {
     visibility: visible;
@@ -160,7 +164,6 @@
         .rating_collection {
           position: relative;
           display: inline;
-          margin: 1em 0 0 1em;
           &:hover {
               opacity: .8;
             }
@@ -169,33 +172,38 @@
             color:#88FFF4;
             opacity: .8;
           }
-
           input {
-            visibility: hidden;
+            display: none;
           }
         }
 
         label {
           font-weight: normal;
+          font-size: 14px;
+          width: 8em;
+          height: 30px;
+          padding-bottom: 20px;
+          padding-top: 4px;
+          margin-right: 1em;
         }
         
         label[for="answer_value_i_like_it"] {
-          padding: 4px 12px 1px 5px;
+          cursor: pointer;          
           border-radius: 5px;
           background-color: #53D53C;
         }
         label[for="answer_value_its_ok"] {
-          padding: 4px 12px 1px 5px;
+          cursor: pointer;
           border-radius: 5px;
           background-color: #FE9B62;
         }
         label[for="answer_value_i_dont_like_it"] {
-          padding: 4px 12px 1px 5px;
+          cursor: pointer;
           border-radius: 5px;
           background-color: #FC6986;
         }
         label[for="answer_value_neutral"] {
-          padding: 4px 12px 1px 5px;
+          cursor: pointer;
           border-radius: 5px;
           background-color: #A0A6A9;
         }
@@ -204,9 +212,9 @@
 
       #nothx-submit {
         position: relative;
-        padding: 8px 8px 7px 8px;
+        font-size: 14px;
+        padding: 8px 22.5px 8px 22.5px;
         background-color: #419BF9;
-        left: 1em;
         color: #fff;
         border-radius: 5px;
         &:hover {
