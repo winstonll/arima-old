@@ -77,18 +77,21 @@ $(document).ready(function() {
   };
 
   setTimeout(function(){ $('.square').addClass('hover'); }, 2000);
-  setTimeout(function(){ $('.rating-prompt').addClass('hover'); }, 4250);
-  setTimeout(function(){ $('.rating-title').addClass('hover'); }, 4250);
+  setTimeout(function(){ $('.rating-prompt').addClass('hover'); }, 4200);
+  setTimeout(function(){ $('.rating-title').addClass('hover'); }, 4200);
   // setTimeout(function(){ $('.square').removeClass('hover'); }, 3000);
 
-    $('.border-top').delay(4600).fadeOut(400);
-    $('.border-right').delay(4600).fadeOut(400);
-    $('.border-bottom').delay(4600).fadeOut(400);
-    $('.border-left').delay(4600).fadeOut(400);
+    $('.border-top').delay(4300).fadeOut(400);
+    $('.border-right').delay(4300).fadeOut(400);
+    $('.border-bottom').delay(4300).fadeOut(400);
+    $('.border-left').delay(4300).fadeOut(400);
 
+    $('.rating_collection').on('change', function() {
+         $(this).closest("form").submit();
+       });
     $('input[name="answer[value]"]').click(function() {
       if ($(this).is(':checked')){
-         $('.rating-redirect').removeAttr('disabled');
+         $('#rating-submit').trigger('click');
       }
     });
 
@@ -142,7 +145,7 @@ $(document).ready(function() {
     "hideMethod": "slideUp"
   }
 
-  setTimeout(function(){   toastr["info"]( "Arima helps you to visualize opinions thru simple clicks."); }, 4250);
+  setTimeout(function(){   toastr["info"]( "Arima helps you to visualize opinions thru simple clicks."); }, 4200);
 
 
   if(screen.width <= 800) {
@@ -305,46 +308,8 @@ $(document).ready(function() {
       </section>
       <!--<div id="animated-example" class="animated bounce bounce-center hidden-xs"><%#= image_tag("Scroll-for-More.png", height: "27", width: "83")%></div>-->
         <div class="square borderz">
-        <h4 class= "rating-title" style= "color: #fff;">  Do you like this image? Give a rating and see it visualized below! :)</h4>
-          <%#= image_tag("donut_transparent.png", :style => "max-width: 140px; float: right; position: absolute; margin-left: 5em; margin-top: 1em;", :class=> "rating-title")%>
+        <h4 class= "rating-title">  Give us some feedback! Do you like this picture?</h4>
           <div class="rating-prompt">
-          <div id="cart" style= "height: 200px; max-width: 200px; right: 28em;"></div>
-          <script>
-            function randomColor(){
-              var color = ((Math.random().toString(16) + '000000').slice(2, 8));
-              return "#"+color;
-            }
-            function randomValor(){
-              var i = Math.random() * 200;
-              i = Math.round(i);
-
-              return i;
-            }
-            var data = [
-              ["A", randomValor(), randomValor(), randomValor()]
-              , ["B", randomValor(), randomValor(), randomValor()]
-              , ["C", randomValor(), randomValor(), randomValor()]
-              , ["D", randomValor(), randomValor(), randomValor()]
-              , ["E", randomValor(), randomValor(), randomValor()]
-            ];
-            var colors = {
-              "A" : randomColor()
-              , "B" : randomColor()
-              , "C" : randomColor()
-              , "D" : randomColor()
-              , "E" : randomColor()
-            };
-
-            var cart = c3.generate({
-              bindto: "#cart"
-              , data: {
-                columns: data
-                , type: "donut"
-                , colors: colors
-              }
-              , legend: { show: false}
-            });
-          </script>
             <% if @answer == nil %>
               <% @answer = user_signed_in? ? @question.answers.build(user_id: current_user.id) : @question.answers.build(user_id: cookies[:guest]) %>
             <% end %>
@@ -357,17 +322,12 @@ $(document).ready(function() {
                         @multiple_choice << [value, value]
                     end%>
                   <%= f.collection_radio_buttons :value, @multiple_choice, :first, :last,item_wrapper_class: :rating_collection%>
+                  <%= link_to "No Thanks", upvote_question_path(:id => @question.id), :method => :put, :remote => true, :id => "nothx-submit", :class => "rating-redirect" %>
                 </div>
-                <div id="otherInputBoxone">
-                  <%= hidden_field_tag 'question_id', @question.id %>
-                  <%#= f.input(:options_for_collection, label: false,input_html:{ value: nil, class: "other-input-textone", id:"otherone"}) %>
-                  <%#= f.submit "", class: "new-rating-submit"%>
-                </div>
+
                 <div style="position: relative; top: 2em;">
                   <% if !@user_submitted_answer %>
-                    <%= f.submit "Submit", disabled: true, data: {disable_with: "Submitting..."}, id: "rating-submit", :class => "rating-redirect" %>
-                    <%#= link_to "TL;DR", report_question_path, class:"no-answer-prompt" %>
-                    <%= link_to "No Thanks", upvote_question_path(:id => @question.id), :method => :put, :remote => true, :id => "nothx-submit", :class => "rating-redirect" %>
+                    <%= f.submit "Submit", data: {disable_with: "Submitting..."}, id: "rating-submit", :class => "rating-redirect" %>
                   <% end %>
                 </div>
               <% end %>
