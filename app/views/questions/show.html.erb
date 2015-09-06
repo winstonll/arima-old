@@ -308,7 +308,7 @@ $(document).ready(function() {
       </section>
       <!--<div id="animated-example" class="animated bounce bounce-center hidden-xs"><%#= image_tag("Scroll-for-More.png", height: "27", width: "83")%></div>-->
         <div class="square borderz">
-        <h4 class= "rating-title">  Give us some feedback! Did you like this picture?</h4>
+        <h4 class= "rating-title">  Give us some feedback! Do you like this picture?</h4>
           <div class="rating-prompt">
             <% if @answer == nil %>
               <% @answer = user_signed_in? ? @question.answers.build(user_id: current_user.id) : @question.answers.build(user_id: cookies[:guest]) %>
@@ -324,7 +324,7 @@ $(document).ready(function() {
                   <%= f.collection_radio_buttons :value, @multiple_choice, :first, :last,item_wrapper_class: :rating_collection%>
                   <%= link_to "No Thanks", upvote_question_path(:id => @question.id), :method => :put, :remote => true, :id => "nothx-submit", :class => "rating-redirect" %>
                 </div>
-          
+
                 <div style="position: relative; top: 2em;">
                   <% if !@user_submitted_answer %>
                     <%= f.submit "Submit", data: {disable_with: "Submitting..."}, id: "rating-submit", :class => "rating-redirect" %>
