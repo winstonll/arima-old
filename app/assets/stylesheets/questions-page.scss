@@ -212,11 +212,13 @@
 
       #nothx-submit {
         position: relative;
+        vertical-align:top;
         font-size: 14px;
-        padding: 8px 22.5px 8px 22.5px;
+        padding: 9px 22px 7px 21.5px;
         background-color: #419BF9;
         color: #fff;
         border-radius: 5px;
+        top: 9px;
         &:hover {
           opacity: .8;
         }

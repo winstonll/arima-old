@@ -322,7 +322,7 @@ $(document).ready(function() {
                         @multiple_choice << [value, value]
                     end%>
                   <%= f.collection_radio_buttons :value, @multiple_choice, :first, :last,item_wrapper_class: :rating_collection%>
-                  <%= link_to "No Thanks", upvote_question_path(:id => @question.id), :method => :put, :remote => true, :id => "nothx-submit", :class => "rating-redirect" %>
+                  <%= link_to "No thanks", upvote_question_path(:id => @question.id), :method => :put, :remote => true, :id => "nothx-submit", :class => "rating-redirect" %>
                 </div>
 
                 <div style="position: relative; top: 2em;">
