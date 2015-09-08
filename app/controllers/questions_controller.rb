@@ -263,7 +263,7 @@ class QuestionsController < ApplicationController
         :group_id => params[:group_id],
         :user_id => current_user.id,
         :value_type => "tag", #params[:numeric_value] == "false" ? "collection" : "quantity"
-        :options_for_collection => nil,
+        :options_for_collection => "I like it|Its okay|I dont like it|Its neutral",
         :answer_plus => true,
         :image_link => @uploaded_image ? @file_name : image_array[-1],
         :shared_image => params[:shared_image])
