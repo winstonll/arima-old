@@ -333,7 +333,7 @@
             ]), onchange: "field_reveal()", required: "required", class: "answer-type-select") %>
           </p>
 
-          <section class="selected-multiple-choices" id="answer-types">
+          <section class="selected-multiple-choices" id="answer-types" style="display: none;">
             <p id="select-title" class="<%= !params[:question].nil? ? "modal-input-title " : "modal-share-input-title "%>">
               <%= !params[:question].nil? ? "Add your Answer Choices:" : "Add your Image Tags:"%>
             </p>

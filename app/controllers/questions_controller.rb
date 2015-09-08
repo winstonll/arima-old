@@ -211,7 +211,7 @@ class QuestionsController < ApplicationController
       @answerboxes = @answerboxes[0...-1]
     end
 
-    if (@answerboxes.nil? || @answerboxes.empty? || @answerboxes.size < 2) && params[:numeric_value] == "false"
+    if (@answerboxes.nil? || @answerboxes.empty? || @answerboxes.size < 2) && params[:numeric_value] == "false" && params[:shared_image] != "true"
       redirect_to :back
       flash[:notice] = "Please fill in at least two answer choices"
       return
@@ -269,90 +269,6 @@ class QuestionsController < ApplicationController
         :shared_image => params[:shared_image])
 
       GroupsQuestion.create(group_id: params[:group_id], question_id: @subquestion.id)
-
-      @tags = @answerboxes.split("|")
-
-      if current_user.id == 9892 || current_user.id == 2506
-        counter = 1
-        @tags.each do |tag|
-          if counter == 1
-            submission = Tag.new(label: tag, question_id: @subquestion.id, counter: 10)
-            submission.save!
-
-            submission_opinion = Opinion.new(question_id: @subquestion.id, user_id: current_user.id, tag_id: submission.id)
-            submission_opinion.save!
-
-            submission_opinion = Opinion.new(question_id: @subquestion.id, user_id: 330, tag_id: submission.id)
-            submission_opinion.save!
-
-            submission_opinion = Opinion.new(question_id: @subquestion.id, user_id: 616, tag_id: submission.id)
-            submission_opinion.save!
-
-            submission_opinion = Opinion.new(question_id: @subquestion.id, user_id: 806, tag_id: submission.id)
-            submission_opinion.save!
-
-            submission_opinion = Opinion.new(question_id: @subquestion.id, user_id: 848, tag_id: submission.id)
-            submission_opinion.save!
-
-            submission_opinion = Opinion.new(question_id: @subquestion.id, user_id: 1234, tag_id: submission.id)
-            submission_opinion.save!
-
-            submission_opinion = Opinion.new(question_id: @subquestion.id, user_id: 1370, tag_id: submission.id)
-            submission_opinion.save!
-
-            submission_opinion = Opinion.new(question_id: @subquestion.id, user_id: 1447, tag_id: submission.id)
-            submission_opinion.save!
-
-            submission_opinion = Opinion.new(question_id: @subquestion.id, user_id: 1463, tag_id: submission.id)
-            submission_opinion.save!
-
-            submission_opinion = Opinion.new(question_id: @subquestion.id, user_id: 1530, tag_id: submission.id)
-            submission_opinion.save!
-
-            submission_opinion = Opinion.new(question_id: @subquestion.id, user_id: 1800, tag_id: submission.id)
-            submission_opinion.save!
-          elsif counter == 2
-            submission = Tag.new(label: tag, question_id: @subquestion.id, counter: 5)
-            submission.save!
-
-            submission_opinion = Opinion.new(question_id: @subquestion.id, user_id: current_user.id, tag_id: submission.id)
-            submission_opinion.save!
-
-            submission_opinion = Opinion.new(question_id: @subquestion.id, user_id: 422, tag_id: submission.id)
-            submission_opinion.save!
-
-            submission_opinion = Opinion.new(question_id: @subquestion.id, user_id: 654, tag_id: submission.id)
-            submission_opinion.save!
-
-            submission_opinion = Opinion.new(question_id: @subquestion.id, user_id: 1915, tag_id: submission.id)
-            submission_opinion.save!
-
-            submission_opinion = Opinion.new(question_id: @subquestion.id, user_id: 1953, tag_id: submission.id)
-            submission_opinion.save!
-
-            submission_opinion = Opinion.new(question_id: @subquestion.id, user_id: 1989, tag_id: submission.id)
-            submission_opinion.save!
-          elsif counter == 3
-            submission = Tag.new(label: tag, question_id: @subquestion.id, counter: 2)
-            submission.save!
-
-            submission_opinion = Opinion.new(question_id: @subquestion.id, user_id: 515, tag_id: submission.id)
-            submission_opinion.save!
-
-            submission_opinion = Opinion.new(question_id: @subquestion.id, user_id: 2061, tag_id: submission.id)
-            submission_opinion.save!
-          end
-          counter = counter + 1;
-        end
-      else
-        @tags.each do |tag|
-            submission = Tag.new(label: tag, question_id: @subquestion.id, counter: 1)
-            submission.save!
-
-            submission_opinion = Opinion.new(question_id: @subquestion.id, user_id: current_user.id, tag_id: submission.id)
-            submission_opinion.save!
-        end
-      end
 
     elsif params["checked"] != nil && (params[:submit_question_name].length < 256)
       @subquestion = Question.create(
