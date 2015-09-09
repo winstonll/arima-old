@@ -740,7 +740,7 @@
 #question-page-container {
   height: 100%;
   min-height: 100%;
-  width: 98%;
+  width: 100%;
   margin: 0 auto;
   margin-top: 2em;
   padding-bottom: 50px;
@@ -760,26 +760,18 @@
   }
 
   .tab-links ul {
-    width: 150%;
+    width: 100%;
   }
 
   .tab-links li {
-    margin:0px 10px;
-    float:left;
-    list-style:none;
     display:inline-block;
-
-
   }
 
   .tab-links a {
     padding:10px 16px;
     display:inline-block;
-    //border: 1px solid #C0C0C0;
-    border-top: 1px solid #C0C0C0;
-    border-left: 1px solid #C0C0C0;
-    border-right: 1px solid #C0C0C0;
-    border-radius:7px 7px 0px 0px;
+    border: 1px solid #C0C0C0;
+    border-radius:7px;
     font-size:16px;
     font-weight:600;
     color:#C0C0C0;
@@ -801,21 +793,6 @@
 
   /*----- Content of Tabs -----*/
   .tab-content {
-    min-height: 450px;
-    width: 106%;
-    position: relative;
-    top: -9px;
-    left: -30px;
-    padding:15px;
-    border-radius:5px;
-    color:#419BF9;
-    font-weight: 600;
-    border: 1px solid #5AA3E8;
-    //border-right: 1px solid #5AA3E8;
-    //border-left: 1px solid #5AA3E8;
-    //border-bottom: 1px solid #5AA3E8;
-    background:#FCFCFC;
-
     a.btnNext {
       margin-left: 3em;
     }
@@ -888,13 +865,9 @@
   #question-hero {
     .question-container {
       height: 100px;
-      width: 75%;
-      float: left;
+      width: 100%;
       display: inline-block;
-      border-radius: 5px;
-      padding-top: 0.25em;
-      padding-left: 0.5em;
-      padding-right: 0.5em;
+    
 
       .question-vote-container {
         float: left;
@@ -961,9 +934,7 @@
 
     #Social-like-button {
       position: relative;
-      float: left;
-      top: 7.5em;
-      left:2.2em;
+      float: right;
       a {
         width:100%;
         display:inline;
@@ -972,25 +943,15 @@
         width:100%;
         display:inline;
         top: -5px;
-        right:2px;
       }
     }
 
     #question-meta-container {
-      width: 24%;
-      float: right;
       display: inline-block;
       vertical-align: top;
-      height: auto;
-
-
 
       .question-title-count,
       .question-share-container {
-        color: #878686;
-        text-align: center;
-        margin-bottom: -5em;
-        margin-right: 4em;
 
       }
 
