@@ -170,7 +170,7 @@ $(document).ready(function() {
 <%#= render '/common/share_answer_modal' %>
 
 <%if @user_submitted_answer && !@question.shared_image.nil? && !@question.shared_image%>
-  <div class="main-site-container" id="question-page-container" style= "background-color: lightskyblue;">
+  <div class="main-site-container" id="question-page-container">
     <div id="question-hero">
       <div class="question-container">
         <!-- Votes -->
@@ -202,7 +202,7 @@ $(document).ready(function() {
         </div>
 
         <%if !@question.image_link.nil? %>
-          <div style="float:left;"><%= image_tag("/system/uploads/" + @question.image_link, size: "100x100", alt:"image",class: "question_image")%></div>
+          <div style="float:left; margin-right: 20px;"><%= image_tag("/system/uploads/" + @question.image_link, size: "100x100", alt:"image",class: "question_image")%></div>
         <%end%>
         <!-- Question Title and Answer Box -->
         <div class="question-title-container">
@@ -210,29 +210,28 @@ $(document).ready(function() {
           <div class="answer-counter"><%= @question.answers.count %><%= @question.answers.count == 1 ? ' Person' : ' People' %> Answered
           </div>
         </div>
-
       </div>
 
-    <div id="Social-like-button">
-        <!--Facebook like button-->
-        <div class="fb-like" data-href="https://www.facebook.com/friendsofarima?fref=ts"
-        data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+        <!-- Counter + Share Section -->
+        <div id="question-meta-container">
+              <%= render partial: "questions/share", locals: {
+                  id: @question.id,
+                  url: "#{request.protocol}#{request.host_with_port}" + question_path(@question),
+                  title: "#{@question.label[0..70]}...",
+                  image: "#{request.protocol}#{request.host_with_port}" + question_path(@question)
+                }%>
+        </div>
 
-        <!--Twitter like button-->
-        <a class="twitter-follow-button twitter-count" data-show-screen-name="false"
-        href="https://twitter.com/arima_io">
-        Follow @TwitterDev</a>
-    </div>
+        <div id="Social-like-button">
+            <!--Facebook like button-->
+            <div class="fb-like" data-href="https://www.facebook.com/friendsofarima?fref=ts"
+            data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
 
-    <!-- Counter + Share Section -->
-    <div id="question-meta-container">
-          <%= render partial: "questions/share", locals: {
-              id: @question.id,
-              url: "#{request.protocol}#{request.host_with_port}" + question_path(@question),
-              title: "#{@question.label[0..70]}...",
-              image: "#{request.protocol}#{request.host_with_port}" + question_path(@question)
-            }%>
-      </div>
+            <!--Twitter like button-->
+            <a class="twitter-follow-button twitter-count" data-show-screen-name="false"
+            href="https://twitter.com/arima_io">
+            Follow @TwitterDev</a>
+        </div>
     </div>
 
     <!-- Report -->
