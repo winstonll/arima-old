@@ -221,7 +221,6 @@ $(document).ready(function() {
                   image: "#{request.protocol}#{request.host_with_port}" + question_path(@question)
                 }%>
         </div>
-
         <div id="Social-like-button">
             <!--Facebook like button-->
             <div class="fb-like" data-href="https://www.facebook.com/friendsofarima?fref=ts"
@@ -236,6 +235,7 @@ $(document).ready(function() {
 
     <!-- Report -->
     <div id="question-content-container">
+    <br>
       <div class="report-container">
         <%= render partial: 'common/visualization', locals: { question: @question, answer: @answer} %>
       </div>

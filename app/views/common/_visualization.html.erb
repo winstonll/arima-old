@@ -10,18 +10,18 @@
 
     <div class="tab-content">
         <div id="world" class="tab active">
-          <a class="btnPrevious"><%= image_tag("back_tab.png", :class => "visualization-tab-img")%></a>
-            This tab shows what everyone has answered.
-          <a class="btnNext"><%= image_tag("forward_tab_blue.png", :class => "visualization-tab-img") %></a>
+          <a class="btnPrevious"><%#= image_tag("back_tab.png", :class => "visualization-tab-img")%></a>
+            <i> This tab shows what everyone has answered. </i>
+          <a class="btnNext"><%#= image_tag("forward_tab_blue.png", :class => "visualization-tab-img") %></a>
           <p></p>
 
           <div id="answer-world" class='answer-chart'></div>
         </div>
 
         <div id="country" class="tab">
-          <a class="btnPrevious"><%= image_tag("back_tab_blue.png", :style => "margin-left: 10em;")%></a>
+          <a class="btnPrevious"><%#= image_tag("back_tab_blue.png", :style => "margin-left: 10em;")%></a>
             <i class="country_text">This tab shows what everyone from <%= select_tag(@countries_answered, options_for_select(@countries_answered, answer.user_country),class: "country_dropdown", id:"country_position", prompt: "Select a Country") %> has answered.</i>
-          <a class="btnNext"><%= image_tag("forward_tab_blue.png", :class => "visualization-tab-img") %></a>
+          <a class="btnNext"><%#= image_tag("forward_tab_blue.png", :class => "visualization-tab-img") %></a>
 
           <div id="answer-country" class='answer-chart'></div>
         </div>
@@ -41,17 +41,17 @@
               <% @answer_selection.push(ans); %>
             <% end %>
           </div>
-          <a class="btnPrevious"><%= image_tag("back_tab_blue.png", :style => "margin-left: 10em;")%></a>
+          <a class="btnPrevious"><%#= image_tag("back_tab_blue.png", :style => "margin-left: 10em;")%></a>
             <i class="heat_text">This map shows where people who answered <%= select_tag(@answer_selection, options_for_select(@answer_selection, answer.user_answer), id:"heat_position", prompt: "Select an Answer") %> are from.</i>
-          <a class="btnNext"><%= image_tag("forward_tab_blue.png", :class => "visualization-tab-img")%></a>
+          <a class="btnNext"><%#= image_tag("forward_tab_blue.png", :class => "visualization-tab-img")%></a>
 
           <div id="map-canvas"></div>
         </div>
 
         <div id="pstm" class="tab">
-          <a class="btnPrevious"><%= image_tag("back_tab_blue.png", :class => "visualization-tab-img")%></a>
+          <a class="btnPrevious"><%#= image_tag("back_tab_blue.png", :class => "visualization-tab-img")%></a>
             This tab shows what people who are "<%= (answer.user_age - 3).to_s + "-" + (answer.user_age + 3).to_s + " & " + answer.user_gender + "(Gender)"%>" have answered.
-          <a class="btnNext"><%= image_tag("forward_tab.png", :class => "visualization-tab-img")%></a>
+          <a class="btnNext"><%#= image_tag("forward_tab.png", :class => "visualization-tab-img")%></a>
           <p></p>
           <% @guest = User.where(id: cookies[:guest]).first %>
           <% unless (@guest.gender != nil && @guest.age != nil) || (user_signed_in? ? (current_user.gender != nil && current_user.age != nil) : false) %>
@@ -70,7 +70,7 @@
     </div>
   </div>
 
-  <%= link_to 'This link shows the individual report, share it with your friends!', report_question_path, :target => "_blank" %>
+  <%#= link_to 'This link shows the individual report, share it with your friends!', report_question_path, :target => "_blank" %>
 
 </div>
 
