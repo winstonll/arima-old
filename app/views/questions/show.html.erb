@@ -302,7 +302,7 @@ $(document).ready(function() {
       </section>
       <!--<div id="animated-example" class="animated bounce bounce-center hidden-xs"><%#= image_tag("Scroll-for-More.png", height: "27", width: "83")%></div>-->
         <div class="square borderz">
-        <h4 class= "rating-title">  Give us some feedback! Do you like this picture?</h4>
+        <h4 class= "rating-title">  Do you like this image?</h4>
           <div class="rating-prompt">
             <% if @answer == nil %>
               <% @answer = user_signed_in? ? @question.answers.build(user_id: current_user.id) : @question.answers.build(user_id: cookies[:guest]) %>
