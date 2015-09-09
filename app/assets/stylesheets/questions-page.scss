@@ -582,12 +582,6 @@
       background-color: #212124;
       width: 500px;
 
-      #comment-section-padding {
-        margin-top: 50px;
-        float: right;
-        background-color: #212124;
-      }
-
       #liner-title {
         margin-top: 80px;
         position: relative;
@@ -754,7 +748,6 @@
   width: 100%;
   margin: 0 auto;
   margin-top: 2em;
-  padding-bottom: 50px;
 
   .tabs {
     position: relative;
@@ -877,8 +870,6 @@
     .question-container {
       height: 100px;
       width: 100%;
-      display: inline-block;
-
 
       .question-vote-container {
         float: left;
@@ -960,11 +951,7 @@
     #question-meta-container {
       display: inline-block;
       vertical-align: top;
-
-      .question-title-count,
-      .question-share-container {
-
-      }
+      float: right;
 
       .meta-title {
         font-size: 12px;
@@ -973,30 +960,18 @@
         padding-top: 5px;
       }
 
-      .question-title-count {
-        font-size: 22px;
-        font-weight: 600;
-      }
+      .share-link {
+        &:hover {
+          opacity: 0.7;
+        }
 
-      .question-share-container {
-        margin-top: 20px;
-        float:right;
-        display:inline-block;
+        &:not(:first-child) {
+          margin-left: 10px;
+        }
 
-
-        .share-link {
-          &:hover {
-            opacity: 0.7;
-          }
-
-          &:not(:first-child) {
-            margin-left: 10px;
-          }
-
-          .share-image {
-            height: 23px;
-            width: auto;
-          }
+        .share-image {
+          height: 23px;
+          width: auto;
         }
       }
     }
@@ -1023,7 +998,6 @@
       text-align: center;
       border: 1px solid #cacaca;
       border-radius: 5px;
-      margin-top: 52px;
 
       #view-feed-button {
         width: 50%;
@@ -1051,15 +1025,6 @@
         font-size: 18px;
       }
     }
-  }
-
-  #comment-section {
-    display: none; /* Remove this to bring back comments */
-    clear: both;
-    padding-top: 5em;
-    margin-bottom: 2em;
-    text-align: center;
-    position: relative;
   }
 
   /* Chart */
