@@ -5,6 +5,8 @@ Arima::Application.routes.draw do
   get 'cat' => 'feed#category_non_feed'
   post 'add_tag' => 'answers#add_tag'
 
+  get 'application' => 'application#long_poll'
+
   post 'category' => 'feed#category'
   post 'badge' => 'profiles#badge'
   post 'questions/:id' => 'answers#share_image_submit'

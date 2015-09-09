@@ -10,6 +10,13 @@ class ApplicationController < ActionController::Base
   before_filter :visible_groups, :other_groups
   after_filter :store_location
 
+  def long_poll
+    puts "-----------------hello----------"
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def visible_groups
     @visible_groups ||= Group.visible_groups
   end
