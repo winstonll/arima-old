@@ -2,6 +2,17 @@
   position: relative;
 }
 
+#image_poll {
+  background-color: #BBDAFF;
+  padding-top: 20px;
+}
+
+#question_poll {
+  height: 100vh;
+  background-color: #BBDAFF;
+  padding-top: 20px;
+}
+
 #donut-caption {
   font-weight: 500;
   padding-top: 70px;
@@ -185,9 +196,9 @@
           padding-top: 4px;
           margin-right: 1em;
         }
-        
+
         label[for="answer_value_i_like_it"] {
-          cursor: pointer;          
+          cursor: pointer;
           border-radius: 5px;
           background-color: #53D53C;
         }
@@ -867,7 +878,7 @@
       height: 100px;
       width: 100%;
       display: inline-block;
-    
+
 
       .question-vote-container {
         float: left;
