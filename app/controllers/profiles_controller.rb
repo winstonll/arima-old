@@ -26,8 +26,8 @@ class ProfilesController < ApplicationController
     @suggested_questions  = Question.suggested_for_user current_user
     @random_questions     = Question.random_for_user current_user
     @trending_questions   = Question.trending_for_user current_user
-    @answered_questions   = user.answers.order("updated_at desc")
-    @asked_questions      = Question.where(user_id: user.id)
+    @answered_questions   = user.answers.last(5)
+    @asked_questions      = Question.where(user_id: user.id).last(5)
 
     check_points_badge
     check_question_badge
