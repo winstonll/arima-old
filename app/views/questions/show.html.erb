@@ -94,32 +94,6 @@ $(document).ready(function() {
          $('#rating-submit').trigger('click');
       }
     });
-
-    // $('.new-rating-submit').prop('disabled', true);
-    // $('#otherone').css('visibility', 'hidden');
-    // $('.new-rating-submit').click(function() {
-    //   $('#otherone').css('visibility', 'visible');
-
-    // });
-
-    // // $('#otherone').keyup(function() {
-    //  inspectAllInputFields();
-    // });
-
-    // function inspectAllInputFields(){
-    //    var count = 0;
-    //    $('#otherone').each(function(i){
-    //      if( $(this).val() === '') {
-    //          count++;
-    //       }
-    //       if(count == 0){
-    //         $('.new-rating-submit').prop('disabled', false);
-    //       }else {
-    //         $('.new-rating-submit').prop('disabled', true);
-    //       }
-
-    //   });
-    // };
 });
 
 </script>
@@ -145,7 +119,7 @@ $(document).ready(function() {
     "hideMethod": "slideUp"
   }
 
-  setTimeout(function(){   toastr["info"]( "Arima helps you to visualize opinions thru simple clicks."); }, 4200);
+  setTimeout(function(){toastr["info"]( "Arima helps you to visualize opinions thru simple clicks."); }, 4200);
 
 
   if(screen.width <= 800) {
@@ -228,7 +202,7 @@ $(document).ready(function() {
         </div>
 
         <%if !@question.image_link.nil? %>
-          <div style="float:left; margin-top:20px; margin-right:10px;"><%= image_tag("/system/uploads/" + @question.image_link, size: "100x100", alt:"image",class: "question_image")%></div>
+          <div style="float:left;"><%= image_tag("/system/uploads/" + @question.image_link, size: "100x100", alt:"image",class: "question_image")%></div>
         <%end%>
         <!-- Question Title and Answer Box -->
         <div class="question-title-container">

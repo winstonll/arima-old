@@ -746,13 +746,10 @@
   height: 100%;
   min-height: 100%;
   width: 100%;
-  margin: 0 auto;
-  margin-top: 2em;
 
   .tabs {
     position: relative;
     width:100%;
-    display:inline-block;
   }
 
   /*----- Tab Links -----*/
@@ -872,17 +869,9 @@
       width: 100%;
 
       .question-vote-container {
-        float: left;
-        width: 17%;
         text-align: center;
-        margin: 10px 0px 0px 0px;
 
         .question-vote-image {
-          width: 45px;
-          height: auto;
-          background-color: #fff;
-          border-radius: 50%;
-          padding: 5px;
 
           &:hover {
             opacity: 0.8;
@@ -890,41 +879,21 @@
         }
 
         .question-vote-counter {
-          font-size: 25px;
-          color: #00C39C;
-          margin-top: -1px;
-          margin-bottom: -1px;
+          font-size: 23px;
         }
       }
 
       .question-title-container {
-        height: auto;
-
-        .answer-dropdown-input {
-          height: 36px;
-          width: 240px;
-          color: #9B9B9B;
-          font-size: 12px;
-          background-color: #f7f7f7;
-          border: 0;
-          border-radius: 5px;
-          margin-bottom: -1em;
-
-        }
-
         .question-title {
           position: relative;
           font-weight: 600;
           font-size: 20px;
           line-height: 23px;
           color: #419BF9;
-          float:left;
           width:60%;
-
         }
 
         .answer-counter {
-          float: left;
           width:60%;
           height:23px;
           margin-bottom: 1em;
@@ -936,22 +905,19 @@
 
     #Social-like-button {
       position: relative;
-      float: right;
       a {
         width:100%;
-        display:inline;
+        display:block;
       }
       .fb-like{
         width:100%;
-        display:inline;
-        top: -5px;
+        display:block;
       }
     }
 
     #question-meta-container {
-      display: inline-block;
-      vertical-align: top;
-      float: right;
+      position: relative;
+      display: block;
 
       .meta-title {
         font-size: 12px;
@@ -980,19 +946,16 @@
 
   #question-content-container {
     clear: both;
-    padding-top: 4em;
 
     /* Report */
     .report-container {
       width: 75%;
-      float: left;
       display: inline-block;
     }
 
     /* Next Question Section */
     #trending-questions-container {
       width: 24%;
-      float: right;
       display: inline-block;
       vertical-align: top;
       text-align: center;
@@ -1033,6 +996,10 @@
     width: 100%;
     text-align: center;
 
+    i {
+      font-style: normal !important;
+    }
+
     .country_dropdown {
       color: #419BF9;
       text-align: right;
@@ -1043,7 +1010,6 @@
       border-radius: 5px;
       height: 30px;
       width: 11em;
-      float: right;
 
     }
 
@@ -1057,76 +1023,11 @@
       border-radius: 5px;
       height: 30px;
       width: 12em;
-      float: right;
 
-    }
-
-    .location-select {
-      .location-label {
-        color: #555;
-        display: inline-block;
-        font-size: 23px;
-        margin-top: 0.5em;
-        margin-bottom: 1em;
-        font-weight: 600;
-        font-variant: small-caps;
-
-        .location-current {
-          color: #50e3c2;
-        }
-      }
-
-      .location-list {
-        display: inline-block;
-        float: right;
-
-        ul {
-          display: inline;
-        }
-
-        li.active > a {
-          color: white;
-        }
-      }
     }
 
     .c3-tooltip tr td{
       color: #555;
-    }
-
-  }
-
-  .location-label {
-    font-size: 17px;
-    font-weight: 600;
-    color: #777;
-    text-align: center;
-    margin-bottom: 1em;
-  }
-
-  .location-list {
-    margin-top: 0.75em;
-    text-align: center;
-
-    .report-location-list {
-      display: inline-block;
-      list-style-type: none;
-      padding: 0;
-
-      li.active {
-        background-color: #5AA3E8;
-        border: 1px solid #5AA3E8;
-
-        a {
-          color: #fff;
-        }
-      }
-
-      a{
-        display: inline-block;
-        padding: 0.25em 1.25em 0.25em 1.25em;
-        color: #888;
-      }
     }
   }
 }
