@@ -196,7 +196,7 @@ $(document).ready(function() {
 <%#= render '/common/share_answer_modal' %>
 
 <%if @user_submitted_answer && !@question.shared_image.nil? && !@question.shared_image%>
-  <div class="main-site-container" id="question-page-container">
+  <div class="main-site-container" id="question-page-container" style= "background-color: lightskyblue;">
     <div id="question-hero">
       <div class="question-container">
         <!-- Votes -->
@@ -252,14 +252,12 @@ $(document).ready(function() {
 
     <!-- Counter + Share Section -->
     <div id="question-meta-container">
-      <div class="question-share-container">
           <%= render partial: "questions/share", locals: {
               id: @question.id,
               url: "#{request.protocol}#{request.host_with_port}" + question_path(@question),
               title: "#{@question.label[0..70]}...",
               image: "#{request.protocol}#{request.host_with_port}" + question_path(@question)
             }%>
-        </div>
       </div>
     </div>
 
@@ -283,8 +281,9 @@ $(document).ready(function() {
     <div class="image-frame">
       <center class="image-container">
         <%if !@question.image_link.nil?%>
-          <a href="#" data-featherlight="#lightbox">
-            <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "380", alt:"image", class: "shared-photo", id: "lightbox") %>
+          <%img_path = "/system/uploads/" + @question.image_link%>
+          <a href="<%= img_path %>" data-featherlight="image">
+            <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, alt:"image", class: "shared-photo", id: "lightbox") %>
           </a>
         <%end%>
       </center>
@@ -303,7 +302,7 @@ $(document).ready(function() {
       </section>
       <!--<div id="animated-example" class="animated bounce bounce-center hidden-xs"><%#= image_tag("Scroll-for-More.png", height: "27", width: "83")%></div>-->
         <div class="square borderz">
-        <h4 class= "rating-title">  Give us some feedback! Do you like this picture?</h4>
+        <h4 class= "rating-title">  Do you like this image?</h4>
           <div class="rating-prompt">
             <% if @answer == nil %>
               <% @answer = user_signed_in? ? @question.answers.build(user_id: current_user.id) : @question.answers.build(user_id: cookies[:guest]) %>
@@ -347,7 +346,14 @@ $(document).ready(function() {
 
 <%else %>
   <div id="<%= @question.image_link.nil? ? "question_poll" : "image_poll" %>">
-    <center>  <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "340", alt:"image")%> </center>
+    <center>
+      <%if !@question.image_link.nil?%>
+        <%img_path = "/system/uploads/" + @question.image_link%>
+        <a href="<%= img_path %>" data-featherlight="image">
+          <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, alt:"image", class: "shared-photo", id: "lightbox") %>
+        </a>
+      <%end%>
+    </center>
     <center style="color: #4a4a4a; font-weight: bold; font-family: Roboto; font-size: 26px; padding-top: 20px; margin: 0 22%;"><%=@question.label %></center>
     <center class="meta-title"><%= @question.answers.count%><%= @question.answers.count == 1 ? ' Person' : ' People' %> Answered</center>
     <br>
