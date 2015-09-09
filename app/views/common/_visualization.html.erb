@@ -19,10 +19,8 @@
         </div>
 
         <div id="country" class="tab">
-          <%= select_tag(@countries_answered, options_for_select(@countries_answered, answer.user_country),class: "country_dropdown", id:"country_position", prompt: "Select a Country") %>
-
           <a class="btnPrevious"><%= image_tag("back_tab_blue.png", :style => "margin-left: 10em;")%></a>
-            <i class="country_text">This tab shows what everyone from "<%= answer.user_country%>" has answered.</i>
+            <i class="country_text">This tab shows what everyone from <%= select_tag(@countries_answered, options_for_select(@countries_answered, answer.user_country),class: "country_dropdown", id:"country_position", prompt: "Select a Country") %> has answered.</i>
           <a class="btnNext"><%= image_tag("forward_tab_blue.png", :class => "visualization-tab-img") %></a>
 
           <div id="answer-country" class='answer-chart'></div>
@@ -43,9 +41,8 @@
               <% @answer_selection.push(ans); %>
             <% end %>
           </div>
-          <%= select_tag(@answer_selection, options_for_select(@answer_selection, answer.user_answer), id:"heat_position", prompt: "Select an Answer") %>
           <a class="btnPrevious"><%= image_tag("back_tab_blue.png", :style => "margin-left: 10em;")%></a>
-            <i class="heat_text">This map shows where people who answered "<%= answer.user_answer%>" are from.</i>
+            <i class="heat_text">This map shows where people who answered <%= select_tag(@answer_selection, options_for_select(@answer_selection, answer.user_answer), id:"heat_position", prompt: "Select an Answer") %> are from.</i>
           <a class="btnNext"><%= image_tag("forward_tab_blue.png", :class => "visualization-tab-img")%></a>
 
           <div id="map-canvas"></div>
