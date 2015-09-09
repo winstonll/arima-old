@@ -766,6 +766,7 @@
 
   .tab-links li {
     display:inline-block;
+    margin-right: 1.5em;
   }
 
   .tab-links a {
@@ -865,21 +866,32 @@
   /* Question Show */
   #question-hero {
     .question-container {
+      position: relative;
       height: 100px;
       width: 100%;
+      float: left;
+      left: 13em;
+      top: 4em;
 
       .question-vote-container {
+        float: left;
+        width: 5%;
         text-align: center;
 
         .question-vote-image {
-
+          background-color: lightskyblue;
+          border-radius: 50%;
           &:hover {
             opacity: 0.8;
           }
         }
 
         .question-vote-counter {
-          font-size: 23px;
+          font-size: 25px;
+          color: #00C39C;
+          margin-top: -1px;
+          margin-bottom: -1px;
+
         }
       }
 
@@ -905,12 +917,11 @@
 
     #Social-like-button {
       position: relative;
+      float: right;
       a {
-        width:100%;
         display:block;
       }
       .fb-like{
-        width:100%;
         display:block;
       }
     }
@@ -918,6 +929,7 @@
     #question-meta-container {
       position: relative;
       display: block;
+      float: right;
 
       .meta-title {
         font-size: 12px;
@@ -945,6 +957,7 @@
 
 
   #question-content-container {
+    padding-top: 3em;
     clear: both;
 
     /* Report */
