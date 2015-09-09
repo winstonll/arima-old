@@ -346,7 +346,7 @@ $(document).ready(function() {
     </center>
 
 <%else %>
-  <div style="padding-top: 20px; background-color: #BBDAFF;">
+  <div style="height: 100vh; padding-top: 20px; background-color: #BBDAFF;">
     <center>  <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, height: "340", alt:"image")%> </center>
     <center style="color: #4a4a4a; font-weight: bold; font-family: Roboto; font-size: 26px; padding-top: 20px; margin: 0 22%;"><%=@question.label %></center>
     <center class="meta-title"><%= @question.answers.count%><%= @question.answers.count == 1 ? ' Person' : ' People' %> Answered</center>
