@@ -20,6 +20,7 @@
     <%if params[:question].nil?%>
       $('.numeric-slider').addClass("field-hidden");
       document.getElementById('shared_image').value = true;
+      document.getElementById('answer-types').style.display = "none";
       document.getElementById('numeric_value').value = false;
     <%else%>
       document.getElementById('shared_image').value = false;
@@ -333,7 +334,7 @@
             ]), onchange: "field_reveal()", required: "required", class: "answer-type-select") %>
           </p>
 
-          <section class="selected-multiple-choices" id="answer-types" style="display: none;">
+          <section class="selected-multiple-choices" id="answer-types">
             <p id="select-title" class="<%= !params[:question].nil? ? "modal-input-title " : "modal-share-input-title "%>">
               <%= !params[:question].nil? ? "Add your Answer Choices:" : "Add your Image Tags:"%>
             </p>

@@ -29,6 +29,17 @@
 //= require sidebar
 
 $(document).ready(function() {
+  
+/**
+  $(function(){
+    setTimeout(updateComments, 1000);
+  });
+
+  function updateComments() {
+    $.getScript("/application")
+    setTimeout(updateComments, 1000);
+  }
+**/
 
   // Navbar dropdown activation
   $(".dropdown").on("click", function(e) {

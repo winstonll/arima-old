@@ -1,2 +1,4 @@
+//alert("comment goes here.");
+
 $('#feed').html('<%= escape_javascript(render(partial: "feed/stream")) %>');
 $('#paginator').html('<%= escape_javascript(paginate(@all, :remote => true).to_s) %>');
