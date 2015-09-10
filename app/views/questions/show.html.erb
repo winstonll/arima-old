@@ -171,6 +171,7 @@ $(document).ready(function() {
 
 <%if @user_submitted_answer && !@question.shared_image.nil? && !@question.shared_image%>
   <div class="main-site-container" id="question-page-container">
+
     <div id="question-hero">
       <div class="question-container">
         <!-- Votes -->
@@ -231,24 +232,28 @@ $(document).ready(function() {
             href="https://twitter.com/arima_io">
             Follow @TwitterDev</a>
         </div>
+
+
     </div>
 
     <!-- Report -->
     <div id="question-content-container">
-    <br>
       <div class="report-container">
         <%= render partial: 'common/visualization', locals: { question: @question, answer: @answer} %>
       </div>
-      <div id="trending-questions-container">
-        <% @random_questions = Question.where(group_id: @question.group_id).order("RANDOM()").limit(5) %>
-          <p class="trending-questions-label">Questions You May Like:</p>
-        <% @random_questions.each do |random_question| %>
-          <%= render partial: 'common/trending_question', locals: { question: random_question } %>
-        <% end %>
-        <a href="<%= feed_path %>"><div id="view-feed-button">View More</div></a>
-      </div>
     </div>
   </div>
+        <div id="trending-questions-container">
+          <% @random_questions = Question.where(group_id: @question.group_id).order("RANDOM()").limit(5) %>
+            <br>
+            <br>
+            <p class="trending-questions-label">Questions You May Like:</p>
+          <% @random_questions.each do |random_question| %>
+            <%= render partial: 'common/trending_question', locals: { question: random_question } %>
+          <% end %>
+          <a href="<%= feed_path %>"><div id="view-feed-button">View More</div></a>
+        </div>
+
 <%elsif @question.shared_image && @question.value_type == "tag"%>
   <div class="share-image-container">
     <div class="image-frame">
