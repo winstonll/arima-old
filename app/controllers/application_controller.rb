@@ -76,7 +76,7 @@ class ApplicationController < ActionController::Base
       end
     elsif(@points >= 1)
       if(Badge.where(user_id: @u_id, badge_id: 2).first.nil?)
-        acquired = Badge.new(user_id: @u_id, badge_id: 2, date: Date.today.to_s, label: "Sir J Mac D")
+        acquired = Badge.new(user_id: @u_id, badge_id: 2, date: Date.today.to_s, label: "Green Horn")
         acquired.save!
         cookies[:unlocked] = 2
       end
