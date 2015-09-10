@@ -2,7 +2,8 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable
+         :recoverable, :rememberable, :trackable,
+         :authentication_keys => [:username]
 
   has_one :location, :dependent => :destroy
   has_many :answers, :dependent => :destroy
@@ -23,7 +24,7 @@ class User < ActiveRecord::Base
   #comment out for now, bring it back when we bring back signup.
 
   #validates :email, presence: true, uniqueness: true, unless: "username.nil?"
-  
+
   validates :password, presence: true, :confirmation => true,
       length: { :in => 8..20 }, :on => :create, unless: "last_emailed_at.nil?"
   validates :username, presence: true, uniqueness: true, unless: "username.nil?"
