@@ -844,18 +844,26 @@
   .tab-content {
     position: relative;
     width: 100%;
-    text-align: left;
+    text-align: center;
 
-    .visualization-tab-img {
-      margin-left: 16em;
+    .visualization-tab-prev {
+      position: relative;
+      float: left;
+      left: 16em;
+    }
+
+    .visualization-tab-next {
+      position: relative;
+      float: right;
+      right: 12em;
     }
 
     a.btnNext {
-      margin-left: 10px;
+
     }
 
     a.btnPrevious {
-       margin-right: 10px;
+
     }
 
     #panel {
@@ -1033,6 +1041,14 @@
     width: 100%;
     i {
       font-style: normal !important;
+      position: relative;
+      left: 2em;
+      top: 10px;
+    }
+
+    svg {
+      position: relative;
+      left: 4em;
     }
 
     .country_dropdown {
