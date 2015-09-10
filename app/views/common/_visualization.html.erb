@@ -20,7 +20,7 @@
 
         <div id="country" class="tab">
           <a class="btnPrevious"><%= image_tag("back_tab.png", :class => "visualization-tab-prev", :onMouseover=> "this.src='/images/back_tab_blue.png'",:onMouseout=> "this.src='/images/back_tab.png'")%></a>
-            <i class="country_text">This tab shows what everyone from <%= select_tag(@countries_answered, options_for_select(@countries_answered, answer.user_country),class: "country_dropdown", id:"country_position", prompt: "Select a Country") %> has answered.</i>
+            This tab shows what everyone from <%= select_tag(@countries_answered, options_for_select(@countries_answered, answer.user_country),class: "country_dropdown", id:"country_position", prompt: "Select a Country") %> has answered.
           <a class="btnNext"><%= image_tag("forward_tab.png", :class => "visualization-tab-next") %></a>
 
           <div id="answer-country" class='answer-chart'></div>
@@ -42,7 +42,7 @@
             <% end %>
           </div>
           <a class="btnPrevious"><%= image_tag("back_tab.png", :class => "visualization-tab-prev", :onMouseover=> "this.src='/images/back_tab_blue.png'",:onMouseout=> "this.src='/images/back_tab.png'")%></a>
-            <i class="heat_text">This map shows where people who answered <%= select_tag(@answer_selection, options_for_select(@answer_selection, answer.user_answer), id:"heat_position", prompt: "Select an Answer") %> are from.</i>
+            This map shows where people who answered <%= select_tag(@answer_selection, options_for_select(@answer_selection, answer.user_answer), id:"heat_position", prompt: "Select an Answer") %> are from.
           <a class="btnNext"><%= image_tag("forward_tab.png", :class => "visualization-tab-next", :onMouseover=> "this.src='/images/forward_tab_blue.png'",:onMouseout=> "this.src='/images/forward_tab.png'")%></a>
 
           <div id="map-canvas"></div>

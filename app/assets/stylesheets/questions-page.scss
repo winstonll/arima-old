@@ -111,42 +111,6 @@
   left:50px;
 }
 
-//knob
-.a-dial {
-  position: absolute;
-  width: 25em;
-  left: 40%;
-  margin-top: 5em;
-
-  div {
-    display: block !important;
-  }
-
-  input {
-    width: 90px !important;
-    height: 80px !important;
-    position: relative !important;
-    margin-top: 0px !important;
-    margin-left: 0px !important;
-    bottom: 200px !important;
-    font-size: 85px !important;
-  }
-
-  #animated-example {
-    padding: 10px 25px 10px 25px;
-    width: 135px;
-    font-size: 14px !important;
-    border-radius: 20px;
-    background-color: #419BF9;
-    border: none;
-    color: #fff;
-    position: absolute;
-    left: 115px;
-  }
-}
-//endknob
-
-
 .toast {
   opacity: .95 !important;
   background-color: #419BF9 !important;
@@ -845,13 +809,15 @@
     position: relative;
     width: 100%;
     text-align: center;
+    left: 2em;
 
     .visualization-tab-prev {
       position: relative;
       float: left;
-      left: 16em;
+      left: 14em;
       height: 45px;
       width: 45px;
+      vertical-align: top;
     }
 
     .visualization-tab-next {
@@ -860,6 +826,7 @@
       right: 12em;
       height: 45px;
       width: 45px;
+      vertical-align: top;
     }
 
     a.btnNext {
@@ -920,7 +887,7 @@
         height: 100%;
         width: 80%;
         margin-top: 30px;
-        margin-left: 14em;
+        margin-left: 12em;
       }
     }
   }
@@ -1044,7 +1011,7 @@
   /* Chart */
   .visualization {
     width: 100%;
-    i {
+    span {
       font-style: normal !important;
       position: relative;
       left: 2em;
