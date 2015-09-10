@@ -5,7 +5,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user = User.where(id: cookies[:guest]).first
     @user.first_name = nil
     @user.password = user_params["password"]
-    @user.email = user_params["email"]
+    #@user.email = user_params["email"]
     @user.username = user_params["username"]
 
     if !user_params["gender"].nil? then @user.gender = user_params["gender"] end
@@ -18,9 +18,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user.save
     @location.save
 
-    if(!@user.errors["email"].empty?)
-      flash[:notice] = "Email " + @user.errors['email'].first
-    end
+    #if(!@user.errors["email"].empty?)
+    #  flash[:notice] = "Email " + @user.errors['email'].first
+    #end
 
     if(!@user.errors["username"].empty?)
       if(flash[:notice].nil?)
@@ -46,7 +46,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
           # After signup is submitted, check if the user was referred
           reward_referral(params[:referral]) if params[:referral].present?
 
-          UserMailer.signup_email(@user).deliver!
+          #UserMailer.signup_email(@user).deliver!
           @winston = User.new(email: "winston@arima.io")
           UserMailer.signup_admin(@winston, @user).deliver!
           sign_in(:user, @user)
@@ -88,7 +88,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private
     def user_params
       params.require(:user).permit(
-        :email,
+        #:email,
         :password,
         :username,
         :gender,
@@ -104,7 +104,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @referring_user = User.find_by_referral_code(@referral_code)
     @referring_user.points += 5
     @referring_user.save!
-    UserMailer.referred_user_email(@referring_user, @user).deliver!
+    #UserMailer.referred_user_email(@referring_user, @user).deliver!
     return
   end
 end
