@@ -10,6 +10,7 @@
 		</div>
 	    <div class="profile-link">
 			<% if user_signed_in? && current_user.username.present? %>
+			<p style="color: #00c39c; font-weight: bold;">Profile</p>
 	        	<%= link_to "#{current_user.username[0].capitalize}", custom_show_path(:username => current_user.username), class: "nav-user-circle" %>
 	      <% end %>
 	      <%= link_to image_tag("anonprofile.png"), new_registration_path(resource_name), id: "nav-signup-btn" if !user_signed_in? %>
