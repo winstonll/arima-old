@@ -20,6 +20,7 @@
 
         <div id="country" class="tab">
           <a class="btnPrevious"><%= image_tag("back_tab_blue.png", :class => "visualization-tab-prev", size: "45x45")%></a>
+
             <i class="country_text">This tab shows what everyone from <%= select_tag(@countries_answered, options_for_select(@countries_answered, answer.user_country),class: "country_dropdown", id:"country_position", prompt: "Select a Country") %> has answered.</i>
           <a class="btnNext"><%= image_tag("forward_tab_blue.png", :class => "visualization-tab-next", size: "45x45") %></a>
 
