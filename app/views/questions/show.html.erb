@@ -76,6 +76,7 @@ $(document).ready(function() {
 
   };
 
+
   setTimeout(function(){ $('.square').addClass('hover'); }, 2000);
   setTimeout(function(){ $('.rating-prompt').addClass('hover'); }, 4200);
   setTimeout(function(){ $('.rating-title').addClass('hover'); }, 4200);
@@ -168,6 +169,19 @@ $(document).ready(function() {
 <%= render '/common/share_new_question_modal' %>
 <%#= render '/common/signup_modal' %>
 <%#= render '/common/share_answer_modal' %>
+
+
+<%if cookies[:unlocked] != ""%>
+  <div id="achievement_box">
+    <span id='close' onclick='document.getElementById("achievement_box").style.display = "none"; return false;' style="display: inline-block; float: right; padding:2px 5px; color: white;">x</span>
+    <p id="thankyou_msg">Thanks for answering!</p>
+    <p id="unlocked_msg">You unlocked the "<%= Badge.where(badge_id: cookies[:unlocked].to_i).first.label%>" badge</p>
+    <%= image_tag "Badges/#{cookies[:unlocked]}.png", :id => "image1", size: "100x100" %>
+    <%= link_to 'Create a Profile to view more badges!', new_registration_path(resource_name), class: "nav-btn", id: "nav-signup-btn"  if !user_signed_in?%>
+  </div>
+
+  <% cookies[:unlocked] = nil%>
+<%end%>
 
 <%if @user_submitted_answer && !@question.shared_image.nil? && !@question.shared_image%>
   <div class="main-site-container" id="question-page-container">

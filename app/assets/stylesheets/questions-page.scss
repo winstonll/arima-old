@@ -2,6 +2,47 @@
   position: relative;
 }
 
+#achievement_box {
+  width: 350px;
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  z-index: 100;
+  background-color: #001F3E;
+  opacity: 0.75;
+  border-radius: 5px;
+
+  #thankyou_msg {
+    color: white;
+    position: relative;
+    left: 100px;
+    display: inline-block;
+  }
+
+  #unlocked_msg {
+    color: white;
+    position: relative;
+    left: 40px;
+  }
+
+  #image1 {
+    display: inline-block;
+    position: relative;
+    left: 120px;
+  }
+
+  #nav-signup-btn {
+    padding: 7px 16px 7px 16px;
+    background-color: #50e3c2;
+    color: #fff;
+    display: block;
+    width: 280px;
+    position: relative;
+    left: 35px;
+    bottom: 10px;
+  }
+}
+
 #image_poll {
   background-color: #BBDAFF;
   padding-top: 20px;
