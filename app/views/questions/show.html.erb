@@ -184,6 +184,7 @@ $(document).ready(function() {
 
 <%if @user_submitted_answer && !@question.shared_image.nil? && !@question.shared_image%>
   <div class="main-site-container" id="question-page-container">
+
     <div id="question-hero">
       <div class="question-container">
         <!-- Votes -->
@@ -234,7 +235,6 @@ $(document).ready(function() {
                   image: "#{request.protocol}#{request.host_with_port}" + question_path(@question)
                 }%>
         </div>
-
         <div id="Social-like-button">
             <!--Facebook like button-->
             <div class="fb-like" data-href="https://www.facebook.com/friendsofarima?fref=ts"
