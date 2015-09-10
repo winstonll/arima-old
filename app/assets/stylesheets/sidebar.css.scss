@@ -1,7 +1,7 @@
 /* Categories sidebar */
 .sidebar {
-  height: 19em;
-  width: 80px;
+  height: 27em;
+  width: 111px;
   background-color: transparent;
   text-align: center;
   overflow-y: hidden;
@@ -10,6 +10,7 @@
   left: 3em;
   z-index: 2;
   overflow: hidden;
+
 
   .sidebar-wrapper {
     min-height: 100%;
@@ -42,7 +43,7 @@
     }
 
     .profile-link {
-      margin-top: 15px;
+      margin-top: 20px;
       margin-bottom: 10px;
 
       .nav-user-circle {
