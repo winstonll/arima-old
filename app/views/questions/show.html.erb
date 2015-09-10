@@ -76,6 +76,7 @@ $(document).ready(function() {
 
   };
 
+
   setTimeout(function(){ $('.square').addClass('hover'); }, 2000);
   setTimeout(function(){ $('.rating-prompt').addClass('hover'); }, 4200);
   setTimeout(function(){ $('.rating-title').addClass('hover'); }, 4200);
@@ -134,7 +135,7 @@ $(document).ready(function() {
     $('.modal-button').prop('disabled', !(this.value.length > 0));
   });
   <%if @question.image_link.nil? %>
-    $(".question-title").css("width", "80%");
+    $(".question-title").css("width", "60%");
     $(".answer-counter").css("width", "80%");
   <%end%>
 });
@@ -168,6 +169,18 @@ $(document).ready(function() {
 <%= render '/common/share_new_question_modal' %>
 <%#= render '/common/signup_modal' %>
 <%#= render '/common/share_answer_modal' %>
+
+<%if cookies[:unlocked] != "" && cookies[:unlocked] != nil%>
+  <div id="achievement_box">
+    <span id='close' onclick='document.getElementById("achievement_box").style.display = "none"; return false;' style="display: inline-block; float: right; padding:2px 5px; color: white;">x</span>
+    <p id="thankyou_msg">Thanks for answering!</p>
+    <p id="unlocked_msg">You unlocked the "<%= Badge.where(badge_id: cookies[:unlocked].to_i).first.label%>" badge</p>
+    <%= image_tag "Badges/#{cookies[:unlocked]}.png", :id => "image1", size: "100x100" %>
+    <%= link_to 'Create a Profile to view more badges!', new_registration_path(resource_name), class: "nav-btn", id: "nav-signup-btn"  if !user_signed_in?%>
+  </div>
+
+  <% cookies[:unlocked] = nil%>
+<%end%>
 
 <%if @user_submitted_answer && !@question.shared_image.nil? && !@question.shared_image%>
   <div class="main-site-container" id="question-page-container">
@@ -226,7 +239,7 @@ $(document).ready(function() {
             <!--Facebook like button-->
             <div class="fb-like" data-href="https://www.facebook.com/friendsofarima?fref=ts"
             data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
-
+            <br>
             <!--Twitter like button-->
             <a class="twitter-follow-button twitter-count" data-show-screen-name="false"
             href="https://twitter.com/arima_io">
@@ -252,6 +265,8 @@ $(document).ready(function() {
             <%= render partial: 'common/trending_question', locals: { question: random_question } %>
           <% end %>
           <a href="<%= feed_path %>"><div id="view-feed-button">View More</div></a>
+          <%#= link_to 'View Category', cat_path(:group_id), :id => "view-feed-button" %>
+
         </div>
 
 <%elsif @question.shared_image && @question.value_type == "tag"%>
@@ -332,7 +347,7 @@ $(document).ready(function() {
         </a>
       <%end%>
     </center>
-    <center style="color: #4a4a4a; font-weight: bold; font-family: Roboto; font-size: 26px; padding-top: 20px; margin: 0 22%;"><%=@question.label %></center>
+    <center style="color: #4a4a4a; font-weight: bold; font-family: Roboto; font-size: 26px; padding-top: 120px; margin: 0 22%;"><%=@question.label %></center>
     <center class="meta-title"><%= @question.answers.count%><%= @question.answers.count == 1 ? ' Person' : ' People' %> Answered</center>
     <br>
     <center>

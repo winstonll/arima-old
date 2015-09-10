@@ -34,54 +34,54 @@ class ApplicationController < ActionController::Base
   end
 
   def check_points_badge
-    @points = User.where(id: current_user.id).first.points
+    @u_id = user_signed_in? ? current_user.id : cookies[:guest]
+    @points = User.where(id: @u_id).first.points
 
-    if(user_signed_in?)
-      if(@points >= 1000000)
-        if(Badge.where(user_id: current_user.id, badge_id: 8).first.nil?)
-          acquired = Badge.new(user_id: current_user.id, badge_id: 8,  date: Date.today.to_s, label: "Mama I made it!")
-          acquired.save!
-          cookies[:unlocked] = 8
-        end
-      elsif(@points >= 100000)
-        if(Badge.where(user_id: current_user.id, badge_id: 7).first.nil?)
-          acquired = Badge.new(user_id: current_user.id, badge_id: 7, date: Date.today.to_s, label: "The Fort Knox")
-          acquired.save!
-          cookies[:unlocked] = 7
-        end
-      elsif(@points >= 10000)
-        if(Badge.where(user_id: current_user.id, badge_id: 6).first.nil?)
-          acquired = Badge.new(user_id: current_user.id, badge_id: 6, date: Date.today.to_s, label: "The Fukuzawa")
-          acquired.save!
-          cookies[:unlocked] = 6
-        end
-      elsif(@points >= 1000)
-        if(Badge.where(user_id: current_user.id, badge_id: 5).first.nil?)
-          acquired = Badge.new(user_id: current_user.id, badge_id: 5, date: Date.today.to_s, label: "The Hidalgo")
-          acquired.save!
-          cookies[:unlocked] = 5
-        end
-      elsif(@points >= 100)
-        if(Badge.where(user_id: current_user.id, badge_id: 4).first.nil?)
-          acquired = Badge.new(user_id: current_user.id, badge_id: 4, date: Date.today.to_s, label: "The Benjamin")
-          acquired.save!
-          cookies[:unlocked] = 4
-        end
-      elsif(@points >= 10)
-        if(Badge.where(user_id: current_user.id, badge_id: 3).first.nil?)
-          acquired = Badge.new(user_id: current_user.id, badge_id: 3, date: Date.today.to_s, label: "Sir J Mac D")
-          acquired.save!
-          cookies[:unlocked] = 3
-        end
-      elsif(@points >= 1)
-        if(Badge.where(user_id: current_user.id, badge_id: 2).first.nil?)
-          acquired = Badge.new(user_id: current_user.id, badge_id: 2, date: Date.today.to_s, label: "Sir J Mac D")
-          acquired.save!
-          cookies[:unlocked] = 2
-        end
-      else
-        return 0
+
+    if(@points >= 1000000)
+      if(Badge.where(user_id: @u_id, badge_id: 8).first.nil?)
+        acquired = Badge.new(user_id: @u_id, badge_id: 8,  date: Date.today.to_s, label: "Mama I made it!")
+        acquired.save!
+        cookies[:unlocked] = 8
       end
+    elsif(@points >= 100000)
+      if(Badge.where(user_id: @u_id, badge_id: 7).first.nil?)
+        acquired = Badge.new(user_id: @u_id, badge_id: 7, date: Date.today.to_s, label: "The Fort Knox")
+        acquired.save!
+        cookies[:unlocked] = 7
+      end
+    elsif(@points >= 10000)
+      if(Badge.where(user_id: @u_id, badge_id: 6).first.nil?)
+        acquired = Badge.new(user_id: @u_id, badge_id: 6, date: Date.today.to_s, label: "The Fukuzawa")
+        acquired.save!
+        cookies[:unlocked] = 6
+      end
+    elsif(@points >= 1000)
+      if(Badge.where(user_id: @u_id, badge_id: 5).first.nil?)
+        acquired = Badge.new(user_id: @u_id, badge_id: 5, date: Date.today.to_s, label: "The Hidalgo")
+        acquired.save!
+        cookies[:unlocked] = 5
+      end
+    elsif(@points >= 100)
+      if(Badge.where(user_id: @u_id, badge_id: 4).first.nil?)
+        acquired = Badge.new(user_id: @u_id, badge_id: 4, date: Date.today.to_s, label: "The Benjamin")
+        acquired.save!
+        cookies[:unlocked] = 4
+      end
+    elsif(@points >= 10)
+      if(Badge.where(user_id: @u_id, badge_id: 3).first.nil?)
+        acquired = Badge.new(user_id: @u_id, badge_id: 3, date: Date.today.to_s, label: "Sir J Mac D")
+        acquired.save!
+        cookies[:unlocked] = 3
+      end
+    elsif(@points >= 1)
+      if(Badge.where(user_id: @u_id, badge_id: 2).first.nil?)
+        acquired = Badge.new(user_id: @u_id, badge_id: 2, date: Date.today.to_s, label: "Green Horn")
+        acquired.save!
+        cookies[:unlocked] = 2
+      end
+    else
+      return 0
     end
   end
 

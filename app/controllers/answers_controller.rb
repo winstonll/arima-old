@@ -108,9 +108,9 @@ class AnswersController < ApplicationController
         if @answer.save
           current_user.points = current_user.points + 1
           current_user.save
-          if(user_signed_in?)
-            check_points_badge
-          end
+
+          check_points_badge
+
           if(@question.user_id != nil)
             q_owner = User.where(id: @question.user_id).first
             if((Answer.where(question_id: @question.id).length % 10) == 0 && !q_owner.nil?)
@@ -133,6 +133,12 @@ class AnswersController < ApplicationController
         @answer.user = @guest
 
         if @answer.save
+
+          @guest.points = @guest.points + 1
+          @guest.save
+
+          check_points_badge
+
           if @guest.share_modal_state != "hide"
             redirect_to question_path(@question), flash: { share_answer_modal: true }
             return
