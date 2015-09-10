@@ -409,7 +409,7 @@
 **/
 
 .meta-title{
-  font-weight: 300;
+  font-weight: 400;
   font-size: 14px;
   color: #4a4a4a;
 }
@@ -504,7 +504,7 @@
       }
       .other-input-text {
         height: 36px;
-        width: 440px;
+        width: 320px;
         color: black;
         font-size: 12px;
         background-color: #f7f7f7;
@@ -766,7 +766,7 @@
     width: 100%;
     text-align: left;
     left: 13em;
-   
+
   }
 
   .tab-links li {
@@ -775,27 +775,27 @@
   }
 
   .tab-links a {
-    padding:10px 16px;
+    padding:12px 26px;
     display:inline-block;
-    border: 1px solid #C0C0C0;
-    border-radius:7px;
+    border: 1px solid #b2b2b2;
+    border-radius:4px;
     font-size:16px;
     font-weight:600;
-    color:#C0C0C0;
+    color:#b2b2b2;
     transition:all linear 0.15s;
   }
 
   .tab-links a:hover {
-    color:#419BF9;
-    background:#FCFCFC;
+    color:#fff;
+    background:#419BF9;
     text-decoration:none;
-    border-color: #5AA3E8;
+    border-color: #419BF9;
   }
 
   li.active a, li.active a:hover {
-    color:#419BF9;
-    background:#FCFCFC;
-    border-color: #5AA3E8;
+    color:#fff;
+    background:#419BF9;
+    border-color: #419BF9;
   }
 
   /*----- Content of Tabs -----*/
@@ -906,10 +906,11 @@
       .question-title-container {
         .question-title {
           position: relative;
-          font-weight: 600;
-          font-size: 20px;
+          font-family: Roboto;
+          font-weight: 500;
+          font-size: 26px;
           line-height: 23px;
-          color: #419BF9;
+          color: #4a4a4a;
           width:60%;
         }
 
