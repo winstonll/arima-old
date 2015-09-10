@@ -850,12 +850,16 @@
       position: relative;
       float: left;
       left: 16em;
+      height: 45px;
+      width: 45px;
     }
 
     .visualization-tab-next {
       position: relative;
       float: right;
       right: 12em;
+      height: 45px;
+      width: 45px;
     }
 
     a.btnNext {
@@ -863,6 +867,7 @@
     }
 
     a.btnPrevious {
+      background: url(image_path('back_tab.png'));
 
     }
 
