@@ -15,7 +15,6 @@
   #thankyou_msg {
     color: white;
     position: relative;
-    top: 7px;
     left: 100px;
     display: inline-block;
   }
@@ -23,27 +22,24 @@
   #unlocked_msg {
     color: white;
     position: relative;
-    top: -3px;
-    left: 50px;
+    left: 40px;
   }
 
   #image1 {
     display: inline-block;
     position: relative;
     left: 120px;
-    bottom: 17px;
   }
 
   #nav-signup-btn {
     padding: 7px 16px 7px 16px;
-    background-color: #00c39c;
+    background-color: #50e3c2;
     color: #fff;
     display: block;
     width: 280px;
     position: relative;
     left: 35px;
     bottom: 10px;
-    border-radius: 4px;
   }
 }
 
@@ -1060,10 +1056,6 @@
       left: 4em;
     }
 
-    i {
-      font-style: normal !important;
-    }
-
     .country_dropdown {
       color: #419BF9;
       text-align: right;
@@ -1130,4 +1122,3 @@
         font-size: 18px;
       }
     }
-

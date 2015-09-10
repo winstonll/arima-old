@@ -253,7 +253,7 @@ class QuestionsController < ApplicationController
     if (params[:shared_image] == "true") && !@question_image
       redirect_to :back
       flash[:notice] = "Please upload an image"
-      return
+      returni
     end
 
     if params[:shared_image] == "true" && (params[:submit_question_name].length < 256) && params[:numeric_value] == "false"
