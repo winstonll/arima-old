@@ -15,6 +15,7 @@
   #thankyou_msg {
     color: white;
     position: relative;
+    top: 7px;
     left: 100px;
     display: inline-block;
   }
@@ -22,24 +23,27 @@
   #unlocked_msg {
     color: white;
     position: relative;
-    left: 40px;
+    top: -3px;
+    left: 50px;
   }
 
   #image1 {
     display: inline-block;
     position: relative;
     left: 120px;
+    bottom: 17px;
   }
 
   #nav-signup-btn {
     padding: 7px 16px 7px 16px;
-    background-color: #50e3c2;
+    background-color: #00c39c;
     color: #fff;
     display: block;
     width: 280px;
     position: relative;
     left: 35px;
     bottom: 10px;
+    border-radius: 4px;
   }
 }
 
@@ -850,12 +854,16 @@
       position: relative;
       float: left;
       left: 16em;
+      height: 45px;
+      width: 45px;
     }
 
     .visualization-tab-next {
       position: relative;
       float: right;
       right: 12em;
+      height: 45px;
+      width: 45px;
     }
 
     a.btnNext {
@@ -863,6 +871,7 @@
     }
 
     a.btnPrevious {
+      background: url(image_path('back_tab.png'));
 
     }
 
