@@ -813,6 +813,7 @@
   .tab-links li {
     display:inline-block;
     margin-right: 1.5em;
+    margin-top: -2em;
   }
 
   .tab-links a {
@@ -957,17 +958,18 @@
           font-family: Roboto;
           font-weight: 500;
           font-size: 26px;
-          line-height: 23px;
+          line-height: 30px;
           color: #4a4a4a;
           width:60%;
+          margin-top: -10px;
         }
 
         .answer-counter {
           width:60%;
-          height:23px;
-          margin-bottom: 1em;
           font-size: 16px;
           color: #4a4a4a;
+          margin-left: 3.5em;
+          margin-top: -5px;
         }
       }
     }
@@ -975,7 +977,7 @@
     #Social-like-button {
       position: relative;
       float: right;
-      top: 2em;
+      top: .5em;
       left: 3.5em;
       a {
         display:block;
@@ -1009,6 +1011,7 @@
 
         .share-image {
           width: auto;
+          margin-top: -32px;
         }
       }
     }
