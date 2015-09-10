@@ -170,8 +170,7 @@ $(document).ready(function() {
 <%#= render '/common/signup_modal' %>
 <%#= render '/common/share_answer_modal' %>
 
-
-<%if cookies[:unlocked] != ""%>
+<%if cookies[:unlocked] != "" && cookies[:unlocked] != nil%>
   <div id="achievement_box">
     <span id='close' onclick='document.getElementById("achievement_box").style.display = "none"; return false;' style="display: inline-block; float: right; padding:2px 5px; color: white;">x</span>
     <p id="thankyou_msg">Thanks for answering!</p>
