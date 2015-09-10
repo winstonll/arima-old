@@ -122,11 +122,6 @@ $(document).ready(function() {
 
   setTimeout(function(){toastr["info"]( "Arima helps you to visualize opinions thru simple clicks."); }, 4200);
 
-
-  if(screen.width <= 800) {
-    window.location = "http://thearima.com/system/uploads/<%= @question.image_link%>";
-  }
-
   $('#answer_value').on('change', function() {
     $('.modal-button').prop('disabled', !(this.value.length > 0));
   });
