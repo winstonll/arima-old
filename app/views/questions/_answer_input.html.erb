@@ -21,10 +21,20 @@ $(document).ready(function() {
     document.getElementById('numeric_value').value = $(".ui-slider-tip")[0].innerHTML;
   });
 
+  $('#other').click(function(){
+    <%if !user_signed_in?%>
+      $('#popover-input').popover("show");
+    <%end%>
+    $("input").prop("checked", false)
+    $(".modal-button").attr("disabled", "disabled");
+  });
+
   $('#other').keyup(function() {
     if($(this).val() != '') {
-       $('.modal-button').removeAttr('disabled');
-       $("input").prop("checked", false)
+      <%if user_signed_in?%>
+        $('.modal-button').removeAttr('disabled');
+      <%end%>
+      $("input").prop("checked", false)
     }
   });
 
@@ -40,10 +50,12 @@ $(document).ready(function() {
 
   $('input').click(function() {
     if ($('input').is(':checked')){
-       $('.modal-button').removeAttr('disabled');
-       $('#other').val('');
+      $('.modal-button').removeAttr('disabled');
+      $('#other').val('');
     }
-  });
+  })
+
+
 });
 </script>
 

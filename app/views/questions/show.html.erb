@@ -19,6 +19,7 @@ $(document).ready(function() {
     document.getElementById("nothx-submit").onclick = reveal;
     document.getElementById("rating-submit").onclick = reveal;
   <%end%>
+
   function reveal() {
     document.getElementById("liner-title").style.display = "block";
     document.getElementById("tag_show").style.display = "block";
@@ -120,7 +121,7 @@ $(document).ready(function() {
     "hideMethod": "slideUp"
   }
 
-  setTimeout(function(){toastr["info"]( "Arima helps you to visualize opinions thru simple clicks."); }, 4200);
+  //setTimeout(function(){toastr["info"]( "Arima helps you to visualize opinions thru simple clicks."); }, 4200);
 
   $('#answer_value').on('change', function() {
     $('.modal-button').prop('disabled', !(this.value.length > 0));
