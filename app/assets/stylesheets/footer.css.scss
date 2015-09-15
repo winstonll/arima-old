@@ -11,6 +11,33 @@
   opacity: .95;
   border-top: 1px solid #E4E4E4;
 
+  .feed-link {
+    height: 3.5em;
+    background-color: #419BF9;
+    float: left;
+    position: relative;
+    bottom: 9px;
+    padding-top: 13px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .feed-back-title {
+    color: white;
+    font-weight: 300;
+    font-size: 12px;
+    padding-left: 10px;
+  }
+
+  .feed-back-arrow{
+    position:relative;
+    bottom: 2px;
+  }
+
+  #back-to-feed-button{
+    position:relative;
+  }
+
   .signup-section {
     position: relative;
     display: inline-block;
@@ -95,7 +122,6 @@
   }
 
   .sidebar-footer-sections {
-    display: inline-block;
     float: left;
     padding-left: 20px;
 
