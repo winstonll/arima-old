@@ -92,23 +92,6 @@
     });
   </script>
 
-  <!--div class="site-wrapper"-->
-    <%= render partial: 'common/categories_sidebar' %>
-
-    <%= render partial: "common/navbar" %>
-
-
-    <div class="site-content">
-
-      <div class="site-content-inner">
-        <div id="alert_messages">
-          <%= render partial: "common/alert" %>
-        </div>
-
-        <%= yield %>
-      </div>
-    </div>
-  <!--/div-->
 
   <script>
     $(document).ajaxComplete(function(){
@@ -130,5 +113,25 @@
   ga('send', 'pageview');
 
 </script>
+  <!--div class="site-wrapper"-->
+    <%= render partial: 'common/categories_sidebar' %>
+
+    <%= render partial: "common/navbar" %>
+
+
+    <div class="site-content">
+
+      <div class="site-content-inner">
+        <div id="alert_messages">
+          <%= render partial: "common/alert" %>
+        </div>
+
+        <%= yield %>
+
+
+        <%= render partial: "common/footer" %> 
+      </div>
+    </div>
+  <!--/div-->
 </body>
 </html>
