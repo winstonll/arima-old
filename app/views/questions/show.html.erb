@@ -171,10 +171,11 @@ $(document).ready(function() {
     <p id="thankyou_msg">Thanks for answering!</p>
     <p id="unlocked_msg">You unlocked the "<%= Badge.where(badge_id: cookies[:unlocked].to_i).first.label%>" badge</p>
     <%= image_tag "Badges/#{cookies[:unlocked]}.png", :id => "image1", size: "100x100" %>
-    <%= link_to 'Create a Profile to view more badges!', new_registration_path(resource_name), class: "nav-btn", id: "nav-signup-btn"  if !user_signed_in?%>
+
   </div>
 
-  <% cookies[:unlocked] = nil%>
+  <%cookies[:unlocked] = nil%>
+
 <%end%>
 
 <%if @user_submitted_answer && !@question.shared_image.nil? && !@question.shared_image%>
