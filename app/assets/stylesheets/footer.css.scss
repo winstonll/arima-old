@@ -13,15 +13,17 @@
 
   .popover {
     display: inline-block;
-    height: 100px;
-    width: 300px;
-    display: inline-block;
-    margin-left: 50px;
+    height: 130px;
+    width: 390px;
+    margin-left: 100px;
   }
 
   .popover-content {
-    display: inline-block;
-    padding: 10px;
+    padding: 30px 30px 30px 30px;
+    font-size: 14px;
+    font-weight: 700;
+    text-shadow: none !important;
+    width: 100%
   }
 
 
