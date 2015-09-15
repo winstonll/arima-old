@@ -3,8 +3,6 @@ $(document).ready(function() {
 
     setTimeout(function() {$('#popover-input').popover("show")},3000);
 
-
-
 });
 </script>
 
@@ -24,13 +22,11 @@ $(document).ready(function() {
   </div>
 
   <%if !user_signed_in?%>
-    <div class="hidden-xs">
-      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: {class: "form"}) do |f| %>
-      <div class="signup-section">
-        <div class="signup-links-bottom" style="float: right;">
-          <div id="signup-start">
-          <%= f.submit "Signup", class: "signup-button" %>
-          </div>
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: {class: "form"}) do |f| %>
+    <div class="signup-section">
+      <div class="signup-links-bottom">
+        <div id="signup-start">
+        <%= f.submit "Sign Up", class: "signup-button" %>
         </div>
 
         <div class="signup-input">
@@ -43,6 +39,7 @@ $(document).ready(function() {
             <%= f.password_field :password, placeholder: "Password", class: "input-box" %>
           </div>
         </div>
+
       </div>
       <% end %>
     </div>
