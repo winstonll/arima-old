@@ -151,15 +151,15 @@ $(document).ready(function() {
     });
   </script>
 <% end %>
-<% if flash[:share_answer_modal] && !user_signed_in? %>
+<%# if flash[:share_answer_modal] && !user_signed_in? %>
   <script>
-    $(document).ready(function() {
-      setTimeout(function() {
-        $('#shareSignupModal').modal('show');
-      }, 10000);
-    });
+  //   $(document).ready(function() {
+  //     setTimeout(function() {
+  //       $('#shareSignupModal').modal('show');
+  //     }, 10000);
+  //   });
   </script>
-<% end %>
+<%# end %>
 
 <%= render '/common/share_new_question_modal' %>
 <%#= render '/common/signup_modal' %>
