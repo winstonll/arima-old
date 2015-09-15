@@ -35,11 +35,11 @@ $(document).ready(function() {
         <div class="signup-input">
           <div class="input-username">
             <%if @question.nil?%>
-            <%= f.text_field :username, placeholder: "Username", class: "input-box username-input-box", id: "popover-input", 'data-toggle'=>"popover",
-            'data-placement'=>"top", 'data-content'=>"Sign Up to Ask Questions, Share Images, and gain amazing insights into what people think. Let's make data fun for everyone :)" %>
-            <%else%>
               <%= f.text_field :username, placeholder: "Username", class: "input-box username-input-box", id: "popover-input", 'data-toggle'=>"popover",
-              'data-placement'=>"top", 'data-content'=>"test" %>
+              'data-placement'=>"top", 'data-content'=>"Sign Up to Ask Questions, Share Images, and gain amazing insights into what people think. Let's make data fun for everyone :)" %>
+            <%else%>
+            <%= f.text_field :username, placeholder: "Username", class: "input-box username-input-box", id: "popover-input", 'data-toggle'=>"popover",
+            'data-placement'=>"top", 'data-content'=>"Oops, did you forget to login? If not, please Sign up below to add your own opinion to the list!" %>
             <%end%>
           </div>
 
