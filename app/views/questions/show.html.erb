@@ -16,11 +16,9 @@
 $(document).ready(function() {
 
   <%if @question.shared_image %>
-    document.getElementById("nothx-submit").onclick = reveal;
-    document.getElementById("rating-submit").onclick = reveal;
+    // document.getElementById("view-map").onclick = reveal;
   <%end%>
   function reveal() {
-    document.getElementById("liner-title").style.display = "block";
     document.getElementById("tag_show").style.display = "block";
 
     var $target = $('#tag_show');
@@ -30,71 +28,7 @@ $(document).ready(function() {
     }, 900, 'swing', function () {
         window.location.hash = '#tag_show';
     });
-
-    var checkbox = $('.form-radio');
-
-    <%if user_signed_in?
-        @liked_tag = Opinion.where(user_id: current_user.id, question_id: @question.id)
-        @liked_tag_array = Array.new()
-        @liked_tag.each do |tagId|
-          @liked_tag_array << Tag.where(question_id: @question.id, id: tagId.tag_id).first.label
-        end
-      else
-        @liked_tag = Opinion.where(user_id: cookies[:guest], question_id: @question.id)
-        @liked_tag_array = Array.new()
-        @liked_tag.each do |tagId|
-          @liked_tag_array << Tag.where(question_id: @question.id, id: tagId.tag_id).first.label
-        end
-      end
-    %>
-
-    <%if !@liked_tag_array.nil?%>
-      <%@liked_tag_array.each do |tag|%>
-        index = 0
-        for(index; index <= <%= @tag_array.length - 1%>; index++){
-          if ($('.form-radio')[index].value == "<%= tag %>"){
-            $('.form-radio')[index].offsetParent.style.color = "#88FFF4";
-            $('.form-radio')[index].nextElementSibling.src = "/images/teal_up.png";
-            $('.form-radio')[index].nextElementSibling.onmouseout = null
-            $('.form-radio')[index].nextElementSibling.onmouseover = null
-            $('.form-radio')[index].nextElementSibling.setAttribute("class", "blue-up");
-            $('.form-radio')[index].nextElementSibling.nextElementSibling.style.color = "#88FFF4";
-          }
-        }
-      <%end%>
-    <%end%>
-
-    var tmr = self.setInterval(function(){myDelay()},2000);
-    var m = 7;
-    function myDelay(){
-        m += 1;
-        $('.dial').val(m).trigger('change');
-        if(m==10) {
-            window.clearInterval(tmr);
-        }
-    }
-
   };
-
-
-  setTimeout(function(){ $('.square').addClass('hover'); }, 2000);
-  setTimeout(function(){ $('.rating-prompt').addClass('hover'); }, 4200);
-  setTimeout(function(){ $('.rating-title').addClass('hover'); }, 4200);
-  // setTimeout(function(){ $('.square').removeClass('hover'); }, 3000);
-
-    $('.border-top').delay(4400).fadeOut(400);
-    $('.border-right').delay(4400).fadeOut(400);
-    $('.border-bottom').delay(4400).fadeOut(400);
-    $('.border-left').delay(4400).fadeOut(400);
-
-    $('.rating_collection').on('change', function() {
-         $(this).closest("form").submit();
-       });
-    $('input[name="answer[value]"]').click(function() {
-      if ($(this).is(':checked')){
-         $('#rating-submit').trigger('click');
-      }
-    });
 });
 
 </script>
@@ -288,46 +222,14 @@ $(document).ready(function() {
             title: "#{@question.label[0..70]}...",
             image: "#{request.protocol}#{request.host_with_port}" + question_path(@question)
           }%>
-      </section>
-      <!--<div id="animated-example" class="animated bounce bounce-center hidden-xs"><%#= image_tag("Scroll-for-More.png", height: "27", width: "83")%></div>-->
-        <div class="square borderz">
-        <h4 class= "rating-title">  Do you like this image?</h4>
-          <div class="rating-prompt">
-            <% if @answer == nil %>
-              <% @answer = user_signed_in? ? @question.answers.build(user_id: current_user.id) : @question.answers.build(user_id: cookies[:guest]) %>
-            <% end %>
-
-            <% if cookies[:guest] != nil %>
-              <%= simple_form_for @answer, url: question_answers_path(@question, @answer), class: "form-inline", role: "form", html: {novalidate: true}, remote: true do |f| %>
-                <div class="rating-options">
-                  <% @multiple_choice = Array.new()
-                      @question.options_array.each do |value|
-                        @multiple_choice << [value, value]
-                    end%>
-                  <%= f.collection_radio_buttons :value, @multiple_choice, :first, :last,item_wrapper_class: :rating_collection%>
-                  <%= link_to "No thanks", upvote_question_path(:id => @question.id), :method => :put, :remote => true, :id => "nothx-submit", :class => "rating-redirect" %>
-                </div>
-
-                <div style="position: relative; top: 2em;">
-                  <% if !@user_submitted_answer %>
-                    <%= f.submit "Submit", data: {disable_with: "Submitting..."}, id: "rating-submit", :class => "rating-redirect" %>
-                  <% end %>
-                </div>
-              <% end %>
-            <% end %>
-        </div>
-          <div class= "border-top"></div>
-          <div class= "border-right"></div>
-          <div class= "border-bottom"></div>
-          <div class= "border-left"></div>
-        </div>
+      </section>       
   </div>
-    <center id="tag_show" style="display: none;">
+    <center id="tag_show">
       <%if !@question.shared_image.nil? && @question.shared_image %>
-        <%= render partial: 'questions/tag_input' %>
         <div id="tag_list_container" class="hidden-xs" style="background-color: #212124;">
           <%= render partial: "tag_list"%>
         </div>
+        <%= render partial: 'questions/tag_input' %>
       <%elsif !@question.shared_image.nil? && !@question.shared_image%>
         <%= render partial: 'questions/answer_input', locals: { question: @question, answer: @answer} %>
       <%end%>

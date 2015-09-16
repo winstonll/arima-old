@@ -66,9 +66,9 @@
 }
 
 .shared-photo {
-  height: 80vh;
+  position: relative;
+  height: 55vh;
   margin-bottom: 22px;
-
   cursor: -moz-zoom-in;
   cursor: -webkit-zoom-in;
   cursor: zoom-in;
@@ -83,11 +83,11 @@
 
 .share-image-title {
   color: #fff;
-  font-weight: 300;
-  font-size: 16px;
+  font-weight: 600;
+  font-size: 18px;
   position: relative;
-  float: left;
-  left: 11%;
+  text-align: center;
+
 }
 
 .toast {
@@ -102,16 +102,9 @@
   width: 100%;
   background-color: #212124;
   padding-top: 20px;
-  height: 100vh;
   position: relative;
 
   .image-container {
-    float: left;
-    position: relative;
-    margin: 0 auto;
-    width: 70%;
-    margin-left: 220px;
-    margin-right:-1em;
   }
    .share-icon-container {
     color: #878686;
@@ -119,247 +112,7 @@
     display: inline-block;
     margin-right: 4em;
   }
-
-  .rating-title {
-    position: relative;
-    visibility:hidden;
-    color: #fff;
-    top: 1em;
-
-  }
-  .rating-title.hover {
-    visibility: visible;
-  }
-
-  .borderz.hover {
-    transition: background-color 3s linear;
-    background-color:#212124;
-    background-color:rgba(0, 0, 0, 0.6);
-  }
-  //animated border
-  *,*:before,*:after { box-sizing: border-box; }
-  .square {
-    width: 100%;
-    height: 160px;
-    position: relative;
-    overflow: hidden;
-    bottom: 10em;
-    text-align: center;
-
-    .rating-prompt {
-      position: relative;
-      margin: auto;
-      width: 20em;
-
-      .rating-options {
-        position: relative;
-        color: #fff;
-        top: 2em;
-
-        .rating_collection {
-          position: relative;
-          display: inline;
-          &:hover {
-              opacity: .8;
-            }
-
-          input[type="radio"]:checked+label{
-            opacity: .8;
-          }
-          input {
-            display: none;
-          }
-        }
-
-        label {
-          font-weight: normal;
-          font-size: 14px;
-          width: 8em;
-          height: 30px;
-          padding-bottom: 20px;
-          padding-top: 4px;
-          margin-right: 1em;
-        }
-
-        label[for="answer_value_i_like_it"] {
-          cursor: pointer;
-          border-radius: 5px;
-          background-color: #53D53C;
-        }
-        label[for="answer_value_its_okay"] {
-          cursor: pointer;
-          border-radius: 5px;
-          background-color: #FE9B62;
-        }
-        label[for="answer_value_i_dont_like_it"] {
-          cursor: pointer;
-          border-radius: 5px;
-          background-color: #FC6986;
-        }
-        label[for="answer_value_neutral"] {
-          cursor: pointer;
-          border-radius: 5px;
-          background-color: #A0A6A9;
-        }
-
-      }
-
-      #nothx-submit {
-        position: relative;
-        vertical-align:top;
-        font-size: 14px;
-        padding: 9px 22px 7px 21.5px;
-        background-color: #419BF9;
-        color: #fff;
-        border-radius: 5px;
-        top: 9px;
-        &:hover {
-          opacity: .8;
-        }
-      }
-      #rating-submit {
-        display: none;
-        position: relative;
-        padding: 7px 16px 5px 16px;
-        background-color: #7ED321;
-        color: #fff;
-        border-radius: 5px;
-        border: none;
-
-        &:hover {
-          opacity: .8;
-        }
-
-        &:disabled {
-          background-color: #7CAD45;
-        }
-      }
-    }
-  }
-
-  .square .rating-prompt {
-    display: none;
-  }
-  #square:hover .rating-prompt {
-    display: block;
-  }
-  .rating-prompt.hover {
-      display: inline;
-  }
 }
-
-  @mixin animated-borders(
-    $border-width,
-    $border-color,
-    $border-animation-duration,
-    $border-animation-timing) {
-
-    // Define duration of each border's animation
-    $solo-animation: $border-animation-duration/4;
-
-    .border-top,
-    .border-bottom,
-    .border-right,
-    .border-left {
-      position: absolute;
-      overflow: hidden;
-      &:after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: $border-color;
-
-        transition: -webkit-transform $solo-animation $border-animation-timing;
-        will-change: -webkit-transform;
-      }
-    }
-
-    .border-top,
-    .border-bottom {
-      width:  100%;
-      height: $border-width;
-      left: 0;
-    }
-
-    .border-right,
-    .border-left {
-      width: $border-width;
-      height: 100%;
-      top: 0;
-    }
-
-    .border-top {
-      top: 0;
-    }
-
-    .border-bottom {
-      bottom: 0;
-    }
-
-    .border-right {
-      right: 0;
-    }
-
-    .border-left {
-      left: 0;
-    }
-    //
-    // States
-    ////////
-    .square {
-      .border-top:after {
-        transition-delay: $solo-animation*3;
-        -webkit-transform: translate3d(-100%,0,0);
-      }
-      .border-bottom:after {
-        transition-delay: $solo-animation;
-        -webkit-transform: translate3d(100%,0,0);
-      }
-      .border-right:after {
-        transition-delay: $solo-animation*2;
-        -webkit-transform: translate3d(0,100%,0);
-      }
-      .border-left:after {
-        -webkit-transform: translate3d(0,-100%,0);
-      }
-    }
-
-      .square.hover {
-        .border-top:after,
-        .border-bottom:after,
-        .border-right:after,
-        .border-left:after {
-          -webkit-transform: translate3d(0,0,0);
-        }
-        .border-top:after {
-          transition-delay: $solo-animation*8;
-        }
-        .border-bottom:after {
-          transition-delay: $solo-animation*8;
-        }
-        .border-right:after {
-          transition-delay: $solo-animation*5;
-        }
-        .border-left:after {
-          transition-delay: $solo-animation*5;
-        }
-      }
-
-  }
-
-  @include animated-borders(
-    $border-width: 2px,
-    $border-color: #88FFF4,
-    $border-animation-duration: 1s,
-    $border-animation-timing: linear
-  );
-
-  //end border animation
-
-
 
 /**@media screen and (max-width: 768px) {
   .image-frame {
@@ -558,75 +311,39 @@
   background-color: #212124;
 
   .center-container {
-    margin: 0px auto;
-    width: 1000px;
+    width: 100%;
     padding-bottom: 8em;
 
     .tag-prompt {
       background-color: #212124;
-      width: 500px;
-
-      #liner-title {
-        margin-top: 80px;
-        position: relative;
-        width: 400px;
-        right: 5.3em;
-        color: #419BF9;
-        font-weight: 600;
-        font-size: 18px;
-      }
-
-      .checked {
-        color: #419BF9;
-      }
 
       .options {
         position: relative;
         text-align: justify;
-        width: 35em;
+        -webkit-column-count: 2;
+        width: 58em;
+        left: 7em;
 
         .tag_button_collection {
           background-color: #212124;
           color: #FFF;
           cursor: pointer;
           display: block;
-          font-size:15px;
           font-weight:300;
-          margin-left: 10px;
-          margin-top: 5px;
           padding: 8px 22px 8px 22px;
           position: relative;
 
           input{
-            visibility: hidden;
-            margin-left: -22px;
+            margin-right: 40px;
           }
 
           .tag-count{
             position: relative;
             float: left;
-            right: 16px;
-            top: 5px;
+            left: 50px;
             color: #FFF;
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 600;
-
-          }
-
-          .grey-up{
-            position: relative;
-            float: left;
-            right: 6px;
-            bottom: 5px;
-            width: 14px;
-
-          }
-          .blue-up{
-            position: relative;
-            float: left;
-            right: 6px;
-            bottom: 5px;
-            width: 14px;
 
           }
         }
@@ -634,31 +351,27 @@
       }
 
         #otherInputBox {
-          display: inline-block;
           position: relative;
-          right: 180px;
           input:focus {
             outline: none;
           }
           input[type="submit"]
           {
-            width: 2em;
+            width: 9em;
             height: 2em;
             border: none;
-            background: url(image_path('add_tag_inactive.png'));
-            background-size: 28px 28px;
+            border-radius: 3px;
             position: relative;
-            left: 232px;
-            display: inline;
-            bottom: 31px;
+            margin-top: 1em;
+            background-color: #7ED321;
+            color: #fff;
+
+            &:hover {
+              opacity: .8;
+            }
 
             &:disabled {
-              background: url(image_path('add_tag_hover.png'));
-              background-size: 28px 28px;
-              &:hover {
-                background: url(image_path('add_tag_inactive.png'));
-                background-size: 28px 28px;
-              }
+              background-color: #7CAD45;
             }
           }
 
@@ -668,12 +381,7 @@
           .question_options_for_collection {
             width: 240px;
           }
-          .new-tag {
-            color: #419BF9;
-            font-weight: 600;
-            font-size: 18px;
-            margin-left: 10px;
-          }
+         
           .other-input-text {
             height: 35px;
             width: 317px;
@@ -685,18 +393,9 @@
             border: solid;
             border-width: 1px;
             padding: 10px 20px 0px 20px;
-            border-radius: 50px;
+            border-radius: 3px;
             padding-left: 15px;
             padding-bottom: 7px;
-            margin-top:2px;
-            margin-left: 13em;
-
-            .popover{
-              width:200px;
-              height:250px;
-              background-color:#419BF9;
-              color:#fff;
-            }
 
           }
 
