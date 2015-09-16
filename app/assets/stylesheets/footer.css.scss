@@ -6,10 +6,9 @@
   font-size: 12px;
   padding: 9px 0 9px 0;
   color: #A09E9E;
-  background-color: #F8F8F8;
+  background-color: #F6F6F6;
   height: 3.5em;
   opacity: .95;
-  border-top: 1px solid #E4E4E4;
 
   .popover {
     display: inline-block;
@@ -39,6 +38,10 @@
     padding-top: 13px;
     padding-left: 20px;
     padding-right: 20px;
+
+    &:hover {
+      background-color:#007CFD;
+    }
   }
 
   .feed-back-title {
@@ -46,6 +49,7 @@
     font-weight: 300;
     font-size: 12px;
     padding-left: 10px;
+
   }
 
   .feed-back-arrow{
