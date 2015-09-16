@@ -1,15 +1,150 @@
 .sidebar-footer {
-  position: absolute;
+  position: fixed;
+  bottom: 0;
   text-align: center;
   width: 100%;
-  font-size: 15px;
-  padding: 10px 0 10px 0;
+  font-size: 12px;
+  padding: 9px 0 9px 0;
   color: #A09E9E;
-  background-color: #E3E3E3;
+  background-color: #F8F8F8;
+  height: 3.5em;
+  opacity: .95;
+  border-top: 1px solid #E4E4E4;
 
+  .popover {
+    display: inline-block;
+    height: 130px;
+    width: 390px;
+    margin-left: 100px;
+  }
+
+  .popover-content {
+    padding: 30px 30px 30px 30px;
+    font-size: 14px;
+    font-weight: 700;
+    text-shadow: none !important;
+    width: 100%
+  }
+
+  .popover.top > .arrow::after {
+    content: none;
+  }
+
+  .feed-link {
+    height: 3.5em;
+    background-color: #419BF9;
+    float: left;
+    position: relative;
+    bottom: 9px;
+    padding-top: 13px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .feed-back-title {
+    color: white;
+    font-weight: 300;
+    font-size: 12px;
+    padding-left: 10px;
+  }
+
+  .feed-back-arrow{
+    position:relative;
+    bottom: 2px;
+  }
+
+  #back-to-feed-button{
+    position:relative;
+  }
+
+  .signup-section {
+    position: relative;
+    display: inline-block;
+    float: right;
+    padding-right: 20px;
+
+    .signup-input {
+      display: inline-block;
+      text-align: left;
+      max-width: 100em;
+
+      .input-username,
+      .input-password {
+
+        display: inline-block;
+        width: 200px;
+        height: 35px;
+        position: relative;
+        bottom: 4px;
+
+        #username-input,
+        #password-input {
+          color: white;
+        }
+
+        .username-input-box {
+          position: relative;
+          left: 4px;
+        }
+
+        .input-box {
+          height: 30px;
+          width: 190px;
+          margin: auto;
+          font-size: 13px;
+          font-weight: normal;
+          font-style: normal;
+          background-color: #fff;
+          color: grey;
+          padding-left: 0.75em;
+          border-radius: 4px;
+          border: 1px solid #DEDEDE;
+        }
+
+        label {
+          font-weight: 400;
+          text-shadow: 0px 1px 2px rgba(0,0,0,0.5);
+          position: relative;
+        }
+
+      }
+    }
+
+    .signup-links-bottom {
+      text-align: left;
+      text-shadow: 0px 1px 2px rgba(0,0,0,0.5);
+      position: relative;
+
+      #signup-start {
+        text-align:center;
+        padding-top: 3px;
+        float:right;
+
+
+        .signup-button {
+          background-color: #50E3C2;
+          color: #fff;
+          border-radius: 4px;
+          width: 5.8em;
+          height: 2.2em;
+          font-weight: 600;
+          border: 0;
+          position: relative;
+          bottom: 6px;
+          font-size: 13px;
+
+          &:hover {
+            opacity: 0.8;
+          }
+        }
+      }
+    }
+  }
 
   .sidebar-footer-sections {
-    display: inline-block;
+    float: left;
+    padding-left: 20px;
+
     .sidebar-footer-list {
       padding: 0;
 

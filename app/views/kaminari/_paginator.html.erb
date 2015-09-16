@@ -7,7 +7,7 @@
     paginator:     the paginator that renders the pagination tags inside
 -%>
 <%= paginator.render do -%>
-  <ul class="pagination pagination-sm">
+  <ul class="pagination pagination-sm" style="position: relative; bottom: 1.5em;">
     <%= prev_page_tag %>
     <% each_page do |page| -%>
       <% if page.left_outer? || page.right_outer? || page.inside_window? -%>

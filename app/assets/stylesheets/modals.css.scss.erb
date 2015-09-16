@@ -89,50 +89,48 @@
 }
 
 #shareSignupModal {
-  background: url(image_path('taipeiday_bg.png')) repeat-x center top;
+  background: #419bf9 repeat-x center top;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100%;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  width: 50em;
-  height: 30em;
-  margin: 20em 0 0 38em;
+  width: 25em;
+  height: 22em;
+  margin: auto;
   overflow: hidden;
   border-radius: 10px;
 
+  .go-back-link {
+    position: relative;
+    float: right;
+    right: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 27px;
+  }
+
   .share-modal-content-container {
-    text-align: left;
+    text-align: center;
     padding-top: 2em;
-    padding-left: 4em;
+    padding-left: 2em;
+    padding-right: 2em;
+    font-weight: bold;
 
     .signup-form {
-
-      .signup-section {
+      text-align: left;
 
         .signup-input {
-          width: 22em;
-          float: left;
 
           .input-username,
-          .input-email,
           .input-password {
             display: inline-block;
             margin: 1em 0 0 0 ;
 
-            .lock {
-              position: relative;
-              right: 3px;
-              display: inline;
-              padding-left: 4px;
-              padding-bottom: 4.5px;
-              width: 5%;
-            }
-
             .input-box {
               height: 30px;
-              width: 270px;
+              width: 290px;
               margin: auto;
               font-size: 12px;
               font-weight: normal;
@@ -144,70 +142,47 @@
               padding-left: 0.75em;
             }
           }
-        }
 
-          .info-input {
-
-            .birthyear-input,
-            .gender-input,
-            .country-input,
-            .city-input, {
-              display: inline-block;
-              margin: 1em 0 0 0;
-              margin-left: 20px;
-              ::-webkit-input-placeholder {
-                color: #4a4a4a;
-              }
-
-
-              .small-input-box {
-                height: 30px;
-                width: 100px;
-                font-size: 12px;
-                font-weight: normal;
-                background-color: #fff;
-                border: 0;
-                border-radius: 4px;
-                color: #4a4a4a;
-                padding-left: 0.75em;
-              }
-            }
+          #password::-webkit-input-placeholder {
+            background-image: url(image_path('lock.png'));
+            background-repeat: no-repeat; 
+            background-size: 12px 15px;
+            background-position: 25% 25%;
           }
 
-        .signup-links-bottom {
-          display: inline-block;
-          text-align: left;
-          margin-left: 20px;
+          #password::-moz-placeholder {
+            background-image: url(image_path('lock.png'));
+            background-repeat: no-repeat; 
+            background-size: 12px 15px;
+            background-position: 25% 25%;
+          }
+        }
 
+        .signup-links-bottom {
+          text-align: center;
 
           .signup-button {
-            padding: 5px 10px 5px 10px;
+            padding: 10px 10px 10px 10px;
             text-shadow: 0px 1px 2px rgba(0,0,0,0.5);
-            background-color: #00c39c;
+            background-color: #50e3c2;
             color: #fff;
             border-radius: 3px;
             border: 0;
-            margin: 2.4em 0 1em 0;
+            margin: 1em auto;
             cursor: pointer;
 
             &:hover {
               opacity: 0.8;
             }
           }
-          .go-back-link {
-            padding: 5px 10px 5px 18px;
-            background-color: grey;
-            color: #fff;
-            border-radius: 3px;
-            margin: auto;
-            cursor: pointer;
-
-            &:hover {
-              opacity: 0.8;
-            }
+          
+          .terms-notice {
+            font-weight: normal;
+            font-size: 10px;
+            a { color: inherit;
+            text-decoration: underline; } 
           }
         }
-      }
     }
   }
 }

@@ -19,6 +19,7 @@ $(document).ready(function() {
     document.getElementById("nothx-submit").onclick = reveal;
     document.getElementById("rating-submit").onclick = reveal;
   <%end%>
+
   function reveal() {
     document.getElementById("liner-title").style.display = "block";
     document.getElementById("tag_show").style.display = "block";
@@ -120,7 +121,7 @@ $(document).ready(function() {
     "hideMethod": "slideUp"
   }
 
-  setTimeout(function(){toastr["info"]( "Arima helps you to visualize opinions thru simple clicks."); }, 4200);
+  //setTimeout(function(){toastr["info"]( "Arima helps you to visualize opinions thru simple clicks."); }, 4200);
 
   $('#answer_value').on('change', function() {
     $('.modal-button').prop('disabled', !(this.value.length > 0));
@@ -151,15 +152,15 @@ $(document).ready(function() {
     });
   </script>
 <% end %>
-<% if flash[:share_answer_modal] && !user_signed_in? %>
+<%# if flash[:share_answer_modal] && !user_signed_in? %>
   <script>
-    $(document).ready(function() {
-      setTimeout(function() {
-        $('#shareSignupModal').modal('show');
-      }, 10000);
-    });
+  //   $(document).ready(function() {
+  //     setTimeout(function() {
+  //       $('#shareSignupModal').modal('show');
+  //     }, 10000);
+  //   });
   </script>
-<% end %>
+<%# end %>
 
 <%= render '/common/share_new_question_modal' %>
 <%#= render '/common/signup_modal' %>
@@ -171,10 +172,11 @@ $(document).ready(function() {
     <p id="thankyou_msg">Thanks for answering!</p>
     <p id="unlocked_msg">You unlocked the "<%= Badge.where(badge_id: cookies[:unlocked].to_i).first.label%>" badge</p>
     <%= image_tag "Badges/#{cookies[:unlocked]}.png", :id => "image1", size: "100x100" %>
-    <%= link_to 'Create a Profile to view more badges!', new_registration_path(resource_name), class: "nav-btn", id: "nav-signup-btn"  if !user_signed_in?%>
+
   </div>
 
-  <% cookies[:unlocked] = nil%>
+  <%cookies[:unlocked] = nil%>
+
 <%end%>
 
 <%if @user_submitted_answer && !@question.shared_image.nil? && !@question.shared_image%>
@@ -278,7 +280,7 @@ $(document).ready(function() {
 
       <div style="clear:both;"></div>
 
-      <a href="<%= feed_path %>" class="feed-link hidden-xs"><div id="back-to-feed-button"><%= image_tag("Back-Arrow.png", class: "feed-back-arrow", width: "19", height: "9")%><font class="feed-back-title">Back to Home Feed</font></div></a>
+      <!--<a href="<%= feed_path %>" class="feed-link hidden-xs"><div id="back-to-feed-button"><%= image_tag("Back-Arrow.png", class: "feed-back-arrow", width: "19", height: "9")%><font class="feed-back-title">Back to Home Feed</font></div></a>-->
       <section class="share-image-title"><%=@question.label %></section>
       <section class="share-icon-container" style="float: right;">
         <%= render partial: "questions/share", locals: {
