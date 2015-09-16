@@ -64,12 +64,16 @@ class AnswersController < ApplicationController
   end
 
   def create
+    cookies[:signup] = nil
+    cookies[:answer] = nil
+    cookies[:q] = nil
     @question = Question.friendly.find(params[:question_id])
 
     #add new answer
     if !params[:answer].nil? && params[:answer][:options_for_collection] != "" && !params[:answer][:options_for_collection].nil?
       if (!user_signed_in?)
         cookies[:signup] = 1
+        cookies[:q] = @question.id
         cookies[:answer] = params[:answer][:options_for_collection]
         redirect_to question_path(@question)
         return
