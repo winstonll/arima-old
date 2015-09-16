@@ -39,6 +39,10 @@
     padding-top: 13px;
     padding-left: 20px;
     padding-right: 20px;
+
+    &:hover {
+      background-color:#007CFD;
+    }
   }
 
   .feed-back-title {
@@ -46,6 +50,7 @@
     font-weight: 300;
     font-size: 12px;
     padding-left: 10px;
+
   }
 
   .feed-back-arrow{
