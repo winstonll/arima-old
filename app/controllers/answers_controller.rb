@@ -68,13 +68,12 @@ class AnswersController < ApplicationController
 
     #add new answer
     if !params[:answer].nil? && params[:answer][:options_for_collection] != "" && !params[:answer][:options_for_collection].nil?
-      #if (!user_signed_in?)
-      #  cookies[:signup] = 1
-      #  cookies[:q] = @question.id
-      #  cookies[:answer] = params[:answer][:options_for_collection]
-      #  redirect_to new_user_registration_path
-      #  return
-      #end
+      if (!user_signed_in?)
+        cookies[:signup] = 1
+        cookies[:answer] = params[:answer][:options_for_collection]
+        redirect_to question_path(@question)
+        return
+      end
 
       answer_values = @question.options_for_collection
       a = (0 ... answer_values.length).find_all { |i| answer_values[i,1] == '|' }
