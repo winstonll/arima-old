@@ -5,14 +5,10 @@ $(document).ready(function() {
     setTimeout(function() {$('#popover-input').popover("show"); document.getElementsByClassName('popover')[0].childNodes[0].style.borderTopColor = "#419BF9";},5000);
   <%else%>
     $('#popover-input').popover("show");
-    $("#other")[0].value = "<%= cookies[:answer] %>"; 
+    $("#other")[0].value = "<%= cookies[:answer] %>";
     document.getElementsByClassName('popover')[0].childNodes[2].innerHTML = "Oops,did you forget to Log in? If not, please Sign Up below to add your own opinion to the list!";
     document.getElementsByClassName('popover')[0].style.backgroundColor = "#AC09C5";
     document.getElementsByClassName('popover')[0].childNodes[0].style.borderTopColor = "#AC09C5";
-    <%
-      cookies[:signup] = nil
-      cookies[:answer] = nil
-    %>
   <% end %>
 });
 </script>
