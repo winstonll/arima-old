@@ -24,6 +24,9 @@ $(document).ready(function() {
   $('#other').click(function(){
     <%if !user_signed_in?%>
       $('#popover-input').popover("show");
+      document.getElementsByClassName('popover')[0].style.backgroundColor = "#AC09C5";
+      document.getElementsByClassName('popover')[0].childNodes[0].style.borderTopColor = "#AC09C5";
+
     <%end%>
     $("input").prop("checked", false)
     $(".modal-button").attr("disabled", "disabled");
