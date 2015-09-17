@@ -67,6 +67,7 @@ class AnswersController < ApplicationController
     cookies[:signup] = nil
     cookies[:answer] = nil
     cookies[:q] = nil
+
     @question = Question.friendly.find(params[:question_id])
 
     #add new answer

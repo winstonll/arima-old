@@ -2,7 +2,10 @@
 
 $(document).ready(function() {
   <%if cookies[:signup].nil? || cookies[:signup].empty?%>
-    setTimeout(function() {$('#popover-input').popover("show"); document.getElementsByClassName('popover')[0].childNodes[0].style.borderTopColor = "#419BF9";},5000);
+    setTimeout(function() {$('#popover-input').popover("show");
+    document.getElementsByClassName('popover')[0].childNodes[0].style.borderTopColor = "#419BF9";
+  },4500);
+
   <%else%>
     $('#popover-input').popover("show");
     $("#other")[0].value = "<%= cookies[:answer] %>";
