@@ -68,6 +68,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
             cookies[:signup] = nil
             cookies[:answer] = nil
             cookies[:q] = nil
+            cookies[:answer] = nil
 
             format.html { redirect_to question_path(@question) }
             format.json { render json: @user, status: :created, location: @user }
