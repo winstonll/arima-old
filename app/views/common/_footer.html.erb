@@ -1,18 +1,20 @@
 <script>
 
 $(document).ready(function() {
-  <%if cookies[:signup].nil? || cookies[:signup].empty?%>
-    setTimeout(function() {$('#popover-input').popover("show");
-    document.getElementsByClassName('popover')[0].childNodes[0].style.borderTopColor = "#419BF9";
-  },4500);
+  <%if !user_signed_in?%>
+    <%if cookies[:signup].nil? || cookies[:signup].empty?%>
+      setTimeout(function() {$('#popover-input').popover("show");
+      document.getElementsByClassName('popover')[0].childNodes[0].style.borderTopColor = "#419BF9";
+    },4500);
 
-  <%else%>
-    $('#popover-input').popover("show");
-    $("#other")[0].value = "<%= cookies[:answer] %>";
-    document.getElementsByClassName('popover')[0].childNodes[2].innerHTML = "Oops,did you forget to Log in? If not, please Sign Up below to add your own opinion to the list!";
-    document.getElementsByClassName('popover')[0].style.backgroundColor = "#AC09C5";
-    document.getElementsByClassName('popover')[0].childNodes[0].style.borderTopColor = "#AC09C5";
-  <% end %>
+    <%else%>
+      $('#popover-input').popover("show");
+      $("#other")[0].value = "<%= cookies[:answer] %>";
+      document.getElementsByClassName('popover')[0].childNodes[2].innerHTML = "Oops,did you forget to Log in? If not, please Sign Up below to add your own opinion to the list!";
+      document.getElementsByClassName('popover')[0].style.backgroundColor = "#AC09C5";
+      document.getElementsByClassName('popover')[0].childNodes[0].style.borderTopColor = "#AC09C5";
+    <% end %>
+  <%end%>
 });
 </script>
 
