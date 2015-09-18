@@ -276,6 +276,153 @@
   }
 }
 
+// *Comment input style*
+
+.report-image-thumb {
+  width: 350px;
+  margin: 0 auto;
+}
+
+.wrapper-container {
+  position: relative;
+  left: 30%;
+
+  .center-container {
+
+    .comment-prompt {
+
+      .liner-title {
+        margin-top: 80px;
+        position: relative;
+        color: #7ED321;
+        font-weight: 600;
+        font-size: 18px;
+        right: 1em;
+      }
+
+      .options {
+        position: relative;
+        text-align: justify;
+        -webkit-column-count: 2;
+        width: 50em;
+        right: 2em;
+
+        .tag_button_collection {
+          color: black;
+          cursor: pointer;
+          display: block;
+          font-size:15px;
+          font-weight:300;
+          margin-left: 10px;
+          margin-top: 5px;
+          padding: 8px 22px 8px 22px;
+          position: relative;
+          width: 30em;
+          height: 2em;
+
+          input{
+            visibility: hidden;
+          }
+
+          .tag-count{
+            position: relative;
+            float: left;
+            right: 16px;
+            top: 5px;
+            color: black;
+            font-size: 13px;
+            font-weight: 700;
+
+          }
+
+          .grey-up{
+            position: relative;
+            float: left;
+            right: 6px;
+            bottom: 5px;
+            width: 14px;
+
+          }
+          .blue-up{
+            position: relative;
+            float: left;
+            right: 6px;
+            bottom: 5px;
+            width: 14px;
+
+          }
+        }
+
+      }
+
+        #otherInputBox {
+          position: relative;
+          input:focus {
+            outline: none;
+          }
+          input[type="submit"]
+          {
+            position: relative;
+            cursor: pointer;
+            padding: 8px 24px 7.5px 24px;
+            border: none;
+            border-radius: 8px;
+            background-color: #7ED321;
+            color: #fff;
+            left: 1em;
+
+            &:hover {
+              opacity: .8;
+            }
+
+            &:disabled {
+              background-color: #7CAD45;
+            }
+          }
+
+          .answer_options_for_collection{
+            height:35px;
+            width: 300px;
+            display: inline;
+          }
+          .question_options_for_collection {
+          }
+          .new-tag {
+            position: relative;
+            color: #7ed321;
+            font-weight: 600;
+            font-size: 18px;
+            display: block;
+          }
+          .other-input-text {
+            height: 35px;
+            width: 317px;
+            font-size: 14px;
+            background-color: #fff;
+            resize: none;
+            border: solid;
+            border-color: #c4c4c4!important;
+            border: solid;
+            border-width: 1px;
+            padding: 10px 20px 0px 20px;
+            border-radius: 8px;
+            padding-left: 15px;
+            padding-bottom: 7px;
+            margin-top:2px;
+
+            .popover{
+              width:200px;
+              height:250px;
+              background-color:#419BF9;
+              color:#fff;
+            }
+
+          }
+        }
+    }
+  }
+}
+
 // *Tag input style*
 
 .tag-labels {
@@ -317,6 +464,15 @@
     .tag-prompt {
       background-color: #212124;
 
+      .liner-title {
+        margin-bottom: 10px;
+        position: relative;
+        width: 400px;
+        color: #419BF9;
+        font-weight: 600;
+        font-size: 18px;
+      }
+
       .options {
         position: relative;
         text-align: justify;
@@ -332,6 +488,7 @@
           font-weight:300;
           padding: 8px 22px 8px 22px;
           position: relative;
+          width: 30em;
 
           input{
             margin-right: 40px;
@@ -357,6 +514,7 @@
           }
           input[type="submit"]
           {
+            cursor: pointer;
             width: 9em;
             height: 2em;
             border: none;

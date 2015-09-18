@@ -19,14 +19,14 @@ $(document).ready(function() {
     // document.getElementById("view-map").onclick = reveal;
   <%end%>
   function reveal() {
-    document.getElementById("tag_show").style.display = "block";
+    document.getElementById("tag_input_container").style.display = "block";
 
-    var $target = $('#tag_show');
+    var $target = $('#tag_input_container');
 
     $('html, body').stop().animate({
         'scrollTop': $target.offset().top
     }, 900, 'swing', function () {
-        window.location.hash = '#tag_show';
+        window.location.hash = '#tag_input_container';
     });
   };
 });
@@ -183,6 +183,10 @@ $(document).ready(function() {
     <div id="question-content-container">
       <div class="report-container">
         <%= render partial: 'common/visualization', locals: { question: @question, answer: @answer} %>
+
+         <div id="comment_list_container" class="hidden-xs">
+          <%= render partial: "comment_list"%>
+        </div>
       </div>
     </div>
   </div>
@@ -229,7 +233,9 @@ $(document).ready(function() {
         <div id="tag_list_container" class="hidden-xs" style="background-color: #212124;">
           <%= render partial: "tag_list"%>
         </div>
+        <div id="tag_input_container" style="display: none;">
         <%= render partial: 'questions/tag_input' %>
+        </div>
       <%elsif !@question.shared_image.nil? && !@question.shared_image%>
         <%= render partial: 'questions/answer_input', locals: { question: @question, answer: @answer} %>
       <%end%>

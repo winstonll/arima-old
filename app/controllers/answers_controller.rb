@@ -208,6 +208,59 @@ class AnswersController < ApplicationController
     end
 
   end
+  def add_comment
+    @question = Question.where(id: params[:question_id]).first
+
+    if !params[:answer].nil? && params[:answer][:options_for_collection] != ""
+
+      if Tag.where(label: params[:answer][:options_for_collection], question_id: @question.id).first.nil?
+        answer_user_id = user_signed_in? ? current_user.id : cookies[:guest]
+
+        @tag = Tag.new(label: params[:answer][:options_for_collection], question_id: @question.id, counter: 1)
+        @tag.save!
+
+        @opinion = Opinion.new(question_id: @question.id, tag_id: @tag.id, user_id: answer_user_id)
+        @opinion.save!
+      else
+        flash[:notice] = "This tag already exists!"
+      end
+    end
+
+    if (!cookies[:guest].nil? && !params[:answer][:value].nil?)
+      if(user_signed_in?)
+        @tag = Tag.where(question_id: @question.id, label: params[:answer][:value]).first
+        @opinion = Opinion.where(question_id: @question.id, tag_id: @tag.id, user_id: current_user.id).first
+        if @opinion.nil?
+          @opinion = Opinion.new(question_id: @question.id, tag_id: @tag.id, user_id: current_user.id)
+          @opinion.save!
+          @tag.counter = @tag.counter + 1
+          @tag.save!
+        else
+          @opinion.destroy!
+          @tag.counter = @tag.counter - 1
+          @tag.save!
+        end
+      else
+        @tag = Tag.where(question_id: @question.id, label: params[:answer][:value]).first
+        @opinion = Opinion.where(question_id: @question.id, tag_id: @tag.id, user_id: cookies[:guest]).first
+        if @opinion.nil?
+          @opinion = Opinion.new(question_id: @question.id, tag_id: @tag.id, user_id: cookies[:guest])
+          @opinion.save!
+          @tag.counter = @tag.counter + 1
+          @tag.save!
+        else
+          @opinion.destroy!
+          @tag.counter = @tag.counter - 1
+          @tag.save!
+        end
+      end
+    end
+
+    respond_to do |format|
+      format.js
+    end
+
+  end
 
   def share
     answer = Answer.where(id: params[:ans_id]).first

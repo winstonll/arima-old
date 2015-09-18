@@ -5,6 +5,7 @@
 <%@tag_array = Tag.where(question_id: @question.id).order(created_at: :asc)%>
 
 <script>
+
 $(document).ready(function() {
 
   <%if user_signed_in?
@@ -26,12 +27,17 @@ $(document).ready(function() {
       <%@liked_tag_array.each do |tag|%>
         var index = 0
         for(index; index <= <%= @tag_array.length - 1%>; index++){
-          if ($('.form-radio')[index].value == "<%= tag %>"){           
-            $('.form-radio')[index].offsetParent.style.color = "#88FFF4";
+          if ($('.comment-radio')[index].value == "<%= tag %>"){           
+            $('.comment-radio')[index].offsetParent.style.color = "#419BF9";
           }
         }
       <%end%>
     <%end%>
+  
+   $('.comment-radio').on('change', function() {
+     $(this).closest("form").submit();
+
+   });
 
   $('.new-tag-submit').prop('disabled', true);
 
@@ -47,6 +53,7 @@ $(document).ready(function() {
         }
         if(count == 0){
           $('.new-tag-submit').prop('disabled', false);
+          $('#other').popover('hide');
         }else {
           $('.new-tag-submit').prop('disabled', true);
         }
@@ -54,11 +61,8 @@ $(document).ready(function() {
     });
   }
 
-  $('input[type=radio]').click(function () {
-    if ($('.form-radio:checked')){
-      $('.new-tag-submit').prop('disabled', false);
-    }
-  });
+  $('#other').popover();
+
 });
 
 </script>
@@ -67,24 +71,26 @@ $(document).ready(function() {
 <% @answer = user_signed_in? ? @question.answers.build(user_id: current_user.id) : @question.answers.build(user_id: cookies[:guest]) %>
 <% end %>
 
-<div class="wrapper background-container">
-  <div class="wrapper center-container">
-    <div class="tag-prompt">
+<div class="wrapper-container">
+  <div class="center-container">
 
-      <%= simple_form_for @answer,:url => {:action => "add_tag", :controller => "answers"}, class: "form-inline", role: "form", html: {novalidate: true}, :remote => true do |f| %>
-      <!-- <div class="liner-title">What people say about this image:</div> -->
+    <div class="comment-prompt">
+
+      <%= simple_form_for @answer,:url => {:action => "add_comment", :controller => "answers"}, class: "form-inline", role: "form", html: {novalidate: true}, :remote => true, :method => :POST do |f| %>
+        <div class="liner-title">What people say about this report:</div>
 
         <div class="options">
             <%if !@tag_array.nil?  %>
 
                 <% @tag_array.each do |tag|%>
                 <label class= "tag_button_collection" >
-                  <% @tag_count = tag.counter %>
-                  <span class="tag-count">
-                    +<%= @tag_count %>
-                  </span>
-                  <%= f.radio_button :value, tag.label, :class=>"form-radio"%>
+                  <%= f.radio_button :value, tag.label, :class=>"comment-radio"%>
                   <%="#{tag.label}"%>
+                  <% @tag_count = tag.counter %>
+                  <%= image_tag("white_up.png", class:"grey-up", :onMouseover=> "this.src='/images/teal_up.png'",:onMouseout=> "this.src='/images/white_up.png'")%>
+                  <span class="tag-count">
+                    <%= @tag_count %>
+                  </span>
                 </label>
                 <%end%>
           <% end %>
@@ -92,14 +98,17 @@ $(document).ready(function() {
         <br>
         <div id="otherInputBox" >
             <%= hidden_field_tag 'question_id', @question.id %>
-            <%= f.input(:options_for_collection, label: false,input_html:{value: nil, placeholder: "Add your own opinion to the list", class: "other-input-text", id:"other"}) %>
+            <%= f.label "Add a one liner:", class: "new-tag" %>
+            <%= f.input(:options_for_collection, label: false,input_html:{ 'data-toggle'=>"popover", 'data-trigger'=>"hover", 'data-placement'=>"top", 'data-content'=>'ex. "Awesome", "Cool", or "Intresting"', value: nil, placeholder: "What do you think of this report?", class: "other-input-text", id:"other"}) %>
             <%= f.submit "Submit", class: "new-tag-submit" %>
         </div>
       </div>
         <br>
       <% end %>
 
-
+      <%if !@question.image_link.nil?%>
+        <%= image_tag("/system/uploads/" + @question.image_link, alt:"image",class: "report-image-thumb")%>
+      <% end %>
     </div>
   </div>
 </div>
