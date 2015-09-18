@@ -18,19 +18,43 @@ class ProfilesController < ApplicationController
     generate_referral_code(current_user) unless
     (current_user.referral_code.present? && (current_user.referral_code).start_with?(current_user.username))
 
-    @points_count = user.points || 0
-    @questions_count = Question.where(user_id: user.id).count
-    @most_active_category = current_user.most_active_category.keys.first if current_user.most_active_category
+    @questions_asked_count = Question.where(user_id: user.id).count
+    @questions_answered_count = Answer.where(user_id: user.id).count
+    #@most_active_category = current_user.most_active_category.keys.first if current_user.most_active_category
 
     @categories           = Group.all.to_a.uniq { |category_group | category_group.label }
-    @suggested_questions  = Question.suggested_for_user current_user
-    @random_questions     = Question.random_for_user current_user
-    @trending_questions   = Question.trending_for_user current_user
-    @answered_questions   = user.answers.last(5)
-    @asked_questions      = Question.where(user_id: user.id).last(5)
+    #@suggested_questions  = Question.suggested_for_user current_user
+    #@random_questions     = Question.random_for_user current_user
+    #@trending_questions   = Question.trending_for_user current_user
+    #@answered_questions   = user.answers.last(5)
+    #@asked_questions      = Question.where(user_id: user.id).last(5)
 
     check_points_badge
     check_question_badge
+  end
+
+  def trophy
+
+  end
+
+  def image_shared
+
+  end
+
+  def images_questions
+
+  end
+
+  def leaderboard
+
+  end
+
+  def questions_asked
+
+  end
+
+  def questions_answered
+
   end
 
   def edit

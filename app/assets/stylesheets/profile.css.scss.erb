@@ -1,131 +1,132 @@
 /* Profile Page Styles */
 
+
+
+.jumbotron {
+  background: #419BF9;
+  width: 100%;
+
+  .profile-icons:hover{
+    border-radius: 15px;
+    border-style: solid;
+    border-color: white;
+  }
+
+  .icon-container {
+    display: inline-block;
+    max-width: 550px;
+    min-width: 330px;
+  }
+
+  #profile-picture-container-mobile {
+    background-color: #ededed;
+    height: 9em;
+    width: 9em;
+    border-radius: 5em;
+    border: white solid;
+    box-shadow: 0 0 0 1pt #d0d0d0;
+    display: inline-block;
+    position: relative;
+    margin-bottom: 5em;
+    margin: 0 auto;
+  }
+
+  #profile-picture-container {
+    float: left;
+    background-color: #ededed;
+    height: 9em;
+    width: 9em;
+    border-radius: 5em;
+    border: white solid;
+    box-shadow: 0 0 0 1pt #d0d0d0;
+    display: inline-block;
+    position: relative;
+    margin-left: 10em;
+    margin-right: 10em;
+    margin-bottom: 5em;
+
+    .profile-picture-default {
+      color: #3e8ae5;
+      font-weight: bold;
+      font-size: xx-large;
+      padding-top: 1.2em;
+      padding-left: 1.5em;
+    }
+  }
+
+  //profile edit button
+  .edit-profile {
+    .profile-edit-button {
+      width: 100px;
+      height: 25px;
+      background-color: #e0e0e0;
+      border-radius: 3px;
+      border: none;
+      position: relative;
+      top: 3em;
+    }
+
+    .profile-edit-button:hover {
+      background-color: #d0d0d0;
+      box-shadow: 0px 2px 2px rgba(100, 100, 100, 0.5);
+    }
+  }
+
+  .profile-info {
+    z-index: 1;
+    font-weight:bold;
+    position: relative;
+    top: 9em;
+
+    .profile-username {
+      color: white;
+      font-size: 20px;
+      vertical-align: top;
+      display: inline-block;
+    }
+  }
+
+  .profile-icons{
+    display: inline-block;
+    text-align: center;
+    width: 150px;
+  }
+
+  .profile-title{
+    color: white;
+    display: inline-block;
+  }
+
+  .stat-label {
+    color: white;
+    font-size: 21px;
+    display: inline-block;
+  }
+}
+
 .profile-hero-container {
     width: 100%;
-    height: 11em;
-    background: #4a90e2;
+    height: 20em;
+    background: #419BF9;
 
   .profile-hero-content {
     text-align: center;
 
-    .profile-info {
-      z-index: 1;
-      font-weight:bold;
-      position: relative;
-      top: 9em;
-      left: 8em;
-
-      .profile-username {
-        color: white;
-        font-size: 20px;
-        vertical-align: top;
-        display: inline-block;
-        padding-left: 7em;
-        padding-right: 4em;
-      }
-
-      .rank-title {
-        font-color: white;
-        color: white;
-        font-size: 18px;
-        vertical-align: top;
-        display: inline-block;
-        padding-left: 3em;
-        padding-right: 4em;
-      }  
-
-      .points-title {
-        font-color: white;
-        color: white;
-        font-size: 18px;
-        vertical-align: top;
-        display: inline-block;
-        padding-left: 3em;
-        padding-right: 8em;
-      } 
-    }
-        
-    #profile-picture-container {
-      background-color: #ededed;
-      height: 9em;
-      width: 9em;
-      border-radius: 0.5em;
-      border: white solid;
-      box-shadow: 0 0 0 1pt #d0d0d0;
+    .profile-bottom-container {
       display: inline-block;
       position: relative;
       z-index: 1;
-      top: 3em;
-      right: 20em;
+      left: 6em;
 
-      .profile-picture-default {
-        color: #3e8ae5;
-        font-weight: bold;
-        font-size: xx-large;
-        padding-top: 1em;
-      }
-
-      .edit-profile {
-        .profile-edit-button {
-          width: 100px;
-          height: 25px;
-          background-color: #e0e0e0;
-          border-radius: 3px;
-          border: none;
-          position: relative;
-          top: 3em;
-        }
-
-        .profile-edit-button:hover {
-          background-color: #d0d0d0;
-          box-shadow: 0px 2px 2px rgba(100, 100, 100, 0.5);
-        }
-      }
-    }
-
-    .grey-banner {
-      height: 3em;
-      width: 100%;
-      background: #ededed;
-      position: relative;
-      z-index: 0;
-
-      .profile-bottom-container {
-        display: inline-block;
+      .user-location {
+        font-size: 16px;
+        color: #4a90e2;
         position: relative;
         z-index: 1;
-        left: 6em;
-
-        .user-location {
-          font-size: 16px;
-          color: #4a90e2;
-          position: relative;
-          z-index: 1;
-          vertical-align: top;
-          display: inline-block;
-          padding-right: 4em;
-          padding-left: 1em;
-        }
-
-        .stat-rank {
-          font-size: 17px;
-          color: #4a90e2;
-          position: relative;
-          z-index: 1;
-          vertical-align: top;
-          display: inline-block;
-          padding-left: 6em;
-        }
-
-        .stat-points {
-          font-size: 17px;
-          color: #4a90e2;
-          position: relative;
-          z-index: 1;
-          vertical-align: top;
-          display: inline-block;
-          padding-left: 13em;
-        }
+        vertical-align: top;
+        display: inline-block;
+        padding-right: 4em;
+        padding-left: 1em;
       }
     }
   }
@@ -138,7 +139,7 @@
   height: 100%;
   width: 100%;
   position: relative;
-  
+
 
   .profile-edit {
     height: 8em;
@@ -151,7 +152,7 @@
         h3 {
           margin-top: 2em;
         }
-      
+
       .grey-banner {
         height: 3em;
         width: 100%;
@@ -211,7 +212,7 @@
               font-style: normal !important;
               display: inline;
             }
-         } 
+         }
 
           .input-box {
             height: 33px;
@@ -224,7 +225,7 @@
             color: black;
             text-align: left;
             text-indent: 10px;
-            
+
           }
 
           .small-input-box {
@@ -268,7 +269,7 @@
               border: 1px solid #4a90e2;
               border-radius: 4px;
               bottom: 3em;
-            
+
               &:hover {
                 opacity: 0.8;
               }
@@ -278,6 +279,6 @@
         }
       }
     }
-  } 
+  }
 
 }

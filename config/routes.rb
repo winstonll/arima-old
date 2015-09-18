@@ -5,6 +5,13 @@ Arima::Application.routes.draw do
   get 'cat' => 'feed#category_non_feed'
   post 'add_tag' => 'answers#add_tag'
 
+  get 'trophy' => 'profiles#trophy'
+  get 'image_shared' => 'profiles#image_shared'
+  get 'images_questions' => 'profiles#images_questions'
+  get 'leaderboard' => 'profiles#leaderboard'
+  get 'questions_asked' => 'profiles#questions_asked'
+  get 'questions_answered' => 'profiles#questions_answered'
+
   get 'application' => 'application#long_poll'
 
   post 'category' => 'feed#category'
