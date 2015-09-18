@@ -29,6 +29,12 @@ $(document).ready(function() {
         for(index; index <= <%= @tag_array.length - 1%>; index++){
           if ($('.comment-radio')[index].value == "<%= tag %>"){           
             $('.comment-radio')[index].offsetParent.style.color = "#419BF9";
+            $('input[type=radio]')[index].nextElementSibling.nextElementSibling.style.color = "#419BF9";
+             $('input[type=radio]')[index].nextElementSibling.src = "/images/blue_up.png";
+             $('input[type=radio]')[index].nextElementSibling.onmouseout = null
+             $('input[type=radio]')[index].nextElementSibling.onmouseover = null
+             $('input[type=radio]')[index].nextElementSibling.setAttribute("class", "blue-up");
+
           }
         }
       <%end%>
@@ -87,8 +93,8 @@ $(document).ready(function() {
                   <%= f.radio_button :value, tag.label, :class=>"comment-radio"%>
                   <%="#{tag.label}"%>
                   <% @tag_count = tag.counter %>
-                  <%= image_tag("white_up.png", class:"grey-up", :onMouseover=> "this.src='/images/teal_up.png'",:onMouseout=> "this.src='/images/white_up.png'")%>
-                  <span class="tag-count">
+                  <%= image_tag("grey_up.png", class:"grey-up", :onMouseover=> "this.src='/images/blue_up.png'",:onMouseout=> "this.src='/images/grey_up.png'")%>
+                  <span class="comment-count">
                     <%= @tag_count %>
                   </span>
                 </label>
