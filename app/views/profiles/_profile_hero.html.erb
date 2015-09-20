@@ -1,28 +1,36 @@
 <%@user = User.where(username: params[:username]).first%>
 <div class="jumbotron">
 
-  <div id="profile-picture-container" class="hidden-xs">
-    <% if (@user.avatar.url.include? "missing") %>
-      <div class="profile-picture-default"><%= @user.username.to_s[0].capitalize %></div>
-    <% else %>
-      <%= image_tag @user.avatar.url(:thumb), class: "profile-picture" %>
-    <% end %>
+  <div style="display: inline-block;" class="hidden-xs">
+    <div id="profile-picture-container">
+      <% if (@user.avatar.url.include? "missing") %>
+        <div class="profile-picture-default"><%= @user.username.to_s[0].capitalize %></div>
+      <% else %>
+        <%= image_tag @user.avatar.url(:thumb), class: "profile-picture" %>
+      <% end %>
+    </div>
+
     <div class="edit-profile">
       <%if params[:username] == current_user.username%>
       <%= button_to 'Edit', profile_edit_path(@profile), :method => "get", class: "profile-edit-button" %>
       <%end%>
     </div>
+
   </div>
 
-  <div id="profile-picture-container-mobile" class="visible-xs">
-    <% if (@user.avatar.url.include? "missing") %>
-      <div class="profile-picture-default"><%= @user.username.to_s[0].capitalize %></div>
-    <% else %>
-      <%= image_tag @user.avatar.url(:thumb), class: "profile-picture" %>
-    <% end %>
-    <div class="edit-profile">
+  <div style="display: inline-block; margin: 0 auto;" class="visible-xs">
+
+    <div id="profile-picture-container-mobile">
+      <% if (@user.avatar.url.include? "missing") %>
+        <div class="profile-picture-default"><%= @user.username.to_s[0].capitalize %></div>
+      <% else %>
+        <%= image_tag @user.avatar.url(:thumb), class: "profile-picture" %>
+      <% end %>
+    </div>
+
+    <div class="edit-profile-mobile" style="margin-bottom:20px;">
       <%if params[:username] == current_user.username%>
-      <%= button_to 'Edit', profile_edit_path(@profile), :method => "get", class: "profile-edit-button" %>
+      <%= button_to 'Edit', profile_edit_path(@profile), :method => "get", class: "profile-edit-button-mobile" %>
       <%end%>
     </div>
   </div>
