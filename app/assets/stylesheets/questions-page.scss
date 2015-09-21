@@ -477,8 +477,8 @@
         position: relative;
         text-align: justify;
         -webkit-column-count: 2;
-        width: 58em;
-        left: 7em;
+        width: 50em;
+        left: 4em;
 
         .tag_button_collection {
           background-color: #212124;
@@ -488,16 +488,17 @@
           font-weight:300;
           padding: 8px 22px 8px 22px;
           position: relative;
-          width: 30em;
+          width: 80%;
+          text-indent: -20px;
 
           input{
-            margin-right: 40px;
+            margin-right: 35px;
           }
 
           .tag-count{
             position: relative;
             float: left;
-            left: 50px;
+            left: 35px;
             color: #FFF;
             font-size: 14px;
             font-weight: 600;
