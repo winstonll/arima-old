@@ -35,6 +35,10 @@ class ProfilesController < ApplicationController
 
   def trophy
 
+    respond_to do |format|
+      format.js
+    end
+    
   end
 
   def image_shared
