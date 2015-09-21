@@ -10,6 +10,7 @@ class ProfilesController < ApplicationController
   #generates correct referral code
   def show
     user = User.where(username: params[:username]).first
+
     if(user.nil?)
       redirect_to custom_show_path(:username => current_user.username)
       return
@@ -18,8 +19,16 @@ class ProfilesController < ApplicationController
     generate_referral_code(current_user) unless
     (current_user.referral_code.present? && (current_user.referral_code).start_with?(current_user.username))
 
-    @questions_asked_count = Question.where(user_id: user.id).count
+
+    @questions_and_images_asked_count = Question.where(user_id: user.id).count
+
+    @questions_images_asked_count = Question.where(user_id: user.id, shared_image: true).count
+
+    @questions_asked_count = Question.where(user_id: user.id, shared_image: false).count
+
     @questions_answered_count = Answer.where(user_id: user.id).count
+
+
     #@most_active_category = current_user.most_active_category.keys.first if current_user.most_active_category
 
     @categories           = Group.all.to_a.uniq { |category_group | category_group.label }

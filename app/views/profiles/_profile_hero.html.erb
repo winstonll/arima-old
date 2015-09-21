@@ -39,7 +39,7 @@
 
     <div class="profile-icons" style="margin-right: 10px;">
       <%= link_to(remote: true, controller: "profiles", action: "images_questions")  do %>
-        <%= image_tag("profile_icons/trophy.png", size: "30") %>
+        <div class="stat-label"><%= @questions_and_images_asked_count %></div>
         <br>
         <span class="profile-title">Images & Questions<span>
       <% end %>
@@ -47,7 +47,7 @@
 
     <div class="profile-icons" style="margin-right: 10px;">
       <%= link_to(remote: true, controller: "profiles", action: "image_shared")  do %>
-        <%= image_tag("profile_icons/trophy.png", size: "30") %>
+        <div class="stat-label"><%= @questions_images_asked_count %></div>
         <br>
         <span class="profile-title">Images Shared<span>
       <% end %>
