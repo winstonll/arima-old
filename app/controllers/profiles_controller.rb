@@ -34,11 +34,9 @@ class ProfilesController < ApplicationController
   end
 
   def trophy
-
     respond_to do |format|
       format.js
     end
-    
   end
 
   def image_shared
@@ -50,7 +48,13 @@ class ProfilesController < ApplicationController
   end
 
   def leaderboard
-
+    @countries = Location.select(:country_code).distinct.collect { |loc| loc.country_code }
+    @ranked_registered_users = User.order("points DESC").limit(50)
+    @user_rank =  user_signed_in? ? User.where(id: current_user.id).first.rank : "?"
+    @user = current_user
+    respond_to do |format|
+      format.js
+    end
   end
 
   def questions_asked

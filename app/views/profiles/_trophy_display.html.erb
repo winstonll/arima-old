@@ -23,7 +23,7 @@
     <%= link_to image_tag("Badges_faded/19.png", size: "80x80", alt: "trophy"), "javascript:void(0)", title: badge_label[19], rel: 'tooltip', relative: true %> <!--  -->
   </div>
 <% else %>
-  <div style="position: relative; right: 200px; width:500px; height:500px;" id="trophy-container">
+  <div style="margin-left: 300px; position: relative; width:500px; height:500px;" id="trophy-container">
     <% check = Badge.where(user_id: @user.id).pluck(:badge_id) %>
     <% 20.times do |count| %>
       <% unless count == 0%>
@@ -41,7 +41,7 @@
   </div>
 <% end %>
 
-<div style="position:relative; bottom:490px; left: 350px;  width: 260px; height:260px; border-style: solid; border-color: #DCDCDC; border-radius: 15px;" id:"trophy-description-container">
+<div style="margin-left: 500px; position:relative; bottom:490px; left: 350px;  width: 260px; height:260px; border-style: solid; border-color: #DCDCDC; border-radius: 15px;" id:"trophy-description-container">
 <center><span id="description-title">Starter Badge</span></center>
 <center><span id="description-trophy-count">Total Award Count: <%= Badge.where(badge_id: 1).count %></span></center>
 <center><span id="description-date-awarded">Awarded <%= Badge.where(user_id: @user.id, badge_id: 1).first.date%></span></center>

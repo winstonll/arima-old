@@ -7,16 +7,17 @@
   .leaderboard-hero {
     margin-top: 2em;
     text-align: left;
-    margin-left: 13em;
 
 
     .leaderboard-title {
+      margin-left: 180px;
       font-weight: 600;
       font-size: 39px;
       line-height: 43px;
     }
 
     .leaderboard-subtitle {
+      margin-left: 180px;
       font-size: 20px;
       color: #898989;
       line-height: 25px;
@@ -106,7 +107,7 @@
        top: -52em;
 
     }
-    
+
     .about-points-container {
       color: #4a4a4a;
       display: inline-block;
@@ -114,7 +115,7 @@
       top: -33em;
       left: 34em;
       line-height: 50px;
-    
+
     #title{
       color: #00c39c;
       font-size: 17px;
@@ -123,11 +124,11 @@
     .emphasized{
     padding-left: 5px;
     color: #4A90E2;
-    
+
     }
 
 
-    
+
    p {
       padding-bottom: 0px;
     }
@@ -144,7 +145,7 @@
       position:relative;
       bottom: 3px;
       padding-right: 10px;
-      
+
       }
 
     }
@@ -156,12 +157,12 @@
       top: -69.8em;
       left: 63em;
       line-height: 50px;
-    
+
     #title{
       color: #00c39c;
       font-size: 17px;
     }
-    
+
    p {
       padding-bottom: 0px;
     }
@@ -180,6 +181,14 @@
 
 }
 
+.leaderboard-mobile {
+  width: 300px;
+  margin: 0 auto;
+  color: #4a4a4a;
+  padding-bottom: 5em;
+  padding-top: -10em;
+}
+
 .leaderboard {
   width: 75%;
   margin: 0 auto;
@@ -187,7 +196,7 @@
   padding-bottom: 5em;
   padding-top: -10em;
   margin-left: 12em;
-
+}
 
 
 
@@ -275,4 +284,3 @@
       }
     }
   }
-}
