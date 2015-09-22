@@ -4,6 +4,7 @@ Arima::Application.routes.draw do
   get 'category' => 'feed#category'
   get 'cat' => 'feed#category_non_feed'
   post 'add_tag' => 'answers#add_tag'
+  post 'add_comment' => 'answers#add_comment'
 
   get 'trophy' => 'profiles#trophy'
   get 'image_shared' => 'profiles#image_shared'
