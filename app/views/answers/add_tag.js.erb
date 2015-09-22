@@ -27,11 +27,8 @@
       for(index; index <= <%= @tag_array.length - 1%>; index++){
         if ($('.form-radio')[index].value == "<%= tag %>"){
           $('.form-radio')[index].offsetParent.style.color = "#88FFF4";
-          $('.form-radio')[index].nextElementSibling.src = "/images/teal_up.png";
           $('.form-radio')[index].nextElementSibling.onmouseout = null
           $('.form-radio')[index].nextElementSibling.onmouseover = null
-          $('.form-radio')[index].nextElementSibling.setAttribute("class", "blue-up");
-          $('.form-radio')[index].nextElementSibling.nextElementSibling.style.color = "#88FFF4";
         }
       }
     <%end%>
