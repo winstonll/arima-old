@@ -9,7 +9,7 @@
     </form>
   </section>
 
-  <section class="right">
+  <section class="right hidden-xs">
     <%= link_to image_tag("logo-icon-large.png"), categories_path, id: "arima-icon" %>
     <%= link_to 'Start', new_registration_path(resource_name), class: "nav-btn hidden-xs", id: "nav-signup-btn" if !user_signed_in? %>
     <% if !(user_signed_in? && current_user.username.present?) %>

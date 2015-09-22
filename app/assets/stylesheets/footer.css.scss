@@ -19,8 +19,8 @@
   }
 
   .popover-content {
-    padding: 30px 30px 30px 30px;
-    font-size: 14px;
+    padding: 30px 30px 30px 40px;
+    font-size: 15px;
     font-weight: 700;
     text-shadow: none !important;
     width: 100%
@@ -47,7 +47,7 @@
 
   .feed-back-title {
     color: white;
-    font-weight: 300;
+    font-weight: 500;
     font-size: 12px;
     padding-left: 10px;
 
@@ -100,7 +100,7 @@
           font-weight: normal;
           font-style: normal;
           background-color: #fff;
-          color: grey;
+          color: #4a4a4a;
           padding-left: 0.75em;
           border-radius: 4px;
           border: 1px solid #DEDEDE;
@@ -158,8 +158,13 @@
         font-weight: 400;
         display: inline-block;
         list-style-type: none;
+        padding-top: 2px;
         a {
           color: #A09E9E;
+
+          &:hover {
+            color: #616161;
+          }
 
           .sidebar-footer-social-img {
             position: relative;
@@ -167,6 +172,7 @@
             width: 25px;
             height: auto;
             margin-right: 0px;
+            bottom: 1px;
           }
         }
       }

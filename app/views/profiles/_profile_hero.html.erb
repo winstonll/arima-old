@@ -1,32 +1,88 @@
 <%@user = User.where(username: params[:username]).first%>
-<div class="profile-hero-container">
-  <div class="profile-hero-content">
-    <div class="profile-info">
-      <div class="profile-username"><%= @user.username %></div>
-      <a href="<%= leaderboard_path(curr_user: true) %>">
-        <div class="rank-title">Leaderboard Rank</div>
-      </a>
-      <div class="points-title">
-        Points <%= link_to image_tag("about_points_icon.png"), "/faq#about-points"%>
-      </div>
-    </div>
+<div class="jumbotron">
 
+  <div style="display: inline-block;" class="hidden-xs">
     <div id="profile-picture-container">
       <% if (@user.avatar.url.include? "missing") %>
         <div class="profile-picture-default"><%= @user.username.to_s[0].capitalize %></div>
       <% else %>
         <%= image_tag @user.avatar.url(:thumb), class: "profile-picture" %>
       <% end %>
-      <div class="edit-profile">
-        <%if params[:username] == current_user.username%>
-        <%= button_to 'Edit', profile_edit_path(@profile), :method => "get", class: "profile-edit-button" %>
-        <%end%>
-      </div>
     </div>
-    <div class="grey-banner">
-      <div class="profile-bottom-container">
-        <div class="user-location"><%= !@user.location.city.nil? ? @user.location.city + ", " + @user.location.country : " "%></div>
-        <div class="stat-rank"> <%= @user.rank == nil ? "?" : @user.rank%> </div>
-        <div class="stat-points"><%= @user.points %></div>
+
+    <div class="edit-profile">
+      <%if params[:username] == current_user.username%>
+      <%= button_to 'Edit', profile_edit_path(@profile), :method => "get", class: "profile-edit-button" %>
+      <%end%>
+    </div>
+
+  </div>
+
+  <div style="display: inline-block; margin: 0 auto;" class="visible-xs">
+
+    <div id="profile-picture-container-mobile">
+      <% if (@user.avatar.url.include? "missing") %>
+        <div class="profile-picture-default"><%= @user.username.to_s[0].capitalize %></div>
+      <% else %>
+        <%= image_tag @user.avatar.url(:thumb), class: "profile-picture" %>
+      <% end %>
+    </div>
+
+    <div class="edit-profile-mobile" style="margin-bottom:20px;">
+      <%if params[:username] == current_user.username%>
+      <%= button_to 'Edit', profile_edit_path(@profile), :method => "get", class: "profile-edit-button-mobile" %>
+      <%end%>
     </div>
   </div>
+
+  <div class="icon-container">
+
+    <div class="profile-icons" style="margin-right: 10px;">
+      <%= link_to(remote: true, controller: "profiles", action: "images_questions")  do %>
+        <div class="stat-label"><%= @questions_and_images_asked_count %></div>
+        <br>
+        <span class="profile-title">Images & Questions<span>
+      <% end %>
+    </div>
+
+    <div class="profile-icons" style="margin-right: 10px;">
+      <%= link_to(remote: true, controller: "profiles", action: "image_shared")  do %>
+        <div class="stat-label"><%= @questions_images_asked_count %></div>
+        <br>
+        <span class="profile-title">Images Shared<span>
+      <% end %>
+    </div>
+
+    <div class="profile-icons" style="margin-right: 10px;">
+      <%= link_to(remote: true, controller: "profiles", action: "trophy")  do %>
+        <%= image_tag("profile_icons/trophy.png", size: "30") %>
+        <br>
+        <span class="profile-title">Trophy Case<span>
+      <% end %>
+    </div>
+
+    <div class="profile-icons" style="margin-top: 30px; margin-right: 10px;">
+      <%= link_to(remote: true, controller: "profiles", action: "questions_answered")  do %>
+        <div class="stat-label"><%= @questions_answered_count %></div>
+        <br>
+        <span class="profile-title">Questions Answered<span>
+      <% end %>
+    </div>
+
+    <div class="profile-icons" style="margin-top: 30px; margin-right: 10px;">
+      <%= link_to(remote: true, controller: "profiles", action: "questions_asked")  do %>
+        <div class="stat-label"><%= @questions_asked_count %></div>
+        <br>
+        <span class="profile-title">Questions Asked<span>
+      <% end %>
+    </div>
+
+    <div class="profile-icons" style="margin-top: 30px;">
+      <%= link_to(remote: true, controller: "profiles", action: "leaderboard")  do %>
+        <%= image_tag("profile_icons/leaderboard.png", size: "30", id: "leaderboard_icon") %>
+        <br>
+        <span class="profile-title">Leaderboard<span>
+      <% end %>
+    </div>
+  </div>
+</div>

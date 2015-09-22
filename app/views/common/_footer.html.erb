@@ -10,7 +10,7 @@ $(document).ready(function() {
     <%else%>
       $('#popover-input').popover("show");
       $("#other")[0].value = "<%= cookies[:answer] %>";
-      document.getElementsByClassName('popover')[0].childNodes[2].innerHTML = "Oops,did you forget to Log in? If not, please Sign Up below to add your own opinion to the list!";
+      document.getElementsByClassName('popover')[0].childNodes[2].innerHTML = "Oops,did you forget to Log In? If not, please Sign Up below to add your own opinion to the list!";
       document.getElementsByClassName('popover')[0].style.backgroundColor = "#AC09C5";
       document.getElementsByClassName('popover')[0].childNodes[0].style.borderTopColor = "#AC09C5";
     <% end %>
@@ -27,7 +27,7 @@ $(document).ready(function() {
       <li><a href="/faq">FAQ</a> &sdot;</li>
       <li><a href="/contact">Contact</a> &sdot;</li>
       <li><a href="/terms">Terms &amp; Conditions</a> &sdot;</li>
-      <li><a href="/privacy">Privacy Policy</a> &sdot;</li>
+      <li><a href="/privacy">Privacy Policy</a></li>
       <li><a href="https://www.facebook.com/friendsofarima"><%= image_tag("fb-grey-logo.png", :class => "sidebar-footer-social-img") %></a></li>
       <li><a href="https://twitter.com/arima_io"><%= image_tag("twitter-grey-logo.png", :class => "sidebar-footer-social-img") %></a></li>
     </ul>
@@ -44,7 +44,7 @@ $(document).ready(function() {
         <div class="signup-input">
           <div class="input-username">
               <%= f.text_field :username, placeholder: "Username", class: "input-box username-input-box", id: "popover-input", 'data-toggle'=>"popover",
-              'data-placement'=>"top", 'data-content'=>"Sign Up to Ask Questions, Share Images, and gain amazing insights into what people think. Let's make data fun for everyone :)" %>
+              'data-placement'=>"top", 'data-content'=>"Ask Questions, Share Images, and gain amazing insights into what people think. Your opinion makes data interesting!" %>
           </div>
 
           <div class="input-password">
