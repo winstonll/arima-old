@@ -493,6 +493,8 @@
           position: relative;
           width: 80%;
           text-indent: -20px;
+          -webkit-column-break-inside: avoid; /* Chrome, Safari */
+          page-break-inside: avoid;           /* Theoretically FF 20+ */
 
           input{
             margin-right: 18px;
