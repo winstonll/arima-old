@@ -212,7 +212,8 @@ $(document).ready(function() {
         <%if !@question.image_link.nil?%>
           <%img_path = "/system/uploads/" + @question.image_link%>
           <%if !@question.image_link.nil? && @question.image_link[0] == "<"%>
-            <%= @question.image_link.html_safe%>
+            <div class="hidden-xs" style="margin-left:150px;"></iframe><%= @question.image_link.html_safe%></div>
+            <div class="visible-xs"><%= @question.image_link.html_safe%></div>
           <%else%>
             <a href="<%= img_path %>" data-featherlight="image">
               <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, alt:"image", class: "shared-photo", id: "lightbox") %>
