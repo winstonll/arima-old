@@ -1,1 +1,1 @@
-$("#profile-data-container").html("<%= escape_javascript(render partial: 'asked_questions', locals: { avgn: @all } ) %>");
+$("#profile-data-container").html("<%= escape_javascript(render partial: 'feed/stream', locals: { avgn: @all } ) %>");
