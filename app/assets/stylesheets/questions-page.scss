@@ -279,13 +279,14 @@
 // *Comment input style*
 
 .report-image-thumb {
-  width: 350px;
-  margin: 0 auto;
+  width: 250px;
+  margin-left: 10em;
 }
 
 .wrapper-container {
   position: relative;
   left: 30%;
+  bottom: 2em;
 
   .center-container {
 
@@ -583,6 +584,41 @@
   }
 }
 
+// Trending questions feed
+#trending-questions-container {
+    position: relative;
+    float: right;
+    text-align: center;
+    background-color: #516E90;
+    width: 18%;
+    height: 100em;
+
+    #view-feed-button {
+      width: 70%;
+      margin: auto;
+      margin-top: 15px;
+      margin-bottom: 10px;
+      padding: 10px 15px 10px 15px;
+      color: #fff;
+      background-color: #419BF9;
+      border-radius: 4px;
+      transition: all 150ms linear;
+      -webkit-transition: all 150ms linear;
+      -ms-transition: all 150ms linear;
+      -moz-transition: all 150ms linear;
+
+      &:hover {
+        box-shadow: 0px 2px 1px rgba(0,0,0,0.35);
+        opacity: 0.8;
+      }
+    }
+
+    .trending-questions-label {
+      color: #50e3c2;
+      font-weight: 600;
+      font-size: 18px;
+    }
+  }
 //Questions show page
 #question-page-container {
   height: 100%;
@@ -842,6 +878,7 @@
 
     /* Report */
     .report-container {
+    background-color: #fafafa;
     }
   }
 
@@ -892,37 +929,3 @@
   }
 }
 
- #trending-questions-container {
-      position: relative;
-      float: right;
-      text-align: center;
-      background-color: #516E90;
-      width: 18%;
-      height: 70em;
-
-      #view-feed-button {
-        width: 70%;
-        margin: auto;
-        margin-top: 15px;
-        margin-bottom: 10px;
-        padding: 10px 15px 10px 15px;
-        color: #fff;
-        background-color: #419BF9;
-        border-radius: 4px;
-        transition: all 150ms linear;
-        -webkit-transition: all 150ms linear;
-        -ms-transition: all 150ms linear;
-        -moz-transition: all 150ms linear;
-
-        &:hover {
-          box-shadow: 0px 2px 1px rgba(0,0,0,0.35);
-          opacity: 0.8;
-        }
-      }
-
-      .trending-questions-label {
-        color: #50e3c2;
-        font-weight: 600;
-        font-size: 18px;
-      }
-    }
