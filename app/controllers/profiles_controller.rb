@@ -9,9 +9,9 @@ class ProfilesController < ApplicationController
 
   #generates correct referral code
   def show
-    user = User.where(username: params[:username]).first
+    @user_profile = User.where(username: params[:username]).first
 
-    if(user.nil?)
+    if(@user_profile.nil?)
       redirect_to custom_show_path(:username => current_user.username)
       return
     end
@@ -20,13 +20,13 @@ class ProfilesController < ApplicationController
     (current_user.referral_code.present? && (current_user.referral_code).start_with?(current_user.username))
 
 
-    @questions_and_images_asked_count = Question.where(user_id: user.id).count
+    @questions_and_images_asked_count = Question.where(user_id: @user_profile.id).count
 
-    @questions_images_asked_count = Question.where(user_id: user.id, shared_image: true).count
+    @questions_images_asked_count = Question.where(user_id: @user_profile.id, shared_image: true).count
 
-    @questions_asked_count = Question.where(user_id: user.id, shared_image: false).count
+    @questions_asked_count = Question.where(user_id: @user_profile.id, shared_image: false).count
 
-    @questions_answered_count = Answer.where(user_id: user.id).count
+    @questions_answered_count = Answer.where(user_id: @user_profile.id).count
 
 
     #@most_active_category = current_user.most_active_category.keys.first if current_user.most_active_category
@@ -53,7 +53,15 @@ class ProfilesController < ApplicationController
   end
 
   def images_questions
+    puts params
+    puts "----------------------"
 
+    puts @user_profile
+    puts "----------------------"
+    
+    respond_to do |format|
+      format.js
+    end
   end
 
   def leaderboard

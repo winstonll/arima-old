@@ -8,8 +8,8 @@
 -%>
 <li class="next">
   <% if current_page.last? %>
-    <%= image_tag('next-page.jpg', :class => "next-disabled").html_safe %>
+    <%= image_tag('next-page.png', :class => "next-disabled").html_safe %>
   <% else %>
-    <%= link_to image_tag('next-page.jpg').html_safe, url, :rel => 'next', :remote => remote, :class => "next" %>
+    <%= link_to image_tag('next-page.png').html_safe, url, :rel => 'next', :remote => remote, :class => "next" %>
   <% end %>
 </li>

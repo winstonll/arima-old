@@ -48,7 +48,6 @@ $(document).ready(function() {
 
 });
 </script>
-
 <% if @answer == nil %>
 <% @answer = user_signed_in? ? @question.answers.build(user_id: current_user.id) : @question.answers.build(user_id: cookies[:guest]) %>
 <% end %>

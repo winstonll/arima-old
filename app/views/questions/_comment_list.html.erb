@@ -27,7 +27,7 @@ $(document).ready(function() {
       <%@liked_tag_array.each do |tag|%>
         var index = 0
         for(index; index <= <%= @tag_array.length - 1%>; index++){
-          if ($('.comment-radio')[index].value == "<%= tag %>"){           
+          if ($('.comment-radio')[index].value == "<%= tag %>"){
             $('.comment-radio')[index].offsetParent.style.color = "#419BF9";
             $('input[type=radio]')[index].nextElementSibling.nextElementSibling.style.color = "#419BF9";
              $('input[type=radio]')[index].nextElementSibling.src = "/images/blue_up.png";
@@ -39,7 +39,7 @@ $(document).ready(function() {
         }
       <%end%>
     <%end%>
-  
+
    $('.comment-radio').on('change', function() {
      $(this).closest("form").submit();
 
@@ -105,7 +105,7 @@ $(document).ready(function() {
         <div id="otherInputBox" >
             <%= hidden_field_tag 'question_id', @question.id %>
             <%= f.label "Add a one liner:", class: "new-tag" %>
-            <%= f.input(:options_for_collection, label: false,input_html:{ 'data-toggle'=>"popover", 'data-trigger'=>"hover", 'data-placement'=>"top", 'data-content'=>'ex. "Awesome", "Cool", or "Intresting"', value: nil, placeholder: "What do you think of this report?", class: "other-input-text", id:"other"}) %>
+            <%= f.input(:options_for_collection, label: false,input_html:{ 'data-toggle'=>"popover", 'data-trigger'=>"hover", 'data-placement'=>"top", 'data-content'=>'ex. "Awesome", "Cool", or "Interesting"', value: nil, placeholder: "What do you think of this report?", class: "other-input-text", id:"other"}) %>
             <%= f.submit "Submit", class: "new-tag-submit" %>
         </div>
       </div>
