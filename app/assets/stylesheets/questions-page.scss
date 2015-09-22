@@ -542,7 +542,7 @@
           .question_options_for_collection {
             width: 240px;
           }
-         
+
           .other-input-text {
             height: 35px;
             width: 317px;
@@ -692,6 +692,7 @@
       height: 45px;
       width: 45px;
       vertical-align: top;
+      cursor: pointer;
     }
 
     .visualization-tab-next {
@@ -701,6 +702,7 @@
       height: 45px;
       width: 45px;
       vertical-align: top;
+      cursor: pointer;
     }
 
     a.btnNext {
@@ -929,4 +931,3 @@
     }
   }
 }
-
