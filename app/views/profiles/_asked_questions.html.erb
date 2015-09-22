@@ -1,4 +1,4 @@
 <!-- List the users questions -->
-<% for question in @asked_questions %>
+<% for question in @questions_and_images_asked %>
   <%= render partial: "profile_question", locals: { answered: false, answer: nil, question: question, show_number_of_answers: false } %>
 <% end %>
