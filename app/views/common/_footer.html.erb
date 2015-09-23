@@ -10,7 +10,7 @@ $(document).ready(function() {
     <%else%>
       $('#popover-input').popover("show");
       $("#other")[0].value = "<%= cookies[:answer] %>";
-      document.getElementsByClassName('popover')[0].childNodes[2].innerHTML = "Oops,did you forget to Log In? If not, please Sign Up below to add your own opinion to the list!";
+      document.getElementsByClassName('popover')[0].childNodes[2].innerHTML = " Please create a Profile below to add your opinion to the list!";
       document.getElementsByClassName('popover')[0].style.backgroundColor = "#AC09C5";
       document.getElementsByClassName('popover')[0].childNodes[0].style.borderTopColor = "#AC09C5";
     <% end %>
