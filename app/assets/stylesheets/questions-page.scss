@@ -82,7 +82,7 @@
 
 
 .share-image-title {
-  color: #fff;
+  color: #4a4a4a;
   font-weight: 600;
   font-size: 18px;
   position: relative;
@@ -100,7 +100,7 @@
 
 .image-frame {
   width: 100%;
-  background-color: #212124;
+  background-color: #F6F6F6;
   padding-top: 20px;
   position: relative;
 
@@ -451,20 +451,19 @@
   margin-right: 50px;
   width: 410px;
   float: left;
-  background-color: #212124;
+  background-color: #F6F6F6;
 }
 
 
 .background-container {
   width: 100%;
-  background-color: #212124;
 
   .center-container {
     width: 100%;
     padding-bottom: 8em;
 
     .tag-prompt {
-      background-color: #212124;
+      background-color: #F6F6F6;
 
       .liner-title {
         margin-bottom: 10px;
@@ -478,32 +477,26 @@
       .options {
         position: relative;
         text-align: justify;
-        -moz-column-count: 2;
-        -webkit-column-count: 2;
-        width: 50em;
-        left: 4em;
+        margin-left: 40%;
 
         .tag_button_collection {
-          background-color: #212124;
-          color: #FFF;
+          background-color: #F6F6F6;
+          color: #4a4a4a;
           cursor: pointer;
           display: block;
           font-weight:300;
           padding: 8px 22px 8px 22px;
           position: relative;
-          width: 80%;
+          width: 30%;
           text-indent: -20px;
-          -webkit-column-break-inside: avoid; /* Chrome, Safari */
-          page-break-inside: avoid;           /* Theoretically FF 20+ */
 
           input{
-            margin-right: 18px;
+            margin-right: 5px;
           }
 
           .tag-count{
             position: relative;
-            right: 5px;
-            color: #88fff4;
+            color: #419BF9 ;
             font-size: 15px;
             font-weight: bold;
 

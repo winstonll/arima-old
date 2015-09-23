@@ -27,7 +27,7 @@ $(document).ready(function() {
         var index = 0
         for(index; index <= <%= @tag_array.length - 1%>; index++){
           if ($('.form-radio')[index].value == "<%= tag %>"){           
-            $('.form-radio')[index].offsetParent.style.color = "#88FFF4";
+            $('.form-radio')[index].offsetParent.style.color = "#419BF9 ";
           }
         }
       <%end%>
@@ -81,10 +81,11 @@ $(document).ready(function() {
                 <label class= "tag_button_collection" >
                   <% @tag_count = tag.counter %>
                   <%= f.radio_button :value, tag.label, :class=>"form-radio"%>
-                  <span class="tag-count">
-                    +<%= @tag_count %>
-                  </span>
                   <%="#{tag.label}"%>
+                  <progress class= "progress" value="<%=@tag_count%>" max="10" style="display: block;"></progress>
+                  <span class="tag-count">
+                    <%= @tag_count %>
+                  </span>
                 </label>
                 <%end%>
           <% end %>
