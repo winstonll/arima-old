@@ -10,12 +10,17 @@
       <% end %>
     </div>
 
+    <p style="display: inline-block; color: white; position: relative; right: 100px; top: 30px;">
+      <span style="font-size: 25px;"><%= @user.username %></span>
+      <br>
+      <span style="font-size: 15px;"><%= @user.location.city %>,<%= @user.location.country%></span>
+    </p>
+
     <div class="edit-profile">
       <%if params[:username] == current_user.username%>
       <%= button_to 'Edit', profile_edit_path(@profile), :method => "get", class: "profile-edit-button" %>
       <%end%>
     </div>
-
   </div>
 
   <div style="display: inline-block; margin: 0 auto;" class="visible-xs">
@@ -33,6 +38,8 @@
       <%= button_to 'Edit', profile_edit_path(@profile), :method => "get", class: "profile-edit-button-mobile" %>
       <%end%>
     </div>
+
+
   </div>
 
   <div class="icon-container">
