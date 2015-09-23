@@ -50,15 +50,17 @@ class ProfilesController < ApplicationController
 
   def image_shared
 
+    @all = Question.where(user_id: params[:username], shared_image: true)
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   def images_questions
-    puts params
-    puts "----------------------"
 
-    puts @user_profile
-    puts "----------------------"
-    
+    @all = Question.where(user_id: params[:username])
+
     respond_to do |format|
       format.js
     end
@@ -76,10 +78,17 @@ class ProfilesController < ApplicationController
 
   def questions_asked
 
+    @all = Question.where(user_id: params[:username], shared_image: false)
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   def questions_answered
-
+    respond_to do |format|
+      format.js
+    end
   end
 
   def edit
