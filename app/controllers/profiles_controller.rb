@@ -86,6 +86,9 @@ class ProfilesController < ApplicationController
   end
 
   def questions_answered
+
+    @all = Question.joins(:answers).where("answers.user_id = #{params[:username]}")
+
     respond_to do |format|
       format.js
     end
