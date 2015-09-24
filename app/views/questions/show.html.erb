@@ -6,33 +6,15 @@
 <%= stylesheet_link_tag "toastr.css" %>
 <%= javascript_include_tag "toastr" %>
 
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=visualization"></script>
+<%= javascript_include_tag "markerwithlabel" %>
+
+
 <% if @question == nil %>
 <% @question = Question.where(slug: params[:id])[0] %>
 <% end %>
 
 <%@tag_array = Tag.where(question_id: @question.id).order(created_at: :asc)%>
-
-<script>
-$(document).ready(function() {
-
-  <%if @question.shared_image %>
-    // document.getElementById("view-map").onclick = reveal;
-  <%end%>
-
-  function reveal() {
-    document.getElementById("tag_input_container").style.display = "block";
-
-    var $target = $('#tag_input_container');
-
-    $('html, body').stop().animate({
-        'scrollTop': $target.offset().top
-    }, 900, 'swing', function () {
-        window.location.hash = '#tag_input_container';
-    });
-  };
-});
-
-</script>
 
 <script>
 $(document).ready(function() {
@@ -239,9 +221,6 @@ $(document).ready(function() {
       <%if !@question.shared_image.nil? && @question.shared_image %>
         <div id="tag_list_container" class="hidden-xs" style="background-color: #F6F6F6;">
           <%= render partial: "tag_list"%>
-        </div>
-        <div id="tag_input_container" style="display: none;">
-        <%= render partial: 'questions/tag_input' %>
         </div>
       <%elsif !@question.shared_image.nil? && !@question.shared_image%>
         <%= render partial: 'questions/answer_input', locals: { question: @question, answer: @answer} %>
