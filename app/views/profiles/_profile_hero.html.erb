@@ -1,7 +1,7 @@
 <%@user = User.where(username: params[:username]).first%>
 <div class="jumbotron">
 
-  <div style="display: inline-block;" class="hidden-xs">
+  <div style="display: inline-block; height: 200px;" class="hidden-xs">
     <div id="profile-picture-container">
       <% if (@user.avatar.url.include? "missing") %>
         <div class="profile-picture-default"><%= @user.username.to_s[0].capitalize %></div>
@@ -44,7 +44,7 @@
 
   <div class="icon-container">
 
-    <div class="profile-icons" style="margin-right: 10px;">
+    <div class="profile-icons">
       <%= link_to(remote: true, controller: "profiles", action: "images_questions", :username => @user)  do %>
         <div class="stat-label"><%= @questions_and_images_asked_count %></div>
         <br>
@@ -52,7 +52,7 @@
       <% end %>
     </div>
 
-    <div class="profile-icons" style="margin-right: 10px;">
+    <div class="profile-icons">
       <%= link_to(remote: true, controller: "profiles", action: "image_shared", :username => @user)  do %>
         <div class="stat-label"><%= @questions_images_asked_count %></div>
         <br>
@@ -60,15 +60,17 @@
       <% end %>
     </div>
 
-    <div class="profile-icons" style="margin-right: 10px;">
+    <div class="profile-icons">
       <%= link_to(remote: true, controller: "profiles", action: "trophy", :username => @user)  do %>
-        <%= image_tag("profile_icons/trophy.png", size: "30") %>
+        <%= image_tag("profile_icons/trophy.png", size: "30", class: "stat-label") %>
         <br>
         <span class="profile-title">Trophy Case<span>
       <% end %>
     </div>
 
-    <div class="profile-icons" style="margin-top: 30px; margin-right: 10px;">
+    <div class="divider hidden-xs"></div>
+
+    <div class="profile-icons">
       <%= link_to(remote: true, controller: "profiles", action: "questions_answered", :username => @user)  do %>
         <div class="stat-label"><%= @questions_answered_count %></div>
         <br>
@@ -76,7 +78,7 @@
       <% end %>
     </div>
 
-    <div class="profile-icons" style="margin-top: 30px; margin-right: 10px;">
+    <div class="profile-icons">
       <%= link_to(remote: true, controller: "profiles", action: "questions_asked", :username => @user)  do %>
         <div class="stat-label"><%= @questions_asked_count %></div>
         <br>
@@ -84,9 +86,9 @@
       <% end %>
     </div>
 
-    <div class="profile-icons" style="margin-top: 30px;">
+    <div class="profile-icons">
       <%= link_to(remote: true, controller: "profiles", action: "leaderboard", :username => @user)  do %>
-        <%= image_tag("profile_icons/leaderboard.png", size: "30", id: "leaderboard_icon") %>
+        <%= image_tag("profile_icons/leaderboard.png", size: "30", id: "leaderboard_icon", class: "stat-label") %>
         <br>
         <span class="profile-title">Leaderboard<span>
       <% end %>
