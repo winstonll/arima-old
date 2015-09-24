@@ -477,7 +477,7 @@
 
       .options {
         position: relative;
-        text-align: justify;
+        text-align: left;
         margin-left: 40%;
         cursor: pointer;
 
@@ -489,7 +489,7 @@
           font-weight:500;
           padding: 8px 22px 8px 22px;
           position: relative;
-          width: 30%;
+          width: 50%;
           text-indent: -20px;
           font-size: 15px;
 
@@ -502,9 +502,8 @@
             color: #419BF9 ;
             font-size: 15px;
             font-weight: bold;
-            float: right;
-            left: 5em;
-            top: 1em;
+            margin-left: 16em;
+            bottom: 18px;
 
           }
         }
