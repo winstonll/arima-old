@@ -82,12 +82,12 @@ $(document).ready(function() {
                   <% @tag_count = tag.counter %>
                   <%= f.radio_button :value, tag.label, :class=>"form-radio"%>
                   <%="#{tag.label}"%>
+                  <progress class= "progress" value="<%=@tag_count%>" max="15" style="display: block; margin-top: 2.5px;"></progress>
                   <%if !@user_submitted_answer%>
                     <span class="tag-count">
                       <%= @tag_count %>
                     </span>
                   <% end %>
-                  <progress class= "progress" value="<%=@tag_count%>" max="10" style="display: block; margin-top: 2.5px;"></progress>
                 </label>
                 <%end%>
           <% end %>
@@ -98,6 +98,12 @@ $(document).ready(function() {
             <%= f.input(:options_for_collection, label: false,input_html:{value: nil, placeholder: "Add your own opinion to the list", class: "other-input-text", id:"other"}) %>
             <%= f.submit "Submit", class: "new-tag-submit" %>
         </div>
+        <br>
+                  <div id="view_map" style="display: block;"> 
+                    <%= link_to "view map", remote: true, controller: "answers", action: "view_map" %>
+                  </div>
+
+
       </div>
         <br>
       <% end %>
