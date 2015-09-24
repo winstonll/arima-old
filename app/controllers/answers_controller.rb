@@ -266,6 +266,12 @@ class AnswersController < ApplicationController
 
   end
 
+  def view_map
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def share
     answer = Answer.where(id: params[:ans_id]).first
     ans_user = answer.user
