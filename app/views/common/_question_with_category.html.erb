@@ -161,9 +161,15 @@ $(document).ready(function() {
         <%= image_tag("category-icons/#{question.group_id} White.png", class: question.shared_image ? "invisible" : "question-with-category-icon"  ) %>
       </div>
 
-      <div class="question-info <%= "invisible" if question.shared_image == true %>">
-        <p class="question-title"><%= question.label %></p>
-      </div>
+      <%if question.shared_image == true %>
+        <div class="question-info">
+          <p class="question-title" style="color: black; font-weight: bold;"><%= question.label %></p>
+        </div>
+      <% else %>
+        <div class="question-info">
+          <p class="question-title"><%= question.label %></p>
+        </div>
+      <% end %>
 
         <div class="question-dates <%= "invisible" if question.shared_image %>">
           <% if !answered %>
