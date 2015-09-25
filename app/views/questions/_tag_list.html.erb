@@ -26,7 +26,7 @@ $(document).ready(function() {
       <%@liked_tag_array.each do |tag|%>
         var index = 0
         for(index; index <= <%= @tag_array.length - 1%>; index++){
-          if ($('.form-radio')[index].value == "<%= tag %>"){           
+          if ($('.form-radio')[index].value == "<%= tag %>"){
             $('.form-radio')[index].offsetParent.style.color = "#419BF9 ";
           }
         }
@@ -99,9 +99,9 @@ $(document).ready(function() {
             <%= f.submit "Submit", class: "new-tag-submit" %>
         </div>
         <br>
-                  <div id="view_map" style="display: block;"> 
-                    <%= link_to "view map", remote: true, controller: "answers", action: "view_map" %>
-                  </div>
+        <div id="view_map" style="display: block;">
+          <%= link_to "view map", remote: true, controller: "answers", action: "view_map", :question => @question %>
+        </div>
 
 
       </div>

@@ -267,6 +267,9 @@ class AnswersController < ApplicationController
   end
 
   def view_map
+
+    @question = Question.where(slug: params[:question]).first
+
     respond_to do |format|
       format.js
     end

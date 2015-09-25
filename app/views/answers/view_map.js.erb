@@ -1,1 +1,125 @@
 $("#view_map").html("<%= escape_javascript(render partial: 'questions/tag_input' ) %>");
+<%puts "----------------------------------!!!!"%>
+
+var user_lat = "<%= Location.where(user_id: user_signed_in? ? current_user.id : cookies[:guest]).first.latitude %>";
+var user_long = "<%= Location.where(user_id: user_signed_in? ? current_user.id : cookies[:guest]).first.longitude %>";
+
+var mapOptions = {
+  zoom: 4,
+  center: new google.maps.LatLng(user_lat,user_long)
+};
+
+var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+<%
+  opinion = Opinion.new
+  loc_arr = opinion.user_lat_long_all(@question.id)
+%>
+
+<% loc_arr.each do |location| %>
+  //initializing the map when the user clicks the question
+  if((user_lat != <%= location[0][0] %>) && (user_long != <%= location[0][1] %>)){
+    var marker = new MarkerWithLabel({
+        position: new google.maps.LatLng(<%= location[0][0] %>, <%= location[0][1] %>),
+        map: map,
+        labelContent: "<%= location[1] %>",
+        labelClass: "tag-labels"
+    });
+  }else {
+    var marker = new MarkerWithLabel({
+        position: new google.maps.LatLng(<%= location[0][0] %>, <%= location[0][1] %>),
+        map: map,
+        labelContent: "You",
+        labelClass: "tag-labels"
+    });
+  }
+<% end %>
+
+
+/**
+
+  function initialize(tag_label) {
+      if(tag_label.length > 0 && tag_label != -1){
+        //if there are no tags in the db for this question then it will hit this condition. it will create the first marker so add_tag works
+        mapOptions = {
+          zoom: 4,
+          center: new google.maps.LatLng(user_lat, user_long)
+        };
+
+        map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+        var marker = new MarkerWithLabel({
+            position: new google.maps.LatLng(user_lat, user_long),
+            map: map,
+            labelContent: "You",
+            labelClass: "tag-labels"
+        });
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+
+
+    }else {
+      //When someone clicks a question it first displays all of the tags on the map (if there are any) AND creates the google map object
+      <%  opinion = Opinion.new
+          loc_arr = opinion.user_lat_long_all(@question)
+      %>
+
+      mapOptions = {
+        zoom: 4,
+        center: new google.maps.LatLng(user_lat, user_long)
+      };
+
+      map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+      var element = document.getElementById('map-canvas');
+
+      element.gMap = map;
+
+      <% loc_arr.each do |location| %>
+        if(tag_label != -1){
+          //initializing the map when the user clicks the question
+          if((user_lat != <%= location[0][0] %>) && (user_long != <%= location[0][1] %>)){
+            var marker = new MarkerWithLabel({
+                position: new google.maps.LatLng(<%= location[0][0] %>, <%= location[0][1] %>),
+                map: map,
+                labelContent: "<%= location[1] %>",
+                labelClass: "tag-labels"
+            });
+          }else {
+            var marker = new MarkerWithLabel({
+                position: new google.maps.LatLng(<%= location[0][0] %>, <%= location[0][1] %>),
+                map: map,
+                labelContent: "You",
+                labelClass: "tag-labels"
+            });
+          }
+        }else{
+          //initializing the map because all tags were deselected by the user.
+          if((user_lat != <%= location[0][0] %>) && (user_long != <%= location[0][1] %>)){
+            var marker = new MarkerWithLabel({
+                position: new google.maps.LatLng(<%= location[0][0] %>, <%= location[0][1] %>),
+                map: map,
+                labelContent: "<%= location[1] %>",
+                labelClass: "tag-labels"
+            });
+          }
+        }
+      <% end %>
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+
+  }
+
+  function add_tag(){
+
+    var marker = new MarkerWithLabel({
+       position: new google.maps.LatLng(<%= Location.where(user_id: user_signed_in? ? current_user.id : cookies[:guest]).first.latitude %>, <%= Location.where(user_id: user_signed_in? ? current_user.id : cookies[:guest]).first.longitude %>),
+       map: map,
+       labelContent: "You",
+       labelClass: "tag-labels"
+    });
+
+    map.setCenter(marker.getPosition());
+
+  }
+**/
