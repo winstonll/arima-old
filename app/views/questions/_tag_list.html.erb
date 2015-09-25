@@ -83,10 +83,12 @@ $(document).ready(function() {
                   <%= f.radio_button :value, tag.label, :class=>"form-radio"%>
                   <%="#{tag.label}"%>
                   <progress class= "progress" value="<%=@tag_count%>" max="15" style="display: block; margin-top: 2.5px;"></progress>
-                  <%if !@user_submitted_answer%>
+                  <% if request.xhr? && @tag_count > 1 %>
                     <span class="tag-count">
                       <%= @tag_count %>
                     </span>
+                  <% else %>
+                    <span class="tag-count"></span>
                   <% end %>
                 </label>
                 <%end%>
