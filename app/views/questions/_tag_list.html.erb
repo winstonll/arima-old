@@ -111,7 +111,7 @@ $(document).ready(function() {
         <div id="otherInputBox" >
             <%= hidden_field_tag 'question_id', @question.id %>
             <%= f.input(:options_for_collection, label: false,input_html:{value: nil, placeholder: "Add your own opinion to the list", class: "other-input-text", id:"other"}) %>
-            <%= f.submit "Submit", class: "new-tag-submit" %>
+            <%= f.submit "Vote", class: "new-tag-submit" %>
         </div>
         <br>
       <% if request.xhr? %>
