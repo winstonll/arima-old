@@ -466,6 +466,31 @@
     .tag-prompt {
       background-color: #F6F6F6;
 
+      #view_map {
+        position: relative;
+        a {
+          border: none;
+          border-radius: 3px;
+          background-color: #419BF9;
+          color: #fff;
+          padding: 8px 24px 8px 24px;
+
+          &:hover {
+            opacity: .8;
+          }
+        }
+      }
+
+      .disablemap {
+        a{
+          pointer-events: none;
+          background-color: #9b9b9b !important;
+        }
+        &:hover {
+            opacity: .8;
+          }
+      }
+
       .liner-title {
         margin-bottom: 10px;
         position: relative;
@@ -518,8 +543,8 @@
           input[type="submit"]
           {
             cursor: pointer;
-            width: 8em;
-            height: 2.5em;
+            width: 226px;
+            height: 35px;
             border: none;
             border-radius: 3px;
             position: relative;
@@ -532,7 +557,7 @@
             }
 
             &:disabled {
-              background-color: #7CAD45;
+              background-color: #9b9b9b;
             }
           }
 
