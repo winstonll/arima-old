@@ -6,6 +6,7 @@ Arima::Application.routes.draw do
   post 'add_tag' => 'answers#add_tag'
   post 'add_comment' => 'answers#add_comment'
 
+  get 'view_map' => 'answers#view_map'
   get 'trophy' => 'profiles#trophy'
   get 'image_shared' => 'profiles#image_shared'
   get 'images_questions' => 'profiles#images_questions'

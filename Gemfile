@@ -33,6 +33,12 @@ gem 'devise'
 # Pagination library
 gem 'kaminari'
 
+gem 'oauth2'
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+gem 'omniauth-linkedin'
+
 gem 'pointpin', '~> 1.0.0'
 
 gem 'geoip2'

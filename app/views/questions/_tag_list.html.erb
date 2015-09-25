@@ -4,8 +4,21 @@
 
 <%@tag_array = Tag.where(question_id: @question.id).order(created_at: :asc)%>
 
+<style>
+#map_link {
+  position: relative;
+  top: 100px;
+  color: red;
+}
+</style>
+
 <script>
 $(document).ready(function() {
+
+  $("a").click(function() {
+    console.log("here");
+    $('html, body').animate({ scrollTop:$("#view_map").offset().top}, 500);
+  });
 
   <%if user_signed_in?
         @liked_tag = Opinion.where(user_id: current_user.id, question_id: @question.id)
@@ -26,7 +39,7 @@ $(document).ready(function() {
       <%@liked_tag_array.each do |tag|%>
         var index = 0
         for(index; index <= <%= @tag_array.length - 1%>; index++){
-          if ($('.form-radio')[index].value == "<%= tag %>"){           
+          if ($('.form-radio')[index].value == "<%= tag %>"){
             $('.form-radio')[index].offsetParent.style.color = "#419BF9 ";
           }
         }
@@ -82,12 +95,14 @@ $(document).ready(function() {
                   <% @tag_count = tag.counter %>
                   <%= f.radio_button :value, tag.label, :class=>"form-radio"%>
                   <%="#{tag.label}"%>
-                  <%if !@user_submitted_answer%>
+                  <progress class= "progress" value="<%=@tag_count%>" max="15" style="display: block; margin-top: 2.5px;"></progress>
+                  <% if request.xhr? && @tag_count > 1 %>
                     <span class="tag-count">
                       <%= @tag_count %>
                     </span>
+                  <% else %>
+                    <span class="tag-count"></span>
                   <% end %>
-                  <progress class= "progress" value="<%=@tag_count%>" max="10" style="display: block; margin-top: 2.5px;"></progress>
                 </label>
                 <%end%>
           <% end %>
@@ -98,10 +113,19 @@ $(document).ready(function() {
             <%= f.input(:options_for_collection, label: false,input_html:{value: nil, placeholder: "Add your own opinion to the list", class: "other-input-text", id:"other"}) %>
             <%= f.submit "Submit", class: "new-tag-submit" %>
         </div>
+        <br>
+      <% if request.xhr? %>
+        <div id="view_map">
+      <% else %>
+        <div id="view_map" class="disablemap">
+      <% end %>
+            <%= link_to "See Where Voters Are From", remote: true, controller: "answers", action: "view_map", :question => @question%>
+        </div>
+
+
       </div>
         <br>
       <% end %>
-
 
     </div>
   </div>
