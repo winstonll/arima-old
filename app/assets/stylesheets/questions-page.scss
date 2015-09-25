@@ -471,13 +471,13 @@
         cursor: pointer;
         a {
           border: none;
-          border-radius: 3px;
+          border-radius: 4px;
           background-color: #419BF9;
           color: #fff;
           padding: 8px 24px 8px 24px;
 
           &:hover {
-            opacity: .8;
+            background-color: #1178F9;
           }
         }
       }
@@ -547,14 +547,15 @@
             width: 226px;
             height: 35px;
             border: none;
-            border-radius: 3px;
+            border-radius: 4px;
             position: relative;
             margin-top: .5em;
+            margin-bottom: -.3em;
             background-color: #7ED321;
             color: #fff;
 
             &:hover {
-              opacity: .8;
+              background-color: #4FDA3A;
             }
 
             &:disabled {
