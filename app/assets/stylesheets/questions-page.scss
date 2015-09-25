@@ -241,14 +241,16 @@
         width: 240px;
       }
       .other-input-text {
-        height: 36px;
+        height: 38px;
         width: 320px;
         color: black;
         font-size: 14px;
         background-color: #f7f7f7;
         resize: none;
         padding: 10px 20px 0px 20px;
-        border: 0;
+        border-color: #c4c4c4!important;
+        border: solid;
+        border-width: 1px;
         border-radius: 3px;
         padding-left: 10px;
         padding-bottom: 10px;
