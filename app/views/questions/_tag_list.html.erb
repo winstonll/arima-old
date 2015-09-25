@@ -4,8 +4,21 @@
 
 <%@tag_array = Tag.where(question_id: @question.id).order(created_at: :asc)%>
 
+<style>
+#map_link {
+  position: relative;
+  top: 100px;
+  color: red;
+}
+</style>
+
 <script>
 $(document).ready(function() {
+
+  $("a").click(function() {
+    console.log("here");
+    $('html, body').animate({ scrollTop:$("#view_map").offset().top}, 500);
+  });
 
   <%if user_signed_in?
         @liked_tag = Opinion.where(user_id: current_user.id, question_id: @question.id)
@@ -106,14 +119,13 @@ $(document).ready(function() {
       <% else %>
         <div id="view_map" class="disablemap">
       <% end %>
-            <%= link_to "See Where Voters Are From", remote: true, controller: "answers", action: "view_map", :question => @question %>
+            <%= link_to "See Where Voters Are From", remote: true, controller: "answers", action: "view_map", :question => @question%>
         </div>
 
 
       </div>
         <br>
       <% end %>
-
 
     </div>
   </div>
