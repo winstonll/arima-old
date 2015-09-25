@@ -34,7 +34,6 @@ $(document).ready(function() {
     <%end%>
 
   $('.new-tag-submit').prop('disabled', true);
-  $('#view_map').addClass("disablemap");
 
   $('#other').keyup(function() {
    inspectAllInputFields();
@@ -48,10 +47,8 @@ $(document).ready(function() {
         }
         if(count == 0){
           $('.new-tag-submit').prop('disabled', false);
-          $('#view_map').removeClass("disablemap");
         }else {
           $('.new-tag-submit').prop('disabled', true);
-          $('#view_map').addClass("disablemap");
         }
 
     });
@@ -60,8 +57,6 @@ $(document).ready(function() {
   $('input[type=radio]').click(function () {
     if ($('.form-radio:checked')){
       $('.new-tag-submit').prop('disabled', false);
-      $('#view_map').removeClass("disablemap");
-
     }
   });
 });
@@ -106,8 +101,12 @@ $(document).ready(function() {
             <%= f.submit "Submit", class: "new-tag-submit" %>
         </div>
         <br>
+      <% if request.xhr? %>
         <div id="view_map">
-          <%= link_to "See Where Voters Are From", remote: true, controller: "answers", action: "view_map", :question => @question %>
+      <% else %>
+        <div id="view_map" class="disablemap">
+      <% end %>
+            <%= link_to "See Where Voters Are From", remote: true, controller: "answers", action: "view_map", :question => @question %>
         </div>
 
 
