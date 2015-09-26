@@ -106,3 +106,10 @@
     width: 90%;
   }
 }
+
+@media screen and (max-width: 768px) {
+
+  #feed {
+    margin-left: 0px !important;
+  }
+}
