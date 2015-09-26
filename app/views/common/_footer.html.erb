@@ -28,14 +28,14 @@ $(document).ready(function() {
       <li><a href="/contact">Contact</a> &sdot;</li>
       <li><a href="/terms">Terms &amp; Conditions</a> &sdot;</li>
       <li><a href="/privacy">Privacy Policy</a></li>
-      <li><a href="https://www.facebook.com/friendsofarima"><%= image_tag("fb-grey-logo.png", :class => "sidebar-footer-social-img") %></a></li>
-      <li><a href="https://twitter.com/arima_io"><%= image_tag("twitter-grey-logo.png", :class => "sidebar-footer-social-img") %></a></li>
+      <li><a href="https://www.facebook.com/friendsofarima"><%= image_tag("fb-grey-logo.png", :class => "sidebar-footer-social-img hidden-xs") %></a></li>
+      <li><a href="https://twitter.com/arima_io"><%= image_tag("twitter-grey-logo.png", :class => "sidebar-footer-social-img hidden-xs") %></a></li>
     </ul>
   </div>
 
   <%if !user_signed_in?%>
     <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: {class: "form"}) do |f| %>
-    <div class="signup-section">
+    <div class="signup-section hidden-xs">
       <div class="signup-links-bottom">
         <div id="signup-start">
         <%= f.submit "Sign Up", class: "signup-button" %>
