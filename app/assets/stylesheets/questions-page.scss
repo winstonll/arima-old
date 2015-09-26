@@ -115,37 +115,6 @@
   }
 }
 
-/**@media screen and (max-width: 768px) {
-  .image-frame {
-    background-color: red;
-  }
-  .image-container {
-    width: 100px;
-  }
-  .shared-photo {
-    width: 100px;
-  }
-}
-
-@media screen and (min-width: 1400px) {
-  .image-container {
-    width: 65%;
-  }
-  .shared-photo {
-    height: 65vh;
-  }
-}
-
-@media screen and (min-width: 1700px) {
-  .image-container {
-    width: 75%;
-  }
-  .shared-photo {
-    height: 75vh;
-  }
-}
-**/
-
 .meta-title{
   font-weight: 400;
   font-size: 14px;
@@ -958,5 +927,12 @@
     .c3-tooltip tr td{
       color: #555;
     }
+  }
+}
+
+@media screen and (max-width: 768px) {
+
+  .options {
+    margin-left: 20% !important;
   }
 }
