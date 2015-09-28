@@ -87,6 +87,7 @@
   font-size: 17px;
   position: relative;
   display: inline-block;
+  bottom: 10px;
 }
 
 .toast {
@@ -105,11 +106,11 @@
 
   .image-container {
   }
-   .share-icon-container {
+
+  .share-icon-container {
     color: #878686;
     text-align: center;
     display: inline-block;
-    margin-right: 4em;
   }
 }
 
