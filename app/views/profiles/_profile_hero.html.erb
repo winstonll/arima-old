@@ -2,27 +2,43 @@
 
 <div class="jumbotron">
 
-  <div style="display: inline-block; height: 200px;" class="hidden-xs">
-    <div id="profile-picture-container">
-      <% if (@user.avatar.url.include? "missing") %>
-        <div class="profile-picture-default"><%= @user.username.to_s[0].capitalize %></div>
-      <% else %>
-        <%= image_tag @user.avatar.url(:thumb), class: "profile-picture" %>
-      <% end %>
-    </div>
+  <%if user_signed_in? && params[:username] == current_user.username%>
+    <div style="display: inline-block; height: 200px;" class="hidden-xs">
+      <div id="profile-picture-container">
+        <% if (@user.avatar.url.include? "missing") %>
+          <div class="profile-picture-default"><%= @user.username.to_s[0].capitalize %></div>
+        <% else %>
+          <%= image_tag @user.avatar.url(:thumb), class: "profile-picture" %>
+        <% end %>
+      </div>
 
-    <p style="display: inline-block; color: white; position: relative; right: 100px; top: 30px;">
-      <span style="font-size: 25px;"><%= @user.username %></span>
-      <br>
-      <span style="font-size: 15px;"><%= @user.location.city %>,<%= @user.location.country%></span>
-    </p>
+      <p style="display: inline-block; color: white; position: relative; right: 100px; top: 30px;">
+        <span style="font-size: 25px;"><%= @user.username %></span>
+        <br>
+        <span style="font-size: 15px;"><%= @user.location.city %>,<%= @user.location.country%></span>
+      </p>
 
-    <div class="edit-profile">
-      <%if user_signed_in? && params[:username] == current_user.username%>
-      <%= button_to 'Edit', profile_edit_path(@profile), :method => "get", class: "profile-edit-button" %>
-      <%end%>
+      <div class="edit-profile">
+        <%= button_to 'Edit', profile_edit_path(@profile), :method => "get", class: "profile-edit-button" %>
+      </div>
     </div>
-  </div>
+  <%else%>
+    <div style="display: inline-block; height: 200px; bottom: 80px; position:relative;" class="hidden-xs">
+      <div id="profile-picture-container">
+        <% if (@user.avatar.url.include? "missing") %>
+          <div class="profile-picture-default"><%= @user.username.to_s[0].capitalize %></div>
+        <% else %>
+          <%= image_tag @user.avatar.url(:thumb), class: "profile-picture" %>
+        <% end %>
+      </div>
+
+      <p style="display: inline-block; color: white; position: relative; right: 100px; top: 30px;">
+        <span style="font-size: 25px;"><%= @user.username %></span>
+        <br>
+        <span style="font-size: 15px;"><%= @user.location.city %>,<%= @user.location.country%></span>
+      </p>
+    </div>
+  <%end%>
 
   <div style="display: inline-block; margin: 0 auto;" class="visible-xs">
 
