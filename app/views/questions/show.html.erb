@@ -210,7 +210,7 @@ $(document).ready(function() {
       <div style="width: 100%; text-align: center;">
         <section class="share-image-title"><%=@question.label %></section>
       </div>
-      <div style="width: 100%">
+      <div style="width: 100%" class="hidden">
         <section class="share-icon-container" style="float: right;" class="hidden-xs">
           <%= render partial: "questions/share", locals: {
               id: @question.id,
