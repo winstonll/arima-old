@@ -93,13 +93,10 @@ $(document).ready(function() {
                 <% @tag_array.each do |tag|%>
                 <label class= "tag_button_collection" >
                   <% @tag_count = tag.counter %>
+                  <% @progressmax = @tag_count + 5 %>
                   <%= f.radio_button :value, tag.label, :class=>"form-radio"%>
                   <%="#{tag.label}"%>
-                  <% if @tag_count >= 20 %>
-                    <progress class= "progress" value="<%=@tag_count%>" max="30" style="display: block; margin-top: 2.5px;"></progress>
-                  <% else %>
-                    <progress class= "progress" value="<%=@tag_count%>" max="20" style="display: block; margin-top: 2.5px;"></progress>
-                  <% end %>
+                    <progress class= "progress" value="<%=@tag_count%>" max="<%=@progressmax%>" style="display: block; margin-top: 2.5px;"></progress>
                   <% if request.xhr? && @tag_count > 1 %>
                     <span class="tag-count">
                       <%= @tag_count %>

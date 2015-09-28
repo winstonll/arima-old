@@ -1,14 +1,13 @@
 class ProfilesController < ApplicationController
   include ValidationHelper
 
-  before_filter :authenticate_user!
-
   layout "application_fluid"
 
   respond_to :json, :html, :js
 
   #generates correct referral code
   def show
+
     @user_profile = User.where(username: params[:username]).first
 
     if(@user_profile.nil?)
@@ -16,8 +15,8 @@ class ProfilesController < ApplicationController
       return
     end
 
-    generate_referral_code(current_user) unless
-    (current_user.referral_code.present? && (current_user.referral_code).start_with?(current_user.username))
+    #generate_referral_code(current_user) unless
+    #(current_user.referral_code.present? && (current_user.referral_code).start_with?(current_user.username))
 
 
     @questions_and_images_asked_count = Question.where(user_id: @user_profile.id).count
@@ -37,9 +36,10 @@ class ProfilesController < ApplicationController
     #@trending_questions   = Question.trending_for_user current_user
     #@answered_questions   = user.answers.last(5)
     #@asked_questions      = Question.where(user_id: user.id).last(5)
-
-    check_points_badge
-    check_question_badge
+    if (user_signed_in?)
+      check_points_badge
+      check_question_badge
+    end
   end
 
   def trophy
