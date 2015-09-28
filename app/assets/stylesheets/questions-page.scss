@@ -44,13 +44,13 @@
 }
 
 #image_poll {
-  background-color: #BBDAFF;
+  background-color: #f6f6f6;
   padding-top: 20px;
 }
 
 #question_poll {
   height: 100vh;
-  background-color: #BBDAFF;
+  background-color: #f6f6f6;
   padding-top: 20px;
 }
 
@@ -86,9 +86,7 @@
   font-weight: 600;
   font-size: 17px;
   position: relative;
-  text-align: center;
-  margin-bottom: -2.3em;
-  top: -1em;
+  display: inline-block;
 }
 
 .toast {
@@ -114,37 +112,6 @@
     margin-right: 4em;
   }
 }
-
-/**@media screen and (max-width: 768px) {
-  .image-frame {
-    background-color: red;
-  }
-  .image-container {
-    width: 100px;
-  }
-  .shared-photo {
-    width: 100px;
-  }
-}
-
-@media screen and (min-width: 1400px) {
-  .image-container {
-    width: 65%;
-  }
-  .shared-photo {
-    height: 65vh;
-  }
-}
-
-@media screen and (min-width: 1700px) {
-  .image-container {
-    width: 75%;
-  }
-  .shared-photo {
-    height: 75vh;
-  }
-}
-**/
 
 .meta-title{
   font-weight: 400;
@@ -241,15 +208,17 @@
         width: 240px;
       }
       .other-input-text {
-        height: 36px;
+        height: 38px;
         width: 320px;
         color: black;
-        font-size: 12px;
-        background-color: #f7f7f7;
+        font-size: 14px;
+        background-color: #fff;
         resize: none;
         padding: 10px 20px 0px 20px;
-        border: 0;
-        border-radius: 5px;
+        border-color: #c4c4c4!important;
+        border: solid;
+        border-width: 1px;
+        border-radius: 3px;
         padding-left: 10px;
         padding-bottom: 10px;
       }
@@ -466,6 +435,32 @@
     .tag-prompt {
       background-color: #F6F6F6;
 
+      #view_map {
+        position: relative;
+        cursor: pointer;
+        a {
+          border: none;
+          border-radius: 4px;
+          background-color: #419BF9;
+          color: #fff;
+          padding: 8px 24px 8px 24px;
+
+          &:hover {
+            background-color: #1178F9;
+          }
+        }
+      }
+
+      .disablemap {
+        a{
+          pointer-events: none;
+          background-color: #9b9b9b !important;
+        }
+        &:hover {
+            opacity: .8;
+          }
+      }
+
       .liner-title {
         margin-bottom: 10px;
         position: relative;
@@ -477,8 +472,8 @@
 
       .options {
         position: relative;
-        text-align: justify;
-        margin-left: 40%;
+        text-align: left;
+        margin-left: 41%;
         cursor: pointer;
 
         .tag_button_collection {
@@ -487,11 +482,11 @@
           cursor: pointer;
           display: block;
           font-weight:500;
-          padding: 8px 22px 8px 22px;
           position: relative;
-          width: 30%;
+          width: 60%;
           text-indent: -20px;
           font-size: 15px;
+          margin-bottom: 0px !important;
 
           input{
             margin-right: 5px;
@@ -502,6 +497,8 @@
             color: #419BF9 ;
             font-size: 15px;
             font-weight: bold;
+            margin-left: 16em;
+            bottom: 18px;
 
           }
         }
@@ -516,21 +513,22 @@
           input[type="submit"]
           {
             cursor: pointer;
-            width: 8em;
-            height: 2.5em;
+            width: 226px;
+            height: 35px;
             border: none;
-            border-radius: 3px;
+            border-radius: 4px;
             position: relative;
             margin-top: .5em;
+            margin-bottom: -.3em;
             background-color: #7ED321;
             color: #fff;
 
             &:hover {
-              opacity: .8;
+              background-color: #4FDA3A;
             }
 
             &:disabled {
-              background-color: #7CAD45;
+              background-color: #9b9b9b;
             }
           }
 
@@ -927,5 +925,17 @@
     .c3-tooltip tr td{
       color: #555;
     }
+  }
+}
+
+@media screen and (max-width: 768px) {
+
+  .options {
+    margin-left: 20% !important;
+  }
+  .shared-photo {
+    position: relative;
+    height: auto;
+    width: 100%;
   }
 }
