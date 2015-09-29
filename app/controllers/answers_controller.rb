@@ -269,6 +269,8 @@ class AnswersController < ApplicationController
   def view_map
 
     @question = Question.where(slug: params[:question]).first
+    @question.votecount = @question.votecount - 1
+    @question.save
 
     respond_to do |format|
       format.js
