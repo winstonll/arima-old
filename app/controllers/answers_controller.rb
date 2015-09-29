@@ -269,9 +269,10 @@ class AnswersController < ApplicationController
   def view_map
 
     @question = Question.where(slug: params[:question]).first
-    @question.votecount = @question.votecount - 1
-    @question.save
 
+    down = Vote.new(question_id: @question.id, user_id: cookies[:guest], vote_type: "downvote")
+    down.save
+    
     respond_to do |format|
       format.js
     end
