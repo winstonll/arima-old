@@ -209,6 +209,7 @@ $(document).ready(function() {
       <!--<a href="<%= feed_path %>" class="feed-link hidden-xs"><div id="back-to-feed-button"><%= image_tag("Back-Arrow.png", class: "feed-back-arrow", width: "19", height: "9")%><font class="feed-back-title">Back to Home Feed</font></div></a>-->
       <div style="width: 100%; text-align: center;">
         <section class="share-image-title"><%=@question.label %></section>
+        <section style="background-color: #F6F6F6;">by <%= User.where(id: @question.user_id).first.username%></section>
       </div>
       <div style="width: 100%" class="hidden">
         <section class="share-icon-container" style="float: right;" class="hidden-xs">
