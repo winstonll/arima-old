@@ -53,7 +53,8 @@ class QuestionsController < ApplicationController
   end
 
   def user_list_display
-    @question = "test"
+    @question = Question.where(slug: params[:question]).first
+    @users_list = User.joins(:opinions).where("opinions.question_id = #{@question.id}").distinct
 
   end
 

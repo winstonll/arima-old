@@ -1,3 +1,4 @@
-$(".share-modal-content-container").html("<%= escape_javascript(render partial: 'common/modal_content' ) %>");
-
-$('#shareSignupModal').modal('show');
+$.fn.popover.Constructor.DEFAULTS.html = true;
+$.fn.popover.Constructor.DEFAULTS.content =
+'<% for user in @users_list%>  <%=link_to user.username, custom_show_path(:username => user.username), :id=>"user_link" %> <%end%>';
+$('#users_list').popover("toggle");

@@ -8,6 +8,7 @@ class Question < ActiveRecord::Base
   has_many :answers, :dependent => :destroy
   has_many :tags, :dependent => :destroy
   has_many :users, through: :answers
+  has_many :opinions
 
   # serialize :options_for_collection, Array
 
