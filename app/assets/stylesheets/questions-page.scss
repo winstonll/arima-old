@@ -4,6 +4,19 @@
 
 #user_link {
   color: black;
+  display: inline-block;
+}
+
+.popover {
+  display: inline-block;
+  height: auto;
+  width: auto;
+}
+
+.popover-content {
+  padding: 20px 20px 20px 20px;
+  text-shadow: none !important;
+  width: 100%
 }
 
 #achievement_box {
