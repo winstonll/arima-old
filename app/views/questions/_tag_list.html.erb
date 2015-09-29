@@ -92,7 +92,7 @@ $(document).ready(function() {
 
                 <% @tag_array.each do |tag|%>
                 <label class= "tag_button_collection" >
-                  <% @tag_count = tag.counter %>
+                  <% @tag_count = tag.counter + 1 %>
                   <% @progressmax = @tag_count + 5 %>
                   <%= f.radio_button :value, tag.label, :class=>"form-radio"%>
                   <%="#{tag.label}"%>
