@@ -52,6 +52,11 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def user_list_display
+    @question = "test"
+
+  end
+
   def report
     @question = Question.where(slug: params[:id])[0]
     @users_list = Array.new
