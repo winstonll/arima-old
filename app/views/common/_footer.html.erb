@@ -6,13 +6,6 @@ $(document).ready(function() {
       setTimeout(function() {$('#popover-input').popover("show");
       document.getElementsByClassName('popover')[0].childNodes[0].style.borderTopColor = "#419BF9";
     },4500);
-
-    <%else%>
-      $('#popover-input').popover("show");
-      $("#other")[0].value = "<%= cookies[:answer] %>";
-      document.getElementsByClassName('popover')[0].childNodes[2].innerHTML = " Please create a Profile below to add your opinion to the list!";
-      document.getElementsByClassName('popover')[0].style.backgroundColor = "#AC09C5";
-      document.getElementsByClassName('popover')[0].childNodes[0].style.borderTopColor = "#AC09C5";
     <% end %>
   <%end%>
 });
