@@ -10,6 +10,16 @@
   float:left;
 }
 
+#users_list{
+  margin-left: 15px;
+  text-decoration: underline;
+  color: #7D7D7D;
+}
+
+#users_list:hover {
+  color: black;
+}
+
 #view_profile_link{
   color: #4A4A4A;
   display: inline-block;
