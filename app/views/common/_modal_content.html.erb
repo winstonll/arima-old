@@ -1,6 +1,12 @@
 <h3 style="color: black; margin-bottom: 30px;">People who voted</h1>
+<%@user_counter = 0%>
 <% for user in @users_list%>
-  <%=link_to "#{user.username}", custom_show_path(:username => user.username), :id=>"user_link" %>
-  <%=link_to "view profile", custom_show_path(:username => user.username), :id=>"view_profile_link" %>
-  <br>
+  <%if !user.username.nil?%>
+    <%@user_counter = @user_counter + 1%>
+    <%=link_to "#{user.username}", custom_show_path(:username => user.username), :id=>"user_link" %>
+    <%=link_to "view profile", custom_show_path(:username => user.username), :id=>"view_profile_link" %>
+    <br>
+  <%end%>
 <%end%>
+
+<div style="color: black;">... and <%= @users_list.size - @user_counter %> other guests</div>

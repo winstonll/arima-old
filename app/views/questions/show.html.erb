@@ -213,9 +213,7 @@ $(document).ready(function() {
         <section class="share-image-title"><%=@question.label %></section>
         <section class="question-author">
           by <%= link_to User.where(id: @question.user_id).first.username, custom_show_path(:username => User.where(id: @question.user_id).first.username) %>
-          <%= link_to 'X amount of users voted', { controller: "questions", action: "user_list_display", remote: true, :question => @question }, id: 'users_list' %>
-
-          <%#= link_to "X amount of users voted", :id => "iiil", remote: true, controller: "questions", action: "user_list_display", :question => @question%>
+          <%= link_to " #{@counter} users voted", { controller: "questions", action: "user_list_display", remote: true, :question => @question }, id: 'users_list' %>
         </section>
       </div>
       <div style="width: 100%" class="hidden">

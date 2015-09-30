@@ -18,6 +18,9 @@ class QuestionsController < ApplicationController
     cookies[:group_id] = @question.group_id
     @answers = Answer.where(question: @question).count
 
+    @counter = User.joins(:opinions).where("opinions.question_id = #{@question.id}").distinct.count
+
+
     #extracting all of the users that answered this question
     @users_list = Array.new
     Answer.where(question: @question).find_each do |answer|
