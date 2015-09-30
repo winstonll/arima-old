@@ -103,7 +103,7 @@ $(document).ready(function() {
                   <% end %>
                   <% if request.xhr? && @tag_count >= 20 %>
                     <span class="tag-count">
-                      <%= image_tag("charmander.gif")%>
+                      <%= image_tag(("charmandeer.gif"), :style => "margin-bottom: -10px; height: 20px; width: 20px;")%>
                     </span>
                   <% end %>
                   <% if request.xhr? && @tag_count < 20 %>
