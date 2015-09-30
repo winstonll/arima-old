@@ -1,5 +1,7 @@
 class AnswersController < ApplicationController
 
+  protect_from_forgery with: :exception
+
   #skip_before_filter :verify_authenticity_token, :only => :create
   #before_filter :authenticate_user!, except: [:intro_question, :show, :create, :show_image]
   include DetermineUserAndUnits
@@ -272,7 +274,7 @@ class AnswersController < ApplicationController
 
     down = Vote.new(question_id: @question.id, user_id: cookies[:guest], vote_type: "downvote")
     down.save
-    
+
     respond_to do |format|
       format.js
     end

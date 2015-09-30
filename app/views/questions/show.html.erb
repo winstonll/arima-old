@@ -79,6 +79,8 @@ $(document).ready(function() {
 <%# end %>
 
 <%= render '/common/share_new_question_modal' %>
+
+<%= render 'common/user_list_display' %>
 <%#= render '/common/signup_modal' %>
 <%#= render '/common/share_answer_modal' %>
 
@@ -209,6 +211,10 @@ $(document).ready(function() {
       <!--<a href="<%= feed_path %>" class="feed-link hidden-xs"><div id="back-to-feed-button"><%= image_tag("Back-Arrow.png", class: "feed-back-arrow", width: "19", height: "9")%><font class="feed-back-title">Back to Home Feed</font></div></a>-->
       <div style="width: 100%; text-align: center;">
         <section class="share-image-title"><%=@question.label %></section>
+        <section class="question-author">
+          by <%= link_to User.where(id: @question.user_id).first.username, custom_show_path(:username => User.where(id: @question.user_id).first.username) %>
+          <%= link_to " #{@counter} users voted", { controller: "questions", action: "user_list_display", remote: true, :question => @question }, id: 'users_list' %>
+        </section>
       </div>
       <div style="width: 100%" class="hidden">
         <section class="share-icon-container" style="float: right;" class="hidden-xs">

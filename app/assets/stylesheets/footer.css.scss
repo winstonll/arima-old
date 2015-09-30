@@ -11,25 +11,6 @@
   opacity: .95;
   border-top: 1px solid #E4E4E4;
 
-  .popover {
-    display: inline-block;
-    height: 130px;
-    width: 390px;
-    margin-left: 100px;
-  }
-
-  .popover-content {
-    padding: 30px 30px 30px 40px;
-    font-size: 15px;
-    font-weight: 700;
-    text-shadow: none !important;
-    width: 100%
-  }
-
-  .popover.top > .arrow::after {
-    content: none;
-  }
-
   .feed-link {
     height: 3.5em;
     background-color: #419BF9;
