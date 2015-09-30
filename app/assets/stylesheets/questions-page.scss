@@ -3,20 +3,19 @@
 }
 
 #user_link {
-  color: black;
+  color: #419BF9;
   display: inline-block;
+  margin-right: 20px;
+  font-size: 12px;
 }
 
-.popover {
+#view_profile_link{
+  color: #4A4A4A;
   display: inline-block;
-  height: auto;
-  width: auto;
-}
-
-.popover-content {
-  padding: 20px 20px 20px 20px;
-  text-shadow: none !important;
-  width: 100%;
+  font-size: 10px;
+  float: right;
+  position: relative;
+  top: 3px;
 }
 
 #achievement_box {
@@ -117,6 +116,31 @@
 .question-author {
   background-color: #F6F6F6;
   margin-top: -.7em;
+
+  .popover {
+    display: inline-block;
+    height: auto;
+    width: auto;
+  }
+
+  .popover-content {
+    padding: 20px 20px 20px 20px;
+    text-shadow: none !important;
+    width: 100%;
+    background-color: white;
+    box-shadow: 2px 2px 2px black;
+  }
+
+  .popover-title {
+    color: black;
+    box-shadow: 2px 2px 2px black;
+    border-color: #ebebeb;
+    background-color: #ebebeb;
+  }
+
+  .popover.right>.arrow:after {
+    box-shadow: 2px black;
+  }
 }
 
 .toast {

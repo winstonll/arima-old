@@ -4125,7 +4125,7 @@ button.close {
     max-width: 400px;
     padding: 1px;
     text-align: left;
-    background-color: #419BF9;
+    background-color: #ebebeb;
     color:#fff;
     background-clip: padding-box;
     /*border: 1px solid #ccc;*/
@@ -4190,7 +4190,7 @@ button.close {
     bottom: 1px;
     margin-left: -10px;
     border-bottom-width: 0;
-    border-top-color: #419BF9;
+    border-top-color: #fff;
 }
 .popover.right>.arrow {
     top: 50%;
@@ -4205,7 +4205,7 @@ button.close {
     left: 1px;
     bottom: -10px;
     border-left-width: 0;
-    border-right-color: #419BF9;
+    border-right-color: #fff;
 }
 .popover.bottom>.arrow {
     left: 50%;
@@ -4220,7 +4220,7 @@ button.close {
     top: 1px;
     margin-left: -10px;
     border-top-width: 0;
-    border-bottom-color: #419BF9;
+    border-bottom-color: #fff;
 }
 .popover.left>.arrow {
     top: 50%;

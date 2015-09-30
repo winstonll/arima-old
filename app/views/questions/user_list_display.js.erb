@@ -1,3 +1,4 @@
 $.fn.popover.Constructor.DEFAULTS.html = true;
-$.fn.popover.Constructor.DEFAULTS.content = '<% for user in @users_list%> <%=link_to user.username, custom_show_path(:username => user.username), :id=>"user_link" %> <br> <%end%>';
+$.fn.popover.Constructor.DEFAULTS.title = "People who voted";
+$.fn.popover.Constructor.DEFAULTS.content = '<% for user in @users_list%> <%=link_to "#{user.username}", custom_show_path(:username => user.username), :id=>"user_link" %> <%=link_to "view profile", custom_show_path(:username => user.username), :id=>"view_profile_link" %> <br> <%end%>';
 $('#users_list').popover("toggle");

@@ -1,16 +1,3 @@
-<script>
-
-$(document).ready(function() {
-  <%if !user_signed_in?%>
-    <%if cookies[:signup].nil? || cookies[:signup].empty?%>
-      setTimeout(function() {$('#popover-input').popover("show");
-      document.getElementsByClassName('popover')[0].childNodes[0].style.borderTopColor = "#419BF9";
-    },4500);
-    <% end %>
-  <%end%>
-});
-</script>
-
 <footer class="sidebar-footer">
 
 <a href="<%= feed_path %>" class="feed-link hidden-xs"><div id="back-to-feed-button"><%= image_tag("Back-Arrow.png", class: "feed-back-arrow", width: "19", height: "9")%><font class="feed-back-title">Back to Home Feed</font></div></a>
@@ -36,8 +23,7 @@ $(document).ready(function() {
 
         <div class="signup-input">
           <div class="input-username">
-              <%= f.text_field :username, placeholder: "Username", class: "input-box username-input-box", id: "popover-input", 'data-toggle'=>"popover",
-              'data-placement'=>"top", 'data-content'=>"Ask Questions, Share Images, and gain amazing insights into what people think. Your opinion makes data interesting!" %>
+              <%= f.text_field :username, placeholder: "Username", class: "input-box username-input-box", id: "popover-input" %>
           </div>
 
           <div class="input-password">
