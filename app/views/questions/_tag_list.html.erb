@@ -92,7 +92,7 @@ $(document).ready(function() {
 
                 <% @tag_array.each do |tag|%>
                 <label class= "tag_button_collection" >
-                  <% @tag_count = tag.counter + 1 %>
+                  <% @tag_count = tag.counter + 18 %>
                   <% @progressmax = @tag_count + 5 %>
                   <%= f.radio_button :value, tag.label, :class=>"form-radio"%>
                   <%="#{tag.label}"%>
@@ -101,12 +101,18 @@ $(document).ready(function() {
                   <% else %>
                     <progress class= "progress" value="<%=@tag_count%>" max="<%=@progressmax%>" style="display: block; margin-top: 2.5px;"></progress>
                   <% end %>
-                  <% if request.xhr? && @tag_count > 1 %>
+                  <% if request.xhr? && @tag_count >= 20 %>
+                    <span class="tag-count">
+                      <%= image_tag("charmander.gif")%>
+                    </span>
+                  <% end %>
+                  <% if request.xhr? && @tag_count < 20 %>
                     <span class="tag-count">
                       <%= @tag_count %>
                     </span>
-                  <% else %>
-                    <span class="tag-count"></span>
+                  <% elsif @tag_count > 20 %>
+                    <span class="tag-count">
+                    </span>
                   <% end %>
                 </label>
                 <%end%>
