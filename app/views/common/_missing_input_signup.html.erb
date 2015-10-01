@@ -4,10 +4,10 @@
   <br>
   <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= hidden_field_tag 'trick_user', true %>
-    <div style= "display: block;">
+    <label style= "display: block;">
       <%= radio_button_tag 'generated_username', "anonymous #{@user.id}"  %>
-      <%= label_tag "anonymous #{@user.id}" %>
-    </div>
+      <%="anonymous #{@user.id}"%>
+    </label>
   <div style= "position: relative; bottom: 7px;">
     <div style="text-align: center; position: relative; top: 10px; color: #fff; font-weight: bold;">or</div>
     <div style="border-top: solid #fff 2px; width: 58px; height: 0px; margin-left: 8.1em; float: left;"></div>
