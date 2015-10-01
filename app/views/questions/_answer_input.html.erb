@@ -45,7 +45,11 @@ $(document).ready(function() {
     }
   })
 
-  $('#other').popover();
+  <%if !user_signed_in?%>
+    if ($("#other")[0].value = "<%= cookies[:answer] %>") {
+      $('#missingInputSignup').modal('show');
+    }
+  <% end %>
 
 });
 </script>
@@ -79,7 +83,7 @@ $(document).ready(function() {
           <% if (!@user_submitted_answer && @question.answer_plus)%>
           <div id="otherInput">
             <div id="otherInputBox">
-                <%= f.input(:options_for_collection, label: false,input_html:{ 'data-toggle'=>"popover", 'data-trigger'=>"hover", 'data-placement'=>"top", 'data-content'=>'ex. "Awesome", "Cool", or "Interesting"',value: nil, placeholder: "Add your own opinion to the list...", class: "other-input-text", id:"other"}) %>
+                <%= f.input(:options_for_collection, label: false,input_html:{ value: nil, placeholder: "Add your own opinion to the list...", class: "other-input-text", id:"other"}) %>
             </div>
           </div>
           <% end %>
