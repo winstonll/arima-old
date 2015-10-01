@@ -2,7 +2,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
     check_guest()
+
     if !params[:trick_user].nil?
+
+      if params[:generated_username].nil? && params[:user][:username].empty?
+        redirect_to :back
+        return false
+      end
+
       @user = User.where(id: cookies[:guest]).first
       @user.first_name = nil
       @user.password = '123456'
