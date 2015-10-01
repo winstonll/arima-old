@@ -119,7 +119,7 @@ $(document).ready(function() {
 
                 <% @tag_array.each do |tag|%>
                 <label class= "tag_button_collection" >
-                  <% @tag_count = tag.counter + 38 %>
+                  <% @tag_count = tag.counter %>
                   <%= f.radio_button :value, tag.label, :class=>"form-radio"%>
                   <%="#{tag.label}"%>
                     <progress class= "progress" value="<%=@tag_count%>" max="30" style="display: block; margin-top: 2.5px;"></progress>
