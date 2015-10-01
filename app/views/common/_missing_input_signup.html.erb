@@ -1,0 +1,22 @@
+<div class="modal fade" id="missingInputSignup" tabindex="-1" role="dialog" aria-labelledby="missingInputSignup" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+
+  <div style="color: black; font-weight: 900; font-size:12px; text-align: center;">Choose an option to confirm you are not spamming</div>
+  <br>
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= hidden_field_tag 'trick_user', true %>
+    <div style= "display: block;">
+      <%= radio_button_tag 'generated_username', "anonymous #{@user.id}"  %>
+      <%= label_tag "anonymous #{@user.id}" %>
+    </div>
+
+  <div style="text-align: center; position: relative; top: 10px;">or</div> 
+  <div style="border-top: solid #fff 2px; width: 50px; height: 0px; margin-left: 8em; float: left;"></div>
+  <div style="border-top: solid #fff 2px; width: 50px; height: 0px; margin-right: 7em; float: right;"></div>
+  <br>
+
+  <%= f.text_field :username, placeholder: "Create your own screename", style: "width: 15em; height: 35px; border-radius:5px; border: none; color: black; display: block; text-align: center; margin: 0 auto;" %>
+  <%#= f.password_field :password, placeholder: "Password", style: "color: black;" %>
+  <%= f.submit "Confirm & Submit!", style: "color: #fff; display: block; margin: 0 auto; border-radius:5px; border: none; text-align: center; width: 15em; height: 35px; background: #7ed321; font-weight: bold;" %>
+  <% end %>
+
+</div>
