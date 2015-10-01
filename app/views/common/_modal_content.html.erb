@@ -1,9 +1,17 @@
-<h3 style="color: black; margin-bottom: 30px;">People who voted</h1>
+<h3 style="display: inline-block; color: black; margin-bottom: 30px;">People who voted</h1>
+<br>
 <%@user_counter = 0%>
 <% for user in @users_list%>
   <%if !user.username.nil?%>
     <%@user_counter = @user_counter + 1%>
-    <%=link_to "#{user.username}", custom_show_path(:username => user.username), :id=>"user_link" %>
+    <%
+      if user.username.size >= 20
+        @name = user.username[0..17] + "..."
+      else
+        @name = user.username
+      end
+    %>
+    <%=link_to "#{@name}", custom_show_path(:username => user.username), :id=>"user_link" %>
     <%=link_to "view profile", custom_show_path(:username => user.username), :id=>"view_profile_link" %>
     <br>
   <%end%>
