@@ -1,5 +1,7 @@
 <%if cookies[:signup] == 1%>
-  window.location = "http://thearima.com/users/sign_up"
+  if ($('#otherInputBox')[0].children[1].children[0].value = "<%= cookies[:answer] %>") {
+    $('#missingInputSignup').modal('show');
+  }
 <%else%>
 
   $("#tag_list_container").html("<%= escape_javascript(render partial: '/questions/tag_list', locals: { question: @question} ) %>");
