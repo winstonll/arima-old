@@ -162,9 +162,26 @@ class AnswersController < ApplicationController
   end
 
   def add_tag
+
+    cookies[:signup] = nil
+    cookies[:answer] = nil
+    cookies[:q] = nil
+
     @question = Question.where(id: params[:question_id]).first
 
     if !params[:answer].nil? && params[:answer][:options_for_collection] != ""
+
+      if (!user_signed_in?)
+        cookies[:signup] = 1
+        cookies[:q] = @question.id
+        cookies[:answer] = params[:answer][:options_for_collection]
+
+        respond_to do |format|
+          format.js
+        end
+
+        return
+      end
 
       if Tag.where(label: params[:answer][:options_for_collection], question_id: @question.id).first.nil?
         answer_user_id = user_signed_in? ? current_user.id : cookies[:guest]
@@ -214,6 +231,7 @@ class AnswersController < ApplicationController
     end
 
   end
+  
   def add_comment
     @question = Question.where(id: params[:question_id]).first
 

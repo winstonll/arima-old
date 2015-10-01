@@ -15,6 +15,11 @@
 <script>
 $(document).ready(function() {
 
+  <%if !user_signed_in?%>
+    console.log("here");
+    
+  <% end %>
+
   $("a").click(function() {
     console.log("here");
     $('html, body').animate({ scrollTop:$("#view_map").offset().top}, 500);
