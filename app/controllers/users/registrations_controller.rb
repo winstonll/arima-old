@@ -2,6 +2,31 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
     check_guest()
+    if !params[:trick_user].nil?
+      @user = User.where(id: cookies[:guest]).first
+      @user.first_name = nil
+      @user.password = '123456'
+      params[:generated_username].nil?  || params[:generated_username].empty? ? @user.username = params[:user][:username] : @user.username = params[:generated_username]
+      @user.save
+
+      @question = Question.where(id: cookies[:q]).first
+      if @question.shared_image
+        @tag = Tag.where(question_id: @question.id, label: params[:answer][:value]).first
+        @opinion = Opinion.new(question_id: @question.id, tag_id: @tag.id, user_id: cookies[:guest])
+        @opinion.save!
+        @tag.counter = @tag.counter + 1
+        @tag.save!
+      else 
+        @answer = Answer.new(value: cookies[:answer], question_id: cookies[:q], user_id: cookies[:guest])
+        @answer.save
+      end
+      cookies[:signup] = nil
+      cookies[:answer] = nil
+      cookies[:q] = nil
+      redirect_to :back
+      return true
+    end
+
     @user = User.where(id: cookies[:guest]).first
     @user.first_name = nil
     @user.password = user_params["password"]
