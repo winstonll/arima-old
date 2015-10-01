@@ -15,14 +15,21 @@
 <script>
 $(document).ready(function() {
 
-  <%if !user_signed_in?%>
-    console.log("here");
-    
-  <% end %>
-
   $("a").click(function() {
     console.log("here");
     $('html, body').animate({ scrollTop:$("#view_map").offset().top}, 500);
+  });
+
+  $('input').click(function() {
+    if ($('input').is(':checked')){
+      $('#user_username')[0].value = "";
+    }
+  });
+
+  $('#user_username').keyup(function() {
+    if($(this).val() != '') {
+      $("input").prop("checked", false)
+    }
   });
 
   <%if user_signed_in?
@@ -55,6 +62,21 @@ $(document).ready(function() {
 
   $('#other').keyup(function() {
    inspectAllInputFields();
+  });
+
+  $('input').click(function() {
+    if ($('input').is(':checked')){
+      $('.modal-button').removeAttr('disabled');
+      $('#otherInputBox')[0].children[1].children[0].value = "";
+    }
+
+  })
+
+  $('#other').keyup(function() {
+    if($(this).val() != '') {
+      $('.modal-button').removeAttr('disabled');
+      $("input").prop("checked", false)
+    }
   });
 
   function inspectAllInputFields(){

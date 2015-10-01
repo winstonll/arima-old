@@ -5,7 +5,7 @@
   <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= hidden_field_tag 'trick_user', true %>
     <label style= "display: block;">
-      <%= radio_button_tag 'generated_username', "anonymous #{@user.id}"  %>
+      <%= radio_button_tag 'generated_username', "anonymous #{@user.id}", :class=>"form-radio"  %>
       <%="anonymous #{@user.id}"%>
     </label>
   <div style= "position: relative; bottom: 7px;">
@@ -15,7 +15,7 @@
   </div>
   <br>
 
-  <%= f.text_field :username, placeholder: "Create your own screename", style: "width: 15em; height: 40px; border-radius:5px; border: none; color: #4a4a4a; display: block; text-align: center; margin: 0 auto; position: relative; bottom: 5px;" %>
+  <%= f.text_field :username, placeholder: "Create your own screename", style: "width: 15em; height: 40px; border-radius:5px; border: none; color: #4a4a4a; display: block; text-align: center; margin: 0 auto; position: relative; bottom: 5px;", input_html:{id:"user_field"} %>
   <%#= f.password_field :password, placeholder: "Password", style: "color: black;" %>
   <%= f.submit "Confirm & Submit!", style: "color: #fff; display: block; margin: 0 auto; border-radius:5px; border: none; text-align: center; width: 15em; height: 35px; background: #7ed321; font-weight: bold; position: relative; top: 5px; &:hover: opacity: .9;" %>
   <% end %>
