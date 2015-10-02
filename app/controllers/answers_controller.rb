@@ -75,6 +75,10 @@ class AnswersController < ApplicationController
     #add new answer
     if !params[:answer].nil? && params[:answer][:options_for_collection] != "" && !params[:answer][:options_for_collection].nil?
       if (!user_signed_in?)
+
+        @winston = User.new(email: "winston@arima.io")
+        UserMailer.signup_admin(@winston, "Saw the sign up modal").deliver!
+
         cookies[:signup] = 1
         cookies[:q] = @question.id
         cookies[:answer] = params[:answer][:options_for_collection]
@@ -172,6 +176,10 @@ class AnswersController < ApplicationController
     if !params[:answer].nil? && params[:answer][:options_for_collection] != ""
 
       if (!user_signed_in?)
+
+        @winston = User.new(email: "winston@arima.io")
+        UserMailer.signup_admin(@winston, "Saw the sign up modal").deliver!
+
         cookies[:signup] = 1
         cookies[:q] = @question.id
         cookies[:answer] = params[:answer][:options_for_collection]
@@ -231,7 +239,7 @@ class AnswersController < ApplicationController
     end
 
   end
-  
+
   def add_comment
     @question = Question.where(id: params[:question_id]).first
 
