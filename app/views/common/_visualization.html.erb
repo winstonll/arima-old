@@ -235,6 +235,9 @@
       columns: transform_data_answer(data_answer.selected),
       type: data_answer.collection ? 'donut' : 'bar'
     },
+    legend: {
+        show: false,
+    },
     axis: {
       x: {
         label: {
@@ -260,7 +263,7 @@
         }
       },
       contents: function (d, defaultTitleFormat, defaultValueFormat, color) {
-        d.forEach(function(el){ el.name = el.value })
+        d.forEach(function(el){ el.name = el.name })
         return this.getTooltipContent ?
           this.getTooltipContent(d, defaultTitleFormat, defaultValueFormat, color) : '';
       }
