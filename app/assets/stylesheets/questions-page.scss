@@ -339,8 +339,6 @@
       .options {
         position: relative;
         text-align: justify;
-        -moz-column-count: 2;
-        -webkit-column-count: 2;
         width: 50em;
         right: 2em;
 
@@ -354,7 +352,7 @@
           margin-top: 5px;
           padding: 8px 22px 8px 22px;
           position: relative;
-          width: 30em;
+          width: 40em;
           height: 2em;
 
           input{
