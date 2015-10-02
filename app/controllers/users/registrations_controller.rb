@@ -31,6 +31,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
         @opinion = Opinion.new(question_id: @question.id, tag_id: @tag.id, user_id: cookies[:guest])
         @opinion.save!
       else
+        @question.options_for_collection = @question.options_for_collection + "|#{cookies[:answer]}"
+        @question.save
         @answer = Answer.new(value: cookies[:answer], question_id: cookies[:q], user_id: cookies[:guest])
         @answer.save
       end
