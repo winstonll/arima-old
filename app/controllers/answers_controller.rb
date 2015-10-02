@@ -76,8 +76,9 @@ class AnswersController < ApplicationController
     if !params[:answer].nil? && params[:answer][:options_for_collection] != "" && !params[:answer][:options_for_collection].nil?
       if (!user_signed_in?)
 
+        @user = User.where(id: cookies[:guest]).first
         @winston = User.new(email: "winston@arima.io")
-        UserMailer.signup_admin(@winston, "Saw the sign up modal").deliver!
+        UserMailer.signup_admin(@winston, @user).deliver!
 
         cookies[:signup] = 1
         cookies[:q] = @question.id
@@ -177,8 +178,9 @@ class AnswersController < ApplicationController
 
       if (!user_signed_in?)
 
+        @user = User.where(id: cookies[:guest]).first
         @winston = User.new(email: "winston@arima.io")
-        UserMailer.signup_admin(@winston, "Saw the sign up modal").deliver!
+        UserMailer.signup_admin(@winston, @user).deliver!
 
         cookies[:signup] = 1
         cookies[:q] = @question.id
