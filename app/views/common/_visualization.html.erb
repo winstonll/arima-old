@@ -236,7 +236,11 @@
       type: data_answer.collection ? 'donut' : 'bar'
     },
     legend: {
-        show: false,
+        show: true,
+        position: 'inset',
+        inset: {
+                anchor: 'bottom-left'
+            },
     },
     axis: {
       x: {
