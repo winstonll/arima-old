@@ -3,18 +3,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     check_guest()
 
-    # if !params[:trick_user].nil?
+    if !params[:trick_user].nil?
 
-    #   if params[:generated_username].nil? && params[:user][:username].empty?
-    #     redirect_to :back
-    #     return false
-    #   end
+      if params[:generated_username].nil? && params[:user][:username].empty?
+        redirect_to :back
+        return false
+      end
 
-    #   @user = User.where(id: cookies[:guest]).first
-    #   @user.first_name = nil
-    #   @user.password = '123456'
-    #   params[:generated_username].nil?  || params[:generated_username].empty? ? @user.username = params[:user][:username] : @user.username = params[:generated_username]
-    #   @user.save
+      @user = User.where(id: cookies[:guest]).first
+      @user.first_name = nil
+      @user.password = '123456'
+      params[:generated_username].nil?  || params[:generated_username].empty? ? @user.username = params[:user][:username] : @user.username = params[:generated_username]
+      @user.save
 
       @question = Question.where(id: cookies[:q]).first
       if @question.shared_image
