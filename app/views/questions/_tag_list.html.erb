@@ -123,44 +123,12 @@ $(document).ready(function() {
                   <%= f.radio_button :value, tag.label, :class=>"form-radio"%>
                   <%="#{tag.label}"%>
                     <progress class= "progress" value="<%=@tag_count%>" max="30" style="display: block; margin-top: 2.5px;"></progress>
-                    <% if @tag_count.between? 0, 9 %>
+                    <% if request.xhr? %>
                       <span class="tag-count">
-                      <% if request.xhr? %>
                         <%= @tag_count %>
-                      <% end %>
-                        <%= image_tag(("egg.gif"), :style => "margin-bottom: -10px; height: 32px; width: 32px;")%>
                       </span>
-                    <% end %>
-                    <% if @tag_count.between? 10, 19 %>
+                    <% else %>
                       <span class="tag-count">
-                      <% if request.xhr? %>
-                        <%= @tag_count %>
-                      <% end %>
-                        <a href="http://pokemondb.net/pokedex/charmander"><img src="http://img.pokemondb.net/sprites/black-white/anim/normal/charmander.gif" alt="Charmander"></a>
-                      </span>
-                    <% end %>
-                    <% if @tag_count.between? 20, 29 %>
-                      <span class="tag-count">
-                      <% if request.xhr? %>
-                        <%= @tag_count %>
-                      <% end %>
-                        <a href="http://pokemondb.net/pokedex/charmeleon"><img src="http://img.pokemondb.net/sprites/black-white/anim/normal/charmeleon.gif" alt="Charmeleon"></a>
-                      </span>
-                    <% end %>
-                    <% if @tag_count.between? 30, 39 %>
-                      <span class="tag-count">
-                      <% if request.xhr? %>
-                        <%= @tag_count %>
-                      <% end %>
-                        <a href="http://pokemondb.net/pokedex/charizard"><img src="http://img.pokemondb.net/sprites/black-white/anim/normal/charizard.gif" alt="Charizard"></a>
-                      </span>
-                    <% end %>
-                    <% if @tag_count.between? 40, 100 %>
-                      <span class="tag-count">
-                      <% if request.xhr? %>
-                        <%= @tag_count %>
-                      <% end %>
-                        <%= image_tag(("megazard.gif"), :style => "margin-bottom: -10px; height: 32px; width: 32px;")%>
                       </span>
                     <% end %>
                 </label>
