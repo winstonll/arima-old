@@ -15,7 +15,7 @@
 <script>
 $(document).ready(function() {
 
-  $("a").click(function() {
+  $("#view-map-link").click(function() {
     console.log("here");
     $('html, body').animate({ scrollTop:$("#view_map").offset().top}, 500);
   });
@@ -147,7 +147,7 @@ $(document).ready(function() {
       <% else %>
         <div id="view_map" class="disablemap">
       <% end %>
-            <%= link_to "See Where Voters Are From", remote: true, controller: "answers", action: "view_map", :question => @question%>
+            <%= link_to "See Where Voters Are From", {remote: true, controller: "answers", action: "view_map", :question => @question}, id: "view-map-link" %>
         </div>
 
 

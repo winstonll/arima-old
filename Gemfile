@@ -41,6 +41,8 @@ gem 'omniauth-linkedin'
 
 gem 'pointpin', '~> 1.0.0'
 
+gem 'recaptcha', :require => 'recaptcha/rails'
+
 gem 'geoip2'
 gem 'chartkick'
 gem 'geocoder'

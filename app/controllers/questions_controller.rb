@@ -189,8 +189,9 @@ class QuestionsController < ApplicationController
   # Method that is called when a question is created
   def create
 
-    if(!user_signed_in?)
-      redirect_to "/users/sign_up"
+    if !verify_recaptcha
+      redirect_to :back
+      flash[:notice] = "Please verify that you are not a bot"
       return
     end
 

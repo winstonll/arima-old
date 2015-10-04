@@ -222,6 +222,7 @@ GEM
     rake (10.4.2)
     rash (0.4.0)
       hashie (~> 2.0.0)
+    recaptcha (0.4.0)
     ref (1.0.5)
     responders (1.1.2)
       railties (>= 3.2, < 4.2)
@@ -342,6 +343,7 @@ DEPENDENCIES
   pry-rails
   quiet_assets
   rails (= 4.1.0)
+  recaptcha
   rspec-rails (~> 3.0.0)
   rvm-capistrano
   sass-rails (~> 4.0.0)
