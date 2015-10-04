@@ -168,30 +168,30 @@ class AnswersController < ApplicationController
 
   def add_tag
 
-    cookies[:signup] = nil
-    cookies[:answer] = nil
-    cookies[:q] = nil
+    # cookies[:signup] = nil
+    # cookies[:answer] = nil
+    # cookies[:q] = nil
 
     @question = Question.where(id: params[:question_id]).first
 
     if !params[:answer].nil? && params[:answer][:options_for_collection] != ""
 
-      if (!user_signed_in?)
+      # if (!user_signed_in?)
 
-        @user = User.where(id: cookies[:guest]).first
-        @winston = User.new(email: "winston@arima.io")
-        UserMailer.signup_admin(@winston, @user).deliver!
+      #   @user = User.where(id: cookies[:guest]).first
+      #   @winston = User.new(email: "winston@arima.io")
+      #   UserMailer.signup_admin(@winston, @user).deliver!
 
-        cookies[:signup] = 1
-        cookies[:q] = @question.id
-        cookies[:answer] = params[:answer][:options_for_collection]
+      #   cookies[:signup] = 1
+      #   cookies[:q] = @question.id
+      #   cookies[:answer] = params[:answer][:options_for_collection]
 
-        respond_to do |format|
-          format.js
-        end
+      #   respond_to do |format|
+      #     format.js
+      #   end
 
-        return
-      end
+      #   return
+      # end
 
       if Tag.where(label: params[:answer][:options_for_collection], question_id: @question.id).first.nil?
         answer_user_id = user_signed_in? ? current_user.id : cookies[:guest]
