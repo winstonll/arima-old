@@ -20,17 +20,17 @@ $(document).ready(function() {
     $('html, body').animate({ scrollTop:$("#view_map").offset().top}, 500);
   });
 
-  $('input').click(function() {
-    if ($('input').is(':checked')){
-      $('#user_username')[0].value = "";
-    }
-  });
+  // $('input').click(function() {
+  //   if ($('input').is(':checked')){
+  //     $('#user_username')[0].value = "";
+  //   }
+  // });
 
-  $('#user_username').keyup(function() {
-    if($(this).val() != '') {
-      $("input").prop("checked", false)
-    }
-  });
+  // $('#user_username').keyup(function() {
+  //   if($(this).val() != '') {
+  //     $("input").prop("checked", false)
+  //   }
+  // });
 
   <%if user_signed_in?
         @liked_tag = Opinion.where(user_id: current_user.id, question_id: @question.id)

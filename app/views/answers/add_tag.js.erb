@@ -1,9 +1,3 @@
-<%if cookies[:signup] == 1%>
-  if ($('#otherInputBox')[0].children[1].children[0].value = "<%= cookies[:answer] %>") {
-    $('#missingInputSignup').modal('show');
-  }
-<%else%>
-
   $("#tag_list_container").html("<%= escape_javascript(render partial: '/questions/tag_list', locals: { question: @question} ) %>");
 
   <%@tag_array = Tag.where(question_id: @question.id).order(created_at: :asc)%>
@@ -60,7 +54,6 @@
     add_tag();
   <%#end%>
 **/
-<%end%>
 
 //var stateObj = { foo: "bar" };
 //history.pushState(stateObj, "page 2", "cat?group_id=<%#= cookies[:group_id]%>");
