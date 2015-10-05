@@ -212,7 +212,14 @@ $(document).ready(function() {
       <div style="width: 100%; text-align: center;">
         <section class="share-image-title"><%=@question.label %></section>
         <section class="question-author">
-          by <%= link_to User.where(id: @question.user_id).first.username, custom_show_path(:username => User.where(id: @question.user_id).first.username) %>
+          by
+          <%=
+          if User.where(id: @question.user_id).first.username.nil? || User.where(id: @question.user_id).first.username.empty?
+            "anonymous"
+          else
+            link_to User.where(id: @question.user_id).first.username, custom_show_path(:username => User.where(id: @question.user_id).first.username)
+          end
+           %>
           <%= link_to " #{@counter} users voted", { controller: "questions", action: "user_list_display", remote: true, :question => @question }, id: 'users_list' %>
         </section>
       </div>
