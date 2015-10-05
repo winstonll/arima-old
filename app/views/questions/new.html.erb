@@ -5,9 +5,9 @@
 <%#= stylesheet_link_tag "dropzone" %>
 
 <%= javascript_include_tag "jquery-ui-slider-pips" %>
+<script src='https://www.google.com/recaptcha/api.js'></script>
 <%#= javascript_include_tag "dropzone" %>
 </head>
-
 
 <script>
 
@@ -421,7 +421,9 @@
 
       </article>
 
-      <div style="clear: both;"></div>
+      <div style="clear: both; margin-bottom: 20px;"></div>
+
+      <%= recaptcha_tags  class: "captcha"%>
 
       <span class="modal-finished-container">
         <%= f.submit "Submit", class: "modal-finished-button", id: !params[:question].nil? ? "blue-button" : "orange-button" %>
@@ -436,6 +438,7 @@
     </section>
     <% end %>
 </section><!-- /.modal -->
+
 <%if params[:question].nil?
     cookies[:share] = 1
   end

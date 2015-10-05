@@ -189,8 +189,9 @@ class QuestionsController < ApplicationController
   # Method that is called when a question is created
   def create
 
-    if(!user_signed_in?)
-      redirect_to "/users/sign_up"
+    if !verify_recaptcha
+      redirect_to :back
+      flash[:notice] = "Please verify that you are not a bot"
       return
     end
 
@@ -265,12 +266,14 @@ class QuestionsController < ApplicationController
       return
     end
 
+    @user_created = user_signed_in? ? current_user.id : cookies[:guest]
+
     if params[:shared_image] == "true" && (params[:submit_question_name].length < 256) && params[:numeric_value] == "false"
 
       @subquestion = Question.create(
         :label => params[:submit_question_name].slice(0,1).capitalize + params[:submit_question_name].slice(1..-1),
         :group_id => params[:group_id],
-        :user_id => current_user.id,
+        :user_id => @user_created,
         :value_type => "tag", #params[:numeric_value] == "false" ? "collection" : "quantity"
         :options_for_collection => "",
         :answer_plus => true,
@@ -283,7 +286,7 @@ class QuestionsController < ApplicationController
       @subquestion = Question.create(
         :label => params[:submit_question_name].slice(0,1).capitalize + params[:submit_question_name].slice(1..-1),
         :group_id => params[:group_id],
-        :user_id => current_user.id,
+        :user_id => @user_created,
         :value_type => params[:numeric_value] == "false" ? "collection" : "quantity", #params[:numeric_value] == "false" ? "collection" : "quantity"
         :options_for_collection => @answerboxes,
         :answer_plus => true,
@@ -296,7 +299,7 @@ class QuestionsController < ApplicationController
       @subquestion = Question.create(
         :label => params[:submit_question_name].capitalize,
         :group_id => params[:group_id],
-        :user_id => current_user.id,
+        :user_id => @user_created,
         :value_type => params[:numeric_value] == "false" ? "collection" : "quantity", #params[:numeric_value] == "false" ? "collection" : "quantity"
         :options_for_collection => @answerboxes,
         :answer_plus => false,
@@ -311,8 +314,12 @@ class QuestionsController < ApplicationController
     end
 
     if @subquestion.valid?
-      current_user.points = current_user.points + 10
-      current_user.save
+      
+      @user = User.where(id: @user_created).first
+
+      @user.points = @user.points + 10
+      @user.save
+
       if(user_signed_in?)
         check_points_badge
         check_question_badge
