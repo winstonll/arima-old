@@ -12,6 +12,7 @@ class Question < ActiveRecord::Base
 
   # serialize :options_for_collection, Array
 
+  self.per_page = 15
 
   ALLOWED_TYPES = [
     "currency", "quantity", "length",
