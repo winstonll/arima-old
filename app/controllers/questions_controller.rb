@@ -59,6 +59,9 @@ class QuestionsController < ApplicationController
     @question = Question.where(slug: params[:question]).first
     @users_list = User.joins(:opinions).where("opinions.question_id = #{@question.id}").distinct
 
+    respond_to do |format|
+      format.js
+    end
   end
 
   def report
@@ -314,7 +317,7 @@ class QuestionsController < ApplicationController
     end
 
     if @subquestion.valid?
-      
+
       @user = User.where(id: @user_created).first
 
       @user.points = @user.points + 10
