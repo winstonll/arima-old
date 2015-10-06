@@ -69,14 +69,57 @@ $(document).ready(function() {
   </script>
 <% end %>
 <%# if flash[:share_answer_modal] && !user_signed_in? %>
-  <script>
+  <!--<script>
   //   $(document).ready(function() {
   //     setTimeout(function() {
   //       $('#shareSignupModal').modal('show');
   //     }, 10000);
   //   });
-  </script>
+  </script>-->
 <%# end %>
+
+<script type="text/javascript">
+  function FindPosition(oElement)
+    {
+    if(typeof( oElement.offsetParent ) != "undefined")
+      {
+        for(var posX = 0, posY = 0; oElement; oElement = oElement.offsetParent)
+        {
+          posX += oElement.offsetLeft;
+          posY += oElement.offsetTop;
+        }
+          return [ posX, posY ];
+        }
+        else
+        {
+          return [ oElement.x, oElement.y ];
+        }
+    }
+  function GetCoordinates(e)
+    {
+      var PosX = 0;
+      var PosY = 0;
+      var ImgPos;
+      ImgPos = FindPosition(myImg);
+      if (!e) var e = window.event;
+      if (e.pageX || e.pageY)
+      {
+        PosX = e.pageX;
+        PosY = e.pageY;
+      }
+      else if (e.clientX || e.clientY)
+        {
+          PosX = e.clientX + document.body.scrollLeft
+            + document.documentElement.scrollLeft;
+          PosY = e.clientY + document.body.scrollTop
+            + document.documentElement.scrollTop;
+        }
+      PosX = PosX - ImgPos[0];
+      PosY = PosY - ImgPos[1];
+      document.getElementById("x").innerHTML = PosX;
+      document.getElementById("y").innerHTML = PosY;
+  }
+</script>
 
 <%= render '/common/share_new_question_modal' %>
 <%#= render '/common/missing_input_signup'%>
@@ -202,8 +245,17 @@ $(document).ready(function() {
             <!--<a href="<%= img_path %>" data-featherlight="image">-->
               <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, alt:"image", class: "shared-photo", id: "lightbox") %>
             <!--</a>-->
+            <p>X:<span id="x"></span></p>
+            <p>Y:<span id="y"></span></p>
           <%end%>
         <%end%>
+          <script type="text/javascript">
+          <!--
+          var myImg = document.getElementById("lightbox");
+          myImg.onmousedown = GetCoordinates;
+          //-->
+          </script>
+          
       </center>
 
       <div style="clear:both;"></div>
