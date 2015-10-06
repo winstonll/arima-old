@@ -190,8 +190,12 @@ class AnswersController < ApplicationController
 
       if Tag.where(label: params[:answer][:options_for_collection], question_id: @question.id).first.nil?
         answer_user_id = user_signed_in? ? current_user.id : cookies[:guest]
-
-        @tag = Tag.new(label: params[:answer][:options_for_collection], question_id: @question.id, counter: 1)
+        puts "-----------!!!!"
+        puts params[:x_axis].to_f / params[:x_axis_max].to_f
+        @x = params[:x_axis].to_f / params[:x_axis_max].to_f
+        @y = params[:y_axis].to_f/params[:y_axis_max].to_f
+        @tag = Tag.new(label: params[:answer][:options_for_collection], question_id: @question.id,
+        counter: 1, x_ratio: @x, y_ratio: @y)
         @tag.save!
 
         @opinion = Opinion.new(question_id: @question.id, tag_id: @tag.id, user_id: answer_user_id)
