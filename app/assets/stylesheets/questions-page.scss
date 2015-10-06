@@ -102,7 +102,7 @@
 .shared-photo {
   position: relative;
   height: 55vh;
-  margin-bottom: 22px;
+  margin-bottom: 40px;
   cursor: crosshair;
 }
 
@@ -119,12 +119,10 @@
   font-size: 17px;
   position: relative;
   display: inline-block;
-  bottom: 10px;
 }
 
 .question-author {
   background-color: #F6F6F6;
-  margin-top: -.7em;
 
   .popover {
     display: inline-block;
@@ -163,10 +161,13 @@
 .image-frame {
   width: 100%;
   background-color: #F6F6F6;
-  padding-top: 20px;
   position: relative;
 
   .image-container {
+    padding-top: 40px;
+    &:hover {
+    background-color: black;
+    }
   }
 
   .share-icon-container {

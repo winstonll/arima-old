@@ -245,15 +245,13 @@ $(document).ready(function() {
             <!--<a href="<%= img_path %>" data-featherlight="image">-->
               <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, alt:"image", class: "shared-photo", id: "lightbox") %>
             <!--</a>-->
-            <p>X:<span id="x"></span></p>
-            <p>Y:<span id="y"></span></p>
           <%end%>
         <%end%>
+            <p>X:<span id="x"></span></p>
+            <p>Y:<span id="y"></span></p>
           <script type="text/javascript">
-          <!--
-          var myImg = document.getElementById("lightbox");
-          myImg.onmousedown = GetCoordinates;
-          //-->
+            var myImg = document.getElementById("lightbox");
+            myImg.onmousedown = GetCoordinates;
           </script>
           
       </center>
