@@ -138,6 +138,10 @@ $(document).ready(function() {
         <br>
         <div id="otherInputBox" >
             <%= hidden_field_tag 'question_id', @question.id %>
+            <%= hidden_field_tag 'x_axis' %>
+            <%= hidden_field_tag 'y_axis' %>
+            <%= hidden_field_tag 'x_axis_max' %>
+            <%= hidden_field_tag 'y_axis_max' %>
             <%= f.input(:options_for_collection, label: false,input_html:{value: nil, placeholder: "Add your own opinion to the list", class: "other-input-text", id:"other"}) %>
             <%= f.submit "Vote", class: "new-tag-submit" %>
         </div>

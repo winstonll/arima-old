@@ -118,6 +118,9 @@ $(document).ready(function() {
       PosY = PosY - ImgPos[1];
       document.getElementById("x").innerHTML = PosX;
       document.getElementById("y").innerHTML = PosY;
+
+      document.getElementById('x_axis').value = PosX;
+      document.getElementById('y_axis').value = PosY;
   }
 
 </script>
@@ -253,15 +256,19 @@ $(document).ready(function() {
           <script type="text/javascript">
             var myImg = document.getElementById("lightbox");
             myImg.onmousedown = GetCoordinates;
-            var img = document.getElementById('lightbox'); 
-              var xwidth = img.clientWidth;
-              var yheight = img.clientHeight;
-              $('#lightbox').click(function(){
-                  var cursorx = $('#x').text();
-                  var cursory = $('#y').text();
-              });
+            var img = document.getElementById('lightbox');
+            var xwidth = img.clientWidth;
+            var yheight = img.clientHeight;
+
+            $('#lightbox').click(function(){
+                document.getElementById('x_axis_max').value = xwidth;
+                document.getElementById('y_axis_max').value = yheight;
+
+                var cursorx = $('#x').text();
+                var cursory = $('#y').text();
+            });
           </script>
-          
+
       </center>
 
       <div style="clear:both;"></div>
