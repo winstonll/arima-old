@@ -199,9 +199,9 @@ $(document).ready(function() {
             <div class="hidden-xs" style="margin-left:150px;"></iframe><%= @question.image_link.html_safe%></div>
             <div class="visible-xs"><%= @question.image_link.html_safe%></div>
           <%else%>
-            <a href="<%= img_path %>" data-featherlight="image">
+            <!--<a href="<%= img_path %>" data-featherlight="image">-->
               <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, alt:"image", class: "shared-photo", id: "lightbox") %>
-            </a>
+            <!--</a>-->
           <%end%>
         <%end%>
       </center>
