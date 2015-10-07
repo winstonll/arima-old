@@ -1,14 +1,7 @@
 <% content_for :title, @question.label %>
 
-<%= stylesheet_link_tag "featherlight.min.css" %>
-<%= javascript_include_tag "featherlight" %>
-
-<%= stylesheet_link_tag "toastr.css" %>
-<%= javascript_include_tag "toastr" %>
-
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=visualization"></script>
 <%= javascript_include_tag "markerwithlabel" %>
-
 
 <% if @question == nil %>
 <% @question = Question.where(slug: params[:id])[0] %>
