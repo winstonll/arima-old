@@ -3,10 +3,6 @@
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=visualization"></script>
 <%= javascript_include_tag "markerwithlabel" %>
 
-<% if @question == nil %>
-<% @question = Question.where(slug: params[:id])[0] %>
-<% end %>
-
 <%@tag_array = Tag.where(question_id: @question.id).order(created_at: :asc)%>
 
 <script>
