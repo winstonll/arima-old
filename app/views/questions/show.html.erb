@@ -9,11 +9,6 @@
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=visualization"></script>
 <%= javascript_include_tag "markerwithlabel" %>
 
-
-<% if @question == nil %>
-<% @question = Question.where(slug: params[:id])[0] %>
-<% end %>
-
 <%@tag_array = Tag.where(question_id: @question.id).order(created_at: :asc)%>
 
 <script>
@@ -66,6 +61,7 @@ $(document).ready(function() {
   $('#answer_value').on('input', function() {
     $('.modal-button').prop('disabled', !(this.value.length > 0));
   });
+
   <%if @question.image_link.nil? %>
     $(".question-title").css("width", "60%");
     $(".answer-counter").css("width", "80%");
