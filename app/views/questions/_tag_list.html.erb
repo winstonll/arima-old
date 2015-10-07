@@ -25,7 +25,7 @@ $(document).ready(function() {
             var img = document.getElementById('lightbox');
             var xwidth = img.clientWidth;
             var yheight = img.clientHeight;
-          
+
 
   <%if user_signed_in?
         @liked_tag = Opinion.where(user_id: current_user.id, question_id: @question.id)
@@ -42,18 +42,6 @@ $(document).ready(function() {
       end
     %>
 
-    <%if !@liked_tag_array.nil?%>
-      <%@liked_tag_array.each do |tag|%>
-        var index = 0
-        for(index; index <= <%= @tag_array.length - 1%>; index++){
-          if ($('.form-radio')[index].value == "<%= tag %>"){
-            $('.form-radio')[index].offsetParent.style.color = "#419BF9 ";
-          }
-        }
-      <%end%>
-    <%end%>
-
-  $('.new-tag-submit').prop('disabled', true);
 
   $('#other').keyup(function() {
    inspectAllInputFields();
