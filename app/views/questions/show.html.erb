@@ -53,6 +53,19 @@ $(document).ready(function() {
 });
 </script>
 
+<script type="text/javascript">
+  var myImg = document.getElementById("lightbox");
+  myImg.onmousedown = GetCoordinates;
+  var img = document.getElementById('lightbox');
+  var xwidth = img.clientWidth;
+  var yheight = img.clientHeight;
+
+  $('#lightbox').click(function(){
+      document.getElementById('x_axis_max').value = xwidth;
+      document.getElementById('y_axis_max').value = yheight;
+  });
+</script>
+
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -233,6 +246,8 @@ $(document).ready(function() {
     </div>
   </div>
 
+
+
 <%elsif @question.shared_image && @question.value_type == "tag"%>
   <div class="share-image-container" style="margin-left: 200px;">
     <div class="image-frame">
@@ -249,18 +264,9 @@ $(document).ready(function() {
           <%end%>
         <%end%>
 
-          <script type="text/javascript">
-            var myImg = document.getElementById("lightbox");
-            myImg.onmousedown = GetCoordinates;
-            var img = document.getElementById('lightbox');
-            var xwidth = img.clientWidth;
-            var yheight = img.clientHeight;
-
-            $('#lightbox').click(function(){
-                document.getElementById('x_axis_max').value = xwidth;
-                document.getElementById('y_axis_max').value = yheight;
-            });
-          </script>
+        <div class="hidden-xs" style="height: 80vh; width: 300px; display: inline-block; overflow: scroll; position: relative; top: 240px;">
+          <%= render partial: "tag_list"%>
+        </div>
 
       </div>
 
@@ -295,15 +301,15 @@ $(document).ready(function() {
           <%= link_to " #{@counter} users voted", { controller: "questions", action: "user_list_display", remote: true, :question => @question }, id: 'users_list' %>
         </section>
       </div>
-      <%if !@question.shared_image.nil? && @question.shared_image %>
-        <div id="tag_list_container" style="background-color: #F6F6F6;">
-          <%= render partial: "tag_list"%>
-        </div>
-      <%elsif !@question.shared_image.nil? && !@question.shared_image%>
-        <%= render partial: 'questions/answer_input', locals: { question: @question, answer: @answer} %>
-      <%end%>
+      
+      <div id="tag_list_container" style="background-color: #F6F6F6;">
+        <%= render partial: "tag_list"%>
+      </div>
+
     </div>
   </div>
+
+
 <%else %>
   <div id="<%= @question.image_link.nil? ? "question_poll" : "image_poll" %>">
     <center>
