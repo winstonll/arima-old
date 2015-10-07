@@ -237,9 +237,9 @@ $(document).ready(function() {
   </div>
 
 <%elsif @question.shared_image && @question.value_type == "tag"%>
-  <div class="share-image-container">
+  <div class="share-image-container" style="margin-left: 200px;">
     <div class="image-frame">
-      <center class="image-container">
+      <div class="image-container">
         <%if !@question.image_link.nil?%>
           <%img_path = "/system/uploads/" + @question.image_link%>
           <%if !@question.image_link.nil? && @question.image_link[0] == "<"%>
@@ -265,11 +265,25 @@ $(document).ready(function() {
             });
           </script>
 
-      </center>
+      </div>
 
       <div style="clear:both;"></div>
 
       <!--<a href="<%= feed_path %>" class="feed-link hidden-xs"><div id="back-to-feed-button"><%= image_tag("Back-Arrow.png", class: "feed-back-arrow", width: "19", height: "9")%><font class="feed-back-title">Back to Home Feed</font></div></a>-->
+
+      <div style="width: 100%" class="hidden">
+        <section class="share-icon-container" style="float: right;" class="hidden-xs">
+          <%= render partial: "questions/share", locals: {
+              id: @question.id,
+              url: "#{request.protocol}#{request.host_with_port}" + question_path(@question),
+              title: "#{@question.label[0..70]}...",
+              image: "#{request.protocol}#{request.host_with_port}" + question_path(@question)
+            }%>
+        </section>
+      </div>
+    </div>
+
+    <div id="tag_show_mobile" class="visible-xs">
       <div style="width: 100%; text-align: center;">
         <section class="share-image-title"><%=@question.label %></section>
         <section class="question-author">
@@ -284,18 +298,6 @@ $(document).ready(function() {
           <%= link_to " #{@counter} users voted", { controller: "questions", action: "user_list_display", remote: true, :question => @question }, id: 'users_list' %>
         </section>
       </div>
-      <div style="width: 100%" class="hidden">
-        <section class="share-icon-container" style="float: right;" class="hidden-xs">
-          <%= render partial: "questions/share", locals: {
-              id: @question.id,
-              url: "#{request.protocol}#{request.host_with_port}" + question_path(@question),
-              title: "#{@question.label[0..70]}...",
-              image: "#{request.protocol}#{request.host_with_port}" + question_path(@question)
-            }%>
-        </section>
-      </div>
-  </div>
-    <center id="tag_show">
       <%if !@question.shared_image.nil? && @question.shared_image %>
         <div id="tag_list_container" style="background-color: #F6F6F6;">
           <%= render partial: "tag_list"%>
@@ -303,8 +305,8 @@ $(document).ready(function() {
       <%elsif !@question.shared_image.nil? && !@question.shared_image%>
         <%= render partial: 'questions/answer_input', locals: { question: @question, answer: @answer} %>
       <%end%>
-    </center>
-
+    </div>
+  </div>
 <%else %>
   <div id="<%= @question.image_link.nil? ? "question_poll" : "image_poll" %>">
     <center>
