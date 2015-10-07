@@ -107,7 +107,7 @@ $(document).ready(function() {
 <% @answer = user_signed_in? ? @question.answers.build(user_id: current_user.id) : @question.answers.build(user_id: cookies[:guest]) %>
 <% end %>
 
-<div class="wrapper background-container">
+<div class="wrapper background-container visible-xs">
   <div class="wrapper center-container">
     <div class="tag-prompt">
 
