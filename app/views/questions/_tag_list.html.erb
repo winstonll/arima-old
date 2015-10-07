@@ -64,20 +64,20 @@ $(document).ready(function() {
    inspectAllInputFields();
   });
 
-  $('input').click(function() {
-    if ($('input').is(':checked')){
-      $('.modal-button').removeAttr('disabled');
-      $('#otherInputBox')[0].children[1].children[0].value = "";
-    }
+  // $('input').click(function() {
+  //   if ($('input').is(':checked')){
+  //     $('.modal-button').removeAttr('disabled');
+  //     $('#otherInputBox')[0].children[1].children[0].value = "";
+  //   }
 
-  })
+  // })
 
-  $('#other').keyup(function() {
-    if($(this).val() != '') {
-      $('.modal-button').removeAttr('disabled');
-      $("input").prop("checked", false)
-    }
-  });
+  // $('#other').keyup(function() {
+  //   if($(this).val() != '') {
+  //     $('.modal-button').removeAttr('disabled');
+  //     $("input").prop("checked", false)
+  //   }
+  // });
 
   function inspectAllInputFields(){
      var count = 0;
@@ -107,12 +107,20 @@ $(document).ready(function() {
 <% @answer = user_signed_in? ? @question.answers.build(user_id: current_user.id) : @question.answers.build(user_id: cookies[:guest]) %>
 <% end %>
 
-<div class="wrapper background-container visible-xs">
+<div class="wrapper background-container">
   <div class="wrapper center-container">
     <div class="tag-prompt">
 
       <%= simple_form_for @answer,:url => {:action => "add_tag", :controller => "answers"}, class: "form-inline", role: "form", html: {novalidate: true}, :remote => true do |f| %>
-      <!-- <div class="liner-title">What people say about this image:</div> -->
+
+        <%if !@tag_array.nil?  %>
+          <% @tag_array.each do |tag|%>
+            <% @tag_count = tag.counter %>
+            <%= f.radio_button :value, tag.label%>
+            <%="#{tag.label}"%>
+          <%end%>
+        <% end %>
+
 
         <div class="options">
             <%if !@tag_array.nil?  %>
