@@ -20,17 +20,12 @@ $(document).ready(function() {
     $('html, body').animate({ scrollTop:$("#view_map").offset().top}, 500);
   });
 
-  // $('input').click(function() {
-  //   if ($('input').is(':checked')){
-  //     $('#user_username')[0].value = "";
-  //   }
-  // });
-
-  // $('#user_username').keyup(function() {
-  //   if($(this).val() != '') {
-  //     $("input").prop("checked", false)
-  //   }
-  // });
+  var myImg = document.getElementById("lightbox");
+            myImg.onmousedown = GetCoordinates;
+            var img = document.getElementById('lightbox');
+            var xwidth = img.clientWidth;
+            var yheight = img.clientHeight;
+          
 
   <%if user_signed_in?
         @liked_tag = Opinion.where(user_id: current_user.id, question_id: @question.id)
@@ -116,8 +111,10 @@ $(document).ready(function() {
         <%if !@tag_array.nil?  %>
           <% @tag_array.each do |tag|%>
             <% @tag_count = tag.counter %>
+            <label>
             <%= f.radio_button :value, tag.label%>
             <%="#{tag.label}"%>
+            </label>
           <%end%>
         <% end %>
 
