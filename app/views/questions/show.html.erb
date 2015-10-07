@@ -258,13 +258,11 @@ $(document).ready(function() {
             <div class="hidden-xs" style="margin-left:150px;"></iframe><%= @question.image_link.html_safe%></div>
             <div class="visible-xs"><%= @question.image_link.html_safe%></div>
           <%else%>
-            <!--<a href="<%= img_path %>" data-featherlight="image">-->
-              <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, alt:"image", class: "shared-photo", id: "lightbox") %>
-            <!--</a>-->
+            <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, alt:"image", class: "shared-photo", id: "lightbox") %>
           <%end%>
         <%end%>
 
-        <div class="hidden-xs" style="height: 80vh; width: 300px; display: inline-block; overflow: scroll; position: relative; top: 240px;">
+        <div class="hidden" style="height: 80vh; width: 300px; display: inline-block; overflow: scroll; position: relative; top: 240px;">
           <%= render partial: "tag_list"%>
         </div>
 
@@ -272,9 +270,7 @@ $(document).ready(function() {
 
       <div style="clear:both;"></div>
 
-      <!--<a href="<%= feed_path %>" class="feed-link hidden-xs"><div id="back-to-feed-button"><%= image_tag("Back-Arrow.png", class: "feed-back-arrow", width: "19", height: "9")%><font class="feed-back-title">Back to Home Feed</font></div></a>-->
-
-      <div style="width: 100%" class="hidden">
+      <div class="hidden">
         <section class="share-icon-container" style="float: right;" class="hidden-xs">
           <%= render partial: "questions/share", locals: {
               id: @question.id,
@@ -301,7 +297,7 @@ $(document).ready(function() {
           <%= link_to " #{@counter} users voted", { controller: "questions", action: "user_list_display", remote: true, :question => @question }, id: 'users_list' %>
         </section>
       </div>
-      
+
       <div id="tag_list_container" style="background-color: #F6F6F6;">
         <%= render partial: "tag_list"%>
       </div>
