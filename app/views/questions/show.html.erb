@@ -191,6 +191,21 @@ $(document).ready(function() {
 
 
 <%elsif @question.shared_image && @question.value_type == "tag"%>
+  <section class="share-image-title">
+    <%=@question.label %>
+    <span class="question-author">
+    by
+    <%=
+    if User.where(id: @question.user_id).first.username.nil? || User.where(id: @question.user_id).first.username.empty?
+      "anonymous"
+    else
+      link_to User.where(id: @question.user_id).first.username, custom_show_path(:username => User.where(id: @question.user_id).first.username)
+    end
+     %>
+   </span>
+    <%= link_to " #{@counter} users voted", { controller: "questions", action: "user_list_display", remote: true, :question => @question }, id: 'users_list' %>
+  </section>
+
   <div class="share-image-container">
     <div class="image-frame">
       <div class="image-container">
@@ -218,10 +233,6 @@ $(document).ready(function() {
           });
         </script>
 
-        <div class="hidden" style="height: 80vh; width: 300px; display: inline-block; overflow: scroll; position: relative; top: 240px;">
-          <%= render partial: "tag_list"%>
-        </div>
-
       </div>
 
       <div style="clear:both;"></div>
@@ -239,18 +250,6 @@ $(document).ready(function() {
 
       <div id="tag_show_mobile">
         <div style="width: 100%; text-align: center;">
-          <section class="share-image-title"><%=@question.label %></section>
-          <section class="question-author">
-            by
-            <%=
-            if User.where(id: @question.user_id).first.username.nil? || User.where(id: @question.user_id).first.username.empty?
-              "anonymous"
-            else
-              link_to User.where(id: @question.user_id).first.username, custom_show_path(:username => User.where(id: @question.user_id).first.username)
-            end
-             %>
-            <%= link_to " #{@counter} users voted", { controller: "questions", action: "user_list_display", remote: true, :question => @question }, id: 'users_list' %>
-          </section>
         </div>
 
         <div id="tag_list_container" style="background-color: #F6F6F6;">
