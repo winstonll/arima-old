@@ -95,20 +95,9 @@ $(document).ready(function() {
   <div class="wrapper center-container">
     <div class="tag-prompt">
 
-      <%= simple_form_for @answer,:url => {:action => "add_tag", :controller => "answers"}, class: "form-inline", role: "form", html: {novalidate: true}, :remote => true do |f| %>
-
-        <%if !@tag_array.nil?  %>
-          <% @tag_array.each do |tag|%>
-            <% @tag_count = tag.counter %>
-            <label>
-            <%= f.radio_button :value, tag.label%>
-            <%="#{tag.label}"%>
-            </label>
-          <%end%>
-        <% end %>
-
 
         <div class="options">
+          <%= simple_form_for @answer,:url => {:action => "add_tag", :controller => "answers"}, class: "form-inline", role: "form", html: {novalidate: true}, :remote => true do |f| %>
             <%if !@tag_array.nil?  %>
 
                 <% @tag_array.each do |tag|%>
