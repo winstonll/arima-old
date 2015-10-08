@@ -2,8 +2,6 @@
 
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=visualization"></script>
 <%= javascript_include_tag "markerwithlabel" %>
-<%= javascript_include_tag "jquery.taggd.js" %>
-<%= stylesheet_link_tag "taggd.css" %>
 
 <%@tag_array = Tag.where(question_id: @question.id).order(created_at: :asc)%>
 
@@ -42,66 +40,11 @@ function GetCoordinates(e){
 
     PosX = PosX - ImgPos[0];
     PosY = PosY - ImgPos[1];
-    $('#x_axis')[0].value = PosX;
-    $('#y_axis')[0].value = PosY;
-    $('#x_axis_max')[0].value = myImg.clientWidth;
-    $('#y_axis_max')[0].value = myImg.clientHeight;
-    console.log(PosX);
-    console.log($('#x_axis')[0].value);
+    $('#x_axis').value = PosX;
+    $('#y_axis').value = PosY;
 }
 
 $(document).ready(function() {
-  var options = {
-    // Aligning the text popups
-    align: {
-      x: 'center', // left, center or right
-      y: 'center'  // top,  center or bottom
-    },
-    offset: {
-      left: 0, // horizontal offset
-      top: 12  // vertical offset
-    },
-    handlers: {
-
-    // Any vanilla JavaScript event is a valid key
-    click: function(e) {
-      alert('You clicked a button');
-
-      this; // the DOM Node
-      e;    // the Event
-    },
-      // For convenience, you can use strings to
-      // show, hide and toggle the popups
-      mouseenter: 'show',
-      mouseleave: 'hide'
-    }
-  };
-
-  var data = [
-    <% @tag_array.each do |tag|%>
-    // x and y values can be decimals (0-1)
-    {
-      x: <%= tag.x_ratio %>,
-      y: <%= tag.y_ratio %>,
-
-      // (Optional) Set the text of the popup.
-      // If omitted, no popup window will appear.
-      text: 'Huey',
-    },
-    <%end%>
-
-    // x and y values can be in pixels too
-    // Don’t you worry, they will scale perfectly
-    {
-      x: 0.745,
-      y: 0.36,
-      text: 'Duwey'
-    }
-  ];
-
-  $('.shared-photo').taggd( options, data );
-
-  $('.share-image-container').css('width',img.clientWidth + 'px');
 
   $('#answer_value').on('change', function() {
     $('.modal-button').prop('disabled', !(this.value.length > 0));
@@ -282,6 +225,10 @@ $(document).ready(function() {
           var xwidth = img.clientWidth;
           var yheight = img.clientHeight;
 
+          $('#lightbox').click(function(){
+              document.getElementById('x_axis_max').value = xwidth;
+              document.getElementById('y_axis_max').value = yheight;
+          });
         </script>
 
       </div>
