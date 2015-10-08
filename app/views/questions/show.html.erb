@@ -13,7 +13,6 @@ function FindPosition(oElement){
       posX += oElement.offsetLeft;
       posY += oElement.offsetTop;
     }
-    console.log(posX);
     return [ posX, posY ];
   }
   else{
@@ -41,7 +40,6 @@ function GetCoordinates(e){
 
     PosX = PosX - ImgPos[0];
     PosY = PosY - ImgPos[1];
-    console.log(PosX);
     $('#x_axis').value = PosX;
     $('#y_axis').value = PosY;
 }
