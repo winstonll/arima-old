@@ -232,19 +232,40 @@ $(document).ready(function() {
         </script>
 
       </div>
-      <div class="tool-bar">tttt</div>
-      <div style="clear:both;"></div>
+      <div class="tool-bar">
+        <div>
+          <section class="share-icon-container" class="hidden-xs">
+            <%= render partial: "questions/share", locals: {
+                id: @question.id,
+                url: "#{request.protocol}#{request.host_with_port}" + question_path(@question),
+                title: "#{@question.label[0..70]}...",
+                image: "#{request.protocol}#{request.host_with_port}" + question_path(@question)
+              }%>
+          </section>
 
-      <div class="hidden">
-        <section class="share-icon-container" style="float: right;" class="hidden-xs">
-          <%= render partial: "questions/share", locals: {
-              id: @question.id,
-              url: "#{request.protocol}#{request.host_with_port}" + question_path(@question),
-              title: "#{@question.label[0..70]}...",
-              image: "#{request.protocol}#{request.host_with_port}" + question_path(@question)
-            }%>
-        </section>
+          <span>Click anywhere on the image to add a tag comment </span>
+
+          <%= link_to image_tag("Tag.png", size: "20x20") + "  10 Tags", categories_path, class: "" %>
+
+          <a href="<%= feed_path %>" class="show-tag">
+            <div>
+              <%= image_tag("Show_Tag.png", class: "", width: "15", height: "10")%>
+              <font class="">Show All Tags</font>
+            </div>
+          </a>
+
+          <a href="<%= feed_path %>" class="hide-tag">
+            <div>
+              <%= image_tag("Hide_Tag.png", class: "", width: "15", height: "10")%>
+              <font class="">Hide All Tags</font>
+            </div>
+          </a>
+
+          <%= link_to image_tag("Enlarge.png", size: "25x25"), categories_path, class: "enlarge-icon" %>
+
+        </div>
       </div>
+      <div style="clear:both;"></div>
 
       <div id="tag_show_mobile">
         <div style="width: 100%; text-align: center;">
