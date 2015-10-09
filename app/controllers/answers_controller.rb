@@ -161,6 +161,10 @@ class AnswersController < ApplicationController
     end
   end
 
+  def vote_tag
+
+  end
+
   def add_tag
 
     # cookies[:signup] = nil
