@@ -63,17 +63,17 @@ function doSetTimeout(id, label, x, y, multiplier) {
     $('#image-question-container')[0].appendChild(iDiv);
     $(iDiv).show('slow');
 
-  }, multiplier * 2000);
+  }, multiplier * 1000);
 }
 
 $(document).ready(function() {
 
-  var time_multiplier = 2;
+  var time_multiplier = 3;
 
   <%if !@tags_array.empty?%>
     <%@tags_array.each do |tag|%>
       doSetTimeout("<%= tag.id%>", "<%= tag.label%>", <%= tag.x_ratio%>, <%= tag.y_ratio%>, time_multiplier)
-      time_multiplier = time_multiplier + 2;
+      time_multiplier = time_multiplier + 3;
     <%end%>
   <%end%>
 
