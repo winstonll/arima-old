@@ -40,11 +40,29 @@ function GetCoordinates(e){
 
     PosX = PosX - ImgPos[0];
     PosY = PosY - ImgPos[1];
-    $('#x_axis').value = PosX;
-    $('#y_axis').value = PosY;
+    $('#x_axis')[0].value = PosX;
+    $('#y_axis')[0].value = PosY;
+    $('#x_axis_max')[0].value = myImg.clientWidth;
+    $('#y_axis_max')[0].value = myImg.clientHeight;
 }
 
 $(document).ready(function() {
+
+  var iDiv;
+  var photograph = $('.shared-photo')[0]
+
+  <%@tags_array.each do |tag|%>
+    iDiv = document.createElement('span')
+    iDiv.id = "<%= "tag#{tag.id}" %>";
+    iDiv.className = 'tag';
+    iDiv.innerHTML = "<%= tag.label%>";
+    iDiv.style.top = String($('.shared-photo').offset().top + (photograph.clientHeight * <%= tag.y_ratio%>)) + "px";
+    iDiv.style.left = String($('.shared-photo').offset().left + (photograph.clientWidth * <%= tag.x_ratio%>)) + "px";
+    iDiv.x_ratio = <%= tag.x_ratio%>;
+    iDiv.y_ratio = <%= tag.y_ratio%>;
+
+    $('#image-question-container')[0].appendChild(iDiv);
+  <%end%>
 
   $('#answer_value').on('change', function() {
     $('.modal-button').prop('disabled', !(this.value.length > 0));
@@ -57,6 +75,13 @@ $(document).ready(function() {
     $(".question-title").css("width", "60%");
     $(".answer-counter").css("width", "80%");
   <%end%>
+
+  $( window ).resize(function() {
+    for(i = 0; i < $('.tag').length; i++){
+      $('.tag')[i].style.top = String($('.shared-photo').offset().top + ($('.shared-photo')[0].clientHeight * $('.tag')[i].y_ratio)) + "px";
+      $('.tag')[i].style.left = String($('.shared-photo').offset().left + ($('.shared-photo')[0].clientWidth * $('.tag')[i].x_ratio)) + "px";
+    }
+  });
 
 });
 </script>
@@ -189,20 +214,7 @@ $(document).ready(function() {
 
 
 <%elsif @question.shared_image && @question.value_type == "tag"%>
-  <section class="share-image-title">
-    <%=@question.label %>
-    <span class="question-author">
-    by
-    <%=
-    if User.where(id: @question.user_id).first.username.nil? || User.where(id: @question.user_id).first.username.empty?
-      "anonymous"
-    else
-      link_to User.where(id: @question.user_id).first.username, custom_show_path(:username => User.where(id: @question.user_id).first.username)
-    end
-     %>
-   </span>
-    <%= link_to " #{@counter} users voted", { controller: "questions", action: "user_list_display", remote: true, :question => @question }, id: 'users_list' %>
-  </section>
+<div id="image-question-container">
 
   <div class="share-image-container">
     <div class="image-frame">
@@ -225,10 +237,6 @@ $(document).ready(function() {
           var xwidth = img.clientWidth;
           var yheight = img.clientHeight;
 
-          $('#lightbox').click(function(){
-              document.getElementById('x_axis_max').value = xwidth;
-              document.getElementById('y_axis_max').value = yheight;
-          });
         </script>
 
       </div>
@@ -265,6 +273,22 @@ $(document).ready(function() {
 
         </div>
       </div>
+
+      <section class="share-image-title">
+        <%=@question.label %>
+        <span class="question-author">
+        by
+        <%=
+        if User.where(id: @question.user_id).first.username.nil? || User.where(id: @question.user_id).first.username.empty?
+          "anonymous"
+        else
+          link_to User.where(id: @question.user_id).first.username, custom_show_path(:username => User.where(id: @question.user_id).first.username)
+        end
+         %>
+       </span>
+        <%= link_to " #{@counter} users voted", { controller: "questions", action: "user_list_display", remote: true, :question => @question }, id: 'users_list' %>
+      </section>
+
       <div style="clear:both;"></div>
 
       <div id="tag_show_mobile">
@@ -278,7 +302,7 @@ $(document).ready(function() {
       </div>
     </div>
   </div>
-
+</div>
 
 <%else %>
   <div id="<%= @question.image_link.nil? ? "question_poll" : "image_poll" %>">

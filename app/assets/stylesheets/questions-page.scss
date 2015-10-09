@@ -1,3 +1,7 @@
+#image-question-container {
+  padding-top: 20px;
+}
+
 .share-image-container {
   position: relative;
   background-color: #1C1C1C;
@@ -35,6 +39,16 @@
       top: 2px;
     }
   }
+}
+
+.tag {
+  z-index: 1200;
+  color: white;
+  position: absolute;
+  word-wrap: break-word;
+  border-radius: 3px;
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .tool-bar {
