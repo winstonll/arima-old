@@ -46,22 +46,33 @@ function GetCoordinates(e){
     $('#y_axis_max')[0].value = myImg.clientHeight;
 }
 
-$(document).ready(function() {
-
-  var iDiv;
-  var photograph = $('.shared-photo')[0]
-
-  <%@tags_array.each do |tag|%>
+function doSetTimeout(id, label, x, y, multiplier) {
+  setTimeout(function(){
+    var iDiv;
     iDiv = document.createElement('span')
-    iDiv.id = "<%= "tag#{tag.id}" %>";
+    iDiv.id = "tag-" + id;
     iDiv.className = 'tag';
-    iDiv.innerHTML = "<%= tag.label%>";
-    iDiv.style.top = String($('.shared-photo').offset().top + (photograph.clientHeight * <%= tag.y_ratio%>)) + "px";
-    iDiv.style.left = String($('.shared-photo').offset().left + (photograph.clientWidth * <%= tag.x_ratio%>)) + "px";
-    iDiv.x_ratio = <%= tag.x_ratio%>;
-    iDiv.y_ratio = <%= tag.y_ratio%>;
+    iDiv.innerHTML = label;
+    iDiv.style.top = String($('.shared-photo').offset().top + ($('.shared-photo')[0].clientHeight * y)) + "px";
+    iDiv.style.left = String($('.shared-photo').offset().left + ($('.shared-photo')[0].clientWidth * x)) + "px";
+    iDiv.x_ratio = x;
+    iDiv.y_ratio = y;
 
     $('#image-question-container')[0].appendChild(iDiv);
+    console.log("here");
+
+  }, multiplier * 2000);
+}
+
+$(document).ready(function() {
+
+  var time_multiplier = 2;
+
+  <%if !@tags_array.empty?%>
+    <%@tags_array.each do |tag|%>
+      doSetTimeout("<%= tag.id%>", "<%= tag.label%>", <%= tag.x_ratio%>, <%= tag.y_ratio%>, time_multiplier)
+      time_multiplier = time_multiplier + 2;
+    <%end%>
   <%end%>
 
   $('#answer_value').on('change', function() {
