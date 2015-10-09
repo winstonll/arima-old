@@ -254,37 +254,29 @@ $(document).ready(function() {
 
       </div>
       <div class="tool-bar">
-        <div>
-          <section class="share-icon-container" class="hidden-xs">
+          <span class="share-icon-container" class="hidden-xs">
             <%= render partial: "questions/share", locals: {
                 id: @question.id,
                 url: "#{request.protocol}#{request.host_with_port}" + question_path(@question),
                 title: "#{@question.label[0..70]}...",
                 image: "#{request.protocol}#{request.host_with_port}" + question_path(@question)
               }%>
-          </section>
-
-          <span>Click anywhere on the image to add a tag comment </span>
-
-          <%= link_to image_tag("Tag.png", size: "20x20") + "  10 Tags", categories_path, class: "" %>
-
-          <a href="<%= feed_path %>" class="show-tag">
-            <div>
-              <%= image_tag("Show_Tag.png", class: "", width: "15", height: "10")%>
-              <font class="">Show All Tags</font>
-            </div>
-          </a>
-
-          <a href="<%= feed_path %>" class="hide-tag">
-            <div>
-              <%= image_tag("Hide_Tag.png", class: "", width: "15", height: "10")%>
-              <font class="">Hide All Tags</font>
-            </div>
-          </a>
-
+          </span>
+          <span class="instructag">Click anywhere on the image to add a tag comment </span>
+          <span class="tagcount">
+            <%= image_tag("Tag.png", size: "25x25")%>
+            <%= @tag_array.count%> Tags
+          </span>
+          <span>
+          <%= link_to image_tag("Show_Tag.png", size: "15x10") + "  Show ALl Tags", categories_path, class: "show-tag" %>
+          </span>
+          <span>
+          <%= link_to image_tag("Hide_Tag.png", size: "15x10") + "  Hide All Tags", categories_path, class: "hide-tag" %>
+          </span>
+          <span>
           <%= link_to image_tag("Enlarge.png", size: "25x25"), categories_path, class: "enlarge-icon" %>
+          </span>
 
-        </div>
       </div>
 
       <section class="share-image-title">

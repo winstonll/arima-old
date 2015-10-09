@@ -33,14 +33,7 @@
       }
     }
 
-    .share-icon-container {
-      display: inline-block;
-      position: relative;
-      top: 2px;
-    }
-  }
-}
-
+    
 .tag {
   z-index: 1200;
   color: white;
@@ -52,36 +45,44 @@
   display: none;
 }
 
-.tool-bar {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: white;
-  display: inline-block;
-  height: 32px;
-
-  .show-tag{
-    color: white;
+  .tool-bar {
+    width: 100%;
+    margin-top: 10px;
+    margin-right: auto;
+    background-color: white;
     display: inline-block;
-    background-color: #419BF9;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    padding-right: 12px;
-    padding-left: 12px;
-    font-size: 12px;
-  }
+    height: 32px;
 
-  .hide-tag {
-    background-color: #7ED321;
-    color: white;
-    display: inline-block;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    padding-right: 12px;
-    padding-left: 12px;
-    font-size: 12px;
+      .share-icon-container {
+      }
+
+      .instructag {
+        font-weight: 600; 
+        position: relative;
+      }
+
+      .tagcount {
+        font-weight: 600;
+        color: #419BF9;
+      }
+
+      .show-tag{
+        color: white;
+        background-color: #419BF9;
+        padding: 8px 12px 8px 12px;
+        font-size: 12px;
+      }
+
+      .hide-tag {
+        background-color: #7ED321;
+        color: white;
+        padding: 8px 12px 8px 12px;
+        font-size: 12px;
+      }
+    }
   }
 }
+
 
 .question-author {
   font-weight: 500;
@@ -995,11 +996,11 @@
 
 @media screen and (max-width: 1200px) {
   .show-tag {
-    display: none !important;
+    #display: none !important;
   }
 
   .hide-tag {
-    display: none !important;
+    #display: none !important;
   }
 
   .enlarge-icon {
