@@ -59,7 +59,7 @@ function doSetTimeout(id, label, x, y, multiplier) {
     iDiv.y_ratio = y;
 
     $('#image-question-container')[0].appendChild(iDiv);
-    console.log("here");
+    $(iDiv).show('slow');
 
   }, multiplier * 2000);
 }
