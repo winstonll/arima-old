@@ -162,7 +162,9 @@ class AnswersController < ApplicationController
   end
 
   def vote_tag
-
+    respond_to do |format|
+      format.js
+    end
   end
 
   def add_tag

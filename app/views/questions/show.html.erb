@@ -6,6 +6,9 @@
 <%@tag_array = Tag.where(question_id: @question.id).order(created_at: :asc)%>
 
 <script>
+var iDiv = document.createElement('a');
+
+
 
 function FindPosition(oElement){
   if(typeof( oElement.offsetParent ) != "undefined"){
@@ -50,23 +53,27 @@ function doSetTimeout(id, label, x, y, multiplier) {
   setTimeout(function(){
     var iDiv;
 
-    iDiv = document.createElement('a');
-    iDiv.id = "tag-" + id;
-    iDiv.className = 'tag';
-    iDiv.innerHTML = label;
-    iDiv.href = "/categories";
-    iDiv.style.top = String($('.shared-photo').offset().top + ($('.shared-photo')[0].clientHeight * y)) + "px";
-    iDiv.style.left = String($('.shared-photo').offset().left + ($('.shared-photo')[0].clientWidth * x)) + "px";
-    iDiv.x_ratio = x;
-    iDiv.y_ratio = y;
+    iDiv = $('<%= link_to "TEST", upvote_question_path(:id => @question.id), :method => :get, :remote => true, class: "tag" %>');
+    iDiv[0].id = "tag-" + id;
+    iDiv[0].className = 'tag';
+    iDiv[0].innerHTML = label;
+    iDiv[0].href = "/vote_tag";
+    iDiv[0].style.top = String($('.shared-photo').offset().top + ($('.shared-photo')[0].clientHeight * y)) + "px";
+    iDiv[0].style.left = String($('.shared-photo').offset().left + ($('.shared-photo')[0].clientWidth * x)) + "px";
+    iDiv[0].x_ratio = x;
+    iDiv[0].y_ratio = y;
 
-    $('#image-question-container')[0].appendChild(iDiv);
+    $('#image-question-container')[0].appendChild(iDiv[0]);
     $(iDiv).show('slow');
 
   }, multiplier * 1000);
 }
 
 $(document).ready(function() {
+
+  var br= $('<%= link_to "TEST", upvote_question_path(:id => @question.id), :method => :put, :remote => true, class: "tag-test" %>');
+
+  $('#image-question-container')[0].appendChild(br[0]);
 
   var time_multiplier = 3;
 
