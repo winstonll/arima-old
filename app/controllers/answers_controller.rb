@@ -163,7 +163,7 @@ class AnswersController < ApplicationController
 
   def vote_tag
 
-    @tags_array = Tag.where(question_id: @question.id)
+    @tags_array = Tag.where(question_id: params[:question])
 
     respond_to do |format|
       format.js
