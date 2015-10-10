@@ -162,6 +162,9 @@ class AnswersController < ApplicationController
   end
 
   def vote_tag
+
+    @tags_array = Tag.where(question_id: @question.id)
+
     respond_to do |format|
       format.js
     end

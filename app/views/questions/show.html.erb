@@ -6,9 +6,6 @@
 <%@tag_array = Tag.where(question_id: @question.id).order(created_at: :asc)%>
 
 <script>
-var iDiv = document.createElement('a');
-
-
 
 function FindPosition(oElement){
   if(typeof( oElement.offsetParent ) != "undefined"){
@@ -71,15 +68,11 @@ function doSetTimeout(id, label, x, y, multiplier) {
 
 $(document).ready(function() {
 
-  var br= $('<%= link_to "TEST", upvote_question_path(:id => @question.id), :method => :put, :remote => true, class: "tag-test" %>');
-
-  $('#image-question-container')[0].appendChild(br[0]);
-
   var time_multiplier = 3;
 
   <%if !@tags_array.empty?%>
     <%@tags_array.each do |tag|%>
-      doSetTimeout("<%= tag.id%>", "<%= tag.label%>", <%= tag.x_ratio%>, <%= tag.y_ratio%>, time_multiplier)
+      doSetTimeout("<%= tag.id%>", "<%= tag.label%>", <%= tag.x_ratio%>, <%= tag.y_ratio%>, time_multiplier);
       time_multiplier = time_multiplier + 3;
     <%end%>
   <%end%>
@@ -308,7 +301,7 @@ $(document).ready(function() {
         </div>
 
         <div id="tag_list_container" style="background-color: #F6F6F6;">
-          <%= render partial: "tag_list"%>
+          <%#= render partial: "tag_list"%>
         </div>
 
       </div>
