@@ -1,59 +1,20 @@
-  $("#tag_list_container").html("<%= escape_javascript(render partial: '/questions/tag_list', locals: { question: @question} ) %>");
+$(document).ready(function() {
+  var iDiv;
+  iDiv = $('<%= link_to "TEST", upvote_question_path(:id => @question.id), :method => :get, :remote => true, class: "tag" %>');
+  iDiv[0].id = "tag-" + <%= @tag.id%>;
+  iDiv[0].className = 'tag';
+  iDiv[0].innerHTML =
+  '<span style="position: relative; display: inline-block;">\
+  <%= image_tag("arrow_up_clicked.png", alt:"image", size:"15x15", class:"up-arrow")%>\
+  <span style="position: relative; margin-right: 15px; font-weight: 500;">' + "<%= @tag.counter%>" + '</span></span>'  + "<%= @tag.label%>";
+  iDiv[0].style.color = "#88FFF4";
+  iDiv[0].href = "/vote_tag?question=<%=@question.id%>&tag_clicked=" + "<%= @tag.id %>";
+  iDiv[0].style.top = String($('.shared-photo').offset().top + ($('.shared-photo')[0].clientHeight * <%= @tag.y_ratio%>)) + "px";
+  iDiv[0].style.left = String($('.shared-photo').offset().left + ($('.shared-photo')[0].clientWidth * <%= @tag.x_ratio%>)) + "px";
+  iDiv[0].x_ratio = <%= @tag.y_ratio%>;
+  iDiv[0].y_ratio = <%= @tag.y_ratio%>;
 
-  <%@tag_array = Tag.where(question_id: @question.id).order(created_at: :asc)%>
+  $('#image-question-container')[0].appendChild(iDiv[0]);
+  $(iDiv).show('slow');
 
-  <%if user_signed_in?
-      @liked_tag = Opinion.where(user_id: current_user.id, question_id: @question.id)
-      @liked_tag_array = Array.new()
-      @liked_tag.each do |tagId|
-        @liked_tag_array << Tag.where(question_id: @question.id, id: tagId.tag_id).first.label
-      end
-    else
-      @liked_tag = Opinion.where(user_id: cookies[:guest], question_id: @question.id)
-      @liked_tag_array = Array.new()
-      @liked_tag.each do |tagId|
-        @liked_tag_array << Tag.where(question_id: @question.id, id: tagId.tag_id).first.label
-      end
-    end
-  %>
-
-  <%if !@liked_tag_array.nil?%>
-    <%@liked_tag_array.each do |tag|%>
-      index = 0
-      for(index; index <= <%= @tag_array.length - 1%>; index++){
-        if ($('.form-radio')[index].value == "<%= tag %>"){
-          $('.form-radio')[index].offsetParent.style.color = "#419BF9";
-          $('.form-radio')[index].nextElementSibling.onmouseout = null
-          $('.form-radio')[index].nextElementSibling.onmouseover = null
-        }
-      }
-    <%end%>
-  <%end%>
-
-/**
-  <%# @latest_tag = Opinion.where(user_id: user_signed_in? ? current_user.id : cookies[:guest], question_id: @question.id).order("created_at").last%>
-
-  <%#
-    opinion = Opinion.new
-    loc_arr = opinion.user_lat_long_all(@question.id)
-  %>
-  <%# @voted = Opinion.where(user_id: user_signed_in? ? current_user.id : cookies[:guest], question_id: @question.id).count == 1%>
-  <%# @clean = Opinion.where(user_id: user_signed_in? ? current_user.id : cookies[:guest], question_id: @question.id).count == 0%>
-  <%# puts @voted%>
-  <%# puts @clean%>
-  <%#if @voted %>
-    document.getElementById("map-canvas").style.display = 'block';
-    document.getElementById("blurred-map").style.display = 'none';
-
-    //initialize("<%= @latest_tag.nil? ? -1 : Tag.where(id: @latest_tag.tag_id).first.label %>");
-    initialize("");
-    add_tag();
-  <%#elsif @clean%>
-    initialize(-1);
-  <%#else%>
-    add_tag();
-  <%#end%>
-**/
-
-//var stateObj = { foo: "bar" };
-//history.pushState(stateObj, "page 2", "cat?group_id=<%#= cookies[:group_id]%>");
+});
