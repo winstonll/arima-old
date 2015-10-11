@@ -50,37 +50,41 @@ function GetCoordinates(e){
     $('#comment-input')[0].style.display = "block";
 }
 
-function doSetTimeout(id, label, x, y, multiplier, counter, selected) {
+function doSetTimeout(tag, multiplier) {
   setTimeout(function(){
-    var iDiv;
-
-    iDiv = $('<%= link_to "TEST", upvote_question_path(:id => @question.id), :method => :get, :remote => true, class: "tag" %>');
-    iDiv[0].id = "tag-" + id;
-    iDiv[0].className = 'tag';
-    if(!selected){
-      iDiv[0].innerHTML =
-      '<span style="position: relative; display: inline-block;">\
-      <%= image_tag("arrow_up_clicked.png", alt:"image", size:"15x15", class:"up-arrow")%>\
-      <span style="position: relative; margin-right: 15px; font-weight: 500;">' + counter + '</span></span>'  + label;
-      iDiv[0].style.color = "#88FFF4";
-    }
-    else {
-      iDiv[0].innerHTML =
-      '<span style="position: relative; display: inline-block;">\
-      <%= image_tag("arrow_up.png", alt:"image", size:"15x15", class:"up-arrow")%>\
-      <span style="position: relative; margin-right: 15px; font-weight: 500;">' + counter + '</span></span>'  + label;
-      iDiv[0].style.color = "white";
-    }
-    iDiv[0].href = "/vote_tag?question=<%=@question.id%>&tag_clicked=" + id;
-    iDiv[0].style.top = String($('.shared-photo').offset().top + ($('.shared-photo')[0].clientHeight * y)) + "px";
-    iDiv[0].style.left = String($('.shared-photo').offset().left + ($('.shared-photo')[0].clientWidth * x)) + "px";
-    iDiv[0].x_ratio = x;
-    iDiv[0].y_ratio = y;
-
-    $('#image-question-container')[0].appendChild(iDiv[0]);
-    $(iDiv).show('slow');
+    console.log("here");
+    $(tag).show('slow');
 
   }, multiplier * 1000);
+}
+
+function create_tags(id, label, x, y, counter, selected) {
+  var iDiv;
+
+  iDiv = $('<%= link_to "TEST", upvote_question_path(:id => @question.id), :method => :get, :remote => true, class: "tag" %>');
+  iDiv[0].id = "tag-" + id;
+  iDiv[0].className = 'tag';
+  if(!selected){
+    iDiv[0].innerHTML =
+    '<span style="position: relative; display: inline-block;">\
+    <%= image_tag("arrow_up_clicked.png", alt:"image", size:"15x15", class:"up-arrow")%>\
+    <span style="position: relative; margin-right: 15px; font-weight: 500;">' + counter + '</span></span>'  + label;
+    iDiv[0].style.color = "#88FFF4";
+  }
+  else {
+    iDiv[0].innerHTML =
+    '<span style="position: relative; display: inline-block;">\
+    <%= image_tag("arrow_up.png", alt:"image", size:"15x15", class:"up-arrow")%>\
+    <span style="position: relative; margin-right: 15px; font-weight: 500;">' + counter + '</span></span>'  + label;
+    iDiv[0].style.color = "white";
+  }
+  iDiv[0].href = "/vote_tag?question=<%=@question.id%>&tag_clicked=" + id;
+  iDiv[0].style.top = String($('.shared-photo').offset().top + ($('.shared-photo')[0].clientHeight * y)) + "px";
+  iDiv[0].style.left = String($('.shared-photo').offset().left + ($('.shared-photo')[0].clientWidth * x)) + "px";
+  iDiv[0].x_ratio = x;
+  iDiv[0].y_ratio = y;
+
+  $('#image-question-container')[0].appendChild(iDiv[0]);
 }
 
 $(document).ready(function() {
@@ -90,10 +94,15 @@ $(document).ready(function() {
   <%if !@tags_array.empty?%>
     <%@tags_array.each do |tag|%>
       <%= @selected = Opinion.where(tag_id: tag.id, user_id: user_signed_in? ? current_user.id : cookies[:guest]).first.nil? %>
-      doSetTimeout("<%= tag.id%>", "<%= tag.label%>", <%= tag.x_ratio%>, <%= tag.y_ratio%>, time_multiplier, <%= tag.counter%>, <%= @selected%>);
-      time_multiplier = time_multiplier + 3;
+      create_tags("<%= tag.id%>", "<%= tag.label%>", <%= tag.x_ratio%>, <%= tag.y_ratio%>, <%= tag.counter%>, <%= @selected%>);
     <%end%>
   <%end%>
+
+  for(i = 0; i < $('.tag').length; i++){
+    console.log("there");
+    doSetTimeout($('.tag')[i], time_multiplier);
+    time_multiplier = time_multiplier + 3;
+  }
 
   $('#answer_value').on('change', function() {
     $('.modal-button').prop('disabled', !(this.value.length > 0));
