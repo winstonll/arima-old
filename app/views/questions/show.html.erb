@@ -46,18 +46,30 @@ function GetCoordinates(e){
     $('#y_axis_max')[0].value = myImg.clientHeight;
 }
 
-function doSetTimeout(id, label, x, y, multiplier, counter) {
+function doSetTimeout(id, label, x, y, multiplier, counter, selected) {
   setTimeout(function(){
     var iDiv;
 
+    console
     iDiv = $('<%= link_to "TEST", upvote_question_path(:id => @question.id), :method => :get, :remote => true, class: "tag" %>');
     iDiv[0].id = "tag-" + id;
     iDiv[0].className = 'tag';
-    iDiv[0].innerHTML = '<div style="width: 10px;">\
-    <div style="width: 20px; position: relative; display: inline-block;">\
-    <%= image_tag("upvote.png", alt:"image", size:"20x20")%></div> \
-    <div style="width: 20px; position: relative; display: inline-block; margin-left: 6.5px; bottom: 8px;">' + counter + '</div>\
-    </div>' + '<span style="clear: both; position:relative;">' + label + '</span>';
+    if(!selected){
+      iDiv[0].innerHTML = '<div style="width: 10px;">\
+      <div style="width: 20px; position: relative; display: inline-block;">\
+      <%= image_tag("upvote_blue.png", alt:"image", size:"20x20")%></div> \
+      <div style="width: 20px; position: relative; display: inline-block; margin-left: 6.5px; bottom: 8px;">' + counter + '</div>\
+      </div>' + '<span style="clear: both; position:relative;">' + label + '</span>';
+      iDiv[0].style.color = "#428bca";
+    }
+    else {
+      iDiv[0].innerHTML = '<div style="width: 10px;">\
+      <div style="width: 20px; position: relative; display: inline-block;">\
+      <%= image_tag("upvote.png", alt:"image", size:"20x20")%></div> \
+      <div style="width: 20px; position: relative; display: inline-block; margin-left: 6.5px; bottom: 8px;">' + counter + '</div>\
+      </div>' + '<span style="clear: both; position:relative;">' + label + '</span>';
+      iDiv[0].style.color = "white";
+    }
     iDiv[0].href = "/vote_tag?question=<%=@question.id%>&tag_clicked=" + id;
     iDiv[0].style.top = String($('.shared-photo').offset().top + ($('.shared-photo')[0].clientHeight * y)) + "px";
     iDiv[0].style.left = String($('.shared-photo').offset().left + ($('.shared-photo')[0].clientWidth * x)) + "px";
@@ -76,7 +88,8 @@ $(document).ready(function() {
 
   <%if !@tags_array.empty?%>
     <%@tags_array.each do |tag|%>
-      doSetTimeout("<%= tag.id%>", "<%= tag.label%>", <%= tag.x_ratio%>, <%= tag.y_ratio%>, time_multiplier, <%= tag.counter%>);
+      <%= @selected = Opinion.where(tag_id: tag.id, user_id: user_signed_in? ? current_user.id : cookies[:guest]).first.nil? %>
+      doSetTimeout("<%= tag.id%>", "<%= tag.label%>", <%= tag.x_ratio%>, <%= tag.y_ratio%>, time_multiplier, <%= tag.counter%>, <%= @selected%>);
       time_multiplier = time_multiplier + 3;
     <%end%>
   <%end%>
