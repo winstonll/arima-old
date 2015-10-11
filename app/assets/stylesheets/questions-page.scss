@@ -1,7 +1,10 @@
 #image-question-container {
   padding-top: 20px;
 }
-
+.up-arrow {
+  position: relative;
+  bottom: 3px;
+}
 .tag {
   z-index: 1500;
   position: absolute;
