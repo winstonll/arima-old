@@ -1,0 +1,4 @@
+$(document).ready(function() {
+  $("<%= "#tag-#{@tag_clicked}"%>")[0].style.color = "#428bca";
+  $("<%= "#tag-#{@tag_clicked}"%>")[0].innerHTML = '<%= image_tag("upvote_blue.png", alt:"image", size:"20x20")%>' + '<%= @tag.label%>';
+});

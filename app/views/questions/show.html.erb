@@ -53,7 +53,7 @@ function doSetTimeout(id, label, x, y, multiplier) {
     iDiv = $('<%= link_to "TEST", upvote_question_path(:id => @question.id), :method => :get, :remote => true, class: "tag" %>');
     iDiv[0].id = "tag-" + id;
     iDiv[0].className = 'tag';
-    iDiv[0].innerHTML = label;
+    iDiv[0].innerHTML = '<%= image_tag("upvote.png", alt:"image", size:"20x20")%>' + label;
     iDiv[0].href = "/vote_tag?question=<%=@question.id%>&tag_clicked=" + id;
     iDiv[0].style.top = String($('.shared-photo').offset().top + ($('.shared-photo')[0].clientHeight * y)) + "px";
     iDiv[0].style.left = String($('.shared-photo').offset().left + ($('.shared-photo')[0].clientWidth * x)) + "px";
