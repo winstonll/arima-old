@@ -4,14 +4,14 @@ $(document).ready(function() {
     $("<%= "#tag-#{@tag_clicked}"%>")[0].innerHTML =
     '<span style="position: relative; display: inline-block;">\
     <%= image_tag("arrow_up_clicked.png", alt:"image", size:"20x20")%>\
-    <span style="position: relative; margin-right: 10px;">' + '<%= @tag.counter%>' + '</span></span>'  + '<%= @tag.label%>';
+    <span style="position: relative; margin-right: 15px;">' + '<%= @tag.counter%>' + '</span></span>'  + '<%= @tag.label%>';
 
   <%else%>
     $("<%= "#tag-#{@tag_clicked}"%>")[0].style.color = "white";
     $("<%= "#tag-#{@tag_clicked}"%>")[0].innerHTML =
     '<span style="position: relative; display: inline-block;">\
     <%= image_tag("arrow_up.png", alt:"image", size:"20x20")%>\
-    <span style="position: relative; margin-right: 10px;">' + '<%= @tag.counter%>' + '</span></span>'  + '<%= @tag.label%>';
+    <span style="position: relative; margin-right: 15px;">' + '<%= @tag.counter%>' + '</span></span>'  + '<%= @tag.label%>';
 
   <%end%>
 });
