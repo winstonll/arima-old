@@ -7,6 +7,8 @@
 
 <script>
 
+var timeout_function;
+
 function FindPosition(oElement){
   if(typeof( oElement.offsetParent ) != "undefined"){
     for(var posX = 0, posY = 0; oElement; oElement = oElement.offsetParent){
@@ -51,7 +53,7 @@ function GetCoordinates(e){
 }
 
 function doSetTimeout(tag, multiplier) {
-  setTimeout(function(){
+  timeout_function = setTimeout(function(){
     $(tag).show('slow');
 
   }, multiplier * 1000);
@@ -84,6 +86,22 @@ function create_tags(id, label, x, y, counter, selected) {
   iDiv[0].y_ratio = y;
 
   $('#image-question-container')[0].appendChild(iDiv[0]);
+}
+
+function show_all(){
+  clearTimeout(timeout_function);
+
+  for(i = 0; i < $('.tag').length; i++){
+    $($('.tag')[i]).show('slow');
+  }
+}
+
+function hide_all(){
+  clearTimeout(timeout_function);
+
+  for(i = 0; i < $('.tag').length; i++){
+    $('.tag')[i].style.display = "none";
+  }
 }
 
 $(document).ready(function() {
@@ -320,13 +338,13 @@ $(document).ready(function() {
             <%= @tag_array.count%> Tags
           </span>
           <span>
-          <%= link_to image_tag("Show_Tag.png", size: "15x10") + "  Show ALl Tags", categories_path, class: "show-tag" %>
+            <a href="#" onclick="show_all();" class="show-tag"><%= image_tag("Show_Tag.png", size: "15x10") + "  Show ALl Tags"%></a>
           </span>
           <span>
-          <%= link_to image_tag("Hide_Tag.png", size: "15x10") + "  Hide All Tags", categories_path, class: "hide-tag" %>
+            <a href="#" onclick="hide_all();" class="hide-tag"><%= image_tag("Hide_Tag.png", size: "15x10") + "  Hide All Tags"%></a>
           </span>
           <span>
-          <%= link_to image_tag("Enlarge.png", size: "25x25"), categories_path, class: "enlarge-icon" %>
+            <%= link_to image_tag("Enlarge.png", size: "25x25"), categories_path, class: "enlarge-icon" %>
           </span>
 
       </div>
