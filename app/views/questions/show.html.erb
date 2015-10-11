@@ -52,7 +52,6 @@ function GetCoordinates(e){
 
 function doSetTimeout(tag, multiplier) {
   setTimeout(function(){
-    console.log("here");
     $(tag).show('slow');
 
   }, multiplier * 1000);
@@ -99,7 +98,6 @@ $(document).ready(function() {
   <%end%>
 
   for(i = 0; i < $('.tag').length; i++){
-    console.log("there");
     doSetTimeout($('.tag')[i], time_multiplier);
     time_multiplier = time_multiplier + 3;
   }
