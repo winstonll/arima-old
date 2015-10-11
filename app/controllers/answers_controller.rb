@@ -174,11 +174,15 @@ class AnswersController < ApplicationController
 
       @opinion = Opinion.new(tag_id: @tag.id, user_id: @user_id, question_id: params[:question])
       @opinion.save
+
+      @voted = true
     else
       @opinion = Opinion.where(tag_id: @tag.id, user_id: @user_id).first
       @tag.counter = @tag.counter - 1
       @tag.save
       @opinion.destroy!
+
+      @voted = false
     end
 
     respond_to do |format|

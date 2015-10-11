@@ -46,14 +46,18 @@ function GetCoordinates(e){
     $('#y_axis_max')[0].value = myImg.clientHeight;
 }
 
-function doSetTimeout(id, label, x, y, multiplier) {
+function doSetTimeout(id, label, x, y, multiplier, counter) {
   setTimeout(function(){
     var iDiv;
 
     iDiv = $('<%= link_to "TEST", upvote_question_path(:id => @question.id), :method => :get, :remote => true, class: "tag" %>');
     iDiv[0].id = "tag-" + id;
     iDiv[0].className = 'tag';
-    iDiv[0].innerHTML = '<%= image_tag("upvote.png", alt:"image", size:"20x20")%>' + label;
+    iDiv[0].innerHTML = '<div style="width: 10px;">\
+    <div style="width: 20px; position: relative; display: inline-block;">\
+    <%= image_tag("upvote.png", alt:"image", size:"20x20")%></div> \
+    <div style="width: 20px; position: relative; display: inline-block; margin-left: 6.5px; bottom: 8px;">' + counter + '</div>\
+    </div>' + '<span style="clear: both; position:relative;">' + label + '</span>';
     iDiv[0].href = "/vote_tag?question=<%=@question.id%>&tag_clicked=" + id;
     iDiv[0].style.top = String($('.shared-photo').offset().top + ($('.shared-photo')[0].clientHeight * y)) + "px";
     iDiv[0].style.left = String($('.shared-photo').offset().left + ($('.shared-photo')[0].clientWidth * x)) + "px";
@@ -72,7 +76,7 @@ $(document).ready(function() {
 
   <%if !@tags_array.empty?%>
     <%@tags_array.each do |tag|%>
-      doSetTimeout("<%= tag.id%>", "<%= tag.label%>", <%= tag.x_ratio%>, <%= tag.y_ratio%>, time_multiplier);
+      doSetTimeout("<%= tag.id%>", "<%= tag.label%>", <%= tag.x_ratio%>, <%= tag.y_ratio%>, time_multiplier, <%= tag.counter%>);
       time_multiplier = time_multiplier + 3;
     <%end%>
   <%end%>

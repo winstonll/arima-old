@@ -1,4 +1,18 @@
 $(document).ready(function() {
-  $("<%= "#tag-#{@tag_clicked}"%>")[0].style.color = "#428bca";
-  $("<%= "#tag-#{@tag_clicked}"%>")[0].innerHTML = '<%= image_tag("upvote_blue.png", alt:"image", size:"20x20")%>' + '<%= @tag.label%>';
+  <%if @voted%>
+    $("<%= "#tag-#{@tag_clicked}"%>")[0].style.color = "#428bca";
+    $("<%= "#tag-#{@tag_clicked}"%>")[0].innerHTML = '<div style="width: 10px;">\
+    <div style="width: 20px; position: relative; display: inline-block;">\
+    <%= image_tag("upvote_blue.png", alt:"image", size:"20x20")%></div> \
+    <div style="width: 20px; position: relative; display: inline-block; margin-left: 6.5px; bottom: 8px;">' + '<%= @tag.counter%>' + '</div>\
+    </div>' + '<span style="clear: both; position:relative;">' + '<%= @tag.label%>' + '</span>';
+
+  <%else%>
+    $("<%= "#tag-#{@tag_clicked}"%>")[0].style.color = "white";
+    $("<%= "#tag-#{@tag_clicked}"%>")[0].innerHTML = '<div style="width: 10px;">\
+    <div style="width: 20px; position: relative; display: inline-block;">\
+    <%= image_tag("upvote.png", alt:"image", size:"20x20")%></div> \
+    <div style="width: 20px; position: relative; display: inline-block; margin-left: 6.5px; bottom: 8px;">' + '<%= @tag.counter%>' + '</div>\
+    </div>' + '<span style="clear: both; position:relative;">' + '<%= @tag.label%>' + '</span>';
+  <%end%>
 });
