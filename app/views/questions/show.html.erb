@@ -44,13 +44,16 @@ function GetCoordinates(e){
     $('#y_axis')[0].value = PosY;
     $('#x_axis_max')[0].value = myImg.clientWidth;
     $('#y_axis_max')[0].value = myImg.clientHeight;
+
+    $('#comment-input')[0].style.top = String($('.shared-photo').offset().top + PosY) + "px";
+    $('#comment-input')[0].style.left = String($('.shared-photo').offset().left + PosX) + "px";
+    $('#comment-input')[0].style.display = "block";
 }
 
 function doSetTimeout(id, label, x, y, multiplier, counter, selected) {
   setTimeout(function(){
     var iDiv;
 
-    console
     iDiv = $('<%= link_to "TEST", upvote_question_path(:id => @question.id), :method => :get, :remote => true, class: "tag" %>');
     iDiv[0].id = "tag-" + id;
     iDiv[0].className = 'tag';
@@ -243,6 +246,18 @@ $(document).ready(function() {
 
 <%elsif @question.shared_image && @question.value_type == "tag"%>
 <div id="image-question-container">
+<div>
+  <%= simple_form_for @answer,:url => {:action => "add_tag", :controller => "answers"}, class: "form-inline", role: "form", html: {novalidate: true}, :remote => true do |f| %>
+    <%= f.input(:options_for_collection, label: false,input_html:{value: nil, placeholder: "Add your own opinion to the list", class: "input-hidden", id:"comment-input"}) %>
+    <%= f.submit "Vote", class: "submit-hidden" %>
+  <% end %>
+
+  <%= hidden_field_tag 'question_id', @question.id %>
+  <%= hidden_field_tag 'x_axis' %>
+  <%= hidden_field_tag 'y_axis' %>
+  <%= hidden_field_tag 'x_axis_max' %>
+  <%= hidden_field_tag 'y_axis_max' %>
+</div>
 
   <div class="share-image-container">
     <div class="image-frame">

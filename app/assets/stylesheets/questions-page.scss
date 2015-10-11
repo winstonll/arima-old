@@ -5,6 +5,19 @@
   position: relative;
   bottom: 3px;
 }
+
+.submit-hidden {
+  display: none;
+}
+
+.input-hidden {
+  display: none;
+  z-index: 1600;
+  position: absolute;
+  border-radius: 7px;
+  padding: 5px;
+}
+
 .tag {
   z-index: 1500;
   position: absolute;
