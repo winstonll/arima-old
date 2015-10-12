@@ -1,43 +1,124 @@
 <% content_for :title, @question.label %>
 
-<%= stylesheet_link_tag "featherlight.min.css" %>
-<%= javascript_include_tag "featherlight" %>
-
-<%= stylesheet_link_tag "toastr.css" %>
-<%= javascript_include_tag "toastr" %>
-
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=visualization"></script>
 <%= javascript_include_tag "markerwithlabel" %>
-
-
-<% if @question == nil %>
-<% @question = Question.where(slug: params[:id])[0] %>
-<% end %>
 
 <%@tag_array = Tag.where(question_id: @question.id).order(created_at: :asc)%>
 
 <script>
+
+var timeout_function;
+
+function FindPosition(oElement){
+  if(typeof( oElement.offsetParent ) != "undefined"){
+    for(var posX = 0, posY = 0; oElement; oElement = oElement.offsetParent){
+      posX += oElement.offsetLeft;
+      posY += oElement.offsetTop;
+    }
+    return [ posX, posY ];
+  }
+  else{
+    return [ oElement.x, oElement.y ];
+  }
+}
+
+function GetCoordinates(e){
+    var PosX = 0;
+    var PosY = 0;
+    var ImgPos;
+    ImgPos = FindPosition(myImg);
+    if (!e) var e = window.event;
+    if (e.pageX || e.pageY){
+      PosX = e.pageX;
+      PosY = e.pageY;
+    }
+
+    else if (e.clientX || e.clientY){
+        PosX = e.clientX + document.body.scrollLeft
+          + document.documentElement.scrollLeft;
+        PosY = e.clientY + document.body.scrollTop
+          + document.documentElement.scrollTop;
+    }
+
+    PosX = PosX - ImgPos[0];
+    PosY = PosY - ImgPos[1];
+    $('#x_axis')[0].value = PosX;
+    $('#y_axis')[0].value = PosY;
+    $('#x_axis_max')[0].value = myImg.clientWidth;
+    $('#y_axis_max')[0].value = myImg.clientHeight;
+
+    $('#comment-input')[0].style.top = String($('.shared-photo').offset().top + PosY) + "px";
+    $('#comment-input')[0].style.left = String($('.shared-photo').offset().left + PosX) + "px";
+    $('#comment-input')[0].style.display = "block";
+}
+
+function doSetTimeout(tag, multiplier) {
+  timeout_function = setTimeout(function(){
+    $(tag).show('slow');
+
+  }, multiplier * 1000);
+}
+
+function create_tags(id, label, x, y, counter, selected) {
+  var iDiv;
+
+  iDiv = $('<%= link_to "TEST", upvote_question_path(:id => @question.id), :method => :get, :remote => true, class: "tag" %>');
+  iDiv[0].id = "tag-" + id;
+  iDiv[0].className = 'tag';
+  if(!selected){
+    iDiv[0].innerHTML =
+    '<span style="position: relative; display: inline-block;">\
+    <%= image_tag("arrow_up_clicked.png", alt:"image", size:"15x15", class:"up-arrow")%>\
+    <span style="position: relative; margin-right: 15px; font-weight: 500;">' + counter + '</span></span>'  + label;
+    iDiv[0].style.color = "#88FFF4";
+  }
+  else {
+    iDiv[0].innerHTML =
+    '<span style="position: relative; display: inline-block;">\
+    <%= image_tag("arrow_up.png", alt:"image", size:"15x15", class:"up-arrow")%>\
+    <span style="position: relative; margin-right: 15px; font-weight: 500;">' + counter + '</span></span>'  + label;
+    iDiv[0].style.color = "white";
+  }
+  iDiv[0].href = "/vote_tag?question=<%=@question.id%>&tag_clicked=" + id;
+  iDiv[0].style.top = String($('.shared-photo').offset().top + ($('.shared-photo')[0].clientHeight * y)) + "px";
+  iDiv[0].style.left = String($('.shared-photo').offset().left + ($('.shared-photo')[0].clientWidth * x)) + "px";
+  iDiv[0].x_ratio = x;
+  iDiv[0].y_ratio = y;
+
+  $('#image-question-container')[0].appendChild(iDiv[0]);
+}
+
+function show_all(){
+  clearTimeout(timeout_function);
+
+  for(i = 0; i < $('.tag').length; i++){
+    $($('.tag')[i]).show('slow');
+  }
+}
+
+function hide_all(){
+  clearTimeout(timeout_function);
+
+  for(i = 0; i < $('.tag').length; i++){
+    $('.tag')[i].style.display = "none";
+  }
+}
+
 $(document).ready(function() {
 
-  toastr.options = {
-    "closeButton": true,
-    "debug": false,
-    "newestOnTop": false,
-    "progressBar": false,
-    "positionClass": "toast-top-right",
-    "preventDuplicates": false,
-    "onclick": null,
-    "showDuration": "0",
-    "hideDuration": "0",
-    "timeOut": "0",
-    "extendedTimeOut": "0",
-    "showEasing": "swing",
-    "hideEasing": "linear",
-    "showMethod": "slideDown",
-    "hideMethod": "slideUp"
-  }
+  var time_multiplier = 3;
 
-  //setTimeout(function(){toastr["info"]( "Arima helps you to visualize opinions thru simple clicks."); }, 4200);
+  <%if !@tags_array.empty?%>
+    <%@tags_array.each do |tag|%>
+      <%= @selected = Opinion.where(tag_id: tag.id, user_id: user_signed_in? ? current_user.id : cookies[:guest]).first.nil? %>
+      create_tags("<%= tag.id%>", "<%= tag.label%>", <%= tag.x_ratio%>, <%= tag.y_ratio%>, <%= tag.counter%>, <%= @selected%>);
+    <%end%>
+  <%end%>
+
+  for(i = 0; i < $('.tag').length; i++){
+    doSetTimeout($('.tag')[i], time_multiplier);
+    time_multiplier = time_multiplier + 3;
+  }
 
   $('#answer_value').on('change', function() {
     $('.modal-button').prop('disabled', !(this.value.length > 0));
@@ -50,8 +131,31 @@ $(document).ready(function() {
     $(".question-title").css("width", "60%");
     $(".answer-counter").css("width", "80%");
   <%end%>
+
+  $( window ).resize(function() {
+    for(i = 0; i < $('.tag').length; i++){
+      $('.tag')[i].style.top = String($('.shared-photo').offset().top + ($('.shared-photo')[0].clientHeight * $('.tag')[i].y_ratio)) + "px";
+      $('.tag')[i].style.left = String($('.shared-photo').offset().left + ($('.shared-photo')[0].clientWidth * $('.tag')[i].x_ratio)) + "px";
+    }
+  });
+
+  $("input").keypress(function(event) {
+    if (event.which == 13) {
+        event.preventDefault();
+        $("#new_answer").submit();
+        $('#comment-input')[0].style.display = "none";
+    }
+  });
+
+  $(document).keyup(function(e) {
+    if (e.keyCode == 27){
+      $('#comment-input')[0].style.display = "none";
+    }
+  });
+
 });
 </script>
+
 
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
@@ -68,14 +172,15 @@ $(document).ready(function() {
     });
   </script>
 <% end %>
+
 <%# if flash[:share_answer_modal] && !user_signed_in? %>
-  <script>
+  <!--<script>
   //   $(document).ready(function() {
   //     setTimeout(function() {
   //       $('#shareSignupModal').modal('show');
   //     }, 10000);
   //   });
-  </script>
+  </script>-->
 <%# end %>
 
 <%= render '/common/share_new_question_modal' %>
@@ -83,19 +188,6 @@ $(document).ready(function() {
 <%= render 'common/user_list_display' %>
 <%#= render '/common/signup_modal' %>
 <%#= render '/common/share_answer_modal' %>
-
-<%#if cookies[:unlocked] != "" && cookies[:unlocked] != nil%>
-<!--  <div id="achievement_box">
-    <span id='close' onclick='document.getElementById("achievement_box").style.display = "none"; return false;' style="display: inline-block; float: right; padding:2px 5px; color: white;">x</span>
-    <p id="thankyou_msg">Thanks for answering!</p>
-    <p id="unlocked_msg">You unlocked the "<%#= Badge.where(badge_id: cookies[:unlocked].to_i).first.label%>" badge</p>
-    <%#= image_tag "Badges/#{cookies[:unlocked]}.png", :id => "image1", size: "100x100" %>
-
-  </div>
-
-  <%#cookies[:unlocked] = nil%>
--->
-<%#end%>
 
 <%if @user_submitted_answer && !@question.shared_image.nil? && !@question.shared_image%>
   <div class="main-site-container" id="question-page-container">
@@ -105,7 +197,7 @@ $(document).ready(function() {
         <!-- Votes -->
         <div class="question-vote-container">
           <!-- Should probably refactor this and use _question_normal -->
-          <div class="question-upvote">
+          <div class="question-upvote hidden-xs">
             <% if (cookies[:guest].nil?) %>
               <% check_guest() %>
             <% end %>
@@ -116,11 +208,11 @@ $(document).ready(function() {
             <% end %>
           </div>
 
-          <div id="votecount-<%= @question.id %>" class="question-vote-counter">
+          <div id="votecount-<%= @question.id %>" class="question-vote-counter hidden-xs">
             <%= "#{@question.votecount}" %>
           </div>
 
-          <div class="question-downvote">
+          <div class="question-downvote hidden-xs">
             <% if Vote.where(:user_id => cookies[:guest]).where(:question_id => @question.id).pluck(:vote_type)[0] == "downvote" %>
               <%= link_to image_tag('downvote_orange.png', id: "downvote-image-#{@question.id}", class: "question-vote-image"), downvote_question_path(:id => @question.id), :method => :put, :remote => true %>
             <% else %>
@@ -142,7 +234,7 @@ $(document).ready(function() {
       </div>
 
         <!-- Counter + Share Section -->
-        <div id="question-meta-container">
+        <div id="question-meta-container" class="hidden-xs">
               <%= render partial: "questions/share", locals: {
                   id: @question.id,
                   url: "#{request.protocol}#{request.host_with_port}" + question_path(@question),
@@ -150,7 +242,7 @@ $(document).ready(function() {
                   image: "#{request.protocol}#{request.host_with_port}" + question_path(@question)
                 }%>
         </div>
-        <div id="Social-like-button">
+        <div id="Social-like-button" class="hidden-xs">
             <!--Facebook like button-->
             <div class="fb-like" data-href="https://www.facebook.com/friendsofarima?fref=ts"
             data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
@@ -175,74 +267,106 @@ $(document).ready(function() {
       </div>
     </div>
 
-    <div id="trending-questions-container">
+    <div id="trending-questions-container" class="hidden-xs">
       <% @random_questions = Question.where(group_id: @question.group_id).order("RANDOM()").limit(5) %>
         <br>
         <br>
-        <p class="trending-questions-label">Questions You May Like:</p>
+        <p class="trending-questions-label hidden-xs">Questions You May Like:</p>
       <% @random_questions.each do |random_question| %>
         <%= render partial: 'common/trending_question', locals: { question: random_question } %>
       <% end %>
-      <a href="<%= feed_path %>"><div id="view-feed-button">View More</div></a>
+      <a href="<%= feed_path %>"><div id="view-feed-button" class="hidden-xs">View More</div></a>
       <%#= link_to 'View Category', cat_path(:group_id), :id => "view-feed-button" %>
 
     </div>
   </div>
 
+
+
 <%elsif @question.shared_image && @question.value_type == "tag"%>
+<div id="image-question-container">
+<div>
+  <%= simple_form_for @answer,:url => {:action => "add_tag", :controller => "answers"}, class: "form-inline", role: "form", html: {novalidate: true}, :remote => true do |f| %>
+    <%= f.input(:options_for_collection, label: false,input_html:{value: nil, placeholder: "Add your own opinion to the list", class: "input-hidden", id:"comment-input"}) %>
+    <%= f.submit "Vote", class: "submit-hidden" %>
+
+    <%= hidden_field_tag 'question_id', @question.id %>
+    <%= hidden_field_tag 'x_axis' %>
+    <%= hidden_field_tag 'y_axis' %>
+    <%= hidden_field_tag 'x_axis_max' %>
+    <%= hidden_field_tag 'y_axis_max' %>
+  <% end %>
+
+</div>
+
   <div class="share-image-container">
     <div class="image-frame">
-      <center class="image-container">
+      <div class="image-container">
         <%if !@question.image_link.nil?%>
           <%img_path = "/system/uploads/" + @question.image_link%>
           <%if !@question.image_link.nil? && @question.image_link[0] == "<"%>
             <div class="hidden-xs" style="margin-left:150px;"></iframe><%= @question.image_link.html_safe%></div>
             <div class="visible-xs"><%= @question.image_link.html_safe%></div>
           <%else%>
-            <!--<a href="<%= img_path %>" data-featherlight="image">-->
-              <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, alt:"image", class: "shared-photo", id: "lightbox") %>
-            <!--</a>-->
+            <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, alt:"image", class: "shared-photo", id: "lightbox") %>
           <%end%>
         <%end%>
-      </center>
+
+        <script>
+          var myImg = document.getElementById("lightbox");
+
+          myImg.onmousedown = GetCoordinates;
+          var img = document.getElementById('lightbox');
+          var xwidth = img.clientWidth;
+          var yheight = img.clientHeight;
+
+        </script>
+
+      </div>
+      <div class="tool-bar">
+          <span class="share-icon-container" class="hidden-xs">
+            <%= render partial: "questions/share", locals: {
+                id: @question.id,
+                url: "#{request.protocol}#{request.host_with_port}" + question_path(@question),
+                title: "#{@question.label[0..70]}...",
+                image: "#{request.protocol}#{request.host_with_port}" + question_path(@question)
+              }%>
+          </span>
+          <span class="instructag">Click anywhere on the image to add a Tag Comment </span>
+          <span class="tagcount">
+            <%= image_tag("Tag.png", size: "18x18")%>
+            <%= @tag_array.count%> Tags
+          </span>
+          <span class="showhidebuttons">
+            <a href="#" onclick="show_all();" class="show-tag"><%= image_tag("Show_Tag.png", size: "15x10") + "  Show All Tags"%></a>
+            <a href="#" onclick="hide_all();" class="hide-tag"><%= image_tag("Hide_Tag.png", size: "15x10") + "  Hide All Tags"%></a>
+          </span>
+          <span class="zoompic">
+            <%= link_to image_tag("Enlarge.png", size: "25x25"), categories_path, class: "enlarge-icon" %>
+          </span>
+
+      </div>
+
+      <section class="share-image-title">
+        <%=@question.label %>
+        <span class="question-author">
+        by
+        <%=
+        if User.where(id: @question.user_id).first.username.nil? || User.where(id: @question.user_id).first.username.empty?
+          "anonymous"
+        else
+          link_to User.where(id: @question.user_id).first.username, custom_show_path(:username => User.where(id: @question.user_id).first.username)
+        end
+         %>
+       </span>
+        <%= link_to " #{@counter} users voted", { controller: "questions", action: "user_list_display", remote: true, :question => @question}, id: 'users_list' %>
+      </section>
 
       <div style="clear:both;"></div>
 
-      <!--<a href="<%= feed_path %>" class="feed-link hidden-xs"><div id="back-to-feed-button"><%= image_tag("Back-Arrow.png", class: "feed-back-arrow", width: "19", height: "9")%><font class="feed-back-title">Back to Home Feed</font></div></a>-->
-      <div style="width: 100%; text-align: center;">
-        <section class="share-image-title"><%=@question.label %></section>
-        <section class="question-author">
-          by
-          <%=
-          if User.where(id: @question.user_id).first.username.nil? || User.where(id: @question.user_id).first.username.empty?
-            "anonymous"
-          else
-            link_to User.where(id: @question.user_id).first.username, custom_show_path(:username => User.where(id: @question.user_id).first.username)
-          end
-           %>
-          <%= link_to " #{@counter} users voted", { controller: "questions", action: "user_list_display", remote: true, :question => @question }, id: 'users_list' %>
-        </section>
-      </div>
-      <div style="width: 100%" class="hidden">
-        <section class="share-icon-container" style="float: right;" class="hidden-xs">
-          <%= render partial: "questions/share", locals: {
-              id: @question.id,
-              url: "#{request.protocol}#{request.host_with_port}" + question_path(@question),
-              title: "#{@question.label[0..70]}...",
-              image: "#{request.protocol}#{request.host_with_port}" + question_path(@question)
-            }%>
-        </section>
-      </div>
+    </div>
   </div>
-    <center id="tag_show">
-      <%if !@question.shared_image.nil? && @question.shared_image %>
-        <div id="tag_list_container" style="background-color: #F6F6F6;">
-          <%= render partial: "tag_list"%>
-        </div>
-      <%elsif !@question.shared_image.nil? && !@question.shared_image%>
-        <%= render partial: 'questions/answer_input', locals: { question: @question, answer: @answer} %>
-      <%end%>
-    </center>
+</div>
 
 <%else %>
   <div id="<%= @question.image_link.nil? ? "question_poll" : "image_poll" %>">

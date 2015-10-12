@@ -161,6 +161,35 @@ class AnswersController < ApplicationController
     end
   end
 
+  def vote_tag
+
+    @tags_array = Tag.where(question_id: params[:question])
+    @tag_clicked = params[:tag_clicked]
+    @tag = Tag.where(id: params[:tag_clicked]).first
+    @user_id = user_signed_in? ? current_user.id : cookies[:guest]
+
+    if Opinion.where(tag_id: @tag.id, user_id: @user_id).first.nil?
+      @tag.counter = @tag.counter + 1
+      @tag.save
+
+      @opinion = Opinion.new(tag_id: @tag.id, user_id: @user_id, question_id: params[:question])
+      @opinion.save
+
+      @voted = true
+    else
+      @opinion = Opinion.where(tag_id: @tag.id, user_id: @user_id).first
+      @tag.counter = @tag.counter - 1
+      @tag.save
+      @opinion.destroy!
+
+      @voted = false
+    end
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def add_tag
 
     # cookies[:signup] = nil
@@ -171,27 +200,14 @@ class AnswersController < ApplicationController
 
     if !params[:answer].nil? && params[:answer][:options_for_collection] != ""
 
-      # if (!user_signed_in?)
-
-      #   @user = User.where(id: cookies[:guest]).first
-      #   @winston = User.new(email: "winston@arima.io")
-      #   UserMailer.signup_admin(@winston, @user).deliver!
-
-      #   cookies[:signup] = 1
-      #   cookies[:q] = @question.id
-      #   cookies[:answer] = params[:answer][:options_for_collection]
-
-      #   respond_to do |format|
-      #     format.js
-      #   end
-
-      #   return
-      # end
-
       if Tag.where(label: params[:answer][:options_for_collection], question_id: @question.id).first.nil?
         answer_user_id = user_signed_in? ? current_user.id : cookies[:guest]
-
-        @tag = Tag.new(label: params[:answer][:options_for_collection], question_id: @question.id, counter: 1)
+        puts "-----------!!!!"
+        puts params[:x_axis].to_f / params[:x_axis_max].to_f
+        @x = params[:x_axis].to_f / params[:x_axis_max].to_f
+        @y = params[:y_axis].to_f/params[:y_axis_max].to_f
+        @tag = Tag.new(label: params[:answer][:options_for_collection], question_id: @question.id,
+        counter: 1, x_ratio: @x, y_ratio: @y)
         @tag.save!
 
         @opinion = Opinion.new(question_id: @question.id, tag_id: @tag.id, user_id: answer_user_id)
