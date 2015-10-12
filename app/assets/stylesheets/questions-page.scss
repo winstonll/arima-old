@@ -61,13 +61,12 @@
       }
     }
 
-  .tool-bar {
-    width: 100%;
-    margin-top: 10px;
-    margin-right: auto;
-    background-color: white;
-    display: inline-block;
-    height: 32px;
+    .tool-bar {
+      width: 100%;
+      background-color: white;
+      height: 35px;
+      padding-top: 5px;
+
 
       .share-icon-container {
       }
@@ -75,25 +74,42 @@
       .instructag {
         font-weight: 600;
         position: relative;
+        margin-left: 150px;
+        font-size: 11px;
       }
+
 
       .tagcount {
         font-weight: 600;
         color: #419BF9;
+        margin-left: 30px;
+        font-size: 11px;
       }
 
+      .showhidebuttons {
+        margin-left: 8px;
+      }
       .show-tag{
         color: white;
         background-color: #419BF9;
-        padding: 8px 12px 8px 12px;
+        padding: 9px 12px 11px 12px;
         font-size: 12px;
+        margin-right: -2px;
+        font-size: 11px;
       }
 
       .hide-tag {
         background-color: #7ED321;
         color: white;
-        padding: 8px 12px 8px 12px;
+        padding: 9px 12px 11px 12px;
         font-size: 12px;
+        margin-left: -2px;
+        font-size: 11px;
+      }
+
+      .zoompic {
+        float: right;
+        margin-right: 5px;
       }
     }
   }

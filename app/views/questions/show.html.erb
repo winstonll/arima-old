@@ -332,18 +332,16 @@ $(document).ready(function() {
                 image: "#{request.protocol}#{request.host_with_port}" + question_path(@question)
               }%>
           </span>
-          <span class="instructag">Click anywhere on the image to add a tag comment </span>
+          <span class="instructag">Click anywhere on the image to add a Tag Comment </span>
           <span class="tagcount">
-            <%= image_tag("Tag.png", size: "25x25")%>
+            <%= image_tag("Tag.png", size: "18x18")%>
             <%= @tag_array.count%> Tags
           </span>
-          <span>
-            <a href="#" onclick="show_all();" class="show-tag"><%= image_tag("Show_Tag.png", size: "15x10") + "  Show ALl Tags"%></a>
-          </span>
-          <span>
+          <span class="showhidebuttons">
+            <a href="#" onclick="show_all();" class="show-tag"><%= image_tag("Show_Tag.png", size: "15x10") + "  Show All Tags"%></a>
             <a href="#" onclick="hide_all();" class="hide-tag"><%= image_tag("Hide_Tag.png", size: "15x10") + "  Hide All Tags"%></a>
           </span>
-          <span>
+          <span class="zoompic">
             <%= link_to image_tag("Enlarge.png", size: "25x25"), categories_path, class: "enlarge-icon" %>
           </span>
 
