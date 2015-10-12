@@ -66,50 +66,48 @@
       background-color: white;
       height: 35px;
       padding-top: 5px;
-
+      text-align: center;
 
       .share-icon-container {
+        float: left;
       }
 
       .instructag {
         font-weight: 600;
-        position: relative;
-        margin-left: 150px;
-        font-size: 11px;
-      }
-
-
-      .tagcount {
-        font-weight: 600;
-        color: #419BF9;
-        margin-left: 30px;
         font-size: 11px;
       }
 
       .showhidebuttons {
-        margin-left: 8px;
-      }
-      .show-tag{
-        color: white;
-        background-color: #419BF9;
-        padding: 9px 12px 11px 12px;
-        font-size: 12px;
-        margin-right: -2px;
-        font-size: 11px;
-      }
-
-      .hide-tag {
-        background-color: #7ED321;
-        color: white;
-        padding: 9px 12px 11px 12px;
-        font-size: 12px;
-        margin-left: -2px;
-        font-size: 11px;
-      }
-
-      .zoompic {
         float: right;
-        margin-right: 5px;
+        
+        .tagcount {
+          font-weight: 600;
+          color: #419BF9;
+          margin-right: 15px;
+          font-size: 11px;
+        }
+        .show-tag{
+          background-color: #419BF9;
+          color: white;
+          padding: 9px 12px 11px 12px;
+          font-size: 12px;
+          margin-right: -2px;
+          font-size: 11px;
+        }
+
+        .hide-tag {
+          background-color: #7ED321;
+          color: white;
+          padding: 9px 12px 11px 12px;
+          font-size: 12px;
+          margin-left: -2px;
+          font-size: 11px;
+        }
+
+        .zoompic {
+          margin-left: 2px;
+          margin-right: 5px;
+        }
       }
     }
   }
