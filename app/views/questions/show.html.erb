@@ -56,7 +56,7 @@ function doSetTimeout(tag, multiplier) {
   timeout_function = setTimeout(function(){
     $(tag).show('slow');
 
-  }, multiplier * 50);
+  }, 1000 * multiplier);
 }
 
 function create_tags(id, label, x, y, counter, selected) {
@@ -106,7 +106,7 @@ function hide_all(){
 
 $(window).load(function() {
 
-  var time_multiplier = 5;
+  var time_multiplier = 0;
 
   <%if !@tags_array.empty?%>
     <%@tags_array.each do |tag|%>
@@ -117,7 +117,7 @@ $(window).load(function() {
 
   for(i = 0; i < $('.tag').length; i++){
     doSetTimeout($('.tag')[i], time_multiplier);
-    time_multiplier = time_multiplier + 5;
+    time_multiplier = time_multiplier + 2;
   }
 
   $('#answer_value').on('change', function() {
@@ -163,9 +163,11 @@ $(window).load(function() {
   $(document).mousedown(function (e)
   {
       var container = $(".shared-photo");
+      var input_field = $('#comment-input');
 
       if (!container.is(e.target) // if the target of the click isn't the container...
-          && container.has(e.target).length === 0) // ... nor a descendant of the container
+          && container.has(e.target).length === 0
+          && !input_field.is(e.target)) // ... nor a descendant of the container
       {
         $('#comment-input')[0].style.display = "none";
       }
