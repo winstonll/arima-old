@@ -9,7 +9,7 @@
     </form>
   </section>
 
-  <section class="right hidden-xs">
+  <section class="right">
     <%= link_to image_tag("logo-icon-large.png"), categories_path, id: "arima-icon" %>
     <% if user_signed_in? && current_user.username.present? %>
       <%= link_to "#{current_user.username[0].capitalize}", custom_show_path(:username => current_user.username), class: "nav-user-circle" %>

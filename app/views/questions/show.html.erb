@@ -1,7 +1,7 @@
 <% content_for :title, @question.label %>
 
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=visualization"></script>
-<%= javascript_include_tag "markerwithlabel" %>
+<!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=visualization"></script>-->
+<%#= javascript_include_tag "markerwithlabel" %>
 
 <%@tag_array = Tag.where(question_id: @question.id).order(created_at: :asc)%>
 
@@ -50,6 +50,10 @@ function GetCoordinates(e){
     $('#comment-input')[0].style.top = String($('.shared-photo').offset().top + PosY) + "px";
     $('#comment-input')[0].style.left = String($('.shared-photo').offset().left + PosX) + "px";
     $('#comment-input')[0].style.display = "block";
+
+    $('.red-indicator')[0].style.top = String($('.shared-photo').offset().top + PosY - 11) + "px";
+    $('.red-indicator')[0].style.left = String($('.shared-photo').offset().left + PosX- 11) + "px";
+    $('.red-indicator')[0].style.display = "block";
 }
 
 function doSetTimeout(tag, multiplier) {
@@ -69,7 +73,7 @@ function create_tags(id, label, x, y, counter, selected) {
     iDiv[0].innerHTML =
     '<span style="position: relative; display: inline-block;">\
     <%= image_tag("arrow_up_clicked.png", alt:"image", size:"15x15", class:"up-arrow")%>\
-    <span style="position: relative; margin-right: 15px; font-weight: 500;">' + counter + '</span></span>'  + label;
+    <span style="position: relative; margin-right: 10px; font-weight: 500;">' + counter + '</span></span>'  + label;
     iDiv[0].style.color = "#88FFF4";
   }
   else {
@@ -80,6 +84,7 @@ function create_tags(id, label, x, y, counter, selected) {
     iDiv[0].style.color = "white";
   }
   iDiv[0].href = "/vote_tag?question=<%=@question.id%>&tag_clicked=" + id;
+
   iDiv[0].style.top = String($('.shared-photo').offset().top + ($('.shared-photo')[0].clientHeight * y)) + "px";
   iDiv[0].style.left = String($('.shared-photo').offset().left + ($('.shared-photo')[0].clientWidth * x)) + "px";
   iDiv[0].x_ratio = x;
@@ -171,6 +176,7 @@ $(window).load(function() {
           && container.has(e.target).length === 0
           && !input_field.is(e.target)) // ... nor a descendant of the container
       {
+        $('.red-indicator')[0].style.display = "none";
         $('#comment-input')[0].style.display = "none";
       }
   });
@@ -210,6 +216,8 @@ $(window).load(function() {
 <%= render 'common/user_list_display' %>
 <%#= render '/common/signup_modal' %>
 <%#= render '/common/share_answer_modal' %>
+
+<div class="red-indicator"></div>
 
 <%if @user_submitted_answer && !@question.shared_image.nil? && !@question.shared_image%>
   <div class="main-site-container" id="question-page-container">
@@ -310,7 +318,7 @@ $(window).load(function() {
 <div>
   <%= simple_form_for @answer,:url => {:action => "add_tag", :controller => "answers"}, class: "form-inline", role: "form", html: {novalidate: true}, :remote => true do |f| %>
     <%= f.input(:options_for_collection, label: false,input_html:{value: nil, placeholder: "Add Comment Here", class: "input-hidden", id:"comment-input"}) %>
-    <%= f.submit "+", class: "submit-plus" %>
+    <%= f.submit "+", class: "submit-plus visible-xs" %>
 
     <%= hidden_field_tag 'question_id', @question.id %>
     <%= hidden_field_tag 'x_axis' %>
@@ -354,7 +362,7 @@ $(window).load(function() {
                 image: "#{request.protocol}#{request.host_with_port}" + question_path(@question)
               }%>
           </span>
-          <span class="instructag">Click anywhere on the image to add a Tag Comment </span>
+          <span class="instructag">Click anywhere and press Return to add a Tag Comment </span>
           <span class="showhidebuttons">
             <span class="tagcount">
               <%= image_tag("Tag.png", size: "18x18")%>
