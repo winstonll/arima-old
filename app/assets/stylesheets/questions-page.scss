@@ -21,6 +21,21 @@
   right: 16%;
   z-index: 1;
 }
+.mobile-instructag {
+  position: absolute;
+  text-align: center;
+  padding-top: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  width: 270px;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  bottom: 82%;
+  left: 8%;
+  z-index: 1;
+  border-radius: 10px;
+}
 
 .red-indicator {
   display: none;
@@ -1107,7 +1122,7 @@
   }
   .submit-plus {
     position: absolute;
-    bottom: 38%;
+    bottom: 17%;
     right: 2%;
     z-index: 1;
   }
