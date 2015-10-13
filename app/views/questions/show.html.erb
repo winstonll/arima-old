@@ -144,7 +144,14 @@ $(window).load(function() {
         event.preventDefault();
         $("#new_answer").submit();
         $('#comment-input')[0].style.display = "none";
+        $('#comment-input')[0].value = "";
     }
+  });
+
+  $(".submit-plus").click(function() {
+    $("#new_answer").submit();
+    $('#comment-input')[0].style.display = "none";
+    $('#comment-input')[0].value = "";
   });
 
   $(document).keyup(function(e) {
@@ -299,7 +306,7 @@ $(window).load(function() {
 <div>
   <%= simple_form_for @answer,:url => {:action => "add_tag", :controller => "answers"}, class: "form-inline", role: "form", html: {novalidate: true}, :remote => true do |f| %>
     <%= f.input(:options_for_collection, label: false,input_html:{value: nil, placeholder: "Add Comment Here", class: "input-hidden", id:"comment-input"}) %>
-    <%= f.submit "Vote", class: "submit-hidden" %>
+    <%= f.submit "+", class: "submit-plus" %>
 
     <%= hidden_field_tag 'question_id', @question.id %>
     <%= hidden_field_tag 'x_axis' %>
