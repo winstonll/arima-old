@@ -56,7 +56,7 @@ function doSetTimeout(tag, multiplier) {
   timeout_function = setTimeout(function(){
     $(tag).show('slow');
 
-  }, multiplier * 500);
+  }, multiplier * 50);
 }
 
 function create_tags(id, label, x, y, counter, selected) {
@@ -144,13 +144,31 @@ $(window).load(function() {
         event.preventDefault();
         $("#new_answer").submit();
         $('#comment-input')[0].style.display = "none";
+        $('#comment-input')[0].value = "";
     }
+  });
+
+  $(".submit-plus").click(function() {
+    $("#new_answer").submit();
+    $('#comment-input')[0].style.display = "none";
+    $('#comment-input')[0].value = "";
   });
 
   $(document).keyup(function(e) {
     if (e.keyCode == 27){
       $('#comment-input')[0].style.display = "none";
     }
+  });
+
+  $(document).mousedown(function (e)
+  {
+      var container = $(".shared-photo");
+
+      if (!container.is(e.target) // if the target of the click isn't the container...
+          && container.has(e.target).length === 0) // ... nor a descendant of the container
+      {
+        $('#comment-input')[0].style.display = "none";
+      }
   });
 
 });
@@ -288,7 +306,7 @@ $(window).load(function() {
 <div>
   <%= simple_form_for @answer,:url => {:action => "add_tag", :controller => "answers"}, class: "form-inline", role: "form", html: {novalidate: true}, :remote => true do |f| %>
     <%= f.input(:options_for_collection, label: false,input_html:{value: nil, placeholder: "Add Comment Here", class: "input-hidden", id:"comment-input"}) %>
-    <%= f.submit "Vote", class: "submit-hidden" %>
+    <%= f.submit "+", class: "submit-plus" %>
 
     <%= hidden_field_tag 'question_id', @question.id %>
     <%= hidden_field_tag 'x_axis' %>

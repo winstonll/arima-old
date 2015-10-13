@@ -6,8 +6,20 @@
   bottom: 3px;
 }
 
-.submit-hidden {
-  display: none;
+.submit-plus {
+  display: block;
+  position: absolute;
+  text-align: center;
+  font-size: 25px;
+  border-radius: 50%;
+  border: none;
+  width: 40px;
+  height: 40px;
+  color: white;
+  background-color: #419BF9;
+  bottom: 16%;
+  right: 16%;
+  z-index: 1;
 }
 
 .input-hidden {
