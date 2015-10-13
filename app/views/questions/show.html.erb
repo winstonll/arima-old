@@ -115,9 +115,11 @@ $(window).load(function() {
     <%end%>
   <%end%>
 
-  for(i = 0; i < $('.tag').length; i++){
-    doSetTimeout($('.tag')[i], time_multiplier);
+  $($('.tag')[0]).show('slow');
+
+  for(i = 1; i < $('.tag').length; i++){
     time_multiplier = time_multiplier + 2;
+    doSetTimeout($('.tag')[i], time_multiplier);
   }
 
   $('#answer_value').on('change', function() {
