@@ -106,7 +106,7 @@ function hide_all(){
 
 $(window).load(function() {
 
-  var time_multiplier = 3;
+  var time_multiplier = 5;
 
   <%if !@tags_array.empty?%>
     <%@tags_array.each do |tag|%>
@@ -117,7 +117,7 @@ $(window).load(function() {
 
   for(i = 0; i < $('.tag').length; i++){
     doSetTimeout($('.tag')[i], time_multiplier);
-    time_multiplier = time_multiplier + 3;
+    time_multiplier = time_multiplier + 5;
   }
 
   $('#answer_value').on('change', function() {
