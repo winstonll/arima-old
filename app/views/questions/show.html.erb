@@ -1,7 +1,7 @@
 <% content_for :title, @question.label %>
 
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=visualization"></script>
-<%= javascript_include_tag "markerwithlabel" %>
+<!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=visualization"></script>-->
+<%#= javascript_include_tag "markerwithlabel" %>
 
 <%@tag_array = Tag.where(question_id: @question.id).order(created_at: :asc)%>
 
