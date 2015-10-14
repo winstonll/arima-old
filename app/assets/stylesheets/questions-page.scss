@@ -40,14 +40,11 @@
 .red-indicator {
   display: none;
   position: absolute;
-  text-align: center;
-  font-size: 25px;
   border-radius: 50%;
   border: none;
-  width: 15px;
-  height: 15px;
-  color: white;
-  background-color: red;
+  width: 10px;
+  height: 10px;
+  background-color: #00C39C;
   z-index: 1;
 }
 
@@ -68,12 +65,24 @@
   border-radius: 3px;
   padding: 5px;
   background-color: rgba(0, 0, 0, 0.6);
+  display: inline-block;
+  visibility: hidden;
+}
+
+.tag_indicator {
+  z-index: 700;
   display: none;
+  position: absolute;
+  border-radius: 50%;
+  border: none;
+  width: 7px;
+  height: 7px;
+  background-color: #00C39C;
 }
 
 .tag:hover{
   color: #88FFF4 !important;
-  z-index: 600;
+  z-index: 800;
   background-color: rgba(0, 0, 0, 1);
 }
 
@@ -1081,9 +1090,6 @@
   }
   .tag {
     font-size: 10px !important;
-    label {
-      margin-left: 2px !important;
-    }
     img {
       height:10px;
       width:10px;
