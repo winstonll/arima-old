@@ -161,6 +161,12 @@ $(window).load(function() {
     $('#comment-input')[0].value = "";
   });
 
+  $(document).ready(function() {
+    setTimeout(function() {
+      $('.mobile-instructag')[0].style.visibility = 'hidden';
+      }, 2000);
+  });
+
   $(document).keyup(function(e) {
     if (e.keyCode == 27){
       $('#comment-input')[0].style.display = "none";
