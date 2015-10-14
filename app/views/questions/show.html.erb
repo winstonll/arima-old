@@ -217,10 +217,7 @@ $(window).load(function() {
 
   $("input").keypress(function(event) {
     if (event.which == 13) {
-        event.preventDefault();
         $("#new_answer").submit();
-        $('#comment-input')[0].style.display = "none";
-        $('#comment-input')[0].value = "";
     }
   });
 
