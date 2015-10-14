@@ -160,3 +160,9 @@
     }
   }
 }
+
+@media screen and (max-width: 1200px) {
+  .sidebar-footer {
+    display: none;
+  }
+}
