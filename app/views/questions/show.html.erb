@@ -102,7 +102,7 @@ function create_tags(id, label, x, y, counter, selected) {
 
   iDiv[0].style.top = String(h) + "px";
 
-  tag_indicator[0].style.top = String(h - 7) + "px";
+  tag_indicator[0].style.top = String(h - 5) + "px";
 
   tag_indicator[0].id = "indicator-" + id;
 
@@ -112,7 +112,7 @@ function create_tags(id, label, x, y, counter, selected) {
     iDiv[0].style.left = String(w) + "px";
   }
 
-  tag_indicator[0].style.left = String(w - 7) + "px";
+  tag_indicator[0].style.left = String(w - 5) + "px";
 
   iDiv[0].style.display = "none";
   iDiv[0].style.visibility = "visible";
@@ -175,8 +175,8 @@ $(window).load(function() {
 
       w_max = w >= ($('.shared-photo').offset().left + $('.shared-photo')[0].clientWidth) * 0.8;
 
-      $("#indicator-" + $('.tag')[i].id.split("-")[1])[0].style.top = String($('.shared-photo').offset().top + ($('.shared-photo')[0].clientHeight * $('.tag')[i].y_ratio) - 7) + "px";
-      $("#indicator-" + $('.tag')[i].id.split("-")[1])[0].style.left =  String(w - 7) + "px";
+      $("#indicator-" + $('.tag')[i].id.split("-")[1])[0].style.top = String($('.shared-photo').offset().top + ($('.shared-photo')[0].clientHeight * $('.tag')[i].y_ratio) - 5) + "px";
+      $("#indicator-" + $('.tag')[i].id.split("-")[1])[0].style.left =  String(w - 5) + "px";
 
       $('.tag')[i].style.top = String($('.shared-photo').offset().top + ($('.shared-photo')[0].clientHeight * $('.tag')[i].y_ratio)) + "px";
 
