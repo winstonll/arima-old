@@ -59,13 +59,17 @@ function GetCoordinates(e){
 
 function doSetTimeout(tag, multiplier) {
   timeout_function = setTimeout(function(){
+
+    $("#indicator-" + tag.id.split("-")[1]).show('slow');
     $(tag).show('slow');
 
   }, 1000 * multiplier);
 }
 
 function create_tags(id, label, x, y, counter, selected) {
-  var iDiv;
+  var iDiv, h, w, w_max, tag_indicator;
+
+  tag_indicator = $('<div class="tag_indicator"></div>');
 
   iDiv = $('<%= link_to "TEST", upvote_question_path(:id => @question.id), :method => :get, :remote => true, class: "tag" %>');
   iDiv[0].id = "tag-" + id;
@@ -86,12 +90,33 @@ function create_tags(id, label, x, y, counter, selected) {
   }
   iDiv[0].href = "/vote_tag?question=<%=@question.id%>&tag_clicked=" + id;
 
-  iDiv[0].style.top = String($('.shared-photo').offset().top + ($('.shared-photo')[0].clientHeight * y)) + "px";
-  iDiv[0].style.left = String($('.shared-photo').offset().left + ($('.shared-photo')[0].clientWidth * x)) + "px";
   iDiv[0].x_ratio = x;
   iDiv[0].y_ratio = y;
 
   $('#image-question-container')[0].appendChild(iDiv[0]);
+  $('#image-question-container')[0].appendChild(tag_indicator[0]);
+
+  h = $('.shared-photo').offset().top + ($('.shared-photo')[0].clientHeight * y);
+  w = $('.shared-photo').offset().left + ($('.shared-photo')[0].clientWidth * x);
+  w_max = w >= ($('.shared-photo').offset().left + $('.shared-photo')[0].clientWidth) * 0.8;
+
+  iDiv[0].style.top = String(h) + "px";
+
+  tag_indicator[0].style.top = String(h - 7) + "px";
+
+  tag_indicator[0].id = "indicator-" + id;
+
+  if(w_max){
+    iDiv[0].style.left = String(w - iDiv[0].offsetWidth) + "px";
+  }else{
+    iDiv[0].style.left = String(w) + "px";
+  }
+
+  tag_indicator[0].style.left = String(w - 7) + "px";
+
+  iDiv[0].style.display = "none";
+  iDiv[0].style.visibility = "visible";
+
 }
 
 function show_all(){
@@ -121,6 +146,7 @@ $(window).load(function() {
     <%end%>
   <%end%>
 
+  $("#indicator-" + $('.tag')[0].id.split("-")[1])[0].style.display = "inline-block";
   $($('.tag')[0]).show('slow');
 
   for(i = 1; i < $('.tag').length; i++){
@@ -141,9 +167,25 @@ $(window).load(function() {
   <%end%>
 
   $( window ).resize(function() {
+    var w, w_max;
+
     for(i = 0; i < $('.tag').length; i++){
+
+      w = $('.shared-photo').offset().left + ($('.shared-photo')[0].clientWidth * $('.tag')[i].x_ratio);
+
+      w_max = w >= ($('.shared-photo').offset().left + $('.shared-photo')[0].clientWidth) * 0.8;
+
+      $("#indicator-" + $('.tag')[i].id.split("-")[1])[0].style.top = String($('.shared-photo').offset().top + ($('.shared-photo')[0].clientHeight * $('.tag')[i].y_ratio) - 7) + "px";
+      $("#indicator-" + $('.tag')[i].id.split("-")[1])[0].style.left =  String(w - 7) + "px";
+
       $('.tag')[i].style.top = String($('.shared-photo').offset().top + ($('.shared-photo')[0].clientHeight * $('.tag')[i].y_ratio)) + "px";
-      $('.tag')[i].style.left = String($('.shared-photo').offset().left + ($('.shared-photo')[0].clientWidth * $('.tag')[i].x_ratio)) + "px";
+
+      if(w_max){
+        console.log($('.tag')[i].offsetWidth);
+        $('.tag')[i].style.left = String(w - $('.tag')[i].offsetWidth) + "px";
+      }else{
+        $('.tag')[i].style.left = String(w) + "px";
+      }
     }
   });
 
