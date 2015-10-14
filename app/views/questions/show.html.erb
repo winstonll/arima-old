@@ -48,13 +48,30 @@ function GetCoordinates(e){
     $('#x_axis_max')[0].value = myImg.clientWidth;
     $('#y_axis_max')[0].value = myImg.clientHeight;
 
-    $('#comment-input')[0].style.top = String($('.shared-photo').offset().top + PosY) + "px";
-    $('#comment-input')[0].style.left = String($('.shared-photo').offset().left + PosX) + "px";
-    $('#comment-input')[0].style.display = "block";
+    var w_max = PosX + $('.shared-photo').offset().left >= ($('.shared-photo').offset().left + $('.shared-photo')[0].clientWidth) * 0.8;
 
-    $('.red-indicator')[0].style.top = String($('.shared-photo').offset().top + PosY - 11) + "px";
-    $('.red-indicator')[0].style.left = String($('.shared-photo').offset().left + PosX- 11) + "px";
-    $('.red-indicator')[0].style.display = "block";
+    console.log(PosX);
+    console.log(($('.shared-photo').offset().left + $('.shared-photo')[0].clientWidth) * 0.8);
+
+    if(w_max){
+      $('#comment-input')[0].style.top = String($('.shared-photo').offset().top + PosY) + "px";
+      $('#comment-input')[0].style.left = String($('.shared-photo').offset().left + PosX - 145) + "px";
+      $('#comment-input')[0].style.display = "block";
+
+      $('.red-indicator')[0].style.top = String($('.shared-photo').offset().top + PosY - 11) + "px";
+      $('.red-indicator')[0].style.left = String($('.shared-photo').offset().left + PosX + 1) + "px";
+      $('.red-indicator')[0].style.display = "block";
+    }else {
+      $('#comment-input')[0].style.top = String($('.shared-photo').offset().top + PosY) + "px";
+      $('#comment-input')[0].style.left = String($('.shared-photo').offset().left + PosX) + "px";
+      $('#comment-input')[0].style.display = "block";
+
+      $('.red-indicator')[0].style.top = String($('.shared-photo').offset().top + PosY - 11) + "px";
+      $('.red-indicator')[0].style.left = String($('.shared-photo').offset().left + PosX- 11) + "px";
+      $('.red-indicator')[0].style.display = "block";
+    }
+
+
 }
 
 function doSetTimeout(tag, multiplier) {
