@@ -9,7 +9,7 @@
 .submit-plus {
   display: block;
   position: absolute;
-  text-align: center;
+  text-align: -webkit-center;
   font-size: 25px;
   border-radius: 50%;
   border: none;
@@ -1121,7 +1121,6 @@
     text-align: center;
   }
   .submit-plus {
-    text-align: center;
     position: absolute;
     bottom: 10%;
     right: 2%;
