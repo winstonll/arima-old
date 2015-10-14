@@ -8,6 +8,7 @@ $(document).ready(function() {
   <%= image_tag("arrow_up_clicked.png", alt:"image", size:"15x15", class:"up-arrow")%>\
   <span style="position: relative; margin-right: 15px; font-weight: 500;">' + "<%= @tag.counter%>" + '</span></span>'  + "<%= @tag.label%>";
   iDiv[0].style.color = "#88FFF4";
+  iDiv[0].style.visibility = "visible";
   iDiv[0].href = "/vote_tag?question=<%=@question.id%>&tag_clicked=" + "<%= @tag.id %>";
   iDiv[0].style.top = String($('.shared-photo').offset().top + ($('.shared-photo')[0].clientHeight * <%= @tag.y_ratio%>)) + "px";
   iDiv[0].style.left = String($('.shared-photo').offset().left + ($('.shared-photo')[0].clientWidth * <%= @tag.x_ratio%>)) + "px";
