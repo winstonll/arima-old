@@ -9,6 +9,9 @@
 <script>
 
 var timeout_function;
+var tag_counter = 0;
+var tag_index = 0;
+var tag_max = 5;
 
 function FindPosition(oElement){
   if(typeof( oElement.offsetParent ) != "undefined"){
@@ -50,9 +53,6 @@ function GetCoordinates(e){
 
     var w_max = PosX + $('.shared-photo').offset().left >= ($('.shared-photo').offset().left + $('.shared-photo')[0].clientWidth) * 0.8;
 
-    console.log(PosX);
-    console.log(($('.shared-photo').offset().left + $('.shared-photo')[0].clientWidth) * 0.8);
-
     if(w_max){
       $('#comment-input')[0].style.top = String($('.shared-photo').offset().top + PosY) + "px";
       $('#comment-input')[0].style.left = String($('.shared-photo').offset().left + PosX - 145) + "px";
@@ -74,13 +74,28 @@ function GetCoordinates(e){
 
 }
 
-function doSetTimeout(tag, multiplier) {
-  timeout_function = setTimeout(function(){
+function myLoop () {
+  timeout_function = setTimeout(function () {
 
-    $("#indicator-" + tag.id.split("-")[1]).show('slow');
-    $(tag).show('slow');
+      if(tag_counter >= tag_max){
 
-  }, 1000 * multiplier);
+      }else{
+
+      }
+
+      $("#indicator-" + $('.tag')[tag_index].id.split("-")[1]).show('slow');
+      $($('.tag')[tag_index]).show('slow');
+
+      tag_index++;
+      tag_counter++;
+
+      if (tag_counter >= $('.tag').length) {
+        tag_index = 0;
+        myLoop();
+      }else {
+        myLoop();
+      }
+   }, 1500)
 }
 
 function create_tags(id, label, x, y, counter, selected) {
@@ -154,8 +169,6 @@ function hide_all(){
 
 $(window).load(function() {
 
-  var time_multiplier = 0;
-
   <%if !@tags_array.empty?%>
     <%@tags_array.each do |tag|%>
       <%= @selected = Opinion.where(tag_id: tag.id, user_id: user_signed_in? ? current_user.id : cookies[:guest]).first.nil? %>
@@ -166,10 +179,7 @@ $(window).load(function() {
   $("#indicator-" + $('.tag')[0].id.split("-")[1])[0].style.display = "inline-block";
   $($('.tag')[0]).show('slow');
 
-  for(i = 1; i < $('.tag').length; i++){
-    time_multiplier = time_multiplier + 2;
-    doSetTimeout($('.tag')[i], time_multiplier);
-  }
+  myLoop();
 
   $('#answer_value').on('change', function() {
     $('.modal-button').prop('disabled', !(this.value.length > 0));
@@ -198,7 +208,6 @@ $(window).load(function() {
       $('.tag')[i].style.top = String($('.shared-photo').offset().top + ($('.shared-photo')[0].clientHeight * $('.tag')[i].y_ratio)) + "px";
 
       if(w_max){
-        console.log($('.tag')[i].offsetWidth);
         $('.tag')[i].style.left = String(w - $('.tag')[i].offsetWidth) + "px";
       }else{
         $('.tag')[i].style.left = String(w) + "px";
