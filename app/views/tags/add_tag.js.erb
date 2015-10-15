@@ -3,7 +3,7 @@ $(document).ready(function() {
   $('#comment-input')[0].style.display = "none";
   $('#comment-input')[0].value = "";
 
-  iDiv = $('<%= link_to "TEST", upvote_question_path(:id => @question.id), :method => :get, :remote => true, class: "tag" %>');
+  iDiv = $('<%= link_to "TEST", :controller => "answers", :action => "vote_tag", :question => @question.id, :tag_clicked => @tag.id, :method => :post, :remote => true, class: "tag" %>');
   iDiv[0].id = "tag-" + <%= @tag.id%>;
   iDiv[0].className = 'tag';
   iDiv[0].innerHTML =
@@ -13,7 +13,6 @@ $(document).ready(function() {
   iDiv[0].style.color = "#88FFF4";
   iDiv[0].style.visibility = "visible";
   iDiv[0].style.display = "none";
-  iDiv[0].href = "/vote_tag?question=<%=@question.id%>&tag_clicked=" + "<%= @tag.id %>";
   iDiv[0].style.top = String($('.shared-photo').offset().top + ($('.shared-photo')[0].clientHeight * <%= @tag.y_ratio%>)) + "px";
   iDiv[0].style.left = String($('.shared-photo').offset().left + ($('.shared-photo')[0].clientWidth * <%= @tag.x_ratio%>)) + "px";
   iDiv[0].x_ratio = <%= @tag.y_ratio%>;

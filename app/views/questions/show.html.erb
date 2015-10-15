@@ -76,24 +76,43 @@ function GetCoordinates(e){
 
 function myLoop () {
   timeout_function = setTimeout(function () {
+      var temp;
 
-      if(tag_counter >= tag_max){
+      if((tag_counter >= tag_max) && $('.tag').length > 5){
+        if(tag_index >= 5){
+          $("#indicator-" + $('.tag')[tag_index - 5].id.split("-")[1])[0].style.display = "none";
+          $('.tag')[tag_index - 5].style.display = "none";
 
+          $("#indicator-" + $('.tag')[tag_index].id.split("-")[1]).show('slow');
+          $($('.tag')[tag_index]).show('slow');
+        }else {
+
+          temp = $('.tag')[$('.tag').length - (5 - tag_index)];
+          $('.tag')[$('.tag').length - (5 - tag_index)].style.display = "none";
+          $("#indicator-" + temp.id.split("-")[1])[0].style.display = "none";
+
+          $("#indicator-" + $('.tag')[tag_index].id.split("-")[1]).show('slow');
+          $($('.tag')[tag_index]).show('slow');
+        }
       }else{
 
+        tag_counter++;
+        $("#indicator-" + $('.tag')[tag_index].id.split("-")[1]).show('slow');
+        $($('.tag')[tag_index]).show('slow');
       }
 
-      $("#indicator-" + $('.tag')[tag_index].id.split("-")[1]).show('slow');
-      $($('.tag')[tag_index]).show('slow');
-
       tag_index++;
-      tag_counter++;
 
-      if (tag_counter >= $('.tag').length) {
+      if ((tag_index >= $('.tag').length - 1) && $('.tag').length > 5) {
         tag_index = 0;
         myLoop();
       }else {
-        myLoop();
+        if (($('.tag').length <= 5) && (tag_counter == $('.tag').length)){
+          clearTimeout(timeout_function);
+        }else {
+          myLoop();
+        }
+
       }
    }, 1500)
 }
@@ -218,11 +237,13 @@ $(window).load(function() {
 
   $("input").keypress(function(event) {
     if (event.which == 13) {
-        $("#new_answer").submit();
+      $('#value')[0].value = $('#comment-input')[0].value;
+      $("#new_answer").submit();
     }
   });
 
   $(".submit-plus").click(function() {
+    $('#value')[0].value = $('#comment-input')[0].value;
     $("#new_answer").submit();
     $('#comment-input')[0].style.display = "none";
     $('#comment-input')[0].value = "";
@@ -389,16 +410,18 @@ $(window).load(function() {
 <%elsif @question.shared_image && @question.value_type == "tag"%>
 <div id="image-question-container">
 <div>
-  <%= simple_form_for @answer,:url => {:action => "add_tag", :controller => "answers"}, class: "form-inline", role: "form", html: {novalidate: true}, :remote => true do |f| %>
-    <%= f.input(:options_for_collection, label: false,input_html:{value: nil, placeholder: "Add Comment Here", class: "input-hidden", id:"comment-input"}) %>
+  <%= form_for :tag, :url => {:action => "add_tag", :controller => "tags"}, class: "form-inline", :remote => true do |f| %>
+    <%= f.text_field(:label, placeholder: "Add Comment Here", class: "input-hidden", id: "comment-input") %>
     <%= f.submit "+", class: "submit-plus visible-xs" %>
     <span class="mobile-instructag visible-xs">Tap on the image to add your Tag Comment! </span>
+
 
     <%= hidden_field_tag 'question_id', @question.id %>
     <%= hidden_field_tag 'x_axis' %>
     <%= hidden_field_tag 'y_axis' %>
     <%= hidden_field_tag 'x_axis_max' %>
     <%= hidden_field_tag 'y_axis_max' %>
+    <%= hidden_field_tag 'value' %>
   <% end %>
 
 </div>
