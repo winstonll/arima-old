@@ -161,33 +161,6 @@ class AnswersController < ApplicationController
     end
   end
 
-  def vote_tag
-
-    @tags_array = Tag.where(question_id: params[:question])
-    @tag_clicked = params[:tag_clicked]
-    @tag = Tag.where(id: params[:tag_clicked]).first
-
-    @user_id = user_signed_in? ? current_user.id : cookies[:guest]
-
-    if Opinion.where(tag_id: @tag.id, user_id: @user_id).first.nil?
-      @tag.counter = @tag.counter + 1
-      @tag.save
-
-      @opinion = Opinion.new(tag_id: @tag.id, user_id: @user_id, question_id: params[:question])
-      @opinion.save
-    else
-      @opinion = Opinion.where(tag_id: @tag.id, user_id: @user_id).first
-      @tag.counter = @tag.counter - 1
-      @tag.save
-      @opinion.destroy!
-    end
-
-    respond_to do |format|
-      format.js
-    end
-  end
-
-
   def add_comment
     @question = Question.where(id: params[:question_id]).first
 
