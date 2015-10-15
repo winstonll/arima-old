@@ -4,7 +4,7 @@
 <%#= javascript_include_tag "markerwithlabel" %>
 
 <%@tag_array = Tag.where(question_id: @question.id).order(created_at: :asc)%>
-<%@all = Question.all.order(created_at: :desc)%>
+<%@all = Question.where.not(id: @question.id, shared_image: false).all%>
 
 <script>
 
@@ -467,7 +467,7 @@ $(window).load(function() {
       </section>
 
       <% @all.each do |question| %>
-        <%#= render partial: "common/question_with_category", locals: { answered: false, question: question } %>
+        <%= render partial: "common/trending_images", locals: { answered: false, question: question } %>
       <% end %>
 
       <div style="clear:both;"></div>
