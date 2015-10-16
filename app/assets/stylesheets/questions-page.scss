@@ -182,8 +182,9 @@
 .share-image-title {
   color: #4a4a4a;
   font-weight: 600;
-  font-size: 17px;
+  font-size: 16px;
   position: relative;
+  top: 10px;
 }
 
 
@@ -200,6 +201,7 @@
   margin-left: 15px;
   text-decoration: underline;
   color: #7D7D7D;
+  font-weight: 500;
 }
 
 #users_list:hover {
