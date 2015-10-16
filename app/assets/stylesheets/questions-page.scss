@@ -145,29 +145,34 @@
           font-weight: 600;
           color: #419BF9;
           margin-right: 15px;
-          font-size: 13px;
+          font-size: 14px;
         }
         .show-tag{
           background-color: #419BF9;
           color: white;
-          padding: 9px 12px 11px 12px;
-          font-size: 12px;
+          padding: 7px 15px 10px 15px;
           margin-right: -2px;
-          font-size: 11px;
+          font-size: 13px;
+
+          &:hover{
+          background-color: #2A91FD;
+          }
         }
 
         .hide-tag {
-          background-color: #7ED321;
+          background-color: #F5A623;
           color: white;
-          padding: 9px 12px 11px 12px;
-          font-size: 12px;
+          padding: 7px 15px 10px 15px;
           margin-left: -2px;
-          font-size: 11px;
+          font-size: 13px;
+          &:hover{
+          background-color: #EF9C12;
+          }
         }
 
         .zoompic {
-          margin-left: 2px;
-          margin-right: 5px;
+          margin-left: 4px;
+          margin-right: 6px;
         }
       }
     }
