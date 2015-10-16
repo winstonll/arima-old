@@ -196,10 +196,12 @@ $(window).load(function() {
     <%end%>
   <%end%>
 
-  $("#indicator-" + $('.tag')[0].id.split("-")[1])[0].style.display = "inline-block";
-  $($('.tag')[0]).show('slow');
+  if($('.tag').length > 0){
+    $("#indicator-" + $('.tag')[0].id.split("-")[1])[0].style.display = "inline-block";
+    $($('.tag')[0]).show('slow');
 
-  myLoop();
+    myLoop();
+  }
 
   $('#answer_value').on('change', function() {
     $('.modal-button').prop('disabled', !(this.value.length > 0));
