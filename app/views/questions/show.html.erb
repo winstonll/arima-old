@@ -9,9 +9,10 @@
 <script>
 
 var timeout_function;
-var tag_counter = 0;
-var tag_index = 0;
+var tag_counter = 1;
+var tag_index = 1;
 var tag_max = 5;
+var comment_counter = 1;
 
 function FindPosition(oElement){
   if(typeof( oElement.offsetParent ) != "undefined"){
@@ -78,40 +79,23 @@ function myLoop () {
   timeout_function = setTimeout(function () {
       var temp;
 
-      if((tag_counter >= tag_max) && $('.tag').length > 5){
-        if(tag_index >= 5){
-          $("#indicator-" + $('.tag')[tag_index - 5].id.split("-")[1])[0].style.display = "none";
-          $('.tag')[tag_index - 5].style.display = "none";
+      if($('.tag').length <= 5){
 
-          $("#indicator-" + $('.tag')[tag_index].id.split("-")[1]).show('slow');
-          $($('.tag')[tag_index]).show('slow');
-        }else {
+        $("#indicator-" + $('.tag')[tag_index].id.split("-")[1])[0].style.display = "none";
+        $('.tag')[tag_index].style.display = "none";
 
-          temp = $('.tag')[$('.tag').length - (5 - tag_index)];
-          $('.tag')[$('.tag').length - (5 - tag_index)].style.display = "none";
-          $("#indicator-" + temp.id.split("-")[1])[0].style.display = "none";
-
-          $("#indicator-" + $('.tag')[tag_index].id.split("-")[1]).show('slow');
-          $($('.tag')[tag_index]).show('slow');
-        }
-      }else{
-
-        tag_counter++;
         $("#indicator-" + $('.tag')[tag_index].id.split("-")[1]).show('slow');
         $($('.tag')[tag_index]).show('slow');
-      }
 
-      tag_index++;
+        tag_index++;
+        tag_counter++;
 
-      if ((tag_index >= $('.tag').length - 1) && $('.tag').length > 5) {
-        tag_index = 0;
-        myLoop();
-      }else {
-        if (($('.tag').length <= 5) && (tag_counter == $('.tag').length)){
+        if(tag_counter == $('.tag').length){
           clearTimeout(timeout_function);
         }else {
           myLoop();
         }
+      }else{
 
       }
    }, 1500)
@@ -123,8 +107,10 @@ function create_tags(id, label, x, y, counter, selected) {
   tag_indicator = $('<div class="tag_indicator"></div>');
 
   iDiv = $('<%= link_to "TEST", upvote_question_path(:id => @question.id), :method => :get, :remote => true, class: "tag" %>');
-  iDiv[0].id = "tag-" + id;
+  $(iDiv).attr('id', "tag-" + id);
   iDiv[0].className = 'tag';
+  $(iDiv[0]).addClass("comment-" + comment_counter);
+
   if(!selected){
     iDiv[0].innerHTML =
     '<span style="position: relative; display: inline-block; margin-right: -5px;">\
@@ -144,8 +130,11 @@ function create_tags(id, label, x, y, counter, selected) {
   iDiv[0].x_ratio = x;
   iDiv[0].y_ratio = y;
 
+  comment_counter++;
+
   $('#image-question-container')[0].appendChild(iDiv[0]);
   $('#image-question-container')[0].appendChild(tag_indicator[0]);
+
 
   h = $('.shared-photo').offset().top + ($('.shared-photo')[0].clientHeight * y);
   w = $('.shared-photo').offset().left + ($('.shared-photo')[0].clientWidth * x);
@@ -195,6 +184,7 @@ $(window).load(function() {
       create_tags("<%= tag.id%>", "<%= tag.label%>", <%= tag.x_ratio%>, <%= tag.y_ratio%>, <%= tag.counter%>, <%= @selected%>);
     <%end%>
   <%end%>
+
 
   if($('.tag').length > 0){
     $("#indicator-" + $('.tag')[0].id.split("-")[1])[0].style.display = "inline-block";
