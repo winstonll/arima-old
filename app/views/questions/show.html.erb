@@ -83,6 +83,7 @@ function myLoop () {
       var temp,x1, x2, y1, y2, indicator;
 
       if($('.tag').length <= 5){
+        tag_index++;
 
         indicator = $("#indicator-" + $('.tag')[tag_index].id.split("-")[1]);
         indicator[0].style.display = "none";
@@ -96,7 +97,6 @@ function myLoop () {
 
         $($('.tag')[tag_index]).show('slow');
 
-        tag_index++;
         tag_counter++;
 
         if(tag_counter == $('.tag').length){
