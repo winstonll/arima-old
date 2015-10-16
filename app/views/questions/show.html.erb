@@ -3,6 +3,9 @@
 <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=visualization"></script>-->
 <%#= javascript_include_tag "markerwithlabel" %>
 
+<%= javascript_include_tag "jquery.line" %>
+
+
 <%@tag_array = Tag.where(question_id: @question.id).order(created_at: :asc)%>
 <%@all = Question.where.not(id: @question.id, shared_image: false).all%>
 
@@ -10,9 +13,9 @@
 
 var timeout_function;
 var tag_counter = 1;
-var tag_index = 1;
+var tag_index = 0;
 var tag_max = 5;
-var comment_counter = 1;
+var comment_index = 1;
 
 function FindPosition(oElement){
   if(typeof( oElement.offsetParent ) != "undefined"){
@@ -77,14 +80,20 @@ function GetCoordinates(e){
 
 function myLoop () {
   timeout_function = setTimeout(function () {
-      var temp;
+      var temp,x1, x2, y1, y2, indicator;
 
       if($('.tag').length <= 5){
 
-        $("#indicator-" + $('.tag')[tag_index].id.split("-")[1])[0].style.display = "none";
+        indicator = $("#indicator-" + $('.tag')[tag_index].id.split("-")[1]);
+        indicator[0].style.display = "none";
         $('.tag')[tag_index].style.display = "none";
 
-        $("#indicator-" + $('.tag')[tag_index].id.split("-")[1]).show('slow');
+        temp = $("#indicator-120");
+
+        indicator.show('slow');
+
+        //$('#image-question-container').line(indicator.offset().left, indicator.offset().top, temp.offset().left, temp.offset().top, {color:"#50E3C2", stroke:1, zindex:10, display: "block",  id: "line-" + tag_index});
+
         $($('.tag')[tag_index]).show('slow');
 
         tag_index++;
@@ -97,6 +106,41 @@ function myLoop () {
         }
       }else{
 
+        if(comment_index > 5){
+          console.log("index");
+          comment_index = 1;
+        }
+
+        if(tag_counter  >= 5){
+          console.log($(".comment-" + comment_index));
+          $(".comment-" + comment_index)[0].style.display = "none";
+          $(".comment-" + comment_index)[1].style.display = "none";
+
+          $(".comment-" + comment_index).removeClass("comment-" + comment_index);
+        }
+
+        ++tag_index;
+
+        indicator = $("#indicator-" + $('.tag')[tag_index].id.split("-")[1]);
+        indicator[0].style.display = "none";
+        $('.tag')[tag_index].style.display = "none";
+
+        indicator.addClass("comment-" + comment_index);
+        $($('.tag')[tag_index]).addClass("comment-" + comment_index);
+
+        indicator.show('slow');
+        $($('.tag')[tag_index]).show('slow');
+
+
+        comment_index++;
+        tag_counter++;
+
+        if(tag_index == $('.tag').length - 1){
+          tag_index = -1;
+          console.log("reset");
+        }
+
+        myLoop();
       }
    }, 1500)
 }
@@ -109,7 +153,6 @@ function create_tags(id, label, x, y, counter, selected) {
   iDiv = $('<%= link_to "TEST", upvote_question_path(:id => @question.id), :method => :get, :remote => true, class: "tag" %>');
   $(iDiv).attr('id', "tag-" + id);
   iDiv[0].className = 'tag';
-  $(iDiv[0]).addClass("comment-" + comment_counter);
 
   if(!selected){
     iDiv[0].innerHTML =
@@ -129,8 +172,6 @@ function create_tags(id, label, x, y, counter, selected) {
 
   iDiv[0].x_ratio = x;
   iDiv[0].y_ratio = y;
-
-  comment_counter++;
 
   $('#image-question-container')[0].appendChild(iDiv[0]);
   $('#image-question-container')[0].appendChild(tag_indicator[0]);
@@ -185,9 +226,13 @@ $(window).load(function() {
     <%end%>
   <%end%>
 
-
   if($('.tag').length > 0){
     $("#indicator-" + $('.tag')[0].id.split("-")[1])[0].style.display = "inline-block";
+    $("#indicator-" + $('.tag')[0].id.split("-")[1]).addClass("comment-1");
+    $($('.tag')[0]).addClass("comment-1");
+
+    comment_index++;
+
     $($('.tag')[0]).show('slow');
 
     myLoop();
