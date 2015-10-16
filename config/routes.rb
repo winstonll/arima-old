@@ -3,10 +3,13 @@ Arima::Application.routes.draw do
   get 'feed' => 'feed#index'
   get 'category' => 'feed#category'
   get 'cat' => 'feed#category_non_feed'
-  post 'add_tag' => 'answers#add_tag'
+
+  post 'add_tag' => 'tags#add_tag'
   post 'add_comment' => 'answers#add_comment'
   get 'user_list_display' => 'questions#user_list_display'
-  get 'vote_tag' => 'answers#vote_tag'
+  
+  get 'vote_tag' => 'tags#vote_tag'
+  get 'downvote_tag' => 'tags#downvote_tag'
 
   get 'view_map' => 'answers#view_map'
   get 'trophy' => 'profiles#trophy'

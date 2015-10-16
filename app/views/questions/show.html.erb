@@ -3,15 +3,19 @@
 <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=visualization"></script>-->
 <%#= javascript_include_tag "markerwithlabel" %>
 
+<%= javascript_include_tag "jquery.line" %>
+
+
 <%@tag_array = Tag.where(question_id: @question.id).order(created_at: :asc)%>
-<%@all = Question.all.order(created_at: :desc)%>
+<%@all = Question.where.not(id: @question.id, shared_image: false).all%>
 
 <script>
 
 var timeout_function;
-var tag_counter = 0;
+var tag_counter = 1;
 var tag_index = 0;
 var tag_max = 5;
+var comment_index = 1;
 
 function FindPosition(oElement){
   if(typeof( oElement.offsetParent ) != "undefined"){
@@ -76,23 +80,63 @@ function GetCoordinates(e){
 
 function myLoop () {
   timeout_function = setTimeout(function () {
+      var temp,x1, x2, y1, y2, indicator;
 
-      if(tag_counter >= tag_max){
+      if($('.tag').length <= 5){
+        tag_index++;
 
+        indicator = $("#indicator-" + $('.tag')[tag_index].id.split("-")[1]);
+        indicator[0].style.display = "none";
+        $('.tag')[tag_index].style.display = "none";
+
+        temp = $("#indicator-120");
+
+        indicator.show('slow');
+
+        //$('#image-question-container').line(indicator.offset().left, indicator.offset().top, temp.offset().left, temp.offset().top, {color:"#50E3C2", stroke:1, zindex:10, display: "block",  id: "line-" + tag_index});
+
+        $($('.tag')[tag_index]).show('slow');
+
+        tag_counter++;
+
+        if(tag_counter == $('.tag').length){
+          clearTimeout(timeout_function);
+        }else {
+          myLoop();
+        }
       }else{
 
-      }
+        if(comment_index > 5){
+          comment_index = 1;
+        }
 
-      $("#indicator-" + $('.tag')[tag_index].id.split("-")[1]).show('slow');
-      $($('.tag')[tag_index]).show('slow');
+        if(tag_counter  >= 5){
+          $(".comment-" + comment_index)[0].style.display = "none";
+          $(".comment-" + comment_index)[1].style.display = "none";
 
-      tag_index++;
-      tag_counter++;
+          $(".comment-" + comment_index).removeClass("comment-" + comment_index);
+        }
 
-      if (tag_counter >= $('.tag').length) {
-        tag_index = 0;
-        myLoop();
-      }else {
+        ++tag_index;
+
+        indicator = $("#indicator-" + $('.tag')[tag_index].id.split("-")[1]);
+        indicator[0].style.display = "none";
+        $('.tag')[tag_index].style.display = "none";
+
+        indicator.addClass("comment-" + comment_index);
+        $($('.tag')[tag_index]).addClass("comment-" + comment_index);
+
+        indicator.show('slow');
+        $($('.tag')[tag_index]).show('slow');
+
+
+        comment_index++;
+        tag_counter++;
+
+        if(tag_index == $('.tag').length - 1){
+          tag_index = -1;
+        }
+
         myLoop();
       }
    }, 1500)
@@ -104,8 +148,9 @@ function create_tags(id, label, x, y, counter, selected) {
   tag_indicator = $('<div class="tag_indicator"></div>');
 
   iDiv = $('<%= link_to "TEST", upvote_question_path(:id => @question.id), :method => :get, :remote => true, class: "tag" %>');
-  iDiv[0].id = "tag-" + id;
+  $(iDiv).attr('id', "tag-" + id);
   iDiv[0].className = 'tag';
+
   if(!selected){
     iDiv[0].innerHTML =
     '<span style="position: relative; display: inline-block; margin-right: -5px;">\
@@ -127,6 +172,7 @@ function create_tags(id, label, x, y, counter, selected) {
 
   $('#image-question-container')[0].appendChild(iDiv[0]);
   $('#image-question-container')[0].appendChild(tag_indicator[0]);
+
 
   h = $('.shared-photo').offset().top + ($('.shared-photo')[0].clientHeight * y);
   w = $('.shared-photo').offset().left + ($('.shared-photo')[0].clientWidth * x);
@@ -177,10 +223,17 @@ $(window).load(function() {
     <%end%>
   <%end%>
 
-  $("#indicator-" + $('.tag')[0].id.split("-")[1])[0].style.display = "inline-block";
-  $($('.tag')[0]).show('slow');
+  if($('.tag').length > 0){
+    $("#indicator-" + $('.tag')[0].id.split("-")[1])[0].style.display = "inline-block";
+    $("#indicator-" + $('.tag')[0].id.split("-")[1]).addClass("comment-1");
+    $($('.tag')[0]).addClass("comment-1");
 
-  myLoop();
+    comment_index++;
+
+    $($('.tag')[0]).show('slow');
+
+    myLoop();
+  }
 
   $('#answer_value').on('change', function() {
     $('.modal-button').prop('disabled', !(this.value.length > 0));
@@ -218,11 +271,13 @@ $(window).load(function() {
 
   $("input").keypress(function(event) {
     if (event.which == 13) {
-        $("#new_answer").submit();
+      $('#value')[0].value = $('#comment-input')[0].value;
+      $("#new_answer").submit();
     }
   });
 
   $(".submit-plus").click(function() {
+    $('#value')[0].value = $('#comment-input')[0].value;
     $("#new_answer").submit();
     $('#comment-input')[0].style.display = "none";
     $('#comment-input')[0].value = "";
@@ -389,16 +444,18 @@ $(window).load(function() {
 <%elsif @question.shared_image && @question.value_type == "tag"%>
 <div id="image-question-container">
 <div>
-  <%= simple_form_for @answer,:url => {:action => "add_tag", :controller => "answers"}, class: "form-inline", role: "form", html: {novalidate: true}, :remote => true do |f| %>
-    <%= f.input(:options_for_collection, label: false,input_html:{value: nil, placeholder: "Add Comment Here", class: "input-hidden", id:"comment-input"}) %>
+  <%= form_for :tag, :url => {:action => "add_tag", :controller => "tags"}, class: "form-inline", :remote => true do |f| %>
+    <%= f.text_field(:label, placeholder: "Add Comment Here", class: "input-hidden", id: "comment-input") %>
     <%= f.submit "+", class: "submit-plus visible-xs" %>
     <span class="mobile-instructag visible-xs">Tap on the image to add your Tag Comment! </span>
+
 
     <%= hidden_field_tag 'question_id', @question.id %>
     <%= hidden_field_tag 'x_axis' %>
     <%= hidden_field_tag 'y_axis' %>
     <%= hidden_field_tag 'x_axis_max' %>
     <%= hidden_field_tag 'y_axis_max' %>
+    <%= hidden_field_tag 'value' %>
   <% end %>
 
 </div>
@@ -442,8 +499,8 @@ $(window).load(function() {
               <%= image_tag("Tag.png", size: "18x18")%>
               <%= @tag_array.count%> Tags
             </span>
-              <a href="#" onclick="show_all();" class="show-tag"><%= image_tag("Show_Tag.png", size: "15x10") + "  Show All Tags"%></a>
-              <a href="#" onclick="hide_all();" class="hide-tag"><%= image_tag("Hide_Tag.png", size: "15x10") + "  Hide All Tags"%></a>
+              <a href="#" onclick="show_all();" class="show-tag"><%= image_tag("Show_Tag.png", size: "23x15") + "  Show All Tags"%></a>
+              <a href="#" onclick="hide_all();" class="hide-tag"><%= image_tag("Hide_Tag.png", size: "23x15") + "  Hide All Tags"%></a>
             <span class="zoompic">
               <%= image_tag("Enlarge.png", size: "25x25", class: "enlarge-icon") %>
             </span>
@@ -467,7 +524,7 @@ $(window).load(function() {
       </section>
 
       <% @all.each do |question| %>
-        <%#= render partial: "common/question_with_category", locals: { answered: false, question: question } %>
+        <%#= render partial: "common/trending_images", locals: { answered: false, question: question } %>
       <% end %>
 
       <div style="clear:both;"></div>

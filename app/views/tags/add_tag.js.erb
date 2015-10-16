@@ -1,0 +1,48 @@
+$(document).ready(function() {
+  var iDiv, tag_indicator, w, w_max, h;
+
+  $('#comment-input')[0].style.display = "none";
+  $('.red-indicator')[0].style.display = "none";
+  $('#comment-input')[0].value = "";
+
+  tag_indicator = $('<div class="tag_indicator"></div>');
+
+  iDiv = $('<%= link_to "TEST", :controller => "tags", :action => "vote_tag", :question => @question.id, :tag_clicked => @tag.id, :method => :post, :remote => true, class: "tag" %>');
+  iDiv[0].id = "tag-" + <%= @tag.id%>;
+  iDiv[0].className = 'tag';
+
+  iDiv[0].innerHTML =
+  '<span style="position: relative; display: inline-block;">\
+  <%= image_tag("arrow_up_clicked.png", alt:"image", size:"15x15", class:"up-arrow")%>\
+  <span style="position: relative; margin-right: 15px; font-weight: 500;">' + "<%= @tag.counter%>" + '</span></span>'  + "<%= @tag.label%>";
+  iDiv[0].style.color = "#88FFF4";
+  iDiv[0].style.visibility = "visible";
+  iDiv[0].style.display = "none";
+  iDiv[0].style.top = String($('.shared-photo').offset().top + ($('.shared-photo')[0].clientHeight * <%= @tag.y_ratio%>)) + "px";
+  iDiv[0].x_ratio = <%= @tag.x_ratio%>;
+  iDiv[0].y_ratio = <%= @tag.y_ratio%>;
+
+  h = $('.shared-photo').offset().top + ($('.shared-photo')[0].clientHeight * <%= @tag.y_ratio%>);
+  w = $('.shared-photo').offset().left + ($('.shared-photo')[0].clientWidth * <%= @tag.x_ratio%>);
+  w_max = w >= ($('.shared-photo').offset().left + $('.shared-photo')[0].clientWidth) * 0.8;
+
+  tag_indicator[0].style.top = String(h - 5) + "px";
+  tag_indicator[0].id = "indicator-" + <%= @tag.id%>;
+
+
+  if(w_max){
+    console.log(w - iDiv[0].offsetWidth);
+    iDiv[0].style.left = String(w - iDiv[0].offsetWidth) + "px";
+  }else{
+    iDiv[0].style.left = String(w) + "px";
+  }
+  console.log(iDiv[0].style.left);
+  tag_indicator[0].style.left = String(w - 5) + "px";
+
+  $('#image-question-container')[0].appendChild(iDiv[0]);
+  $('#image-question-container')[0].appendChild(tag_indicator[0]);
+
+  $(tag_indicator).show('slow');
+  $(iDiv).show('slow');
+
+});
