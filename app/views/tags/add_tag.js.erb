@@ -21,11 +21,13 @@ $(document).ready(function() {
   iDiv[0].x_ratio = <%= @tag.x_ratio%>;
   iDiv[0].y_ratio = <%= @tag.y_ratio%>;
 
+  h = $('.shared-photo').offset().top + ($('.shared-photo')[0].clientHeight * <%= @tag.y_ratio%>);
   w = $('.shared-photo').offset().left + ($('.shared-photo')[0].clientWidth * <%= @tag.x_ratio%>);
   w_max = w >= ($('.shared-photo').offset().left + $('.shared-photo')[0].clientWidth) * 0.8;
 
   tag_indicator[0].style.top = String(h - 5) + "px";
   tag_indicator[0].id = "indicator-" + <%= @tag.id%>;
+
 
   if(w_max){
     console.log(w - iDiv[0].offsetWidth);
