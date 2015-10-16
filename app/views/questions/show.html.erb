@@ -107,12 +107,10 @@ function myLoop () {
       }else{
 
         if(comment_index > 5){
-          console.log("index");
           comment_index = 1;
         }
 
         if(tag_counter  >= 5){
-          console.log($(".comment-" + comment_index));
           $(".comment-" + comment_index)[0].style.display = "none";
           $(".comment-" + comment_index)[1].style.display = "none";
 
@@ -137,7 +135,6 @@ function myLoop () {
 
         if(tag_index == $('.tag').length - 1){
           tag_index = -1;
-          console.log("reset");
         }
 
         myLoop();
