@@ -16,44 +16,45 @@ class QuestionsController < ApplicationController
     end
 
     cookies[:group_id] = @question.group_id
-    @answers = Answer.where(question: @question).count
+    #@answers = Answer.where(question: @question).count
 
     @counter = User.joins(:opinions).where("opinions.question_id = #{@question.id}").distinct.count
 
     @tags_array = Tag.where(question_id: @question.id)
 
     #extracting all of the users that answered this question
-    @users_list = Array.new
-    Answer.where(question: @question).find_each do |answer|
-      @users_list << answer.user_id
-    end
+    #@users_list = Array.new
+    #Answer.where(question: @question).find_each do |answer|
+    #  @users_list << answer.user_id
+    #end
+
     #extracting all of the countries that answered the question
-    @countries_array = Array.new
-    @users_list.each do |user|
-      @countries_array << Location.where(user_id: user).pluck(:country)
-    end
+    #@countries_array = Array.new
+    #@users_list.each do |user|
+    #  @countries_array << Location.where(user_id: user).pluck(:country)
+    #end
 
     #@countries_array is a two dimensional array, so this extracts the first element of each inner array.
-    @countries_answered = @countries_array.collect(&:first).uniq
+    #@countries_answered = @countries_array.collect(&:first).uniq
 
     #create_dummy_users()
     check_guest()
 
-    if cookies[:guest] != nil
-      @user_country = Location.where(user_id: cookies[:guest]).first
-      @dropdown_array = [@user_country.country]
+    #if cookies[:guest] != nil
+    #  @user_country = Location.where(user_id: cookies[:guest]).first
+    #  @dropdown_array = [@user_country.country]
 
-      check_guest()
+    #  check_guest()
 
-      @answer = user_signed_in? ? @question.answers.where(user_id: current_user.id).first : @question.answers.where(user_id: cookies[:guest]).first
+    #  @answer = user_signed_in? ? @question.answers.where(user_id: current_user.id).first : @question.answers.where(user_id: cookies[:guest]).first
 
-      if @answer.nil?
-        @user_submitted_answer = false
-        @answer = user_signed_in? ? @question.answers.build(user_id: current_user.id) : @question.answers.build(user_id: cookies[:guest])
-      else
-        @user_submitted_answer = true
-      end
-    end
+    #  if @answer.nil?
+    #    @user_submitted_answer = false
+    #    @answer = user_signed_in? ? @question.answers.build(user_id: current_user.id) : @question.answers.build(user_id: cookies[:guest])
+    #  else
+    #    @user_submitted_answer = true
+    #  end
+    #end
   end
 
   def user_list_display
