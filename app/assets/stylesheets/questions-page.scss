@@ -144,9 +144,25 @@
         .tagcount {
           font-weight: 600;
           color: #419BF9;
-          margin-right: 15px;
+          margin-right: 10px;
           font-size: 14px;
+            p {
+              display: inline;
+              margin: 0;
+              vertical-align: bottom;
+            }          
         }
+        .grave{
+          margin-right: 10px;
+          font-weight: 600;
+          color: #818181;
+          p {
+            display: inline;
+            margin: 0;
+            vertical-align: bottom;
+          }
+        }
+
         .show-tag{
           background-color: #419BF9;
           color: white;

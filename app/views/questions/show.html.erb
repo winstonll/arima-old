@@ -340,8 +340,8 @@ $(window).load(function() {
 <%# end %>
 
 <%= render '/common/share_new_question_modal' %>
-<%#= render '/common/missing_input_signup'%>
 <%= render 'common/user_list_display' %>
+<%= render 'common/graveyard_list' %>
 <%#= render '/common/signup_modal' %>
 <%#= render '/common/share_answer_modal' %>
 
@@ -497,7 +497,12 @@ $(window).load(function() {
           <span class="showhidebuttons">
             <span class="tagcount">
               <%= image_tag("Tag.png", size: "18x18")%>
-              <%= @tag_array.count%> Tags
+              <p><%= @tag_array.count%> Tags</p>
+            </span>
+            <span class="grave">
+              <%= link_to image_tag("graveyard.png", size: "20x25"), { controller: "tags", action: "graveyard_list", remote: true, :tag => @tag}%>
+              <p><%= @tagrave.count %></p>
+
             </span>
               <!--<a href="#" onclick="show_all();" class="show-tag"><%#= image_tag("Show_Tag.png", size: "23x15") + "  Show All Tags"%></a>-->
               <a href="#" onclick="hide_all();" class="hide-tag"><%= image_tag("Hide_Tag.png", size: "23x15") + "  Hide All Tags"%></a>
@@ -520,6 +525,7 @@ $(window).load(function() {
         end
          %>
        </span>
+
         <%= link_to " #{@counter} users voted", { controller: "questions", action: "user_list_display", remote: true, :question => @question}, id: 'users_list' %>
       </section>
 

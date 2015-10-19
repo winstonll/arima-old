@@ -93,4 +93,13 @@ class TagsController < ApplicationController
     end
   end
 
+  def graveyard_list
+    @question = Question.where(slug: params[:question]).first
+    @opinion = Opinion.where(tag_id: @tag, user_id: @user_id).first
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
 end
