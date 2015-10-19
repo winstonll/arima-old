@@ -20,7 +20,15 @@ class QuestionsController < ApplicationController
 
     @counter = User.joins(:opinions).where("opinions.question_id = #{@question.id}").distinct.count
 
-    @tags_array = Tag.where(question_id: @question.id)
+    @tags_array = Array.new
+
+    Tag.where(question_id: @question.id).each do |tag|
+      if tag.reply_id == 0
+        @tags_array.push(tag)
+      else
+        @tags_array.insert(@tags_array.index(Tag.where(id: tag.reply_id).first) + 1, tag)
+      end
+    end
 
     #extracting all of the users that answered this question
     #@users_list = Array.new
