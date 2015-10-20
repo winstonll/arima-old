@@ -2,6 +2,8 @@
 
 <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=visualization"></script>-->
 <%#= javascript_include_tag "markerwithlabel" %>
+ <%= stylesheet_link_tag "featherlight.min.css" %>
+ <%= javascript_include_tag "featherlight" %>
 
 <%= javascript_include_tag "jquery.line" %>
 
@@ -513,7 +515,9 @@ $(window).load(function() {
               <!--<a href="#" onclick="show_all();" class="show-tag"><%#= image_tag("Show_Tag.png", size: "23x15") + "  Show All Tags"%></a>-->
               <a href="#" onclick="hide_all();" class="hide-tag"><%= image_tag("Hide_Tag.png", size: "23x15") + "  Hide All Tags"%></a>
             <span class="zoompic">
-              <%= image_tag("Enlarge.png", size: "25x25", class: "enlarge-icon") %>
+              <a href="<%= img_path %>" data-featherlight="image">
+                <%= image_tag("Enlarge.png", size: "25x25", class: "enlarge-icon") %>
+              </a>
             </span>
           </span>
 
