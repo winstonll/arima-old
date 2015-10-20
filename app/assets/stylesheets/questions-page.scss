@@ -2,9 +2,8 @@
   padding-top: 20px;
   height: 100%;
 }
-.up-arrow {
-  position: relative;
-  bottom: 3px;
+.votearrow {
+  display: inline-block;
 }
 
 .submit-plus {
@@ -68,6 +67,7 @@
   background-color: rgba(0, 0, 0, 0.6);
   display: inline-block;
   visibility: hidden;
+  color: white;
 }
 
 #comment-input {
