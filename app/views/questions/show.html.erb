@@ -320,7 +320,6 @@ $(window).load(function() {
 });
 </script>
 
-
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -539,9 +538,11 @@ $(window).load(function() {
         <%= link_to " #{@counter} users voted", { controller: "questions", action: "user_list_display", remote: true, :question => @question}, id: 'users_list' %>
       </section>
 
-      <% @all.each do |question| %>
-        <%#= render partial: "common/trending_images", locals: { answered: false, question: question } %>
-      <% end %>
+      <center id="image-feed">
+        <% @all.each do |question| %>
+          <%= render partial: "common/trending_images", locals: { answered: false, question: question } %>
+        <% end %>
+      </center>
 
       <div style="clear:both;"></div>
 
