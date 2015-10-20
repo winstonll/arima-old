@@ -13,6 +13,7 @@ class TagsController < ApplicationController
 
 
   def add_tag
+    check_guest()
 
     # cookies[:signup] = nil
     # cookies[:answer] = nil
@@ -39,6 +40,8 @@ class TagsController < ApplicationController
   end
 
   def vote_tag
+    check_guest()
+
     @question = Question.where(id: params[:question]).first
     @tags_array = Tag.where(question_id: params[:question])
     @tag_clicked = params[:tag_clicked]
@@ -67,6 +70,8 @@ class TagsController < ApplicationController
   end
 
   def downvote_tag
+    check_guest()
+
     @question = Question.where(id: params[:question]).first
     @tags_array = Tag.where(question_id: params[:question])
     @tag_clicked = params[:tag_clicked]
