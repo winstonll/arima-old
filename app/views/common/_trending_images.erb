@@ -7,7 +7,7 @@ $(document).ready(function() {
 });
 </script>
 
-<div class="<%= question.id.to_s%> imgulike" style= "width: 10em; display: inline-block;">
+<div class="<%= question.id.to_s%> imgulike" style= "width: 10em; display: inline-block; border-radius: 3px; border: solid;">
 	<a href="<%= question_path(question) %>" title="<%= question.label %>">
 	  <div style="height: 125px;"></div> 
 	</a>
