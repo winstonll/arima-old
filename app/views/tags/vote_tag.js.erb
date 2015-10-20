@@ -1,7 +1,9 @@
 $(document).ready(function() {
-    $("<%= "#tag-#{@tag_clicked}"%>")[0].style.color = "#88FFF4";
+	var upvote = '<a data-method="get" data-remote="true" href="/vote_tag?question=<%= @question.id%>' + '&tag_clicked=' + '<%= @tag.id %>' + '"'+ '><%= image_tag("upvote-green.png", alt:"image", size:"12x10", class:"votearrow") %></a>';
+ 	var downvote = '<a data-method="get" data-remote="true" href="/downvote_tag?question=<%= @question.id%>' + '&tag_clicked=' + '<%= @tag.id %>' + '"'+ '><%= image_tag("downvote-white.png", alt:"image", size:"12x10", class:"votearrow") %></a>';
+
+    $("<%= "#tag-#{@tag_clicked}"%>")[0].style.color = "white";
     $("<%= "#tag-#{@tag_clicked}"%>")[0].innerHTML =
-    '<span style="position: relative; display: inline-block; margin-right: -5px;">\
-    <%= image_tag("upvote-green.png", alt:"image", size:"15x15", class:"up-arrow")%>\
-    <span style="position: relative; margin-right: 15px; font-weight: 500;">' + '<%= @tag.counter%>' + '</span></span>'  + '<%= @tag.label%>';
+    '<span style="display: inline-block;">' + upvote + downvote +'</span>' + '<span style="margin-left: 10px;">' + '<%=@tag.counter%>' + '</span>' + '<span style="margin-left: 10px;">' + '<%=@tag.label%>' +'</span>';
+
 });

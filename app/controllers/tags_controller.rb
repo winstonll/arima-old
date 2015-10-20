@@ -39,7 +39,7 @@ class TagsController < ApplicationController
   end
 
   def vote_tag
-
+    @question = Question.where(id: params[:question]).first
     @tags_array = Tag.where(question_id: params[:question])
     @tag_clicked = params[:tag_clicked]
     @tag = Tag.where(id: params[:tag_clicked]).first
@@ -67,6 +67,7 @@ class TagsController < ApplicationController
   end
 
   def downvote_tag
+    @question = Question.where(id: params[:question]).first
     @tags_array = Tag.where(question_id: params[:question])
     @tag_clicked = params[:tag_clicked]
     @tag = Tag.where(id: params[:tag_clicked]).first
