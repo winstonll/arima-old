@@ -85,27 +85,39 @@ function myLoop () {
       var temp,x1, x2, y1, y2, indicator;
 
       if($('.tag').length <= 5){
-        tag_index++;
+        ++tag_index;
 
         indicator = $("#indicator-" + $('.tag')[tag_index].id.split("-")[1]);
         indicator[0].style.display = "none";
         $('.tag')[tag_index].style.display = "none";
 
-        temp = $("#indicator-120");
+        indicator.addClass("comment-" + comment_index);
+        $($('.tag')[tag_index]).addClass("comment-" + comment_index);
 
         indicator.show('slow');
+
+        if (tag_index != 0){
+          indicator = $("#indicator-" + $('.tag')[tag_index - 1 ].id.split("-")[1]);
+          indicator[0].style.display = "none";
+          $('.tag')[tag_index - 1].style.display = "none";
+        }else{
+          indicator = $("#indicator-" + $('.tag')[$('.tag').length - 1 ].id.split("-")[1]);
+          indicator[0].style.display = "none";
+          $('.tag')[$('.tag').length - 1].style.display = "none";
+        }
 
         //$('#image-question-container').line(indicator.offset().left, indicator.offset().top, temp.offset().left, temp.offset().top, {color:"#50E3C2", stroke:1, zindex:10, display: "block",  id: "line-" + tag_index});
 
         $($('.tag')[tag_index]).show('slow');
 
+        comment_index++;
         tag_counter++;
 
-        if(tag_counter == $('.tag').length){
-          clearTimeout(timeout_function);
-        }else {
-          myLoop();
+        if(tag_index == $('.tag').length - 1){
+          tag_index = -1;
         }
+
+        myLoop();
       }else{
 
         if(comment_index > 5){
