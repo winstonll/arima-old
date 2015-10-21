@@ -2,9 +2,8 @@
   padding-top: 20px;
   height: 100%;
 }
-.up-arrow {
-  position: relative;
-  bottom: 3px;
+.votearrow {
+  display: inline-block;
 }
 
 .submit-plus {
@@ -68,7 +67,9 @@
   background-color: rgba(0, 0, 0, 0.6);
   display: inline-block;
   visibility: hidden;
+  color: white;
 }
+
 
 #comment-input {
   width: 145px;
@@ -86,7 +87,6 @@
 }
 
 .tag:hover{
-  color: #88FFF4 !important;
   z-index: 800;
   background-color: rgba(0, 0, 0, 1);
 }
@@ -95,15 +95,12 @@
   position: relative;
   background-color: #1C1C1C;
   width: 70%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 100px;
+  margin: 60px auto 60px auto;
 
   .image-frame {
     width: 100%;
     background-color: #F1F1F1;
     position: relative;
-
 
     .image-container {
       display: flex;
@@ -134,7 +131,7 @@
       }
 
       .instructag {
-        font-weight: 700;
+        font-weight: 600;
         font-size: 13px;
       }
 
@@ -144,29 +141,47 @@
         .tagcount {
           font-weight: 600;
           color: #419BF9;
-          margin-right: 15px;
+          margin-right: 10px;
           font-size: 14px;
+            p {
+              display: inline;
+              margin: 0;
+              vertical-align: bottom;
+            }
         }
+        .grave{
+          margin-right: 10px;
+          font-weight: 600;
+          color: #818181;
+          p {
+            display: inline;
+            margin: 0;
+            vertical-align: bottom;
+          }
+        }
+
         .show-tag{
+          display: none;
           background-color: #419BF9;
           color: white;
           padding: 7px 15px 10px 15px;
-          margin-right: -2px;
+          margin-right: -1px;
           font-size: 13px;
-
+          font-weight: 700;
           &:hover{
           background-color: #2A91FD;
           }
         }
 
         .hide-tag {
-          background-color: #F5A623;
+          background-color: #F55723;
           color: white;
           padding: 7px 15px 10px 15px;
-          margin-left: -2px;
+          margin-right: -1px;
           font-size: 13px;
+          font-weight: 700;
           &:hover{
-          background-color: #EF9C12;
+          background-color: #E43800;
           }
         }
 
@@ -187,12 +202,15 @@
 .share-image-title {
   color: #4a4a4a;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 14px;
   position: relative;
-  top: 10px;
+  margin: 7px;
 }
 
-
+#image-feed {
+  white-space: nowrap;
+  overflow: auto;
+}
 
 #user_link {
   color: #419BF9;
@@ -224,13 +242,17 @@
 
 #image_poll {
   background-color: #f6f6f6;
-  padding-top: 20px;
+  padding-top: 80px;
+
+  #lightbox {
+    height: 25em;
+  }
 }
 
 #question_poll {
   height: 100vh;
   background-color: #f6f6f6;
-  padding-top: 20px;
+  padding-top: 100px;
 }
 
 .image-map {
@@ -1124,10 +1146,10 @@
     position: relative;
   }
   .show-tag {
-    padding: 11px 5px 10.5px 5px !important;
+    padding: 12px 5px 10.5px 5px !important;
   }
   .hide-tag {
-    padding: 11px 5px 10.5px 5px !important;
+    padding: 12px 5px 10.5px 5px !important;
   }
   .enlarge-icon {
     display: none;

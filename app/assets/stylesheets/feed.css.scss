@@ -28,9 +28,8 @@
   left: 0;
 
 }
+
 #icon-container::-webkit-scrollbar { width: 0 !important }
-
-
 #icon-container {
     margin: 0% 0 0 0%;
     width:100%;
@@ -40,9 +39,9 @@
     opacity: .9;
     border-bottom: 1px solid #ececec;
     height: 50px;
-
     white-space: nowrap;
     overflow: auto;
+    display: none;
 
   .arima-icon{
     position: relative;

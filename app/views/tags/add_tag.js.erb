@@ -7,15 +7,15 @@ $(document).ready(function() {
 
   tag_indicator = $('<div class="tag_indicator"></div>');
 
-  iDiv = $('<%= link_to "TEST", :controller => "tags", :action => "vote_tag", :question => @question.id, :tag_clicked => @tag.id, :method => :post, :remote => true, class: "tag" %>');
+  iDiv = $('<div class="tag"></div>');
+  var upvote = '<a data-method="get" data-remote="true" href="/vote_tag?question=<%= @question.id%>' + '&tag_clicked=' + '<%= @tag.id %>' + '"'+ '><%= image_tag("upvote-green.png", alt:"image", size:"12x10", class:"votearrow") %></a>';
+  var downvote = '<a data-method="get" data-remote="true" href="/downvote_tag?question=<%= @question.id%>' + '&tag_clicked=' + '<%= @tag.id %>' + '"'+ '><%= image_tag("downvote-white.png", alt:"image", size:"12x10", class:"votearrow") %></a>';
+
   iDiv[0].id = "tag-" + <%= @tag.id%>;
   iDiv[0].className = 'tag';
 
-  iDiv[0].innerHTML =
-  '<span style="position: relative; display: inline-block;">\
-  <%= image_tag("arrow_up_clicked.png", alt:"image", size:"15x15", class:"up-arrow")%>\
-  <span style="position: relative; margin-right: 15px; font-weight: 500;">' + "<%= @tag.counter%>" + '</span></span>'  + "<%= @tag.label%>";
-  iDiv[0].style.color = "#88FFF4";
+  iDiv[0].innerHTML = '<span style="display: inline-block;">' + upvote + downvote +'</span>' + '<span style="margin-left: 10px;">' + '<%=@tag.counter%>' + '</span>' + '<span style="margin-left: 10px;">' + '<%=@tag.label%>' +'</span>';
+  iDiv[0].style.color = "white";
   iDiv[0].style.visibility = "visible";
   iDiv[0].style.display = "none";
   iDiv[0].style.top = String($('.shared-photo').offset().top + ($('.shared-photo')[0].clientHeight * <%= @tag.y_ratio%>)) + "px";
@@ -42,7 +42,7 @@ $(document).ready(function() {
   $('#image-question-container')[0].appendChild(iDiv[0]);
   $('#image-question-container')[0].appendChild(tag_indicator[0]);
 
-  $(tag_indicator).show('slow');
-  $(iDiv).show('slow');
+  $(tag_indicator).fadeIn('slow');
+  $(iDiv).fadeIn('slow');
 
 });
