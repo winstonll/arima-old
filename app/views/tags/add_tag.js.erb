@@ -8,8 +8,8 @@ $(document).ready(function() {
   tag_indicator = $('<div class="tag_indicator"></div>');
 
   iDiv = $('<div class="tag"></div>');
-  var upvote = '<a data-method="get" data-remote="true" href="/vote_tag?question=<%= @question.id%>' + '&tag_clicked=' + '<%= @tag.id %>' + '"'+ '><%= image_tag("upvote-green.png", alt:"image", size:"12x10", class:"votearrow") %></a>';
-  var downvote = '<a data-method="get" data-remote="true" href="/downvote_tag?question=<%= @question.id%>' + '&tag_clicked=' + '<%= @tag.id %>' + '"'+ '><%= image_tag("downvote-white.png", alt:"image", size:"12x10", class:"votearrow") %></a>';
+  var upvote = '<a data-method="get" data-remote="true" href="/vote_tag?question=<%= @question.id%>' + '&tag_clicked=' + '<%= @tag.id %>' + '"'+ '><%= image_tag("upvote-green.png", alt:"image", size:"15x15", class:"votearrow") %></a>';
+  var downvote = '<a data-method="get" data-remote="true" href="/downvote_tag?question=<%= @question.id%>' + '&tag_clicked=' + '<%= @tag.id %>' + '"'+ '><%= image_tag("downvote-white.png", alt:"image", size:"15x15", class:"votearrow") %></a>';
 
   iDiv[0].id = "tag-" + <%= @tag.id%>;
   iDiv[0].className = 'tag';

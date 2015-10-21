@@ -189,9 +189,9 @@ function create_tags(id, label, x, y, counter, selected) {
   tag_indicator = $('<div class="tag_indicator"></div>');
 
   iDiv = $('<div class="tag"></div>');
-  var upvote = upvote = '<a data-method="get" data-remote="true" href="/vote_tag?question=<%= @question.id%>' + '&tag_clicked=' + id + '"'+ '><%= image_tag("upvote-white.png", alt:"image", size:"12x10", class:"votearrow") %></a>';
+  var upvote = upvote = '<a data-method="get" data-remote="true" href="/vote_tag?question=<%= @question.id%>' + '&tag_clicked=' + id + '"'+ '><%= image_tag("upvote-white.png", alt:"image", size:"15x15", class:"votearrow") %></a>';
 
-  var downvote = '<a data-method="get" data-remote="true" href="/downvote_tag?question=<%= @question.id%>' + '&tag_clicked=' + id + '"'+ '><%= image_tag("downvote-white.png", alt:"image", size:"12x10", class:"votearrow") %></a>';
+  var downvote = '<a data-method="get" data-remote="true" href="/downvote_tag?question=<%= @question.id%>' + '&tag_clicked=' + id + '"'+ '><%= image_tag("downvote-white.png", alt:"image", size:"15x15", class:"votearrow") %></a>';
 
   iDiv[0].innerHTML =  '<span style="display: inline-block;">' + upvote + downvote +'</span>' + '<span style="margin-left: 10px;" class="counter-' + id + '">' + counter + '</span>' + '<span style="margin-left: 10px;">' + label +'</span>';
 
