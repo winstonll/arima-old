@@ -204,12 +204,13 @@
   font-weight: 600;
   font-size: 14px;
   position: relative;
-  margin: 7px;
+  margin-top: 2px;
 }
 
 #image-feed {
   white-space: nowrap;
   overflow: auto;
+  margin-top: 10px;
 }
 
 #user_link {
@@ -221,10 +222,11 @@
 }
 
 #users_list{
-  margin-left: 15px;
+  margin-left: 12px;
   text-decoration: underline;
   color: #7D7D7D;
   font-weight: 500;
+  font-size: 13px;
 }
 
 #users_list:hover {
@@ -1133,7 +1135,7 @@
   .tool-bar {
     width: 100%;
     height: 40px !important;
-  }
+    }
   .showhidebuttons {
     margin-top: 5px !important;
     position: relative;
@@ -1157,7 +1159,7 @@
   .share-image-title {
     font-size: 11px;
     text-align: center;
-  }
+    }
   .submit-plus {
     position: absolute;
     bottom: 17%;
