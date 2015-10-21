@@ -9,7 +9,6 @@
 
 
 <%@tag_array = Tag.where(question_id: @question.id).order(created_at: :asc)%>
-<%#@all = Question.where.not(id: @question.id, shared_image: false).all%>
 
 <script>
 
@@ -576,9 +575,7 @@ $(window).load(function() {
       </section>
 
       <center id="image-feed">
-        <%# @all.each do |question| %>
-          <%#= render partial: "common/trending_images", locals: { answered: false, question: question } %>
-        <%# end %>
+
       </center>
 
       <div style="clear:both;"></div>

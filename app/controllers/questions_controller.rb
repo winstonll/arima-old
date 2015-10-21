@@ -20,7 +20,7 @@ class QuestionsController < ApplicationController
 
     @counter = User.joins(:opinions).where("opinions.question_id = #{@question.id}").distinct.count
 
-    @tags_array = Tag.where(question_id: @question.id).order(created_at: :asc)
+    @tags_array = Tag.where(question_id: @question.id)
 
     #Tag.where(question_id: @question.id).each do |tag|
     #  if tag.reply_id == 0
