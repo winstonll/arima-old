@@ -161,12 +161,13 @@
         }
 
         .show-tag{
+          display: none;
           background-color: #419BF9;
           color: white;
           padding: 7px 15px 10px 15px;
-          margin-right: -2px;
+          margin-right: -1px;
           font-size: 13px;
-
+          font-weight: 700;
           &:hover{
           background-color: #2A91FD;
           }
@@ -176,9 +177,9 @@
           background-color: #F55723;
           color: white;
           padding: 7px 15px 10px 15px;
-          margin-left: -2px;
+          margin-right: -1px;
           font-size: 13px;
-          font-weight: 800;
+          font-weight: 700;
           &:hover{
           background-color: #E43800;
           }
@@ -1145,10 +1146,10 @@
     position: relative;
   }
   .show-tag {
-    padding: 11px 5px 10.5px 5px !important;
+    padding: 12px 5px 10.5px 5px !important;
   }
   .hide-tag {
-    padding: 11px 5px 10.5px 5px !important;
+    padding: 12px 5px 10.5px 5px !important;
   }
   .enlarge-icon {
     display: none;
