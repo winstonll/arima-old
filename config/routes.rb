@@ -8,7 +8,7 @@ Arima::Application.routes.draw do
   post 'add_comment' => 'answers#add_comment'
   get 'user_list_display' => 'questions#user_list_display'
   get 'graveyard_list' => 'tags#graveyard_list'
-  
+
   get 'vote_tag' => 'tags#vote_tag'
   get 'downvote_tag' => 'tags#downvote_tag'
 
@@ -45,7 +45,7 @@ Arima::Application.routes.draw do
     post 'show_popular' => "categories#show_popular"
   end
 
-  resources :questions, :path => 'images', only: [:show, :new] do
+  resources :questions, only: [:show, :new] do
     resources :answers, only: [:new, :create]
   end
 
