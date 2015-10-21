@@ -80,7 +80,7 @@ function GetCoordinates(e){
 
 }
 
-function myLoop () {
+function myLoop (time) {
   timeout_function = setTimeout(function () {
       var temp,x1, x2, y1, y2, indicator;
 
@@ -117,7 +117,7 @@ function myLoop () {
           tag_index = -1;
         }
 
-        myLoop();
+        myLoop(time);
       }else{
 
         if(comment_index > 5){
@@ -151,9 +151,9 @@ function myLoop () {
           tag_index = -1;
         }
 
-        myLoop();
+        myLoop(time);
       }
-   }, 1500)
+   }, time);
 }
 
 function create_tags(id, label, x, y, counter, selected) {
@@ -220,6 +220,8 @@ function hide_all(){
 
 $(window).load(function() {
 
+  var time_out;
+
   <%if !@tags_array.empty?%>
     <%@tags_array.each do |tag|%>
       <%= @selected = Opinion.where(tag_id: tag.id, user_id: user_signed_in? ? current_user.id : cookies[:guest]).first.nil? %>
@@ -236,7 +238,13 @@ $(window).load(function() {
 
     $($('.tag')[0]).show('slow');
 
-    myLoop();
+    if($('.tag').length <= 5){
+      time_out = 2000;
+    }else {
+      time_out = 1500;
+    }
+
+    myLoop(time_out);
   }
 
   $('#answer_value').on('change', function() {
