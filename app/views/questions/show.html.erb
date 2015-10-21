@@ -7,9 +7,6 @@
 
 <%#= javascript_include_tag "jquery.line" %>
 
-
-<%@tag_array = Tag.where(question_id: @question.id).order(created_at: :asc)%>
-
 <script>
 
 var timeout_function;
@@ -540,7 +537,7 @@ $(window).load(function() {
           <span class="showhidebuttons">
             <span class="tagcount">
               <%= image_tag("Tag.png", size: "18x18")%>
-              <p><%= @tag_array.count%> Tags</p>
+              <p><%= @tags_array.count%> Tags</p>
             </span>
             <span class="grave">
               <%= link_to image_tag("graveyard.png", size: "20x25"), { controller: "tags", action: "graveyard_list", remote: true, :tag => @tag}%>
