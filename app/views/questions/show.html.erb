@@ -541,7 +541,7 @@ $(window).load(function() {
             </span>
             <span class="grave">
               <%= link_to image_tag("graveyard.png", size: "20x25"), { controller: "tags", action: "graveyard_list", remote: true, :tag => @tag}%>
-              <p><%#= @tagrave.count %></p>
+              <p><%= @tagrave.count %></p>
 
             </span>
               <a href="#" onclick="show_all();" class="show-tag"><%= image_tag("Show_Tag.png", size: "23x15") + "  Show Tags"%></a>
@@ -572,7 +572,10 @@ $(window).load(function() {
       </section>
 
       <center id="image-feed">
-
+        <%@ifeed = Question.where.not(id: @question.id, shared_image: false).order("RANDOM()").limit(12)%>
+        <% @ifeed.each do |question| %>
+          <%= render partial: "common/trending_images", locals: { answered: false, question: question } %>
+        <% end %>
       </center>
 
       <div style="clear:both;"></div>
