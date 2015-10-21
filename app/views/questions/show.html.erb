@@ -80,29 +80,29 @@ function GetCoordinates(e){
 
 }
 
-function increaseSize(tag_index, counter){
+function increaseSize(tag, counter){
   if(counter == 1){
-    $('.tag')[tag_index].style.fontSize = "12px";
+    tag.style.fontSize = "12px";
   }else if (counter == 2) {
-    $('.tag')[tag_index].style.fontSize = "13px";
+    tag.style.fontSize = "13px";
   }else if (counter == 3){
-    $('.tag')[tag_index].style.fontSize = "14px";
+    tag.style.fontSize = "14px";
   }else if (counter == 4){
-    $('.tag')[tag_index].style.fontSize = "15px";
+    tag.style.fontSize = "15px";
   }else if (counter == 5){
-    $('.tag')[tag_index].style.fontSize = "16px";
+    tag.style.fontSize = "16px";
   }else if (counter == 6){
-    $('.tag')[tag_index].style.fontSize = "17px";
+    tag.style.fontSize = "17px";
   }else if (counter == 7){
-    $('.tag')[tag_index].style.fontSize = "18px";
+    tag.style.fontSize = "18px";
   }else if (counter == 8){
-    $('.tag')[tag_index].style.fontSize = "19px";
+    tag.style.fontSize = "19px";
   }else if (counter == 9){
-    $('.tag')[tag_index].style.fontSize = "20px";
+    tag.style.fontSize = "20px";
   }else if (counter == 10){
-    $('.tag')[tag_index].style.fontSize = "21px";
+    tag.style.fontSize = "21px";
   }else if (counter >= 11){
-    $('.tag')[tag_index].style.fontSize = "22px";
+    tag.style.fontSize = "22px";
   }
 }
 
@@ -115,8 +115,6 @@ function myLoop (time) {
 
         indicator = $("#indicator-" + $('.tag')[tag_index].id.split("-")[1]);
         indicator[0].style.display = "none";
-
-        increaseSize(tag_index, $('.counter-' + $('.tag')[tag_index].id.split("-")[1])[0].innerHTML);
 
         $('.tag')[tag_index].style.display = "none";
 
@@ -203,6 +201,8 @@ function create_tags(id, label, x, y, counter, selected) {
   iDiv[0].x_ratio = x;
   iDiv[0].y_ratio = y;
 
+  increaseSize(iDiv[0], counter);
+
   $('#image-question-container')[0].appendChild(iDiv[0]);
   $('#image-question-container')[0].appendChild(tag_indicator[0]);
 
@@ -262,8 +262,6 @@ $(window).load(function() {
     $("#indicator-" + $('.tag')[0].id.split("-")[1])[0].style.display = "inline-block";
     $("#indicator-" + $('.tag')[0].id.split("-")[1]).addClass("comment-1");
     $($('.tag')[0]).addClass("comment-1");
-
-    increaseSize(0, $('.counter-' + $('.tag')[0].id.split("-")[1])[0].innerHTML);
 
     comment_index++;
 
