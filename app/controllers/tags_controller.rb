@@ -52,13 +52,22 @@ class TagsController < ApplicationController
       @tag.counter = @tag.counter + 1
       @tag.save
 
-      @opinion = Opinion.new(tag_id: @tag.id, user_id: @user_id, question_id: params[:question])
+      @opinion = Opinion.new(tag_id: @tag.id, user_id: @user_id, question_id: params[:question], vote_type: "upvote")
       @opinion.save
     else
       @opinion = Opinion.where(tag_id: @tag.id, user_id: @user_id).first
 
+      if @opinion.vote_type.nil?
+        @opinion.vote_type = "upvote"
+        @opinion.save
+      end
+
       if @opinion.vote_type == 'downvote'
-        @tag.counter = @tag.counter + 2
+        puts "hello1oo1oo1o1oo12oo124o1521o5"
+
+        @opinion.vote_type = "upvote"
+        @opinion.save
+        @tag.update_attribute(:counter, @tag.counter + 2)
         @tag.save
       end
     end
@@ -79,19 +88,28 @@ class TagsController < ApplicationController
     @user_id = user_signed_in? ? current_user.id : cookies[:guest]
 
     if Opinion.where(tag_id: @tag.id, user_id: @user_id).first.nil?
-      @tag.counter = @tag.counter + 1
+      @tag.update_attribute(:counter, @tag.counter - 1)
       @tag.save
 
-      @opinion = Opinion.new(tag_id: @tag.id, user_id: @user_id, question_id: params[:question])
+      @opinion = Opinion.new(tag_id: @tag.id, user_id: @user_id, question_id: params[:question],  vote_type: "downvote")
       @opinion.save
     else
       @opinion = Opinion.where(tag_id: @tag.id, user_id: @user_id).first
 
+      if @opinion.vote_type.nil?
+        @opinion.vote_type = "downvote"
+        @opinion.save
+      end
+
       if @opinion.vote_type == 'upvote'
-        @tag.counter = @tag.counter - 2
-        @tag.save
+        @opinion.vote_type = "downvote"
+        @opinion.save
+        @tag.update_attribute(:counter, @tag.counter - 2)
+        @tag.save!
       end
     end
+
+    puts @tag.counter
 
     respond_to do |format|
       format.js
