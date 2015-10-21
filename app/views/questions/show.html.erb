@@ -541,7 +541,7 @@ $(window).load(function() {
             </span>
             <span class="grave">
               <%= link_to image_tag("graveyard.png", size: "20x25"), { controller: "tags", action: "graveyard_list", remote: true, :tag => @tag}%>
-              <p><%= @tagrave.count %></p>
+              <p><%#= @tagrave.count %></p>
 
             </span>
               <a href="#" onclick="show_all();" class="show-tag"><%= image_tag("Show_Tag.png", size: "23x15") + "  Show Tags"%></a>
