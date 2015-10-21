@@ -13,7 +13,6 @@ class TagsController < ApplicationController
 
 
   def add_tag
-    check_guest()
 
     # cookies[:signup] = nil
     # cookies[:answer] = nil
