@@ -110,7 +110,7 @@ function myLoop (time) {
   timeout_function = setTimeout(function () {
       var temp,x1, x2, y1, y2, indicator;
 
-      if($('.tag').length <= 5){
+      if($('.tag').length <= 4){
         ++tag_index;
 
         indicator = $("#indicator-" + $('.tag')[tag_index].id.split("-")[1]);
@@ -147,11 +147,11 @@ function myLoop (time) {
         myLoop(time);
       }else{
 
-        if(comment_index > 5){
+        if(comment_index > 4){
           comment_index = 1;
         }
 
-        if(tag_counter  >= 5){
+        if(tag_counter  >= 4){
           $(".comment-" + comment_index)[0].style.display = "none";
           $(".comment-" + comment_index)[1].style.display = "none";
 
