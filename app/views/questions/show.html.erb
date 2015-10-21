@@ -135,7 +135,7 @@ function myLoop (time) {
 
         //$('#image-question-container').line(indicator.offset().left, indicator.offset().top, temp.offset().left, temp.offset().top, {color:"#50E3C2", stroke:1, zindex:10, display: "block",  id: "line-" + tag_index});
 
-        $($('.tag')[tag_index]).show('slow');
+        $($('.tag')[tag_index]).fadeIn('slow');
 
         comment_index++;
         tag_counter++;
@@ -168,7 +168,7 @@ function myLoop (time) {
         $($('.tag')[tag_index]).addClass("comment-" + comment_index);
 
         indicator.show('slow');
-        $($('.tag')[tag_index]).show('slow');
+        $($('.tag')[tag_index]).fadeIn('slow');
 
 
         comment_index++;
@@ -269,12 +269,12 @@ $(window).load(function() {
 
     comment_index++;
 
-    $($('.tag')[0]).show('slow');
+    $($('.tag')[0]).fadeIn('slow');
 
     if($('.tag').length <= 5){
       time_out = 2000;
     }else {
-      time_out = 1500;
+      time_out = 2500;
     }
 
     myLoop(time_out);
