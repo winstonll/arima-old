@@ -4,7 +4,7 @@
 
   $("#comment_list_container").html("<%= escape_javascript(render partial: '/questions/comment_list', locals: { question: @question} ) %>");
 
-  <%@tag_array = Tag.where(question_id: @question.id).order(created_at: :asc)%>
+  <%@tags_array = Tag.where(question_id: @question.id).order(created_at: :asc)%>
 
   <%if user_signed_in?
       @liked_tag = Opinion.where(user_id: current_user.id, question_id: @question.id)
