@@ -66,7 +66,7 @@ class TagsController < ApplicationController
 
         @opinion.vote_type = "upvote"
         @opinion.save
-        @tag.update_attribute(:counter, @tag.counter + 1)
+        @tag.update_attribute(:counter, @tag.counter + 2)
         @tag.save
       end
     end
@@ -103,7 +103,7 @@ class TagsController < ApplicationController
       if @opinion.vote_type == 'upvote'
         @opinion.vote_type = "downvote"
         @opinion.save
-        @tag.update_attribute(:counter, @tag.counter - 1)
+        @tag.update_attribute(:counter, @tag.counter - 2)
         @tag.save!
       end
     end
