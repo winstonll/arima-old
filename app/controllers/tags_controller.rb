@@ -63,7 +63,6 @@ class TagsController < ApplicationController
       end
 
       if @opinion.vote_type == 'downvote'
-        puts "hello1oo1oo1o1oo12oo124o1521o5"
 
         @opinion.vote_type = "upvote"
         @opinion.save
