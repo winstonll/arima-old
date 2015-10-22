@@ -16,8 +16,6 @@
 //= require lib/bootstrap.min
 //= require lib/underscore
 
-//= require c3
-//= require d3.v3
 //= require prettySocial.min
 //= require underscore
 //= require gmaps/google
@@ -28,8 +26,13 @@
 //= require profile
 //= require sidebar
 
+/**
+require c3
+require d3.v3
+**/
+
 $(document).ready(function() {
-  
+
 /**
   $(function(){
     setTimeout(updateComments, 1000);
