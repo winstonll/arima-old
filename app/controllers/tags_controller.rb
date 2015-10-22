@@ -29,7 +29,7 @@ class TagsController < ApplicationController
     counter: 1, x_ratio: @x, y_ratio: @y)
     @tag.save
 
-    @opinion = Opinion.new(question_id: @question.id, tag_id: @tag.id, user_id: answer_user_id)
+    @opinion = Opinion.new(question_id: @question.id, tag_id: @tag.id, user_id: answer_user_id, vote_type: "upvote")
     @opinion.save
 
     respond_to do |format|
@@ -66,7 +66,7 @@ class TagsController < ApplicationController
 
         @opinion.vote_type = "upvote"
         @opinion.save
-        @tag.update_attribute(:counter, @tag.counter + 1)
+        @tag.update_attribute(:counter, @tag.counter + 2)
         @tag.save
       end
     end
@@ -103,7 +103,7 @@ class TagsController < ApplicationController
       if @opinion.vote_type == 'upvote'
         @opinion.vote_type = "downvote"
         @opinion.save
-        @tag.update_attribute(:counter, @tag.counter - 1)
+        @tag.update_attribute(:counter, @tag.counter - 2)
         @tag.save!
       end
     end
