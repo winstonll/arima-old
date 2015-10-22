@@ -8,6 +8,8 @@ $(document).ready(function() {
   '<span style="display: inline-block;">' + upvote + downvote +'</span>' + '<span style="margin-left: 10px;">' + '<%=@tag.counter%>' + '</span>' + '<span style="margin-left: 10px;">' + '<%=@tag.label%>' +'</span>';
 
 <%else%>
+	$("#indicator-" + "<%= "#{@tag_clicked}"%>")[0].style.display = "none";
+	$("#indicator-" + "<%= "#{@tag_clicked}"%>")[0].style.visibility = "hidden";
 	$("<%= "#tag-#{@tag_clicked}"%>")[0].style.display = "none";
 	$("<%= "#tag-#{@tag_clicked}"%>")[0].style.visibility = "hidden";
 <%end%>
