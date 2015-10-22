@@ -469,7 +469,7 @@ $(window).load(function() {
       <%# @random_questions.each do |random_question| %>
         <%#= render partial: 'common/trending_question', locals: { question: random_question } %>
       <%# end %>
-      <a href="<%#= feed_path %>"><div id="view-feed-button" class="hidden-xs">View More</div></a>
+      <a href="<%= feed_path %>"><div id="view-feed-button" class="hidden-xs">View More</div></a>
       <%#= link_to 'View Category', cat_path(:group_id), :id => "view-feed-button" %>
 
     </div>
@@ -483,7 +483,7 @@ $(window).load(function() {
 <div>
   <%= form_for :tag, :url => {:action => "add_tag", :controller => "tags"}, class: "form-inline", :remote => true do |f| %>
     <%= f.text_field(:label, placeholder: "Add Comment Here", class: "input-hidden", id: "comment-input") %>
-    <%#= f.submit "+", class: "submit-plus visible-xs" %>
+    <%= f.submit "+", class: "submit-plus visible-xs" %>
     <span class="mobile-instructag visible-xs">Tap on the image to add your Tag Comment! </span>
 
 
