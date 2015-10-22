@@ -2,7 +2,7 @@
 <% @question = Question.where(slug: params[:id])[0] %>
 <% end %>
 
-<%@tag_array = Tag.where(question_id: @question.id).order(created_at: :asc)%>
+<%@tags_array = Tag.where(question_id: @question.id).order(created_at: :asc)%>
 
 <script>
 

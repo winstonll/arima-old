@@ -76,7 +76,7 @@ function GetCoordinates(e){
 
 }
 
-/**function increaseSize(tag, counter){
+function increaseSize(tag, counter){
   if(counter == 1){
     tag.style.fontSize = "12px";
   }else if (counter == 2) {
@@ -100,7 +100,7 @@ function GetCoordinates(e){
   }else if (counter >= 11){
     tag.style.fontSize = "22px";
   }
-}**/
+}
 
 function myLoop (time) {
   timeout_function = setTimeout(function () {
@@ -189,7 +189,7 @@ function create_tags(id, label, x, y, counter, selected) {
 
   var downvote = '<a data-method="get" data-remote="true" href="/downvote_tag?question=<%= @question.id%>' + '&tag_clicked=' + id + '"'+ '><%= image_tag("downvote-white.png", alt:"image", size:"15x15", class:"votearrow") %></a>';
 
-  iDiv[0].innerHTML =  '<span style="display: inline-block;">' + upvote + downvote +'</span>' + '<span style="margin-left: 10px;" class="counter-' + id + '">' + counter + '</span>' + '<span style="margin-left: 10px;">' + label +'</span>';
+  iDiv[0].innerHTML =  '<span style="display: inline-block;">' + upvote + downvote +'</span>' + '<span style="margin-left: 5px; font-weight: 700;" class="counter-' + id + '">' + counter + '</span>' + '<span style="margin-left: 10px;">' + label +'</span>';
 
   $(iDiv).attr('id', "tag-" + id);
   iDiv[0].className = 'tag';
@@ -197,7 +197,7 @@ function create_tags(id, label, x, y, counter, selected) {
   iDiv[0].x_ratio = x;
   iDiv[0].y_ratio = y;
 
-  /**increaseSize(iDiv[0], counter);**/
+  increaseSize(iDiv[0], counter);
 
   $('#image-question-container')[0].appendChild(iDiv[0]);
   $('#image-question-container')[0].appendChild(tag_indicator[0]);
@@ -541,7 +541,7 @@ $(window).load(function() {
             </span>
             <span class="grave">
               <%= link_to image_tag("graveyard.png", size: "20x25"), { controller: "tags", action: "graveyard_list", remote: true, :tag => @tag}%>
-              <p><%#= @tagrave.count %></p>
+              <p><%= @tagrave.count %></p>
 
             </span>
               <a href="#" onclick="show_all();" class="show-tag"><%= image_tag("Show_Tag.png", size: "23x15") + "  Show Tags"%></a>
@@ -572,7 +572,10 @@ $(window).load(function() {
       </section>
 
       <center id="image-feed">
-
+        <%@ifeed = Question.where.not(id: @question.id, shared_image: false).order("RANDOM()").limit(12)%>
+        <% @ifeed.each do |question| %>
+          <%= render partial: "common/trending_images", locals: { answered: false, question: question } %>
+        <% end %>
       </center>
 
       <div style="clear:both;"></div>

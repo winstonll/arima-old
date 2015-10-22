@@ -15,7 +15,7 @@ class FeedController < ApplicationController
     end
 
     cookies[:group_id] = nil
-    @all = Question.all.order(created_at: :desc).page(params[:page])
+    @all = Question.where.not(id: @question, shared_image: false).all.order(created_at: :desc).page(params[:page])
   end
 
   def category_non_feed
