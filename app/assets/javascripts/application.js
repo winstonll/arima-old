@@ -18,15 +18,15 @@
 
 //= require prettySocial.min
 //= require underscore
-//= require gmaps/google
 //= require typeahead
 //= require jquery.trackpad-scroll-emulator.min
 
 //= require users
 //= require profile
-//= require sidebar
 
 /**
+require sidebar
+require gmaps/google
 require c3
 require d3.v3
 **/
