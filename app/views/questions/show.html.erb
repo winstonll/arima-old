@@ -76,7 +76,7 @@ function GetCoordinates(e){
 
 }
 
-/**function increaseSize(tag, counter){
+function increaseSize(tag, counter){
   if(counter == 1){
    tag.style.fontSize = "12px";
   }else if (counter == 2) {
@@ -100,7 +100,7 @@ function GetCoordinates(e){
   }else if (counter >= 11){
    tag.style.fontSize = "22px";
   }
-}**/
+}
 
 function myLoop (time) {
   timeout_function = setTimeout(function () {
@@ -197,7 +197,7 @@ function create_tags(id, label, x, y, counter, selected) {
   iDiv[0].x_ratio = x;
   iDiv[0].y_ratio = y;
 
-  //increaseSize(iDiv[0], counter);
+  increaseSize(iDiv[0], counter);
 
   $('#image-question-container')[0].appendChild(iDiv[0]);
   $('#image-question-container')[0].appendChild(tag_indicator[0]);
