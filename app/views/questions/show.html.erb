@@ -76,31 +76,31 @@ function GetCoordinates(e){
 
 }
 
-// function increaseSize(tag, counter){
-//   if(counter == 1){
-//     tag.style.fontSize = "12px";
-//   }else if (counter == 2) {
-//     tag.style.fontSize = "13px";
-//   }else if (counter == 3){
-//     tag.style.fontSize = "14px";
-//   }else if (counter == 4){
-//     tag.style.fontSize = "15px";
-//   }else if (counter == 5){
-//     tag.style.fontSize = "16px";
-//   }else if (counter == 6){
-//     tag.style.fontSize = "17px";
-//   }else if (counter == 7){
-//     tag.style.fontSize = "18px";
-//   }else if (counter == 8){
-//     tag.style.fontSize = "19px";
-//   }else if (counter == 9){
-//     tag.style.fontSize = "20px";
-//   }else if (counter == 10){
-//     tag.style.fontSize = "21px";
-//   }else if (counter >= 11){
-//     tag.style.fontSize = "22px";
-//   }
-// }
+function increaseSize(tag, counter){
+  if(counter == 1){
+   tag.style.fontSize = "12px";
+  }else if (counter == 2) {
+   tag.style.fontSize = "13px";
+  }else if (counter == 3){
+   tag.style.fontSize = "14px";
+  }else if (counter == 4){
+   tag.style.fontSize = "15px";
+  }else if (counter == 5){
+   tag.style.fontSize = "16px";
+  }else if (counter == 6){
+   tag.style.fontSize = "17px";
+  }else if (counter == 7){
+   tag.style.fontSize = "18px";
+  }else if (counter == 8){
+   tag.style.fontSize = "19px";
+  }else if (counter == 9){
+   tag.style.fontSize = "20px";
+  }else if (counter == 10){
+   tag.style.fontSize = "21px";
+  }else if (counter >= 11){
+   tag.style.fontSize = "22px";
+  }
+}
 
 function myLoop (time) {
   timeout_function = setTimeout(function () {
@@ -197,7 +197,7 @@ function create_tags(id, label, x, y, counter, selected) {
   iDiv[0].x_ratio = x;
   iDiv[0].y_ratio = y;
 
-  // increaseSize(iDiv[0], counter);
+  increaseSize(iDiv[0], counter);
 
   $('#image-question-container')[0].appendChild(iDiv[0]);
   $('#image-question-container')[0].appendChild(tag_indicator[0]);
