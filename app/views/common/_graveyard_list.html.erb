@@ -4,7 +4,7 @@
 		<h5 style="font-weight: bold; margin-bottom: 2px;"> Graveyard </h5>
 		<p style="font-weight: 200; font-size: 11px; margin-bottom: 2px;">Tags that were downvoted to hell </p>
 		<%= image_tag("graveyard.png", size: "15x20")%>
-		<% @tagrave = Tag.where(:counter => -1, :question_id => @question) %>
+		<% @tagrave = Tag.where(:question_id => @question).where(["#{Tag.table_name}.counter < ?", 0]) %>
 		<% @tagrave.each do |tag|%>
 			<label class="hell">
 	      		<%="#{tag.label}"%>
