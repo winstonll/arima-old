@@ -16,20 +16,23 @@
 //= require lib/bootstrap.min
 //= require lib/underscore
 
-//= require c3
-//= require d3.v3
 //= require prettySocial.min
 //= require underscore
-//= require gmaps/google
 //= require typeahead
 //= require jquery.trackpad-scroll-emulator.min
 
 //= require users
 //= require profile
-//= require sidebar
+
+/**
+require sidebar
+require gmaps/google
+require c3
+require d3.v3
+**/
 
 $(document).ready(function() {
-  
+
 /**
   $(function(){
     setTimeout(updateComments, 1000);

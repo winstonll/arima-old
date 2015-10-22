@@ -15,12 +15,13 @@ class FeedController < ApplicationController
     end
 
     cookies[:group_id] = nil
-    @all = Question.where.not(id: @question, shared_image: false).all.order(created_at: :desc).page(params[:page])
+    @all = Question.where(shared_image: true).order(created_at: :desc).page(params[:page])
+
   end
 
   def category_non_feed
     cookies[:group_id] = params[:group_id]
-    @all = Question.where(group_id: params[:group_id]).page(params[:page])
+    @all = Question.where(group_id: params[:group_id], shared_image: true).page(params[:page])
     #@all = Question.all.order(created_at: :desc).page(params[:page]).per(15)
     respond_to do |format|
       format.html { render :template => "feed/index" }
@@ -29,7 +30,7 @@ class FeedController < ApplicationController
 
   def category
     cookies[:group_id] = params[:group_id]
-    @all = Question.where(group_id: params[:group_id]).page(params[:page])
+    @all = Question.where(group_id: params[:group_id], shared_image: true).page(params[:page])
     respond_to do |format|
       format.js
     end

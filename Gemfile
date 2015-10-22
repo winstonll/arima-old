@@ -37,7 +37,6 @@ gem 'oauth2'
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
-gem 'omniauth-linkedin'
 
 gem 'pointpin', '~> 1.0.0'
 

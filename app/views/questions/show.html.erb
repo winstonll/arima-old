@@ -76,31 +76,31 @@ function GetCoordinates(e){
 
 }
 
-// function increaseSize(tag, counter){
-//   if(counter == 1){
-//     tag.style.fontSize = "12px";
-//   }else if (counter == 2) {
-//     tag.style.fontSize = "13px";
-//   }else if (counter == 3){
-//     tag.style.fontSize = "14px";
-//   }else if (counter == 4){
-//     tag.style.fontSize = "15px";
-//   }else if (counter == 5){
-//     tag.style.fontSize = "16px";
-//   }else if (counter == 6){
-//     tag.style.fontSize = "17px";
-//   }else if (counter == 7){
-//     tag.style.fontSize = "18px";
-//   }else if (counter == 8){
-//     tag.style.fontSize = "19px";
-//   }else if (counter == 9){
-//     tag.style.fontSize = "20px";
-//   }else if (counter == 10){
-//     tag.style.fontSize = "21px";
-//   }else if (counter >= 11){
-//     tag.style.fontSize = "22px";
-//   }
-// }
+/**function increaseSize(tag, counter){
+  if(counter == 1){
+   tag.style.fontSize = "12px";
+  }else if (counter == 2) {
+   tag.style.fontSize = "13px";
+  }else if (counter == 3){
+   tag.style.fontSize = "14px";
+  }else if (counter == 4){
+   tag.style.fontSize = "15px";
+  }else if (counter == 5){
+   tag.style.fontSize = "16px";
+  }else if (counter == 6){
+   tag.style.fontSize = "17px";
+  }else if (counter == 7){
+   tag.style.fontSize = "18px";
+  }else if (counter == 8){
+   tag.style.fontSize = "19px";
+  }else if (counter == 9){
+   tag.style.fontSize = "20px";
+  }else if (counter == 10){
+   tag.style.fontSize = "21px";
+  }else if (counter >= 11){
+   tag.style.fontSize = "22px";
+  }
+}**/
 
 function myLoop (time) {
   timeout_function = setTimeout(function () {
@@ -197,7 +197,7 @@ function create_tags(id, label, x, y, counter, selected) {
   iDiv[0].x_ratio = x;
   iDiv[0].y_ratio = y;
 
-  // increaseSize(iDiv[0], counter);
+  //increaseSize(iDiv[0], counter);
 
   $('#image-question-container')[0].appendChild(iDiv[0]);
   $('#image-question-container')[0].appendChild(tag_indicator[0]);
@@ -387,53 +387,51 @@ $(window).load(function() {
 
 <div class="red-indicator"></div>
 
-<%if @user_submitted_answer && !@question.shared_image.nil? && !@question.shared_image%>
+<%#if @user_submitted_answer && !@question.shared_image.nil? && !@question.shared_image%>
+<!--
   <div class="main-site-container" id="question-page-container">
 
     <div id="question-hero">
       <div class="question-container">
-        <!-- Votes -->
+
         <div class="question-vote-container">
-          <!-- Should probably refactor this and use _question_normal -->
+
           <div class="question-upvote hidden-xs">
-            <% if (cookies[:guest].nil?) %>
-              <% check_guest() %>
-            <% end %>
-            <% if Vote.where(:user_id => cookies[:guest]).where(:question_id => @question.id).pluck(:vote_type)[0] == "upvote" %>
-              <%= link_to image_tag('upvote_blue.png', id: "upvote-image-#{@question.id}", class: "question-vote-image"), upvote_question_path(:id => @question.id), :method => :put, :remote => true %>
-            <% else %>
-              <%= link_to image_tag('upvote_grey.png', id: "upvote-image-#{@question.id}", class: "question-vote-image"), upvote_question_path(:id => @question.id), :method => :put, :remote => true %>
-            <% end %>
+            <%# if (cookies[:guest].nil?) %>
+              <%# check_guest() %>
+            <%# end %>
+            <%# if Vote.where(:user_id => cookies[:guest]).where(:question_id => @question.id).pluck(:vote_type)[0] == "upvote" %>
+              <%#= link_to image_tag('upvote_blue.png', id: "upvote-image-#{@question.id}", class: "question-vote-image"), upvote_question_path(:id => @question.id), :method => :put, :remote => true %>
+            <%# else %>
+              <%#= link_to image_tag('upvote_grey.png', id: "upvote-image-#{@question.id}", class: "question-vote-image"), upvote_question_path(:id => @question.id), :method => :put, :remote => true %>
+            <%# end %>
           </div>
 
           <div id="votecount-<%= @question.id %>" class="question-vote-counter hidden-xs">
-            <%= "#{@question.votecount}" %>
+            <%#= "#{@question.votecount}" %>
           </div>
 
           <div class="question-downvote hidden-xs">
-            <% if Vote.where(:user_id => cookies[:guest]).where(:question_id => @question.id).pluck(:vote_type)[0] == "downvote" %>
-              <%= link_to image_tag('downvote_orange.png', id: "downvote-image-#{@question.id}", class: "question-vote-image"), downvote_question_path(:id => @question.id), :method => :put, :remote => true %>
-            <% else %>
-              <%= link_to image_tag('downvote_grey.png', id: "downvote-image-#{@question.id}", class: "question-vote-image"), downvote_question_path(:id => @question.id), :method => :put, :remote => true %>
-            <% end %>
+            <%# if Vote.where(:user_id => cookies[:guest]).where(:question_id => @question.id).pluck(:vote_type)[0] == "downvote" %>
+              <%#= link_to image_tag('downvote_orange.png', id: "downvote-image-#{@question.id}", class: "question-vote-image"), downvote_question_path(:id => @question.id), :method => :put, :remote => true %>
+            <%# else %>
+              <%#= link_to image_tag('downvote_grey.png', id: "downvote-image-#{@question.id}", class: "question-vote-image"), downvote_question_path(:id => @question.id), :method => :put, :remote => true %>
+            <%# end %>
           </div>
-          <!-- Should probably refactor this and use _question_normal -->
         </div>
 
-        <%if !@question.image_link.nil? %>
-          <div style="float:left; margin-right: 20px;"><%= image_tag("/system/uploads/" + @question.image_link, size: "100x100", alt:"image",class: "question_image")%></div>
-        <%end%>
-        <!-- Question Title and Answer Box -->
+        <%#if !@question.image_link.nil? %>
+          <div style="float:left; margin-right: 20px;"><%#= image_tag("/system/uploads/" + @question.image_link, size: "100x100", alt:"image",class: "question_image")%></div>
+        <%#end%>
         <div class="question-title-container">
           <h1 class="question-title"><%= @question.label %></h1>
-          <div class="answer-counter"><%= @question.answers.count %><%= @question.answers.count == 1 ? ' Person' : ' People' %> Answered
+          <div class="answer-counter"><%= @question.answers.count %><%#= @question.answers.count == 1 ? ' Person' : ' People' %> Answered
           </div>
         </div>
       </div>
 
-        <!-- Counter + Share Section -->
         <div id="question-meta-container" class="hidden-xs">
-              <%= render partial: "questions/share", locals: {
+              <%#= render partial: "questions/share", locals: {
                   id: @question.id,
                   url: "#{request.protocol}#{request.host_with_port}" + question_path(@question),
                   title: "#{@question.label[0..70]}...",
@@ -441,11 +439,9 @@ $(window).load(function() {
                 }%>
         </div>
         <div id="Social-like-button" class="hidden-xs">
-            <!--Facebook like button-->
             <div class="fb-like" data-href="https://www.facebook.com/friendsofarima?fref=ts"
             data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
             <br>
-            <!--Twitter like button-->
             <a class="twitter-follow-button twitter-count" data-show-screen-name="false"
             href="https://twitter.com/arima_io">
             Follow @TwitterDev</a>
@@ -454,25 +450,24 @@ $(window).load(function() {
 
     </div>
 
-    <!-- Report -->
     <div id="question-content-container">
       <div class="report-container">
-        <%= render partial: 'common/visualization', locals: { question: @question, answer: @answer} %>
+        <%#= render partial: 'common/visualization', locals: { question: @question, answer: @answer} %>
 
          <div id="comment_list_container" class="hidden-xs">
-          <%= render partial: "comment_list"%>
+          <%#= render partial: "comment_list"%>
         </div>
       </div>
     </div>
 
     <div id="trending-questions-container" class="hidden-xs">
-      <% @random_questions = Question.where(group_id: @question.group_id).order("RANDOM()").limit(5) %>
+      <%# @random_questions = Question.where(group_id: @question.group_id).order("RANDOM()").limit(5) %>
         <br>
         <br>
         <p class="trending-questions-label hidden-xs">Questions You May Like:</p>
-      <% @random_questions.each do |random_question| %>
-        <%= render partial: 'common/trending_question', locals: { question: random_question } %>
-      <% end %>
+      <%# @random_questions.each do |random_question| %>
+        <%#= render partial: 'common/trending_question', locals: { question: random_question } %>
+      <%# end %>
       <a href="<%= feed_path %>"><div id="view-feed-button" class="hidden-xs">View More</div></a>
       <%#= link_to 'View Category', cat_path(:group_id), :id => "view-feed-button" %>
 
@@ -480,8 +475,9 @@ $(window).load(function() {
   </div>
 
 
+-->
 
-<%elsif @question.shared_image && @question.value_type == "tag"%>
+<%#elsif @question.shared_image && @question.value_type == "tag"%>
 <div id="image-question-container">
 <div>
   <%= form_for :tag, :url => {:action => "add_tag", :controller => "tags"}, class: "form-inline", :remote => true do |f| %>
@@ -584,25 +580,27 @@ $(window).load(function() {
   </div>
 </div>
 
-<%else %>
-  <div id="<%= @question.image_link.nil? ? "question_poll" : "image_poll" %>">
+<%#else %>
+<!--
+  <div id="<%#= @question.image_link.nil? ? "question_poll" : "image_poll" %>">
     <center>
-      <%if !@question.image_link.nil?%>
-        <%img_path = "/system/uploads/" + @question.image_link%>
+      <%#if !@question.image_link.nil?%>
+        <%#img_path = "/system/uploads/" + @question.image_link%>
 
         <a href="<%= img_path %>" data-featherlight="image">
-          <%= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, alt:"image", class: "shared-photo", id: "lightbox") %>
+          <%#= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, alt:"image", class: "shared-photo", id: "lightbox") %>
         </a>
-      <%end%>
+      <%#end%>
     </center>
 
-    <center style="color: #4a4a4a; font-weight: bold; font-family: Roboto; font-size: 26px; padding-top: 20px; margin: 0 22%;"><%=@question.label %></center>
+    <center style="color: #4a4a4a; font-weight: bold; font-family: Roboto; font-size: 26px; padding-top: 20px; margin: 0 22%;"><%#=@question.label %></center>
 
-    <center class="meta-title"><%= @question.answers.count%><%= @question.answers.count == 1 ? ' Person' : ' People' %> Answered</center>
+    <center class="meta-title"><%#= @question.answers.count%><%= @question.answers.count == 1 ? ' Person' : ' People' %> Answered</center>
     <br>
     <center>
-      <%= render partial: 'questions/answer_input', locals: { question: @question, answer: @answer} %>
+      <%#= render partial: 'questions/answer_input', locals: { question: @question, answer: @answer} %>
     </center>
 
   </div>
-<%end%>
+-->
+<%#end%>
