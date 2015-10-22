@@ -107,6 +107,11 @@ function myLoop (time) {
       var temp,x1, x2, y1, y2, indicator;
 
       if($('.tag').length <= 4){
+
+        if(tag_index >= $('.tag').length - 1){
+          tag_index = -1;
+        }
+
         ++tag_index;
 
         indicator = $("#indicator-" + $('.tag')[tag_index].id.split("-")[1]);
@@ -135,10 +140,6 @@ function myLoop (time) {
 
         comment_index++;
         tag_counter++;
-
-        if(tag_index == $('.tag').length - 1){
-          tag_index = -1;
-        }
 
         myLoop(time);
       }else{
