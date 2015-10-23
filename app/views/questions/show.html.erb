@@ -333,6 +333,10 @@ $(window).load(function() {
     $('.zoompic')[0].style.display = "inline-block";
   });
 
+  $('.zoompic').mouseout(function(){
+    $('.zoompic')[0].style.display = "none";
+  });
+
   $('.shared-photo').mouseout(function(){
     $('.zoompic')[0].style.display = "none";
   });
