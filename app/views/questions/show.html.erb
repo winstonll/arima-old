@@ -259,6 +259,9 @@ $(window).load(function() {
     <%end%>
   <%end%>
 
+  $('.zoompic')[0].style.top = $('.shared-photo').offset().top + 5 + "px";
+  $('.zoompic')[0].style.left = $('.shared-photo').offset().left + 5 + "px";
+
   if($('.tag').length > 0){
     $("#indicator-" + $('.tag')[0].id.split("-")[1])[0].style.display = "inline-block";
     $("#indicator-" + $('.tag')[0].id.split("-")[1]).addClass("comment-1");
@@ -290,6 +293,10 @@ $(window).load(function() {
   <%end%>
 
   $( window ).resize(function() {
+
+    $('.zoompic')[0].style.top = $('.shared-photo').offset().top + 5 + "px";
+    $('.zoompic')[0].style.left = $('.shared-photo').offset().left + 5 + "px";
+
     var w, w_max;
 
     for(i = 0; i < $('.tag').length; i++){
@@ -316,6 +323,22 @@ $(window).load(function() {
       $('#value')[0].value = $('#comment-input')[0].value;
       $("#new_answer").submit();
     }
+  });
+
+  $('.shared-photo').mouseover(function(){
+    $('.zoompic')[0].style.display = "inline-block";
+  });
+
+  $('.zoompic').mouseover(function(){
+    $('.zoompic')[0].style.display = "inline-block";
+  });
+
+  $('.zoompic').mouseout(function(){
+    $('.zoompic')[0].style.display = "none";
+  });
+
+  $('.shared-photo').mouseout(function(){
+    $('.zoompic')[0].style.display = "none";
   });
 
   $(".submit-plus").click(function() {
@@ -388,6 +411,14 @@ $(window).load(function() {
 
 <div class="red-indicator"></div>
 
+<%img_path = "/system/uploads/" + @question.image_link%>
+
+<span class="zoompic">
+  <a href="<%= img_path %>" data-featherlight="image">
+    <%= image_tag("Zoom.png", size: "25x25", class: "enlarge-icon") %>
+  </a>
+</span>
+
 <%#if @user_submitted_answer && !@question.shared_image.nil? && !@question.shared_image%>
 <!--
   <div class="main-site-container" id="question-page-container">
@@ -430,8 +461,8 @@ $(window).load(function() {
           </div>
         </div>
       </div>
-
-        <div id="question-meta-container" class="hidden-xs">
+-->
+<!--        <div id="question-meta-container" class="hidden-xs">
               <%#= render partial: "questions/share", locals: {
                   id: @question.id,
                   url: "#{request.protocol}#{request.host_with_port}" + question_path(@question),
@@ -474,9 +505,9 @@ $(window).load(function() {
 
     </div>
   </div>
-
-
 -->
+
+
 
 <%#elsif @question.shared_image && @question.value_type == "tag"%>
 <div id="image-question-container">
@@ -501,7 +532,6 @@ $(window).load(function() {
     <div class="image-frame">
       <div class="image-container">
         <%if !@question.image_link.nil?%>
-          <%img_path = "/system/uploads/" + @question.image_link%>
           <%if !@question.image_link.nil? && @question.image_link[0] == "<"%>
             <div class="hidden-xs" style="margin-left:150px;"></iframe><%= @question.image_link.html_safe%></div>
             <div class="visible-xs"><%= @question.image_link.html_safe%></div>
@@ -543,11 +573,6 @@ $(window).load(function() {
             </span>
               <a href="#" onclick="show_all();" class="show-tag"><%= image_tag("Show_Tag.png", size: "23x15") + "  Show Tags"%></a>
               <a href="#" onclick="hide_all();" class="hide-tag"><%= image_tag("Hide_Tag.png", size: "23x15") + "  Hide Tags"%></a>
-            <span class="zoompic">
-              <a href="<%= img_path %>" data-featherlight="image">
-                <%= image_tag("Enlarge.png", size: "25x25", class: "enlarge-icon") %>
-              </a>
-            </span>
           </span>
 
       </div>

@@ -184,14 +184,18 @@
           background-color: #E43800;
           }
         }
-
-        .zoompic {
-          margin-left: 4px;
-          margin-right: 6px;
-        }
       }
     }
   }
+}
+
+.zoompic {
+  position: absolute;
+  z-index: 2000;
+  display: none;
+  background-color: rgba(0,0,0,0.80);
+  border-radius: 10px;
+  padding: 5px;
 }
 
 
