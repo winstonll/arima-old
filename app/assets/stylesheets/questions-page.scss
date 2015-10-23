@@ -177,7 +177,7 @@
           background-color: #F55723;
           color: white;
           padding: 7px 15px 10px 15px;
-          margin-right: -1px;
+          margin-right: 1px;
           font-size: 13px;
           font-weight: 700;
           &:hover{
@@ -193,9 +193,12 @@
   position: absolute;
   z-index: 2000;
   display: none;
-  background-color: rgba(0,0,0,0.80);
-  border-radius: 10px;
-  padding: 5px;
+  background-color: rgba(0,0,0,0.60);
+  border-radius: 4px;
+  padding: 7px;
+  &:hover{
+  background-color: black;
+  }
 }
 
 
