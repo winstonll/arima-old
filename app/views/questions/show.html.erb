@@ -439,7 +439,7 @@ $(window).load(function() {
             <%# end %>
           </div>
 
-          <div id="votecount-<%= @question.id %>" class="question-vote-counter hidden-xs">
+          <div id="votecount-<%#= @question.id %>" class="question-vote-counter hidden-xs">
             <%#= "#{@question.votecount}" %>
           </div>
 
@@ -456,8 +456,8 @@ $(window).load(function() {
           <div style="float:left; margin-right: 20px;"><%#= image_tag("/system/uploads/" + @question.image_link, size: "100x100", alt:"image",class: "question_image")%></div>
         <%#end%>
         <div class="question-title-container">
-          <h1 class="question-title"><%= @question.label %></h1>
-          <div class="answer-counter"><%= @question.answers.count %><%#= @question.answers.count == 1 ? ' Person' : ' People' %> Answered
+          <h1 class="question-title"><%#= @question.label %></h1>
+          <div class="answer-counter"><%#= @question.answers.count %><%#= @question.answers.count == 1 ? ' Person' : ' People' %> Answered
           </div>
         </div>
       </div>
@@ -613,7 +613,7 @@ $(window).load(function() {
       <%#if !@question.image_link.nil?%>
         <%#img_path = "/system/uploads/" + @question.image_link%>
 
-        <a href="<%= img_path %>" data-featherlight="image">
+        <a href="<%#= img_path %>" data-featherlight="image">
           <%#= @question.image_link.nil? ? "" : image_tag("/system/uploads/" + @question.image_link, alt:"image", class: "shared-photo", id: "lightbox") %>
         </a>
       <%#end%>
@@ -621,7 +621,7 @@ $(window).load(function() {
 
     <center style="color: #4a4a4a; font-weight: bold; font-family: Roboto; font-size: 26px; padding-top: 20px; margin: 0 22%;"><%#=@question.label %></center>
 
-    <center class="meta-title"><%#= @question.answers.count%><%= @question.answers.count == 1 ? ' Person' : ' People' %> Answered</center>
+    <center class="meta-title"><%#= @question.answers.count%><%#= @question.answers.count == 1 ? ' Person' : ' People' %> Answered</center>
     <br>
     <center>
       <%#= render partial: 'questions/answer_input', locals: { question: @question, answer: @answer} %>
