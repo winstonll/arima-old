@@ -12,7 +12,7 @@
 var timeout_function;
 var tag_counter = 1;
 var tag_index = 0;
-var tag_max = 5;
+var tag_max = 4;
 var comment_index = 1;
 
 function FindPosition(oElement){
@@ -106,7 +106,13 @@ function myLoop (time) {
   timeout_function = setTimeout(function () {
       var temp,x1, x2, y1, y2, indicator;
 
-      if($('.tag').length <= 4){
+      if ($(window).width() <= 768){
+        tag_max = 2;
+      }else {
+        tag_max = 4;
+      }
+
+      if($('.tag').length <= tag_max){
 
         if(tag_index >= $('.tag').length - 1){
           tag_index = -1;
@@ -144,11 +150,11 @@ function myLoop (time) {
         myLoop(time);
       }else{
 
-        if(comment_index > 4){
+        if(comment_index > tag_max){
           comment_index = 1;
         }
 
-        if(tag_counter  >= 4){
+        if(tag_counter  >= tag_max){
           $(".comment-" + comment_index)[0].style.display = "none";
           $(".comment-" + comment_index)[1].style.display = "none";
 
