@@ -105,9 +105,11 @@ function increaseSize(tag, counter){
 function myLoop (time) {
   timeout_function = setTimeout(function () {
       var temp,x1, x2, y1, y2, indicator;
-      
+
       if ($(window).width() <= 768){
         tag_max = 2;
+      }else {
+        tag_max = 4;
       }
 
       if($('.tag').length <= tag_max){
