@@ -603,14 +603,6 @@ $(window).load(function() {
 
       </div>-->
 
-
-      <!--<span class="showhidebuttons">
-
-
-          <a href="#" onclick="show_all();" class="show-tag"><%#= image_tag("Show_Tag.png", size: "23x15") + "  Show Tags"%></a>
-          <a href="#" onclick="hide_all();" class="hide-tag"><%#= image_tag("Hide_Tag.png", size: "23x15") + "  Hide Tags"%></a>
-      </span>-->
-
       <section class="share-image-title">
         <%=@question.label %>
         <span class="question-author">
@@ -636,6 +628,11 @@ $(window).load(function() {
           <p><%= @tagrave.count %></p>
 
         </span>
+
+        <!--<span class="showhidebuttons visible-xs">
+            <a href="#" onclick="show_all();" class="show-tag"><%= image_tag("Show_Tag.png", size: "23x15") + "  Show Tags"%></a>
+            <a href="#" onclick="hide_all();" class="hide-tag"><%= image_tag("Hide_Tag.png", size: "23x15") + "  Hide Tags"%></a>
+        </span>-->
       </section>
 
       <center id="image-feed">

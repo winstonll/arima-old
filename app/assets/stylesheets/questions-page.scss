@@ -138,35 +138,35 @@
         font-weight: 600;
         font-size: 13px;
       }
+    }
+  }
+}
 
-      .showhidebuttons {
-        float: right;
+.showhidebuttons {
+  float: right;
 
-        .show-tag{
-          display: none;
-          background-color: #419BF9;
-          color: white;
-          padding: 7px 12.7px 10px 12.7px;
-          margin-right: -1px;
-          font-size: 13px;
-          font-weight: 700;
-          &:hover{
-          background-color: #2A91FD;
-          }
-        }
+  .show-tag{
+    display: none;
+    background-color: #419BF9;
+    color: white;
+    padding: 7px 12.7px 10px 12.7px;
+    margin-right: -1px;
+    font-size: 13px;
+    font-weight: 700;
+    &:hover{
+    background-color: #2A91FD;
+    }
+  }
 
-        .hide-tag {
-          background-color: #F55723;
-          color: white;
-          padding: 7px 15px 10px 15px;
-          margin-right: 1px;
-          font-size: 13px;
-          font-weight: 700;
-          &:hover{
-          background-color: #E43800;
-          }
-        }
-      }
+  .hide-tag {
+    background-color: #F55723;
+    color: white;
+    padding: 7px 15px 10px 15px;
+    margin-right: 1px;
+    font-size: 13px;
+    font-weight: 700;
+    &:hover{
+    background-color: #E43800;
     }
   }
 }
@@ -189,8 +189,10 @@
   margin-right: 10px;
   font-weight: 600;
   color: #818181;
+
+
   p {
-    display: inline;
+    display: inline-block;
     margin: 0;
     vertical-align: bottom;
   }
@@ -232,7 +234,6 @@
   font-size: 14px;
   position: relative;
   margin-top: 4px;
-  left:5em;
 }
 
 #image-feed {
@@ -804,7 +805,7 @@
     }
   }
 
-//Questions show page
+//Questions  page
 #question-page-container {
   height: 100%;
   min-height: 100%;
@@ -1143,6 +1144,9 @@
   #tag_show {
     width: 400px;
   }
+  .share-image-title {
+    left:5em;
+  }
 }
 
 @media screen and (max-width: 1200px) {
@@ -1188,7 +1192,8 @@
   .share-image-title {
     font-size: 11px;
     text-align: center;
-    }
+
+  }
   .submit-plus {
     position: absolute;
     bottom: 17%;
