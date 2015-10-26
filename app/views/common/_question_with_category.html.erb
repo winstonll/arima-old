@@ -2,144 +2,187 @@
 $(document).ready(function() {
   var question = "<%= question.group_id %>";
   if (question == "1") {
-    
-      $("<%= "." + question.id.to_s %>").css("background-image", "url('/system/uploads/" + "<%= question.image_link %>" + "')");
-      $("<%= "." + question.id.to_s %>").css("background-repeat", "no-repeat");
-      $("<%= "." + question.id.to_s %>").css("background-position", "center center");
-      $("<%= "." + question.id.to_s %>").css("background-size", "600px");
+    if ("<%= question.image_link.nil? %>" == "false"){
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-image", "url('/system/uploads/" + "<%= question.image_link %>" + "')");
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-repeat", "no-repeat");
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-position", "center center");
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-size", "600px");
 
+    } else {
+    $(".1-question-with-category-wrapper").css("background-color", "#8ad321");
+    }
   } else if (question == "2") {
-    
-      $("<%= "." + question.id.to_s %>").css("background-image", "url('/system/uploads/" + "<%= question.image_link %>" + "')");
-      $("<%= "." + question.id.to_s %>").css("background-position", "center center");
-      $("<%= "." + question.id.to_s %>").css("background-repeat", "no-repeat");
-      $("<%= "." + question.id.to_s %>").css("background-size", "600px");
+    if ("<%= question.image_link.nil? %>" == "false"){
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-image", "url('/system/uploads/" + "<%= question.image_link %>" + "')");
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-position", "center center");
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-repeat", "no-repeat");
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-size", "600px");
+    } else {
+    $(".2-question-with-category-wrapper").css("background-color", "#70e25b");
+    }
   } else if (question == "3") {
-    
-      $("<%= "." + question.id.to_s %>").css("background-image", "url('/system/uploads/" + "<%= question.image_link %>" + "')");
-      $("<%= "." + question.id.to_s %>").css("background-repeat", "no-repeat");
-      $("<%= "." + question.id.to_s %>").css("background-position", "center center");
-      $("<%= "." + question.id.to_s %>").css("background-size", "600px");
+    if ("<%= question.image_link.nil? %>" == "false"){
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-image", "url('/system/uploads/" + "<%= question.image_link %>" + "')");
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-repeat", "no-repeat");
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-position", "center center");
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-size", "600px");
+    } else {
+    $(".3-question-with-category-wrapper").css("background-color", "#4aaae2");
+    }
   } else if (question == "4") {
-    
-      $("<%= "." + question.id.to_s %>").css("background-image", "url('/system/uploads/" + "<%= question.image_link %>" + "')");
-      $("<%= "." + question.id.to_s %>").css("background-repeat", "no-repeat");
-      $("<%= "." + question.id.to_s %>").css("background-position", "center center");
-      $("<%= "." + question.id.to_s %>").css("background-size", "600px");
+    if ("<%= question.image_link.nil? %>" == "false"){
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-image", "url('/system/uploads/" + "<%= question.image_link %>" + "')");
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-repeat", "no-repeat");
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-position", "center center");
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-size", "600px");
+    } else {
+    $(".4-question-with-category-wrapper").css("background-color", "#5d98de");
+    }
   } else if (question == "5") {
-    
-      $("<%= "." + question.id.to_s %>").css("background-image", "url('/system/uploads/" + "<%= question.image_link %>" + "')");
-      $("<%= "." + question.id.to_s %>").css("background-repeat", "no-repeat");
-      $("<%= "." + question.id.to_s %>").css("background-position", "center center");
-      $("<%= "." + question.id.to_s %>").css("background-size", "600px");
+    if ("<%= question.image_link.nil? %>" == "false"){
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-image", "url('/system/uploads/" + "<%= question.image_link %>" + "')");
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-repeat", "no-repeat");
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-position", "center center");
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-size", "600px");
+    } else {
+    $(".5-question-with-category-wrapper").css("background-color", "#e96c4e");
+    }
   } else if (question == "6") {
-    
-      $("<%= "." + question.id.to_s %>").css("background-image", "url('/system/uploads/" + "<%= question.image_link %>" + "')");
-      $("<%= "." + question.id.to_s %>").css("background-repeat", "no-repeat");
-      $("<%= "." + question.id.to_s %>").css("background-position", "center center");
-      $("<%= "." + question.id.to_s %>").css("overflow", "hidden");
-      $("<%= "." + question.id.to_s %>").css("background-size", "600px");
+    if ("<%= question.image_link.nil? %>" == "false"){
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-image", "url('/system/uploads/" + "<%= question.image_link %>" + "')");
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-repeat", "no-repeat");
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-position", "center center");
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("overflow", "hidden");
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-size", "600px");
+    } else {
+    $(".6-question-with-category-wrapper").css("background-color", "#f3a82d");
+    }
   } else if (question == "7") {
-    
-      $("<%= "." + question.id.to_s %>").css("background-image", "url('/system/uploads/" + "<%= question.image_link %>" + "')");
-      $("<%= "." + question.id.to_s %>").css("background-repeat", "no-repeat");
-      $("<%= "." + question.id.to_s %>").css("background-position", "center center");
-      $("<%= "." + question.id.to_s %>").css("background-size", "600px");
+    if ("<%= question.image_link.nil? %>" == "false"){
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-image", "url('/system/uploads/" + "<%= question.image_link %>" + "')");
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-repeat", "no-repeat");
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-position", "center center");
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-size", "600px");
+    } else {
+    $(".7-question-with-category-wrapper").css("background-color", "#966dba");
+    }
   } else if (question == "8") {
-    
-      $("<%= "." + question.id.to_s %>").css("background-image", "url('/system/uploads/" + "<%= question.image_link %>" + "')");
-      $("<%= "." + question.id.to_s %>").css("background-repeat", "no-repeat");
-      $("<%= "." + question.id.to_s %>").css("background-position", "center center");
-      $("<%= "." + question.id.to_s %>").css("background-size", "600px");
+    if ("<%= question.image_link.nil? %>" == "false"){
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-image", "url('/system/uploads/" + "<%= question.image_link %>" + "')");
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-repeat", "no-repeat");
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-position", "center center");
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-size", "600px");
+    } else {
+    $(".8-question-with-category-wrapper").css("background-color", "#46cede");
+    }
   } else if (question == "9") {
-    
-      $("<%= "." + question.id.to_s %>").css("background-image", "url('/system/uploads/" + "<%= question.image_link %>" + "')");
-      $("<%= "." + question.id.to_s %>").css("background-repeat", "no-repeat");
-      $("<%= "." + question.id.to_s %>").css("background-position", "center center");
-      $("<%= "." + question.id.to_s %>").css("background-size", "600px");
+    if ("<%= question.image_link.nil? %>" == "false"){
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-image", "url('/system/uploads/" + "<%= question.image_link %>" + "')");
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-repeat", "no-repeat");
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-position", "center center");
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-size", "600px");
+    } else {
+    $(".9-question-with-category-wrapper").css("background-color", "#eac57b");
+    }
   } else if (question == "10") {
-    
-      $("<%= "." + question.id.to_s %>").css("background-image", "url('/system/uploads/" + "<%= question.image_link %>" + "')");
-      $("<%= "." + question.id.to_s %>").css("background-repeat", "no-repeat");
-      $("<%= "." + question.id.to_s %>").css("background-position", "center center");
-      $("<%= "." + question.id.to_s %>").css("background-size", "600px");
+    if ("<%= question.image_link.nil? %>" == "false"){
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-image", "url('/system/uploads/" + "<%= question.image_link %>" + "')");
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-repeat", "no-repeat");
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-position", "center center");
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-size", "600px");
+    } else {
+    $(".10-question-with-category-wrapper").css("background-color", "#50e3c2");
+    }
   } else if (question == "12") {
-    
-      $("<%= "." + question.id.to_s %>").css("background-image", "url('/system/uploads/" + "<%= question.image_link %>" + "')");
-      $("<%= "." + question.id.to_s %>").css("background-repeat", "no-repeat");
-      $("<%= "." + question.id.to_s %>").css("background-position", "center center");
-      $("<%= "." + question.id.to_s %>").css("background-size", "600px");
+    if ("<%= question.image_link.nil? %>" == "false"){
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-image", "url('/system/uploads/" + "<%= question.image_link %>" + "')");
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-repeat", "no-repeat");
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-position", "center center");
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-size", "600px");
+    } else {
+    $(".12-question-with-category-wrapper").css("background-color", "#95c6e4");
+    }
   } else if (question == "13") {
-    
-      $("<%= "." + question.id.to_s %>").css("background-image", "url('/system/uploads/" + "<%= question.image_link %>" + "')");
-      $("<%= "." + question.id.to_s %>").css("background-repeat", "no-repeat");
-      $("<%= "." + question.id.to_s %>").css("background-position", "center center");
-      $("<%= "." + question.id.to_s %>").css("background-size", "600px");
+    if ("<%= question.image_link.nil? %>" == "false"){
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-image", "url('/system/uploads/" + "<%= question.image_link %>" + "')");
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-repeat", "no-repeat");
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-position", "center center");
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-size", "600px");
+    } else {
+    $(".13-question-with-category-wrapper").css("background-color", "#004faa");
+    }
   } else if (question == "14") {
-    
-      $("<%= "." + question.id.to_s %>").css("background-image", "url('/system/uploads/" + "<%= question.image_link %>" + "')");
-      $("<%= "." + question.id.to_s %>").css("background-repeat", "no-repeat");
-      $("<%= "." + question.id.to_s %>").css("background-position", "center center");
-      $("<%= "." + question.id.to_s %>").css("background-size", "600px");
+    if ("<%= question.image_link.nil? %>" == "false"){
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-image", "url('/system/uploads/" + "<%= question.image_link %>" + "')");
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-repeat", "no-repeat");
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-position", "center center");
+      $("<%= "." + question.id.to_s + "-question-with-category-wrapper" %>").css("background-size", "600px");
+    } else {
+    $(".14-question-with-category-wrapper").css("background-color", "#8933d5");
+    }
   }
 });
 
 </script>
 
-<div class="question-with-category-wrapper <%= question.id.to_s %>">
-  <!-- <div class="votes <%#= "invisible" if question.shared_image == true %>">
+<div class="<%= question.group_id.to_s + "-question-with-category-wrapper" %> question-with-category-wrapper <%= question.id.to_s + "-question-with-category-wrapper" %>">
+  <div class="votes <%= "invisible" if question.shared_image == true %>">
     <div class="upvote">
-      <%# if cookies[:guest] == nil %>
-        <%#= link_to image_tag('upvote_grey.png', id: "upvote-image-#{question.id}", class: "vote-image"), upvote_question_path(:id => question.id), :method => :put, :remote => true %>
-      <%# elsif Vote.where(:user_id => cookies[:guest]).where(:question_id => question.id).pluck(:vote_type)[0] == "upvote" %>
-        <%#= link_to image_tag('upvote_blue.png', id: "upvote-image-#{question.id}", class: "vote-image"), upvote_question_path(:id => question.id), :method => :put, :remote => true %>
-      <%# else %>
-        <%#= link_to image_tag('upvote_grey.png', id: "upvote-image-#{question.id}", class: "vote-image"), upvote_question_path(:id => question.id), :method => :put, :remote => true %>
-      <%# end %>
+      <% if cookies[:guest] == nil %>
+        <%= link_to image_tag('upvote_grey.png', id: "upvote-image-#{question.id}", class: "vote-image"), upvote_question_path(:id => question.id), :method => :put, :remote => true %>
+      <% elsif Vote.where(:user_id => cookies[:guest]).where(:question_id => question.id).pluck(:vote_type)[0] == "upvote" %>
+        <%= link_to image_tag('upvote_blue.png', id: "upvote-image-#{question.id}", class: "vote-image"), upvote_question_path(:id => question.id), :method => :put, :remote => true %>
+      <% else %>
+        <%= link_to image_tag('upvote_grey.png', id: "upvote-image-#{question.id}", class: "vote-image"), upvote_question_path(:id => question.id), :method => :put, :remote => true %>
+      <% end %>
     </div>
-    <div id="votecount-<%#= question.id %>" class="counter">
-      <%#= "#{question.votecount}" %>
+    <div id="votecount-<%= question.id %>" class="counter">
+      <%= "#{question.votecount}" %>
     </div>
     <div class="downvote">
-      <%# if cookies[:guest] == nil %>
-        <%#= link_to image_tag('downvote_grey.png', id: "downvote-image-#{question.id}", class: "vote-image"), downvote_question_path(:id => question.id), :method => :put, :remote => true %>
-      <%# elsif Vote.where(:user_id => cookies[:guest]).where(:question_id => question.id).pluck(:vote_type)[0] == "downvote" %>
-        <%#= link_to image_tag('downvote_orange.png', id: "downvote-image-#{question.id}", class: "vote-image"), downvote_question_path(:id => question.id), :method => :put, :remote => true %>
-      <%# else %>
-        <%#= link_to image_tag('downvote_grey.png', id: "downvote-image-#{question.id}", class: "vote-image"), downvote_question_path(:id => question.id), :method => :put, :remote => true %>
-      <%# end %>
+      <% if cookies[:guest] == nil %>
+        <%= link_to image_tag('downvote_grey.png', id: "downvote-image-#{question.id}", class: "vote-image"), downvote_question_path(:id => question.id), :method => :put, :remote => true %>
+      <% elsif Vote.where(:user_id => cookies[:guest]).where(:question_id => question.id).pluck(:vote_type)[0] == "downvote" %>
+        <%= link_to image_tag('downvote_orange.png', id: "downvote-image-#{question.id}", class: "vote-image"), downvote_question_path(:id => question.id), :method => :put, :remote => true %>
+      <% else %>
+        <%= link_to image_tag('downvote_grey.png', id: "downvote-image-#{question.id}", class: "vote-image"), downvote_question_path(:id => question.id), :method => :put, :remote => true %>
+      <% end %>
     </div>
-  </div> -->
+  </div>
 
   <div class="question-with-category-title-container">
+    <% if !answered %>
     <a href="<%= question_path(question) %>" title="<%= question.label %>" class="question-link">
+    <% else %>
+    <a href="<%= question_path(question) %>" title="<%= question.label %>" class="question-link question-link-answered">
+    <% end -%>
 
       <div class="question-icon-container">
-        <%= image_tag("category-icons/#{question.group_id}.png", class: "question-with-category-icon"  ) %>
+        <%= image_tag("category-icons/#{question.group_id} White.png", class: question.shared_image ? "invisible" : "question-with-category-icon"  ) %>
       </div>
 
-      <div class="question-info">
+      <div class="question-info <%= "invisible" if question.shared_image == true %>">
         <p class="question-title"><%= question.label %></p>
       </div>
 
-        <!-- <div class="question-dates <%#= "invisible" if question.shared_image %>">
-          <%# if !answered %>
+        <div class="question-dates <%= "invisible" if question.shared_image %>">
+          <% if !answered %>
             <div class="num-answers">
-              <%#= "#{question.answers.count} #{question.answers.count == 1 ? 'person answered' : 'people answered'}" %>
+              <%= "#{question.answers.count} #{question.answers.count == 1 ? 'person answered' : 'people answered'}" %>
             </div>
-          <%# end %>
+          <% end -%>
 
-          <%# if answered %>
+          <% if answered %>
             <div class="answered-when">
               <p class="question-answered-date">
-                <%#= "#{question.answers.count} #{question.answers.count == 1 ? 'person' : 'people'}" %> answered.
+                <%= "#{question.answers.count} #{question.answers.count == 1 ? 'person' : 'people'}" %> answered.
                 You answered
-                  <%# num_days = (Date.today - answer.updated_at.to_date).to_i %>
-                  <%#= num_days >= 1 ? (num_days > 1 ? "#{num_days} days ago" : "#{num_days} day ago") : "today" %>
+                  <% num_days = (Date.today - answer.updated_at.to_date).to_i %>
+                  <%= num_days >= 1 ? (num_days > 1 ? "#{num_days} days ago" : "#{num_days} day ago") : "today" %>
               </p>
             </div>
-          <%# end %>
-        </div> -->
+          <% end -%>
+        </div>
     </a>
   </div>
   <div class="clearfix"></div>

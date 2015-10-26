@@ -99,6 +99,18 @@
           }
         }
     }
+
+    .question-link-answered {
+      color: #aaa;
+
+      &:hover {
+        .question-title,
+        .question-info,
+        .num-answers {
+          color: #777;
+        }
+      }
+    }
   }
 
   &:not(:first-child) {
