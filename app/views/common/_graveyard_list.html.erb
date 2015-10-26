@@ -1,0 +1,13 @@
+<div class="modal fade" id="graveyard" tabindex="-1" role="dialog" aria-labelledby="graveyard" aria-hidden="true" data-backdrop="false">
+    <%= link_to "×", show_share_modal_question_path(:user_id => cookies[:guest]), :method => :put, :remote => true, :class => "go-back-link", :data => { :dismiss => "modal" } %>
+    <div class="gravetags">
+		<h5 style="font-weight: bold; margin-bottom: 2px;"> Graveyard </h5>
+		<p style="font-weight: 200; font-size: 11px; margin-bottom: 2px;">Tags that were downvoted to hell </p>
+		<%= image_tag("graveyard.png", size: "15x20")%>
+		<% @tagrave.each do |tag|%>
+			<label class="hell">
+	      		<%="#{tag.label}"%>
+			</label>
+	   	<%end%>
+    </div>
+</div>

@@ -1,36 +1,97 @@
 class ProfilesController < ApplicationController
   include ValidationHelper
 
-  before_filter :authenticate_user!
-
   layout "application_fluid"
 
   respond_to :json, :html, :js
 
   #generates correct referral code
   def show
-    user = User.where(username: params[:username]).first
-    if(user.nil?)
+
+    @user_profile = User.where(username: params[:username]).first
+
+    if(@user_profile.nil?)
       redirect_to custom_show_path(:username => current_user.username)
       return
     end
 
-    generate_referral_code(current_user) unless
-    (current_user.referral_code.present? && (current_user.referral_code).start_with?(current_user.username))
+    #generate_referral_code(current_user) unless
+    #(current_user.referral_code.present? && (current_user.referral_code).start_with?(current_user.username))
 
-    @points_count = user.points || 0
-    @questions_count = Question.where(user_id: user.id).count
-    @most_active_category = current_user.most_active_category.keys.first if current_user.most_active_category
+
+    @questions_and_images_asked_count = Question.where(user_id: @user_profile.id).count
+
+    @questions_images_asked_count = Question.where(user_id: @user_profile.id, shared_image: true).count
+
+    @questions_asked_count = Question.where(user_id: @user_profile.id, shared_image: false).count
+
+    @questions_answered_count = Answer.where(user_id: @user_profile.id).count
+
+
+    #@most_active_category = current_user.most_active_category.keys.first if current_user.most_active_category
 
     @categories           = Group.all.to_a.uniq { |category_group | category_group.label }
-    @suggested_questions  = Question.suggested_for_user current_user
-    @random_questions     = Question.random_for_user current_user
-    @trending_questions   = Question.trending_for_user current_user
-    @answered_questions   = user.answers.last(5)
-    @asked_questions      = Question.where(user_id: user.id).last(5)
+    #@suggested_questions  = Question.suggested_for_user current_user
+    #@random_questions     = Question.random_for_user current_user
+    #@trending_questions   = Question.trending_for_user current_user
+    #@answered_questions   = user.answers.last(5)
+    #@asked_questions      = Question.where(user_id: user.id).last(5)
+    if (user_signed_in?)
+      check_points_badge
+      check_question_badge
+    end
+  end
 
-    check_points_badge
-    check_question_badge
+  def trophy
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def image_shared
+
+    @all = Question.where(user_id: params[:username], shared_image: true)
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def images_questions
+
+    @all = Question.where(user_id: params[:username])
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def leaderboard
+    @countries = Location.select(:country_code).distinct.collect { |loc| loc.country_code }
+    @ranked_registered_users = User.order("points DESC").limit(50)
+    @user_rank =  user_signed_in? ? User.where(id: current_user.id).first.rank : "?"
+    @user = current_user
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def questions_asked
+
+    @all = Question.where(user_id: params[:username], shared_image: false)
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def questions_answered
+
+    @all = Question.joins(:answers).where("answers.user_id = #{params[:username]}")
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   def edit

@@ -3,8 +3,22 @@ Arima::Application.routes.draw do
   get 'feed' => 'feed#index'
   get 'category' => 'feed#category'
   get 'cat' => 'feed#category_non_feed'
-  post 'add_tag' => 'answers#add_tag'
+
+  post 'add_tag' => 'tags#add_tag'
   post 'add_comment' => 'answers#add_comment'
+  get 'user_list_display' => 'questions#user_list_display'
+  get 'graveyard_list' => 'tags#graveyard_list'
+
+  get 'vote_tag' => 'tags#vote_tag'
+  get 'downvote_tag' => 'tags#downvote_tag'
+
+  get 'view_map' => 'answers#view_map'
+  get 'trophy' => 'profiles#trophy'
+  get 'image_shared' => 'profiles#image_shared'
+  get 'images_questions' => 'profiles#images_questions'
+  get 'leaderboard' => 'profiles#leaderboard'
+  get 'questions_asked' => 'profiles#questions_asked'
+  get 'questions_answered' => 'profiles#questions_answered'
 
   get 'application' => 'application#long_poll'
 

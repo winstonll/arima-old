@@ -16,39 +16,62 @@ class QuestionsController < ApplicationController
     end
 
     cookies[:group_id] = @question.group_id
-    @answers = Answer.where(question: @question).count
+    #@answers = Answer.where(question: @question).count
+
+    @counter = User.joins(:opinions).where("opinions.question_id = #{@question.id}").distinct.count
+
+    @tags_array = Tag.where(question_id: @question.id).where("counter > ?", -2).order(created_at: :asc)
+    @tagrave = Tag.where(:question_id => @question).where("counter < ?", -1)
+
+    #Tag.where(question_id: @question.id).each do |tag|
+    #  if tag.reply_id == 0
+    #    @tags_array.push(tag)
+    #  else
+    #    @tags_array.insert(@tags_array.index(Tag.where(id: tag.reply_id).first) + 1, tag)
+    #  end
+    #end
 
     #extracting all of the users that answered this question
-    @users_list = Array.new
-    Answer.where(question: @question).find_each do |answer|
-      @users_list << answer.user_id
-    end
+    #@users_list = Array.new
+    #Answer.where(question: @question).find_each do |answer|
+    #  @users_list << answer.user_id
+    #end
+
     #extracting all of the countries that answered the question
-    @countries_array = Array.new
-    @users_list.each do |user|
-      @countries_array << Location.where(user_id: user).pluck(:country)
-    end
+    #@countries_array = Array.new
+    #@users_list.each do |user|
+    #  @countries_array << Location.where(user_id: user).pluck(:country)
+    #end
 
     #@countries_array is a two dimensional array, so this extracts the first element of each inner array.
-    @countries_answered = @countries_array.collect(&:first).uniq
+    #@countries_answered = @countries_array.collect(&:first).uniq
 
     #create_dummy_users()
     check_guest()
 
-    if cookies[:guest] != nil
-      @user_country = Location.where(user_id: cookies[:guest]).first
-      @dropdown_array = [@user_country.country]
+    #if cookies[:guest] != nil
+    #  @user_country = Location.where(user_id: cookies[:guest]).first
+    #  @dropdown_array = [@user_country.country]
 
-      check_guest()
+    #  check_guest()
 
-      @answer = user_signed_in? ? @question.answers.where(user_id: current_user.id).first : @question.answers.where(user_id: cookies[:guest]).first
+    #  @answer = user_signed_in? ? @question.answers.where(user_id: current_user.id).first : @question.answers.where(user_id: cookies[:guest]).first
 
-      if @answer.nil?
-        @user_submitted_answer = false
-        @answer = user_signed_in? ? @question.answers.build(user_id: current_user.id) : @question.answers.build(user_id: cookies[:guest])
-      else
-        @user_submitted_answer = true
-      end
+    #  if @answer.nil?
+    #    @user_submitted_answer = false
+    #    @answer = user_signed_in? ? @question.answers.build(user_id: current_user.id) : @question.answers.build(user_id: cookies[:guest])
+    #  else
+    #    @user_submitted_answer = true
+    #  end
+    #end
+  end
+
+  def user_list_display
+    @question = Question.where(slug: params[:question]).first
+    @users_list = User.joins(:opinions).where("opinions.question_id = #{@question.id}").distinct
+
+    respond_to do |format|
+      format.js
     end
   end
 
@@ -180,8 +203,9 @@ class QuestionsController < ApplicationController
   # Method that is called when a question is created
   def create
 
-    if(!user_signed_in?)
-      redirect_to "/users/sign_up"
+    if !verify_recaptcha
+      redirect_to :back
+      flash[:notice] = "Please verify that you are not a bot"
       return
     end
 
@@ -253,15 +277,17 @@ class QuestionsController < ApplicationController
     if (params[:shared_image] == "true") && !@question_image
       redirect_to :back
       flash[:notice] = "Please upload an image"
-      returni
+      return
     end
+
+    @user_created = user_signed_in? ? current_user.id : cookies[:guest]
 
     if params[:shared_image] == "true" && (params[:submit_question_name].length < 256) && params[:numeric_value] == "false"
 
       @subquestion = Question.create(
         :label => params[:submit_question_name].slice(0,1).capitalize + params[:submit_question_name].slice(1..-1),
         :group_id => params[:group_id],
-        :user_id => current_user.id,
+        :user_id => @user_created,
         :value_type => "tag", #params[:numeric_value] == "false" ? "collection" : "quantity"
         :options_for_collection => "",
         :answer_plus => true,
@@ -274,7 +300,7 @@ class QuestionsController < ApplicationController
       @subquestion = Question.create(
         :label => params[:submit_question_name].slice(0,1).capitalize + params[:submit_question_name].slice(1..-1),
         :group_id => params[:group_id],
-        :user_id => current_user.id,
+        :user_id => @user_created,
         :value_type => params[:numeric_value] == "false" ? "collection" : "quantity", #params[:numeric_value] == "false" ? "collection" : "quantity"
         :options_for_collection => @answerboxes,
         :answer_plus => true,
@@ -287,7 +313,7 @@ class QuestionsController < ApplicationController
       @subquestion = Question.create(
         :label => params[:submit_question_name].capitalize,
         :group_id => params[:group_id],
-        :user_id => current_user.id,
+        :user_id => @user_created,
         :value_type => params[:numeric_value] == "false" ? "collection" : "quantity", #params[:numeric_value] == "false" ? "collection" : "quantity"
         :options_for_collection => @answerboxes,
         :answer_plus => false,
@@ -302,8 +328,12 @@ class QuestionsController < ApplicationController
     end
 
     if @subquestion.valid?
-      current_user.points = current_user.points + 10
-      current_user.save
+
+      @user = User.where(id: @user_created).first
+
+      @user.points = @user.points + 10
+      @user.save
+
       if(user_signed_in?)
         check_points_badge
         check_question_badge

@@ -2,38 +2,47 @@
 <% @question = Question.where(slug: params[:id])[0] %>
 <% end %>
 
-<%@tag_array = Tag.where(question_id: @question.id).order(created_at: :asc)%>
+<%@tags_array = Tag.where(question_id: @question.id).order(created_at: :asc)%>
+
+<style>
+#map_link {
+  position: relative;
+  top: 100px;
+  color: red;
+}
+</style>
 
 <script>
 $(document).ready(function() {
 
-  <%if user_signed_in?
-        @liked_tag = Opinion.where(user_id: current_user.id, question_id: @question.id)
-        @liked_tag_array = Array.new()
-        @liked_tag.each do |tagId|
-          @liked_tag_array << Tag.where(question_id: @question.id, id: tagId.tag_id).first.label
-        end
-      else
-        @liked_tag = Opinion.where(user_id: cookies[:guest], question_id: @question.id)
-        @liked_tag_array = Array.new()
-        @liked_tag.each do |tagId|
-          @liked_tag_array << Tag.where(question_id: @question.id, id: tagId.tag_id).first.label
-        end
+  $("#view-map-link").click(function() {
+    console.log("here");
+    $('html, body').animate({ scrollTop:$("#view_map").offset().top}, 500);
+  });
+
+  var myImg = document.getElementById("lightbox");
+            myImg.onmousedown = GetCoordinates;
+            var img = document.getElementById('lightbox');
+            var xwidth = img.clientWidth;
+            var yheight = img.clientHeight;
+
+
+  <%
+    if user_signed_in?
+      @liked_tag = Opinion.where(user_id: current_user.id, question_id: @question.id)
+      @liked_tag_array = Array.new()
+      @liked_tag.each do |tagId|
+        @liked_tag_array << Tag.where(question_id: @question.id, id: tagId.tag_id).first.label
       end
-    %>
+    else
+      @liked_tag = Opinion.where(user_id: cookies[:guest], question_id: @question.id)
+      @liked_tag_array = Array.new()
+      @liked_tag.each do |tagId|
+        @liked_tag_array << Tag.where(question_id: @question.id, id: tagId.tag_id).first.label
+      end
+    end
+  %>
 
-    <%if !@liked_tag_array.nil?%>
-      <%@liked_tag_array.each do |tag|%>
-        var index = 0
-        for(index; index <= <%= @tag_array.length - 1%>; index++){
-          if ($('.form-radio')[index].value == "<%= tag %>"){           
-            $('.form-radio')[index].offsetParent.style.color = "#88FFF4";
-          }
-        }
-      <%end%>
-    <%end%>
-
-  $('.new-tag-submit').prop('disabled', true);
 
   $('#other').keyup(function() {
    inspectAllInputFields();
@@ -71,20 +80,25 @@ $(document).ready(function() {
   <div class="wrapper center-container">
     <div class="tag-prompt">
 
-      <%= simple_form_for @answer,:url => {:action => "add_tag", :controller => "answers"}, class: "form-inline", role: "form", html: {novalidate: true}, :remote => true do |f| %>
-      <!-- <div class="liner-title">What people say about this image:</div> -->
 
         <div class="options">
+          <%= simple_form_for @answer,:url => {:action => "add_tag", :controller => "answers"}, class: "form-inline", role: "form", html: {novalidate: true}, :remote => true do |f| %>
             <%if !@tag_array.nil?  %>
 
                 <% @tag_array.each do |tag|%>
                 <label class= "tag_button_collection" >
                   <% @tag_count = tag.counter %>
                   <%= f.radio_button :value, tag.label, :class=>"form-radio"%>
-                  <span class="tag-count">
-                    +<%= @tag_count %>
-                  </span>
                   <%="#{tag.label}"%>
+                    <progress class= "progress" value="<%=@tag_count%>" max="30" style="display: block; margin-top: 2.5px;"></progress>
+                    <% if request.xhr? %>
+                      <span class="tag-count">
+                        <%= @tag_count %>
+                      </span>
+                    <% else %>
+                      <span class="tag-count">
+                      </span>
+                    <% end %>
                 </label>
                 <%end%>
           <% end %>
@@ -92,13 +106,25 @@ $(document).ready(function() {
         <br>
         <div id="otherInputBox" >
             <%= hidden_field_tag 'question_id', @question.id %>
-            <%= f.input(:options_for_collection, label: false,input_html:{value: nil, placeholder: "Add your own opinion to the list", class: "other-input-text", id:"other"}) %>
-            <%= f.submit "Submit", class: "new-tag-submit" %>
+            <%= hidden_field_tag 'x_axis' %>
+            <%= hidden_field_tag 'y_axis' %>
+            <%= hidden_field_tag 'x_axis_max' %>
+            <%= hidden_field_tag 'y_axis_max' %>
+            
         </div>
+        <br>
+      <% if request.xhr? %>
+        <div id="view_map">
+      <% else %>
+        <div id="view_map" class="disablemap">
+      <% end %>
+            <%= link_to "See Where Voters Are From", {remote: true, controller: "answers", action: "view_map", :question => @question}, id: "view-map-link" %>
+        </div>
+
+
       </div>
         <br>
       <% end %>
-
 
     </div>
   </div>

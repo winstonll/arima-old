@@ -5,9 +5,10 @@
    data-description="<%= title %>"
    data-media="<%= image %>"
    id="fb-share-<%= id %>"
-   class='share-link'>
+   style="margin-left: 10px;"
+   class='share-link hidden-xs'>
   <% if @question.shared_image && @question.value_type == "tag"%>
-    <img class="share-image" src="<%= image_path 'image-share-facebook.png' %>" height="30" width="30">
+    <img class="share-image" src="<%= image_path 'fb-grey-logo.png' %>" height="25" width="25">
   <% else %>
     <img class="share-image" src="<%= image_path 'image-share-facebook-blue.png' %>" height="30" width="30">
   <% end %>
@@ -19,9 +20,10 @@
    data-description="<%= title %>"
    data-via="arima_io"
    id="twitter-share-<%= id %>"
-   class="share-link">
-  <% if @question.shared_image && @question.value_type == "tag"%> 
-    <img class="share-image" src="<%= image_path 'image-share-twitter.png' %>" height="30" width="30">
+   style="margin-left: 10px;"
+   class="share-link hidden-xs">
+  <% if @question.shared_image && @question.value_type == "tag"%>
+    <img class="share-image" src="<%= image_path 'twitter-grey-logo.png' %>" height="25" width="25">
   <% else %>
     <img class="share-image" src="<%= image_path 'image-share-twitter-blue.png' %>" height="30" width="30">
   <% end %>
@@ -29,9 +31,10 @@
 
 <a href="//www.reddit.com/submit"
    onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent(window.location); return false"
-   class="share-link">
+   style="margin-left: 10px;"
+   class="share-link hidden-xs">
   <% if @question.shared_image && @question.value_type == "tag"%>
-    <img class="share-image" src="<%= image_path 'image-share-reddit.png' %>" height="30" width="30">
+    <img class="share-image" src="<%= image_path 'reddit-grey-logo.png' %>" height="25" width="25">
   <% else %>
     <img class="share-image" src="<%= image_path 'image-share-reddit-blue.png' %>" height="30" width="30">
   <% end %>

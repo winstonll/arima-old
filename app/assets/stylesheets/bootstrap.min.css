@@ -3420,12 +3420,12 @@ to {
 }
 }.progress {
     overflow: hidden;
-    height: 20px;
-    margin-bottom: 20px;
-    background-color: #f5f5f5;
-    border-radius: 4px;
+    background-color: #fff;
+    border-radius: 3px;
     -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
     box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    width: 15em;
+    height: 12px;
 }
 .progress-bar {
     float: left;
@@ -3441,6 +3441,19 @@ to {
     -webkit-transition: width .6s ease;
     transition: width .6s ease;
 }
+
+progress[value]::-webkit-progress-bar {
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25) inset;
+}
+
+progress[value]::-webkit-progress-value {
+  background-color: #57A9FF;
+    border-radius: 2px;
+    background-size: 35px 20px, 100% 100%, 100% 100%;
+}
+
 .progress-striped .progress-bar {
     background-image: -webkit-linear-gradient(45deg,  rgba(255, 255, 255, 0.15) 25%,  transparent 25%,  transparent 50%,  rgba(255, 255, 255, 0.15) 50%,  rgba(255, 255, 255, 0.15) 75%,  transparent 75%,  transparent);
     background-image: linear-gradient(45deg,  rgba(255, 255, 255, 0.15) 25%,  transparent 25%,  transparent 50%,  rgba(255, 255, 255, 0.15) 50%,  rgba(255, 255, 255, 0.15) 75%,  transparent 75%,  transparent);
@@ -4109,17 +4122,17 @@ button.close {
     left: 0;
     z-index: 1010;
     display: none;
-    max-width: 330px;
+    max-width: 400px;
     padding: 1px;
     text-align: left;
-    background-color: #419BF9;
+    background-color: #ebebeb;
     color:#fff;
     background-clip: padding-box;
-    border: 1px solid #ccc;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 6px;
-    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    /*border: 1px solid #ccc;*/
+    /*border: 1px solid rgba(0, 0, 0, 0.2);*/
+    border-radius: 3px;
+    /*-webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);*/
+    /*box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);*/
     white-space: normal;
     height: 40px;
 }
@@ -4177,7 +4190,7 @@ button.close {
     bottom: 1px;
     margin-left: -10px;
     border-bottom-width: 0;
-    border-top-color: #419BF9;
+    border-top-color: #fff;
 }
 .popover.right>.arrow {
     top: 50%;
@@ -4192,7 +4205,7 @@ button.close {
     left: 1px;
     bottom: -10px;
     border-left-width: 0;
-    border-right-color: #419BF9;
+    border-right-color: #fff;
 }
 .popover.bottom>.arrow {
     left: 50%;
@@ -4207,7 +4220,7 @@ button.close {
     top: 1px;
     margin-left: -10px;
     border-top-width: 0;
-    border-bottom-color: #419BF9;
+    border-bottom-color: #fff;
 }
 .popover.left>.arrow {
     top: 50%;

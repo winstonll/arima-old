@@ -1,0 +1,14 @@
+<script type="text/javascript">
+$(document).ready(function() {
+      $("<%= "." + question.id.to_s%>").css("background-image", "url('/system/uploads/" + "<%= question.image_link %>" + "')");
+      $("<%= "." + question.id.to_s%>").css("background-repeat", "no-repeat");
+      $("<%= "." + question.id.to_s%>").css("background-position", "center center");
+      $("<%= "." + question.id.to_s%>").css("background-size", "250px");
+});
+</script>
+
+<div class="<%= question.id.to_s%> imgulike" style= "width: 10em; display: inline-block; border-radius: 3px;">
+	<a href="<%= question_path(question) %>" title="<%= question.label %>">
+	  <div style="height: 125px;"></div> 
+	</a>
+</div>

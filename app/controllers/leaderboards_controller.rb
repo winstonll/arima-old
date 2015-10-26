@@ -13,7 +13,7 @@ class LeaderboardsController < ApplicationController
     #if @countries.find { |c| c == params[:country_type] }
     #  @ranked_registered_users = @registered_users.where('locations.country_code' => params[:country_type])[0...50]
     #else
-      @ranked_registered_users = User.order("points DESC").limit(50)
+    @ranked_registered_users = User.order("points DESC").limit(50)
     #end
     #user_signed_in? ? current_user.get_user_rank :
 	  @user_rank =  user_signed_in? ? User.where(id: current_user.id).first.rank : "?"

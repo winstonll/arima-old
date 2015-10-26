@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :badges, dependent: :destroy
   has_many :questions, through: :answers
   has_many :submit_questions
+  has_many :opinions
 
   has_attached_file :avatar, :styles => { :medium => "300x300#", :thumb => "100x100#" },
     :default_url => ActionController::Base.helpers.asset_path("missing.png")

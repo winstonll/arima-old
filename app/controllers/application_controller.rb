@@ -42,31 +42,31 @@ class ApplicationController < ActionController::Base
       if(Badge.where(user_id: @u_id, badge_id: 8).first.nil?)
         acquired = Badge.new(user_id: @u_id, badge_id: 8,  date: Date.today.to_s, label: "Mama I made it!")
         acquired.save!
-        cookies[:unlocked] = 8
+        #cookies[:unlocked] = 8
       end
     elsif(@points >= 100000)
       if(Badge.where(user_id: @u_id, badge_id: 7).first.nil?)
         acquired = Badge.new(user_id: @u_id, badge_id: 7, date: Date.today.to_s, label: "The Fort Knox")
         acquired.save!
-        cookies[:unlocked] = 7
+        #cookies[:unlocked] = 7
       end
     elsif(@points >= 10000)
       if(Badge.where(user_id: @u_id, badge_id: 6).first.nil?)
         acquired = Badge.new(user_id: @u_id, badge_id: 6, date: Date.today.to_s, label: "The Fukuzawa")
         acquired.save!
-        cookies[:unlocked] = 6
+        #cookies[:unlocked] = 6
       end
     elsif(@points >= 1000)
       if(Badge.where(user_id: @u_id, badge_id: 5).first.nil?)
         acquired = Badge.new(user_id: @u_id, badge_id: 5, date: Date.today.to_s, label: "The Hidalgo")
         acquired.save!
-        cookies[:unlocked] = 5
+        #cookies[:unlocked] = 5
       end
     elsif(@points >= 100)
       if(Badge.where(user_id: @u_id, badge_id: 4).first.nil?)
         acquired = Badge.new(user_id: @u_id, badge_id: 4, date: Date.today.to_s, label: "The Benjamin")
         acquired.save!
-        cookies[:unlocked] = 4
+        #cookies[:unlocked] = 4
       end
     elsif(@points >= 10)
       if(Badge.where(user_id: @u_id, badge_id: 3).first.nil?)
@@ -78,7 +78,7 @@ class ApplicationController < ActionController::Base
       if(Badge.where(user_id: @u_id, badge_id: 2).first.nil?)
         acquired = Badge.new(user_id: @u_id, badge_id: 2, date: Date.today.to_s, label: "Green Horn")
         acquired.save!
-        cookies[:unlocked] = 2
+        #cookies[:unlocked] = 2
       end
     else
       return 0
@@ -92,25 +92,25 @@ class ApplicationController < ActionController::Base
         if(Badge.where(user_id: current_user.id, badge_id: 12).first.nil?)
           acquired = Badge.new(user_id: current_user.id, badge_id: 12, date: Date.today.to_s, label: "Confucius Say")
           acquired.save!
-          cookies[:unlocked] = 12
+          #cookies[:unlocked] = 12
         end
       elsif(@num_question >= 100)
         if(Badge.where(user_id: current_user.id, badge_id: 11).first.nil?)
           acquired = Badge.new(user_id: current_user.id, badge_id: 11, date: Date.today.to_s, label: "Professor")
           acquired.save!
-          cookies[:unlocked] = 11
+          #cookies[:unlocked] = 11
         end
       elsif(@num_question >= 10)
         if(Badge.where(user_id: current_user.id, badge_id: 10).first.nil?)
           acquired = Badge.new(user_id: current_user.id, badge_id: 10, date: Date.today.to_s, label: "Curious George")
           acquired.save!
-          cookies[:unlocked] = 10
+          #cookies[:unlocked] = 10
         end
       elsif(@num_question >= 1)
         if(Badge.where(user_id: current_user.id, badge_id: 9).first.nil?)
           acquired = Badge.new(user_id: current_user.id, badge_id: 9, date: Date.today.to_s, label: "My Boy")
           acquired.save!
-          cookies[:unlocked] = 9
+          #cookies[:unlocked] = 9
         end
       else
         return 0

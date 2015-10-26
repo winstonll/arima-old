@@ -1,29 +1,14 @@
 .sidebar-footer {
-  position: fixed;
   bottom: 0;
   text-align: center;
   width: 100%;
   font-size: 12px;
   padding: 9px 0 9px 0;
   color: #A09E9E;
-  background-color: #F8F8F8;
+  background-color: #FFF;
   height: 3.5em;
   opacity: .95;
   border-top: 1px solid #E4E4E4;
-
-  .popover {
-    display: inline-block;
-    height: 100px;
-    width: 300px;
-    display: inline-block;
-    margin-left: 50px;
-  }
-
-  .popover-content {
-    display: inline-block;
-    padding: 10px;
-  }
-
 
   .feed-link {
     height: 3.5em;
@@ -34,13 +19,18 @@
     padding-top: 13px;
     padding-left: 20px;
     padding-right: 20px;
+
+    &:hover {
+      background-color:#007CFD;
+    }
   }
 
   .feed-back-title {
     color: white;
-    font-weight: 300;
+    font-weight: 600;
     font-size: 12px;
     padding-left: 10px;
+
   }
 
   .feed-back-arrow{
@@ -90,7 +80,7 @@
           font-weight: normal;
           font-style: normal;
           background-color: #fff;
-          color: grey;
+          color: #4a4a4a;
           padding-left: 0.75em;
           border-radius: 4px;
           border: 1px solid #DEDEDE;
@@ -129,7 +119,7 @@
           font-size: 13px;
 
           &:hover {
-            opacity: 0.8;
+            background-color: #00c39c;
           }
         }
       }
@@ -148,8 +138,13 @@
         font-weight: 400;
         display: inline-block;
         list-style-type: none;
+        padding-top: 2px;
         a {
           color: #A09E9E;
+
+          &:hover {
+            color: #616161;
+          }
 
           .sidebar-footer-social-img {
             position: relative;
@@ -157,9 +152,16 @@
             width: 25px;
             height: auto;
             margin-right: 0px;
+            bottom: 1px;
           }
         }
       }
     }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .sidebar-footer {
+    display: none;
   }
 }

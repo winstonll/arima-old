@@ -33,7 +33,16 @@ gem 'devise'
 # Pagination library
 gem 'kaminari'
 
+gem 'oauth2'
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+
 gem 'pointpin', '~> 1.0.0'
+
+gem 'recaptcha', :require => 'recaptcha/rails'
+
+gem 'will_paginate', '~> 3.0.5'
 
 gem 'geoip2'
 gem 'chartkick'

@@ -1,0 +1,35 @@
+$("#view_map").html("<%= escape_javascript(render partial: 'questions/tag_input' ) %>");
+
+var user_lat = "<%= Location.where(user_id: user_signed_in? ? current_user.id : cookies[:guest]).first.latitude %>";
+var user_long = "<%= Location.where(user_id: user_signed_in? ? current_user.id : cookies[:guest]).first.longitude %>";
+
+var mapOptions = {
+  zoom: 4,
+  center: new google.maps.LatLng(user_lat,user_long)
+};
+
+var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+<%
+  opinion = Opinion.new
+  loc_arr = opinion.user_lat_long_all(@question.id)
+%>
+
+<% loc_arr.each do |location| %>
+  //initializing the map when the user clicks the question
+  if((user_lat != <%= location[0][0] %>) && (user_long != <%= location[0][1] %>)){
+    var marker = new MarkerWithLabel({
+        position: new google.maps.LatLng(<%= location[0][0] %>, <%= location[0][1] %>),
+        map: map,
+        labelContent: "<%= location[1] %>",
+        labelClass: "tag-labels"
+    });
+  }else {
+    var marker = new MarkerWithLabel({
+        position: new google.maps.LatLng(<%= location[0][0] %>, <%= location[0][1] %>),
+        map: map,
+        labelContent: "You",
+        labelClass: "tag-labels"
+    });
+  }
+<% end %>

@@ -1,29 +1,21 @@
-<script>
-$(document).ready(function() {
-
-    setTimeout(function() {$('#popover-input').popover("show")},3000);
-
-});
-</script>
-
 <footer class="sidebar-footer">
 
 <a href="<%= feed_path %>" class="feed-link hidden-xs"><div id="back-to-feed-button"><%= image_tag("Back-Arrow.png", class: "feed-back-arrow", width: "19", height: "9")%><font class="feed-back-title">Back to Home Feed</font></div></a>
   <div class="sidebar-footer-sections">
-    <ul class="sidebar-footer-list">
+    <ul class="sidebar-footer-list" style= "margin-bottom: 0;">
       <li><a href="/about">About Us</a> &sdot;</li>
       <li><a href="/faq">FAQ</a> &sdot;</li>
       <li><a href="/contact">Contact</a> &sdot;</li>
       <li><a href="/terms">Terms &amp; Conditions</a> &sdot;</li>
-      <li><a href="/privacy">Privacy Policy</a> &sdot;</li>
-      <li><a href="https://www.facebook.com/friendsofarima"><%= image_tag("fb-grey-logo.png", :class => "sidebar-footer-social-img") %></a></li>
-      <li><a href="https://twitter.com/arima_io"><%= image_tag("twitter-grey-logo.png", :class => "sidebar-footer-social-img") %></a></li>
+      <li><a href="/privacy">Privacy Policy</a></li>
+      <li><a href="https://www.facebook.com/friendsofarima"><%= image_tag("fb-grey-logo.png", :class => "sidebar-footer-social-img hidden-xs") %></a></li>
+      <li><a href="https://twitter.com/arima_io"><%= image_tag("twitter-grey-logo.png", :class => "sidebar-footer-social-img hidden-xs") %></a></li>
     </ul>
   </div>
 
   <%if !user_signed_in?%>
     <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: {class: "form"}) do |f| %>
-    <div class="signup-section">
+    <div class="signup-section hidden-xs">
       <div class="signup-links-bottom">
         <div id="signup-start">
         <%= f.submit "Sign Up", class: "signup-button" %>
@@ -31,8 +23,7 @@ $(document).ready(function() {
 
         <div class="signup-input">
           <div class="input-username">
-            <%= f.text_field :username, placeholder: "Username", class: "input-box username-input-box", id: "popover-input", 'data-toggle'=>"popover",
-            'data-placement'=>"top", 'data-content'=>"Ask Questions, Share Images, and gain amazing insights into what people think. Let's make data fun for everyone :)" %>
+              <%= f.text_field :username, placeholder: "Username", class: "input-box username-input-box", id: "popover-input" %>
           </div>
 
           <div class="input-password">

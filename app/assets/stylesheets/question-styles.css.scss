@@ -1,7 +1,6 @@
 /* Normal Question Style (Category pages) */
 .question-with-category-wrapper {
-  border: 1px solid #E7E7E7;
-  border-radius: 5px;
+  border-radius: 3px;
   padding: 5px 25px 5px 25px;
   margin: 10px 10px 10px 10px;
   display: inline-block;
@@ -99,18 +98,6 @@
             color: #E7E7E7;
           }
         }
-    }
-
-    .question-link-answered {
-      color: #aaa;
-
-      &:hover {
-        .question-title,
-        .question-info,
-        .num-answers {
-          color: #777;
-        }
-      }
     }
   }
 

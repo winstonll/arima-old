@@ -1,0 +1,69 @@
+<%# provide(:title, 'Leaderboard') %>
+
+<div class="leaderboard-top-container hidden-xs">
+  <div class="leaderboard-hero">
+    <h1 class="leaderboard-title">Leaderboard</h1>
+    <p class="leaderboard-subtitle">The top 50 users of Arima</p>
+  </div>
+
+<div class="rank-points">
+  <div class="leaderboard-user-rank-container">
+    <h1 class="leaderboard-user-rank-title">Your rank</h1>
+    <p class="leaderboard-user-rank"><%= @user_rank %></p>
+  </div>
+
+  <div class="leaderboard-points-rank-container">
+      <h1 class="leaderboard-points-rank-title">Points</h1>
+      <p class="leaderboard-points-rank"><%= user_signed_in? ? current_user.points : "?" %></p>
+  </div>
+</div>
+
+<div class="verticalLine"></div>
+
+ <div class="about-points-container">
+   <p>
+    <ul>
+    <b id= "title">How to earn points:</b>
+      <li><%= image_tag ("ask.png"), class: "points-icons" %> Ask a new question: <span class="emphasized">+10 Points</span></li>
+      <li><%= image_tag ("answer.png"), class: "points-icons" %> Answer a question: <span class="emphasized">+1 Point</span></li>
+      <li><%= image_tag ("gain.png"), class: "points-icons" %>  Gain 10 answers for your question: <span class="emphasized">+1 Point</span></li>
+      <li><%= image_tag ("upvote.png"), class: "points-icons" %>  Your question being upvoted: <span class="emphasized">+1 Point</span></li>
+    </ul>
+  </p>
+</div>
+
+<div class="verticalLine2"></div>
+
+  <div class="why-earn-points-container">
+    <p>
+      <ul>
+      <b id="title">Why earn points?</b>
+        <li>Unlock Premium Membership features in September 2015.</li>
+        <li>Exchange Points for badges. </li>
+        <li>Points is one of the many ways we use to maintain data quality.
+        <li>More Points = Higher credibilty</li>
+      </ul>
+    </p>
+  </div>
+</div>
+
+
+
+
+<div class="leaderboard hidden-xs">
+  <!--<div class="filter">
+    <%#= form_tag('users', remote: true) do %>
+      <span class="filter-span">Country:</span>
+      <%#= select_tag 'country-filter', options_for_select(@countries, params[:country_type]), { prompt: "All", class: "filter-location-select"} %>
+    <#% end %>
+  </div>-->
+  <div class="users2">
+    <%= render "leaderboards/leaderboard_list" %>
+  </div>
+</div>
+
+<div class="leaderboard-mobile visible-xs">
+  <div class="users2">
+    <%= render "leaderboards/leaderboard_list" %>
+  </div>
+</div>

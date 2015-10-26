@@ -1,5 +1,7 @@
 class AnswersController < ApplicationController
 
+  protect_from_forgery with: :exception
+
   #skip_before_filter :verify_authenticity_token, :only => :create
   #before_filter :authenticate_user!, except: [:intro_question, :show, :create, :show_image]
   include DetermineUserAndUnits
@@ -64,17 +66,21 @@ class AnswersController < ApplicationController
   end
 
   def create
+    cookies[:signup] = nil
+    cookies[:answer] = nil
+    cookies[:q] = nil
+
     @question = Question.friendly.find(params[:question_id])
 
     #add new answer
     if !params[:answer].nil? && params[:answer][:options_for_collection] != "" && !params[:answer][:options_for_collection].nil?
-      #if (!user_signed_in?)
-      #  cookies[:signup] = 1
-      #  cookies[:q] = @question.id
-      #  cookies[:answer] = params[:answer][:options_for_collection]
-      #  redirect_to new_user_registration_path
-      #  return
-      #end
+      if (!user_signed_in?)
+        cookies[:signup] = 1
+        cookies[:q] = @question.id
+        cookies[:answer] = params[:answer][:options_for_collection]
+        redirect_to question_path(@question)
+        return
+      end
 
       answer_values = @question.options_for_collection
       a = (0 ... answer_values.length).find_all { |i| answer_values[i,1] == '|' }
@@ -155,59 +161,6 @@ class AnswersController < ApplicationController
     end
   end
 
-  def add_tag
-    @question = Question.where(id: params[:question_id]).first
-
-    if !params[:answer].nil? && params[:answer][:options_for_collection] != ""
-
-      if Tag.where(label: params[:answer][:options_for_collection], question_id: @question.id).first.nil?
-        answer_user_id = user_signed_in? ? current_user.id : cookies[:guest]
-
-        @tag = Tag.new(label: params[:answer][:options_for_collection], question_id: @question.id, counter: 1)
-        @tag.save!
-
-        @opinion = Opinion.new(question_id: @question.id, tag_id: @tag.id, user_id: answer_user_id)
-        @opinion.save!
-      else
-        flash[:notice] = "This tag already exists!"
-      end
-    end
-
-    if (!cookies[:guest].nil? && !params[:answer][:value].nil?)
-      if(user_signed_in?)
-        @tag = Tag.where(question_id: @question.id, label: params[:answer][:value]).first
-        @opinion = Opinion.where(question_id: @question.id, tag_id: @tag.id, user_id: current_user.id).first
-        if @opinion.nil?
-          @opinion = Opinion.new(question_id: @question.id, tag_id: @tag.id, user_id: current_user.id)
-          @opinion.save!
-          @tag.counter = @tag.counter + 1
-          @tag.save!
-        else
-          @opinion.destroy!
-          @tag.counter = @tag.counter - 1
-          @tag.save!
-        end
-      else
-        @tag = Tag.where(question_id: @question.id, label: params[:answer][:value]).first
-        @opinion = Opinion.where(question_id: @question.id, tag_id: @tag.id, user_id: cookies[:guest]).first
-        if @opinion.nil?
-          @opinion = Opinion.new(question_id: @question.id, tag_id: @tag.id, user_id: cookies[:guest])
-          @opinion.save!
-          @tag.counter = @tag.counter + 1
-          @tag.save!
-        else
-          @opinion.destroy!
-          @tag.counter = @tag.counter - 1
-          @tag.save!
-        end
-      end
-    end
-
-    respond_to do |format|
-      format.js
-    end
-
-  end
   def add_comment
     @question = Question.where(id: params[:question_id]).first
 
@@ -260,6 +213,18 @@ class AnswersController < ApplicationController
       format.js
     end
 
+  end
+
+  def view_map
+
+    @question = Question.where(slug: params[:question]).first
+
+    down = Vote.new(question_id: @question.id, user_id: cookies[:guest], vote_type: "downvote")
+    down.save
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   def share

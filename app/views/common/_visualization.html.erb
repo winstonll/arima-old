@@ -10,18 +10,18 @@
 
     <div class="tab-content">
         <div id="world" class="tab active">
-          <a class="btnPrevious"><%= image_tag("back_tab.png", :class => "visualization-tab-prev")%></a>
+          <a class="btnPrevious hidden-xs"><%= image_tag("back_tab.png", :class => "visualization-tab-prev")%></a>
             <i> This tab shows what everyone has answered. </i>
-          <a class="btnNext"><%= image_tag("forward_tab.png", :class => "visualization-tab-next", :onMouseover=> "this.src='/images/forward_tab_blue.png'",:onMouseout=> "this.src='/images/forward_tab.png'") %></a>
+          <a class="btnNext hidden-xs"><%= image_tag("forward_tab.png", :class => "visualization-tab-next", :onMouseover=> "this.src='/images/forward_tab_blue.png'",:onMouseout=> "this.src='/images/forward_tab.png'") %></a>
           <p></p>
 
           <div id="answer-world" class='answer-chart'></div>
         </div>
 
         <div id="country" class="tab">
-          <a class="btnPrevious"><%= image_tag("back_tab.png", :class => "visualization-tab-prev", :onMouseover=> "this.src='/images/back_tab_blue.png'",:onMouseout=> "this.src='/images/back_tab.png'")%></a>
+          <a class="btnPrevious hidden-xs"><%= image_tag("back_tab.png", :class => "visualization-tab-prev", :onMouseover=> "this.src='/images/back_tab_blue.png'",:onMouseout=> "this.src='/images/back_tab.png'")%></a>
             This tab shows what everyone from <%= select_tag(@countries_answered, options_for_select(@countries_answered, answer.user_country),class: "country_dropdown", id:"country_position", prompt: "Select a Country") %> has answered.
-          <a class="btnNext"><%= image_tag("forward_tab.png", :class => "visualization-tab-next") %></a>
+          <a class="btnNext hidden-xs"><%= image_tag("forward_tab.png", :class => "visualization-tab-next") %></a>
 
           <div id="answer-country" class='answer-chart'></div>
         </div>
@@ -41,17 +41,17 @@
               <% @answer_selection.push(ans); %>
             <% end %>
           </div>
-          <a class="btnPrevious"><%= image_tag("back_tab.png", :class => "visualization-tab-prev", :onMouseover=> "this.src='/images/back_tab_blue.png'",:onMouseout=> "this.src='/images/back_tab.png'")%></a>
+          <a class="btnPrevious hidden-xs"><%= image_tag("back_tab.png", :class => "visualization-tab-prev", :onMouseover=> "this.src='/images/back_tab_blue.png'",:onMouseout=> "this.src='/images/back_tab.png'")%></a>
             This map shows where people who answered <%= select_tag(@answer_selection, options_for_select(@answer_selection, answer.user_answer), id:"heat_position", prompt: "Select an Answer") %> are from.
-          <a class="btnNext"><%= image_tag("forward_tab.png", :class => "visualization-tab-next", :onMouseover=> "this.src='/images/forward_tab_blue.png'",:onMouseout=> "this.src='/images/forward_tab.png'")%></a>
+          <a class="btnNext hidden-xs"><%= image_tag("forward_tab.png", :class => "visualization-tab-next", :onMouseover=> "this.src='/images/forward_tab_blue.png'",:onMouseout=> "this.src='/images/forward_tab.png'")%></a>
 
           <div id="map-canvas"></div>
         </div>
 
         <div id="pstm" class="tab">
-          <a class="btnPrevious"><%= image_tag("back_tab.png", :class => "visualization-tab-prev", :onMouseover=> "this.src='/images/back_tab_blue.png'",:onMouseout=> "this.src='/images/back_tab.png'")%></a>
+          <a class="btnPrevious hidden-xs"><%= image_tag("back_tab.png", :class => "visualization-tab-prev", :onMouseover=> "this.src='/images/back_tab_blue.png'",:onMouseout=> "this.src='/images/back_tab.png'")%></a>
             This tab shows what people who are "<%= (answer.user_age - 3).to_s + "-" + (answer.user_age + 3).to_s + " & " + answer.user_gender + "(Gender)"%>" have answered.
-          <a class="btnNext"><%= image_tag("forward_tab.png", :class => "visualization-tab-next")%></a>
+          <a class="btnNext hidden-xs"><%= image_tag("forward_tab.png", :class => "visualization-tab-next")%></a>
           <p></p>
           <% @guest = User.where(id: cookies[:guest]).first %>
           <% unless (@guest.gender != nil && @guest.age != nil) || (user_signed_in? ? (current_user.gender != nil && current_user.age != nil) : false) %>
@@ -235,6 +235,9 @@
       columns: transform_data_answer(data_answer.selected),
       type: data_answer.collection ? 'donut' : 'bar'
     },
+    legend: {
+        show: true,
+    },
     axis: {
       x: {
         label: {
@@ -260,7 +263,7 @@
         }
       },
       contents: function (d, defaultTitleFormat, defaultValueFormat, color) {
-        d.forEach(function(el){ el.name = el.value })
+        d.forEach(function(el){ el.name = el.name })
         return this.getTooltipContent ?
           this.getTooltipContent(d, defaultTitleFormat, defaultValueFormat, color) : '';
       }
@@ -514,17 +517,4 @@
   }
 
 <% end %>
-</script>
-
-<!-- Google Analytics -->
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-50543337-4', 'auto');
-  ga('require', 'linkid', 'linkid.js');
-  ga('send', 'pageview');
-
 </script>

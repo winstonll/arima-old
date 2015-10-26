@@ -1,49 +1,33 @@
 <script>
-  console.log(screen.width);
-
   function centerIcons() {
       $('#icon-container').css("margin-left", "7%");
-
   }
 
   $("#icon-container").empty();
-
 </script>
 
 <% content_for :title, "Feed"%>
 
+<!--
 <div onresize="centerIcons()" id="icon-container">
   <div class="category-container">
-    <%= link_to image_tag("homefeedicon.png", size: "15x15") + "  Home", categories_path, class: "arima-icon category-icon" %>
-    <%= link_to image_tag("category-icons/1.png", size: "20x20")+ "  Money", category_path(group_id: 1), method: :post, remote: true, :class => 'arima-icon category-icon', :id => "category-1"%>
-    <%= link_to image_tag("category-icons/2.png", size: "20x20")+ "  Health", category_path(group_id: 2), method: :post, remote: true, :class => 'arima-icon category-icon', :id => "category-2"%>
-    <%= link_to image_tag("category-icons/3.png", size: "20x20")+ "  Education", category_path(group_id: 3), method: :post, remote: true, :class => 'arima-icon category-icon', :id => "category-3"%>
-    <%= link_to image_tag("category-icons/4.png", size: "20x20")+ "  Electronics", category_path(group_id: 4), method: :post, remote: true, :class => 'arima-icon category-icon', :id => "category-4"%>
-    <%= link_to image_tag("category-icons/5.png", size: "20x20")+ "  Business", category_path(group_id: 5), method: :post, remote: true, :class => 'arima-icon category-icon', :id => "category-5"%>
-    <%= link_to image_tag("category-icons/6.png", size: "20x20")+ "  Sports", category_path(group_id: 6), method: :post, remote: true, :class => 'arima-icon category-icon', :id => "category-6"%>
-    <%= link_to image_tag("category-icons/7.png", size: "20x20")+ "  Entertainment", category_path(group_id: 7), method: :post, remote: true, :class => 'arima-icon category-icon', :id => "category-7"%>
-    <%= link_to image_tag("category-icons/8.png", size: "20x20")+ "  Travel", category_path(group_id: 8), method: :post, remote: true, :class => 'arima-icon category-icon', :id => "category-8"%>
-    <%= link_to image_tag("category-icons/9.png", size: "20x20")+ "  Food", category_path(group_id: 9), method: :post, remote: true, :class => 'arima-icon category-icon', :id => "category-9"%>
-    <%= link_to image_tag("category-icons/10.png", size: "20x20")+ "  Current", category_path(group_id: 10), method: :post, remote: true, :class => 'arima-icon category-icon', :id => "category-10"%>
-    <%= link_to image_tag("category-icons/12.png", size: "20x20")+ "  Lifestyle", category_path(group_id: 12), method: :post, remote: true, :class => 'arima-icon category-icon', :id => "category-12"%>
-    <%= link_to image_tag("category-icons/13.png", size: "20x20")+ "  Politics", category_path(group_id: 13), method: :post, remote: true, :class => 'arima-icon category-icon', :id => "category-13"%>
-    <%= link_to image_tag("category-icons/14.png", size: "20x20")+ "  Gaming", category_path(group_id: 14), method: :post, remote: true, :class => 'arima-icon category-icon', :id => "category-14"%>
+    <%#= link_to image_tag("homefeedicon.png", size: "15x15") + "  Home", categories_path, class: "arima-icon category-icon" %>
+    <%#= link_to image_tag("category-icons/1.png", size: "20x20")+ "  Money", category_path(group_id: 1), method: :post, remote: true, :class => 'arima-icon category-icon', :id => "category-1"%>
+    <%#= link_to image_tag("category-icons/2.png", size: "20x20")+ "  Health", category_path(group_id: 2), method: :post, remote: true, :class => 'arima-icon category-icon', :id => "category-2"%>
+    <%#= link_to image_tag("category-icons/3.png", size: "20x20")+ "  Education", category_path(group_id: 3), method: :post, remote: true, :class => 'arima-icon category-icon', :id => "category-3"%>
+    <%#= link_to image_tag("category-icons/4.png", size: "20x20")+ "  Electronics", category_path(group_id: 4), method: :post, remote: true, :class => 'arima-icon category-icon', :id => "category-4"%>
+    <%#= link_to image_tag("category-icons/5.png", size: "20x20")+ "  Business", category_path(group_id: 5), method: :post, remote: true, :class => 'arima-icon category-icon', :id => "category-5"%>
+    <%#= link_to image_tag("category-icons/6.png", size: "20x20")+ "  Sports", category_path(group_id: 6), method: :post, remote: true, :class => 'arima-icon category-icon', :id => "category-6"%>
+    <%#= link_to image_tag("category-icons/7.png", size: "20x20")+ "  Entertainment", category_path(group_id: 7), method: :post, remote: true, :class => 'arima-icon category-icon', :id => "category-7"%>
+    <%#= link_to image_tag("category-icons/8.png", size: "20x20")+ "  Travel", category_path(group_id: 8), method: :post, remote: true, :class => 'arima-icon category-icon', :id => "category-8"%>
+    <%#= link_to image_tag("category-icons/9.png", size: "20x20")+ "  Food", category_path(group_id: 9), method: :post, remote: true, :class => 'arima-icon category-icon', :id => "category-9"%>
+    <%#= link_to image_tag("category-icons/10.png", size: "20x20")+ "  Current", category_path(group_id: 10), method: :post, remote: true, :class => 'arima-icon category-icon', :id => "category-10"%>
+    <%#= link_to image_tag("category-icons/12.png", size: "20x20")+ "  Lifestyle", category_path(group_id: 12), method: :post, remote: true, :class => 'arima-icon category-icon', :id => "category-12"%>
+    <%#= link_to image_tag("category-icons/13.png", size: "20x20")+ "  Politics", category_path(group_id: 13), method: :post, remote: true, :class => 'arima-icon category-icon', :id => "category-13"%>
+    <%#= link_to image_tag("category-icons/14.png", size: "20x20")+ "  Gaming", category_path(group_id: 14), method: :post, remote: true, :class => 'arima-icon category-icon', :id => "category-14"%>
 
   </div>
 </div>
-
+-->
 
 <%= render partial: "feed/feed"%>
-
-<!-- Google Analytics -->
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-50543337-4', 'auto');
-  ga('require', 'linkid', 'linkid.js');
-  ga('send', 'pageview');
-
-</script>

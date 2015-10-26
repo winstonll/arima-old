@@ -88,6 +88,42 @@
   }
 }
 
+@media screen and (max-width: 768px) {
+
+  #signup-modal-splitter {
+    margin-bottom: 10px;
+  }
+}
+
+#graveyard {
+  width: 22em;
+  height: 17em;
+  margin: auto;
+  border-radius: 5px;
+
+  .gravetags {
+    text-align: center;
+    padding-left: 2em;
+    padding-bottom: 2em;
+    color: black;
+
+    .hell {
+      text-align: left;
+      font-weight: normal;
+      display: block;
+      font-size: 10px;
+    }
+  } 
+  .go-back-link {
+    position: relative;
+    float: right;
+    right: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+  }
+}
+
 #shareSignupModal {
   background: #419bf9 repeat-x center top;
   background-position: center;
@@ -97,9 +133,9 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   width: 25em;
-  height: 22em;
+  height: 25em;
   margin: auto;
-  overflow: hidden;
+  overflow: auto;
   border-radius: 10px;
 
   .go-back-link {
@@ -145,14 +181,14 @@
 
           #password::-webkit-input-placeholder {
             background-image: url(image_path('lock.png'));
-            background-repeat: no-repeat; 
+            background-repeat: no-repeat;
             background-size: 12px 15px;
             background-position: 25% 25%;
           }
 
           #password::-moz-placeholder {
             background-image: url(image_path('lock.png'));
-            background-repeat: no-repeat; 
+            background-repeat: no-repeat;
             background-size: 12px 15px;
             background-position: 25% 25%;
           }
@@ -175,12 +211,12 @@
               opacity: 0.8;
             }
           }
-          
+
           .terms-notice {
             font-weight: normal;
             font-size: 10px;
             a { color: inherit;
-            text-decoration: underline; } 
+            text-decoration: underline; }
           }
         }
     }
