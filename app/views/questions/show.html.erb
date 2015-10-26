@@ -265,7 +265,7 @@ $(window).load(function() {
     <%end%>
   <%end%>
 
-  $('.zoompic')[0].style.top = $('.shared-photo').offset().top + 35 + "px";
+  $('.zoompic')[0].style.top = $('.shared-photo').offset().top + 5 + "px";
   $('.zoompic')[0].style.left = $('.shared-photo').offset().left + 5 + "px";
 
   if($('.tag').length > 0){
@@ -580,7 +580,7 @@ $(window).load(function() {
           <a href="#" onclick="show_all();" class="show-tag"><%#= image_tag("Show_Tag.png", size: "23x15") + "  Show Tags"%></a>
           <a href="#" onclick="hide_all();" class="hide-tag"><%#= image_tag("Hide_Tag.png", size: "23x15") + "  Hide Tags"%></a>
       </span>-->
-      
+
       <section class="share-image-title">
         <%=@question.label %>
         <span class="question-author">
