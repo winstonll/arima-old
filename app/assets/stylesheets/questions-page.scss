@@ -144,6 +144,7 @@
 
 .showhidebuttons {
   display: inline-block;
+  text-align: right;
 
   .show-tag{
     display: none;
@@ -1171,7 +1172,6 @@
     margin-top: 15px;
     margin-left: 5px;
     margin-bottom: 15px;
-    left: 20px !important;
   }
 
   .instructag {
