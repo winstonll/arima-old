@@ -268,6 +268,9 @@ $(window).load(function() {
   $('.zoompic')[0].style.top = $('.shared-photo').offset().top + 5 + "px";
   $('.zoompic')[0].style.left = $('.shared-photo').offset().left + 5 + "px";
 
+  $('.hidepic')[0].style.top = $('.shared-photo').offset().top + 45 + "px";
+  $('.hidepic')[0].style.left = $('.shared-photo').offset().left + 5 + "px";
+
   if($('.tag').length > 0){
     $("#indicator-" + $('.tag')[0].id.split("-")[1])[0].style.display = "inline-block";
     $("#indicator-" + $('.tag')[0].id.split("-")[1]).addClass("comment-1");
@@ -303,6 +306,9 @@ $(window).load(function() {
     $('.zoompic')[0].style.top = $('.shared-photo').offset().top + 5 + "px";
     $('.zoompic')[0].style.left = $('.shared-photo').offset().left + 5 + "px";
 
+    $('.hidepic')[0].style.top = $('.shared-photo').offset().top + 45 + "px";
+    $('.hidepic')[0].style.left = $('.shared-photo').offset().left + 5 + "px";
+
     var w, w_max;
 
     for(i = 0; i < $('.tag').length; i++){
@@ -333,18 +339,36 @@ $(window).load(function() {
 
   $('.shared-photo').mouseover(function(){
     $('.zoompic')[0].style.display = "inline-block";
+    $('.hidepic')[0].style.display = "inline-block";
   });
 
   $('.zoompic').mouseover(function(){
     $('.zoompic')[0].style.display = "inline-block";
+    $('.hidepic')[0].style.display = "inline-block";
   });
 
   $('.zoompic').mouseout(function(){
+    $('.hidepic')[0].style.display = "none";
     $('.zoompic')[0].style.display = "none";
+  });
+
+  $('.hidepic').mouseover(function(){
+    $('.zoompic')[0].style.display = "inline-block";
+    $('.hidepic')[0].style.display = "inline-block";
+  });
+
+  $('.hidepic').mouseout(function(){
+    $('.hidepic')[0].style.display = "none";
+    $('.zoompic')[0].style.display = "none";
+  });
+
+  $('.hidepic').click(function(){
+    hide_all();
   });
 
   $('.shared-photo').mouseout(function(){
     $('.zoompic')[0].style.display = "none";
+    $('.hidepic')[0].style.display = "none";
   });
 
   $(".submit-plus").click(function() {
@@ -419,9 +443,15 @@ $(window).load(function() {
 
 <%img_path = "/system/uploads/" + @question.image_link%>
 
-<span class="zoompic">
+<span class="zoompic hidden-xs">
   <a href="<%= img_path %>" data-featherlight="image">
     <%= image_tag("Zoom.png", size: "25x25", class: "enlarge-icon") %>
+  </a>
+</span>
+
+<span class="hidepic hidden-xs">
+  <a href="#">
+    <%= image_tag("Hide-Tags.png", size: "25x25", class: "hide-icon") %>
   </a>
 </span>
 
