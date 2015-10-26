@@ -268,6 +268,9 @@ $(window).load(function() {
   $('.zoompic')[0].style.top = $('.shared-photo').offset().top + 5 + "px";
   $('.zoompic')[0].style.left = $('.shared-photo').offset().left + 5 + "px";
 
+  $('.hidepic')[0].style.top = $('.shared-photo').offset().top + 45 + "px";
+  $('.hidepic')[0].style.left = $('.shared-photo').offset().left + 5 + "px";
+
   if($('.tag').length > 0){
     $("#indicator-" + $('.tag')[0].id.split("-")[1])[0].style.display = "inline-block";
     $("#indicator-" + $('.tag')[0].id.split("-")[1]).addClass("comment-1");
@@ -303,6 +306,9 @@ $(window).load(function() {
     $('.zoompic')[0].style.top = $('.shared-photo').offset().top + 5 + "px";
     $('.zoompic')[0].style.left = $('.shared-photo').offset().left + 5 + "px";
 
+    $('.hidepic')[0].style.top = $('.shared-photo').offset().top + 45 + "px";
+    $('.hidepic')[0].style.left = $('.shared-photo').offset().left + 5 + "px";
+
     var w, w_max;
 
     for(i = 0; i < $('.tag').length; i++){
@@ -333,18 +339,36 @@ $(window).load(function() {
 
   $('.shared-photo').mouseover(function(){
     $('.zoompic')[0].style.display = "inline-block";
+    $('.hidepic')[0].style.display = "inline-block";
   });
 
   $('.zoompic').mouseover(function(){
     $('.zoompic')[0].style.display = "inline-block";
+    $('.hidepic')[0].style.display = "inline-block";
   });
 
   $('.zoompic').mouseout(function(){
+    $('.hidepic')[0].style.display = "none";
     $('.zoompic')[0].style.display = "none";
+  });
+
+  $('.hidepic').mouseover(function(){
+    $('.zoompic')[0].style.display = "inline-block";
+    $('.hidepic')[0].style.display = "inline-block";
+  });
+
+  $('.hidepic').mouseout(function(){
+    $('.hidepic')[0].style.display = "none";
+    $('.zoompic')[0].style.display = "none";
+  });
+
+  $('.hidepic').click(function(){
+    hide_all();
   });
 
   $('.shared-photo').mouseout(function(){
     $('.zoompic')[0].style.display = "none";
+    $('.hidepic')[0].style.display = "none";
   });
 
   $(".submit-plus").click(function() {
@@ -419,9 +443,15 @@ $(window).load(function() {
 
 <%img_path = "/system/uploads/" + @question.image_link%>
 
-<span class="zoompic">
+<span class="zoompic hidden-xs">
   <a href="<%= img_path %>" data-featherlight="image">
     <%= image_tag("Zoom.png", size: "25x25", class: "enlarge-icon") %>
+  </a>
+</span>
+
+<span class="hidepic hidden-xs">
+  <a href="#">
+    <%= image_tag("Hide-Tags.png", size: "25x25", class: "hide-icon") %>
   </a>
 </span>
 
@@ -557,9 +587,10 @@ $(window).load(function() {
         </script>
 
       </div>
-      <div class="tool-bar">
+
+      <!--<div class="tool-bar">
           <span class="share-icon-container" class="hidden-xs">
-            <%= render partial: "questions/share", locals: {
+            <%#= render partial: "questions/share", locals: {
                 id: @question.id,
                 url: "#{request.protocol}#{request.host_with_port}" + question_path(@question),
                 title: "#{@question.label[0..70]}...",
@@ -567,21 +598,10 @@ $(window).load(function() {
               }%>
           </span>
           <span class="instructag">Click anywhere and press Enter to add a Tag </span>
-          <span class="showhidebuttons">
-            <span class="tagcount">
-              <%= image_tag("Tag.png", size: "18x18")%>
-              <p><%= @tags_array.count%> Tags</p>
-            </span>
-            <span class="grave">
-              <%= link_to image_tag("graveyard.png", size: "20x25"), { controller: "tags", action: "graveyard_list", remote: true, :tag => @tag}%>
-              <p><%= @tagrave.count %></p>
 
-            </span>
-              <a href="#" onclick="show_all();" class="show-tag"><%= image_tag("Show_Tag.png", size: "23x15") + "  Show Tags"%></a>
-              <a href="#" onclick="hide_all();" class="hide-tag"><%= image_tag("Hide_Tag.png", size: "23x15") + "  Hide Tags"%></a>
-          </span>
 
-      </div>
+
+      </div>-->
 
       <section class="share-image-title">
         <%=@question.label %>
@@ -597,7 +617,23 @@ $(window).load(function() {
        </span>
 
         <%= link_to " #{@counter} users voted", { controller: "questions", action: "user_list_display", remote: true, :question => @question}, id: 'users_list' %>
+
+        <span class="tagcount">
+          <%= image_tag("Tag.png", size: "18x18")%>
+          <p><%= @tags_array.count%> Tags</p>
+        </span>
+
+        <span class="grave">
+          <%= link_to image_tag("graveyard.png", size: "15x20"), { controller: "tags", action: "graveyard_list", remote: true, :tag => @tag}%>
+          <p><%= @tagrave.count %></p>
+
+        </span>
       </section>
+
+      <span class="showhidebuttons visible-xs">
+          <a href="#" onclick="show_all();" class="show-tag"><%= image_tag("Show_Tag.png", size: "23x15") + "  Show Tags"%></a>
+          <a href="#" onclick="hide_all();" class="hide-tag"><%= image_tag("Hide_Tag.png", size: "23x15") + "  Hide Tags"%></a>
+      </span>
 
       <center id="image-feed">
         <%@ifeed = Question.where.not(id: @question.id, shared_image: false).order("RANDOM()").limit(12)%>
