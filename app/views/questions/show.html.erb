@@ -628,12 +628,12 @@ $(window).load(function() {
           <p><%= @tagrave.count %></p>
 
         </span>
-
-        <!--<span class="showhidebuttons visible-xs">
-            <a href="#" onclick="show_all();" class="show-tag"><%= image_tag("Show_Tag.png", size: "23x15") + "  Show Tags"%></a>
-            <a href="#" onclick="hide_all();" class="hide-tag"><%= image_tag("Hide_Tag.png", size: "23x15") + "  Hide Tags"%></a>
-        </span>-->
       </section>
+
+      <span class="showhidebuttons visible-xs">
+          <a href="#" onclick="show_all();" class="show-tag"><%= image_tag("Show_Tag.png", size: "23x15") + "  Show Tags"%></a>
+          <a href="#" onclick="hide_all();" class="hide-tag"><%= image_tag("Hide_Tag.png", size: "23x15") + "  Hide Tags"%></a>
+      </span>
 
       <center id="image-feed">
         <%@ifeed = Question.where.not(id: @question.id, shared_image: false).order("RANDOM()").limit(12)%>
