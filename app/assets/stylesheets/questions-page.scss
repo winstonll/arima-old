@@ -56,7 +56,9 @@
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  box-shadow: 0.5px 0.5px 0.5px 4px white;
+  border-radius: 3px;
+  border:1px solid #C5C5C5;
+  font-size:12px;
 }
 
 .tag {
@@ -74,6 +76,7 @@
 
 #comment-input {
   width: 145px;
+  box-shadow: none;
 }
 
 .tag_indicator {
@@ -82,8 +85,8 @@
   position: absolute;
   border-radius: 50%;
   border: none;
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   background-color: #00C39C;
 }
 
