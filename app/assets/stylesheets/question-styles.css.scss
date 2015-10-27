@@ -1,105 +1,49 @@
 /* Normal Question Style (Category pages) */
-.question-with-category-wrapper {
-  border-radius: 3px;
-  padding: 5px 25px 5px 25px;
-  margin: 10px 10px 10px 10px;
-  display: inline-block;
-  text-align: center;
 
-  .invisible {
-    visibility: hidden;
+.question-icon-container {
+  width: 400px;
+  background-color: white;
+  border-radius: 5px;
+
+
+  .question-title {
+    font-weight: 600;
+    width: 15em;
+    height: 5em;
+    // white-space: nowrap;
+    // overflow: hidden;
+    // text-overflow: ellipsis;
   }
-  .hidden-field {
-    display: none;
+
+  .question-with-category-icon {
+    height: 25px;
+    width: auto;
   }
 
-  .votes {
-    padding-top: 3em;
-    float: left;
-    height: 100%;
-    width: 5%;
-    text-align: center;
-    margin-left: -2px;
+  .image-box-wrapper {
+    border-radius: 1px;
+    display: inline-block;
+    height: 400px;
+    width: 400px;
 
-    .upvote,
-    .downvote {
-      .vote-image {
-        &:hover {
-          opacity: 0.75;
-        }
+    .invisible {
+      visibility: hidden;
+    }
+    .hidden-field {
+      display: none;
+    }
+
+    .image-link-container {
+      overflow: hidden;
+
+      .image-link {
+        text-decoration: none !important;
       }
     }
-
-    .counter {
-      position: relative;
-      margin-left: 7px;
-      color: #fff;
-      margin-top: -5px;
-      margin-bottom: -5px;
-    }
-  }
-
-  .question-with-category-title-container {
-    overflow: hidden;
-    padding: 10px 0px 5px 15px;
-    height: 250px;
-
-
-    .question-link {
-      text-decoration: none !important;
-      color: #555;
-
-      .question-icon-container {
-        float: right;
-
-        .question-title {
-          font-size: 15px;
-          font-weight: 600;
-          text-align: left;
-          padding-left: 5px;
-          width: 15em;
-          height: 5em;
-          color: white;
-          // white-space: nowrap;
-          // overflow: hidden;
-          // text-overflow: ellipsis;
-        }
-
-        .question-with-category-icon {
-          height: 25px;
-          width: auto;
-        }
-      }
-        .question-dates {
-          font-weight: 500;
-          font-size: 14px;
-          padding-top: 4em;
-          color: white;
-          margin-left: -6em;
-
-          div {
-            display: inline-block;
-            margin-right: 8px;
-          }
-
-          .question-answered-date {
-            line-height: 11px;
-          }
-        }
-
-        &:hover {
-          .question-title,
-          .num-answers {
-            color: #E7E7E7;
-          }
-        }
-    }
-  }
-
-  &:not(:first-child) {
-    margin-top: 15px;
   }
 }
+
+
 
 /* Normal Question Style (Category pages) */
 .question-wrapper {
