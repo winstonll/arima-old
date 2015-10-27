@@ -588,7 +588,7 @@ $(window).load(function() {
 
       </div>
 
-      <!--<div class="tool-bar">
+      <div class="tool-bar">
           <span class="share-icon-container" class="hidden-xs">
             <%#= render partial: "questions/share", locals: {
                 id: @question.id,
@@ -601,7 +601,6 @@ $(window).load(function() {
 
 
 
-      </div>-->
 
       <section class="share-image-title">
         <%=@question.label %>
@@ -629,6 +628,7 @@ $(window).load(function() {
 
         </span>
       </section>
+    </div>
 
       <span class="showhidebuttons visible-xs">
           <a href="#" onclick="show_all();" class="show-tag"><%= image_tag("Show_Tag.png", size: "23x15") + "  Show Tags"%></a>
