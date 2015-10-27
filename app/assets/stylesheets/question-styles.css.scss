@@ -52,14 +52,6 @@
       .question-icon-container {
         float: right;
 
-        .question-with-category-icon {
-          height: 25px;
-          width: auto;
-        }
-      }
-
-      .question-info {
-        padding-top: 2.5em;
         .question-title {
           font-size: 15px;
           font-weight: 600;
@@ -72,8 +64,12 @@
           // overflow: hidden;
           // text-overflow: ellipsis;
         }
-      }
 
+        .question-with-category-icon {
+          height: 25px;
+          width: auto;
+        }
+      }
         .question-dates {
           font-weight: 500;
           font-size: 14px;
@@ -93,7 +89,6 @@
 
         &:hover {
           .question-title,
-          .question-info,
           .num-answers {
             color: #E7E7E7;
           }
@@ -184,54 +179,6 @@
   }
 
   &:not(:first-child) {
-    margin-top: 15px;
-  }
-}
-
-/* Trending Questions */
-.trending-question {
-  text-align: left;
-  color: #4a4a4a;
-
-  .trending-question-container {
-    padding: 10px;
-
-    .trending-question-icon-container {
-      height: 100%;
-      width: 20px;
-      line-height: 20px;
-      display: inline-block;
-      vertical-align: top;
-      margin-right: 3px;
-
-      .trending-question-icon {
-        width: 18px;
-        height: auto;
-      }
-    }
-
-    .trending-question-info {
-      width: 80%;
-      display: inline-block;
-      color: #fff;
-
-      .trending-question-title {
-        font-weight: 600;
-        margin: 0;
-      }
-
-      .trending-question-num-answers {
-        font-weight: 400;
-        margin: 0;
-      }
-    }
-
-    &:hover {
-      opacity: 0.7;
-    }
-  }
-
-  &:not(:first-child) .trending-question-container {
     margin-top: 15px;
   }
 }
