@@ -12,7 +12,7 @@
 var timeout_function;
 var tag_counter = 1;
 var tag_index = 0;
-var tag_max = 4;
+var tag_max = 3;
 var comment_index = 1;
 
 function FindPosition(oElement){
@@ -109,7 +109,7 @@ function myLoop (time) {
       if ($(window).width() <= 768){
         tag_max = 2;
       }else {
-        tag_max = 4;
+        tag_max = 3;
       }
 
       if($('.tag').length <= tag_max){
@@ -212,7 +212,7 @@ function create_tags(id, label, x, y, counter, selected) {
 
   h = $('.shared-photo').offset().top + ($('.shared-photo')[0].clientHeight * y);
   w = $('.shared-photo').offset().left + ($('.shared-photo')[0].clientWidth * x);
-  w_max = w >= ($('.shared-photo').offset().left + $('.shared-photo')[0].clientWidth) * 0.6;
+  w_max = w >= ($('.shared-photo').offset().left + $('.shared-photo')[0].clientWidth) * 0.7;
 
   iDiv[0].style.top = String(h) + "px";
 
