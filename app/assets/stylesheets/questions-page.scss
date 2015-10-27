@@ -6,6 +6,25 @@
   display: inline-block;
 }
 
+.submit-q-container {
+  //visibility: hidden;
+  display: none;
+}
+
+.g-recaptcha {
+  //visibility: hidden;
+  position: relative;
+  right: 50px;
+  display: none;
+}
+
+.modal-finished-button {
+  //visibility: hidden;
+  position: relative;
+  left: 20px;
+  display: none;
+}
+
 .submit-plus {
   display: block;
   position: absolute;
@@ -229,14 +248,14 @@
 
 
 .question-author {
-  font-weight: 500;
+  font-weight: 300;
 }
 
 .share-image-title {
   display: inline-block;
   color: #fff;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 13px;
   position: relative;
   margin-top: 4px;
 
@@ -252,7 +271,7 @@
   color: #419BF9;
   display: inline-block;
   margin-right: 20px;
-  font-size: 14px;
+  font-size: 13px;
   float:left;
 }
 
@@ -266,7 +285,7 @@
 }
 
 #users_list:hover {
-  color: black;
+  color: #419BF9;
 }
 
 #view_profile_link{
@@ -1183,6 +1202,7 @@
   }
   .tagcount {
     position: relative;
+    font-size: 10px;
   }
   .show-tag {
     padding: 12px 5px 10.5px 5px !important;
@@ -1194,7 +1214,7 @@
     display: none;
   }
   .share-image-title {
-    font-size: 11px;
+    font-size: 10px;
     text-align: center;
     margin-top: -8px;
   }

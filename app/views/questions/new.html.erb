@@ -1,10 +1,10 @@
 <head>
 <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css">
-<%= stylesheet_link_tag "jquery-ui-slider-pips" %>
+<%#= stylesheet_link_tag "jquery-ui-slider-pips" %>
 <%#= stylesheet_link_tag "dropzone" %>
 
-<%= javascript_include_tag "jquery-ui-slider-pips" %>
+<%#= javascript_include_tag "jquery-ui-slider-pips" %>
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <%#= javascript_include_tag "dropzone" %>
 </head>
@@ -15,30 +15,45 @@
 
   $(document).ready(function() {
 
+    jQuery("input#question_image_link").change(function () {
+      //$('#question_image_link')[0].style.visibility = "hidden";
+      //$('.computer_image')[0].style.visibility = "hidden";
+      $('#question_image_link')[0].style.display = "none";
+      $('.computer_image')[0].style.display = "none";
+
+      //$('.submit-q-container')[0].style.visibility = "visible";
+      //$('.modal-finished-button')[0].style.visibility = "visible";
+      //$('.g-recaptcha')[0].style.visibility = "visible";
+
+      $('.submit-q-container')[0].style.display = "block";
+      $('.modal-finished-button')[0].style.display = "block";
+      $('.g-recaptcha')[0].style.display = "block";
+    });
+
     // Make sure the add answer button is showing
-    $("#add-answer-button").css("display", "block");
-    <%if params[:question].nil?%>
-      $('.numeric-slider').addClass("field-hidden");
-      document.getElementById('shared_image').value = true;
-      document.getElementById('answer-types').style.display = "none";
-      document.getElementById('numeric_value').value = false;
-    <%else%>
-      document.getElementById('shared_image').value = false;
-      document.getElementById('numeric_value').value = false;
-    <%end%>
+    //$("#add-answer-button").css("display", "block");
+    <%#if params[:question].nil?%>
+      //$('.numeric-slider').addClass("field-hidden");
+      //document.getElementById('shared_image').value = true;
+      //document.getElementById('answer-types').style.display = "none";
+      //document.getElementById('numeric_value').value = false;
+    <%#else%>
+      //document.getElementById('shared_image').value = false;
+      //document.getElementById('numeric_value').value = false;
+    <%#end%>
 
-    var answerBoxCounter = 2;
-    var MAX_BOX_COUNT = 12;
+    //var answerBoxCounter = 2;
+    //var MAX_BOX_COUNT = 12;
 
-    var funnyList = ["Hahah", "LOL", "LOL (not really)", "WTF", "Love it", "Meh"];
-    var educationalList = ["So True", "Very deep", "This is like my life",
-    "No! Not at all", "Yeah, there is maybe some truth in it.", "Nah", "TIL"];
-    var sportsList = ["Amazing skills", "True Legend", "Meh, who cares?",
-    "Seriously? I can do better", "Sexy as fuck", "Respect"];
-    var foodList = ["This looks amazing", "I am hungry", "It's alright, not really my taste",
-    "Ewwwwwww", "WTF??"];
+    //var funnyList = ["Hahah", "LOL", "LOL (not really)", "WTF", "Love it", "Meh"];
+    //var educationalList = ["So True", "Very deep", "This is like my life",
+    //"No! Not at all", "Yeah, there is maybe some truth in it.", "Nah", "TIL"];
+    //var sportsList = ["Amazing skills", "True Legend", "Meh, who cares?",
+    //"Seriously? I can do better", "Sexy as fuck", "Respect"];
+    //var foodList = ["This looks amazing", "I am hungry", "It's alright, not really my taste",
+    //"Ewwwwwww", "WTF??"];
 
-    $('.numeric-slider').click(function(){
+    /**$('.numeric-slider').click(function(){
       $('#select-title').addClass("field-hidden");
       $('.check-box-container').addClass("field-hidden");
       $('.multiple-choice-container').addClass("field-hidden");
@@ -51,9 +66,9 @@
       $('.check-box-container').addClass("field-hidden");
       <% end %>
       document.getElementById('numeric_value').value = true;
-    });
+    });**/
 
-    $('.multiple-choice').click(function(){
+    /**$('.multiple-choice').click(function(){
       $('.check-box-container').addClass("field-hidden");
       $('#select-title').removeClass("field-hidden");
       $('.numeric-slider-container').addClass("field-hidden");
@@ -66,9 +81,9 @@
       $('.check-box-container').removeClass("field-hidden");
       <%end%>
       document.getElementById('numeric_value').value = false;
-    });
+    });**/
 
-    $(".slider").slider({max: 10, min: 1, step: 1}).slider("pips", {rest: "label", step: 1}).slider("float");
+    /**$(".slider").slider({max: 10, min: 1, step: 1}).slider("pips", {rest: "label", step: 1}).slider("float");
 
     $(".add-answer").click(function() {
       // add another answer text box when clicked under existing text box.
@@ -82,9 +97,9 @@
       } else {
         return false;
       }
-    });
+    });**/
 
-     $(".default-answer").click(function() {
+     /**$(".default-answer").click(function() {
        $("#default-answer-menu").css("display", "inline-block");
        return false;
      });
@@ -193,12 +208,12 @@
             }
           }
           return false;
-        });
+        });**/
 
 
 
 
-     $('#value_type').change(function(){
+     /**$('#value_type').change(function(){
         if($(this).val() != "collection"){
           $("#answer-types").css('display','none');
         }
@@ -211,67 +226,42 @@
     // 140 is the max message length
     var remaining = 150 - jQuery('#input-q-title').val().length;
     jQuery('.countdown').text(remaining + ' characters remaining.');
-    }
+  }**/
 
-      jQuery(document).ready(function($) {
-      updateCountdown();
-      $('#input-q-title').change(updateCountdown);
-      $('#input-q-title').keyup(updateCountdown);
-      });
+    /**jQuery(document).ready(function($) {
+    updateCountdown();
+    $('#input-q-title').change(updateCountdown);
+    $('#input-q-title').keyup(updateCountdown);
+  });**/
   });
 
 </script>
 <!-- Submit Question Modal -->
 <section style="width: 70%; margin:auto; margin-top: 3em; padding-bottom: 80px;">
-    <%= form_for Question.new do |f| %>
-    <section class="submit-questions-container">
-      <article class="submit-q-container">
-        <span class=<%= !params[:question].nil? ? "submit-q-title" : "share-post-title"%>>
-          <%= !params[:question].nil? ? "Ask a Question (You can also attach an image or GIF):" : "Share Image (you can also share GIFs)"%>
-        </span>
-        <%if !params[:question].nil?%>
-          <%=image_tag "comment.png", size: "28x24", class: "question-icon" %>
-          <p class="submit-q-input-box">
-            <%= f.text_field :label, name: "submit_question_name", :required => true,
-            placeholder: "Type your question here...", id: "input-q-title" %>
+
+        <%#if !params[:question].nil?%>
+          <%#=image_tag "link_blue.png", size: "28x28", class: "question-icon" %>
+          <!--<p class="submit-q-input-box">
+            <%#= f.text_field :image_link, name: "image_link", placeholder: "Paste a URL here to attach an image (We currently only support imgur)", id: "input-q-title" %>
             <div style="clear: both;"></div>
-            <span class="countdown"></span>
-          </p>
-        <%else%>
-          <%=image_tag "text2.png",size: "22x28", class: "share-icon" %>
-          <p class="submit-q-input-box">
-            <%= f.text_field :label, name: "submit_question_name", :required => true,
-            placeholder: "Add a Title/Description", id: "input-q-title" %>
-            <div style="clear: both;"></div>
-            <span class="countdown"></span>
-          </p>
-        <%end%>
-        <%if !params[:question].nil?%>
-          <%=image_tag "link_blue.png", size: "28x28", class: "question-icon" %>
-          <p class="submit-q-input-box">
-            <%= f.text_field :image_link, name: "image_link", placeholder: "Paste a URL here to attach an image (We currently only support imgur)", id: "input-q-title" %>
-            <div style="clear: both;"></div>
-          </p>
-        <%else%>
-          <%=image_tag "link.png", size: "28x28", class: "question-icon" %>
-          <p class="submit-q-input-box">
-            <%= f.text_field :image_link, name: "image_link",
+          </p>-->
+        <%#else%>
+          <%#=image_tag "link.png", size: "28x28", class: "question-icon" %>
+          <!--<p class="submit-q-input-box">
+            <%#= f.text_field :image_link, name: "image_link",
             placeholder: "Paste a URL here to attach an image (We currently only support imgur)",
             id: "input-q-title" %>
             <div style="clear: both;"></div>
-          </p>
-        <%end%>
-      </article>
+          </p>-->
+        <%#end%>
 
 
-      <%= f.file_field :image_link %>
-
-      <article class="submit-q-container">
-          <p class=<%= !params[:question].nil? ? "modal-input-title" : "modal-share-input-title"%>>
+      <!--<article class="submit-q-container">
+          <p class=<%#= !params[:question].nil? ? "modal-input-title" : "modal-share-input-title"%>>
             Select a Category:
           </p>
           <p class="submit-q-dropdown">
-            <!-- This list needs to match with the group IDs at arima.io/admin -->
+
             <% [["Money Matters", 1],
                 ["Health & Fitness", 2],
                 ["Education & Knowledge", 3],
@@ -287,28 +277,29 @@
                 ["Entertainment", 7]
                 ].each do |group| %>
                 <label class="group-icon">
-                  <%= radio_button_tag :group_id, group.last, checked = false%>
-                  <%= image_tag("category_nav_icons_circular/#{group.last}.png")%>
-                    <% if group.first == "Money Matters" %>
-                      <%= "Money" %>
-                    <% elsif group.first == "Health & Fitness"%>
-                      <%= "Health" %>
-                    <% elsif group.first == "Education & Knowledge"%>
-                      <%= "Education" %>
-                    <% elsif group.first == "Electronics & Gadgets"%>
-                      <%= "Electronics" %>
-                    <% elsif group.first == "Business & Career"%>
-                      <%= "Business" %>
-                    <% elsif group.first == "Current Events"%>
-                      <%= "Current" %>
-                    <% else %>
-                      <%= "#{group.first}" %>
-                    <% end %>
+                  <%#= radio_button_tag :group_id, group.last, checked = false%>
+                  <%#= image_tag("category_nav_icons_circular/#{group.last}.png")%>
+                    <%# if group.first == "Money Matters" %>
+                      <%#= "Money" %>
+                    <%# elsif group.first == "Health & Fitness"%>
+                      <%#= "Health" %>
+                    <%# elsif group.first == "Education & Knowledge"%>
+                      <%#= "Education" %>
+                    <%# elsif group.first == "Electronics & Gadgets"%>
+                      <%#= "Electronics" %>
+                    <%# elsif group.first == "Business & Career"%>
+                      <%#= "Business" %>
+                    <%# elsif group.first == "Current Events"%>
+                      <%#= "Current" %>
+                    <%# else %>
+                      <%#= "#{group.first}" %>
+                    <%# end %>
                 </label>
                 <% end %>
           </p>
-      </article>
+      </article>-->
 
+      <!--
       <article class="submit-q-container add-answer-container">
           <p class=<%= !params[:question].nil? ? "modal-input-title" : "modal-share-input-title"%>>
             <%= !params[:question].nil? ? "Select Answer Option:" : "Select Rating Option:"%>
@@ -336,31 +327,31 @@
 
           <section class="selected-multiple-choices" id="answer-types">
             <p id="select-title" class="<%= !params[:question].nil? ? "modal-input-title " : "modal-share-input-title "%>">
-              <%= !params[:question].nil? ? "Add your Answer Choices:" : "Add your Image Tags:"%>
+              <%#= !params[:question].nil? ? "Add your Answer Choices:" : "Add your Image Tags:"%>
             </p>
-            <p class="multiple-choice-description" style="margin-left:2.6em;">Maximum of 12 <%= !params[:question].nil? ? "answers" : "tags"%>, empty boxes will not be added.</p>
-            <p class="numeric-slider-description <%= "field-hidden" if (!params[:question].nil? || params[:question].nil?)%>" style="margin-left:2.6em; padding-top: 15px;">Other users will use the slider below to give your submission a rating between 1 and 10.</p>
+            <p class="multiple-choice-description" style="margin-left:2.6em;">Maximum of 12 <%#= !params[:question].nil? ? "answers" : "tags"%>, empty boxes will not be added.</p>
+            <p class="numeric-slider-description <%#= "field-hidden" if (!params[:question].nil? || params[:question].nil?)%>" style="margin-left:2.6em; padding-top: 15px;">Other users will use the slider below to give your submission a rating between 1 and 10.</p>
 
-            <div class="numeric-slider-container <%= "field-hidden" if (!params[:question].nil? || params[:question].nil?)%>" style="height:50px; margin-top: 20px; width: 80%; margin-left: 3.2em; ">
+            <div class="numeric-slider-container <%#= "field-hidden" if (!params[:question].nil? || params[:question].nil?)%>" style="height:50px; margin-top: 20px; width: 80%; margin-left: 3.2em; ">
 
               <div class="slider"></div>
             </div>
 
-            <%= hidden_field_tag 'numeric_value'%>
-            <%= hidden_field_tag 'shared_image'%>
+            <%#= hidden_field_tag 'numeric_value'%>
+            <%#= hidden_field_tag 'shared_image'%>
 
               <div class="multiple-choice-container">
                 <section class="submit-input-container" style="margin-left: 2.5em;">
 
                   <div class="answer-type-input-box">
-                    <input type="text" name="answer_box_1" id="answer-box-1" class="answer-box" placeholder="<%= !params[:question].nil? ? "Answer here" : "Image tag here"%>">
-                    <input type="text" name="answer_box_2" id="answer-box-2" class="answer-box" placeholder="<%= !params[:question].nil? ? "Answer here" : "Image tag here"%>">
+                    <input type="text" name="answer_box_1" id="answer-box-1" class="answer-box" placeholder="<%#= !params[:question].nil? ? "Answer here" : "Image tag here"%>">
+                    <input type="text" name="answer_box_2" id="answer-box-2" class="answer-box" placeholder="<%#= !params[:question].nil? ? "Answer here" : "Image tag here"%>">
                   </div>
                 </section>
-                <input type="button" value="<%= !params[:question].nil? ? "+ Add another answer" : "+ Add another tag" %>"
-                class="add-answer-button add-answer" id=<%= !params[:question].nil? ? "blue-button" : "orange-button" %> />
+                <input type="button" value="<%#= !params[:question].nil? ? "+ Add another answer" : "+ Add another tag" %>"
+                class="add-answer-button add-answer" id=<%#= !params[:question].nil? ? "blue-button" : "orange-button" %> />
 
-                <!--<button type='button' class="add-answer-button default-answer" id="green-button">Use Default Rating Choices</button>
+                <button type='button' class="add-answer-button default-answer" id="green-button">Use Default Rating Choices</button>
 
                 <div style="clear: both;"></div>
 
@@ -414,31 +405,49 @@
                 </ul>
               </div>
 
-              -->
-
             </div>
             </section>
 
-      </article>
+      </article>-->
 
-      <div style="clear: both; margin-bottom: 20px;"></div>
 
-      <%= recaptcha_tags  class: "captcha"%>
 
-      <span class="modal-finished-container">
-        <%= f.submit "Submit", class: "modal-finished-button", id: !params[:question].nil? ? "blue-button" : "orange-button" %>
-      </span>
-
-      <% if user_signed_in? && current_user.username.present? %>
-      <div class="check-box-container <%= "field-hidden" if params[:question].nil?%>">
-        <p class="check-box"><%= check_box_tag "checked[#{current_user.id}]","true", true %></p>
+      <%# if user_signed_in? && current_user.username.present? %>
+      <!--<div class="check-box-container <%= "field-hidden" if params[:question].nil?%>">
+        <p class="check-box"><%#= check_box_tag "checked[#{current_user.id}]","true", true %></p>
         <p>Allow other users to add answers</p>
-      </div>
-      <% end %>
-    </section>
-    <% end %>
+      </div>-->
+      <%# end %>
+
 </section><!-- /.modal -->
 
+
+
+<%= form_for Question.new do |f| %>
+<section class="submit-questions-container" style="margin-left: auto; margin-right: auto; width: 200px; height: 400px;">
+  <%= image_tag("Computer.png", class: "computer_image")%>
+  <article class="submit-q-container">
+    <p class="submit-q-input-box">
+      <%= f.text_field :label, name: "submit_question_name", :required => true,
+      placeholder: "Add a Title/Description", id: "input-q-title" %>
+      <div style="clear: both;"></div>
+      <span class="countdown"></span>
+    </p>
+  </article>
+
+  <div style="clear: both; margin-bottom: 40px;"></div>
+
+  <%= f.file_field :image_link %>
+
+  <div style="clear: both; margin-bottom: 20px;"></div>
+
+  <%= recaptcha_tags  class: "captcha"%>
+
+  <span class="modal-finished-container">
+    <%= f.submit "Submit", class: "modal-finished-button", id: !params[:question].nil? ? "blue-button" : "orange-button" %>
+  </span>
+  </section>
+<% end %>
 <%if params[:question].nil?
     cookies[:share] = 1
   end
