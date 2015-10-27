@@ -12,6 +12,8 @@ Arima::Application.routes.draw do
   get 'vote_tag' => 'tags#vote_tag'
   get 'downvote_tag' => 'tags#downvote_tag'
 
+  get 'new_modal' => 'questions#new_modal'
+
   get 'view_map' => 'answers#view_map'
   get 'trophy' => 'profiles#trophy'
   get 'image_shared' => 'profiles#image_shared'

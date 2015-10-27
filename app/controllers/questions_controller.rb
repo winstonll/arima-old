@@ -200,6 +200,12 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def new_modal
+    respond_to do |format|
+      format.js
+    end
+  end
+
   # Method that is called when a question is created
   def create
 
