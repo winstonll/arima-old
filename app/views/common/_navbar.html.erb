@@ -1,3 +1,5 @@
+<%= render 'common/new_modal' %>
+
 <nav class="nav" role="navigation" id="home-navbar">
   <section class="left">
      <form class="form-horizontal" role="form" action="/search">
@@ -11,7 +13,8 @@
 
   <section class="right">
     <%= link_to image_tag("logo-icon-large.png"), categories_path, id: "arima-icon" %>
-    <%= link_to image_tag("imageupload.png", size: "22x20") + "  UPLOAD", new_question_path, id: "imageupload" %>
+    <%= link_to image_tag("imageupload.png", size: "22x20") + "  UPLOAD", new_question_path, id: "imageupload", class: "visible-xs" %>
+    <%= link_to image_tag("imageupload.png", size: "22x20") + "  UPLOAD", {remote: true, controller: "questions", action: "new_modal"}, id: "imageupload", class: "hidden-xs" %>
     <% if !(user_signed_in? && current_user.username.present?) %>
             <%= link_to 'Log In', new_user_session_path, class: "nav-btn hidden-xs", id: "nav-login-btn" %>
     <%else%>

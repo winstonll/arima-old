@@ -6,6 +6,25 @@
   display: inline-block;
 }
 
+.submit-q-container {
+  //visibility: hidden;
+  display: none;
+}
+
+.g-recaptcha {
+  //visibility: hidden;
+  position: relative;
+  right: 50px;
+  display: none;
+}
+
+.modal-finished-button {
+  //visibility: hidden;
+  position: relative;
+  left: 20px;
+  display: none;
+}
+
 .submit-plus {
   display: block;
   position: absolute;
@@ -125,18 +144,20 @@
 
     .tool-bar {
       width: 100%;
-      background-color: white;
-      height: 35px;
+      background-color: #1F2532;
+      height: 30px;
       padding-top: 5px;
-      text-align: center;
 
       .share-icon-container {
         float: left;
       }
 
       .instructag {
-        font-weight: 600;
+        font-weight: 700;
         font-size: 13px;
+        color:white;
+        float: right;
+        margin-right: 8%
       }
     }
   }
@@ -175,7 +196,7 @@
 
 .tagcount {
   font-weight: 600;
-  color: #419BF9;
+  color: white;
   margin-right: 10px;
   font-size: 14px;
   display: inline-block;
@@ -190,7 +211,7 @@
 .grave{
   margin-right: 10px;
   font-weight: 600;
-  color: #818181;
+  color: #fff;
 
 
   p {
@@ -227,16 +248,17 @@
 
 
 .question-author {
-  font-weight: 500;
+  font-weight: 300;
 }
 
 .share-image-title {
   display: inline-block;
-  color: #4a4a4a;
+  color: #fff;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 13px;
   position: relative;
   margin-top: 4px;
+
 }
 
 #image-feed {
@@ -249,7 +271,7 @@
   color: #419BF9;
   display: inline-block;
   margin-right: 20px;
-  font-size: 14px;
+  font-size: 13px;
   float:left;
 }
 
@@ -257,13 +279,13 @@
   margin-left: 8px;
   margin-right: 15px;
   text-decoration: underline;
-  color: #7D7D7D;
+  color: #fff;
   font-weight: 500;
   font-size: 13px;
 }
 
 #users_list:hover {
-  color: black;
+  color: #419BF9;
 }
 
 #view_profile_link{
@@ -1148,7 +1170,8 @@
     width: 400px;
   }
   .share-image-title {
-    left:11%;
+    left:7%;
+    margin-top: -8px;
   }
 }
 
@@ -1179,6 +1202,7 @@
   }
   .tagcount {
     position: relative;
+    font-size: 10px;
   }
   .show-tag {
     padding: 12px 5px 10.5px 5px !important;
@@ -1190,9 +1214,9 @@
     display: none;
   }
   .share-image-title {
-    font-size: 11px;
+    font-size: 10px;
     text-align: center;
-
+    margin-top: -8px;
   }
   .submit-plus {
     position: absolute;
