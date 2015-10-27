@@ -215,54 +215,14 @@ class QuestionsController < ApplicationController
       return
     end
 
-    if params[:group_id].blank?
-      redirect_to :back
-      flash[:notice] = "Please select a Category"
-      return
-    end
-
     # For Multiple Choice Questions, concatenate the answer boxes into
     # one string, checking for empty boxes and removing them
-    13.times do |count|
-      counter = "answer_box_#{count}".to_sym
-      unless (params[counter].to_s.empty?)
-        @answerboxes = @answerboxes.to_s + params[counter].to_s << '|'
-      end
-    end
-
-    # Strip the last comma from multiple choice questions
-    if @answerboxes
-      @answerboxes = @answerboxes[0...-1]
-    end
-
-    if (@answerboxes.nil? || @answerboxes.empty? || @answerboxes.size < 2) && params[:numeric_value] == "false" && params[:shared_image] != "true"
-      redirect_to :back
-      flash[:notice] = "Please fill in at least two answer choices"
-      return
-    end
-
-    @question_image = !params[:image_link].empty?
-    @uploaded_image = false
-    if(@question_image)
-      image_array = params[:image_link].split("/")
-      if ((params[:image_link].include? "imgur.com") && image_array.size >= 4)
-        if (!(image_array.include? "i.imgur.com"))
-          image_array[2] = "i.imgur.com"
-          image_array[-1] = image_array.last + ".jpg"
-        end
-        params[:image_link] = [image_array[0], image_array[1], image_array[2], image_array[-1]].join("/")
-
-        uploaded_io = params[:image_link]
-
-        File.open(Rails.root.join('public', 'system', 'uploads', image_array[-1]), 'wb') do |file|
-          file.write(open(uploaded_io).read)
-        end
-
-        @question_image = true
-      else
-        @question_image = false
-      end
-    end
+    #13.times do |count|
+    #  counter = "answer_box_#{count}".to_sym
+    #  unless (params[counter].to_s.empty?)
+    #    @answerboxes = @answerboxes.to_s + params[counter].to_s << '|'
+    #  end
+    #end
 
     if !params[:question].nil?
       @question_image = true
@@ -274,53 +234,21 @@ class QuestionsController < ApplicationController
       end
     end
 
-    if (params[:shared_image] == "true") && !@question_image
-      redirect_to :back
-      flash[:notice] = "Please upload an image"
-      return
-    end
-
     @user_created = user_signed_in? ? current_user.id : cookies[:guest]
 
-    if params[:shared_image] == "true" && (params[:submit_question_name].length < 256) && params[:numeric_value] == "false"
+    if (params[:submit_question_name].length < 256)
 
       @subquestion = Question.create(
         :label => params[:submit_question_name].slice(0,1).capitalize + params[:submit_question_name].slice(1..-1),
-        :group_id => params[:group_id],
+        :group_id => 7,
         :user_id => @user_created,
         :value_type => "tag", #params[:numeric_value] == "false" ? "collection" : "quantity"
         :options_for_collection => "",
         :answer_plus => true,
-        :image_link => @uploaded_image ? @file_name : image_array[-1],
-        :shared_image => params[:shared_image])
+        :image_link => @file_name,
+        :shared_image => true)
 
-      GroupsQuestion.create(group_id: params[:group_id], question_id: @subquestion.id)
-
-    elsif params["checked"] != nil && (params[:submit_question_name].length < 256)
-      @subquestion = Question.create(
-        :label => params[:submit_question_name].slice(0,1).capitalize + params[:submit_question_name].slice(1..-1),
-        :group_id => params[:group_id],
-        :user_id => @user_created,
-        :value_type => params[:numeric_value] == "false" ? "collection" : "quantity", #params[:numeric_value] == "false" ? "collection" : "quantity"
-        :options_for_collection => @answerboxes,
-        :answer_plus => true,
-        :image_link => @question_image ? image_array[-1] : nil,
-        :shared_image => params[:shared_image])
-
-      GroupsQuestion.create(group_id: params[:group_id], question_id: @subquestion.id)
-
-    elsif(params[:submit_question_name].length < 256)
-      @subquestion = Question.create(
-        :label => params[:submit_question_name].capitalize,
-        :group_id => params[:group_id],
-        :user_id => @user_created,
-        :value_type => params[:numeric_value] == "false" ? "collection" : "quantity", #params[:numeric_value] == "false" ? "collection" : "quantity"
-        :options_for_collection => @answerboxes,
-        :answer_plus => false,
-        :image_link => @question_image ? params[:image_link] : nil,
-        :shared_image => params[:shared_image])
-
-      GroupsQuestion.create(group_id: params[:group_id], question_id: @subquestion.id)
+      GroupsQuestion.create(group_id: 7, question_id: @subquestion.id)
     else
       redirect_to categories_path
       flash[:notice] = "The length of the question was too long. Please try again."

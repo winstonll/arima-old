@@ -6,6 +6,25 @@
   display: inline-block;
 }
 
+.submit-q-container {
+  //visibility: hidden;
+  display: none;
+}
+
+.g-recaptcha {
+  //visibility: hidden;
+  position: relative;
+  right: 50px;
+  display: none;
+}
+
+.modal-finished-button {
+  //visibility: hidden;
+  position: relative;
+  left: 20px;
+  display: none;
+}
+
 .submit-plus {
   display: block;
   position: absolute;
