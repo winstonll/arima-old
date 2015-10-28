@@ -35,11 +35,11 @@ $(document).ready(function() {
           </p>
         </article>
 
-        <div style="clear: both; margin-bottom: 40px;"></div>
+        <div style="clear: both; margin-bottom: 10px;"></div>
 
         <p class="file">
           <%= f.file_field :image_link %>
-          <label for="file">Upload your image</label>
+          <label for="file">Upload from Device</label>
         </p>
 
         <div style="clear: both; margin-bottom: 20px;"></div>
@@ -48,7 +48,7 @@ $(document).ready(function() {
         <%= recaptcha_tags  class: "captcha"%>
         </span>
         <span class="modal-finished-container" style="position: relative; left: 3px;">
-          <%= f.submit "Submit", class: "modal-finished-button", id: !params[:question].nil? ? "blue-button" : "orange-button" %>
+          <%= f.submit "Finish Upload", class: "modal-finished-button", id: !params[:question].nil? ? "blue-button" : "orange-button" %>
         </span>
         </section>
       <% end %>
