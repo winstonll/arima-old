@@ -15,8 +15,10 @@
 .g-recaptcha {
   //visibility: hidden;
   position: relative;
-  right: 50px;
+  right: 5px;
   display: none;
+  top: -20px;
+  width: 50%;
 }
 
 .modal-finished-button {
