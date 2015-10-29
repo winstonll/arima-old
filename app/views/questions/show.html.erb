@@ -265,11 +265,11 @@ $(window).load(function() {
     <%end%>
   <%end%>
 
-  $('.zoompic')[0].style.top = $('.shared-photo').offset().top + 5 + "px";
-  $('.zoompic')[0].style.left = $('.shared-photo').offset().left + 5 + "px";
+  $('.zoompic')[0].style.top = $('.shared-photo').offset().top + $('.shared-photo')[0].height -90 + "px";
+  $('.zoompic')[0].style.left = $('.shared-photo').offset().left + $('.shared-photo')[0].width - 45  + "px";
 
-  $('.hidepic')[0].style.top = $('.shared-photo').offset().top + 45 + "px";
-  $('.hidepic')[0].style.left = $('.shared-photo').offset().left + 5 + "px";
+  $('.hidepic')[0].style.top = $('.shared-photo').offset().top + $('.shared-photo')[0].height - 48 + "px";
+  $('.hidepic')[0].style.left = $('.shared-photo').offset().left + $('.shared-photo')[0].width - 44 + "px";
 
   if($('.tag').length > 0){
     $("#indicator-" + $('.tag')[0].id.split("-")[1])[0].style.display = "inline-block";
@@ -303,11 +303,11 @@ $(window).load(function() {
 
   $( window ).resize(function() {
 
-    $('.zoompic')[0].style.top = $('.shared-photo').offset().top + 5 + "px";
-    $('.zoompic')[0].style.left = $('.shared-photo').offset().left + 5 + "px";
+    $('.zoompic')[0].style.top = $('.shared-photo').offset().top + $('.shared-photo')[0].height -90 + "px";
+    $('.zoompic')[0].style.left = $('.shared-photo').offset().left + $('.shared-photo')[0].width - 45  + "px";
 
-    $('.hidepic')[0].style.top = $('.shared-photo').offset().top + 45 + "px";
-    $('.hidepic')[0].style.left = $('.shared-photo').offset().left + 5 + "px";
+    $('.hidepic')[0].style.top = $('.shared-photo').offset().top + $('.shared-photo')[0].height - 48 + "px";
+    $('.hidepic')[0].style.left = $('.shared-photo').offset().left + $('.shared-photo')[0].width - 44 + "px";
 
     var w, w_max;
 
@@ -337,38 +337,8 @@ $(window).load(function() {
     }
   });
 
-  $('.shared-photo').mouseover(function(){
-    $('.zoompic')[0].style.display = "inline-block";
-    $('.hidepic')[0].style.display = "inline-block";
-  });
-
-  $('.zoompic').mouseover(function(){
-    $('.zoompic')[0].style.display = "inline-block";
-    $('.hidepic')[0].style.display = "inline-block";
-  });
-
-  $('.zoompic').mouseout(function(){
-    $('.hidepic')[0].style.display = "none";
-    $('.zoompic')[0].style.display = "none";
-  });
-
-  $('.hidepic').mouseover(function(){
-    $('.zoompic')[0].style.display = "inline-block";
-    $('.hidepic')[0].style.display = "inline-block";
-  });
-
-  $('.hidepic').mouseout(function(){
-    $('.hidepic')[0].style.display = "none";
-    $('.zoompic')[0].style.display = "none";
-  });
-
   $('.hidepic').click(function(){
     hide_all();
-  });
-
-  $('.shared-photo').mouseout(function(){
-    $('.zoompic')[0].style.display = "none";
-    $('.hidepic')[0].style.display = "none";
   });
 
   $(".submit-plus").click(function() {
@@ -451,7 +421,7 @@ $(window).load(function() {
 
 <span class="hidepic hidden-xs">
   <a href="#">
-    <%= image_tag("Hide-Tags.png", size: "25x25", class: "hide-icon") %>
+    <%= image_tag("Hide-Tags.png", size: "24x24", class: "hide-icon") %>
   </a>
 </span>
 

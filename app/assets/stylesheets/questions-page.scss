@@ -15,8 +15,10 @@
 .g-recaptcha {
   //visibility: hidden;
   position: relative;
-  right: 50px;
+  right: 5px;
   display: none;
+  top: -20px;
+  width: 50%;
 }
 
 .modal-finished-button {
@@ -225,7 +227,7 @@
 .zoompic {
   position: absolute;
   z-index: 2000;
-  display: none;
+  display: inline-block;
   background-color: rgba(0,0,0,0.70);
   border-radius: 4px;
   padding: 7px;
@@ -237,7 +239,7 @@
 .hidepic {
   position: absolute;
   z-index: 2000;
-  display: none;
+  display: inline-block;
   background-color: rgba(255,0,0,0.70);
   border-radius: 4px;
   padding: 7px;
