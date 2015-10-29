@@ -4,6 +4,7 @@
 }
 .votearrow {
   display: inline-block;
+  margin-bottom: 2px;
 }
 
 .submit-q-container {
@@ -85,8 +86,8 @@
   font-size: 11px;
   position: absolute;
   border-radius: 3px;
-  padding: 5px;
-  background-color: rgba(0, 0, 0, 0.55);
+  padding: 3px 5px 2px 5px;
+  background-color: rgba(0, 0, 0, 0.53);
   display: inline-block;
   visibility: hidden;
   color: white;
@@ -1009,7 +1010,7 @@
           }
         }
 
-        .question-vote-counter {
+        .question-f-counter {
           font-size: 25px;
           color: #00C39C;
           margin-top: -1px;
@@ -1149,7 +1150,6 @@
   .shared-photo {
     position: relative;
     height: auto;
-    width: 100%;
   }
 
   .image-map {

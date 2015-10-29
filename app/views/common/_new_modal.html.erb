@@ -5,7 +5,7 @@ $(document).ready(function() {
   jQuery("input#question_image_link").change(function () {
     //$('#question_image_link')[0].style.visibility = "hidden";
     //$('.computer_image')[0].style.visibility = "hidden";
-    $('#question_image_link')[0].style.display = "none";
+    $('.file')[0].style.display = "none";
     $('.computer_image')[0].style.display = "none";
 
     //$('.submit-q-container')[0].style.visibility = "visible";
@@ -27,7 +27,7 @@ $(document).ready(function() {
       <section class="submit-questions-container" style="margin-left: auto; margin-right: auto; width: 200px; height: 400px;">
         <%= image_tag("Computer.png", class: "computer_image")%>
         <article class="submit-q-container">
-          <p class="submit-q-input-box">
+          <p class="submit-q-input-box" style="position: relative; left: 15px;">
             <%= f.text_field :label, name: "submit_question_name", :required => true,
             placeholder: "Add a Title/Description", id: "input-q-title" %>
             <div style="clear: both;"></div>
@@ -35,16 +35,20 @@ $(document).ready(function() {
           </p>
         </article>
 
-        <div style="clear: both; margin-bottom: 40px;"></div>
+        <div style="clear: both; margin-bottom: 10px;"></div>
 
-        <%= f.file_field :image_link %>
+        <p class="file">
+          <%= f.file_field :image_link %>
+          <label for="file">Upload from Device</label>
+        </p>
 
         <div style="clear: both; margin-bottom: 20px;"></div>
 
+        <span style="position: relative; left: 10px;">
         <%= recaptcha_tags  class: "captcha"%>
-
-        <span class="modal-finished-container">
-          <%= f.submit "Submit", class: "modal-finished-button", id: !params[:question].nil? ? "blue-button" : "orange-button" %>
+        </span>
+        <span class="modal-finished-container" style="position: relative; left: 3px;">
+          <%= f.submit "Finish Upload", class: "modal-finished-button", id: !params[:question].nil? ? "blue-button" : "orange-button" %>
         </span>
         </section>
       <% end %>
