@@ -90,8 +90,10 @@ $(document).ready(function() {
   <% if user_signed_in? && current_user.username.present? %>
   <%= link_to "#{current_user.username[0].capitalize}", custom_show_path(:username => current_user.username), class: "nav-user-circle" %>
   <% end %>
-  <%= link_to image_tag("anonprofile.png", size: "40x40"), new_registration_path(resource_name), id: "anon-btn" if !user_signed_in? %>
-  <span class="image-title"><%= question.label %></span>
+  <%= link_to image_tag("anonprofile.png"), new_registration_path(resource_name), id: "anon-btn" if !user_signed_in? %>
+  <%= image_tag("cat-icons/#{question.group_id}.png", class: "image-category-icon"  ) %>
+  <div class="image-title"><%= question.label %></div>
+  <div class="image-author">
     by
     <%=
     if User.where(id: question.user_id).first.username.nil? || User.where(id: question.user_id).first.username.empty?
@@ -100,7 +102,7 @@ $(document).ready(function() {
       link_to User.where(id: question.user_id).first.username, custom_show_path(:username => User.where(id: question.user_id).first.username)
     end
      %>
-  <%= image_tag("category-icons/#{question.group_id}.png", class: "image-category-icon"  ) %>
+  </div>
 
   <div class="image-box-wrapper <%= question.id.to_s %>">
     <div class="image-link-container">
