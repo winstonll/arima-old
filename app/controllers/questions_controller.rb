@@ -238,6 +238,10 @@ class QuestionsController < ApplicationController
       File.open(Rails.root.join('public', 'system', 'uploads', @file_name), 'wb') do |file|
         file.write(uploaded_io.read)
       end
+    elsif !params[:submit_question_image].empty?
+      @file_name = "#{SecureRandom.hex[0,5]}.png"
+      download = open(params[:submit_question_image])
+      IO.copy_stream(download, Rails.root.join('public', 'system', 'uploads', @file_name))
     end
 
     @user_created = user_signed_in? ? current_user.id : cookies[:guest]
