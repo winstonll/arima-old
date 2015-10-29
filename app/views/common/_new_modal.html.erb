@@ -1,6 +1,8 @@
 <script>
 
 $(document).ready(function() {
+  var input_value;
+  var link_valid = false;
 
   jQuery("input#question_image_link").change(function () {
     //$('#question_image_link')[0].style.visibility = "hidden";
@@ -22,16 +24,35 @@ $(document).ready(function() {
   });
 
   $('.upload_image').click(function() {
-    $('.file')[0].style.display = "none";
-    $('.computer_image')[0].style.display = "none";
-    $('#divider')[0].style.display = "none";
-    $('#input-q-link')[0].style.display = "none";
-    $('.upload_image')[0].style.display = "none";
+    input_value = $('#input-q-link')[0].value;
+    if(input_value != ""){
+      input_value = input_value.split("/");
+      input_value = input_value[input_value.length - 1];
+      input_value = input_value.split(".");
+      if(input_value.length > 1){
+        if($.inArray( input_value[input_value.length - 1] , [ "jpg", "jpeg", "png", "tiff", "bmp" ] ) != -1){
+          link_valid = true;
+        }
+      }
+    }
 
-    $('.submit-q-container')[0].style.display = "block";
-    $('.modal-finished-button')[0].style.display = "block";
-    $('.g-recaptcha')[0].style.display = "block";
+    if (link_valid){
+      $('.file')[0].style.display = "none";
+      $('.computer_image')[0].style.display = "none";
+      $('#divider')[0].style.display = "none";
+      $('#input-q-link')[0].style.display = "none";
+      $('.upload_image')[0].style.display = "none";
+
+      $('.submit-q-container')[0].style.display = "block";
+      $('.modal-finished-button')[0].style.display = "block";
+      $('.g-recaptcha')[0].style.display = "block";
+    }else {
+      window.alert("not valid");
+    }
+
   });
+
+
 
 });
 </script>
