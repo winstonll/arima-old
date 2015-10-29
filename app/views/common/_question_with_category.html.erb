@@ -86,12 +86,12 @@ $(document).ready(function() {
 
 </script>
 
-<div class="question-icon-container">
+<div class="image-icon-container">
   <% if user_signed_in? && current_user.username.present? %>
   <%= link_to "#{current_user.username[0].capitalize}", custom_show_path(:username => current_user.username), class: "nav-user-circle" %>
   <% end %>
-  <%= link_to image_tag("anonprofile.png", size: "40x40"), new_registration_path(resource_name), id: "anonav-btn" if !user_signed_in? %>
-  <span class="question-title"><%= question.label %></span>
+  <%= link_to image_tag("anonprofile.png", size: "40x40"), new_registration_path(resource_name), id: "anon-btn" if !user_signed_in? %>
+  <span class="image-title"><%= question.label %></span>
     by
     <%=
     if User.where(id: question.user_id).first.username.nil? || User.where(id: question.user_id).first.username.empty?
@@ -100,7 +100,7 @@ $(document).ready(function() {
       link_to User.where(id: question.user_id).first.username, custom_show_path(:username => User.where(id: question.user_id).first.username)
     end
      %>
-  <%= image_tag("category-icons/#{question.group_id}.png", class: "question-with-category-icon"  ) %>
+  <%= image_tag("category-icons/#{question.group_id}.png", class: "image-category-icon"  ) %>
 
   <div class="image-box-wrapper <%= question.id.to_s %>">
     <div class="image-link-container">
@@ -108,18 +108,19 @@ $(document).ready(function() {
         <div style="height: 400px; width: auto;"></div>
       </a>
     </div>
-    <div class="clearfix"></div>
   </div>
-  <span class="share-icon-container" class="hidden-xs">
-    <%= render partial: "questions/share", locals: {
-        id: question.id,
-        url: "#{request.protocol}#{request.host_with_port}" + question_path(question),
-        title: "#{question.label[0..70]}...",
-        image: "#{request.protocol}#{request.host_with_port}" + question_path(question)
-      }%>
-  </span>
-  <span class="tagcount">
-    <%= image_tag("Tag.png", size: "18x18")%>
-    <p> <%#=@tags_array.count%> Tags</p>
-  </span>
+  <div class="clearfix">
+    <span class="share-icon-container">
+      <%= render partial: "questions/share", locals: {
+          id: question.id,
+          url: "#{request.protocol}#{request.host_with_port}" + question_path(question),
+          title: "#{question.label[0..70]}...",
+          image: "#{request.protocol}#{request.host_with_port}" + question_path(question)
+        }%>
+    </span>
+    <span class="feed-tagcount">
+      <%= image_tag("Tag.png", size: "18x18")%>
+      <%=question.tag_count%> Tags
+    </span>
+  </div>
 </div>
