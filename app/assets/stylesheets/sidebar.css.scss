@@ -1,9 +1,8 @@
 /* Categories sidebar */
 .sidebar {
   height: 20em;
-  width: 160px;
+  width: 140px;
   background-color: transparent;
-  text-align: center;
   overflow-y: hidden;
   position: fixed;
   top: 8em;
@@ -11,15 +10,15 @@
   z-index: 2;
   overflow: hidden;
 
-  .sidebar-wrapper {
-    min-height: 100%;
-    margin: 0 auto -155px;
+ .category-icon{
+    position: relative;
+    display: inline-block;
 
-   .category-icon{
-      position: relative;
-      display: inline-block;
+    img {
+      height: 55px;
+      width: 55px;
       margin: 5px;
-
+      border-radius: 50%;
       &:hover {
         transform: scale(1.1,1.1);
       }
