@@ -250,7 +250,6 @@ class QuestionsController < ApplicationController
         :user_id => @user_created,
         :value_type => "tag", #params[:numeric_value] == "false" ? "collection" : "quantity"
         :options_for_collection => "",
-        :answer_plus => true,
         :image_link => @file_name,
         :shared_image => true)
 
