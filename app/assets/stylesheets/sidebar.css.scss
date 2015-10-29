@@ -16,59 +16,10 @@
     min-height: 100%;
     margin: 0 auto -155px;
 
-
-    .submit-question-container {
-      margin-top: 25px;
-      margin-bottom: 10px;
-      img {
-        height: 66px;
-        width: 66px;
-      }
-      &:hover {
-         transform: scale(1.2);
-
-      }
-    }
-
-    .submit-image-container{
-      margin-top: 15px;
-      margin-bottom: 10px;
-      img {
-          height: 66px;
-          width: 66px;
-      }
-      &:hover {
-         transform: scale(1.2);
-      }
-    }
-
-    .profile-link {
-      margin-top: 15px;
-      margin-bottom: 10px;
-
-      .nav-user-circle {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        background-color: #00c39c;
-        box-shadow: 2px 2px 1px rgba(0,0,0,0.35);
-        display: inline-block;
-        color: #fff;
-        text-align: center;
-        font-size:45px;
-
-      }
-        &:hover {
-         transform: scale(1.2);
-        }
-
-      #nav-signup-btn {
-
-        img {
-          height: 66px;
-          width: 66px;
-        }
-      }
+   .category-icon{
+      position: relative;
+      bottom: 4px;
+      display: inline-block;
     }
   }
 }
