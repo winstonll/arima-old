@@ -265,7 +265,7 @@ $(window).load(function() {
     <%end%>
   <%end%>
 
-  $('.zoompic')[0].style.top = $('.shared-photo').offset().top + $('.shared-photo')[0].height -92 + "px";
+  $('.zoompic')[0].style.top = $('.shared-photo').offset().top + $('.shared-photo')[0].height -90 + "px";
   $('.zoompic')[0].style.left = $('.shared-photo').offset().left + $('.shared-photo')[0].width - 45  + "px";
 
   $('.hidepic')[0].style.top = $('.shared-photo').offset().top + $('.shared-photo')[0].height - 48 + "px";
@@ -415,13 +415,13 @@ $(window).load(function() {
 
 <span class="zoompic hidden-xs">
   <a href="<%= img_path %>" data-featherlight="image">
-    <%= image_tag("Zoom.png", size: "28x28", class: "enlarge-icon") %>
+    <%= image_tag("Zoom.png", size: "25x25", class: "enlarge-icon") %>
   </a>
 </span>
 
 <span class="hidepic hidden-xs">
   <a href="#">
-    <%= image_tag("Hide-Tags.png", size: "28x28", class: "hide-icon") %>
+    <%= image_tag("Hide-Tags.png", size: "24x24", class: "hide-icon") %>
   </a>
 </span>
 
