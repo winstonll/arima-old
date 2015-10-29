@@ -3,12 +3,11 @@
   height: 20em;
   width: 140px;
   background-color: transparent;
-  overflow-y: hidden;
   position: fixed;
+  text-align: left;
   top: 8em;
   left: 4em;
   z-index: 2;
-  overflow: hidden;
 
  .category-icon{
     position: relative;
@@ -24,4 +23,15 @@
       }
     }
   }
+}
+
+.feed-change {
+  height: 10em;
+  width: 100px;
+  background-color: red;
+  position: fixed;
+  top: 8em;
+  right: 0px;
+  margin-right: 2em;
+  z-index: 2;
 }
