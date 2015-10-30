@@ -197,6 +197,10 @@
   }
 }
 
+.question-image-title {
+  cursor: pointer;
+}
+
 .tagcount {
   font-weight: 600;
   color: white;
@@ -237,6 +241,7 @@
 }
 
 .hidepic {
+  cursor: pointer;
   position: absolute;
   z-index: 2000;
   display: inline-block;

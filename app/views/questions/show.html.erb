@@ -3,6 +3,8 @@
 <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=visualization"></script>-->
 <%#= javascript_include_tag "markerwithlabel" %>
 <%= stylesheet_link_tag "featherlight.min.css" %>
+<%= stylesheet_link_tag "tooltip.css" %>
+<%= javascript_include_tag "tooltip.min" %>
 <%= javascript_include_tag "featherlight" %>
 
 <%#= javascript_include_tag "jquery.line" %>
@@ -250,11 +252,16 @@ function hide_all(){
     $("#indicator-" + $('.tag')[i].id.split("-")[1])[0].style.display = "none";
     $('.tag')[i].style.display = "none";
   }
+
   $('.show-tag')[0].style.display = "inline";
   $('.hide-tag')[0].style.display = "none";
 }
 
 $(window).load(function() {
+
+  var tip = new Tooltip('<div style="padding: 8px;"><%= @question.label %></div>');
+  tip.type('light').effect('slide');
+  tip.position(document.querySelector('.question-image-title'));
 
   var time_out;
 
@@ -348,6 +355,10 @@ $(window).load(function() {
     $('#comment-input')[0].value = "";
   });
 
+  $('.question-image-title').click(function(){
+    tip.toggle();
+  });
+
   $(document).ready(function() {
     setTimeout(function() {
       $('.mobile-instructag')[0].style.visibility = 'hidden';
@@ -420,9 +431,7 @@ $(window).load(function() {
 </span>
 
 <span class="hidepic hidden-xs">
-  <a href="#">
-    <%= image_tag("Hide-Tags.png", size: "24x24", class: "hide-icon") %>
-  </a>
+  <%= image_tag("Hide-Tags.png", size: "24x24", class: "hide-icon") %>
 </span>
 
 <%#if @user_submitted_answer && !@question.shared_image.nil? && !@question.shared_image%>
@@ -569,11 +578,10 @@ $(window).load(function() {
           </span>
           <span class="instructag">Click anywhere and press Enter to add a Tag </span>
 
-
-
-
       <section class="share-image-title">
-        <%=@question.label %>
+        <span class="question-image-title">
+          <%=@question.label %>
+        </span>
         <span class="question-author">
         by
         <%=
