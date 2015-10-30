@@ -3,6 +3,8 @@
 <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=visualization"></script>-->
 <%#= javascript_include_tag "markerwithlabel" %>
 <%= stylesheet_link_tag "featherlight.min.css" %>
+<%= stylesheet_link_tag "tooltip.css" %>
+<%= javascript_include_tag "tooltip.min" %>
 <%= javascript_include_tag "featherlight" %>
 
 <%#= javascript_include_tag "jquery.line" %>
@@ -256,6 +258,10 @@ function hide_all(){
 
 $(window).load(function() {
 
+  var tip = new Tooltip('<span style="padding: 15px;"><%= @question.label %></span>');
+  tip.type('light').effect('slide');
+  tip.position(document.querySelector('.question-image-title'));
+
   var time_out;
 
   <%if !@tags_array.empty?%>
@@ -346,6 +352,10 @@ $(window).load(function() {
     $("#new_answer").submit();
     $('#comment-input')[0].style.display = "none";
     $('#comment-input')[0].value = "";
+  });
+
+  $('.question-image-title').click(function(){
+    tip.toggle();
   });
 
   $(document).ready(function() {
@@ -569,11 +579,10 @@ $(window).load(function() {
           </span>
           <span class="instructag">Click anywhere and press Enter to add a Tag </span>
 
-
-
-
       <section class="share-image-title">
-        <%=@question.label %>
+        <span class="question-image-title">
+          <%=@question.label %>
+        </span>
         <span class="question-author">
         by
         <%=
