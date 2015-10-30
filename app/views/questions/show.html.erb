@@ -252,6 +252,7 @@ function hide_all(){
     $("#indicator-" + $('.tag')[i].id.split("-")[1])[0].style.display = "none";
     $('.tag')[i].style.display = "none";
   }
+
   $('.show-tag')[0].style.display = "inline";
   $('.hide-tag')[0].style.display = "none";
 }
@@ -430,9 +431,7 @@ $(window).load(function() {
 </span>
 
 <span class="hidepic hidden-xs">
-  <a href="#">
-    <%= image_tag("Hide-Tags.png", size: "24x24", class: "hide-icon") %>
-  </a>
+  <%= image_tag("Hide-Tags.png", size: "24x24", class: "hide-icon") %>
 </span>
 
 <%#if @user_submitted_answer && !@question.shared_image.nil? && !@question.shared_image%>
