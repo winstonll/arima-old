@@ -258,7 +258,7 @@ function hide_all(){
 
 $(window).load(function() {
 
-  var tip = new Tooltip('<span style="padding: 15px;"><%= @question.label %></span>');
+  var tip = new Tooltip('<div style="padding: 8px;"><%= @question.label %></div>');
   tip.type('light').effect('slide');
   tip.position(document.querySelector('.question-image-title'));
 
