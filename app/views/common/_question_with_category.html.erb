@@ -4,7 +4,7 @@ $(document).ready(function() {
   $("<%= "." + question.id.to_s %>").css("background-image", "url('/system/uploads/" + "<%= question.image_link %>" + "')");
   $("<%= "." + question.id.to_s %>").css("background-repeat", "no-repeat");
   $("<%= "." + question.id.to_s %>").css("background-position", "center center");
-  $("<%= "." + question.id.to_s %>").css("background-size", "700px");
+  $("<%= "." + question.id.to_s %>").css("background-size", "650px");
 
 });
 
@@ -31,7 +31,7 @@ $(document).ready(function() {
   <div class="image-box-wrapper <%= question.id.to_s %>">
     <div class="image-link-container">
       <a href="<%= question_path(question) %>" title="<%= question.label %>" class="image-link">
-        <div style="height: 400px; width: auto;"></div>
+        <div style="height: 360px; width: auto;"></div>
       </a>
     </div>
   </div>

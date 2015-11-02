@@ -1,3 +1,28 @@
+<script>
+$(document).ready(function() {
+
+	$('#list').click(function(){
+		$('.image-icon-container').css('zoom', '150%');
+		$('#list')[0].style.display = "none";
+		$('#nolist')[0].style.display = "inline-block";
+		$('#grid')[0].style.display = "inline-block";
+		$('#nogrid')[0].style.display = "none";
+
+
+	});
+
+	$('#grid').click(function(){
+		$('.image-icon-container').css('zoom', '100%');
+		$('#grid')[0].style.display = "none";
+		$('#nogrid')[0].style.display = "inline-block";
+		$('#list')[0].style.display = "inline-block";
+		$('#nolist')[0].style.display = "none";
+	});
+
+});
+
+</script>
+
 <div class="sidebar">
 	<%= link_to image_tag("homefeedicon.png"), categories_path, class: " category-icon" %>
 	<%#= link_to image_tag("cat-new-icons/1.png")+ "  Money", category_path(group_id: 1), method: :post, remote: true, :class => ' category-icon', :id => "category-1"%>
@@ -16,8 +41,8 @@
 </div>
 
 <div class="feed-change">
-	<%= image_tag("gridselected.png" ) %>
-	<%= image_tag("gridunselected.png" ) %>
-	<%= image_tag("listselected.png" ) %>
-	<%= image_tag("listunselected.png" ) %>
+	<button id="grid" style="display: none; border: none; background: transparent;"><%= image_tag("gridselected.png") %></button>
+	<div id="nogrid"><%= image_tag("gridunselected.png") %></div>
+	<button id="list" style="border: none; background: transparent;"><%= image_tag("listselected.png") %></button>
+	<div id="nolist" style="display: none;"><%= image_tag("listunselected.png") %></div>
 </div>
