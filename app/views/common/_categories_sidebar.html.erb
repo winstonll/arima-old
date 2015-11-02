@@ -25,12 +25,49 @@ $(document).ready(function() {
 		$('#list')[0].style.display = "none";
 	});
 
+	$('.category-icon').mouseleave(function() {
+		$('.sidecat').css("display", "none");
+   	});
+	$('#home').mouseenter(function() {
+		$('.sidecat').css("display", "block");
+	    $('.sidecat').text("Home");
+   	});
+	$('#category-6').mouseenter(function() {
+		$('.sidecat').css("display", "block");
+	    $('.sidecat').text("Sports");
+   	});
+   	$('#category-7').mouseenter(function() {
+		$('.sidecat').css("display", "block");
+	    $('.sidecat').text("Entertainment");
+   	});
+   	$('#category-8').mouseenter(function() {
+		$('.sidecat').css("display", "block");
+	    $('.sidecat').text("Travel & Lifestyle");
+   	});
+   	$('#category-9').mouseenter(function() {
+		$('.sidecat').css("display", "block");
+	    $('.sidecat').text("Food & Health");
+   	});
+   	$('#category-10').mouseenter(function() {
+		$('.sidecat').css("display", "block");
+	    $('.sidecat').text("Current Events");
+   	});
+   	$('#category-12').mouseenter(function() {
+		$('.sidecat').css("display", "block");
+	    $('.sidecat').text("Interesting");
+   	});
+   	$('#category-14').mouseenter(function() {
+		$('.sidecat').css("display", "block");
+	    $('.sidecat').text("Gaming");
+   	});
+
 });
 
 </script>
 
 <div class="sidebar">
-	<%= link_to image_tag("homefeedicon.png"), categories_path, class: " category-icon" %>
+	<div class="sidecat">Home</div>
+	<%= link_to image_tag("homefeedicon.png"), categories_path, class: "category-icon", id: "home" %>
 	<%#= link_to image_tag("cat-new-icons/1.png")+ "  Money", category_path(group_id: 1), method: :post, remote: true, :class => ' category-icon', :id => "category-1"%>
 	<%#= link_to image_tag("cat-new-icons/2.png")+ "  Health", category_path(group_id: 2), method: :post, remote: true, :class => ' category-icon', :id => "category-2"%>
 	<%#= link_to image_tag("cat-new-icons/3.png")+ "  Education", category_path(group_id: 3), method: :post, remote: true, :class => ' category-icon', :id => "category-3"%>

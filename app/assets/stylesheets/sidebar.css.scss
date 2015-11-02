@@ -9,9 +9,17 @@
   left: 4%;
   z-index: 2;
 
+  .sidecat {
+    margin-left: 11px;
+    position: relative;
+    display: none;
+    font-weight: bold;
+  }
+
  .category-icon{
     position: relative;
     display: inline-block;
+
 
     img {
       height: 65px;
