@@ -234,7 +234,7 @@ class QuestionsController < ApplicationController
     #  end
     #end
 
-    if !params[:question].nil?
+    if !params[:question][:image_link].nil?
       @question_image = true
       @uploaded_image = true
       @tag_number = 0
