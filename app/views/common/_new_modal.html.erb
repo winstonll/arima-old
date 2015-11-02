@@ -4,6 +4,8 @@ $(document).ready(function() {
   var input_value;
   var link_valid = false;
 
+  $('.modal-finished-button').prop('disabled', true);
+
   jQuery("input#question_image_link").change(function () {
     //$('#question_image_link')[0].style.visibility = "hidden";
     //$('.computer_image')[0].style.visibility = "hidden";
@@ -17,6 +19,7 @@ $(document).ready(function() {
     //$('.modal-finished-button')[0].style.visibility = "visible";
     //$('.g-recaptcha')[0].style.visibility = "visible";
 
+    $('#question_group_id')[0].style.display = "block";
     $('.submit-q-container')[0].style.display = "block";
     $('.modal-finished-button')[0].style.display = "block";
     $('.g-recaptcha')[0].style.display = "block";
@@ -30,8 +33,32 @@ $(document).ready(function() {
   $(document).keyup(function(e) {
      if (e.keyCode == 27) {
         $('#newQuestionModal').modal('hide');
+      }
+  });
+
+  $('#input-q-title').change(function(){
+    if($('#question_group_id')[0].value != 0){
+      $('.modal-finished-button').removeAttr("id");
+      $('.modal-finished-button').attr("id", "orange-button");
+      $('.modal-finished-button').prop('disabled', false);
+    } else{
+      $('.modal-finished-button').removeAttr("id");
+      $('.modal-finished-button').attr("id", "grey-button");
+      $('.modal-finished-button').prop('disabled', true);
     }
-});
+  });
+
+  $('#question_group_id').change(function(){
+    if($('#input-q-title')[0].value){
+      $('.modal-finished-button').removeAttr("id");
+      $('.modal-finished-button').attr("id", "orange-button");
+      $('input[type="submit"]').prop('disabled', false);
+    } else{
+      $('.modal-finished-button').removeAttr("id");
+      $('.modal-finished-button').attr("id", "grey-button");
+      $('input[type="submit"]').prop('disabled', true);
+    }
+  });
 
   $('.upload_image').click(function() {
     input_value = $('#input-q-link')[0].value;
@@ -82,6 +109,8 @@ $(document).ready(function() {
           </p>
         </article>
 
+        <%= f.select :group_id, @category_options %>
+
         <div style="clear: both; margin-bottom: 10px;"></div>
 
         <p class="file">
@@ -105,7 +134,7 @@ $(document).ready(function() {
         </span>
 
         <span class="modal-finished-container" style="position: relative; left: 3px;">
-          <%= f.submit "Finish Upload", class: "modal-finished-button", id: !params[:question].nil? ? "blue-button" : "orange-button" %>
+          <%= f.submit "Finish Upload", class: "modal-finished-button", id: "grey-button" %>
         </span>
 
         <button type="button" class="image-upload-cancel">Cancel</button>

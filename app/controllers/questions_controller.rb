@@ -201,6 +201,10 @@ class QuestionsController < ApplicationController
   end
 
   def new_modal
+
+    @category_options = [['Select Category', 0], ["Funny", 5], ["Sports", 6], ["Entertainment", 7],
+      ["Travel & Lifestyle", 8], ["Food & Health", 9], ["Current Events", 10], ["Interesting", 12], ["Gaming", 14]]
+
     respond_to do |format|
       format.js
     end
