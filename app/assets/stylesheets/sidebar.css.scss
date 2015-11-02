@@ -1,7 +1,7 @@
 /* Categories sidebar */
 .sidebar {
   height: 20em;
-  width: 140px;
+  width: 200px;
   background-color: transparent;
   position: fixed;
   text-align: left;
@@ -14,8 +14,8 @@
     display: inline-block;
 
     img {
-      height: 55px;
-      width: 55px;
+      height: 65px;
+      width: 65px;
       margin: 5px;
       border-radius: 50%;
       &:hover {
