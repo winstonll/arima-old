@@ -201,6 +201,10 @@ class QuestionsController < ApplicationController
   end
 
   def new_modal
+
+    @category_options = [['Select Category', 0], ["Funny", 5], ["Sports", 6], ["Entertainment", 7],
+      ["Travel & Lifestyle", 8], ["Food & Health", 9], ["Current Events", 10], ["Interesting", 12], ["Gaming", 14]]
+
     respond_to do |format|
       format.js
     end
@@ -233,6 +237,7 @@ class QuestionsController < ApplicationController
     if !params[:question].nil?
       @question_image = true
       @uploaded_image = true
+      @tag_number = Tag.where(question_id: @question.id).count
       uploaded_io = params[:question][:image_link]
       @file_name = "#{SecureRandom.hex[0,5]}.png"
       File.open(Rails.root.join('public', 'system', 'uploads', @file_name), 'wb') do |file|
@@ -254,6 +259,7 @@ class QuestionsController < ApplicationController
         :user_id => @user_created,
         :value_type => "tag", #params[:numeric_value] == "false" ? "collection" : "quantity"
         :options_for_collection => "",
+        :tag_count => @tag_number,
         :image_link => @file_name,
         :shared_image => true)
 

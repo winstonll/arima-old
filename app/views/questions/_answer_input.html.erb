@@ -74,7 +74,7 @@ $(document).ready(function() {
               <%= f.input(:value, label: false, prompt: "Select an Opinion", collection: @question.options_array, input_html: { class: "answer-dropdown-input"}) %>
             </section>
             <%end%>
-          <% if (!@user_submitted_answer && @question.answer_plus)%>
+          <% if (!@user_submitted_answer)%>
           <div id="otherInput">
             <div id="otherInputBox">
                 <%= f.input(:options_for_collection, label: false,input_html:{ value: nil, placeholder: "Add your own opinion to the list...", class: "other-input-text", id:"other"}) %>

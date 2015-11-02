@@ -1,18 +1,99 @@
+<script>
+$(document).ready(function() {
+
+	$('#nolist').click(function(){
+		if ($(window).width() <= 1440) {
+			$('.image-icon-container').css('zoom', '165%');
+		}else {
+		$('.image-icon-container').css('zoom', '220%');
+		};
+		$('#nolist')[0].style.display = "none";
+		$('#list')[0].style.display = "inline-block";
+		$('#nogrid')[0].style.display = "inline-block";
+		$('#grid')[0].style.display = "none";
+	});
+
+	$('#nogrid').click(function(){
+		if ($(window).width() <= 1440) {
+			$('.image-icon-container').css('zoom', '120%');
+		}else {
+		$('.image-icon-container').css('zoom', '120%');
+		};
+		$('#nogrid')[0].style.display = "none";
+		$('#grid')[0].style.display = "inline-block";
+		$('#nolist')[0].style.display = "inline-block";
+		$('#list')[0].style.display = "none";
+	});
+
+	$('.category-icon').mouseleave(function() {
+		$('.sidecat').css("display", "none");
+   	});
+	$('#home').mouseenter(function() {
+		$('.sidecat').css("display", "block");
+	    $('.sidecat').text("Home");
+   	});
+   	$('#category-5').mouseenter(function() {
+		$('.sidecat').css("display", "block");
+	    $('.sidecat').text("Funny");
+   	});
+	$('#category-6').mouseenter(function() {
+		$('.sidecat').css("display", "block");
+	    $('.sidecat').text("Sports");
+   	});
+   	$('#category-7').mouseenter(function() {
+		$('.sidecat').css("display", "block");
+	    $('.sidecat').text("Entertainment");
+   	});
+   	$('#category-8').mouseenter(function() {
+		$('.sidecat').css("display", "block");
+	    $('.sidecat').text("Travel & Lifestyle");
+   	});
+   	$('#category-9').mouseenter(function() {
+		$('.sidecat').css("display", "block");
+	    $('.sidecat').text("Food & Health");
+   	});
+   	$('#category-10').mouseenter(function() {
+		$('.sidecat').css("display", "block");
+	    $('.sidecat').text("Current Events");
+   	});
+   	$('#category-12').mouseenter(function() {
+		$('.sidecat').css("display", "block");
+	    $('.sidecat').text("Interesting");
+   	});
+   	$('#category-14').mouseenter(function() {
+		$('.sidecat').css("display", "block");
+	    $('.sidecat').text("Gaming");
+   	});
+
+});
+
+</script>
+
 <div class="sidebar">
-	<div class="sidebar-wrapper">
-	    <div class="submit-question-container">
-	    	<p style="color: #419BF9; font-weight: bold;">Say Something</p>
-	      <%= link_to image_tag("askquestion.png"), new_question_path(:question => true) %>
-	    </div>
-	    <div class="submit-image-container">
-	    	<p style="color: #FF7A40; font-weight: bold;">Share Image</p>
-	      <%= link_to image_tag("shareimage.png"), new_question_path %>
-		</div>
-	    <div class="profile-link">
-			<% if user_signed_in? && current_user.username.present? %>
-	        	<%= link_to "#{current_user.username[0].capitalize}", custom_show_path(:username => current_user.username), class: "nav-user-circle" %>
-	      <% end %>
-	      <%= link_to image_tag("anonprofile.png"), new_registration_path(resource_name), id: "nav-signup-btn" if !user_signed_in? %>
-		</div>
+	<div class="sidecat"></div>
+	<%= link_to image_tag("homefeedicon.png"), categories_path, class: "category-icon", id: "home" %>
+	<%#= link_to image_tag("cat-new-icons/1.png")+ "  Money", category_path(group_id: 1), method: :post, remote: true, :class => ' category-icon', :id => "category-1"%>
+	<%#= link_to image_tag("cat-new-icons/2.png")+ "  Health", category_path(group_id: 2), method: :post, remote: true, :class => ' category-icon', :id => "category-2"%>
+	<%#= link_to image_tag("cat-new-icons/3.png")+ "  Education", category_path(group_id: 3), method: :post, remote: true, :class => ' category-icon', :id => "category-3"%>
+	<%#= link_to image_tag("cat-new-icons/4.png")+ "  Electronics", category_path(group_id: 4), method: :post, remote: true, :class => ' category-icon', :id => "category-4"%>
+	<%= link_to image_tag("cat-new-icons/Funny.png"), category_path(group_id: 5), method: :post, remote: true, :class => ' category-icon', :id => "category-5"%>
+	<%= link_to image_tag("cat-new-icons/Sports.png"), category_path(group_id: 6), method: :post, remote: true, :class => ' category-icon', :id => "category-6"%>
+	<%= link_to image_tag("cat-new-icons/Entertainment.png"), category_path(group_id: 7), method: :post, remote: true, :class => ' category-icon', :id => "category-7"%>
+	<%= link_to image_tag("cat-new-icons/TL.png"), category_path(group_id: 8), method: :post, remote: true, :class => ' category-icon', :id => "category-8"%>
+	<%= link_to image_tag("cat-new-icons/FH.png"), category_path(group_id: 9), method: :post, remote: true, :class => ' category-icon', :id => "category-9"%>
+	<%= link_to image_tag("cat-new-icons/CE.png"), category_path(group_id: 10), method: :post, remote: true, :class => ' category-icon', :id => "category-10"%>
+	<%= link_to image_tag("cat-new-icons/Interesting.png"), category_path(group_id: 12), method: :post, remote: true, :class => ' category-icon', :id => "category-12"%>
+	<%#= link_to image_tag("cat-new-icons/13.png")+ "  Politics", category_path(group_id: 13), method: :post, remote: true, :class => ' category-icon', :id => "category-13"%>
+	<%= link_to image_tag("cat-new-icons/GE.png"), category_path(group_id: 14), method: :post, remote: true, :class => ' category-icon', :id => "category-14"%>
+</div>
+
+<div class="feed-change">
+	<div style="margin-bottom: 1px; margin-right: 50px;">
+		<button id="grid"><%= image_tag("gridselected.png", size: "30x30",:onMouseover=> "this.src='/images/gridunselected.png'",:onMouseout=> "this.src='/images/gridselected.png'") %></button>
+		<button id="nogrid" style="display: none;"><%= image_tag("gridunselected.png", size: "30x30",:onMouseover=> "this.src='/images/gridselected.png'",:onMouseout=> "this.src='/images/gridunselected.png'") %></button>
+	</div>
+	<div style="margin-right: 50px;">
+		<button id="list" style="display: none;"><%= image_tag("listselected.png", size: "30x30",:onMouseover=> "this.src='/images/listunselected.png'",:onMouseout=> "this.src='/images/listselected.png'") %></button>
+		<button id="nolist"><%= image_tag("listunselected.png", size: "30x30",:onMouseover=> "this.src='/images/listselected.png'",:onMouseout=> "this.src='/images/listunselected.png'") %></button>
 	</div>
 </div>

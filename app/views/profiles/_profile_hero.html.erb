@@ -61,12 +61,12 @@
 
   <div class="icon-container">
 
-    <div class="profile-icons">
-      <%= link_to(remote: true, controller: "profiles", action: "images_questions", :username => @user)  do %>
+    <div class="profile-icons hidden">
+      <%#= link_to(remote: true, controller: "profiles", action: "images_questions", :username => @user)  do %>
         <div class="stat-label"><%= @questions_and_images_asked_count %></div>
         <br>
         <span class="profile-title">Images & Questions<span>
-      <% end %>
+      <%# end %>
     </div>
 
     <div class="profile-icons">
@@ -87,20 +87,20 @@
 
     <div class="divider hidden-xs"></div>
 
-    <div class="profile-icons">
-      <%= link_to(remote: true, controller: "profiles", action: "questions_answered", :username => @user)  do %>
+    <div class="profile-icons hidden">
+      <%#= link_to(remote: true, controller: "profiles", action: "questions_answered", :username => @user)  do %>
         <div class="stat-label"><%= @questions_answered_count %></div>
         <br>
         <span class="profile-title">Questions Answered<span>
-      <% end %>
+      <%# end %>
     </div>
 
-    <div class="profile-icons">
-      <%= link_to(remote: true, controller: "profiles", action: "questions_asked", :username => @user)  do %>
+    <div class="profile-icons hidden">
+      <%#= link_to(remote: true, controller: "profiles", action: "questions_asked", :username => @user)  do %>
         <div class="stat-label"><%= @questions_asked_count %></div>
         <br>
         <span class="profile-title">Questions Asked<span>
-      <% end %>
+      <%# end %>
     </div>
 
     <div class="profile-icons">
