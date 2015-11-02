@@ -32,6 +32,9 @@ class TagsController < ApplicationController
     @opinion = Opinion.new(question_id: @question.id, tag_id: @tag.id, user_id: answer_user_id, vote_type: "upvote")
     @opinion.save
 
+    @question.tag_count = @question.tag_count + 1
+    @question.save
+
     respond_to do |format|
       format.js
     end

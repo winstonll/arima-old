@@ -1,74 +1,46 @@
 /* Categories sidebar */
 .sidebar {
-  height: 27em;
-  width: 111px;
+  height: 20em;
+  width: 140px;
   background-color: transparent;
-  text-align: center;
-  overflow-y: hidden;
+  position: fixed;
+  text-align: left;
+  top: 8em;
+  left: 4em;
+  z-index: 2;
+
+ .category-icon{
+    position: relative;
+    display: inline-block;
+
+    img {
+      height: 55px;
+      width: 55px;
+      margin: 5px;
+      border-radius: 50%;
+      &:hover {
+        transform: scale(1.1,1.1);
+      }
+    }
+  }
+}
+
+.feed-change {
+  height: 10em;
+  width: 100px;
+  background-color: transparent;
   position: fixed;
   top: 8em;
-  left: 2.5em;
+  right: 0px;
+  margin-right: 2em;
   z-index: 2;
-  overflow: hidden;
+}
 
-
-  .sidebar-wrapper {
-    min-height: 100%;
-    margin: 0 auto -155px;
-
-
-    .submit-question-container {
-      margin-top: 25px;
-      margin-bottom: 10px;
-      img {
-        height: 66px;
-        width: 66px;
-      }
-      &:hover {
-         transform: scale(1.2);
-
-      }
-    }
-
-    .submit-image-container{
-      margin-top: 15px;
-      margin-bottom: 10px;
-      img {
-          height: 66px;
-          width: 66px;
-      }
-      &:hover {
-         transform: scale(1.2);
-      }
-    }
-
-    .profile-link {
-      margin-top: 15px;
-      margin-bottom: 10px;
-
-      .nav-user-circle {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        background-color: #00c39c;
-        box-shadow: 2px 2px 1px rgba(0,0,0,0.35);
-        display: inline-block;
-        color: #fff;
-        text-align: center;
-        font-size:45px;
-
-      }
-        &:hover {
-         transform: scale(1.2);
-        }
-
-      #nav-signup-btn {
-
-        img {
-          height: 66px;
-          width: 66px;
-        }
-      }
-    }
+@media screen and (max-width: 1200px) {
+  .feed-change {
+    display: none;
+  }
+  .sidebar {
+    display: none;
   }
 }
