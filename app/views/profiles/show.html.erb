@@ -5,24 +5,9 @@
 <div class="profile-container">
   <%= render partial: "profile_hero", locals: {user: @user} %>
 
-  <div class="questions-container" id="profile-data-container">
-    <%# if @answered_questions.empty? && @asked_questions.empty? %>
+  <div id="profile-data-container">
       <div class="no-questions-filler">
         <p>Share an image or add some tags to see this space fill up!</p>
       </div>
-    <%# end %>
-
-    <div class="questions-answered">
-      <%#= render 'answered_questions' %>
-    </div>
-
-    <div class="questions-asked questions-hidden">
-      <%#= render 'asked_questions' %>
-    </div>
-
-    <div class="questions-trophy questions-hidden">
-      <%#= render 'trophy_display' %>
-    </div>
-
   </div>
 </div>
