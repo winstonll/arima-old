@@ -5,7 +5,7 @@
 <%#= stylesheet_link_tag "dropzone" %>
 
 <%#= javascript_include_tag "jquery-ui-slider-pips" %>
-<script src='https://www.google.com/recaptcha/api.js'></script>
+<!--<script src='https://www.google.com/recaptcha/api.js'></script>-->
 <%#= javascript_include_tag "dropzone" %>
 </head>
 
@@ -15,18 +15,19 @@
 
   $(document).ready(function() {
 
-    jQuery("input#question_image_link").change(function () {
+    $("input#question_image_link").change(function () {
+      console.log("here");
       //$('#question_image_link')[0].style.visibility = "hidden";
       //$('.computer_image')[0].style.visibility = "hidden";
-      $('#question_image_link')[0].style.display = "none";
-      $('.computer_image')[0].style.display = "none";
+      $('.image_wrapper')[0].style.display = "none";
+      $('.computer_image_mobile')[0].style.display = "none";
 
       //$('.submit-q-container')[0].style.visibility = "visible";
       //$('.modal-finished-button')[0].style.visibility = "visible";
       //$('.g-recaptcha')[0].style.visibility = "visible";
 
-      $('.submit-q-container')[0].style.display = "block";
-      $('.modal-finished-button')[0].style.display = "block";
+      $('.mobile-q-new')[0].style.display = "block";
+      $('.mobile-q-submit')[0].style.display = "block";
       $('.g-recaptcha')[0].style.display = "block";
     });
 
@@ -425,8 +426,8 @@
 
 <%= form_for Question.new do |f| %>
 <section class="submit-questions-container" style="margin-left: auto; margin-right: auto; width: 200px; height: 400px;">
-  <%= image_tag("Computer.png", class: "computer_image")%>
-  <article class="submit-q-container">
+  <%= image_tag("Computer.png", class: "computer_image_mobile")%>
+  <article class="submit-q-container mobile-q-new">
     <p class="submit-q-input-box">
       <%= f.text_field :label, name: "submit_question_name", :required => true,
       placeholder: "Add a Title/Description", id: "input-q-title" %>
@@ -437,17 +438,17 @@
 
   <div style="clear: both; margin-bottom: 40px;"></div>
 
-  <p class="file">
+  <p class="file image_wrapper">
     <%= f.file_field :image_link %>
     <label for="file">Upload your image</label>
   </p>
 
   <div style="clear: both; margin-bottom: 20px;"></div>
 
-  <%= recaptcha_tags  class: "captcha"%>
+  <%= recaptcha_tags  class: "captcha captcha-mobile"%>
 
   <span class="modal-finished-container">
-    <%= f.submit "Submit", class: "modal-finished-button", id: !params[:question].nil? ? "blue-button" : "orange-button" %>
+    <%= f.submit "Submit", class: "modal-finished-button mobile-q-submit", id: !params[:question].nil? ? "blue-button" : "orange-button" %>
   </span>
   </section>
 <% end %>
