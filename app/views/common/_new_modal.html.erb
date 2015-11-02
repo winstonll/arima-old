@@ -23,6 +23,10 @@ $(document).ready(function() {
 
   });
 
+  $('.image-upload-cancel').click(function() {
+    $('#newQuestionModal').modal('toggle');
+  });
+
   $('.upload_image').click(function() {
     input_value = $('#input-q-link')[0].value;
     if(input_value != ""){
@@ -60,44 +64,46 @@ $(document).ready(function() {
 <!-- Share New Question Modal -->
 <div class="modal fade" id="newQuestionModal" tabindex="-1" role="dialog" aria-labelledby="newQuestionModal" aria-hidden="true">
 
-      <%= form_for Question.new do |f| %>
-        <section class="submit-questions-container" style="margin-left: auto; margin-right: auto; width: 300px; height: 300px;">
-          <%= image_tag("Computer.png", class: "computer_image")%>
-          <article class="submit-q-container">
-            <p class="submit-q-input-box" style="position: relative; left: 15px;">
-              <%= f.text_field :label, name: "submit_question_name", :required => true,
-              placeholder: "Add a Title/Description", id: "input-q-title" %>
-              <div style="clear: both;"></div>
-              <span class="countdown"></span>
-            </p>
-          </article>
-
-          <div style="clear: both; margin-bottom: 10px;"></div>
-
-          <p class="file">
-            <%= f.file_field :image_link %>
-            <label for="file">Upload from Device</label>
+    <%= form_for Question.new do |f| %>
+      <section class="submit-questions-container" style="margin-left: auto; margin-right: auto; width: 300px; height: 300px;">
+        <%= image_tag("Computer.png", class: "computer_image")%>
+        <article class="submit-q-container">
+          <p class="submit-q-input-box" style="position: relative; left: 15px;">
+            <%= f.text_field :label, name: "submit_question_name", :required => true,
+            placeholder: "Add a Title/Description", id: "input-q-title" %>
+            <div style="clear: both;"></div>
+            <span class="countdown"></span>
           </p>
+        </article>
 
-          <div style="clear: both; margin-bottom: 20px;"></div>
+        <div style="clear: both; margin-bottom: 10px;"></div>
 
-          <span style="position: relative; left: 10px;">
-          <%= recaptcha_tags  class: "captcha"%>
-          </span>
+        <p class="file">
+          <%= f.file_field :image_link %>
+          <label for="file">Upload from Device</label>
+        </p>
 
-          <span style="color: black; display:block;" id="divider">Or</span>
+        <div style="clear: both; margin-bottom: 20px;"></div>
 
-          <span>
-            <%= f.text_field :image_link, name: "submit_question_image", :required => false,
-            placeholder: "Paste web URL Link", id: "input-q-link" %>
+        <span style="position: relative; left: 10px;">
+        <%= recaptcha_tags  class: "captcha"%>
+        </span>
 
-            <%= image_tag("URL upload button.png", class: "upload_image", size: "25x25")%>
-          </span>
+        <span style="color: black; display:block;" id="divider">Or</span>
 
-          <span class="modal-finished-container" style="position: relative; left: 3px;">
-            <%= f.submit "Finish Upload", class: "modal-finished-button", id: !params[:question].nil? ? "blue-button" : "orange-button" %>
-          </span>
-        </section>
-      <% end %>
+        <span>
+          <%= f.text_field :image_link, name: "submit_question_image", :required => false,
+          placeholder: "Paste web URL Link", id: "input-q-link" %>
+
+          <%= image_tag("URL upload button.png", class: "upload_image", size: "25x25")%>
+        </span>
+
+        <span class="modal-finished-container" style="position: relative; left: 3px;">
+          <%= f.submit "Finish Upload", class: "modal-finished-button", id: !params[:question].nil? ? "blue-button" : "orange-button" %>
+        </span>
+
+        <button type="button" class="image-upload-cancel">Cancel</button>
+      </section>
+    <% end %>
 
 </div><!-- /.modal -->
