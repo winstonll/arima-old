@@ -35,11 +35,33 @@
   margin-right: 2em;
   z-index: 2;
 
-  button{
+  button#grid{
     border: none;
     background: white;
-    padding: 15px;
-    border-radius: 5px;
+    padding: 14px;
+    border-radius: 5px 5px 0px 0px;
+    margin-top: 5px;
+  }
+  button#nolist{
+    border: none;
+    background: white;
+    padding: 14px;
+    border-radius: 0px 0px 5px 5px;
+    margin-top: 5px;
+  }
+  button#nogrid{
+    border: none;
+    background: white;
+    padding: 14px;
+    border-radius: 5px 5px 0px 0px;
+    margin-top: 5px;
+  }
+  button#list{
+    border: none;
+    background: white;
+    padding: 14px;
+    border-radius: 0px 0px 5px 5px;
+    margin-top: 5px;
   }
 }
 
