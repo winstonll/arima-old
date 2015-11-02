@@ -37,7 +37,7 @@ $(document).ready(function() {
   });
 
   $('#input-q-title').change(function(){
-    if($('#question_group_id')[0].value != 0){
+    if($('#question_group_id')[0].value != 0 && $('#input-q-title')[0].value){
       $('.modal-finished-button').removeAttr("id");
       $('.modal-finished-button').attr("id", "orange-button");
       $('.modal-finished-button').prop('disabled', false);
@@ -49,7 +49,7 @@ $(document).ready(function() {
   });
 
   $('#question_group_id').change(function(){
-    if($('#input-q-title')[0].value){
+    if($('#input-q-title')[0].value && $('#question_group_id')[0].value != 0){
       $('.modal-finished-button').removeAttr("id");
       $('.modal-finished-button').attr("id", "orange-button");
       $('input[type="submit"]').prop('disabled', false);
