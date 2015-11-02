@@ -6,12 +6,12 @@
   position: fixed;
   text-align: left;
   top: 8em;
-  left: 4em;
+  left: 6em;
   z-index: 2;
 
  .category-icon{
     position: relative;
-    display: inline-block;
+    display: block;
 
     img {
       height: 55px;
@@ -30,10 +30,17 @@
   width: 100px;
   background-color: transparent;
   position: fixed;
-  top: 8em;
+  top: 85px;
   right: 0px;
   margin-right: 2em;
   z-index: 2;
+
+  button{
+    border: none; 
+    background: white;
+    padding: 15px;
+    border-radius: 5px;
+  }
 }
 
 @media screen and (max-width: 1200px) {

@@ -1,26 +1,28 @@
 <script>
 $(document).ready(function() {
 
-	$('#list').click(function(){
+	$('#nolist').click(function(){
 		if ($(window).width() >= 1440) {
 			$('.image-icon-container').css('zoom', '170%');
-		};
+		}else {
 		$('.image-icon-container').css('zoom', '150%');
-		$('#list')[0].style.display = "none";
-		$('#nolist')[0].style.display = "inline-block";
-		$('#grid')[0].style.display = "inline-block";
-		$('#nogrid')[0].style.display = "none";
+		};
+		$('#nolist')[0].style.display = "none";
+		$('#list')[0].style.display = "inline-block";
+		$('#nogrid')[0].style.display = "inline-block";
+		$('#grid')[0].style.display = "none";
 	});
 
-	$('#grid').click(function(){
+	$('#nogrid').click(function(){
 		if ($(window).width() >= 1440) {
 			$('.image-icon-container').css('zoom', '120%');
-		};
+		}else {
 		$('.image-icon-container').css('zoom', '100%');
-		$('#grid')[0].style.display = "none";
-		$('#nogrid')[0].style.display = "inline-block";
-		$('#list')[0].style.display = "inline-block";
-		$('#nolist')[0].style.display = "none";
+		};
+		$('#nogrid')[0].style.display = "none";
+		$('#grid')[0].style.display = "inline-block";
+		$('#nolist')[0].style.display = "inline-block";
+		$('#list')[0].style.display = "none";
 	});
 
 });
@@ -45,8 +47,12 @@ $(document).ready(function() {
 </div>
 
 <div class="feed-change">
-	<button id="grid" style="display: none; border: none; background: transparent;"><%= image_tag("gridselected.png") %></button>
-	<div id="nogrid"><%= image_tag("gridunselected.png") %></div>
-	<button id="list" style="border: none; background: transparent;"><%= image_tag("listselected.png") %></button>
-	<div id="nolist" style="display: none;"><%= image_tag("listunselected.png") %></div>
+	<div style="margin-bottom: 5px; margin-right: 50px;">
+		<button id="list" style="display: none;"><%= image_tag("listselected.png", size: "30x30",:onMouseover=> "this.src='/images/listunselected.png'",:onMouseout=> "this.src='/images/listselected.png'") %></button>
+		<button id="nolist"><%= image_tag("listunselected.png", size: "30x30",:onMouseover=> "this.src='/images/listselected.png'",:onMouseout=> "this.src='/images/listunselected.png'") %></button>
+	</div>
+	<div style="margin-right: 50px;">
+		<button id="grid"><%= image_tag("gridselected.png", size: "30x30",:onMouseover=> "this.src='/images/gridunselected.png'",:onMouseout=> "this.src='/images/gridselected.png'") %></button>
+		<button id="nogrid" style="display: none;"><%= image_tag("gridunselected.png", size: "30x30",:onMouseover=> "this.src='/images/gridselected.png'",:onMouseout=> "this.src='/images/gridunselected.png'") %></button>
+	</div>
 </div>
