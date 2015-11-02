@@ -6,12 +6,12 @@
   position: fixed;
   text-align: left;
   top: 8em;
-  left: 6em;
+  left: 4%;
   z-index: 2;
 
  .category-icon{
     position: relative;
-    display: block;
+    display: inline-block;
 
     img {
       height: 55px;
@@ -36,7 +36,7 @@
   z-index: 2;
 
   button{
-    border: none; 
+    border: none;
     background: white;
     padding: 15px;
     border-radius: 5px;
