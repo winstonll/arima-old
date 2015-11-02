@@ -35,3 +35,12 @@
   margin-right: 2em;
   z-index: 2;
 }
+
+@media screen and (max-width: 1200px) {
+  .feed-change {
+    display: none;
+  }
+  .sidebar {
+    display: none;
+  }
+}

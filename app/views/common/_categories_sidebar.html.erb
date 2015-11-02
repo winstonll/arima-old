@@ -2,16 +2,20 @@
 $(document).ready(function() {
 
 	$('#list').click(function(){
+		if ($(window).width() >= 1440) {
+			$('.image-icon-container').css('zoom', '170%');
+		};
 		$('.image-icon-container').css('zoom', '150%');
 		$('#list')[0].style.display = "none";
 		$('#nolist')[0].style.display = "inline-block";
 		$('#grid')[0].style.display = "inline-block";
 		$('#nogrid')[0].style.display = "none";
-
-
 	});
 
 	$('#grid').click(function(){
+		if ($(window).width() >= 1440) {
+			$('.image-icon-container').css('zoom', '120%');
+		};
 		$('.image-icon-container').css('zoom', '100%');
 		$('#grid')[0].style.display = "none";
 		$('#nogrid')[0].style.display = "inline-block";
