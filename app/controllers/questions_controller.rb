@@ -237,7 +237,7 @@ class QuestionsController < ApplicationController
     if !params[:question].nil?
       @question_image = true
       @uploaded_image = true
-      @tag_number = Tag.where(question_id: @question.id).count
+      @tag_number = 0
       uploaded_io = params[:question][:image_link]
       @file_name = "#{SecureRandom.hex[0,5]}.png"
       File.open(Rails.root.join('public', 'system', 'uploads', @file_name), 'wb') do |file|
@@ -255,7 +255,7 @@ class QuestionsController < ApplicationController
 
       @subquestion = Question.create(
         :label => params[:submit_question_name].slice(0,1).capitalize + params[:submit_question_name].slice(1..-1),
-        :group_id => 7,
+        :group_id => params[:question][:group_id],
         :user_id => @user_created,
         :value_type => "tag", #params[:numeric_value] == "false" ? "collection" : "quantity"
         :options_for_collection => "",
