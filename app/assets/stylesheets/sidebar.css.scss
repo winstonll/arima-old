@@ -10,16 +10,15 @@
   z-index: 2;
 
   .sidecat {
-    margin-left: 11px;
-    position: relative;
-    display: none;
+    margin-left: 15px;
+    position: absolute;
     font-weight: bold;
+    top: -20px;
   }
 
  .category-icon{
     position: relative;
     display: inline-block;
-
 
     img {
       height: 65px;
