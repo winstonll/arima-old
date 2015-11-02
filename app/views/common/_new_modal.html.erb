@@ -27,6 +27,12 @@ $(document).ready(function() {
     $('#newQuestionModal').modal('toggle');
   });
 
+  $(document).keyup(function(e) {
+     if (e.keyCode == 27) {
+        $('#newQuestionModal').modal('hide');
+    }
+});
+
   $('.upload_image').click(function() {
     input_value = $('#input-q-link')[0].value;
     if(input_value != ""){
