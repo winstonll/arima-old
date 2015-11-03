@@ -77,6 +77,7 @@ Arima::Application.configure do
   config.assets.precompile += %w(tooltip.min.js)
   config.assets.precompile += %w(jquery.knob.js)
   config.assets.precompile += %w(toastr.js)
+  config.assets.precompile += %w(twemoji.min.js)
 
 
   config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
