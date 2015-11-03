@@ -260,6 +260,9 @@ $(window).load(function() {
   var tip = new Tooltip('<div style="padding: 8px;"><%= @question.label %></div>');
   tip.type('light').effect('slide');
   tip.position(document.querySelector('.question-image-title'));
+  $('.zoompic').show(2400);
+  $('.hidepic').show(2400);
+
 
   var time_out;
 
@@ -270,11 +273,11 @@ $(window).load(function() {
     <%end%>
   <%end%>
 
-  $('.zoompic').slideDown('slow');
+  $('.zoompic').show(2400);
   $('.zoompic')[0].style.top = $('.shared-photo').offset().top + $('.shared-photo')[0].height -90 + "px";
   $('.zoompic')[0].style.left = $('.shared-photo').offset().left + $('.shared-photo')[0].width - 45  + "px";
 
-  $('.hidepic').slideDown('slow');
+  $('.hidepic').show(2400);
   $('.hidepic')[0].style.top = $('.shared-photo').offset().top + $('.shared-photo')[0].height - 48 + "px";
   $('.hidepic')[0].style.left = $('.shared-photo').offset().left + $('.shared-photo')[0].width - 44 + "px";
 
@@ -313,11 +316,11 @@ $(window).load(function() {
 
   $( window ).resize(function() {
 
-    $('.zoompic').slideDown('slow');
+    $('.zoompic').slideDown(2400);
     $('.zoompic')[0].style.top = $('.shared-photo').offset().top + $('.shared-photo')[0].height -90 + "px";
     $('.zoompic')[0].style.left = $('.shared-photo').offset().left + $('.shared-photo')[0].width - 45  + "px";
 
-    $('.hidepic').slideDown('slow');
+    $('.hidepic').slideDown(2400);
     $('.hidepic')[0].style.top = $('.shared-photo').offset().top + $('.shared-photo')[0].height - 48 + "px";
     $('.hidepic')[0].style.left = $('.shared-photo').offset().left + $('.shared-photo')[0].width - 44 + "px";
 
