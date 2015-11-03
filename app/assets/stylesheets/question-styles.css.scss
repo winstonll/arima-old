@@ -157,9 +157,18 @@
 
 @media screen and (min-width: 1200px) {
   .image-icon-container{
-    zoom: 115%;
+    width: 400px;
+
+      .image-box-wrapper{
+        height: 400px;
+        width: 400px;
+
+        .image-link-div{
+          height: 400px;
+        }
+      }
   }
-  @-moz-document url-prefix() { 
+  @-moz-document url-prefix() {
     .image-icon-container{
       width: 400px;
 

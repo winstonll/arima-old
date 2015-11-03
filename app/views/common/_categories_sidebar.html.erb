@@ -3,15 +3,18 @@ $(document).ready(function() {
 
 	$('#nolist').click(function(){
 		if ($(window).width() <= 1440) {
-			$('.image-icon-container').css('zoom', '165%');
-			$('.image-icon-container').css('width', '700px');
-			$('.image-box-wrapper').css('width', '700px');
-			$('.image-box-wrapper').css('height', '700px');
-			$('.image-link-div').css('height', '700px');
+			$('.image-icon-container').css('width', '650px');
+			$('.image-box-wrapper').css('width', '650px');
+			$('.image-box-wrapper').css('height', '650px');
+			$('.image-link-div').css('height', '650px');
 			$('.image-box-wrapper').css("background-size", "1100px");
 
 		}else {
-			$('.image-icon-container').css('zoom', '220%');
+			$('.image-icon-container').css('width', '830px');
+			$('.image-box-wrapper').css('width', '830px');
+			$('.image-box-wrapper').css('height', '830px');
+			$('.image-link-div').css('height', '830px');
+			$('.image-box-wrapper').css("background-size", "1100px");
 		};
 		$('#nolist')[0].style.display = "none";
 		$('#list')[0].style.display = "inline-block";
@@ -21,7 +24,6 @@ $(document).ready(function() {
 
 	$('#nogrid').click(function(){
 		if ($(window).width() <= 1440) {
-			$('.image-icon-container').css('zoom', '120%');
 			$('.image-icon-container').css('width', '400px');
 			$('.image-box-wrapper').css('width', '400px');
 			$('.image-box-wrapper').css('height', '400px');
@@ -29,7 +31,11 @@ $(document).ready(function() {
 			$('.image-box-wrapper').css("background-size", "650px");
 
 		}else {
-		$('.image-icon-container').css('zoom', '120%');
+			$('.image-icon-container').css('width', '400px');
+			$('.image-box-wrapper').css('width', '400px');
+			$('.image-box-wrapper').css('height', '400px');
+			$('.image-link-div').css('height', '400px');
+			$('.image-box-wrapper').css("background-size", "650px");
 		};
 		$('#nogrid')[0].style.display = "none";
 		$('#grid')[0].style.display = "inline-block";
