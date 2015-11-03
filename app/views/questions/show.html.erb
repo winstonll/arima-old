@@ -6,6 +6,7 @@
 <%= stylesheet_link_tag "tooltip.css" %>
 
 <%= javascript_include_tag "tooltip.min" %>
+<%= javascript_include_tag "twemoji.min" %>
 <%= javascript_include_tag "featherlight" %>
 
 <%#= javascript_include_tag "jquery.line" %>
@@ -254,8 +255,6 @@ function hide_all(){
     $('.tag')[i].style.display = "none";
   }
 
-  $('.show-tag')[0].style.display = "inline";
-  $('.hide-tag')[0].style.display = "none";
 }
 
 $(window).load(function() {
@@ -431,7 +430,7 @@ $(window).load(function() {
   </a>
 </span>
 
-<span class="hidepic hidden-xs">
+<span class="hidepic">
   <%= image_tag("Hide-Tags.png", size: "24x24", class: "hide-icon") %>
 </span>
 
@@ -609,10 +608,10 @@ $(window).load(function() {
       </section>
     </div>
 
-      <span class="showhidebuttons visible-xs">
-          <a href="#" onclick="show_all();" class="show-tag"><%= image_tag("Show_Tag.png", size: "23x15") + "  Show Tags"%></a>
-          <a href="#" onclick="hide_all();" class="hide-tag"><%= image_tag("Hide_Tag.png", size: "23x15") + "  Hide Tags"%></a>
-      </span>
+      <!--<span class="showhidebuttons visible-xs">
+          <a href="#" onclick="show_all();" class="show-tag"><%#= image_tag("Show_Tag.png", size: "23x15") + "  Show Tags"%></a>
+          <a href="#" onclick="hide_all();" class="hide-tag"><%#= image_tag("Hide_Tag.png", size: "23x15") + "  Hide Tags"%></a>
+      </span>-->
 
       <center id="image-feed">
         <%@ifeed = Question.where.not(id: @question.id, shared_image: false).order("RANDOM()").limit(12)%>
