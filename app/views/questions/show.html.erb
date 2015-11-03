@@ -587,15 +587,16 @@ $(window).load(function() {
       </div>
 
       <div class="tool-bar">
+        <span class="instructag">Click anywhere and press Enter to add a Tag </span>
           <span class="share-icon-container" class="hidden-xs">
-            <%#= render partial: "questions/share", locals: {
+            <%= render partial: "questions/share", locals: {
                 id: @question.id,
                 url: "#{request.protocol}#{request.host_with_port}" + question_path(@question),
                 title: "#{@question.label[0..70]}...",
                 image: "#{request.protocol}#{request.host_with_port}" + question_path(@question)
               }%>
           </span>
-          <span class="instructag">Click anywhere and press Enter to add a Tag </span>
+
 
       <section class="share-image-title">
         <span class="question-image-title">

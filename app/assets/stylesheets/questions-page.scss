@@ -152,7 +152,9 @@
       padding-top: 5px;
 
       .share-icon-container {
-        float: left;
+        float: right;
+        margin-top: -1px;
+        margin-right: 1%;
       }
 
       .instructag {
@@ -160,7 +162,7 @@
         font-size: 13px;
         color:white;
         float: right;
-        margin-right: 8%
+        margin-right: 2%
       }
     }
   }
