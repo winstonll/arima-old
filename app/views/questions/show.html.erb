@@ -573,9 +573,6 @@ $(window).load(function() {
 
 
 <%#elsif @question.shared_image && @question.value_type == "tag"%>
-
-<button class="emoji-1">CUSTOM</button>
-
 <div id="image-question-container">
 <div>
   <%= form_for :tag, :url => {:action => "add_tag", :controller => "tags"}, class: "form-inline", :remote => true do |f| %>
