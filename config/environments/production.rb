@@ -67,6 +67,7 @@ Arima::Application.configure do
   config.assets.precompile += %w(tooltip.css)
 
 
+
   config.assets.precompile += %w(home.js)
 
   config.assets.precompile += %w(home.js)

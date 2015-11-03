@@ -7,9 +7,25 @@
   margin-bottom: 1px;
 }
 
+#text-custom-trigger {
+  position: absolute;
+  left: 500px;
+  top: 300px;
+  z-index: 300;
+  color: white;
+}
+
 .submit-q-container {
   //visibility: hidden;
   display: none;
+}
+
+.emoji-1{
+  position: absolute;
+  left: 100px;
+  top: 300px;
+  z-index: 300;
+  color: white;
 }
 
 .g-recaptcha {

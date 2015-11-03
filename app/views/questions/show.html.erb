@@ -4,10 +4,19 @@
 <%#= javascript_include_tag "markerwithlabel" %>
 <%= stylesheet_link_tag "featherlight.min.css" %>
 <%= stylesheet_link_tag "tooltip.css" %>
+<%= stylesheet_link_tag "jquery.emojipicker.css" %>
+<%= stylesheet_link_tag "jquery.emojipicker.a.css" %>
+
+
 
 <%= javascript_include_tag "tooltip.min" %>
 <%= javascript_include_tag "twemoji.min" %>
 <%= javascript_include_tag "featherlight" %>
+<%= javascript_include_tag "jquery.emojipicker" %>
+<%= javascript_include_tag "jquery.emojipicker.a" %>
+
+
+
 
 <%#= javascript_include_tag "jquery.line" %>
 
@@ -18,6 +27,7 @@ var tag_counter = 1;
 var tag_index = 0;
 var tag_max = 3;
 var comment_index = 1;
+var emoji_show = false;
 
 function FindPosition(oElement){
   if(typeof( oElement.offsetParent ) != "undefined"){
@@ -78,6 +88,7 @@ function GetCoordinates(e){
     }
 
 
+    $('#comment-input').emojiPicker('toggle');
 }
 
 function increaseSize(tag, counter){
@@ -191,6 +202,7 @@ function myLoop (time) {
 }
 
 function create_tags(id, label, x, y, counter, selected) {
+
   var iDiv, h, w, w_max, tag_indicator;
 
   tag_indicator = $('<div class="tag_indicator"></div>');
@@ -240,9 +252,12 @@ function create_tags(id, label, x, y, counter, selected) {
 function show_all(){
   clearTimeout(timeout_function);
 
-  for(i = 0; i < $('.tag').length; i++){
-    $($('.tag')[i]).show('slow');
+  if($('.tag').length <= 5){
+    time_out = 2000;
+  }else {
+    time_out = 2500;
   }
+  myLoop(time_out);
 }
 
 function hide_all(){
@@ -256,6 +271,11 @@ function hide_all(){
 }
 
 $(window).load(function() {
+  $('#comment-input').emojiPicker({
+    width: '200px',
+    height: '200px',
+    button: false
+  });
 
   var tip = new Tooltip('<div style="padding: 8px;"><%= @question.label %></div>');
   tip.type('light').effect('slide');
@@ -301,6 +321,7 @@ $(window).load(function() {
 
     myLoop(time_out);
   }
+
 
   $('#answer_value').on('change', function() {
     $('.modal-button').prop('disabled', !(this.value.length > 0));
@@ -351,7 +372,7 @@ $(window).load(function() {
 
   $("input").keypress(function(event) {
     if (event.which == 13) {
-      $('#value')[0].value = $('#comment-input')[0].value;
+      $('#value')[0].value = twemoji.parse($('#comment-input')[0].value);
       $("#new_answer").submit();
     }
   });
@@ -377,6 +398,11 @@ $(window).load(function() {
 
   $('.question-image-title').click(function(){
     tip.toggle();
+  });
+
+  $('.emoji-1').click(function(e) {
+    e.preventDefault();
+    $('#comment-input').emojiPicker('toggle');
   });
 
   $(document).ready(function() {
@@ -547,6 +573,9 @@ $(window).load(function() {
 
 
 <%#elsif @question.shared_image && @question.value_type == "tag"%>
+
+<button class="emoji-1">CUSTOM</button>
+
 <div id="image-question-container">
 <div>
   <%= form_for :tag, :url => {:action => "add_tag", :controller => "tags"}, class: "form-inline", :remote => true do |f| %>
