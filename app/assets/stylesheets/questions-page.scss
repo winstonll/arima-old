@@ -166,37 +166,6 @@
   }
 }
 
-.showhidebuttons {
-  display: inline-block;
-  text-align: right;
-
-  .show-tag{
-    display: none;
-    background-color: #419BF9;
-    color: white;
-    padding: 7px 12.7px 10px 12.7px;
-    margin-right: -1px;
-    font-size: 13px;
-    font-weight: 700;
-    &:hover{
-    background-color: #2A91FD;
-    }
-  }
-
-  .hide-tag {
-    background-color: #F55723;
-    color: white;
-    padding: 7px 15px 10px 15px;
-    margin-right: 1px;
-    font-size: 13px;
-    font-weight: 700;
-    display: inline-block;
-    &:hover{
-    background-color: #E43800;
-    }
-  }
-}
-
 .question-image-title {
   cursor: pointer;
 }
@@ -251,6 +220,20 @@
   margin-top: 2px;
   &:hover{
   background-color: red;
+  }
+}
+
+.showpic {
+  cursor: pointer;
+  position: absolute;
+  z-index: 2000;
+  display: inline-block;
+  background-color: rgba(17, 96, 206,.70);
+  border-radius: 4px;
+  padding: 7px;
+  margin-top: 2px;
+  &:hover{
+  background-color: #1160ce;
   }
 }
 
@@ -1198,12 +1181,6 @@
     }
   }
 
-  .showhidebuttons {
-    margin-top: 15px;
-    margin-left: 5px;
-    margin-bottom: 15px;
-  }
-
   .instructag {
     display: none;
   }
@@ -1211,12 +1188,7 @@
     position: relative;
     font-size: 10px;
   }
-  .show-tag {
-    padding: 12px 5px 10.5px 5px !important;
-  }
-  .hide-tag {
-    padding: 12px 5px 10.5px 5px !important;
-  }
+
   .enlarge-icon {
     display: none;
   }

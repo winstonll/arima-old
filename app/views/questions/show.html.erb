@@ -243,8 +243,6 @@ function show_all(){
   for(i = 0; i < $('.tag').length; i++){
     $($('.tag')[i]).show('slow');
   }
-  $('.hide-tag')[0].style.display = "inline";
-  $('.show-tag')[0].style.display = "none";
 }
 
 function hide_all(){
@@ -272,11 +270,16 @@ $(window).load(function() {
     <%end%>
   <%end%>
 
+  $('.zoompic').slideDown('slow');
   $('.zoompic')[0].style.top = $('.shared-photo').offset().top + $('.shared-photo')[0].height -90 + "px";
   $('.zoompic')[0].style.left = $('.shared-photo').offset().left + $('.shared-photo')[0].width - 45  + "px";
 
+  $('.hidepic').slideDown('slow');
   $('.hidepic')[0].style.top = $('.shared-photo').offset().top + $('.shared-photo')[0].height - 48 + "px";
   $('.hidepic')[0].style.left = $('.shared-photo').offset().left + $('.shared-photo')[0].width - 44 + "px";
+
+  $('.showpic')[0].style.top = $('.shared-photo').offset().top + $('.shared-photo')[0].height - 48 + "px";
+  $('.showpic')[0].style.left = $('.shared-photo').offset().left + $('.shared-photo')[0].width - 44 + "px";
 
   if($('.tag').length > 0){
     $("#indicator-" + $('.tag')[0].id.split("-")[1])[0].style.display = "inline-block";
@@ -310,11 +313,17 @@ $(window).load(function() {
 
   $( window ).resize(function() {
 
+    $('.zoompic').slideDown('slow');
     $('.zoompic')[0].style.top = $('.shared-photo').offset().top + $('.shared-photo')[0].height -90 + "px";
     $('.zoompic')[0].style.left = $('.shared-photo').offset().left + $('.shared-photo')[0].width - 45  + "px";
 
+    $('.hidepic').slideDown('slow');
     $('.hidepic')[0].style.top = $('.shared-photo').offset().top + $('.shared-photo')[0].height - 48 + "px";
     $('.hidepic')[0].style.left = $('.shared-photo').offset().left + $('.shared-photo')[0].width - 44 + "px";
+
+
+    $('.showpic')[0].style.top = $('.shared-photo').offset().top + $('.shared-photo')[0].height - 48 + "px";
+    $('.showpic')[0].style.left = $('.shared-photo').offset().left + $('.shared-photo')[0].width - 44 + "px";
 
     var w, w_max;
 
@@ -346,6 +355,14 @@ $(window).load(function() {
 
   $('.hidepic').click(function(){
     hide_all();
+    $('.hidepic').css("display","none");
+    $('.showpic').css("display","block");
+  });
+
+  $('.showpic').click(function(){
+    show_all();
+    $('.showpic').css("display","none");
+    $('.hidepic').css("display","block");
   });
 
   $(".submit-plus").click(function() {
@@ -424,14 +441,16 @@ $(window).load(function() {
 
 <%img_path = "/system/uploads/" + @question.image_link%>
 
-<span class="zoompic hidden-xs">
+<span class="zoompic hidden-xs" style="display:none;">
   <a href="<%= img_path %>" data-featherlight="image">
     <%= image_tag("Zoom.png", size: "25x25", class: "enlarge-icon") %>
   </a>
 </span>
-
-<span class="hidepic">
+<span class="hidepic" style="display:none;">
   <%= image_tag("Hide-Tags.png", size: "24x24", class: "hide-icon") %>
+</span>
+<span class="showpic" style="display: none;">
+  <%= image_tag("Show-Tags.png", size: "24x24", class: "hide-icon") %>
 </span>
 
 <%#if @user_submitted_answer && !@question.shared_image.nil? && !@question.shared_image%>
@@ -607,11 +626,6 @@ $(window).load(function() {
         </span>
       </section>
     </div>
-
-      <!--<span class="showhidebuttons visible-xs">
-          <a href="#" onclick="show_all();" class="show-tag"><%#= image_tag("Show_Tag.png", size: "23x15") + "  Show Tags"%></a>
-          <a href="#" onclick="hide_all();" class="hide-tag"><%#= image_tag("Hide_Tag.png", size: "23x15") + "  Hide Tags"%></a>
-      </span>-->
 
       <center id="image-feed">
         <%@ifeed = Question.where.not(id: @question.id, shared_image: false).order("RANDOM()").limit(12)%>
