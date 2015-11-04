@@ -376,6 +376,7 @@ $(window).load(function() {
 
   $("input").keypress(function(event) {
     if (event.which == 13) {
+      $('.emoji_icon')[0].style.display = "none";
       $('#value')[0].value = $('#comment-input')[0].value;
       $("#new_answer").submit();
     }
@@ -398,7 +399,7 @@ $(window).load(function() {
     $("#new_answer").submit();
     $('#comment-input')[0].style.display = "none";
     $('#comment-input')[0].value = "";
-    $('.emoji-icon')[0].style.display = "none";
+    $('.emoji_icon')[0].style.display = "none";
   });
 
   $('.question-image-title').click(function(){
