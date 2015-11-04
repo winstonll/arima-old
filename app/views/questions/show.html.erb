@@ -76,21 +76,21 @@ function GetCoordinates(e){
       $('.emoji_icon')[0].style.left = String($('.shared-photo').offset().left + PosX - 25) + "px";
       $('#comment-input')[0].style.display = "block";
 
-      $('.red-indicator')[0].style.top = String($('.shared-photo').offset().top + PosY + 20) + "px";
+      $('.red-indicator')[0].style.top = String($('.shared-photo').offset().top + PosY + 12) + "px";
       $('.red-indicator')[0].style.left = String($('.shared-photo').offset().left + PosX + 1) + "px";
       $('.red-indicator')[0].style.display = "block";
     }else {
       $('#comment-input')[0].style.top = String($('.shared-photo').offset().top + PosY) + "px";
       $('#comment-input')[0].style.left = String($('.shared-photo').offset().left + PosX) + "px";
       $('#comment-input')[0].style.display = "block";
-      
+
       $('.emoji_icon')[0].style.top = String($('.shared-photo').offset().top + PosY + 4) + "px";
       $('.emoji_icon')[0].style.left = String($('.shared-photo').offset().left + PosX + 120) + "px";
       $('.emoji_icon')[0].style.display = "block";
 
 
-      $('.red-indicator')[0].style.top = String($('.shared-photo').offset().top + PosY + 20) + "px";
-      $('.red-indicator')[0].style.left = String($('.shared-photo').offset().left + PosX - 5) + "px";
+      $('.red-indicator')[0].style.top = String($('.shared-photo').offset().top + PosY + 12) + "px";
+      $('.red-indicator')[0].style.left = String($('.shared-photo').offset().left + PosX - 8) + "px";
       $('.red-indicator')[0].style.display = "block";
     }
 }
@@ -593,7 +593,7 @@ $(window).load(function() {
   <%= form_for :tag, :url => {:action => "add_tag", :controller => "tags"}, class: "form-inline", :remote => true do |f| %>
     <div class="comment-input" style="position: absolute;">
       <%= f.text_field(:label, placeholder: "Add Comment Here", class: "input-hidden", id: "comment-input") %>
-      <%= image_tag "back_tab.png", class: "emoji_icon", size: "20x20" %>
+      <%= image_tag "emoji-icon.png", class: "emoji_icon", size: "20x20" %>
     </div>
     <%#= f.submit "+", class: "submit-plus visible-xs" %>
     <span class="mobile-instructag visible-xs">Tap on the image to add your Tag Comment! </span>
