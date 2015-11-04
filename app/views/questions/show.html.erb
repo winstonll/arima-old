@@ -13,7 +13,7 @@
 <%= javascript_include_tag "featherlight" %>
 <%= javascript_include_tag "jquery.emojipicker" %>
 <%= javascript_include_tag "jquery.emojipicker.a" %>
-
+<%= javascript_include_tag "twemoji.min" %>
 
 
 <%#= javascript_include_tag "jquery.line" %>
@@ -216,7 +216,7 @@ function create_tags(id, label, x, y, counter, selected) {
 
   var downvote = '<a data-method="get" data-remote="true" href="/downvote_tag?question=<%= @question.id%>' + '&tag_clicked=' + id + '"'+ '><%= image_tag("downvote-white.png", alt:"image", size:"15x15", class:"votearrow") %></a>';
 
-  iDiv[0].innerHTML =  '<span style="display: inline-block;">' + upvote + downvote +'</span>' + '<span style="margin-left: 3px; margin-right: -1px; font-weight: 700;" class="counter-' + id + '">' + counter + '</span>' + '<span style="margin-left: 10px;">' + label +'</span>';
+  iDiv[0].innerHTML =  '<span style="display: inline-block;">' + upvote + downvote +'</span>' + '<span style="margin-left: 3px; margin-right: -1px; font-weight: 700;" class="counter-' + id + '">' + counter + '</span>' + '<span style="margin-left: 10px;">' + twemoji.parse(label) +'</span>';
 
   $(iDiv).attr('id', "tag-" + id);
   iDiv[0].className = 'tag';

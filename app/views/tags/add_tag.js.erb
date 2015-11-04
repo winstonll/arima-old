@@ -15,7 +15,7 @@ $(document).ready(function() {
   iDiv[0].id = "tag-" + <%= @tag.id%>;
   iDiv[0].className = 'tag';
 
-  iDiv[0].innerHTML = '<span style="display: inline-block;">' + upvote + downvote +'</span>' + '<span style="margin-left: 10px;">' + '<%=@tag.counter%>' + '</span>' + '<span style="margin-left: 10px;">' + '<%=@tag.label%>' +'</span>';
+  iDiv[0].innerHTML = '<span style="display: inline-block;">' + upvote + downvote +'</span>' + '<span style="margin-left: 10px;">' + '<%=@tag.counter%>' + '</span>' + '<span style="margin-left: 10px;">' + twemoji.parse("<%= @tag.label %>") +'</span>';
   iDiv[0].style.color = "white";
   iDiv[0].style.visibility = "visible";
   iDiv[0].style.display = "none";
