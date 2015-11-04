@@ -72,23 +72,27 @@ function GetCoordinates(e){
     if(w_max){
       $('#comment-input')[0].style.top = String($('.shared-photo').offset().top + PosY) + "px";
       $('#comment-input')[0].style.left = String($('.shared-photo').offset().left + PosX - 145) + "px";
+      $('.emoji_icon')[0].style.top = String($('.shared-photo').offset().top + PosY + 4) + "px";
+      $('.emoji_icon')[0].style.left = String($('.shared-photo').offset().left + PosX - 25) + "px";
       $('#comment-input')[0].style.display = "block";
 
-      $('.red-indicator')[0].style.top = String($('.shared-photo').offset().top + PosY - 11) + "px";
+      $('.red-indicator')[0].style.top = String($('.shared-photo').offset().top + PosY + 20) + "px";
       $('.red-indicator')[0].style.left = String($('.shared-photo').offset().left + PosX + 1) + "px";
       $('.red-indicator')[0].style.display = "block";
     }else {
       $('#comment-input')[0].style.top = String($('.shared-photo').offset().top + PosY) + "px";
       $('#comment-input')[0].style.left = String($('.shared-photo').offset().left + PosX) + "px";
       $('#comment-input')[0].style.display = "block";
+      
+      $('.emoji_icon')[0].style.top = String($('.shared-photo').offset().top + PosY + 4) + "px";
+      $('.emoji_icon')[0].style.left = String($('.shared-photo').offset().left + PosX + 120) + "px";
+      $('.emoji_icon')[0].style.display = "block";
 
-      $('.red-indicator')[0].style.top = String($('.shared-photo').offset().top + PosY - 11) + "px";
-      $('.red-indicator')[0].style.left = String($('.shared-photo').offset().left + PosX- 11) + "px";
+
+      $('.red-indicator')[0].style.top = String($('.shared-photo').offset().top + PosY + 20) + "px";
+      $('.red-indicator')[0].style.left = String($('.shared-photo').offset().left + PosX - 5) + "px";
       $('.red-indicator')[0].style.display = "block";
     }
-
-
-    $('#comment-input').emojiPicker('toggle');
 }
 
 function increaseSize(tag, counter){
@@ -394,16 +398,19 @@ $(window).load(function() {
     $("#new_answer").submit();
     $('#comment-input')[0].style.display = "none";
     $('#comment-input')[0].value = "";
+    $('.emoji-icon')[0].style.display = "none";
   });
 
   $('.question-image-title').click(function(){
     tip.toggle();
   });
 
-  $('.emoji-1').click(function(e) {
+  $('.emoji_icon').click(function(e) {
     e.preventDefault();
     $('#comment-input').emojiPicker('toggle');
   });
+
+
 
   $(document).ready(function() {
     setTimeout(function() {
@@ -414,20 +421,28 @@ $(window).load(function() {
   $(document).keyup(function(e) {
     if (e.keyCode == 27){
       $('#comment-input')[0].style.display = "none";
+      $('.emoji_icon')[0].style.display = "none";
     }
   });
 
   $(document).mousedown(function (e)
   {
       var container = $(".shared-photo");
+      var emoji_container = $('.emojiPicker');
+      var emoji_icon = $('.emoji_icon');
       var input_field = $('#comment-input');
 
       if (!container.is(e.target) // if the target of the click isn't the container...
+          && !emoji_container.is(e.target)
+          && emoji_container.has(e.target).length === 0
+          && !emoji_icon.is(e.target)
+          && emoji_icon.has(e.target).length === 0
           && container.has(e.target).length === 0
           && !input_field.is(e.target)) // ... nor a descendant of the container
       {
         $('.red-indicator')[0].style.display = "none";
         $('#comment-input')[0].style.display = "none";
+        $('.emoji_icon')[0].style.display = "none";
       }
   });
 
@@ -576,7 +591,10 @@ $(window).load(function() {
 <div id="image-question-container">
 <div>
   <%= form_for :tag, :url => {:action => "add_tag", :controller => "tags"}, class: "form-inline", :remote => true do |f| %>
-    <%= f.text_field(:label, placeholder: "Add Comment Here", class: "input-hidden", id: "comment-input") %>
+    <div class="comment-input" style="position: absolute;">
+      <%= f.text_field(:label, placeholder: "Add Comment Here", class: "input-hidden", id: "comment-input") %>
+      <%= image_tag "back_tab.png", class: "emoji_icon", size: "20x20" %>
+    </div>
     <%#= f.submit "+", class: "submit-plus visible-xs" %>
     <span class="mobile-instructag visible-xs">Tap on the image to add your Tag Comment! </span>
 

@@ -15,6 +15,17 @@
   color: white;
 }
 
+.test_arrow{
+  position: absolute;
+  z-index: 1;
+}
+
+.emoji_icon{
+  position: absolute;
+  z-index: 2000;
+  display: none;
+}
+
 .submit-q-container {
   //visibility: hidden;
   display: none;
@@ -115,6 +126,7 @@
 #comment-input {
   width: 145px;
   box-shadow: none;
+  padding-right: 36px;
 }
 
 .tag_indicator {
