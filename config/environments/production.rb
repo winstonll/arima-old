@@ -65,6 +65,8 @@ Arima::Application.configure do
   config.assets.precompile += %w(toastr.css)
   config.assets.precompile += %w(animate.css)
   config.assets.precompile += %w(tooltip.css)
+  config.assets.precompile += %w(jquery.emojipicker.css)
+  config.assets.precompile += %w(jquery.emojipicker.a.css)
 
 
   config.assets.precompile += %w(home.js)
@@ -77,6 +79,8 @@ Arima::Application.configure do
   config.assets.precompile += %w(tooltip.min.js)
   config.assets.precompile += %w(jquery.knob.js)
   config.assets.precompile += %w(toastr.js)
+  config.assets.precompile += %w(jquery.emojipicker.js)
+  config.assets.precompile += %w(jquery.emojipicker.a.js)
 
 
   config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
