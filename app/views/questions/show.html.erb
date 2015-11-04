@@ -376,7 +376,7 @@ $(window).load(function() {
 
   $("input").keypress(function(event) {
     if (event.which == 13) {
-      $('#value')[0].value = twemoji.parse($('#comment-input')[0].value);
+      $('#value')[0].value = $('#comment-input')[0].value;
       $("#new_answer").submit();
     }
   });
