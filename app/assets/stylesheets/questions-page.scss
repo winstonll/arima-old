@@ -7,9 +7,43 @@
   margin-bottom: 1px;
 }
 
+#text-custom-trigger {
+  position: absolute;
+  left: 500px;
+  top: 300px;
+  z-index: 300;
+  color: white;
+}
+
+.test_arrow{
+  position: absolute;
+  z-index: 1;
+}
+
+.emoji_icon{
+  position: absolute;
+  z-index: 2000;
+  display: none;
+  cursor: pointer;
+  margin-left: 14px;
+  opacity: .7;
+  &:hover{
+  opacity: 1;
+  transform: scale(1.2);
+  }
+}
+
 .submit-q-container {
   //visibility: hidden;
   display: none;
+}
+
+.emoji-1{
+  position: absolute;
+  left: 100px;
+  top: 300px;
+  z-index: 300;
+  color: white;
 }
 
 .g-recaptcha {
@@ -74,7 +108,7 @@
   display: none;
   z-index: 1600;
   position: absolute;
-  padding: 5px;
+  padding: 5px 10px;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -95,10 +129,19 @@
   color: white;
 }
 
+img.emoji {
+   height: 2em;
+   width: 2em;
+   margin: 0 .05em 0 .1em;
+   vertical-align: -0.1em;
+}
+
 
 #comment-input {
-  width: 145px;
+  width: 160px;
   box-shadow: none;
+  padding-right: 36px;
+  border-radius: 3px 30px 30px 20px;
 }
 
 .tag_indicator {
@@ -152,7 +195,9 @@
       padding-top: 5px;
 
       .share-icon-container {
-        float: left;
+        float: right;
+        margin-top: -1px;
+        margin-right: 1%;
       }
 
       .instructag {
@@ -160,7 +205,7 @@
         font-size: 13px;
         color:white;
         float: right;
-        margin-right: 8%
+        margin-right: 2%
       }
     }
   }

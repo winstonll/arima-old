@@ -3,6 +3,7 @@ $(document).ready(function() {
 
   $('#comment-input')[0].style.display = "none";
   $('.red-indicator')[0].style.display = "none";
+  $('.emoji_icon')[0].style.display = "none";
   $('#comment-input')[0].value = "";
 
   tag_indicator = $('<div class="tag_indicator"></div>');
@@ -14,7 +15,7 @@ $(document).ready(function() {
   iDiv[0].id = "tag-" + <%= @tag.id%>;
   iDiv[0].className = 'tag';
 
-  iDiv[0].innerHTML = '<span style="display: inline-block;">' + upvote + downvote +'</span>' + '<span style="margin-left: 10px;">' + '<%=@tag.counter%>' + '</span>' + '<span style="margin-left: 10px;">' + '<%=@tag.label%>' +'</span>';
+  iDiv[0].innerHTML = '<span style="display: inline-block;">' + upvote + downvote +'</span>' + '<span style="margin-left: 10px;">' + '<%=@tag.counter%>' + '</span>' + '<span style="margin-left: 10px;">' + twemoji.parse("<%= @tag.label %>") +'</span>';
   iDiv[0].style.color = "white";
   iDiv[0].style.visibility = "visible";
   iDiv[0].style.display = "none";

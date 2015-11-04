@@ -4,10 +4,17 @@
 <%#= javascript_include_tag "markerwithlabel" %>
 <%= stylesheet_link_tag "featherlight.min.css" %>
 <%= stylesheet_link_tag "tooltip.css" %>
+<%= stylesheet_link_tag "jquery.emojipicker.css" %>
+<%= stylesheet_link_tag "jquery.emojipicker.a.css" %>
+
+
 
 <%= javascript_include_tag "tooltip.min" %>
-<%= javascript_include_tag "twemoji.min" %>
 <%= javascript_include_tag "featherlight" %>
+<%= javascript_include_tag "jquery.emojipicker" %>
+<%= javascript_include_tag "jquery.emojipicker.a" %>
+<%= javascript_include_tag "twemoji.min" %>
+
 
 <%#= javascript_include_tag "jquery.line" %>
 
@@ -18,6 +25,7 @@ var tag_counter = 1;
 var tag_index = 0;
 var tag_max = 3;
 var comment_index = 1;
+var emoji_show = false;
 
 function FindPosition(oElement){
   if(typeof( oElement.offsetParent ) != "undefined"){
@@ -62,9 +70,13 @@ function GetCoordinates(e){
     if(w_max){
       $('#comment-input')[0].style.top = String($('.shared-photo').offset().top + PosY) + "px";
       $('#comment-input')[0].style.left = String($('.shared-photo').offset().left + PosX - 145) + "px";
+      $('.emoji_icon')[0].style.top = String($('.shared-photo').offset().top + PosY + 4) + "px";
+      $('.emoji_icon')[0].style.left = String($('.shared-photo').offset().left + PosX - 25) + "px";
+      $('.emoji_icon')[0].style.display = "block";
+
       $('#comment-input')[0].style.display = "block";
 
-      $('.red-indicator')[0].style.top = String($('.shared-photo').offset().top + PosY - 11) + "px";
+      $('.red-indicator')[0].style.top = String($('.shared-photo').offset().top + PosY + 12) + "px";
       $('.red-indicator')[0].style.left = String($('.shared-photo').offset().left + PosX + 1) + "px";
       $('.red-indicator')[0].style.display = "block";
     }else {
@@ -72,12 +84,15 @@ function GetCoordinates(e){
       $('#comment-input')[0].style.left = String($('.shared-photo').offset().left + PosX) + "px";
       $('#comment-input')[0].style.display = "block";
 
-      $('.red-indicator')[0].style.top = String($('.shared-photo').offset().top + PosY - 11) + "px";
-      $('.red-indicator')[0].style.left = String($('.shared-photo').offset().left + PosX- 11) + "px";
+      $('.emoji_icon')[0].style.top = String($('.shared-photo').offset().top + PosY + 4) + "px";
+      $('.emoji_icon')[0].style.left = String($('.shared-photo').offset().left + PosX + 120) + "px";
+      $('.emoji_icon')[0].style.display = "block";
+
+
+      $('.red-indicator')[0].style.top = String($('.shared-photo').offset().top + PosY + 12) + "px";
+      $('.red-indicator')[0].style.left = String($('.shared-photo').offset().left + PosX - 8) + "px";
       $('.red-indicator')[0].style.display = "block";
     }
-
-
 }
 
 function increaseSize(tag, counter){
@@ -191,6 +206,7 @@ function myLoop (time) {
 }
 
 function create_tags(id, label, x, y, counter, selected) {
+
   var iDiv, h, w, w_max, tag_indicator;
 
   tag_indicator = $('<div class="tag_indicator"></div>');
@@ -200,7 +216,7 @@ function create_tags(id, label, x, y, counter, selected) {
 
   var downvote = '<a data-method="get" data-remote="true" href="/downvote_tag?question=<%= @question.id%>' + '&tag_clicked=' + id + '"'+ '><%= image_tag("downvote-white.png", alt:"image", size:"15x15", class:"votearrow") %></a>';
 
-  iDiv[0].innerHTML =  '<span style="display: inline-block;">' + upvote + downvote +'</span>' + '<span style="margin-left: 3px; margin-right: -1px; font-weight: 700;" class="counter-' + id + '">' + counter + '</span>' + '<span style="margin-left: 10px;">' + label +'</span>';
+  iDiv[0].innerHTML =  '<span style="display: inline-block;">' + upvote + downvote +'</span>' + '<span style="margin-left: 3px; margin-right: -1px; font-weight: 700;" class="counter-' + id + '">' + counter + '</span>' + '<span style="margin-left: 10px;">' + twemoji.parse(label) +'</span>';
 
   $(iDiv).attr('id', "tag-" + id);
   iDiv[0].className = 'tag';
@@ -240,9 +256,12 @@ function create_tags(id, label, x, y, counter, selected) {
 function show_all(){
   clearTimeout(timeout_function);
 
-  for(i = 0; i < $('.tag').length; i++){
-    $($('.tag')[i]).show('slow');
+  if($('.tag').length <= 5){
+    time_out = 2000;
+  }else {
+    time_out = 2500;
   }
+  myLoop(time_out);
 }
 
 function hide_all(){
@@ -256,10 +275,18 @@ function hide_all(){
 }
 
 $(window).load(function() {
+  $('#comment-input').emojiPicker({
+    width: '300px',
+    height: '200px',
+    button: false
+  });
 
   var tip = new Tooltip('<div style="padding: 8px;"><%= @question.label %></div>');
   tip.type('light').effect('slide');
   tip.position(document.querySelector('.question-image-title'));
+  $('.zoompic').show(2400);
+  $('.hidepic').show(2400);
+
 
   var time_out;
 
@@ -270,11 +297,11 @@ $(window).load(function() {
     <%end%>
   <%end%>
 
-  $('.zoompic').slideDown('slow');
+  $('.zoompic').show(2400);
   $('.zoompic')[0].style.top = $('.shared-photo').offset().top + $('.shared-photo')[0].height -90 + "px";
   $('.zoompic')[0].style.left = $('.shared-photo').offset().left + $('.shared-photo')[0].width - 45  + "px";
 
-  $('.hidepic').slideDown('slow');
+  $('.hidepic').show(2400);
   $('.hidepic')[0].style.top = $('.shared-photo').offset().top + $('.shared-photo')[0].height - 48 + "px";
   $('.hidepic')[0].style.left = $('.shared-photo').offset().left + $('.shared-photo')[0].width - 44 + "px";
 
@@ -299,6 +326,7 @@ $(window).load(function() {
     myLoop(time_out);
   }
 
+
   $('#answer_value').on('change', function() {
     $('.modal-button').prop('disabled', !(this.value.length > 0));
   });
@@ -313,11 +341,11 @@ $(window).load(function() {
 
   $( window ).resize(function() {
 
-    $('.zoompic').slideDown('slow');
+    $('.zoompic').show(2400);
     $('.zoompic')[0].style.top = $('.shared-photo').offset().top + $('.shared-photo')[0].height -90 + "px";
     $('.zoompic')[0].style.left = $('.shared-photo').offset().left + $('.shared-photo')[0].width - 45  + "px";
 
-    $('.hidepic').slideDown('slow');
+    $('.hidepic').show(2400);
     $('.hidepic')[0].style.top = $('.shared-photo').offset().top + $('.shared-photo')[0].height - 48 + "px";
     $('.hidepic')[0].style.left = $('.shared-photo').offset().left + $('.shared-photo')[0].width - 44 + "px";
 
@@ -383,6 +411,13 @@ $(window).load(function() {
     tip.toggle();
   });
 
+  $('.emoji_icon').click(function(e) {
+    e.preventDefault();
+    $('#comment-input').emojiPicker('toggle');
+  });
+
+
+
   $(document).ready(function() {
     setTimeout(function() {
       $('.mobile-instructag')[0].style.visibility = 'hidden';
@@ -392,20 +427,28 @@ $(window).load(function() {
   $(document).keyup(function(e) {
     if (e.keyCode == 27){
       $('#comment-input')[0].style.display = "none";
+      $('.emoji_icon')[0].style.display = "none";
     }
   });
 
   $(document).mousedown(function (e)
   {
       var container = $(".shared-photo");
+      var emoji_container = $('.emojiPicker');
+      var emoji_icon = $('.emoji_icon');
       var input_field = $('#comment-input');
 
       if (!container.is(e.target) // if the target of the click isn't the container...
+          && !emoji_container.is(e.target)
+          && emoji_container.has(e.target).length === 0
+          && !emoji_icon.is(e.target)
+          && emoji_icon.has(e.target).length === 0
           && container.has(e.target).length === 0
           && !input_field.is(e.target)) // ... nor a descendant of the container
       {
         $('.red-indicator')[0].style.display = "none";
         $('#comment-input')[0].style.display = "none";
+        $('.emoji_icon')[0].style.display = "none";
       }
   });
 
@@ -554,7 +597,10 @@ $(window).load(function() {
 <div id="image-question-container">
 <div>
   <%= form_for :tag, :url => {:action => "add_tag", :controller => "tags"}, class: "form-inline", :remote => true do |f| %>
-    <%= f.text_field(:label, placeholder: "Add Comment Here", class: "input-hidden", id: "comment-input") %>
+    <div class="comment-input" style="position: absolute;">
+      <%= f.text_field(:label, placeholder: "Add Comment Here", class: "input-hidden", id: "comment-input") %>
+      <%= image_tag "emoji-icon.png", class: "emoji_icon", size: "20x20" %>
+    </div>
     <%#= f.submit "+", class: "submit-plus visible-xs" %>
     <span class="mobile-instructag visible-xs">Tap on the image to add your Tag Comment! </span>
 
@@ -594,15 +640,16 @@ $(window).load(function() {
       </div>
 
       <div class="tool-bar">
+        <span class="instructag">Click anywhere and press Enter to add a Tag </span>
           <span class="share-icon-container" class="hidden-xs">
-            <%#= render partial: "questions/share", locals: {
+            <%= render partial: "questions/share", locals: {
                 id: @question.id,
                 url: "#{request.protocol}#{request.host_with_port}" + question_path(@question),
                 title: "#{@question.label[0..70]}...",
                 image: "#{request.protocol}#{request.host_with_port}" + question_path(@question)
               }%>
           </span>
-          <span class="instructag">Click anywhere and press Enter to add a Tag </span>
+
 
       <section class="share-image-title">
         <span class="question-image-title">
