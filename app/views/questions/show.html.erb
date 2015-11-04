@@ -393,13 +393,19 @@ $(window).load(function() {
     $('.hidepic').css("display","block");
   });
 
-  $(".submit-plus").click(function() {
-    $('#value')[0].value = $('#comment-input')[0].value;
-    $("#new_answer").submit();
-    $('#comment-input')[0].style.display = "none";
-    $('#comment-input')[0].value = "";
-    $('.emoji_icon')[0].style.display = "none";
-  });
+  $('#next-tag').click(
+      function(event) {
+      event.preventDefault();
+        var prev_tag = $("#tag-feed");
+        prev_tag.animate({'scrollLeft': '+=180px'})(prev_tag.scrollLeft);
+   });
+
+  $('#prev-tag').click(
+      function(event) {
+      event.preventDefault();
+        var next_tag = $("#tag-feed");
+        next_tag.animate({'scrollLeft': '-=180px'})(next_tag.scrollLeft);
+   });
 
   $('.question-image-title').click(function(){
     tip.toggle();
@@ -680,6 +686,27 @@ $(window).load(function() {
         <% @ifeed.each do |question| %>
           <%= render partial: "common/trending_images", locals: { answered: false, question: question } %>
         <% end %>
+      </center>
+      <center>
+        <%= image_tag("pop-star.png", size: "30x30")%><div class="popular-tags">Popular Tags around the site</div>
+        <a href="#" id="prev-tag" class="hidden-xs">
+            <%= image_tag("prev-page.png")%>
+        </a>
+        <div id="tag-feed">
+          <% @pop_tags.each do |tag|%>
+            <% @tag_question = Question.where(id: tag.question_id).first%>
+            <a href="<%= question_path(@tag_question) %>">
+              <div class= "tags-in-feed">
+                <%= image_tag("upvote-white.png", alt:"image", size:"15x15", class:"votearrow")%>
+                <%= tag.counter %>
+                <%= tag.label %>
+              </div>
+            </a>
+          <% end %>
+        </div>
+        <a href="#" id="next-tag" class="hidden-xs">
+          <%= image_tag("next-page.png")%>
+        </a>
       </center>
 
       <div style="clear:both;"></div>
