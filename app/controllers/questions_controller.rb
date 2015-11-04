@@ -237,7 +237,6 @@ class QuestionsController < ApplicationController
     if !params[:question][:image_link].nil?
       @question_image = true
       @uploaded_image = true
-      @tag_number = 0
       uploaded_io = params[:question][:image_link]
       @file_name = "#{SecureRandom.hex[0,5]}.png"
       File.open(Rails.root.join('public', 'system', 'uploads', @file_name), 'wb') do |file|
@@ -259,7 +258,7 @@ class QuestionsController < ApplicationController
         :user_id => @user_created,
         :value_type => "tag", #params[:numeric_value] == "false" ? "collection" : "quantity"
         :options_for_collection => "",
-        :tag_count => @tag_number,
+        :tag_count => 0,
         :image_link => @file_name,
         :shared_image => true)
 
