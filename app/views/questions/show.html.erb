@@ -10,11 +10,9 @@
 
 
 <%= javascript_include_tag "tooltip.min" %>
-<%= javascript_include_tag "twemoji.min" %>
 <%= javascript_include_tag "featherlight" %>
 <%= javascript_include_tag "jquery.emojipicker" %>
 <%= javascript_include_tag "jquery.emojipicker.a" %>
-
 
 
 
@@ -376,7 +374,6 @@ $(window).load(function() {
 
   $("input").keypress(function(event) {
     if (event.which == 13) {
-      $('.emoji_icon')[0].style.display = "none";
       $('#value')[0].value = $('#comment-input')[0].value;
       $("#new_answer").submit();
     }
