@@ -26,6 +26,11 @@
   display: none;
   cursor: pointer;
   margin-left: 14px;
+  opacity: .7;
+  &:hover{
+  opacity: 1;
+  transform: scale(1.2);
+  }
 }
 
 .submit-q-container {
@@ -103,7 +108,7 @@
   display: none;
   z-index: 1600;
   position: absolute;
-  padding: 5px;
+  padding: 5px 10px;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -129,6 +134,7 @@
   width: 160px;
   box-shadow: none;
   padding-right: 36px;
+  border-radius: 3px 30px 30px 20px;
 }
 
 .tag_indicator {
