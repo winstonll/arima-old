@@ -19,9 +19,10 @@ class QuestionsController < ApplicationController
     #@answers = Answer.where(question: @question).count
 
     @counter = User.joins(:opinions).where("opinions.question_id = #{@question.id}").distinct.count
-
     @tags_array = Tag.where(question_id: @question.id).where("counter > ?", -2).order(created_at: :asc)
+    @pop_tags = Tag.order(counter: :desc).limit(15)
     @tagrave = Tag.where(:question_id => @question).where("counter < ?", -1)
+
 
     #Tag.where(question_id: @question.id).each do |tag|
     #  if tag.reply_id == 0

@@ -258,6 +258,51 @@
   margin-top: 10px;
 }
 
+#prev-tag,
+#next-tag {
+  img {
+    margin-top: 10px;
+  }
+  
+}
+
+.popular-tags {
+  display: inline-block;
+  color: #419BF9;
+  font-weight: bold;
+  font-size: 12px;
+  width: 110px;
+  white-space:normal;
+  vertical-align: middle;
+  text-align: left;
+  margin-left: 5px;
+}
+
+#tag-feed::-webkit-scrollbar{
+  height: 0px;
+}
+#tag-feed {
+  overflow: scroll;
+  white-space: nowrap;
+  width: 800px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: 10px;
+  padding: 10px;
+  a {
+      margin: 0 10px 0 0;
+      padding: 6px 0 6px 0;
+  }
+
+  .tags-in-feed {
+    background-color: #419BF9;
+    padding: 6px 5px 6px 5px;
+    border-radius: 5px;
+    color: white;
+    display: inline;
+  }
+}
+
 #user_link {
   color: #419BF9;
   display: inline-block;
@@ -1197,10 +1242,8 @@
     text-align: center;
     margin-top: -8px;
   }
-  .submit-plus {
-    position: absolute;
-    bottom: 17%;
-    right: 2%;
-    z-index: 1;
+  #tag-feed {
+    width: auto;
+    display: block;
   }
 }
