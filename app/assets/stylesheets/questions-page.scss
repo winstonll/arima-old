@@ -26,6 +26,11 @@
   display: none;
   cursor: pointer;
   margin-left: 14px;
+  opacity: .7;
+  &:hover{
+  opacity: 1;
+  transform: scale(1.2);
+  }
 }
 
 .submit-q-container {
