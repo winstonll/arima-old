@@ -3,56 +3,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     check_guest()
 
-    if !params[:trick_user].nil?
-
-      if params[:generated_username].nil? && params[:user][:username].empty?
-        redirect_to :back
-        return false
-      end
-
-      @user = User.where(id: cookies[:guest]).first
-      @user.first_name = nil
-      @user.password = '123456'
-      params[:generated_username].nil?  || params[:generated_username].empty? ? @user.username = params[:user][:username] : @user.username = params[:generated_username]
-      @user.save
-
-      @question = Question.where(id: cookies[:q]).first
-      if @question.shared_image
-        @tag = Tag.where(question_id: @question.id, label: cookies[:answer]).first
-        if @tag.nil?
-          @tag = Tag.new(question_id: @question.id, label: cookies[:answer])
-          @tag.counter = 1
-          @tag.save!
-        else
-          @tag.counter = @tag.counter + 1
-          @tag.save!
-        end
-
-        @opinion = Opinion.new(question_id: @question.id, tag_id: @tag.id, user_id: cookies[:guest])
-        @opinion.save!
-      else
-        @question.options_for_collection = @question.options_for_collection + "|#{cookies[:answer]}"
-        @question.save
-        @answer = Answer.new(value: cookies[:answer], question_id: cookies[:q], user_id: cookies[:guest])
-        @answer.save
-      end
-
-      @winston = User.new(email: "winston@arima.io")
-      UserMailer.signup_admin(@winston, @user).deliver!
-      sign_in(:user, @user)
-
-      if(Badge.where(user_id: current_user.id, badge_id: 1).first.nil?)
-        badge = Badge.new(user_id: current_user.id, badge_id: 1, date: Date.today.to_s, label: "Starter Badge")
-        badge.save!
-      end
-
-      cookies[:signup] = nil
-      cookies[:answer] = nil
-      cookies[:q] = nil
-      redirect_to :back
-      return true
-    end
-
     @user = User.where(id: cookies[:guest]).first
     @user.first_name = nil
     @user.password = user_params["password"]
