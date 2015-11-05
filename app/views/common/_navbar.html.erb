@@ -13,7 +13,10 @@
 
   <section class="right">
     <%= link_to image_tag("logo-icon-large.png"), categories_path, id: "arima-icon" %>
-
+    <% if user_signed_in? && current_user.username.present? %>
+          <%= link_to "#{current_user.username[0].capitalize}", custom_show_path(:username => current_user.username), class: "nav-user-circle" %>
+        <% end %>
+        <%= link_to image_tag("anonprofile.png", size: "40x40"), new_registration_path(resource_name), id: "anonav-btn" if !user_signed_in? %>
     <%= link_to image_tag("imageupload.png", size: "22x20") + "  UPLOAD", new_question_path, id: "imageupload", class: "hidden-lg" %>
     <%= link_to image_tag("imageupload.png", size: "22x20") + "  UPLOAD", {remote: true, controller: "questions", action: "new_modal"}, id: "imageupload", class: "hidden-xs hidden-sm hidden-md" %>
 
