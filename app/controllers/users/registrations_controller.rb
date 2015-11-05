@@ -124,7 +124,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
             format.html { redirect_to question_path(@question) }
             format.json { render json: @user, status: :created, location: @user }
           else
-            format.html { render "users/registrations/welcome", :as => 'welcome' }
+            format.html { redirect_to feed_path }
             format.json { render json: @user, status: :created, location: @user }
           end
         else
