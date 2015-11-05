@@ -18,7 +18,7 @@
     <% if user_signed_in? && current_user.username.present? %>
           <%= link_to "#{current_user.username[0].capitalize}", custom_show_path(:username => current_user.username), class: "nav-user-circle" %>
         <% end %>
-        <%= link_to image_tag("anonprofile.png", size: "40x40"), new_registration_path(resource_name), id: "anonav-btn" if !user_signed_in? %>
+        <%= link_to image_tag("anonprofile.png", size: "35x35"), new_registration_path(resource_name), id: "anonav-btn" if !user_signed_in? %>
 
     <% if !(user_signed_in? && current_user.username.present?) %>
       <%= link_to 'Log In', new_user_session_path, class: "nav-btn hidden-xs hidden-sm hidden-md", id: "nav-login-btn" %>
