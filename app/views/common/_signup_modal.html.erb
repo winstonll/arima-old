@@ -5,7 +5,6 @@
     <%= link_to "×", show_share_modal_question_path(:user_id => cookies[:guest]), :method => :put, :remote => true, :class => "go-back-link", :data => { :dismiss => "modal" } %>
     <div class="share-modal-content-container">
         <p>Ask Questions, Share Images, and gain amazing insights into what people think!</p>
-        <p style="font-weight: normal;">Lets make data fun for everyone! </p>
 
       <div class="signup-form">
         <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: {class: "form"}) do |f| %>
