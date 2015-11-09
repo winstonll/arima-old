@@ -19,14 +19,14 @@ $('#username-input').keyup(function(){
 
       <%= image_tag("anonprofile.png", size: "70x70", class: "avatar-image") %>
       <br/>
-      <span id="username-output"> anonymous </span>
+      <span id="username-output"> Type Your Username </span>
 
       <div class="signup-form">
         <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: {class: "form"}) do |f| %>
           <%= hidden_field_tag 'avatar' %>
           <div class="signup-input">
             <div class="input-username">
-              <%= f.text_field :username, placeholder: "Username", class: "input-box", id: "username-input" %>
+              <%= f.text_field :username, placeholder: "Type Your Username", class: "input-box", id: "username-input" %>
             </div>
             <div class="input-password">
               <%= f.password_field :password, placeholder: "Password", class: "input-box", id: "password" %>
