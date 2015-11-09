@@ -187,32 +187,18 @@
   padding-top: -10em;
 }
 
+  .filter-location-select {
+    width: 250px;
+    height: 35px;
+    font-size: 15px;
+    background-color: #fff;
+    border-radius: 4px;
+    border: 1px solid #DBDBDB;
+    color: 4A4A4A;
+    text-align: center;
 
-
-  .filter {
-    margin-left: 1em;
-    margin-bottom: 3em;
-
-    .filter-span {
-      font-size: 17px;
-      font-weight: 600;
-      color: #4A4A4A;
-      line-height: 30px;
-    }
-
-    .filter-location-select {
-      width: 250px;
-      height: 35px;
-      font-size: 15px;
-      background-color: #fff;
-      border-radius: 4px;
-      border: 1px solid #DBDBDB;
-      color: 4A4A4A;
-      text-align: center;
-
-      &:hover {
-        background-color: #dbdbdb !important;
-      }
+    &:hover {
+      background-color: #dbdbdb !important;
     }
   }
 
