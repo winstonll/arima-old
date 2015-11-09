@@ -1,6 +1,6 @@
 <script>
 var random_avatar;
-$('#username-input').keydown(function(){
+$('#username-input').keyup(function(){
   random_avatar = Math.floor((Math.random() * 50) + 1);
 
   $('.avatar-image').css("background-color", "white");
