@@ -4,4 +4,10 @@ class HomeController < ApplicationController
         redirect_to feed_path
     end
   end
+
+  def signup_modal
+    respond_to do |format|
+      format.js
+    end
+  end
 end

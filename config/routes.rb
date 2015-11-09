@@ -9,6 +9,8 @@ Arima::Application.routes.draw do
   get 'user_list_display' => 'questions#user_list_display'
   get 'graveyard_list' => 'tags#graveyard_list'
 
+  get 'signup_modal' => 'home#signup_modal'
+
   get 'vote_tag' => 'tags#vote_tag'
   get 'downvote_tag' => 'tags#downvote_tag'
 
