@@ -5,7 +5,7 @@ $('#username-input').keydown(function(){
 
   $('.avatar-image').css("background-color", "white");
 
-  $('.avatar-image')[0].src = "images/avatars/" + String(random_avatar) + ".png";
+  $('.avatar-image')[0].src = "/images/avatars/" + String(random_avatar) + ".png";
   $('#username-output')[0].innerHTML = $('#username-input')[0].value;
   $('#avatar')[0].value = random_avatar;
 });
