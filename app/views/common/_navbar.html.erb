@@ -17,7 +17,7 @@
     <%= link_to image_tag("imageupload.png", size: "22x20") + "  UPLOAD", new_question_path, id: "imageupload", class: "hidden-lg" %>
     <%= link_to image_tag("imageupload.png", size: "22x20") + "  UPLOAD", {remote: true, controller: "questions", action: "new_modal"}, id: "imageupload", class: "hidden-xs hidden-sm hidden-md" %>
     <% if user_signed_in? && current_user.username.present? %>
-      <%= link_to "#{current_user.username[0].capitalize}", custom_show_path(:username => current_user.username), class: "nav-user-circle" %>
+      <%= link_to image_tag("#{current_user.avatar}", size: "35x35", class: "profile-icon"), custom_show_path(:username => current_user.username), class: "nav-user-circle" %>
     <% else %>
       <%= link_to image_tag("anonprofile.png", size: "35x35"), {remote: true, controller: "home", action: "signup_modal"}, id: "anonav-btn" if !user_signed_in? %>
     <% end %>
