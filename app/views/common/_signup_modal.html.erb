@@ -10,10 +10,16 @@ $('#username-input').keyup(function(){
   $('#avatar')[0].value = random_avatar;
 });
 
+$('.signup-cancel').click(function() {
+  $('#shareSignupModal').modal('toggle');
+});
+
 </script>
 
 <!-- Share New Question Modal -->
 <div class="modal fade" id="shareSignupModal" tabindex="-1" role="dialog" aria-labelledby="shareSignupModal" aria-hidden="true">
+    <span type="button" class="signup-cancel">X</span>
+
     <div class="share-modal-content-container">
       <p>Manage your Uploads, Add Favorites, Create a Custom Avatar, & more for FREE!</p>
 
