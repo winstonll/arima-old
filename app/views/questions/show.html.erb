@@ -128,7 +128,7 @@ function myLoop (time) {
       if ($(window).width() <= 768){
         tag_max = 1;
       }else {
-        tag_max = 3;
+        tag_max = 2;
       }
 
       if($('.tag').length <= tag_max){
@@ -174,10 +174,11 @@ function myLoop (time) {
         }
 
         if(tag_counter  >= tag_max){
-          $(".comment-" + comment_index)[0].style.display = "none";
-          $(".comment-" + comment_index)[1].style.display = "none";
+          $($(".comment-" + comment_index)[0]).fadeOut(2400);
+          $($(".comment-" + comment_index)[1]).fadeOut(2400);
 
           $(".comment-" + comment_index).removeClass("comment-" + comment_index);
+
         }
 
         ++tag_index;
@@ -189,9 +190,9 @@ function myLoop (time) {
         indicator.addClass("comment-" + comment_index);
         $($('.tag')[tag_index]).addClass("comment-" + comment_index);
 
-        indicator.show('slow');
-        $($('.tag')[tag_index]).fadeIn('slow');
+        indicator.fadeIn(2400);
 
+        $($('.tag')[tag_index]).fadeIn(2400);
 
         comment_index++;
         tag_counter++;
