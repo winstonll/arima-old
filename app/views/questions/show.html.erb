@@ -178,6 +178,7 @@ function myLoop (time) {
           $(".comment-" + comment_index)[1].style.display = "none";
 
           $(".comment-" + comment_index).removeClass("comment-" + comment_index);
+
         }
 
         ++tag_index;
@@ -189,9 +190,10 @@ function myLoop (time) {
         indicator.addClass("comment-" + comment_index);
         $($('.tag')[tag_index]).addClass("comment-" + comment_index);
 
-        indicator.show('slow');
-        $($('.tag')[tag_index]).fadeIn('slow');
+        indicator.fadeIn(2400);
+        indicator.fadeOut(2400);
 
+        $($('.tag')[tag_index]).fadeIn(2400);
 
         comment_index++;
         tag_counter++;
