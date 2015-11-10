@@ -140,23 +140,23 @@ function myLoop (time) {
         ++tag_index;
 
         indicator = $("#indicator-" + $('.tag')[tag_index].id.split("-")[1]);
-        indicator[0].style.display = "none";
+        $(indicator[0]).fadeOut(2400);
 
-        $('.tag')[tag_index].style.display = "none";
+        $($('.tag')[tag_index]).fadeOut(2400);
 
         indicator.addClass("comment-" + comment_index);
         $($('.tag')[tag_index]).addClass("comment-" + comment_index);
 
-        indicator.show('slow');
+        indicator.fadeIn(2400);
 
         if (tag_index != 0){
           indicator = $("#indicator-" + $('.tag')[tag_index - 1 ].id.split("-")[1]);
-          indicator[0].style.display = "none";
-          $('.tag')[tag_index - 1].style.display = "none";
+          $(indicator[0]).fadeOut(2400);
+          $($('.tag')[tag_index - 1]).fadeOut(2400);
         }else{
           indicator = $("#indicator-" + $('.tag')[$('.tag').length - 1 ].id.split("-")[1]);
-          indicator[0].style.display = "none";
-          $('.tag')[$('.tag').length - 1].style.display = "none";
+          $(indicator[0]).fadeOut(2400);
+          $($('.tag')[$('.tag').length - 1]).fadeOut(2400);
         }
 
         //$('#image-question-container').line(indicator.offset().left, indicator.offset().top, temp.offset().left, temp.offset().top, {color:"#50E3C2", stroke:1, zindex:10, display: "block",  id: "line-" + tag_index});
@@ -310,13 +310,13 @@ $(window).load(function() {
   $('.showpic')[0].style.left = $('.shared-photo').offset().left + $('.shared-photo')[0].width - 44 + "px";
 
   if($('.tag').length > 0){
-    $("#indicator-" + $('.tag')[0].id.split("-")[1])[0].style.display = "inline-block";
+    $("#indicator-" + $('.tag')[0].id.split("-")[1]).fadeIn(2400);
     $("#indicator-" + $('.tag')[0].id.split("-")[1]).addClass("comment-1");
     $($('.tag')[0]).addClass("comment-1");
 
     comment_index++;
 
-    $($('.tag')[0]).fadeIn('slow');
+    $($('.tag')[0]).fadeIn(2400);
 
     if($('.tag').length <= 5){
       time_out = 2000;
