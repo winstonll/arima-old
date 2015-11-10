@@ -174,8 +174,8 @@ function myLoop (time) {
         }
 
         if(tag_counter  >= tag_max){
-          $(".comment-" + comment_index)[0].style.display = "none";
-          $(".comment-" + comment_index)[1].style.display = "none";
+          $($(".comment-" + comment_index)[0]).fadeOut(2400);
+          $($(".comment-" + comment_index)[1]).fadeOut(2400);
 
           $(".comment-" + comment_index).removeClass("comment-" + comment_index);
 
@@ -191,11 +191,8 @@ function myLoop (time) {
         $($('.tag')[tag_index]).addClass("comment-" + comment_index);
 
         indicator.fadeIn(2400);
-        indicator.fadeOut(2400);
 
         $($('.tag')[tag_index]).fadeIn(2400);
-        $($('.tag')[tag_index]).fadeOut(2400);
-
 
         comment_index++;
         tag_counter++;

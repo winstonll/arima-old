@@ -13,4 +13,9 @@ $(document).ready(function() {
 	$("<%= "#tag-#{@tag_clicked}"%>")[0].style.display = "none";
 	$("<%= "#tag-#{@tag_clicked}"%>")[0].style.visibility = "hidden";
 <%end%>
+
+<%if (Opinion.where(user_id: cookies[:guest]).count >= 3) && !user_signed_in?%>
+	$('.signup-modal').html('<%= escape_javascript(render partial: 'common/signup_modal') %>')
+	$('#shareSignupModal').modal('show');
+<%end%>
 });

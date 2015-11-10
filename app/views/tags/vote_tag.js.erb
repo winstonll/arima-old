@@ -6,4 +6,8 @@ $(document).ready(function() {
   $("<%= "#tag-#{@tag_clicked}"%>")[0].innerHTML =
   '<span style="display: inline-block;">' + upvote + downvote +'</span>' + '<span style="margin-left: 10px;">' + '<%=@tag.counter%>' + '</span>' + '<span style="margin-left: 10px;">' + '<%=@tag.label%>' +'</span>';
 
+	<%if (Opinion.where(user_id: cookies[:guest]).count >= 3) && !user_signed_in?%>
+		$('.signup-modal').html('<%= escape_javascript(render partial: 'common/signup_modal') %>')
+		$('#shareSignupModal').modal('show');
+	<%end%>
 });
