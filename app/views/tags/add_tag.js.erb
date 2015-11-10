@@ -46,4 +46,13 @@ $(document).ready(function() {
   $(tag_indicator).fadeIn('slow');
   $(iDiv).fadeIn('slow');
 
+  <%if !user_signed_in? && User.where(id: cookies[:guest]).first.username.nil? %>
+    setTimeout(function(){
+      $('.signup-modal').html('<%= escape_javascript(render partial: 'common/signup_modal') %>');
+    	$('#signup-message')[0].innerHTML = "Keep track of your comments with a Profile!";
+    	$('#shareSignupModal').modal('show');
+    }, 2000);
+
+  <%end%>
+
 });

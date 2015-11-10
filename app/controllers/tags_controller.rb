@@ -111,8 +111,6 @@ class TagsController < ApplicationController
       end
     end
 
-    puts @tag.counter
-
     respond_to do |format|
       format.js
     end

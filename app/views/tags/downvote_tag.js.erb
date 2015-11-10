@@ -15,7 +15,8 @@ $(document).ready(function() {
 <%end%>
 
 <%if (Opinion.where(user_id: cookies[:guest]).count >= 3) && !user_signed_in?%>
-	$('.signup-modal').html('<%= escape_javascript(render partial: 'common/signup_modal') %>')
+	$('.signup-modal').html('<%= escape_javascript(render partial: 'common/signup_modal') %>');
+	$('#signup-message')[0].innerHTML = "Keep track of your votes with a Profile!";
 	$('#shareSignupModal').modal('show');
 <%end%>
 });
