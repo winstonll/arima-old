@@ -12,9 +12,10 @@ $(document).ready(function() {
 
 <div class="image-icon-container">
   <% if user_signed_in? && current_user.username.present? %>
-  <%= link_to image_tag("#{current_user.avatar}", size: "35x35"), custom_show_path(:username => current_user.username), class: "nav-user-circle" %>
+    <%= link_to image_tag("#{current_user.avatar}", size: "35x35"), custom_show_path(:username => current_user.username), class: "nav-user-circle" %>
+  <%else%>
+    <%= link_to image_tag("anonprofile.png"), new_registration_path(resource_name), id: "anon-btn" if !user_signed_in? %>
   <% end %>
-  <%= link_to image_tag("anonprofile.png"), new_registration_path(resource_name), id: "anon-btn" if !user_signed_in? %>
   <%= image_tag("cat-icons/#{question.group_id}.png", class: "image-category-icon"  ) %>
   <div class="image-title"><%= question.label %></div>
   <div class="image-author">
