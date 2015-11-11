@@ -213,6 +213,8 @@ class QuestionsController < ApplicationController
   # Method that is called when a question is created
   def create
 
+    check_guest()
+
     if !verify_recaptcha
       redirect_to :back
       flash[:notice] = "Please verify that you are not a bot"
@@ -222,6 +224,12 @@ class QuestionsController < ApplicationController
     if params[:submit_question_name].empty?
       redirect_to :back
       flash[:notice] = "Please enter a question Title/Description"
+      return
+    end
+
+    if cookies[:guest].empty? || cookies[:guest].nil?
+      redirect_to :back
+      flash[:notice] = "Oops there was an error. Please Try again"
       return
     end
 
