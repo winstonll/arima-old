@@ -227,7 +227,7 @@ class QuestionsController < ApplicationController
       return
     end
 
-    if cookies[:guest].empty? || cookies[:guest].nil?
+    if cookies[:guest].nil?
       redirect_to :back
       flash[:notice] = "Oops there was an error. Please Try again"
       return
