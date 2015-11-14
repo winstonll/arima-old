@@ -2,7 +2,7 @@
   padding-top: 20px;
   height: 100%;
 }
-.votearrow {
+.votesarrow {
   display: inline-block;
   margin-bottom: 1px;
 }
@@ -200,6 +200,9 @@ img.emoji {
         margin-right: 1%;
       }
 
+      .favourites {
+        cursor: pointer;
+      }
       .instructag {
         font-weight: 700;
         font-size: 13px;
@@ -207,6 +210,7 @@ img.emoji {
         float: right;
         margin-right: 2%
       }
+
     }
   }
 }
@@ -241,6 +245,8 @@ img.emoji {
     vertical-align: bottom;
   }
 }
+
+
 
 .zoompic {
   position: absolute;
@@ -1076,28 +1082,6 @@ img.emoji {
       float: left;
       left: 13em;
       top: 4em;
-
-      .question-vote-container {
-        float: left;
-        width: 5%;
-        text-align: center;
-
-        .question-vote-image {
-          background-color: lightskyblue;
-          border-radius: 50%;
-          &:hover {
-            opacity: 0.8;
-          }
-        }
-
-        .question-f-counter {
-          font-size: 25px;
-          color: #00C39C;
-          margin-top: -1px;
-          margin-bottom: -1px;
-
-        }
-      }
 
       .question-title-container {
         .question-title {
