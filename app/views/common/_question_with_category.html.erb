@@ -20,7 +20,7 @@ $(document).ready(function() {
   <div class="image-title"><%= question.label %></div>
   <div class="image-author">
     by
-    <%#=
+    <%=
     if User.where(id: question.user_id).first.username.nil? || User.where(id: question.user_id).first.username.empty?
       "anonymous"
     else
