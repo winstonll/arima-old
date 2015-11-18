@@ -394,6 +394,18 @@ $(window).load(function() {
     $('.hidepic').css("display","block");
   });
 
+  $('.noheart').click(function(){
+    hide_all();
+    $('.noheart').css("display","none");
+    $('.favheart').css("display","inline-block");
+  });
+
+  $('.favheart').click(function(){
+    show_all();
+    $('.favheart').css("display","none");
+    $('.noheart').css("display","inline-block");
+  });
+
   $('#next-tag').click(
       function(event) {
       event.preventDefault();
@@ -678,6 +690,21 @@ $(window).load(function() {
           <p><%= @tagrave.count %></p>
 
         </span>
+        <span class="favourites">
+          <% if (cookies[:guest].nil?) %>
+            <% check_guest() %>
+          <% end %>
+          <% if Vote.where(:user_id => cookies[:guest]).where(:question_id => @question.id).pluck(:vote_type)[0] == "upvote" %>
+            <%= link_to image_tag('noheart.png', size:"20x20", id: "upvote-image-#{@question.id}", class: "noheart"), upvote_question_path(:id => @question.id), :method => :put, :remote => true %>
+          <% else %>
+            <%= link_to image_tag('noheart.png', size:"20x20", id: "upvote-image-#{@question.id}", class: "noheart"), upvote_question_path(:id => @question.id), :method => :put, :remote => true %>
+          <% end %>
+          <% if Vote.where(:user_id => cookies[:guest]).where(:question_id => @question.id).pluck(:vote_type)[0] == "downvote" %>
+            <%= link_to image_tag('favheart.png', size:"20x20", id: "downvote-image-#{@question.id}", class: "favheart", style:"display: none;"), downvote_question_path(:id => @question.id), :method => :put, :remote => true %>
+          <% else %>
+            <%= link_to image_tag('favheart.png', size:"20x20", id: "downvote-image-#{@question.id}", class: "favheart", style:"display: none;"), downvote_question_path(:id => @question.id), :method => :put, :remote => true %>
+          <% end %>
+        </span>
       </section>
     </div>
 
@@ -697,7 +724,7 @@ $(window).load(function() {
             <% @tag_question = Question.where(id: tag.question_id).first%>
             <a href="<%= question_path(@tag_question) %>">
               <div class= "tags-in-feed">
-                <%= image_tag("upvote-white.png", alt:"image", size:"15x15", class:"votearrow")%>
+                <%= image_tag("upvote-white.png", alt:"image", size:"15x15", class:"votesarrow")%>
                 <%= tag.counter %>
                 <%= tag.label %>
               </div>

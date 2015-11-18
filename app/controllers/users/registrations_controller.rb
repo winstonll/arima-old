@@ -12,7 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if !user_params["gender"].nil? then @user.gender = user_params["gender"] end
     if !user_params["birthyear"].nil? then @user.birthyear = user_params["birthyear"] end
 
-    @user.update_attribute(:avatar, File.open(Rails.root.join('public', 'images', 'avatars', params[:avatar] + ".png")))
+    #@user.update_attribute(:avatar, File.open(Rails.root.join('public', 'images', 'avatars', params[:avatar] + ".png")))
 
     @location = @user.location
     if !params[:user]["location_attributes"].nil? then @location.country_code = params[:user]["location_attributes"]["country"] end

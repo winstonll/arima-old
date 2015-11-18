@@ -1,4 +1,7 @@
-$("#upvote-image-<%=@question.id%>").attr("src", "<%= image_path 'upvote_grey.png' %>");
-$("#downvote-image-<%=@question.id%>").attr("src", "<%= image_path 'downvote_orange.png' %>");
+$("#upvote-image-<%=@question.id%>").attr("src", "<%= image_path 'noheart.png' %>");
+$("#upvote-image-<%=@question.id%>").css("display", "inline-block");
+$("#downvote-image-<%=@question.id%>").attr("src", "<%= image_path 'favheart.png' %>");
+$("#downvote-image-<%=@question.id%>").css("display", "none");
+
 
 $("#votecount-<%=@question.id%>").html('<%=escape_javascript @question.votecount.to_s %>');
