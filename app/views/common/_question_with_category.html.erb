@@ -1,13 +1,12 @@
 <script type="text/javascript">
-$(document).ready(function() {
+  $(document).ready(function() {
 
-  $("<%= "." + question.id.to_s %>").css("background-image", "url('/system/uploads/" + "<%= question.image_link %>" + "')");
-  $("<%= "." + question.id.to_s %>").css("background-repeat", "no-repeat");
-  $("<%= "." + question.id.to_s %>").css("background-position", "center center");
-  $("<%= "." + question.id.to_s %>").css("background-size", "650px");
+    $("<%= "." + question.id.to_s %>").css("background-image", "url('/system/uploads/" + "<%= question.image_link %>" + "')");
+    $("<%= "." + question.id.to_s %>").css("background-repeat", "no-repeat");
+    $("<%= "." + question.id.to_s %>").css("background-position", "center center");
+    $("<%= "." + question.id.to_s %>").css("background-size", "650px");
 
-});
-
+  });
 </script>
 
 <div class="image-icon-container">
@@ -20,7 +19,7 @@ $(document).ready(function() {
   <div class="image-title"><%= question.label %></div>
   <div class="image-author">
     by
-    <%#=
+    <%=
     if User.where(id: question.user_id).first.username.nil? || User.where(id: question.user_id).first.username.empty?
       "anonymous"
     else
