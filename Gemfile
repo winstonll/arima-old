@@ -74,6 +74,7 @@ group :production do
   gem 'newrelic_rpm'
   gem 'exception_notification'
   gem 'htmlbeautifier'
+  gem 'pg'
 end
 
 group :development, :test do
