@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 ruby "2.2.4"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.0'
+gem 'rails', '4.1.9'
 
 gem 'puma'
 
@@ -83,7 +83,7 @@ group :development, :test do
   # gem 'guard-livereload'
   gem 'factory_girl_rails', require: false
   gem 'capybara'
-  gem 'rspec-rails', '~> 3.0.0'
+  gem 'rspec-rails', '~> 3.5'
   gem 'quiet_assets'
   gem 'best_errors'
 end
