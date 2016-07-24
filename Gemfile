@@ -1,7 +1,10 @@
 source 'https://rubygems.org'
+ruby "2.2.4"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.0'
+
+gem 'puma'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -72,6 +75,7 @@ group :production do
   gem 'exception_notification'
   gem 'htmlbeautifier'
   gem 'pg'
+  gem 'rails_12factor'
 end
 
 group :development, :test do
