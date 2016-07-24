@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
+ruby "2.2.4"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.0'
+gem 'rails', '4.1.9'
 
-# Bundle for Postgres
-gem 'pg'
+gem 'puma'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -74,6 +74,8 @@ group :production do
   gem 'newrelic_rpm'
   gem 'exception_notification'
   gem 'htmlbeautifier'
+  gem 'pg'
+  gem 'rails_12factor'
 end
 
 group :development, :test do
@@ -81,7 +83,7 @@ group :development, :test do
   # gem 'guard-livereload'
   gem 'factory_girl_rails', require: false
   gem 'capybara'
-  gem 'rspec-rails', '~> 3.0.0'
+  gem 'rspec-rails', '~> 3.5'
   gem 'quiet_assets'
   gem 'best_errors'
 end
