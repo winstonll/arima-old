@@ -6,6 +6,8 @@ gem 'rails', '4.1.9'
 
 gem 'puma'
 
+gem 'foreman'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
