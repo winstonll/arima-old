@@ -215,11 +215,11 @@ class QuestionsController < ApplicationController
 
     check_guest()
 
-    if !verify_recaptcha
-      redirect_to :back
-      flash[:notice] = "Please verify that you are not a bot"
-      return
-    end
+    # if !verify_recaptcha
+    #   redirect_to :back
+    #   flash[:notice] = "Please verify that you are not a bot"
+    #   return
+    # end
 
     if params[:submit_question_name].empty?
       redirect_to :back
