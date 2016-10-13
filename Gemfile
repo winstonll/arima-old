@@ -67,6 +67,10 @@ group :production do
   gem 'htmlbeautifier'
 end
 
+group :assets do
+  gem 'coffee-rails'
+end
+
 group :development, :test do
   # gem 'rack-livereload'
   # gem 'guard-livereload'
