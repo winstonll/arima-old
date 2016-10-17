@@ -51,7 +51,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
           #UserMailer.signup_email(@user).deliver!
           @winston = User.new(email: "winston@arima.io")
-          UserMailer.signup_admin(@winston, @user).deliver!
+          # UserMailer.signup_admin(@winston, @user).deliver!
           sign_in(:user, @user)
 
           if(Badge.where(user_id: current_user.id, badge_id: 1).first.nil?)
